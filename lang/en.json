@@ -1,0 +1,589 @@
+{
+        		
+  "app_name": "BunkaList",
+		
+  "login_email": "Email",
+
+  "login_username":
+   "Username",
+
+  "login_password":
+   "Password",
+
+  "login_confirm_password":
+   "Confirm Password",
+
+  "login_sign_in":
+   "Sign In",
+
+  "login_sign_up":
+   "Create your account",
+
+  "login_reset_password":
+   "Reset my password",
+
+  "login_sign_in_google":
+   "Sign In with Google",
+
+  "login_forgot_password":
+   "I have forgotten my password",
+
+  "login_create_account":
+   "Create a new account",
+
+  "go_to_login":
+   "Go back to Login",
+
+  "select_image_user":
+   "select image profile",
+
+  "email_reset_to_password":
+   "Email has been sent to reset your password",
+
+  "email_reset_to_password_failed":
+   "Please make sure the email address is correct",
+
+  "user_confirm_email":
+   "User must confirm email first",
+
+  "login_error":
+   "An unexpected error occurred: please try again",
+
+  "confirm_email_send":
+   "An email has been sent to you. Please confirm before sign in",
+
+  "signUp_data_incorrect":
+   "Please make sure all the data is correct",
+
+  "add_correct_username_and_image_profile":
+   "Your username and your image profile have been added correctly",
+
+  "welcome_new_user":
+   "Welcome new User",
+
+  "btn_go_toActivity":
+   "next",
+
+  "error_new_user":
+   "Please try again",
+
+  "accept_the_permissions":
+   "Accept the Permission",
+
+  "btn_nav_timeline":
+   "Timeline",
+
+  "btn_nav_top":
+   "Tops",
+
+  "btn_nav_search":
+   "Search",
+
+  "btn_nav_profile":
+   "Profile",
+
+  "btn_nav_settings":
+   "Settings",
+
+  "edit_profile":
+   "Edit your Profile",
+
+  "apply_changes":
+   "Apply the changes",
+
+  "mode_light_dark":
+   "Select Mode Day/Night",
+
+  "terms_of_use":
+   "Terms of uses and Privacy Policy",
+
+  "licence":
+   "Licence",
+
+  "about_the_app":
+   "About the App",
+
+  "changed_mode_light":
+   "Mode: Day",
+
+  "changed_mode_dark":
+   "Mode: Night",
+
+  "changed_mode_custom":
+   "Mode: Day/Night",
+
+  "sign_out":
+   "Sign Out",
+
+  "fragment_profile":
+   "Recently added:",
+
+  "fragment_profile_follow_list":
+   "people that you follow",
+
+  "fragment_profile_followers_list":
+   "People who follow you",
+
+  "item_timeline_chapter":
+   "Episode:",
+
+  "item_timeline_season":
+   "Season:",
+
+  "timeline_message_is_spoiler":
+   "[ Is Spoiler: long click on the text if you do not mind the Spoiler ]",
+
+  "timeline_chat_hint_answer":
+   "Answer this comment",
+
+  "checkbox_is_spoiler":
+   "Is Spoiler",
+
+  "dialog_timeline":
+   "Comment your opinion",
+
+  "send_opinion":
+   "Send",
+
+  "hint_name_oeuvre":
+   "Name of the movie: series: anime",
+
+  "hint_dialog_timeline_season":
+   "Season",
+
+  "hint_dialog_timeline_chapter":
+   "Episode",
+
+  "hint_edit_text_content_dialog_timeline":
+   "Comment your opinion of an episode",
+
+  "dialog_timeline_checkbox_only_followers":
+   "Only for your followers",
+
+  "fragment_search":
+   "Search Movies: Series: Anime and People",
+
+  "text_view_get_full_details_search_item":
+   "See all the details",
+
+  "btn_search_item_details_your_list":
+   "Add in your List",
+
+  "searchItemDetailsrating":
+   "Rating:",
+
+  "search_item_full_details_trailers":
+   "Trailers",
+
+  "search_item_details_summary_label":
+   "Summary",
+
+  "activity_full_details":
+   "Genres :",
+
+  "activity_full_details_date":
+   "Date Release :",
+
+  "dialog_add_list_title":
+   "Add in your list",
+
+  "dialog_add_list_add_positive_button":
+   "Added in list",
+
+  "dialog_add_list_add_negative_button":
+   "Cancel",
+
+  "dialogAddList":
+   "Set Status:",
+
+  "dialog_add_list_what_type":
+   "What type ?",
+
+  "dialog_add_list_text_view_arguments":
+   "What note do you give as a Story?",
+
+  "dialog_add_list_text_view_character":
+   "What note do you give as a Characters?",
+
+  "dialog_add_list_text_view_band_sound":
+   "What note do you give as a Soundtrack?",
+
+  "dialog_add_list_text_view_effects":
+   "What note do you give as a Photography / Animation?",
+
+  "dialog_add_list_text_view_Enjoyment":
+   "What note do you give as a Enjoyment?",
+
+  "dialog_add_the_list_alert":
+   "Alert chooses the type of work that is correct so that everything is displayed correctly in your lists",
+
+  "profile_list_activity_tab_all":
+   "All",
+
+  "profile_list_activity_tab_movie":
+   "Movie",
+
+  "profile_list_activity_tab_serie":
+   "Series",
+
+  "profile_list_activity_tab_anime":
+   "Anime",
+
+  "dialog_review_title":
+   "Review Extensive",
+
+  "dialog_review_your_title":
+   "Title the your Review",
+
+  "dialog_review":
+   "Comment your opinion on a Oeuvre in details",
+
+  "dialog_review_positive_button":
+   "Post Review",
+
+  "fragment_review_item":
+   "Write by",
+
+  "fragment_review_content_spoiler":
+   "This review contains a spoiler: click if you are not worried about the spoiler",
+
+  "activity_other_user_profile":
+   "Follow",
+
+  "activity_login_db_notice":
+   "This product uses the TMDb API but is not endorsed or certified by TMDb.",
+
+  "activity_licence":
+   "This application uses open source components. You can find the source code and license information of these open source projects.",
+
+  "sign_up_terms_anduse":
+   "I accept the Privacy Policy and consent to the proccesing of my personal information in accordance with it.",
+
+  "sign_up_accept_terms_and_use":
+   "Please accept the terms and conditions of use: policy of Privacy to continue",
+
+  "fragment_tops_review_button_top_movies_popular":
+   "Top Movies Popular",
+
+  "fragment_tops_review_button_top_series_popular":
+   "Top Series Popular",
+
+  "fragment_top_reviews_title_popular":
+   "Top 100 Popular Movies & Series",
+
+  "fragment_tops_review_button_top_movies_rated":
+   "Top Movies Rated",
+
+  "fragment_tops_review_button_top_series_rated":
+   "Top Series Rated",
+
+  "fragment_top_reviews_title_rated":
+   "Top 100 Rated Movies & Series",
+
+  "fragment_tops_review_button_top_movies_upcoming":
+   "Movies Upcoming",
+
+  "fragment_tops_review_button_top_series_upcoming":
+   "Series Upcoming",
+
+  "fragment_top_reviews_title_Upcoming":
+   "Movies & Series Upcoming",
+
+  "profile_list_activity_tab_popular":
+   "Top Popular",
+
+  "profile_list_activity_tab_rated":
+   "Top Rated",
+
+  "profile_list_activity_tab_upcoming":
+   "Top Upcoming",
+
+  "fragment_top_reviews_title_list":
+   "Tops Popular: Rated: Upcoming of Movies: Series and Anime",
+
+  "fragment_top_reviews_title":
+   "Tops Popular: Rated: Upcoming.",
+
+  "fragment_tops_review_button_top_movies_list":
+   "Tops Movies",
+
+  "fragment_tops_review_button_top_series_list":
+   "Tops Series and Anime",
+
+  "search_item_full_details_recommendations":
+   "Recommendations",
+
+  "title_toolbar_tops_Movies":
+   "Tops of Movies.",
+
+  "title_toolbar_tops_Series":
+   "Tops of Series.",
+
+  "title_toolbar_tops_Anime":
+   "Tops of Animes.",
+
+  "title_toolbar_tops_Series_Anime":
+   "Tops Series And Anime",
+
+  "search_item_full_details_cast":
+   "Casting / Characters",
+
+  "search_item_full_details_crew":
+   "Crew",
+
+  "birthday_date_activity_people":
+   "Birthday Date :",
+
+  "deathday_date_activity_people":
+   "Deathday Date :",
+
+  "place_birth_activity_people":
+   "Place of Birth :",
+
+  "cast_historial_people_activity":
+   "Interpretation :",
+
+  "crew_historial_people_activity":
+   "Director / Producer",
+
+  "item_cast_people_data":
+   "Episode Count :",
+
+  "item_cast_people_data_character":
+   "character's name :",
+
+  "item_crew_people_data_work":
+   "work departments :",
+
+  "dialog_add_list_text_view_general":
+   "What note do you give to the entire work?",
+
+  "dialog_add_list_in_details":
+   "In Details:",
+
+  "fab_filter_list_profile_status":
+   "Status",
+
+  "fab_filter_list_profile_rating":
+   "Rating",
+
+  "fab_filter_list_profile_order":
+   "Order",
+
+  "fab_filter_profile_status_complete":
+   "Complete",
+
+  "fab_filter_profile_status_watching":
+   "Watching",
+
+  "fab_filter_profile_status_waiting":
+   "Awaiting",
+
+  "fab_filter_profile_status_pause":
+   "On pause",
+
+  "fab_filter_profile_status_dropped":
+   "Dropped",
+
+  "fab_filter_profile_rating_story":
+   "Rating Story",
+
+  "fab_filter_profile_rating_characters":
+   "Rating Characters",
+
+  "fab_filter_profile_rating_soundtrack":
+   "Rating Soundtrack",
+
+  "fab_filter_profile_rating_photography":
+   "Rating Photography",
+
+  "fab_filter_profile_rating_enjoyment":
+   "Rating Enjoyment",
+
+  "fab_filter_profile_rating_final":
+   "Rating Final",
+
+  "fab_filter_profile_order_ascendent":
+   "Ascendant",
+
+  "fab_filter_profile_order_descend":
+   "Descend",
+
+  "app_is_update":
+   "BunkaList has already been updated: restart",
+
+  "notification_week_title":
+   "what have you seen during this week ?",
+
+  "notification_week_message":
+   "Add it to your lists and comment",
+
+  "fab_filter_search_type":
+   "Type",
+
+  "fab_filter_search_genres":
+   "Genres",
+
+  "fab_filter_search_year":
+   "Year",
+
+  "fab_filter_search_sort":
+   "Sort",
+
+  "fab_filter_search_genres_action":
+   "Action",
+
+  "fab_filter_search_genres_adventure":
+   "Adventure",
+
+  "fab_filter_search_genres_animation":
+   "Animation",
+
+  "fab_filter_search_genres_comedy":
+   "Comedy",
+
+  "fab_filter_search_genres_crime":
+   "Crime",
+
+  "fab_filter_search_genres_documentary":
+   "Documentary",
+
+  "fab_filter_search_genres_drama":
+   "Drama",
+
+  "fab_filter_search_genres_family":
+   "Family",
+
+  "fab_filter_search_genres_fantasy":
+   "Fantasy",
+
+  "fab_filter_search_genres_history":
+   "History",
+
+  "fab_filter_search_genres_horror":
+   "Horror",
+
+  "fab_filter_search_genres_mistery":
+   "Mistery",
+
+  "fab_filter_search_genres_music":
+   "Music",
+
+  "fab_filter_search_genres_romance":
+   "Romance",
+
+  "fab_filter_science_fiction":
+   "Science Fiction",
+
+  "fab_filter_search_genres_thriller":
+   "Thriller",
+
+  "fab_filter_search_genres_tv":
+   "Movies tv",
+
+  "fab_filter_search_genres_war":
+   "War",
+
+  "fab_filter_search_genres_western":
+   "Western",
+
+  "fab_filter_search_genres_action_adventure":
+   "Action & Aventure",
+
+  "fab_filter_search_genres_reality":
+   "Reality",
+
+  "fab_filter_science_fiction_fantasy":
+   "Science Fiction & Fantasy",
+
+  "fab_filter_search_genres_telenovel":
+   "Soap & Dorama",
+
+  "fab_filter_search_genres_war_politics":
+   "Politics",
+
+  "fab_filter_search_sort_populary_asc":
+   "Popularity Ascend",
+
+  "fab_filter_search_sort_populary_desc":
+   "Popularity Descend",
+
+  "fab_filter_search_sort_release_date_asc":
+   "Release Date Ascend",
+
+  "fab_filter_search_sort_release_date_desc":
+   "Release Date Descend",
+
+  "fab_filter_search_sort_voted_average_asc":
+   "Voted Average Ascend",
+
+  "fab_filter_search_voted_average_desc":
+   "Voted Average Descend",
+
+  "profile_rating_btn_update":
+   "Update",
+
+  "profile_rating_label_update_story":
+   "Rating Story :",
+
+  "profile_rating_label_update_characters":
+   "Rating Characters :",
+
+  "profile_rating_label_update_soundtrack": "Rating Soundtrack :",
+
+  "profile_rating_label_update_photography": "Rating Photography :",
+
+  "profile_rating_label_update_enjoyment": "Rating Enjoyment :",
+
+  "profile_rating_label_update_new_final_rate": "New Final Rating :" ,
+
+  "fragment_tops_review_button_top_anime_popular": "Tops Anime Popular",
+
+  "fragment_tops_review_button_top_anime_rated": "Top Anime Rated" ,
+
+  "fragment_tops_review_button_top_anime_upcoming": "Tops Anime Upcoming" ,
+
+    "search_item_details_network_label": "produced by :",
+
+    "search_item_full_details_similar": "Similar",
+
+    "add_new_username": "Please add your NickName before continuing",
+
+    "dialog_add_list_select_one_status": "select a state before add it to your list",
+
+    "is_added_in_your_list": "It is already added to your list",
+
+    "apply_filter": "click on the button again to apply the filters",
+
+    "next_button": "NEXT",
+
+    "skip_button": "SKIP",
+
+    "start" : "GOT IT",
+
+    "slide_1_title" : "Thanks for downloading BunkaList!!!",
+
+    "slide_1_desc": "the application that allows you to save what you've seen or are watching!",
+
+    "slide_2_title": "Comment with everyone!",
+
+    "slide_2_desc": "Comment, I already know a movie that you liked, a season of a series or the chapter of an anime.",
+
+    "slide_3_title": "Rate what you seen simply or in detail!",
+
+    "slide_3_desc": "Rate each work with a scoring system that values every important aspect of it.",
+
+    "slide_4_title": "Discover new oeuvre!",
+
+    "slide_4_desc": "discover new oeuvre either looking for them by genres or year, by the tops.",
+
+    "button_clear_search": "Clear",
+
+    "button_clear_suggestions": "Clear Suggestions",
+
+    "button_clear_history": "Clear History",
+
+    "hint_prompt_voice": "Say the name of a movie or series or anime"
+
+
+}
