@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       builder: (context) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: _materialApp,// TODO: AGREGAR EL PlatformApp
+        builder: _materialApp, // TODO: AGREGAR EL PlatformApp
       ),
     );
   }
@@ -31,31 +31,31 @@ Widget _materialApp(BuildContext context, ThemeState state){
         routes: {
           'home' : (BuildContext context) => HomePage()
         },
-        // THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
+        //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
         supportedLocales: [
-          // LIST ALL OF THE APPs SUPPORT LOCALES HERE
+          //* LIST ALL OF THE APPs SUPPORT LOCALES HERE
           Locale('en', 'US'),
         ] ,
         localizationsDelegates: [
-          // A CLASS WHICH LOADS THE TRANSLATIONS FROM JSON FILE
+          //* A CLASS WHICH LOADS THE TRANSLATIONS FROM JSON FILE
           AppLocalizations.delegate,
-          // BUILT-IN LOCALIZATION OF BASIC TEXT FOR WIDGETS Material
+          //* BUILT-IN LOCALIZATION OF BASIC TEXT FOR WIDGETS Material
           GlobalMaterialLocalizations.delegate,
-          // BUILT-IN LOCALIZATION OF BASIC TEXT FOR WIDGETS Cupertino
+          //* BUILT-IN LOCALIZATION OF BASIC TEXT FOR WIDGETS Cupertino
           GlobalCupertinoLocalizations.delegate,
-          // BUILT-IN LOCALIZATION OF BASIC TEXT DIRECTION left to right or viceversa
-          //GlobalWidgetsLocalizations.delegate
+          //* BUILT-IN LOCALIZATION OF BASIC TEXT DIRECTION left to right or viceversa
+          //? GlobalWidgetsLocalizations.delegate
         ],
-        // RETURNS A LOCALE WHICH BE USED BY THE APP
+        //* RETURNS A LOCALE WHICH BE USED BY THE APP
         localeResolutionCallback: (locale, supportedLocales){
-          // check if the current device locale is supported 
+          //* check if the current device locale is supported 
           for (var supportedLocale in supportedLocales){
             if(supportedLocale.languageCode == locale.languageCode 
             && supportedLocale.countryCode == locale.countryCode){
               return supportedLocale;
             }
           }
-          // If the locale of the device is not supported use the first one (English, this case).
+          //* If the locale of the device is not supported use the first one (English, this case).
           return supportedLocales.first; 
         },
         
