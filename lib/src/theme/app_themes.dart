@@ -23,11 +23,6 @@ final appThemeData = {
     primaryTextTheme: TextTheme(
       title: TextStyle(color: Colors.black)
       ),
-    bottomAppBarTheme: BottomAppBarTheme(
-        color: Colors.grey[100],
-        elevation: 10.0
-      ),
-    
   ),
   Apptheme.DarkTheme : ThemeData(
     primaryColor: Colors.purple[700],
@@ -39,15 +34,12 @@ final appThemeData = {
     scaffoldBackgroundColor: Colors.grey[900],
     bottomAppBarColor: Colors.grey[850],
     appBarTheme: AppBarTheme(
-      color: Colors.grey[900],
+      color: Colors.grey[850],
     ),
     primaryTextTheme: TextTheme(
       title: TextStyle(color: Colors.white)
       ),
-    bottomAppBarTheme: BottomAppBarTheme(
-        color: Colors.grey[900],
-        elevation: 10.0
-      ),
+
     
   ),
   

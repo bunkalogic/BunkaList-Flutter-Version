@@ -1,4 +1,8 @@
 import 'package:bunkalist/src/localization/app_localizations.dart';
+import 'package:bunkalist/src/pages/profile_page.dart';
+import 'package:bunkalist/src/pages/settings_page.dart';
+import 'package:bunkalist/src/pages/timeline_page.dart';
+import 'package:bunkalist/src/pages/tops_page.dart';
 import 'package:bunkalist/src/theme/app_themes.dart';
 import 'package:bunkalist/src/theme/bloc/bloc.dart';
 import 'package:bunkalist/src/theme/bloc/theme_event.dart';
@@ -47,6 +51,7 @@ Widget _createNavBarPlaform(BuildContext context) {
   return PlatformNavBar(
     android: (context) => _navBarMaterial(),
     ios: (context) => _navBarCupertino(),
+    currentIndex: _selectedTabIndex,
     itemChanged: (index) {
       setState(() {
         _selectedTabIndex = index;
@@ -75,18 +80,27 @@ Widget _titleAppBar(int selectedTabIndex) {
 Widget _loadingPage(int position){
   
   switch(position){
-    // TODO: agregar los pages 
+    
+    case 0: return TopsPage();
+
+    case 1: return TimelinePage();
+
+    case 2: return ProfilePage();
+
+    case 3: return SettingsPage();
+
+    default: return TopsPage();
+    
   }
 }
-
-
-  
+ 
 
 //! Material Components (Android)
     // BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.DarkTheme ));
 
   MaterialAppBarData _appBarMaterial() {
     return MaterialAppBarData(
+      
       leading: Icon(Icons.account_circle, color: Colors.orange[900], size: 35.0 ,),
       actions: [
         _materialButtonSearch()
