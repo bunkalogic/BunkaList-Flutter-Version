@@ -18,4 +18,11 @@ class _TimelinePageState extends State<TimelinePage> {
       ),
     );
   }
+
+  
+  //!  Common Components (Android & iOS)
+
+  //! Material Components (Android)
+  
+  //! Cupertino Components (iOS)
 }

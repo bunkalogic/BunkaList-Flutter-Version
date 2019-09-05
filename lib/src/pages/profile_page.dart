@@ -17,4 +17,12 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
+
+  
+  //!  Common Components (Android & iOS)
+
+  //! Material Components (Android)
+  
+  //! Cupertino Components (iOS)
 }

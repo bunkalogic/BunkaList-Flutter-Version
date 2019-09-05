@@ -115,7 +115,7 @@ Widget _loadingPage(int position){
       icon: Icon(Icons.search),
       onPressed: (){
         //* search all the TMDB
-        BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.DarkTheme ));
+        
       },
     );
   }

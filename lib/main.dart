@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/localization/app_localizations.dart';
 import 'package:bunkalist/src/pages/home_page.dart';
+import 'package:bunkalist/src/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/provider/app_provider.dart';
 import 'package:bunkalist/src/theme/bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+void main() async{
+
+  final prefs = new Preferences();
+  await prefs.initPrefs();
+  runApp(MyApp());
+} 
  
 class MyApp extends StatelessWidget {
+
+  
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
