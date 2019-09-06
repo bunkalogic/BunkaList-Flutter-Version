@@ -56,6 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _listOptionMaterial() {
     return ListView(
       children: <Widget>[
+        //TODO: agregar el banner de publicadad aqui
         SizedBox(height: 15.0,),
         _titleOfSections('Configuration'),
         Divider(),
@@ -76,7 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
         _createItemSettingsMaterial(Colors.purpleAccent, Icons.rate_review, "rate the App"),
         Divider(),
         SizedBox(height: 10.0,),
-        _buttonLogOut(),
+        _buttonLogOutMaterial(),
 
       ],
     );
@@ -119,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
       return Icon(Icons.lightbulb_outline, size: 40.0, color: Colors.orange,);
     }
   }
-  Widget _buttonLogOut(){
+  Widget _buttonLogOutMaterial(){
     return Center(
       child: RaisedButton(
         shape: RoundedRectangleBorder(
@@ -139,7 +140,7 @@ class _SettingsPageState extends State<SettingsPage> {
   //! Cupertino Components (iOS)
 
   Widget _listOptionCupertino() {
-    
+    // TODO: Agregar design de iOS 
   }
       
         
