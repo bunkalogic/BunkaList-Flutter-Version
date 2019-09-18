@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bunkalist/src/widgets/tops_scrollview_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -19,45 +20,14 @@ class _ProfilePageState extends State<ProfilePage> {
       body: _createProfileDesign(context),
     );
   }
-
   
-
-
   
   //!  Common Components (Android & iOS)
 
   Widget _createProfileDesign(BuildContext context) {
     return PlatformWidget(
-      android: (context) => _profileDesignMaterial(),
-      ios: (context) => _profileDesignCupertino(),
-    );
-  }
-
-  
-
-  //! Material Components (Android)
-
-  Widget _profileDesignMaterial() {
-    return ListView(
-      padding: EdgeInsets.all(5.0),
-      children: <Widget>[
-        _createBox(),
-        SizedBox(height: 5.0,),
-        _buttonsTypeList(),
-        SizedBox(height: 20.0,),
-        _titleScrollSection('The last views :'),
-        SizedBox(height: 10.0,),
-        _scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list watching :'),
-        SizedBox(height: 10.0,),
-        _scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list awaiting :'),
-        SizedBox(height: 10.0,),
-        _scrollViewsExample(),
-       // SizedBox(height: 2.0,),
-      ],
+      android: (context) => _profileDesignMaterial(context),
+      ios: (context) => _profileDesignCupertino(context),
     );
   }
 
@@ -81,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
   }
 
-   Widget _infoProfileBox() {
+  Widget _infoProfileBox() {
      return Container(
        padding: EdgeInsets.all(15.0),
        child: Column(
@@ -134,21 +104,69 @@ class _ProfilePageState extends State<ProfilePage> {
     return Text('total time views: 14 day and 12 hours', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),);
   }
 
+  Widget _titleScrollSection(String title) {
+    return Container(
+      padding: EdgeInsets.only(left: 10.0),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+      ),
+    );
+  }
+
+  // TODO: cambiar cuando se agregue la parte de Firebase
+  Widget _scrollViewsExample(){
+    return TopsScrollView();
+  }
+
+  Widget _buttomPlatformList(BuildContext context){
+    return PlatformWidget(
+        android: (context) => _buttonsTypeListMaterial(),
+        ios: (context) => _buttonsTypeListCupertino(),
+    );
+  }
   
-  Widget _buttonsTypeList(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+
+  //! Material Components (Android)
+
+  Widget _profileDesignMaterial(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.all(5.0),
       children: <Widget>[
-        _buttonType('List Movies', Colors.redAccent),
-        SizedBox(width: 10.0,),
-        _buttonType('List Series TV', Colors.greenAccent[400]),
-        SizedBox(width: 10.0,),
-        _buttonType('List Anime', Colors.lightBlueAccent),
+        _createBox(),
+        SizedBox(height: 5.0,),
+        _buttomPlatformList(context),
+        SizedBox(height: 20.0,),
+        _titleScrollSection('The last views :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+        //SizedBox(height: 1.0,),
+        _titleScrollSection('The list watching :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+        //SizedBox(height: 1.0,),
+        _titleScrollSection('The list awaiting :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+       // SizedBox(height: 2.0,),
       ],
     );
   }
 
-  Widget _buttonType(String title, Color color) {
+  Widget _buttonsTypeListMaterial(){ 
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _buttonTypeMaterial('List Movies', Colors.redAccent),
+        SizedBox(width: 10.0,),
+        _buttonTypeMaterial('List Series TV', Colors.greenAccent[400]),
+        SizedBox(width: 10.0,),
+        _buttonTypeMaterial('List Anime', Colors.lightBlueAccent),
+      ],
+    );
+  }
+
+  Widget _buttonTypeMaterial(String title, Color color) {
       return RaisedButton(
         elevation: 5.0,
         shape: RoundedRectangleBorder(
@@ -165,24 +183,61 @@ class _ProfilePageState extends State<ProfilePage> {
       );
   }
   
-  Widget _titleScrollSection(String title) {
-    return Container(
-      padding: EdgeInsets.only(left: 10.0),
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-      ),
+
+  //! Cupertino Components (iOS)
+
+  Widget _profileDesignCupertino(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.all(5.0),
+      children: <Widget>[
+        _createBox(),
+        SizedBox(height: 5.0,),
+        _buttomPlatformList(context),
+        SizedBox(height: 20.0,),
+        _titleScrollSection('The last views :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+        //SizedBox(height: 1.0,),
+        _titleScrollSection('The list watching :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+        //SizedBox(height: 1.0,),
+        _titleScrollSection('The list awaiting :'),
+        SizedBox(height: 10.0,),
+        _scrollViewsExample(),
+       // SizedBox(height: 2.0,),
+      ],
     );
   }
 
-  Widget _scrollViewsExample(){
-    return TopsScrollView();
+  _buttonsTypeListCupertino() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _buttonTypeCupertino('List Movies', Colors.redAccent),
+        SizedBox(width: 10.0,),
+        _buttonTypeCupertino('List Series TV', Colors.greenAccent[400]),
+        SizedBox(width: 10.0,),
+        _buttonTypeCupertino('List Anime', Colors.lightBlueAccent),
+      ],
+    );
   }
-  //! Cupertino Components (iOS)
 
-  Widget _profileDesignCupertino() {}
+  Widget _buttonTypeCupertino(String title, Color color) {
+      return CupertinoButton(
+        borderRadius: BorderRadius.circular(4.0),
+        color: color,
+        child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
+        onPressed: (){
+          //? pushNamed con los arguments con el numberType de la firestore
+          // movies == 0
+          // series == 1
+          // anime == 2
+        },
+      );
+  }
 
-
+  
   
 
   

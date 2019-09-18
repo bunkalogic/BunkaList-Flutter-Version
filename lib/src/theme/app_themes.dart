@@ -17,6 +17,7 @@ final appThemeData = {
     backgroundColor: Colors.grey[100],
     scaffoldBackgroundColor: Colors.white,
     bottomAppBarColor: Colors.grey[100],
+    cardColor: Colors.white,
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
     ),
@@ -33,6 +34,7 @@ final appThemeData = {
     backgroundColor: Colors.grey[850],
     scaffoldBackgroundColor: Colors.grey[900],
     bottomAppBarColor: Colors.grey[850],
+    cardColor: Colors.grey[900],
     appBarTheme: AppBarTheme(
       color: Colors.grey[850],
     ),
