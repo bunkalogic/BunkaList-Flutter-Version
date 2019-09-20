@@ -8,6 +8,7 @@ enum Apptheme{
 
 final appThemeData = {
 
+  //?Light Theme
   Apptheme.LightTheme : ThemeData(
     primaryColor: Colors.purple[700],
     primaryColorLight: Colors.deepPurpleAccent,
@@ -25,6 +26,8 @@ final appThemeData = {
       title: TextStyle(color: Colors.black)
       ),
   ),
+
+  //?Dark Theme
   Apptheme.DarkTheme : ThemeData(
     primaryColor: Colors.purple[700],
     primaryColorLight: Colors.deepPurpleAccent,

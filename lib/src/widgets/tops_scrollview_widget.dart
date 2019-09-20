@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import 'package:bunkalist/src/widgets/bottom_sheet_add_your_list_widget.dart';
+
+
 
 class TopsScrollView extends StatelessWidget {
 
@@ -19,55 +22,56 @@ class TopsScrollView extends StatelessWidget {
 
   final _screenSize = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Container(
-        height: _screenSize.height * 0.34,
+    return Container(
+        height: 200.0,
         child: PageView.builder(
           pageSnapping: false,
           controller: _pageController,
           itemCount: 6,
-          itemBuilder: (context, i) => _itemScroll(),
-          //children: _cards(context),
+          itemBuilder: (context, i) => _itemScroll(context),
         ),
-      ),
     );
 
   
   }
 
-  Widget _itemScroll() {
-    return Container(
-      margin: EdgeInsets.only(right: 5.0 ),
-        child: Column(
-          children: <Widget>[
-            _itemImage(),
-            SizedBox(height: 3.0,),
-            _itemTitle(),
-            _iconButton(),
-          ],
-        ),
+  Widget _itemScroll(BuildContext context) {
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(child: _itemImage(), flex: 3,),
+          _itemTitle(),
+          Expanded(child: _iconButton(context), flex: 1,),
+        ],
     );
   }
+
+
   
   Widget _itemImage() {
 
     return Hero(
       tag: '',
-      child: Card(
-        borderOnForeground: false,
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: FadeInImage(
-              //height: 130.0, // 125.0
-              width: 155.0,  // 90.0
-              image: NetworkImage('https://image.tmdb.org/t/p/original/hPPbYTXOOjHQ7OXXdFF6jPJwnmG.jpg'), //? Image Poster Item,
-              placeholder: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQshqcXT2iUjDuVOWCIyEnY_yrAjXPCE0LpuBOjlhADKLBTdTFc'), //? PlaceHolder Item,
-              fit: BoxFit.fill,
-            ),
-        ),
-        ),
+      child: GestureDetector(
+        onTap: (){
+          //! PushNamed Al ItemAllDetail
+        },
+        child: Card(
+          margin: EdgeInsets.all(2.0),
+          borderOnForeground: true,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+            child: FadeInImage(
+                image: NetworkImage('https://image.tmdb.org/t/p/original/hPPbYTXOOjHQ7OXXdFF6jPJwnmG.jpg'), //? Image Poster Item,
+                placeholder: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQshqcXT2iUjDuVOWCIyEnY_yrAjXPCE0LpuBOjlhADKLBTdTFc'), //? PlaceHolder Item,
+                fit: BoxFit.contain,
+              ),
+          ),
+          ),
+      ),
     );
   }
 
@@ -79,13 +83,12 @@ class TopsScrollView extends StatelessWidget {
         );
       
   }
-  Widget _iconButton(){
+  Widget _iconButton(BuildContext context){
     return PlatformIconButton(
-          padding: EdgeInsets.all(1.0),
           iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
           androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
           onPressed: (){
-            //! PushNamed Al ItemAllDetail
+            BottomSheetAddInList().showButtomModalMaterial(context);
           },
         );
   }

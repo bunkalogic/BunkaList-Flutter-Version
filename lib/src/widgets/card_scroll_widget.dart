@@ -19,6 +19,8 @@ class CardScrollWidget extends StatelessWidget {
         layout: SwiperLayout.STACK,
         itemHeight: _screenSize.width * 0.6,
         itemWidth: _screenSize.height * 0.4,
+        viewportFraction: 0.8,
+        scale: 0.9,
 
         itemBuilder: (BuildContext context, int index){
 

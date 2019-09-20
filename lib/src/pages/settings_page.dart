@@ -62,14 +62,14 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   _changedTheme() {
-    if(!prefs.whatModeIs) {
-      whatModeIs = prefs.whatModeIs;
-      prefs.whatModeIs = true;
-      BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.DarkTheme ));
-    }else{
+    if(prefs.whatModeIs) {
       whatModeIs = prefs.whatModeIs;
       prefs.whatModeIs = false;
       BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.LightTheme ));
+    }else{
+      whatModeIs = prefs.whatModeIs;
+      prefs.whatModeIs = true;
+      BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.DarkTheme ));
     }
   }
 
@@ -118,9 +118,9 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _changedIconThemeMaterial() {
     
     if(prefs.whatModeIs){
-      return Icon(Icons.wb_incandescent, size: 40.0, color: Colors.yellow,);
+      return Icon(Icons.brightness_2, size: 40.0, color: Colors.yellow,);
     }else{
-      return Icon(Icons.lightbulb_outline, size: 40.0, color: Colors.orange,);
+      return Icon(Icons.brightness_7, size: 40.0, color: Colors.orange,);
     }
   }
 

@@ -7,21 +7,23 @@ class BannerPremiumWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 80.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          gradient: LinearGradient(
-            colors: [
-              Colors.purple[800],
-              Colors.purple[700],
-              Colors.purple[600],
-              Colors.purple[500]
-            ]
-          ) 
-        ),
-        child: _buttomGoToPremium(),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        height: 80.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            gradient: LinearGradient(
+              colors: [
+                Colors.purple[800],
+                Colors.purple[700],
+                Colors.purple[600],
+                Colors.purple[500]
+              ]
+            ) 
+          ),
+          child: _buttomGoToPremium(),
+      ),
     );
   }
 
