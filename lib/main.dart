@@ -1,12 +1,11 @@
-import 'package:bunkalist/src/localization/app_localizations.dart';
-import 'package:bunkalist/src/pages/home_page.dart';
-import 'package:bunkalist/src/preferences/shared_preferences.dart';
-import 'package:bunkalist/src/provider/app_provider.dart';
-import 'package:bunkalist/src/theme/bloc/bloc.dart';
+
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/routes/route_generator.dart';
+import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async{
@@ -34,12 +33,11 @@ class MyApp extends StatelessWidget {
 Widget _materialApp(BuildContext context, ThemeState state){
   return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: state.themeData,
+        theme: state.themeData, 
         title: 'Bunkalist',
-        initialRoute: 'home',
-        routes: {
-          'home' : (BuildContext context) => HomePage()
-        },
+        initialRoute: '/',
+        onGenerateRoute: RouteGeneretor.generateRoute,
+
         //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
         supportedLocales: [
           //* LIST ALL OF THE APPs SUPPORT LOCALES HERE

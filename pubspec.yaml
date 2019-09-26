@@ -20,7 +20,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: 
-  equatable: 
+  equatable:
+  hydrated_bloc:
+  json_annotation:  
 
   flutter_localizations:
     sdk: flutter  
@@ -35,6 +37,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  json_serializable: ^3.2.2  
 
 
 # For information on the generic Dart part of this file, see the
