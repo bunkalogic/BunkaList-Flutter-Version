@@ -1,5 +1,6 @@
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/tops_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/settings_page.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/profile_page.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   //? Variables
   int _selectedTabIndex = 0;
+  final prefs = new Preferences();
 
   
   @override
@@ -46,6 +48,7 @@ Widget _createAppBarPlatform(BuildContext context) {
 Widget _createNavBarPlaform(BuildContext context) {
 
   return PlatformNavBar(
+    backgroundColor: prefs.whatModeIs ? Colors.grey[900] : Colors.grey[100],
     android: (context) => _navBarMaterial(),
     ios: (context) => _navBarCupertino(),
     currentIndex: _selectedTabIndex,
@@ -61,15 +64,30 @@ Widget _createNavBarPlaform(BuildContext context) {
 Widget _titleAppBar(int selectedTabIndex) {
   switch(selectedTabIndex){
     
-    case 0: return Text(AppLocalizations.of(context).translate('btn_nav_top'));
+    case 0: return Text(
+      AppLocalizations.of(context).translate('btn_nav_top'),
+      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      );
 
-    case 1: return Text(AppLocalizations.of(context).translate('btn_nav_timeline'));
+    case 1: return Text(
+      AppLocalizations.of(context).translate('btn_nav_timeline'),
+      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      );
 
-    case 2: return Text(AppLocalizations.of(context).translate('btn_nav_profile'));
+    case 2: return Text(
+      AppLocalizations.of(context).translate('btn_nav_profile'),
+      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      );
 
-    case 3: return Text(AppLocalizations.of(context).translate('btn_nav_settings'));
+    case 3: return Text(
+      AppLocalizations.of(context).translate('btn_nav_settings'),
+      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      );
 
-    default: return Text(AppLocalizations.of(context).translate('btn_nav_top'));
+    default: return Text(
+      AppLocalizations.of(context).translate('btn_nav_top'),
+      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      );
 
   }
 }
@@ -98,7 +116,7 @@ Widget _loadingPage(int position){
   MaterialAppBarData _appBarMaterial() {
     return MaterialAppBarData(
       
-      leading: Icon(Icons.account_circle, color: Colors.orange[900], size: 35.0 ,),
+      leading: Icon(Icons.account_circle, color: Colors.purple[500], size: 35.0 ,),
       actions: [
         _materialButtonSearch()
       ]
@@ -108,7 +126,7 @@ Widget _loadingPage(int position){
   Widget _materialButtonSearch() {
     return IconButton(
       iconSize: 35.0,
-      color: Colors.orange[900],
+      color: Colors.purple[500],
       icon: Icon(Icons.search),
       onPressed: (){
         //* search all the TMDB
@@ -118,29 +136,30 @@ Widget _loadingPage(int position){
   }
 
   MaterialNavBarData _navBarMaterial() {
-    return MaterialNavBarData(
+    return MaterialNavBarData( 
+      elevation: 10.0,
       type: BottomNavigationBarType.fixed,
        items: [
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(Icons.home, color: Colors.blueGrey[500], size: 30.0, ),
-           activeIcon: Icon(Icons.home, color: Colors.orange[900], size: 30.0, ),
+           activeIcon: Icon(Icons.home, color: Colors.purple[500], size: 30.0, ),
 
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(Icons.line_weight, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(Icons.line_weight, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(Icons.line_weight, color: Colors.purple[500], size: 30.0,),
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(Icons.person_pin, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(Icons.person_pin, color: Colors.orange[900], size: 30.0,), 
+           activeIcon: Icon(Icons.person_pin, color: Colors.purple[500], size: 30.0,), 
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(Icons.settings, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(Icons.settings, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(Icons.settings, color: Colors.purple[500], size: 30.0,),
            
          ),
        ]
@@ -152,7 +171,7 @@ Widget _loadingPage(int position){
 
   CupertinoNavigationBarData _appBarCupertino() {
     return CupertinoNavigationBarData(
-      leading: Icon(CupertinoIcons.person, color: Colors.orange[900], size: 35.0,),
+      leading: Icon(CupertinoIcons.person, color: Colors.purple[500], size: 35.0,),
       trailing: _cupertinoButtonSearch(),
     );
   }
@@ -160,7 +179,7 @@ Widget _loadingPage(int position){
   Widget _cupertinoButtonSearch() {
     return IconButton(
       iconSize: 35.0,
-      color: Colors.orange[900],
+      color: Colors.purple[500],
       icon: Icon(CupertinoIcons.search),
       onPressed: (){
         //* search all the TMDB
@@ -174,24 +193,24 @@ Widget _loadingPage(int position){
         BottomNavigationBarItem(
            title: Container(),
            icon: Icon(CupertinoIcons.home, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(CupertinoIcons.home, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(CupertinoIcons.home, color: Colors.purple[500], size: 30.0,),
 
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(CupertinoIcons.collections, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(CupertinoIcons.collections, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(CupertinoIcons.collections, color: Colors.purple[500], size: 30.0,),
            
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(CupertinoIcons.profile_circled, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(CupertinoIcons.profile_circled, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(CupertinoIcons.profile_circled, color: Colors.purple[500], size: 30.0,),
          ),
          BottomNavigationBarItem(
            title: Container(),
            icon: Icon(CupertinoIcons.settings, color: Colors.blueGrey[500], size: 30.0,),
-           activeIcon: Icon(CupertinoIcons.settings, color: Colors.orange[900], size: 30.0,),
+           activeIcon: Icon(CupertinoIcons.settings, color: Colors.purple[500], size: 30.0,),
            
          ),
       ]

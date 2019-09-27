@@ -43,7 +43,7 @@ class BottomSheetAddInList {
 
   Widget _buttonStatus(String title, Color color, IconData icon){
     return ListTile(
-      title: Text(title, style: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
+      title: Text(title, style: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w500)),
       leading: Icon(icon, color: color, size: 35.0,),
       onTap: () {},
     );

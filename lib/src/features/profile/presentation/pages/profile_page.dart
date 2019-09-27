@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
            SizedBox(height: 8.0,),
            _profileViews(),
            SizedBox(height: 8.0,),
-           _itemTotalTimeView()
+           Expanded(child: _itemTotalTimeView())
            
          ],
        ),
@@ -172,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
           borderRadius: BorderRadius.circular(4.0),
         ),
         color: color,
-        child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
+        child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
         onPressed: (){
           //? pushNamed con los arguments con el numberType de la firestore
           // movies == 0

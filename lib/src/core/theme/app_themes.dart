@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
 
-// part 'themeapp.g.dart';
-
-// @JsonSerializable()
-// class ThemeApp extends Equatable{
-
-//   factory ThemeApp.fromJson(Map<String, dynamic> json) => _$ThemeAppFromJson(json);
-//   Map<String, dynamic> toJson() => _$ThemeAppToJson(this);
-
-
-// }
 
 enum Apptheme{
   LightTheme,
@@ -29,12 +19,19 @@ final appThemeData = {
     scaffoldBackgroundColor: Colors.white,
     bottomAppBarColor: Colors.grey[100],
     cardColor: Colors.white,
+    fontFamily: 'SourceSansPro',
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
+      actionsIconTheme: IconThemeData(color: Colors.purple[500])
     ),
+    
     primaryTextTheme: TextTheme(
       title: TextStyle(color: Colors.black)
-      ),
+    ),
+    
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: Colors.grey[100] 
+    ) 
   ),
 
   //?Dark Theme
@@ -48,15 +45,23 @@ final appThemeData = {
     scaffoldBackgroundColor: Colors.grey[900],
     bottomAppBarColor: Colors.grey[850],
     cardColor: Colors.grey[900],
+    fontFamily: 'SourceSansPro',
+
     appBarTheme: AppBarTheme(
-      color: Colors.grey[850],
+      color: Colors.grey[900],
+      elevation: 10.0,
+      actionsIconTheme: IconThemeData(color: Colors.purple[500])
     ),
+    
     primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.white)
-      ),
+      title: TextStyle(color: Colors.white ),
+
+    ),
 
     
   ),
+
+
   
 
 

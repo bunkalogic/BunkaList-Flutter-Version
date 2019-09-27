@@ -1,18 +1,26 @@
+import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
-class TopsListPage extends StatelessWidget {
+class TopsListPage extends StatefulWidget {
   
   
   final String data;
+
 
   TopsListPage({
     Key key,
     @required this.data
   }) : super(key: key);
 
+  @override
+  _TopsListPageState createState() => _TopsListPageState();
+}
+
+class _TopsListPageState extends State<TopsListPage> {
+  bool changeDesign = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +28,10 @@ class TopsListPage extends StatelessWidget {
 
     return PlatformScaffold(
       appBar:  _createAppBarPlatform(context),
-      body: GridViewListWidget(), // TODO: crear el otro diseño 
+      body: _changedListDesign(),
       
     );
   }
-
-  
-
-
-  //!  Common Components (Android & iOS)
 
   PlatformAppBar _createAppBarPlatform(BuildContext context) {
     return PlatformAppBar(
@@ -38,24 +41,41 @@ class TopsListPage extends StatelessWidget {
 
   }
 
-  //! Material Components (Android)
-
   MaterialAppBarData _createAppBarMaterial(BuildContext context) {
 
-    
-
     return MaterialAppBarData(
-      title: Text(data),
+      title: Text(widget.data),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.view_compact, size: 22 ,),
-          onPressed: (){},
+          onPressed: (){
+            if(!changeDesign){
+              changeDesign = true;
+              print(changeDesign);
+              setState(() { });
+            }else{
+              changeDesign = false;
+              print(changeDesign);
+              setState(() { });
+            }
+          },
           )
       ],
     ); 
   }
 
-  //! Cupertino Components (iOS)
+  Widget _changedListDesign() {
 
+    final card = new CardViewListWidget();
+    final grid = new GridViewListWidget();
+     
+      if(!changeDesign){
+        return grid;
+      }else {
+        return card;
+      }
+      
+      
+  }
 }
 
