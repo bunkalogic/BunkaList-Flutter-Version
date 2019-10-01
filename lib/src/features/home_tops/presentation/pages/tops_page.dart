@@ -1,5 +1,5 @@
-import 'package:bunkalist/src/core/reusable_widgets/tops_scrollview_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_scroll_widget.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/widgets/tops_scrollview_widget.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

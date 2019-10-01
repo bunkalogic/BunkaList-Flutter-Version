@@ -47,15 +47,13 @@ class _TopsListPageState extends State<TopsListPage> {
       title: Text(widget.data),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.view_compact, size: 22 ,),
+          icon: _changedIcon(),
           onPressed: (){
             if(!changeDesign){
               changeDesign = true;
-              print(changeDesign);
               setState(() { });
             }else{
               changeDesign = false;
-              print(changeDesign);
               setState(() { });
             }
           },
@@ -73,6 +71,17 @@ class _TopsListPageState extends State<TopsListPage> {
         return grid;
       }else {
         return card;
+      }
+      
+      
+  }
+
+  Widget _changedIcon() {
+     
+      if(!changeDesign){
+        return Icon(Icons.art_track, size: 32, );
+      }else {
+        return Icon(Icons.view_module, size: 32 ,);
       }
       
       

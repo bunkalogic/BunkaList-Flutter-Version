@@ -6,6 +6,9 @@ enum Apptheme{
   DarkTheme,
 }
 
+
+
+
 final appThemeData = {
 
   //?Light Theme
@@ -20,18 +23,25 @@ final appThemeData = {
     bottomAppBarColor: Colors.grey[100],
     cardColor: Colors.white,
     fontFamily: 'SourceSansPro',
+    
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
-      actionsIconTheme: IconThemeData(color: Colors.purple[500])
+      actionsIconTheme: IconThemeData(color: Colors.purple[500]),
+      iconTheme: IconThemeData(color: Colors.purple[500], size: 30.0),
+      textTheme: TextTheme(
+      title: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0, 
+        fontWeight: FontWeight.w600, 
+        fontStyle: FontStyle.italic
+        ),
+
+    ),
     ),
     
     primaryTextTheme: TextTheme(
       title: TextStyle(color: Colors.black)
     ),
-    
-    bottomAppBarTheme: BottomAppBarTheme(
-      color: Colors.grey[100] 
-    ) 
   ),
 
   //?Dark Theme
@@ -50,7 +60,17 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
       elevation: 10.0,
-      actionsIconTheme: IconThemeData(color: Colors.purple[500])
+      actionsIconTheme: IconThemeData(color: Colors.purple[500]),
+      iconTheme: IconThemeData(color: Colors.purple[500], size: 30.0),
+      textTheme: TextTheme(
+      title: TextStyle(
+        color: Colors.white,
+        fontSize: 18.0, 
+        fontWeight: FontWeight.w600, 
+        fontStyle: FontStyle.italic
+        ),
+
+    ),
     ),
     
     primaryTextTheme: TextTheme(

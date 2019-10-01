@@ -1,3 +1,8 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
@@ -5,10 +10,7 @@ import 'package:bunkalist/src/features/home_tops/presentation/pages/tops_page.da
 import 'package:bunkalist/src/features/options/presentation/pages/settings_page.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:bunkalist/src/features/timeline/presentation/pages/timeline_page.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
 
 class HomePage extends StatefulWidget {
 
@@ -66,27 +68,22 @@ Widget _titleAppBar(int selectedTabIndex) {
     
     case 0: return Text(
       AppLocalizations.of(context).translate('btn_nav_top'),
-      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
       );
 
     case 1: return Text(
       AppLocalizations.of(context).translate('btn_nav_timeline'),
-      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
       );
 
     case 2: return Text(
       AppLocalizations.of(context).translate('btn_nav_profile'),
-      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
       );
 
     case 3: return Text(
       AppLocalizations.of(context).translate('btn_nav_settings'),
-      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
       );
 
     default: return Text(
       AppLocalizations.of(context).translate('btn_nav_top'),
-      style: TextStyle(fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
       );
 
   }

@@ -1,35 +1,26 @@
+import 'package:bunkalist/src/core/reusable_widgets/poster_column_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class GridViewListWidget extends StatelessWidget {
+class GridViewListWidget extends StatelessWidget with PosterColumnWidget {
 
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemBuilder: (context, i) => _itemPoster(),
-      itemCount: 24,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 3.8 / 4.8 ),
-    );
-  }
 
-  Widget _itemPoster() {
-    //! Agregar el Hero
-    return GestureDetector(
-        onTap: (){
-          //! PushNamed Al ItemAllDetail
-        },
-        child: Container(
-          padding: EdgeInsets.all(4.0),
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: FadeInImage(
-                  image: NetworkImage('https://image.tmdb.org/t/p/original/se86cWSwdSftjJH8OStW7Yu3ZPC.jpg'), //? Image Poster Item,
-                  placeholder: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQshqcXT2iUjDuVOWCIyEnY_yrAjXPCE0LpuBOjlhADKLBTdTFc'), //? PlaceHolder Item,
-                  fit: BoxFit.cover,
-                ),
-            ),
+    //final double _aspectRatioOriginal = 5.4 / 7.8;
+    final double _aspectRatio = 2.0 / 3.6;
+
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: GridView.builder(
+        itemBuilder: (context, i) => itemPoster(context),
+        itemCount: 24,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          childAspectRatio: _aspectRatio
         ),
+      ),
     );
   }
 
