@@ -32,22 +32,25 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _createBox() {
         //! posible cambio por un card para ponerle elevation
-    return Container(   
-        child:  _infoProfileBox(),
-        height: 240.0,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          gradient: LinearGradient(
-            colors: [
-              Colors.blueGrey[800].withOpacity(0.4),
-              Colors.blueGrey[700].withOpacity(0.5),
-              Colors.blueGrey[600].withOpacity(0.7),
-              Colors.blueGrey[500].withOpacity(0.9)
-            ]
-          ) 
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(   
+          child:  _infoProfileBox(),
+          height: 250.0,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0),
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueGrey[500].withOpacity(0.1),
+                Colors.blueGrey[500].withOpacity(0.1),
+                Colors.blueGrey[500].withOpacity(0.1),
+                Colors.blueGrey[500].withOpacity(0.1)
+              ]
+            ) 
+          ),
         ),
-      );
+    );
   }
 
   Widget _infoProfileBox() {
@@ -120,8 +123,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buttomPlatformList(BuildContext context){
     return PlatformWidget(
-        android: (context) => _buttonsTypeListMaterial(),
-        ios: (context) => _buttonsTypeListCupertino(),
+        android: (context) => _buttonsTypeListMaterial(context),
+        ios: (context) => _buttonsTypeListCupertino(context),
     );
   }
   
@@ -152,20 +155,20 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget _buttonsTypeListMaterial(){ 
+  Widget _buttonsTypeListMaterial(BuildContext context){ 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _buttonTypeMaterial('List Movies', Colors.redAccent),
+        _buttonTypeMaterial(context, 'List Movies', Colors.redAccent, 0),
         SizedBox(width: 10.0,),
-        _buttonTypeMaterial('List Series TV', Colors.greenAccent[400]),
+        _buttonTypeMaterial(context, 'List Series TV', Colors.greenAccent[400], 1),
         SizedBox(width: 10.0,),
-        _buttonTypeMaterial('List Anime', Colors.lightBlueAccent),
+        _buttonTypeMaterial(context, 'List Anime', Colors.lightBlueAccent, 2),
       ],
     );
   }
 
-  Widget _buttonTypeMaterial(String title, Color color) {
+  Widget _buttonTypeMaterial(BuildContext context,String title, Color color, int type) {
       return RaisedButton(
         elevation: 5.0,
         shape: RoundedRectangleBorder(
@@ -174,10 +177,12 @@ class _ProfilePageState extends State<ProfilePage> {
         color: color,
         child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
         onPressed: (){
+          //TODO refactor this method 
           //? pushNamed con los arguments con el numberType de la firestore
           // movies == 0
           // series == 1
           // anime == 2
+          Navigator.pushNamed(context, '/ListProfile', arguments: type);
         },
       );
   }
@@ -209,29 +214,31 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  _buttonsTypeListCupertino() {
+  _buttonsTypeListCupertino(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _buttonTypeCupertino('List Movies', Colors.redAccent),
+        _buttonTypeCupertino('List Movies', Colors.redAccent, 0, context),
         SizedBox(width: 10.0,),
-        _buttonTypeCupertino('List Series TV', Colors.greenAccent[400]),
+        _buttonTypeCupertino('List Series TV', Colors.greenAccent[400], 1, context),
         SizedBox(width: 10.0,),
-        _buttonTypeCupertino('List Anime', Colors.lightBlueAccent),
+        _buttonTypeCupertino('List Anime', Colors.lightBlueAccent, 2, context),
       ],
     );
   }
 
-  Widget _buttonTypeCupertino(String title, Color color) {
+  Widget _buttonTypeCupertino(String title, Color color,  int type, BuildContext context) {
       return CupertinoButton(
         borderRadius: BorderRadius.circular(4.0),
         color: color,
         child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
         onPressed: (){
+          //TODO refactor this method 
           //? pushNamed con los arguments con el numberType de la firestore
           // movies == 0
           // series == 1
           // anime == 2
+          Navigator.pushNamed(context, '/ListProfile', arguments: type);
         },
       );
   }

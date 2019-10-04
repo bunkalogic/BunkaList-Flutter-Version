@@ -14,7 +14,7 @@ class CardViewListWidget extends StatelessWidget {
 
   Widget _buildCardItem() {
      return Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+       padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
        child: Container(
          child: _itemInfo(),
          height: 160.0,
@@ -50,9 +50,9 @@ class CardViewListWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _rowInfoItem(),
-          SizedBox(height: 30.0,),
+          //SizedBox(height: 10.0,),
           _chipGenresItem(),
-          SizedBox(height: 20.0,),
+          //SizedBox(height: 35.0,),
           _rowButtons(),
         ],
       ),
@@ -131,27 +131,31 @@ class CardViewListWidget extends StatelessWidget {
   }
 
   //! Chip Genres
-  Widget _chipGenresItem() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        _fakeChip('drama', Colors.purple),
-        _fakeChip('crime', Colors.redAccent),
-        _fakeChip('action', Colors.blue),
-      ],
-    );
-  }
-
   // Widget _chipGenresItem() {
   //   return Row(
   //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
   //     children: <Widget>[
-  //       _fakeChip('drama', Colors.grey[500].withOpacity(0.1)),
-  //       _fakeChip('crime', Colors.grey[500].withOpacity(0.1)),
-  //       _fakeChip('action', Colors.grey[500].withOpacity(0.1)),
+  //       _fakeChip('drama', Colors.purple),
+  //       _fakeChip('crime', Colors.redAccent),
+  //       _fakeChip('action', Colors.blue),
   //     ],
   //   );
   // }
+
+  Widget _chipGenresItem() {
+    return SizedBox(
+      height: 70.0,
+      width: double.maxFinite,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _fakeChip('drama', Colors.grey[500].withOpacity(0.1)),
+          _fakeChip('crime', Colors.grey[500].withOpacity(0.1)),
+          _fakeChip('action', Colors.grey[500].withOpacity(0.1)),
+        ],
+      ),
+    );
+  }
 
   Widget _fakeChip(String text, Color color) {
     return Container(
@@ -185,43 +189,43 @@ class CardViewListWidget extends StatelessWidget {
   //   );
   // }
 
-   Widget _rowButtons() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-         _buttonActions(Icons.keyboard_arrow_down, Colors.white), 
-         
-        ],
-      ),
-    );
-  }
-
-
-  // Widget _rowButtons() {
+  //  Widget _rowButtons() {
   //   return Container(
   //     child: Row(
   //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
   //       children: <Widget>[
-  //        _buttonActions(Icons.check_circle_outline, Colors.green), 
-  //        _buttonActions(Icons.play_circle_outline, Colors.blue),
-  //        _buttonActions(Icons.pause_circle_outline, Colors.orange),
-  //        _buttonActions(Icons.remove_circle_outline, Colors.red),
-  //        _buttonActions(Icons.add_circle_outline, Colors.purple),
+  //        _buttonActions(Icons.keyboard_arrow_down, Colors.white), 
+         
   //       ],
   //     ),
   //   );
   // }
 
+
+  Widget _rowButtons() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+         _buttonActions(Icons.check_circle_outline, Colors.green), 
+         _buttonActions(Icons.play_circle_outline, Colors.blue),
+         _buttonActions(Icons.pause_circle_outline, Colors.orange),
+         _buttonActions(Icons.remove_circle_outline, Colors.red),
+         _buttonActions(Icons.add_circle_outline, Colors.purple),
+        ],
+      ),
+    );
+  }
+
   Widget _buttonActions(IconData icon, Color color){
     return IconButton(
-            icon: Icon(
-              icon, 
-              size: 25.0, 
-              color: color,
-            ),
-            onPressed: () {},
-          );
+      icon: Icon(
+        icon, 
+        size: 25.0, 
+        color: color,
+        ),
+        onPressed: () {},
+    );
   }
   
 }

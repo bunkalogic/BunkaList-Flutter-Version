@@ -21,8 +21,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: 
   equatable:
-  hydrated_bloc:
-  json_annotation:  
+    
 
   flutter_localizations:
     sdk: flutter  

@@ -42,6 +42,14 @@ final appThemeData = {
     primaryTextTheme: TextTheme(
       title: TextStyle(color: Colors.black)
     ),
+
+
+    tabBarTheme: TabBarTheme(
+      labelColor: Colors.black,
+      unselectedLabelColor: Colors.blueGrey[400],
+      unselectedLabelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic,),
+      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic,),
+    ),
   ),
 
   //?Dark Theme
@@ -78,6 +86,12 @@ final appThemeData = {
 
     ),
 
+    tabBarTheme: TabBarTheme(
+      labelColor: Colors.white,
+      unselectedLabelColor: Colors.blueGrey[400],
+      unselectedLabelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic)
+    ),
     
   ),
 

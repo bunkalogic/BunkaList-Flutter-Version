@@ -1,6 +1,8 @@
 import 'package:bunkalist/src/core/routes/route_error.dart';
+import 'package:bunkalist/src/core/routes/slide_route.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/home_page.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/top_list_page.dart';
+import 'package:bunkalist/src/features/profile/presentation/pages/list_profile_page.dart';
 
 
 import 'package:flutter/material.dart';
@@ -21,11 +23,16 @@ class RouteGeneretor{
       case '/TopList':
         if(args is String){
           
-          return MaterialPageRoute(builder: (_) => TopsListPage(
-            data: args,
-          ));
+          return SlideRightRoute(page: TopsListPage(data: args,));
         }
         return routeError();
+
+      case '/ListProfile':
+        if(args is int){
+          
+          return SlideRightRoute(page: ListProfilePage(data: args,));
+        }
+        return routeError();  
 
       
       

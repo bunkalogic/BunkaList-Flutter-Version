@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _TopsListPageState extends State<TopsListPage> {
 
     return MaterialAppBarData(
       title: Text(widget.data),
+      leading: AppBarButtonBack(),
       actions: <Widget>[
         IconButton(
           icon: _changedIcon(),
