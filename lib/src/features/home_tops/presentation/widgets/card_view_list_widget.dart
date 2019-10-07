@@ -174,20 +174,20 @@ class CardViewListWidget extends StatelessWidget {
 
   //! Actions Buttons
 
-  // Widget _rowButtons() {
-  //   return Container(
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //       children: <Widget>[
-  //        _buttonActions(Icons.check_circle, Colors.green), 
-  //        _buttonActions(Icons.play_circle_filled, Colors.blue),
-  //        _buttonActions(Icons.pause_circle_filled, Colors.orange),
-  //        _buttonActions(Icons.remove_circle, Colors.red),
-  //        _buttonActions(Icons.add_circle, Colors.purple),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget _rowButtons() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+         _buttonActions(Icons.check_circle, Colors.green), 
+         _buttonActions(Icons.play_circle_filled, Colors.blue),
+         _buttonActions(Icons.pause_circle_filled, Colors.orange),
+         _buttonActions(Icons.remove_circle, Colors.red),
+         _buttonActions(Icons.add_circle, Colors.purple),
+        ],
+      ),
+    );
+  }
 
   //  Widget _rowButtons() {
   //   return Container(
@@ -202,20 +202,20 @@ class CardViewListWidget extends StatelessWidget {
   // }
 
 
-  Widget _rowButtons() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-         _buttonActions(Icons.check_circle_outline, Colors.green), 
-         _buttonActions(Icons.play_circle_outline, Colors.blue),
-         _buttonActions(Icons.pause_circle_outline, Colors.orange),
-         _buttonActions(Icons.remove_circle_outline, Colors.red),
-         _buttonActions(Icons.add_circle_outline, Colors.purple),
-        ],
-      ),
-    );
-  }
+  // Widget _rowButtons() {
+  //   return Container(
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: <Widget>[
+  //        _buttonActions(Icons.check_circle_outline, Colors.green), 
+  //        _buttonActions(Icons.play_circle_outline, Colors.blue),
+  //        _buttonActions(Icons.pause_circle_outline, Colors.orange),
+  //        _buttonActions(Icons.remove_circle_outline, Colors.red),
+  //        _buttonActions(Icons.add_circle_outline, Colors.purple),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buttonActions(IconData icon, Color color){
     return IconButton(

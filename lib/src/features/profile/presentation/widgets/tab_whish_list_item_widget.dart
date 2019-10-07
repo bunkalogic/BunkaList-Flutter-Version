@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 
-class TabItemCompletedWidget extends StatefulWidget {
-  const TabItemCompletedWidget({Key key}) : super(key: key);
+class TabItemWhishListWidget extends StatefulWidget {
+  const TabItemWhishListWidget({Key key}) : super(key: key);
 
   @override
-  _TabItemCompletedWidgetState createState() => _TabItemCompletedWidgetState();
+  _TabItemWhishListWidgetState createState() => _TabItemWhishListWidgetState();
 }
 
-class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
+class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
 
   double cardSize = 120.0;
@@ -33,9 +33,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       curve: Curves.decelerate,
       height: cardSize,
       child: GestureDetector(
-        onTap: (){
-          //TODO: implementar pushNamed al AllDetails
-        },
+        //TODO: implementar pushNamed al AllDetails
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0)
@@ -50,7 +48,6 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
              _gradientBackground(),
              _listTileInfoItem(),
              _buttomExtend(),
-             _showAllRating(),
              
            ],
           ),
@@ -64,8 +61,8 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: FadeInImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/original/9gkG3bgwAguIjrUmjZxW5UaqKaC.jpg'),
-            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/9gkG3bgwAguIjrUmjZxW5UaqKaC.jpg', scale: 200 / 400 ),
+            image: NetworkImage('https://image.tmdb.org/t/p/original/hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg'),
+            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg', scale: 200 / 400 ),
             fit: BoxFit.cover,
           ),
         ),
@@ -99,13 +96,15 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       leading: _itemRate(),
       title: _titleItem(),
       trailing: _itemDate(),
+      subtitle: _rowExtraInfo(),
+      
     );
 
   }
 
   Widget _titleItem() {
     return Text(
-      'John Wick 3 Parabellum',
+      'Joker',
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.white,
@@ -123,9 +122,9 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.stars, color: Colors.deepOrange,),
-        Text('8.6', 
+        Text('No rate', 
         style: TextStyle(
-          fontSize: 18.0, 
+          fontSize: 14.0, 
           fontWeight: FontWeight.w900, 
           color: Colors.deepOrange,
           shadows: [
@@ -143,7 +142,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.today, color: Colors.deepOrange,),
-        Text('22/07/19', 
+        Text('12/08/19', 
         style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -161,93 +160,49 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
-        icon: _changedIcon(),
-        autofocus: true,
+        icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
         onPressed: (){
-          _changedSizedCard();
+          
         },
       ),
     );
   }
 
-  Widget _showAllRating(){
-    if(cardSize == 220.0){
-      return Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Icon(Icons.book, color: Colors.orange[900],           size: 28.0,),
-                      Icon(Icons.people, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.music_video, color: Colors.orange[900],    size: 28.0,),
-                      Icon(Icons.movie_filter, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.insert_emoticon, color: Colors.orange[900],size: 28.0,),
-                    ],
-                  ),
-                  ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                   Text('7.0', style: styleAllRates),
-                   Text('9.0', style: styleAllRates),
-                   Text('8.5', style: styleAllRates),
-                   Text('9.5', style: styleAllRates),
-                   Text('8.0', style: styleAllRates),
+  _rowExtraInfo(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        _subTitleRatingInfo(),
+        _threeTitleAirDateInfo()
+      ],
+    );
+  }
 
-                ],
-              ),
-            ),
-            SizedBox(height: 5.0,),
-            _buttonChangedRate()      
-          ],
-        ),
+  Widget _subTitleRatingInfo() {
+    return Text(
+      'Rating: 8.8',
+       style: TextStyle(
+          color: Colors.white,
+          fontSize: 14.0, 
+          fontWeight: FontWeight.w800,
+          shadows: [
+          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+        ) 
       );
-            
-    }else{
-      return Container();
-    }
   }
 
-
-  Widget _buttonChangedRate(){
-    if(cardSize == 220.0){
-      return Container(
-        child: FlatButton(
-          color: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            side: BorderSide(width: 1.5, color: Colors.orange[900]) 
-          ),
-          child: Text('New Rate', style: styleAllRates,),
-          onPressed: () {}
-    ),
+  Widget _threeTitleAirDateInfo() {
+    return Text(
+      'Premiere Day: 4/10/19 ',
+       style: TextStyle(
+          color: Colors.white,
+          fontSize: 14.0, 
+          fontWeight: FontWeight.w800,
+          shadows: [
+          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+        ) 
       );
-    }else{
-      return Container();
-    }
-    
-  }
-
-  void _changedSizedCard() {
-    if(cardSize == 120.0){
-      cardSize = 220.0;
-      setState(() {});
-    }else{
-      cardSize = 120.0;
-      setState(() {});
-    }
-  }
-  Widget _changedIcon(){
-    if(cardSize == 120.0){
-      return Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,);
-    }else{
-      return Icon(Icons.keyboard_arrow_up, color: Colors.purple[400], size: 35.0,);
-    }
   }
 }
