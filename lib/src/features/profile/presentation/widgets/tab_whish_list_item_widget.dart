@@ -170,7 +170,7 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
   _rowExtraInfo(){
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Expanded(child: _subTitleRatingInfo()),
         Expanded(child: _threeTitleAirDateInfo())

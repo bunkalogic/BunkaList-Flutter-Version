@@ -9,7 +9,7 @@ class GridViewListWidget extends StatelessWidget with PosterColumnWidget {
   Widget build(BuildContext context) {
 
     //final double _aspectRatioOriginal = 5.4 / 7.8;
-    final double _aspectRatio = 2.0 / 3.6;
+    final double _aspectRatio = 2.5 / 4.1;
 
     return Padding(
       padding: const EdgeInsets.all(2.0),
@@ -17,7 +17,7 @@ class GridViewListWidget extends StatelessWidget with PosterColumnWidget {
         itemBuilder: (context, i) => itemPoster(context),
         itemCount: 24,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
+          crossAxisCount: 3,
           childAspectRatio: _aspectRatio
         ),
       ),

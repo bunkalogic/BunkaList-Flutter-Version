@@ -32,7 +32,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(6), text:'Recomendation'),
     Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
     Tab(key: ValueKey(8), text:' Opennings'), //si es un anime
-
+    //TODO: crear una BLOC que se encargue devolver una lista dependiendo del tipo que sea la obra
   ];
 
   @override
@@ -82,7 +82,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         leading: AppBarButtonBack(),
         floating: true,
         pinned: true,
-        expandedHeight: 350.0,
+        expandedHeight: 320.0,
         flexibleSpace: AllDetailsHeaderInfo(),
         
     );

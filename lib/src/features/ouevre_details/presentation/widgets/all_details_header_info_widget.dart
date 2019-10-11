@@ -13,6 +13,17 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
     );
   }
 
+  Widget _titleInfo(){
+    return Text(
+        'Band of Brothers',
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w600,
+          fontStyle: FontStyle.italic
+        ),
+      );
+  }
+
   
 
   _stackInfoBackground() {
@@ -22,8 +33,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
         children: <Widget>[
           _imageBackground(),
           //_containerGradient(),
-          _infoPoster(),
-          _titleInfoBackground(),
+          _columnBackground(),
           //TODO: agregar los botones y el icono de la productora 
         ],
       ),
@@ -41,21 +51,10 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
               end: Alignment.topCenter,
               colors: [
                 //TODO que sea dependiendo del tema que esta selecionado
-                Colors.grey[100].withOpacity(0.9),
-                Colors.grey[100].withOpacity(0.9),
+                Colors.grey[100].withOpacity(0.0),
                 Colors.grey[100].withOpacity(0.5),
-                Colors.grey[100].withOpacity(0.5),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.0),
+                Colors.grey[100].withOpacity(0.9),
+
               ]
             ),
           ),
@@ -65,7 +64,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
 
   Widget _imageBackground() {
     return SizedBox(
-      height: 220.0,
+      height: 250.0,
       width: double.infinity,
       child: Image.network(
          'https://image.tmdb.org/t/p/original/3BXWBm011oMqNniZX5BBymC5q5m.jpg',
@@ -75,48 +74,70 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
 
   }
 
-  Widget _infoPoster() {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        width: 140.0,
-        height: 140.0,
-        alignment: Alignment.bottomCenter,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: FadeInImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/original/3XsoDoBvjhhHaT8O1JcxUfIwMu4.jpg'),
-            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/3XsoDoBvjhhHaT8O1JcxUfIwMu4.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
+  
 
-  Widget _titleInfoBackground() {
+  Widget _columnBackground() {
     return Container(
-      margin: EdgeInsets.only(top: 200.0),
       alignment: Alignment.bottomCenter,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //_titleInfo(),
+            _infoPoster(),
+            _buttonAddInList(),
             _durationInfo()
           ],
         ),
     ); 
   }
 
-  Widget _titleInfo(){
-    return Text(
-        'Band of Brothers',
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.w600,
-          fontStyle: FontStyle.italic
+  Widget _buttonAddInList(){
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: OutlineButton(
+          child: Text('Add in your List'),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
+          onPressed: (){},
+      ),
+    );
+  }
+
+  Widget _infoPoster() {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Container(
+          width: 120.0,
+          height: 120.0,
+          alignment: Alignment.bottomCenter,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: FadeInImage(
+              image: NetworkImage('https://image.tmdb.org/t/p/original/3XsoDoBvjhhHaT8O1JcxUfIwMu4.jpg'),
+              placeholder: NetworkImage('https://image.tmdb.org/t/p/original/3XsoDoBvjhhHaT8O1JcxUfIwMu4.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+      ),
+    );
+  }
+
+
+  Widget _durationInfo() {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _yearInfo(),
+            SizedBox(width: 8.0),
+            Icon(Icons.timer,color: Colors.purple[400], ),
+            SizedBox(width: 2.0,),
+            Text('60 min')
+          ],
         ),
-      );
+      ),
+    );
   }
 
   Widget _yearInfo() {
@@ -128,20 +149,5 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
           fontStyle: FontStyle.italic
         ),
       );
-  }
-
-  Widget _durationInfo() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _yearInfo(),
-          SizedBox(width: 8.0),
-          Icon(Icons.timer,color: Colors.purple[400], ),
-          SizedBox(width: 2.0,),
-          Text('60 min')
-        ],
-      ),
-    );
   }
 }
