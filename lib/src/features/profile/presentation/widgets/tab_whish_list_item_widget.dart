@@ -162,7 +162,7 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
       child: IconButton(
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
         onPressed: (){
-          
+          //TODO: Dialog para cambiar el Status
         },
       ),
     );
@@ -170,10 +170,10 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
   _rowExtraInfo(){
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _subTitleRatingInfo(),
-        _threeTitleAirDateInfo()
+        Expanded(child: _subTitleRatingInfo()),
+        Expanded(child: _threeTitleAirDateInfo())
       ],
     );
   }

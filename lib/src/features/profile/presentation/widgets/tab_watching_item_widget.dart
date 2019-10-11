@@ -164,7 +164,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
       child: IconButton(
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
         onPressed: (){
-          
+          //TODO: Dialog para cambiar el Status
         },
       ),
     );

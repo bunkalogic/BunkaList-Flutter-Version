@@ -14,7 +14,7 @@ abstract class PosterColumnWidget{
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImage(), flex: 4,),
+          Expanded(child: _itemImage(context), flex: 4,),
           _itemTitle(),
           Expanded(child: _iconButton(context), flex: 1,),
         ],
@@ -23,13 +23,14 @@ abstract class PosterColumnWidget{
 
 
   
-  Widget _itemImage() {
+  Widget _itemImage(BuildContext context) {
 
     //! Agregar el Hero
 
     return GestureDetector(
         onTap: (){
           //! PushNamed Al ItemAllDetail
+          Navigator.pushNamed(context, '/AllDetails', arguments: 1);
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
