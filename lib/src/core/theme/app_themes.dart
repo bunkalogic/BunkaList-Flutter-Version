@@ -21,9 +21,12 @@ final appThemeData = {
     backgroundColor: Colors.grey[100],
     scaffoldBackgroundColor: Colors.white,
     bottomAppBarColor: Colors.grey[100],
-    cardColor: Colors.white,
     fontFamily: 'SourceSansPro',
     
+    cardTheme: CardTheme(
+      color: Colors.grey[200]
+    ),
+
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
       actionsIconTheme: IconThemeData(color: Colors.purple[500]),
@@ -62,8 +65,11 @@ final appThemeData = {
     backgroundColor: Colors.grey[850],
     scaffoldBackgroundColor: Colors.grey[900],
     bottomAppBarColor: Colors.grey[850],
-    cardColor: Colors.grey[900],
     fontFamily: 'SourceSansPro',
+
+    cardTheme: CardTheme(
+      color: Colors.grey[850]
+    ),
 
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],

@@ -9,6 +9,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
       collapseMode: CollapseMode.parallax,
       background: _stackInfoBackground(),
       centerTitle: true,
+      titlePadding: EdgeInsets.only(bottom: 60.0),
       title: _titleInfo(),
     );
   }
@@ -84,7 +85,8 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
           children: <Widget>[
             _infoPoster(),
             _buttonAddInList(),
-            _durationInfo()
+            _durationInfo(),
+            SizedBox(height: 14.0,)
           ],
         ),
     ); 
@@ -94,7 +96,13 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
-          child: Text('Add in your List'),
+          child: Text(
+            'Add in your List',
+            style: TextStyle(
+              color: Colors.white,
+              shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
+            ),
+          ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
           onPressed: (){},
@@ -124,7 +132,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
 
   Widget _durationInfo() {
     return Padding(
-      padding: const EdgeInsets.all(1.0),
+      padding: const EdgeInsets.only(bottom: 2.0),
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -133,7 +141,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
             SizedBox(width: 8.0),
             Icon(Icons.timer,color: Colors.purple[400], ),
             SizedBox(width: 2.0,),
-            Text('60 min')
+            Text('60 min'),
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.d
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/sliver_app_bar_delegate.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 
@@ -35,14 +36,18 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     //TODO: crear una BLOC que se encargue devolver una lista dependiendo del tipo que sea la obra
   ];
 
+  ScrollController _scrollViewController;
+
   @override
   void initState() {
     super.initState();
+    _scrollViewController = new ScrollController();
     _tabController = TabController(vsync: this, length: detailsTabs.length);
   }
 
   @override
-  void dispose() { 
+  void dispose() {
+    _scrollViewController.dispose(); 
     _tabController.dispose();
     super.dispose();
   }
@@ -61,13 +66,14 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
   Widget _creteHeaderSliverBuilder(){
     return NestedScrollView(
+          controller: _scrollViewController,
           headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
             return <Widget>[
-              _createSliverAppBar(),
-              _createSliverPersistentHeader()
+              _createSliverAppBar(innerBoxScrolled),
             ];
           },
-          body: TabBarView(
+          body: TabBarView(   
+        physics: NeverScrollableScrollPhysics(),    
         controller: _tabController,
         children: detailsTabs.map((Tab tab) {
           return AllDetailsTabViewControllerWidget(idStatus: tab.key);
@@ -76,28 +82,18 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     );
   }
 
-  Widget _createSliverAppBar(){
+  Widget _createSliverAppBar(bool innerBoxScrolled){
     return SliverAppBar(
-        snap: true,
         leading: AppBarButtonBack(),
-        floating: true,
         pinned: true,
+        floating: false,
+        forceElevated: innerBoxScrolled,
         expandedHeight: 320.0,
         flexibleSpace: AllDetailsHeaderInfo(),
+        bottom: _tabBar(),
         
     );
   }
-
-
-
-  Widget _createSliverPersistentHeader() {
-
-    return SliverPersistentHeader(
-      delegate: SliverAppBarDelegate(_tabBar()),
-      pinned: true,
-    );
-
-  }  
 
 
   Widget _tabBar(){
