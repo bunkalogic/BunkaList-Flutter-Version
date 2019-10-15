@@ -18,8 +18,8 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
     return Text(
         'Band of Brothers',
         style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.w600,
+          fontSize: 18.0,
+          fontWeight: FontWeight.w700,
           fontStyle: FontStyle.italic
         ),
       );
@@ -65,7 +65,7 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
 
   Widget _imageBackground() {
     return SizedBox(
-      height: 250.0,
+      height: 230.0,
       width: double.infinity,
       child: Image.network(
          'https://image.tmdb.org/t/p/original/3BXWBm011oMqNniZX5BBymC5q5m.jpg',
@@ -78,15 +78,13 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
   
 
   Widget _columnBackground() {
-    return Container(
-      alignment: Alignment.bottomCenter,
+    return SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _infoPoster(),
             _buttonAddInList(),
             _durationInfo(),
-            SizedBox(height: 14.0,)
+            
           ],
         ),
     ); 

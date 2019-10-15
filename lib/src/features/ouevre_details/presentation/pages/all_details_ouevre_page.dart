@@ -24,7 +24,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   TabController _tabController;
 
   final List<Tab> detailsTabs = <Tab>[
-    Tab(key: ValueKey(0), text:'Info' ),
+    Tab(key: ValueKey(0), text:'Info', ),
     Tab(key: ValueKey(1), text:'Casting'),
     Tab(key: ValueKey(2), text:' Trailers'),
     Tab(key: ValueKey(3), text:'Review'),
@@ -88,7 +88,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         pinned: true,
         floating: false,
         forceElevated: innerBoxScrolled,
-        expandedHeight: 320.0,
+        expandedHeight: 300.0,
         flexibleSpace: AllDetailsHeaderInfo(),
         bottom: _tabBar(),
         
@@ -98,6 +98,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
   Widget _tabBar(){
     return TabBar(
+      labelColor: Colors.deepOrange,
       isScrollable: true,
       tabs: detailsTabs,
       controller: _tabController,
