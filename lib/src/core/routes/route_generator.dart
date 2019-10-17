@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_season_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -43,7 +44,14 @@ class RouteGeneretor{
           
           return SlideRightRoute(page: AllDetailsOuevrePage(data: args,));
         }
-        return routeError();  
+        return routeError();
+
+      case '/AllDetailsSeason':
+        if(args is int){
+          
+          return SlideRightRoute(page: AllDetailsSeasonPage(data: args,));
+        }
+        return routeError();    
 
       
       

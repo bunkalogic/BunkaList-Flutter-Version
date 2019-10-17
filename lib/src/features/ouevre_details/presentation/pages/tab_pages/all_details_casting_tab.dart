@@ -6,9 +6,7 @@ class AllDetailsCastingTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: <Widget>[
           _labelScrollPersonItem('Casting :'),
           _scrollPersonItem(),
