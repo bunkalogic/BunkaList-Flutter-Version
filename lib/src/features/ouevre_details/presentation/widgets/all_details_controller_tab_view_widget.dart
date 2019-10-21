@@ -1,12 +1,12 @@
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_casting_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_info_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_openning_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_recomendation_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_review_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_season_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_similar_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_trailers_tab.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_pages/all_details_video_review_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_openning_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_recomendation_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_review_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_season_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_similar_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_trailers_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_video_review_tab.dart';
 import 'package:flutter/material.dart';
 
 
