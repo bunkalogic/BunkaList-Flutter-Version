@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/features/login/presentation/pages/base_login_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_people_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_season_page.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class RouteGeneretor{
     switch(settings.name){
       
       case '/':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        //return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => LoginHomePage());
       
       case '/TopList':
         if(args is String){
