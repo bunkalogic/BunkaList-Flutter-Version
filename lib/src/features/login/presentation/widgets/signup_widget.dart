@@ -284,10 +284,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Image(
-              image: AssetImage('assets/launcher-trans-purple.png'),
-              height: 140.0,
+              image: AssetImage('assets/bunkalist-banner-purple.png'),
+              height: 100.0,
               fit: BoxFit.cover,
-              width: 100.0,
+              
               ),
             ),
           );

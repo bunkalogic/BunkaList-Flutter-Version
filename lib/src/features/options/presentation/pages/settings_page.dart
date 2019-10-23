@@ -121,6 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
         onPressed: (){
           //TODO: Agregar logOut
+          Navigator.pushNamed(context, '/Login');
         },
 
       ),

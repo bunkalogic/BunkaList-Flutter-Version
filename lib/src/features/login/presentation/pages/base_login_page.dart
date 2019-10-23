@@ -98,12 +98,12 @@ class _LoginHomePageState extends State<LoginHomePage> {
                                 children: <Widget>[
                                   new Expanded(
                                     child: new FlatButton(
-                                      onPressed: ()=>{},
+                                      onPressed: ()=> Navigator.pushNamed(context, '/'),
                                       padding: EdgeInsets.only(
                                         top: 20.0,
                                         bottom: 20.0,
                                       ),
-                                      child: new Row(
+                                      child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: <Widget>[
@@ -253,46 +253,25 @@ class _LoginHomePageState extends State<LoginHomePage> {
 
   Container _nameApp() {
     return Container(
-          padding: EdgeInsets.only(top: 1.0),
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                child: Text(
-                  "Bunka",
-                  style: TextStyle(
-                    color: Colors.deepOrangeAccent[400],
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.w400,
-                    shadows: [Shadow(color: Colors.black, blurRadius: 1.0, offset: Offset(0.5, 0.5))]
-                  ),
-                ),
-              ),
-              Container(
-                child: Text(
-                  "List",
-                  style: TextStyle(
-                      color: Colors.deepOrangeAccent[400],
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w300,
-                      shadows: [Shadow(color: Colors.black, blurRadius: 1.0, offset: Offset(0.5, 0.5))]
-                  ),
-                ),
-              ),
-            ],
+          padding: EdgeInsets.only(top: 5.0),
+          child: Center(
+            child: Image(
+              image: AssetImage('assets/bunkalist-banner.png'),
+              height: 140.0,
+              fit: BoxFit.cover,
+            ),
           ),
         );
   }
 
   Container _logoApp() {
     return Container(
-          padding: EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: 5.0),
           child: Center(
             child: Image(
-              image: AssetImage('assets/luancher-icon-trans.png'),
-              height: 180.0,
+              image: AssetImage('assets/bunkalist-icon-trans.png'),
+              height: 80.0,
               fit: BoxFit.cover,
-              width: 100.0,
             ),
           ),
         );

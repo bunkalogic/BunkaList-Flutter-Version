@@ -228,10 +228,10 @@ class _LoginWidgetState extends State<LoginWidget> {
             padding: EdgeInsets.all(20.0),
             child: Center(
               child: Image(
-            image: AssetImage('assets/luancher-icon-trans.png'),
-            height: 180.0,
+            image: AssetImage('assets/bunkalist-banner.png'),
+            height: 120.0,
             fit: BoxFit.cover,
-            width: 100.0,
+            
             ),
           ),
           );

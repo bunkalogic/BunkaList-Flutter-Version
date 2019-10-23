@@ -1,6 +1,3 @@
-import 'package:bunkalist/src/features/login/presentation/pages/base_login_page.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_people_page.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_season_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -10,6 +7,9 @@ import 'package:bunkalist/src/features/base/presentation/pages/home_page.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/top_list_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_ouevre_page.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/list_profile_page.dart';
+import 'package:bunkalist/src/features/login/presentation/pages/base_login_page.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_people_page.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_season_page.dart';
 
 
 
@@ -25,8 +25,7 @@ class RouteGeneretor{
     switch(settings.name){
       
       case '/':
-        //return MaterialPageRoute(builder: (_) => HomePage());
-        return MaterialPageRoute(builder: (_) => LoginHomePage());
+        return MaterialPageRoute(builder: (_) => HomePage());
       
       case '/TopList':
         if(args is String){
@@ -61,7 +60,10 @@ class RouteGeneretor{
           
           return SlideRightRoute(page: AllDetailsPeoplePage(data: args,));
         }
-        return routeError();      
+        return routeError();
+
+      case '/Login':
+        return SlideRightRoute(page: LoginHomePage());       
 
       
       
