@@ -48,14 +48,12 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _createItemSettings(Color color, IconData icon, String text) {
+  Widget _createItemSettings(BuildContext context, Color color, IconData icon, String text, String routeName) {
     return ListTile(
       title: Text(text, style: TextStyle(fontSize: 18.0),),
       leading: Icon(icon, size: 25.0, color: color,),
       trailing: Icon(Icons.arrow_forward_ios, size: 20.0,),
-      onTap: (){
-        //* pushNamed 
-      } ,
+      onTap: () => Navigator.pushNamed(context, routeName),
     );
   }
 
@@ -69,9 +67,9 @@ class _SettingsPageState extends State<SettingsPage> {
         //TODO: agregar el card the version premium
         _titleOfSections('Configuration'),
         Divider(),
-        _createItemSettings( Colors.green , Icons.supervised_user_circle, 'Edit your Profile '),
-        _createItemSettings( Colors.lightBlue, Icons.settings_applications, 'Edit your preferences'),
-        _createItemSettings( Colors.red, Icons.local_play, 'Go Premium'),
+        _createItemSettings(context, Colors.green , Icons.supervised_user_circle, 'Edit your Profile', '' ),
+        _createItemSettings(context, Colors.lightBlue, Icons.settings_applications, 'Edit your preferences', ''),
+        _createItemSettings(context, Colors.red, Icons.local_play, 'Go Premium', ''),
         SizedBox(height: 10.0,),
         _titleOfSections('Changed Mode'),
         Divider(),
@@ -80,10 +78,10 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections('About the App'),
         Divider(),
-        _createItemSettings(Colors.greenAccent, Icons.format_list_bulleted, "license of open source"),
-        _createItemSettings(Colors.blueAccent, Icons.screen_lock_portrait, "policy of privacity"),
-        _createItemSettings(Colors.redAccent, Icons.verified_user, "condtion of use"),
-        _createItemSettings(Colors.purpleAccent, Icons.rate_review, "rate the App"),
+        _createItemSettings(context, Colors.greenAccent, Icons.format_list_bulleted, "license of open source", '/Licenses'),
+        _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, "policy of privacity", ''),
+        _createItemSettings(context, Colors.redAccent, Icons.verified_user, "condtion of use", ''),
+        _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, "rate the App", ''),
         Divider(),
         SizedBox(height: 10.0,),
         _buttonLogOutMaterial(),
@@ -138,9 +136,9 @@ class _SettingsPageState extends State<SettingsPage> {
         //TODO: agregar el card the version premium
         _titleOfSections('Configuration'),
         Divider(),
-        _createItemSettings( Colors.green , CupertinoIcons.profile_circled, 'Edit your Profile '),
-        _createItemSettings( Colors.lightBlue, CupertinoIcons.settings, 'Edit your preferences'),
-        _createItemSettings( Colors.red, CupertinoIcons.plus_circled, 'Go Premium'),
+        _createItemSettings(context, Colors.green , CupertinoIcons.profile_circled, 'Edit your Profile', ''),
+        _createItemSettings(context, Colors.lightBlue, CupertinoIcons.settings, 'Edit your preferences', ''),
+        _createItemSettings(context, Colors.red, CupertinoIcons.plus_circled, 'Go Premium', ''),
         SizedBox(height: 10.0,),
         _titleOfSections('Changed Mode'),
         Divider(),
@@ -149,10 +147,10 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections('About the App'),
         Divider(),
-        _createItemSettings(Colors.greenAccent, CupertinoIcons.folder_open, "license of open source"),
-        _createItemSettings(Colors.blueAccent, CupertinoIcons.info, "policy of privacity"),
-        _createItemSettings(Colors.redAccent, CupertinoIcons.bookmark, "condtion of use"),
-        _createItemSettings(Colors.purpleAccent, CupertinoIcons.check_mark, "rate the App"),
+        _createItemSettings(context, Colors.greenAccent, CupertinoIcons.folder_open, "license of open source", ''),
+        _createItemSettings(context, Colors.blueAccent, CupertinoIcons.info, "policy of privacity", ''),
+        _createItemSettings(context, Colors.redAccent, CupertinoIcons.bookmark, "condtion of use", ''),
+        _createItemSettings(context, Colors.purpleAccent, CupertinoIcons.check_mark, "rate the App", ''),
         Divider(),
         SizedBox(height: 10.0,),
         _buttonLogOutCupertino()

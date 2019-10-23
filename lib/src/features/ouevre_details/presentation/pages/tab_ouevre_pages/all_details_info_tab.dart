@@ -57,12 +57,12 @@ class AllDetailsInfoTab extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
-          Text('9.37', style: _ratingStyle,),
-          SizedBox(),
           Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
           Text('2343'),
-          SizedBox(),
+          Spacer(),
+          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
+          Text('9.37', style: _ratingStyle,),
+          Spacer(),
           Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
           Image.network('https://image.tmdb.org/t/p/h50_filter(negate,000,666)/tuomPhY2UtuPTqqFnKMVHvSb724.png', height: 15.0,)
         ],

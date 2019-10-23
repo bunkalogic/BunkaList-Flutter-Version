@@ -139,7 +139,13 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
             SizedBox(width: 8.0),
             Icon(Icons.timer,color: Colors.purple[400], ),
             SizedBox(width: 2.0,),
-            Text('60 min'),
+            Text(
+              '60 min', 
+              style: TextStyle(
+                color: Colors.white,
+                shadows: [Shadow(color: Colors.black, blurRadius: 1.0, offset: Offset(0.5, 0.5) ) ] 
+              ),
+            ),
           ],
         ),
       ),
@@ -152,7 +158,9 @@ class AllDetailsHeaderInfo extends StatelessWidget  {
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.w600,
-          fontStyle: FontStyle.italic
+          fontStyle: FontStyle.italic,
+          color: Colors.white,
+          shadows: [Shadow(color: Colors.black, blurRadius: 1.0, offset: Offset(0.5, 0.5) ) ]
         ),
       );
   }

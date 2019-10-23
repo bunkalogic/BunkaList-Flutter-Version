@@ -63,7 +63,10 @@ class RouteGeneretor{
         return routeError();
 
       case '/Login':
-        return SlideRightRoute(page: LoginHomePage());       
+        return SlideRightRoute(page: LoginHomePage());
+
+      case '/Licenses':
+        return SlideRightRoute(page: LicensePage());          
 
       
       

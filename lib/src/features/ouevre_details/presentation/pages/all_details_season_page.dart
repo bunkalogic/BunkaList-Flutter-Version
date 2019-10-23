@@ -133,6 +133,7 @@ class AllDetailsSeasonPage extends StatelessWidget {
             fontSize: 20.0,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.italic,
+            color: Colors.white,
             shadows: [
               Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
             ]
@@ -150,6 +151,7 @@ class AllDetailsSeasonPage extends StatelessWidget {
               fontStyle: FontStyle.italic,
               fontSize: 14.0,
               fontWeight: FontWeight.w600,
+              color: Colors.white,
                shadows: [
               Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
             ]
@@ -184,6 +186,7 @@ class AllDetailsSeasonPage extends StatelessWidget {
            style: TextStyle( 
              fontSize: 14.0, 
              fontWeight: FontWeight.w500,
+             color: Colors.white,
               shadows: [
               Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
               ]

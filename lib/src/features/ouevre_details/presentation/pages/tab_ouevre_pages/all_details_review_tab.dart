@@ -14,7 +14,7 @@ class AllDetailsReviewTab extends StatelessWidget {
   Widget _createItemReview() {
     return Card(
       elevation: 5.0,
-      margin: EdgeInsets.all(2.0),
+      margin: EdgeInsets.all(4.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0)
       ),

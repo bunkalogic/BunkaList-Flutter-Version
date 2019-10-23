@@ -13,7 +13,7 @@ class AllDetailsSeasonTab extends StatelessWidget {
 
   Widget _itemSeason(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Card(
         elevation: 5.0,
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -53,7 +53,7 @@ class AllDetailsSeasonTab extends StatelessWidget {
 
   Widget _columnSeasonTextInfo() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 40.0),
+      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 6.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,

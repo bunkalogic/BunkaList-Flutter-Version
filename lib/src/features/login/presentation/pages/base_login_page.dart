@@ -62,7 +62,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
       ),
       child: ListView(
         children: <Widget>[
-          _logoApp(),
+          //_logoApp(),
           _nameApp(),
           _buttonSignUp(),
           _buttonLogin(),
@@ -257,7 +257,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           child: Center(
             child: Image(
               image: AssetImage('assets/bunkalist-banner.png'),
-              height: 140.0,
+              height: 160.0,
               fit: BoxFit.cover,
             ),
           ),
