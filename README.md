@@ -5,10 +5,14 @@ Bunkalist is a project to save what you have seen or are watching either movies,
 
 # **The Bunkalist Version Flutter TODO Map**
 
-- [ ] Create the basis of the application design
-- [ ] Create the design of the App regarding the use of the Api
-- [ ] Create the design of the App regarding the use of Firestore
+- [x] Create the basis of the application design.
+
+- [ ] Create the design of the App regarding the use of the Api.
+
+- [x] Create the design of the App regarding the use of Firestore.
+
 - [ ] Add the logic part of [Api TMDb](https://www.themoviedb.org/documentation/api).
+
 - [ ] Add the part of the Firestore logic.
 
 
