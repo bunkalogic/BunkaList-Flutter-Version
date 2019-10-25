@@ -7,7 +7,7 @@ Bunkalist is a project to save what you have seen or are watching either movies,
 
 - [x] Create the basis of the application design.
 
-- [ ] Create the design of the App regarding the use of the Api.
+- [X] Create the design of the App regarding the use of the Api.
 
 - [x] Create the design of the App regarding the use of Firestore.
 
