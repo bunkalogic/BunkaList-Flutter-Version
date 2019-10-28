@@ -18,19 +18,31 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter 
+   # Service locator
+  get_it: 
+  # Bloc for state management
   flutter_bloc: 
-  equatable:
+  # Value equality
+  equatable: 
+  # Functional programming thingies
+  dartz: 
+  # Remote API
+  connectivity: 
+  http: 
+  # Local cache
+  shared_preferences: 
+
     
 
   flutter_localizations:
-    sdk: flutter  
+    sdk: flutter
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: 
   flutter_platform_widgets: 
-  shared_preferences:
   flutter_swiper: 
 
 dev_dependencies:
@@ -39,6 +51,7 @@ dev_dependencies:
   build_runner:
   json_serializable:   
   flutter_launcher_icons:
+  mockito: 
 
 flutter_icons:
   android: "launcher_icon" 
