@@ -6,7 +6,7 @@ class MovieEntity  extends Equatable{
     final dynamic posterPath;
     final bool adult;
     final String overview;
-    final DateTime releaseDate;
+    final String releaseDate;
     final List<int> genreIds;
     final int id;
     final String originalTitle;

@@ -8,7 +8,7 @@ class SeriesEntity extends Equatable {
     final dynamic backdropPath;
     final double voteAverage;
     final String overview;
-    final DateTime firstAirDate;
+    final String firstAirDate;
     final List<String> originCountry;
     final List<int> genreIds;
     final String originalLanguage;

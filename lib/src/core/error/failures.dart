@@ -5,3 +5,8 @@ abstract class Failures extends Equatable {
   //para que Equatable pueda realizar una comparación de valores.
   Failures([List properties = const <dynamic>[]]) : super(properties);
 }
+
+// General failures
+class ServerFailure extends Failures {}
+
+class CacheFailure extends Failures {}
