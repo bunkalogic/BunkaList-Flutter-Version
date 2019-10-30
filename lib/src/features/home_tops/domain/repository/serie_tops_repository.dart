@@ -10,99 +10,99 @@ abstract class SeriesTopsRepository {
   Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop) async {
     switch (typeTop) {
       
-      case 1: return await getTopSeriesPopular();  
+      case 1: return await    _getTopSeriesPopular();  
 
-      case 2: return await getTopSeriesRated();     
+      case 2: return await    _getTopSeriesRated();     
 
-      case 3: return await getSeriesUpcoming();
+      case 3: return await    _getSeriesUpcoming();
 
-      case 4: return await  getSeriesGenresActionAndAdventure();
+      case 4: return await    _getSeriesGenresActionAndAdventure();
 
-      case 5: return await  getSeriesGenresComedy();
+      case 5: return await    _getSeriesGenresComedy();
 
-      case 6: return await getSeriesGenresCrimen();
+      case 6: return await    _getSeriesGenresCrimen();
 
-      case 7: return await  getSeriesGenresDocumental();
+      case 7: return await    _getSeriesGenresDocumental();
 
-      case 8: return await  getSeriesGenresDrama();
+      case 8: return await    _getSeriesGenresDrama();
 
-      case 9: return await getSeriesGenresFamily();
+      case 9: return await    _getSeriesGenresFamily();
 
-      case 10: return await  getSeriesGenresDocumental();
+      case 10: return await   _getSeriesGenresDocumental();
 
-      case 11: return await   getSeriesGenresDrama();
+      case 11: return await   _getSeriesGenresDrama();
 
-      case 12: return await getSeriesGenresFamily();
+      case 12: return await   _getSeriesGenresFamily();
 
-      case 13: return await  getSeriesGenresMistery();
+      case 13: return await   _getSeriesGenresMistery();
 
-      case 14: return await  getSeriesGenresFantasyAndSciFi();
+      case 14: return await   _getSeriesGenresFantasyAndSciFi();
 
-      case 15: return await getSeriesGenresMistery();
+      case 15: return await   _getSeriesGenresMistery();
 
-      case 16: return await getSeriesGenresSoap();
+      case 16: return await   _getSeriesGenresSoap();
 
-      case 17: return await  getSeriesGenresWarAndPolitics(); 
+      case 17: return await   _getSeriesGenresWarAndPolitics(); 
 
-      case 18: return await getSeriesGenresWestern();
+      case 18: return await   _getSeriesGenresWestern();
 
-      case 19: return await  getSeriesCompanyNetflix(); 
+      case 19: return await   _getSeriesCompanyNetflix(); 
 
-      case 20: return await getSeriesCompanyHBO();
+      case 20: return await   _getSeriesCompanyHBO();
 
-      case 21: return await  getSeriesCompanyAmazonPrime();
+      case 21: return await   _getSeriesCompanyAmazonPrime();
 
-      case 22: return await getSeriesCompanyBBCOne();
+      case 22: return await   _getSeriesCompanyBBCOne();
 
-      case 23: return await getSeriesCompanyAMC();
+      case 23: return await   _getSeriesCompanyAMC();
 
-      default: return await getTopSeriesPopular();
+      default: return await   _getTopSeriesPopular();
     }
   }
 
   //? Series Tops
 
-  Future<Either<Failures, List<SeriesEntity>>> getTopSeriesPopular();
+  Future<Either<Failures, List<SeriesEntity>>> _getTopSeriesPopular();
 
-  Future<Either<Failures, List<SeriesEntity>>> getTopSeriesRated();
+  Future<Either<Failures, List<SeriesEntity>>> _getTopSeriesRated();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesUpcoming();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesUpcoming();
 
   //? Series Popular Genres
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresActionAndAdventure();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresActionAndAdventure();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresComedy();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresComedy();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresCrimen();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresCrimen();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresDocumental();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresDocumental();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresDrama();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresDrama();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresFamily();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresFamily();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresMistery();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresMistery();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresFantasyAndSciFi();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresFantasyAndSciFi();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresSoap();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresSoap();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresWarAndPolitics();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresWarAndPolitics();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesGenresWestern();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesGenresWestern();
 
   //? Series Popular Company
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesCompanyNetflix();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyNetflix();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesCompanyHBO();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyHBO();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesCompanyAmazonPrime();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyAmazonPrime();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesCompanyBBCOne();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyBBCOne();
 
-  Future<Either<Failures, List<SeriesEntity>>> getSeriesCompanyAMC();
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyAMC();
 
   
 

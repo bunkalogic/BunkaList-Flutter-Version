@@ -11,96 +11,98 @@ abstract class MovieTopsRepository {
 
   
    Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop) async {
+    
     switch (typeTop) {
       
-      case 1: return await getTopMoviePopular();  
+      case 1: return await    _getTopMoviePopular();  
 
-      case 2: return await getTopMovieRated();     
+      case 2: return await    _getTopMovieRated();     
 
-      case 3: return await getMovieUpcoming();
+      case 3: return await    _getMovieUpcoming();
 
-      case 4: return await  getMovieGenresAction();
+      case 4: return await    _getMovieGenresAction();
 
-      case 5: return await  getMovieGenresAdventure(); 
+      case 5: return await    _getMovieGenresAdventure(); 
 
-      case 6: return await getMovieGenresComedy();
+      case 6: return await    _getMovieGenresComedy();
 
-      case 7: return await  getMovieGenresWar();
+      case 7: return await    _getMovieGenresWar();
 
-      case 8: return await  getMovieGenresScienceFiction();
+      case 8: return await    _getMovieGenresScienceFiction();
 
-      case 9: return await getMovieGenresCrime();
+      case 9: return await    _getMovieGenresCrime();
 
-      case 10: return await  getMovieGenresDocumental();
+      case 10: return await   _getMovieGenresDocumental();
 
-      case 11: return await   getMovieGenresDrama();
+      case 11: return await   _getMovieGenresDrama();
 
-      case 12: return await getMovieGenresFamily();
+      case 12: return await   _getMovieGenresFamily();
 
-      case 13: return await  getMovieGenresFantasy();
+      case 13: return await   _getMovieGenresFantasy();
 
-      case 14: return await  getMovieGenresHistory();
+      case 14: return await   _getMovieGenresHistory();
 
-      case 15: return await getMovieGenresMistery();
+      case 15: return await   _getMovieGenresMistery();
 
-      case 16: return await getMovieGenresMusical();
+      case 16: return await   _getMovieGenresMusical();
 
-      case 17: return await  getMovieGenresRomance(); 
+      case 17: return await   _getMovieGenresRomance(); 
 
-      case 18: return await getMovieGenresThriller();
+      case 18: return await   _getMovieGenresThriller();
 
-      case 19: return await  getMovieGenresTerror(); 
+      case 19: return await   _getMovieGenresTerror(); 
 
-      case 20: return await getMovieGenresWestern();
+      case 20: return await   _getMovieGenresWestern();
 
-      default: return await getTopMoviePopular();
+      default: return await   _getTopMoviePopular();
     }
+    
   }
 
 
   //? Movie Tops
 
-  Future<Either<Failures, List<MovieEntity>>> getTopMoviePopular();
+  Future<Either<Failures, List<MovieEntity>>> _getTopMoviePopular();
 
-  Future<Either<Failures, List<MovieEntity>>> getTopMovieRated();
+ Future<Either<Failures, List<MovieEntity>>> _getTopMovieRated();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieUpcoming();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieUpcoming();
 
-  //? Movie Popular Genres
+ //? Movie Popular Genres_
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresAction();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresAction();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresAdventure();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresAdventure();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresComedy();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresComedy();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresWar();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresWar();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresScienceFiction();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresScienceFiction();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresCrime();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresCrime();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresDocumental();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresDocumental();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresDrama();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresDrama();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresFamily();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresFamily();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresFantasy();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresFantasy();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresHistory();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresHistory();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresMistery();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresMistery();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresMusical();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresMusical();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresRomance();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresRomance();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresThriller();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresThriller();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresTerror();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresTerror();
 
-  Future<Either<Failures, List<MovieEntity>>> getMovieGenresWestern();
+ Future<Either<Failures, List<MovieEntity>>> _getMovieGenresWestern();
 
   
 

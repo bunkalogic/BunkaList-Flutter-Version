@@ -7,24 +7,7 @@ abstract class TopsAnimeRemoteDataSource{
   ///
   /// Throws a [ServerException] for all error codes.
 
-  Future<List<AnimeModel>> getTopAnimePopular();
-  Future<List<AnimeModel>> getTopAnimeRated();
-  Future<List<AnimeModel>> getAnimeSeason();
-  Future<List<AnimeModel>> getAnimeUpcomingNextSeason();
-  Future<List<AnimeModel>> getAnimeGenresActionAndAdventure();
-  Future<List<AnimeModel>> getAnimeGenresComedy();
-  Future<List<AnimeModel>> getAnimeGenresCrimen();
-  Future<List<AnimeModel>> getAnimeGenresDrama();
-  Future<List<AnimeModel>> getAnimeGenresMistery();
-  Future<List<AnimeModel>> getAnimeGenresFantasyAndSciFi();
-  Future<List<AnimeModel>> getAnimeGenresWarAndPolitics();
-  Future<List<AnimeModel>> getAnimeGenresShonen();
-  Future<List<AnimeModel>> getAnimeGenresSpokon();
-  Future<List<AnimeModel>> getAnimeGenresMecha();
-  Future<List<AnimeModel>> getAnimeGenresSliceOfLife();
-  Future<List<AnimeModel>> getAnimeGenresBasedOnManga();
-  Future<List<AnimeModel>> getAnimeGenresRomance();
-  Future<List<AnimeModel>> getAnimeGenresSuperNatural();
+  Future<List<AnimeModel>> getTopsAnimes(int topId);
 
 
 

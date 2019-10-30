@@ -1,59 +1,57 @@
-
 import 'package:bunkalist/src/core/error/exception.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/platform/network_info.dart';
-import 'package:bunkalist/src/features/home_tops/data/datasources/tops_movie_remote_data_source.dart';
-import 'package:bunkalist/src/features/home_tops/data/implementations/movie_tops_repos_impl.dart';
-import 'package:bunkalist/src/features/home_tops/data/models/movie_model.dart';
-import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
+import 'package:bunkalist/src/features/home_tops/data/datasources/tops_series_remote_data_source.dart';
+import 'package:bunkalist/src/features/home_tops/data/implementations/series_tops_repos_impl.dart';
+import 'package:bunkalist/src/features/home_tops/data/models/series_model.dart';
+import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockRemoteDataSource extends Mock implements TopsMovieRemoteDataSource {}
+class MockRemoteDataSource extends Mock implements TopsSeriesRemoteDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo{}
 
 void main() {
-  MovieTopsRepositoryImpl repositoryImpl;
+  SeriesTopRepositoryImpl repositoryImpl;
   MockRemoteDataSource mockRemoteDataSource;
   MockNetworkInfo mockNetworkInfo;
 
   setUp((){
     mockRemoteDataSource = MockRemoteDataSource();
     mockNetworkInfo = MockNetworkInfo();
-    repositoryImpl = MovieTopsRepositoryImpl(
+    repositoryImpl = SeriesTopRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
       networkInfo: mockNetworkInfo
     );
   });
 
-  group('get Tops Movies',  (){
+   group('get Tops Series',  (){
     // DATA FOR THE MOCKS AND ASSERTIONS
     // We'll use these two variables throughout all the tests
-    final tMovieModel = MovieModel(
+    final tMovieModel = SeriesModel(
       posterPath       : "null",
-      adult            : false,
       overview         : 'test',
-      releaseDate      : '22/11/1999',
+      firstAirDate     : '22/11/1999',
       genreIds         : [16, 34],
       id               : 200,
-      originalTitle    : 'original title test',
+      originalName     : 'original title test',
       originalLanguage : 'es',
-      title            : 'title test',
+      name             : 'title test',
       backdropPath     : 'null',
       popularity       : 2344.00,
       voteCount        : 346,
-      video            : true,
+      originCountry    : ['Fr'],
       voteAverage      : 345.0,
   );
-    final movies = new Movies();
-    movies.items.add(tMovieModel);
-    movies.items.add(tMovieModel);
+    final series = new Series();
+    series.items.add(tMovieModel);
+    series.items.add(tMovieModel);
 
-  final List<MovieModel> tmoviesList = movies.items;
+  final List<SeriesModel> tSeriesList = series.items;
 
-  final List<MovieEntity>  tMovieEntity = tmoviesList;
+  final List<SeriesEntity>  tSeriesEntity = tSeriesList;
 
   final topsId = 1;
 
@@ -62,7 +60,7 @@ void main() {
     // arrange 
     when(mockNetworkInfo.isConnected).thenAnswer( (_) async => true);
     // act
-    repositoryImpl.getTopsMovies(topsId);
+    repositoryImpl.getTopsSeries(topsId);
     // assert
     verify(mockNetworkInfo.isConnected); 
 
@@ -77,24 +75,24 @@ void main() {
     test(
       'should return remote data when the call to remote data source is successful', () async {
        // arrange
-       when(mockRemoteDataSource.getTopsMovies(topsId))
-       .thenAnswer((_) async => tmoviesList ); 
+       when(mockRemoteDataSource.getTopsSeries(topsId))
+       .thenAnswer((_) async => tSeriesList ); 
        // act
-       final result = await repositoryImpl.getTopsMovies(topsId);
+       final result = await repositoryImpl.getTopsSeries(topsId);
        // assert
-       verify(mockRemoteDataSource.getTopsMovies(topsId));
-       expect(result, equals(Right(tMovieEntity)));
+       verify(mockRemoteDataSource.getTopsSeries(topsId));
+       expect(result, equals(Right(tSeriesEntity)));
 
     });
 
     test('should return server failure when the call to remote data source is unsuccessful', () async {
         // arrange
-        when(mockRemoteDataSource.getTopsMovies(topsId))
+        when(mockRemoteDataSource.getTopsSeries(topsId))
           .thenThrow(ServerException());
         // act
-        final result = await repositoryImpl.getTopsMovies(topsId);
+        final result = await repositoryImpl.getTopsSeries(topsId);
         //assert
-        verify(mockRemoteDataSource.getTopsMovies(topsId));
+        verify(mockRemoteDataSource.getTopsSeries(topsId));
 
         expect(result, equals(Left(ServerFailure)));
         
@@ -104,7 +102,5 @@ void main() {
   });
 
   });
-
-  
 }
 
