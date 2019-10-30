@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/constants.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:dartz/dartz.dart';
@@ -11,41 +12,41 @@ abstract class AnimeTopsRepository {
     
     switch (typeTop) {
       
-      case 1: return await    _getTopAnimePopular();  
+      case Constants.topsAnimePopularId           : return await    _getTopAnimePopular();  
 
-      case 2: return await    _getTopAnimeRated();     
+      case Constants.topsAnimeRatedId             : return await    _getTopAnimeRated();     
 
-      case 3: return await    _getAnimeSeason();
+      case Constants.topsAnimeSeasonId            : return await    _getAnimeSeason();
 
-      case 4: return await    _getAnimeUpcomingNextSeason();
+      case Constants.topsAnimeUpcomingNextSeasonId: return await    _getAnimeUpcomingNextSeason();
 
-      case 5: return await    _getAnimeGenresActionAndAdventure(); 
+      case Constants.topsAnimeActionAndAdventureId: return await    _getAnimeGenresActionAndAdventure(); 
 
-      case 6: return await    _getAnimeGenresComedy();
+      case Constants.topsAnimeComedyId            : return await    _getAnimeGenresComedy();
 
-      case 7: return await    _getAnimeGenresCrimen();
+      case Constants.topsAnimeCrimenId            : return await    _getAnimeGenresCrimen();
 
-      case 8: return await    _getAnimeGenresDrama();
+      case Constants.topsAnimeDramaId             : return await    _getAnimeGenresDrama();
 
-      case 9: return await    _getAnimeGenresMistery();
+      case Constants.topsAnimeMisteryId           : return await    _getAnimeGenresMistery();
 
-      case 10: return await   _getAnimeGenresFantasyAndSciFi();
+      case Constants.topsAnimeFantasyAndSciFiId   : return await   _getAnimeGenresFantasyAndSciFi();
 
-      case 11: return await   _getAnimeGenresWarAndPolitics();
+      case Constants.topsAnimeWarAndPoliticsId    : return await   _getAnimeGenresWarAndPolitics();
 
-      case 12: return await   _getAnimeGenresShonen();
+      case Constants.topsAnimeShonenId            : return await   _getAnimeGenresShonen();
 
-      case 13: return await   _getAnimeGenresSpokon();
+      case Constants.topsAnimeSpokonId            : return await   _getAnimeGenresSpokon();
 
-      case 14: return await   _getAnimeGenresMecha();
+      case Constants.topsAnimeMechaId             : return await   _getAnimeGenresMecha();
 
-      case 15: return await   _getAnimeGenresSliceOfLife();
+      case Constants.topsAnimeSliceOfLifeId       : return await   _getAnimeGenresSliceOfLife();
 
-      case 16: return await   _getAnimeGenresBasedOnManga();
+      case Constants.topsAnimeBasedOnMangaId      : return await   _getAnimeGenresBasedOnManga();
 
-      case 17: return await   _getAnimeGenresRomance(); 
+      case Constants.topsAnimeRomanceId           : return await   _getAnimeGenresRomance(); 
 
-      case 18: return await   _getAnimeGenresSuperNatural();
+      case Constants.topsAnimeSuperNaturalId      : return await   _getAnimeGenresSuperNatural();
 
       default: return await   _getTopAnimePopular();
     }

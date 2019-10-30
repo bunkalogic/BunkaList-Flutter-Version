@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/constants.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:dartz/dartz.dart';
@@ -10,51 +11,43 @@ abstract class SeriesTopsRepository {
   Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop) async {
     switch (typeTop) {
       
-      case 1: return await    _getTopSeriesPopular();  
+      case Constants.topsSeriesPopularId        : return await    _getTopSeriesPopular();  
 
-      case 2: return await    _getTopSeriesRated();     
+      case Constants.topsSeriesRatedId          : return await    _getTopSeriesRated();     
 
-      case 3: return await    _getSeriesUpcoming();
+      case Constants.topsSeriesUpcommingId      : return await    _getSeriesUpcoming();
 
-      case 4: return await    _getSeriesGenresActionAndAdventure();
+      case Constants.topsSeriesActAndAdvId      : return await    _getSeriesGenresActionAndAdventure();
 
-      case 5: return await    _getSeriesGenresComedy();
+      case Constants.topsSeriesComedyId         : return await    _getSeriesGenresComedy();
 
-      case 6: return await    _getSeriesGenresCrimen();
+      case Constants.topsSeriesCrimenId         : return await    _getSeriesGenresCrimen();
 
-      case 7: return await    _getSeriesGenresDocumental();
+      case Constants.topsSeriesDocumentalId     : return await    _getSeriesGenresDocumental();
 
-      case 8: return await    _getSeriesGenresDrama();
+      case Constants.topsSeriesFamilyId         : return await    _getSeriesGenresFamily();
 
-      case 9: return await    _getSeriesGenresFamily();
+      case Constants.topsSeriesDramaId          : return await   _getSeriesGenresDrama();
 
-      case 10: return await   _getSeriesGenresDocumental();
+      case Constants.topsSeriesMisteryId        : return await   _getSeriesGenresMistery();
 
-      case 11: return await   _getSeriesGenresDrama();
+      case Constants.topsSeriesFantasyAndSciFiId: return await   _getSeriesGenresFantasyAndSciFi();
 
-      case 12: return await   _getSeriesGenresFamily();
+      case Constants.topsSeriesSoapId           : return await   _getSeriesGenresSoap();
 
-      case 13: return await   _getSeriesGenresMistery();
+      case Constants.topsSeriesWarAndPoliticsId : return await   _getSeriesGenresWarAndPolitics(); 
 
-      case 14: return await   _getSeriesGenresFantasyAndSciFi();
+      case Constants.topsSeriesWesternId        : return await   _getSeriesGenresWestern();
 
-      case 15: return await   _getSeriesGenresMistery();
+      case Constants.topsSeriesNetflixId        : return await   _getSeriesCompanyNetflix(); 
 
-      case 16: return await   _getSeriesGenresSoap();
+      case Constants.topsSeriesHBOId            : return await   _getSeriesCompanyHBO();
 
-      case 17: return await   _getSeriesGenresWarAndPolitics(); 
+      case Constants.topsSeriesAmazonPrimeId    : return await   _getSeriesCompanyAmazonPrime();
 
-      case 18: return await   _getSeriesGenresWestern();
+      case Constants.topsSeriesBBCOneId         : return await   _getSeriesCompanyBBCOne();
 
-      case 19: return await   _getSeriesCompanyNetflix(); 
-
-      case 20: return await   _getSeriesCompanyHBO();
-
-      case 21: return await   _getSeriesCompanyAmazonPrime();
-
-      case 22: return await   _getSeriesCompanyBBCOne();
-
-      case 23: return await   _getSeriesCompanyAMC();
+      case Constants.topsSeriesAMCId            : return await   _getSeriesCompanyAMC();
 
       default: return await   _getTopSeriesPopular();
     }

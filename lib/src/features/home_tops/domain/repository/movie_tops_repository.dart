@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'package:bunkalist/src/core/constans/constants.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:bunkalist/src/core/error/failures.dart';
@@ -13,46 +14,46 @@ abstract class MovieTopsRepository {
    Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop) async {
     
     switch (typeTop) {
-      
-      case 1: return await    _getTopMoviePopular();  
 
-      case 2: return await    _getTopMovieRated();     
+      case Constants.topsMoviesPopularId        :  return await   _getTopMoviePopular();  
 
-      case 3: return await    _getMovieUpcoming();
+      case Constants.topsMoviesRatedId          : return await    _getTopMovieRated();     
 
-      case 4: return await    _getMovieGenresAction();
+      case Constants.topsMoviesUpcommingId      : return await    _getMovieUpcoming();
 
-      case 5: return await    _getMovieGenresAdventure(); 
+      case Constants.topsMoviesActionId         : return await    _getMovieGenresAction();
 
-      case 6: return await    _getMovieGenresComedy();
+      case Constants.topsMoviesAdventureId      : return await    _getMovieGenresAdventure(); 
 
-      case 7: return await    _getMovieGenresWar();
+      case Constants.topsMoviesComedyId         : return await    _getMovieGenresComedy();
 
-      case 8: return await    _getMovieGenresScienceFiction();
+      case Constants.topsMoviesWarId            : return await    _getMovieGenresWar();
 
-      case 9: return await    _getMovieGenresCrime();
+      case Constants.topsMoviesScienceFictionId : return await    _getMovieGenresScienceFiction();
 
-      case 10: return await   _getMovieGenresDocumental();
+      case Constants.topsMoviesCrimeId          : return await    _getMovieGenresCrime();
 
-      case 11: return await   _getMovieGenresDrama();
+      case Constants.topsMoviesDocumentalId     : return await   _getMovieGenresDocumental();
 
-      case 12: return await   _getMovieGenresFamily();
+      case Constants.topsMoviesDramaId          : return await   _getMovieGenresDrama();
 
-      case 13: return await   _getMovieGenresFantasy();
+      case Constants.topsMoviesFamilyId         : return await   _getMovieGenresFamily();
 
-      case 14: return await   _getMovieGenresHistory();
+      case Constants.topsMoviesFantasyId        : return await   _getMovieGenresFantasy();
 
-      case 15: return await   _getMovieGenresMistery();
+      case Constants.topsMoviesHistoryId        : return await   _getMovieGenresHistory();
 
-      case 16: return await   _getMovieGenresMusical();
+      case Constants.topsMoviesMisteryId        : return await   _getMovieGenresMistery();
 
-      case 17: return await   _getMovieGenresRomance(); 
+      case Constants.topsMoviesMusicalId        : return await   _getMovieGenresMusical();
 
-      case 18: return await   _getMovieGenresThriller();
+      case Constants.topsMoviesRomanceId        : return await   _getMovieGenresRomance(); 
 
-      case 19: return await   _getMovieGenresTerror(); 
+      case Constants.topsMoviesThillerId        : return await   _getMovieGenresThriller();
 
-      case 20: return await   _getMovieGenresWestern();
+      case Constants.topsMoviesTerrorId         : return await   _getMovieGenresTerror(); 
+
+      case Constants.topsMoviesWesternId        : return await   _getMovieGenresWestern();
 
       default: return await   _getTopMoviePopular();
     }

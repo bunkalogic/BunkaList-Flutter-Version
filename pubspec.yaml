@@ -31,7 +31,9 @@ dependencies:
   connectivity: 
   http: 
   # Local cache
-  shared_preferences: 
+  shared_preferences:
+  # Swap the connectivity package for this
+  data_connection_checker: 
 
     
 
