@@ -25,6 +25,15 @@ class Preferences{
     _prefs.setBool('whatModeIs', value);
   }
 
+  //? se en encarga de guardar el modo de tema 
+  get getLanguage {
+    return _prefs.getString('language') ?? 'en';
+  }
+
+  set getLanguage (String value) {
+    _prefs.setString('language', value);
+  }
+
 
 
 }

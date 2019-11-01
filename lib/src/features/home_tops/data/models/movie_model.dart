@@ -49,7 +49,7 @@ class MovieModel  extends MovieEntity{
         originalLanguage : json['originalLanguage'],
         title            : json['title'],
         backdropPath     : json['backdropPath'],
-        popularity       : json['popularity'],
+        popularity       : json['popularity'] / 1,
         voteCount        : json['voteCount'],
         video            : json['video'],
         voteAverage      : json['voteAverage'],

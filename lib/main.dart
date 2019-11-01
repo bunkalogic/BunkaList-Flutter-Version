@@ -31,13 +31,25 @@ class MyApp extends StatelessWidget {
 }
 
 Widget _materialApp(BuildContext context, ThemeState state){
+   
+   Preferences prefs = Preferences();
+    Locale myLocale;
+
+
   return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: state.themeData, 
         title: 'Bunkalist',
         initialRoute: '/',
         onGenerateRoute: RouteGeneretor.generateRoute,
-
+        localeListResolutionCallback: ( devicesLocale , supportedLocales ){
+          myLocale = devicesLocale.first;
+          print(myLocale.countryCode);
+          print(myLocale.languageCode);
+          prefs.getLanguage = '${myLocale.languageCode}-${myLocale.countryCode}';
+          print('language code: ${prefs.getLanguage}');
+          return null; 
+        },
         //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
         supportedLocales: [
           //* LIST ALL OF THE APPs SUPPORT LOCALES HERE

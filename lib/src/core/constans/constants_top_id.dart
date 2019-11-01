@@ -1,7 +1,7 @@
 
 
-class Constants{
-
+class Constants {
+ 
   //? Consts for Tops Movies
 
   static const topsMoviesPopularId        = 1;

@@ -1,0 +1,199 @@
+{
+	"page": 1,
+	"total_results": 9,
+	"total_pages": 1,
+	"results": [
+	  {
+		"popularity": 18,
+		"vote_count": 69,
+		"video": false,
+		"poster_path": "/4tS0iyKQBDFqVpVcH21MSJwXZdq.jpg",
+		"id": 390634,
+		"adult": false,
+		"backdrop_path": "/jFIXVCCGvS20mIFXqDAlVR5KXew.jpg",
+		"original_language": "ja",
+		"original_title": "劇場版 Fate／stay night [Heaven's Feel] II. lost butterfly",
+		"genre_ids": [
+		  28,
+		  16,
+		  18,
+		  14
+		],
+		"title": "Fate/stay night: Heaven's Feel - II. Mariposa Perdida",
+		"vote_average": 5.6,
+		"overview": "Segunda de tres películas adaptando la tercera ruta de Fate/stay night.",
+		"release_date": "2019-01-12"
+	  },
+	  {
+		"popularity": 12.697,
+		"id": 16859,
+		"video": false,
+		"vote_count": 1605,
+		"vote_average": 7.8,
+		"title": "Nicky, la aprendiz de bruja",
+		"release_date": "1989-07-29",
+		"original_language": "ja",
+		"original_title": "魔女の宅急便",
+		"genre_ids": [
+		  16,
+		  12,
+		  18,
+		  14,
+		  10751
+		],
+		"backdrop_path": "/VVaW8V7lwNXRQQ58AOVu3xZlPj.jpg",
+		"adult": false,
+		"overview": "Nicky no es una niña como otra cualquiera porque es aprendiz de bruja. Con solo 13 años y por tradición del oficio que está aprendiendo, la niña tiene que abandonar la casa de sus padres y buscar algún sitio donde sean necesarios sus servicios de bruja. Para emprender el viaje, Nicky se acompaña de su amigo Jiji y también de su gato; juntos, y sobre una escoba voladora, los amigos se instalan en un pueblecito que da al mar, donde la niña empezará a conocerse verdaderamente a sí misma.",
+		"poster_path": "/vOsXD48mOiRo8hxmAg4p7Yump8G.jpg"
+	  },
+	  {
+		"popularity": 11.479,
+		"vote_count": 766,
+		"video": false,
+		"poster_path": "/gaMMGqBvTymYSLZU0AbZxCXqhjP.jpg",
+		"id": 15370,
+		"adult": false,
+		"backdrop_path": "/jKoSzpjSKRFhq7LiKe1xtuhRy1m.jpg",
+		"original_language": "ja",
+		"original_title": "猫の恩返し",
+		"genre_ids": [
+		  12,
+		  16,
+		  18,
+		  14,
+		  10751
+		],
+		"title": "Haru en el reino de los gatos",
+		"vote_average": 7.3,
+		"overview": "Esta es la historia de Haru, una joven cuya suerte cambiará un día al volver del instituto, cuando salvará a un gato de ser atropellado por un camión. Pero no es un gato común, es Lune, el Príncipe del Reino de los Gatos. En recompensa por su acción, Haru será invitada a pasar un tiempo en el Reino de los Gatos, aunque no es lo que ella esperaba....",
+		"release_date": "2002-07-19"
+	  },
+	  {
+		"popularity": 10.852,
+		"vote_count": 101,
+		"video": false,
+		"poster_path": "/hUJvmSl8EOFAYgXO1VfwNoQPRLX.jpg",
+		"id": 476292,
+		"adult": false,
+		"backdrop_path": "/yjfwNSDljAKsuHwwE34xjlY3tQj.jpg",
+		"original_language": "ja",
+		"original_title": "さよならの朝に約束の花をかざろう",
+		"genre_ids": [
+		  16,
+		  18,
+		  14
+		],
+		"title": "Maquia: Una historia de amor inmortal",
+		"vote_average": 7.3,
+		"overview": "Una historia de encuentros y despedidas entretejidos entre personas; este es un drama humano con sentimientos que tocan el corazón de forma gradual, que todos han experimentado al menos una vez.",
+		"release_date": "2018-11-09"
+	  },
+	  {
+		"popularity": 4.332,
+		"vote_count": 52,
+		"video": false,
+		"poster_path": "/A7N4AwjQHGtODA5CkqWHLMyRAit.jpg",
+		"id": 283984,
+		"adult": false,
+		"backdrop_path": "/p0jwrtVeJ8rzzXBrqHekHb0qSmQ.jpg",
+		"original_language": "ja",
+		"original_title": "劇場版 Fate／stay night [Heaven's Feel] I. presage flower",
+		"genre_ids": [
+		  28,
+		  16,
+		  18,
+		  14
+		],
+		"title": "Fate/stay night Movie: Heaven's Feel - I. La flor del presagio",
+		"vote_average": 7.4,
+		"overview": "La Guerra del Santo Grial: una batalla violenta entre magos en la que siete amos y sus sirvientes convocados luchan por el Santo Grial, un artefacto mágico que puede otorgarle al vencedor cualquier deseo. Hace casi 10 años, la batalla final de la Cuarta Guerra del Santo Grial causó estragos en la ciudad de Fuyuki y se cobró más de 500 vidas, dejando la ciudad devastada. Shirou Emiya, un sobreviviente de esta tragedia, aspira a convertirse en un héroe de la justicia como su salvador y padre adoptivo, Kiritsugu Emiya. A pesar de ser solo un estudiante, Shirou es arrojado a la Quinta Guerra del Santo Grial cuando accidentalmente ve una batalla entre sirvientes en la escuela y convoca a su propio servidor, Saber. Cuando una sombra misteriosa comienza una juerga asesina en la ciudad de Fuyuki, Shirou se alinea con Rin Toosaka, un compañero participante en la Guerra del Santo Grial, para detener las muertes de innumerables personas",
+		"release_date": "2017-10-14"
+	  },
+	  {
+		"popularity": 5.258,
+		"vote_count": 34,
+		"video": false,
+		"poster_path": "/yFCwkeCvuRdBeMnabtYdoLgjOqA.jpg",
+		"id": 428288,
+		"adult": false,
+		"backdrop_path": "/dIfg4CVFlntoAEiCRJwsVZmbgXF.jpg",
+		"original_language": "ja",
+		"original_title": "ひるね姫～知らないワタシの物語～",
+		"genre_ids": [
+		  12,
+		  16,
+		  18,
+		  14,
+		  878
+		],
+		"title": "Ancien y el mundo mágico",
+		"vote_average": 6.6,
+		"overview": "Tokio, 2020. Kokone es una estudiante con problemas de somnolencia que, cuando se sumerge en su mundo onírico, se convierte en la princesa de un reino mágico. De pronto, la línea entre sueño y realidad empieza a difuminarse, y la joven descubrirá la sorprendente verdad sobre su familia.",
+		"release_date": "2017-10-20"
+	  },
+	  {
+		"popularity": 3.263,
+		"vote_count": 18,
+		"video": false,
+		"poster_path": "/wViFCQxejCJhDzohR7cAHe5fsdx.jpg",
+		"id": 585077,
+		"adult": false,
+		"backdrop_path": "/bwTRoT6x5Sl8OyaFdd1l1koJXRg.jpg",
+		"original_language": "ja",
+		"original_title": "海獣の子供",
+		"genre_ids": [
+		  16,
+		  18,
+		  14
+		],
+		"title": "Los niños del mar",
+		"vote_average": 5.9,
+		"overview": "Ruka es una joven adolescente cuyos padres se han separado. Su padre trabaja en el acuario local, por lo que pasa mucho tiempo allí, fascinada con la enorme cantidad de especies marinas que allí se dan cita. Un día, dos chicos llamados Umi y Sora son trasladados al acuario por problemas familiares. Tras entrar en contacto con ellos, Ruka se da cuenta de que ambos tienen una conexión especial con el océano, al igual que ella. Sin embargo, el poder de sus dos nuevos amigos parece interponerse con los intereses del acuario y de la población en la que todos residen.",
+		"release_date": "2019-06-07"
+	  },
+	  {
+		"popularity": 4.007,
+		"id": 68555,
+		"video": false,
+		"vote_count": 33,
+		"vote_average": 7,
+		"title": "Death Note Rewrite 2: Los sucesores de L",
+		"release_date": "2009-10-07",
+		"original_language": "ja",
+		"original_title": "DEATH NOTE リライト2 Lを継ぐ者",
+		"genre_ids": [
+		  10770,
+		  53,
+		  16,
+		  80,
+		  18,
+		  14
+		],
+		"backdrop_path": "/AunkNkQH1La8kzp3MZGc03QMKNB.jpg",
+		"adult": false,
+		"overview": "Es la secuela de Death Note Relight 1: Visiones de un Dios. La OVA comprende entre el arco de Mello y Near del anime. Esta OVA contiene más contenido original que su predecesora, ya que los directores del anime querían tener más libertad a la hora de crearla.",
+		"poster_path": "/qDhbGqjZ7yFwa7FMIzuiQTQMfEQ.jpg"
+	  },
+	  {
+		"popularity": 3.669,
+		"vote_count": 31,
+		"video": false,
+		"poster_path": "/vYDafpsEwQ3M6EmG0ewcMokHtJr.jpg",
+		"id": 514710,
+		"adult": false,
+		"backdrop_path": "/doZDR89j4qSiVmkOioVvAXvLu91.jpg",
+		"original_language": "ja",
+		"original_title": "ちいさな英雄－カニとタマゴと透明人間－",
+		"genre_ids": [
+		  12,
+		  16,
+		  18,
+		  14
+		],
+		"title": "Héroes humildes",
+		"vote_average": 6.9,
+		"overview": "Película omnibus compuesta por tres cortometrajes bajo el lema \"la historia de varios héroes modestos de nuestro tiempo\". Los cortos están dirigidos en su totalidad por ex-trabajadores de Studio Ghibli, bajo el nuevo Studio Ponoc. Son los siguientes:  - Kanini & Kanino (de Hiromasa Yonebayashi)  - Life Ain't Gonna Lose (de Yoshiyuki Momose)  - Invisible (de Akihiko Yamashita)",
+		"release_date": "2018-08-24"
+	  }
+	]
+  }

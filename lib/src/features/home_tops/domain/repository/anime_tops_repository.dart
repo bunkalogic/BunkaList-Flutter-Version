@@ -1,4 +1,4 @@
-import 'package:bunkalist/src/core/constans/constants.dart';
+import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:dartz/dartz.dart';

@@ -87,14 +87,14 @@ void main() {
 
     test('should return server failure when the call to remote data source is unsuccessful', () async {
         // arrange
-        when(mockRemoteDataSource.getTopsSeries(topsId))
+        when(mockRemoteDataSource.getTopsSeries(any))
           .thenThrow(ServerException());
         // act
         final result = await repositoryImpl.getTopsSeries(topsId);
         //assert
         verify(mockRemoteDataSource.getTopsSeries(topsId));
 
-        expect(result, equals(Left(ServerFailure)));
+        expect(result, equals(Left(ServerFailure())));
         
 
     });

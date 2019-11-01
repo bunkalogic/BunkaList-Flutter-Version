@@ -33,8 +33,7 @@ dependencies:
   # Local cache
   shared_preferences:
   # Swap the connectivity package for this
-  data_connection_checker: 
-
+  data_connection_checker:
     
 
   flutter_localizations:

@@ -1,0 +1,403 @@
+{
+    "page": 1,
+    "total_results": 20,
+    "total_pages": 1,
+    "results": [
+      {
+        "original_name": "Stranger Things",
+        "genre_ids": [
+          18,
+          9648,
+          10765
+        ],
+        "name": "Stranger Things",
+        "popularity": 68.41,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 2712,
+        "first_air_date": "2016-07-15",
+        "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+        "original_language": "en",
+        "id": 66732,
+        "vote_average": 8.3,
+        "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+        "poster_path": "/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg"
+      },
+      {
+        "original_name": "Black Mirror",
+        "genre_ids": [
+          18,
+          10765
+        ],
+        "name": "Black Mirror",
+        "popularity": 44.422,
+        "origin_country": [
+          "GB"
+        ],
+        "vote_count": 1462,
+        "first_air_date": "2011-12-04",
+        "backdrop_path": "/p39K75uoZLwnhGlEAJxRG5xAD9y.jpg",
+        "original_language": "en",
+        "id": 42009,
+        "vote_average": 8.2,
+        "overview": "A contemporary British re-working of The Twilight Zone with stories that tap into the collective unease about our modern world. \n\nOver the last ten years, technology has transformed almost every aspect of our lives before we've had time to stop and question it. In every home; on every desk; in every palm - a plasma screen; a monitor; a smartphone - a black mirror of our 21st Century existence.",
+        "poster_path": "/pXeuSWSKgWUnhRFHZ4TjAUU8lbE.jpg"
+      },
+      {
+        "original_name": "La casa de papel",
+        "genre_ids": [
+          80,
+          18
+        ],
+        "name": "Money Heist",
+        "popularity": 43.175,
+        "origin_country": [
+          "ES"
+        ],
+        "vote_count": 541,
+        "first_air_date": "2017-05-02",
+        "backdrop_path": "/piuRhGiQBYWgW668eSNJ2ug5uAO.jpg",
+        "original_language": "es",
+        "id": 71446,
+        "vote_average": 8.1,
+        "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+        "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg"
+      },
+      {
+        "original_name": "The Crown",
+        "genre_ids": [
+          18
+        ],
+        "name": "The Crown",
+        "popularity": 28.222,
+        "origin_country": [
+          "GB",
+          "US"
+        ],
+        "vote_count": 291,
+        "first_air_date": "2016-11-04",
+        "backdrop_path": "/h6EkFxqmdDHIri36gUdGk8Sarmz.jpg",
+        "original_language": "en",
+        "id": 65494,
+        "vote_average": 8.1,
+        "overview": "The gripping, decades-spanning inside story of Her Majesty Queen Elizabeth II and the Prime Ministers who shaped Britain's post-war destiny. \n\nThe Crown tells the inside story of two of the most famous addresses in the world – Buckingham Palace and 10 Downing Street – and the intrigues, love lives and machinations behind the great events that shaped the second half of the 20th century. Two houses, two courts, one Crown.",
+        "poster_path": "/uT4HL776Up8LgjqfmmGtGKSDgvT.jpg"
+      },
+      {
+        "original_name": "House of Cards",
+        "genre_ids": [
+          18
+        ],
+        "name": "House of Cards",
+        "popularity": 29.62,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 1202,
+        "first_air_date": "2013-02-01",
+        "backdrop_path": "/ex4kvQb0Ski5KL2fsnKQU2hV3oo.jpg",
+        "original_language": "en",
+        "id": 1425,
+        "vote_average": 8.2,
+        "overview": "Set in present day Washington, D.C., House of Cards is the story of Frank Underwood, a ruthless and cunning politician, and his wife Claire who will stop at nothing to conquer everything. This wicked political drama penetrates the shadowy world of greed, sex and corruption in modern D.C. \n\nHouse of Cards is an adaptation of a previous BBC miniseries of the same name, which is based on the novel by Michael Dobbs.",
+        "poster_path": "/hKWxWjFwnMvkWQawbhvC0Y7ygQ8.jpg"
+      },
+      {
+        "original_name": "Sex Education",
+        "genre_ids": [
+          35,
+          18
+        ],
+        "name": "Sex Education",
+        "popularity": 30.09,
+        "origin_country": [
+          "GB"
+        ],
+        "vote_count": 193,
+        "first_air_date": "2019-01-11",
+        "backdrop_path": "/u23G9KZregWHs1use6ir1fX27gl.jpg",
+        "original_language": "en",
+        "id": 81356,
+        "vote_average": 8.1,
+        "overview": "Inexperienced Otis channels his sex therapist mom when he teams up with rebellious Maeve to set up an underground sex therapy clinic at school.",
+        "poster_path": "/4Bph0hhnDH6dpc0SZIV522bLm4P.jpg"
+      },
+      {
+        "original_name": "Arrested Development",
+        "id": 4589,
+        "name": "Arrested Development",
+        "popularity": 31.213,
+        "vote_count": 553,
+        "vote_average": 8.1,
+        "first_air_date": "2003-11-02",
+        "poster_path": "/qMzwO952hMWQSCfHkp7IL20s4K7.jpg",
+        "genre_ids": [
+          35
+        ],
+        "original_language": "en",
+        "backdrop_path": "/ArZwmJl1y6qlnLjuE9FXlEd8RU0.jpg",
+        "overview": "The story of a wealthy family that lost everything, and the one son who had no choice but to keep them all together.",
+        "origin_country": [
+          "US"
+        ]
+      },
+      {
+        "original_name": "Narcos",
+        "genre_ids": [
+          80,
+          18
+        ],
+        "name": "Narcos",
+        "popularity": 22.002,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 856,
+        "first_air_date": "2015-08-28",
+        "backdrop_path": "/iuiaAx5wNlbDCAO0wiQy0RIlUt.jpg",
+        "original_language": "en",
+        "id": 63351,
+        "vote_average": 8,
+        "overview": "A gritty chronicle of the war against Colombia's infamously violent and powerful drug cartels.",
+        "poster_path": "/rTmal9fDbwh5F0waol2hq35U4ah.jpg"
+      },
+      {
+        "original_name": "Anne with an E",
+        "genre_ids": [
+          18,
+          10751
+        ],
+        "name": "Anne with an E",
+        "popularity": 24.905,
+        "origin_country": [
+          "CA"
+        ],
+        "vote_count": 60,
+        "first_air_date": "2017-03-19",
+        "backdrop_path": "/ywQtHG17LZhAFZyZtBflhtFMtJ7.jpg",
+        "original_language": "en",
+        "id": 70785,
+        "vote_average": 8.5,
+        "overview": "A coming-of-age story about an outsider who, against all odds and numerous challenges, fights for love and acceptance and for her place in the world. The series centers on a young orphaned girl in the late 1890’s, who, after an abusive childhood spent in orphanages and the homes of strangers, is mistakenly sent to live with an elderly woman and her aging brother. Over time, 13-year-old Anne will transform their lives and eventually the small town in which they live with her unique spirit, fierce intellect and brilliant imagination.",
+        "poster_path": "/6P6tXhjT5tK3qOXzxF9OMLlG7iz.jpg"
+      },
+      {
+        "original_name": "The Haunting",
+        "genre_ids": [
+          18,
+          9648
+        ],
+        "name": "The Haunting",
+        "popularity": 22.435,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 292,
+        "first_air_date": "2018-10-12",
+        "backdrop_path": "/dQF17lG4OZ3pC4QD9iNjaMS96gO.jpg",
+        "original_language": "en",
+        "id": 72844,
+        "vote_average": 8.2,
+        "overview": "The Crains, a fractured family, confront haunting memories of their old home and the terrifying events that drove them from it.",
+        "poster_path": "/38PkhBGRQtmVx2drvPik3F42qHO.jpg"
+      },
+      {
+        "original_name": "Unbelievable",
+        "genre_ids": [
+          18
+        ],
+        "name": "Unbelievable",
+        "popularity": 17.572,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 34,
+        "first_air_date": "2019-09-13",
+        "backdrop_path": "/yG5oWkFH8xle6xkD2JB7HWfuSGx.jpg",
+        "original_language": "en",
+        "id": 91275,
+        "vote_average": 8.3,
+        "overview": "A teenager is charged with lying about her rape allegation, but two determined investigative female detectives discover a far more sinister truth.",
+        "poster_path": "/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"
+      },
+      {
+        "original_name": "Narcos: Mexico",
+        "genre_ids": [
+          80,
+          18
+        ],
+        "name": "Narcos: Mexico",
+        "popularity": 6.544,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 54,
+        "first_air_date": "2018-11-16",
+        "backdrop_path": "/m7GsWHPl6O9hEXZ7eKDCUFTafCD.jpg",
+        "original_language": "en",
+        "id": 80968,
+        "vote_average": 8.1,
+        "overview": "See the rise of the Guadalajara Cartel as an American DEA agent learns the danger of targeting narcos in 1980s Mexico.",
+        "poster_path": "/aXwMx8OvRFMfI1RmkbJm6Bq1jVg.jpg"
+      },
+      {
+        "original_name": "Sacred Games",
+        "genre_ids": [
+          80,
+          18,
+          10759
+        ],
+        "name": "Sacred Games",
+        "popularity": 13.612,
+        "origin_country": [
+          "IN"
+        ],
+        "vote_count": 54,
+        "first_air_date": "2018-07-06",
+        "backdrop_path": "/jasgj5JGT2OrjqHkg3WLkZVmRIR.jpg",
+        "original_language": "hi",
+        "id": 79352,
+        "vote_average": 8.1,
+        "overview": "A link in their pasts leads an honest cop to a fugitive gang boss, whose cryptic warning spurs the officer on a quest to save Mumbai from cataclysm.",
+        "poster_path": "/uEbNtFbK4At9WBDGap23lt1qO9n.jpg"
+      },
+      {
+        "original_name": "Queer Eye",
+        "genre_ids": [
+          10764
+        ],
+        "name": "Queer Eye",
+        "popularity": 9.911,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 26,
+        "first_air_date": "2018-02-07",
+        "backdrop_path": "/kl0QDICExzFiELp6UPNVs7H4VZh.jpg",
+        "original_language": "en",
+        "id": 76922,
+        "vote_average": 8.7,
+        "overview": "An all-new “Fab Five” advise men on fashion, grooming, food, culture and design in this modern reboot of the Emmy Award-winning reality series.",
+        "poster_path": "/9x2loam4P2YbDsjqIrzVeBgVMaP.jpg"
+      },
+      {
+        "original_name": "On My Block",
+        "id": 76747,
+        "name": "On My Block",
+        "popularity": 11.061,
+        "vote_count": 30,
+        "vote_average": 8.6,
+        "first_air_date": "2018-03-16",
+        "poster_path": "/aFHmGVDNLFmhLjDNbFuMSBOxUv5.jpg",
+        "genre_ids": [
+          35
+        ],
+        "original_language": "en",
+        "backdrop_path": "/ztClHgP68htLK6aPnai5WFrmtC6.jpg",
+        "overview": "A coming of age comedy following a diverse group of teenage friends as they confront the challenges of growing up in gritty inner-city Los Angeles.",
+        "origin_country": [
+          "US"
+        ]
+      },
+      {
+        "original_name": "When They See Us",
+        "genre_ids": [
+          18
+        ],
+        "name": "When They See Us",
+        "popularity": 7.046,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 67,
+        "first_air_date": "2019-05-31",
+        "backdrop_path": "/ps9bE3tlJGf5rMvRzgZ9nc9RhaU.jpg",
+        "original_language": "en",
+        "id": 81355,
+        "vote_average": 8.8,
+        "overview": "Five teens from Harlem become trapped in a nightmare when they're falsely accused of a brutal attack in Central Park.",
+        "poster_path": "/oPv3nNtkuc6EPEql5lgdOuQNHuG.jpg"
+      },
+      {
+        "original_name": "킹덤",
+        "id": 70593,
+        "name": "Kingdom",
+        "popularity": 12.591,
+        "vote_count": 61,
+        "vote_average": 8.3,
+        "first_air_date": "2019-01-25",
+        "poster_path": "/AsICtiVtz4icMQQRwDvOzfaTzjK.jpg",
+        "genre_ids": [
+          18,
+          10759,
+          9648
+        ],
+        "original_language": "ko",
+        "backdrop_path": "/aFmqXViWzIKmhR8Cy4QDqPU6pIL.jpg",
+        "overview": "In this zombie thriller set in Korea's medieval Joseon dynasty, a crown prince is sent on a suicide mission to investigate a mysterious outbreak.",
+        "origin_country": [
+          "KR"
+        ]
+      },
+      {
+        "original_name": "Abstract: The Art of Design",
+        "genre_ids": [
+          99
+        ],
+        "name": "Abstract: The Art of Design",
+        "popularity": 7.652,
+        "origin_country": [
+          "US"
+        ],
+        "vote_count": 23,
+        "first_air_date": "2017-02-10",
+        "backdrop_path": "/uY0D6sVLjqCgLJW0ytc5EKyJvoX.jpg",
+        "original_language": "en",
+        "id": 70177,
+        "vote_average": 8.4,
+        "overview": "Step inside the minds of the most innovative designers in a variety of disciplines and learn how design impacts every aspect of life.",
+        "poster_path": "/flCjxGyfJdhX1P8HtcqOSf45Hi.jpg"
+      },
+      {
+        "original_name": "How to Sell Drugs Online (Fast)",
+        "genre_ids": [
+          35,
+          80,
+          18
+        ],
+        "name": "How to Sell Drugs Online (Fast)",
+        "popularity": 8.76,
+        "origin_country": [
+          "DE"
+        ],
+        "vote_count": 21,
+        "first_air_date": "2019-05-31",
+        "backdrop_path": "/jaWXctnmJGHFQMCXVLY0yW9CVX2.jpg",
+        "original_language": "de",
+        "id": 88236,
+        "vote_average": 8,
+        "overview": "To impress his ex-girlfriend, a nerdy teen starts selling drugs online out of his bedroom -- and becomes one of Europe's biggest dealers.",
+        "poster_path": "/vH9tbDPwQ9W2siHrxR1QOp7OEc2.jpg"
+      },
+      {
+        "original_name": "Our Planet",
+        "genre_ids": [
+          99
+        ],
+        "name": "Our Planet",
+        "popularity": 5.784,
+        "origin_country": [
+          "GB"
+        ],
+        "vote_count": 29,
+        "first_air_date": "2019-04-05",
+        "backdrop_path": "/bPySXNfMaBhjwSlCaqQxIcDUqOm.jpg",
+        "original_language": "en",
+        "id": 83880,
+        "vote_average": 8.7,
+        "overview": "Experience our planet's natural beauty and examine how climate change impacts all living creatures in this ambitious documentary of spectacular scope.",
+        "poster_path": "/wRSnArnQBmeUYb5GWDU595bGsBr.jpg"
+      }
+    ]
+  }
