@@ -9,4 +9,4 @@ abstract class Failures extends Equatable {
 // General failures
 class ServerFailure extends Failures {}
 
-class CacheFailure extends Failures {}
+//class CacheFailure extends Failures {}
