@@ -3,16 +3,16 @@ import 'package:meta/meta.dart';
 
 class MovieEntity  extends Equatable{
   
-    final dynamic posterPath;
+    final String posterPath;
     final bool adult;
     final String overview;
     final String releaseDate;
-    final List<int> genreIds;
+    final List<dynamic> genreIds;
     final int id;
     final String originalTitle;
     final String originalLanguage;
     final String title;
-    final dynamic backdropPath;
+    final String backdropPath;
     final double popularity;
     final int voteCount;
     final bool video;
@@ -40,7 +40,7 @@ class MovieEntity  extends Equatable{
       adult,
       overview,
       releaseDate,
-      genreIds,
+      genreIds.cast<int>(),
       id,
       originalTitle,
       originalLanguage,

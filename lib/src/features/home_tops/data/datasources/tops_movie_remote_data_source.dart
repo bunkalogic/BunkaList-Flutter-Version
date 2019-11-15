@@ -40,7 +40,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   
   final _url      = 'api.themoviedb.org';
   final _theMovieDB = theMovieDbAPiKey;
-  int   _page = 0;
+  int   _page = 1;
   bool  _loading = false;
   
 
@@ -49,10 +49,9 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       
       _loading = true;
       // carga y agrega un pagina
-      _page++;
+      // _page++
 
-      final url = Uri.https(
-        _url, '3/discover/movie',{
+      final Map<String, String> query = {
           'api_key'         : _theMovieDB,
           'language'        : prefs.getLanguage,
           'page'            : _page.toString(),
@@ -60,8 +59,15 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
           'vote_count.gte'  : voteCount.toString(),
           'vote_average.gte': voteAverage.toString(),
           'with_genres'     : genres
-      });
+      };
 
+      
+
+      query.removeWhere((key , value) => value == null);
+      query.removeWhere((key , value) => value == 'null');
+
+      final url = Uri.https(
+        _url, '3/discover/movie', query);
       
 
       final resp = await processResponse(url.toString());
@@ -85,7 +91,12 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
 
       final listMovies = new Movies.fromJsonList(decodedData['results']);
 
-      return listMovies.items;
+      if(listMovies.items.isNotEmpty){
+        return listMovies.items;
+      }else{
+        return[];
+      }
+      
       
 
     }else{
@@ -108,39 +119,39 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
 
       case Constants.topsMoviesUpcommingId      : return await getListMovieFromApi(sortBy: ConstSortBy.primaryReleaseDateDesc);
 
-      case Constants.topsMoviesActionId         : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.action.toString());
+      case Constants.topsMoviesActionId         : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.action.toString());
 
-      case Constants.topsMoviesAdventureId      : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.adventure.toString());
+      case Constants.topsMoviesAdventureId      : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.adventure.toString());
 
-      case Constants.topsMoviesComedyId         : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.comedy.toString());
+      case Constants.topsMoviesComedyId         : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.comedy.toString());
 
-      case Constants.topsMoviesWarId            : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.war.toString());
+      case Constants.topsMoviesWarId            : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.war.toString());
 
-      case Constants.topsMoviesScienceFictionId : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.sciFi.toString());
+      case Constants.topsMoviesScienceFictionId : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.sciFi.toString());
 
-      case Constants.topsMoviesCrimeId          : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.crime.toString());
+      case Constants.topsMoviesCrimeId          : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.crime.toString());
 
-      case Constants.topsMoviesDocumentalId     : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.documentary.toString());
+      case Constants.topsMoviesDocumentalId     : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.documentary.toString());
 
-      case Constants.topsMoviesDramaId          : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.drama.toString());
+      case Constants.topsMoviesDramaId          : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.drama.toString());
 
-      case Constants.topsMoviesFamilyId         : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.family.toString());
+      case Constants.topsMoviesFamilyId         : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.family.toString());
 
-      case Constants.topsMoviesFantasyId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.fantasy.toString());
+      case Constants.topsMoviesFantasyId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.fantasy.toString());
 
-      case Constants.topsMoviesHistoryId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.history.toString());
+      case Constants.topsMoviesHistoryId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.history.toString());
 
-      case Constants.topsMoviesMisteryId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.mistery.toString());
+      case Constants.topsMoviesMisteryId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.mistery.toString());
 
-      case Constants.topsMoviesMusicalId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.music.toString());
+      case Constants.topsMoviesMusicalId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.music.toString());
 
-      case Constants.topsMoviesRomanceId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.romance.toString());
+      case Constants.topsMoviesRomanceId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.romance.toString());
 
-      case Constants.topsMoviesThillerId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.thriller.toString());
+      case Constants.topsMoviesThillerId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.thriller.toString());
 
-      case Constants.topsMoviesTerrorId         : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.horror.toString());
+      case Constants.topsMoviesTerrorId         : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.horror.toString());
 
-      case Constants.topsMoviesWesternId        : return await getListMovieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.western.toString());
+      case Constants.topsMoviesWesternId        : return await getListMovieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());
 
       default: return null;
     }

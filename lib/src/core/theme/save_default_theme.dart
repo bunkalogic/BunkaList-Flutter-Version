@@ -13,10 +13,10 @@ class SaveDefaultTheme{
   changedTheme(BuildContext context) {
     if(prefs.whatModeIs) {
       prefs.whatModeIs = false;
-      BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.LightTheme ));
+      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.LightTheme ));
     }else{
       prefs.whatModeIs = true;
-      BlocProvider.of<ThemeBloc>(context).dispatch(ThemeChanged(theme: Apptheme.DarkTheme ));
+      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.DarkTheme ));
     }
   }
 

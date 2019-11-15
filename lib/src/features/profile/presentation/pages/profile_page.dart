@@ -117,9 +117,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // TODO: cambiar cuando se agregue la parte de Firebase
-  Widget _scrollViewsExample(){
-    return TopsScrollView();
-  }
+  // Widget _scrollViewsExample(){
+  //   return TopsScrollViewHorizontal();
+  // }
 
   Widget _buttomPlatformList(BuildContext context){
     return PlatformWidget(
@@ -141,15 +141,15 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 20.0,),
         _titleScrollSection('The last views :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
         //SizedBox(height: 1.0,),
         _titleScrollSection('The list watching :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
         //SizedBox(height: 1.0,),
         _titleScrollSection('The list awaiting :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
        // SizedBox(height: 2.0,),
       ],
     );
@@ -200,15 +200,15 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 20.0,),
         _titleScrollSection('The last views :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
         //SizedBox(height: 1.0,),
         _titleScrollSection('The list watching :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
         //SizedBox(height: 1.0,),
         _titleScrollSection('The list awaiting :'),
         SizedBox(height: 10.0,),
-        _scrollViewsExample(),
+        //_scrollViewsExample(),
        // SizedBox(height: 2.0,),
       ],
     );

@@ -12,7 +12,7 @@ class AllDetailsRecomendationTab extends StatelessWidget with PosterColumnWidget
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: GridView.builder(
-        itemBuilder: (context, i) => itemPoster(context),
+        itemBuilder: (context, i) => CircularProgressIndicator(), //itemPoster(context),
         itemCount: 24,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,

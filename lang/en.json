@@ -1,8 +1,185 @@
 {
         		
-  "app_name": "BunkaList",
+  "app_name"                : "BunkaList",
 		
-  "login_email": "Email",
+  "login_email"             : "Email",
+
+  
+  "top_movies"              : "Tops Movies",
+  
+  "movies_popular"          : "Top Popular Movies",
+		
+  "movies_rated"            : "Top Rated Movies",
+
+  "movies_upcoming"         : "Top Upcoming Movies",
+		
+  "movies_action"           : "Top Movies Of The Action Genre",
+
+  "movies_adventure"        : "Top Movies Of The Adventure Genre",
+
+  "movies_comedy"           : "Top Movies Of The Comedy Genre",
+
+  "movies_war"              : "Top Movies Of The War Genre",
+
+  "movies_scifi"            : "Top Movies Of The Science Fiction Genre",
+
+  "movies_crime"            : "Top Movies Of The Crime Genre",
+
+  "movies_documental"       : "Top Movies Of The Dcumental Genre",
+
+  "movies_drama"            : "Top Movies Of The Drama Genre",
+
+  "movies_family"           : "Top Movies Of The Family Genre",
+
+  "movies_fantasy"          : "Top Movies Of The Fantasy Genre",
+
+  "movies_history"          : "Top Movies Of The History Genre",
+
+  "movies_mistery"          : "Top Movies Of The Mistery Genre",
+
+  "movies_musical"          : "Top Movies Of The Musical Genre",
+
+  "movies_romance"          : "Top Movies Of The Romance Genre",
+
+  "movies_thiller"          : "Top Movies Of The Thiller Genre",
+
+  "movies_terror"           : "Top Movies Of The Terror Genre",
+
+  "movies_western"          : "Top Movies Of The Western Genre",
+
+
+  
+  "top_series"                 :  "Tops Series",
+  
+  "series_popular"             :  "Top Popular Series Tv",                 
+
+  "series_rated"               :  "Top Rated Series Tv", 
+
+  "series_upcomming "          :  "Top Upcomming Series Tv", 
+
+  "series_act_and_adv"         :  "Top Series Tv of Action And Adventure", 
+
+  "series_comedy"              :  "Top Series Tv of Comedy", 
+
+  "series_crimen"              :  "Top Series Tv of Crime", 
+
+  "series_documental"          :  "Top Series Tv of Documental", 
+
+  "series_family"              :  "Top Series Tv of Family", 
+
+  "series_drama"               :  "Top Series Tv of Drama", 
+
+  "series_mistery"             :  "Top Series Tv of Mistery",
+
+  "series_fantasy_and_sci_fi"  :  "Top Series Tv of Sci-Fi And Fantasy",
+
+  "series_soap"                :  "Top Series Tv of Soap",   
+
+  "series_war_and_politics "   :  "Top Series Tv of War And Politics", 
+
+  "series_western"             :  "Top Series Tv of Western",
+
+  "series_netflix"             :  "Top Netflix Series Tv", 
+
+  "series_hbo"                 :  "Top HBO Series Tv", 
+
+  "series_amazon_prime"        :  "Top Amazon Series Tv", 
+
+  "series_bbc_one"             :  "Top BBC One Series Tv", 
+
+  "series_amc"                 :  "Top AMC Series Tv",
+
+  "top_animes"                 :  "Tops Animes",
+
+  "anime_popular"               : "Top Popular Animes",
+
+  "anime_rated"                 : "Top Rated Animes",
+
+  "anime_season"                : "Season Animes",
+
+  "anime_upcoming_next_season"  : "Next Season Animes",
+
+  "anime_action_and_adventure"  : "Top Anime of Action And Adventure",
+
+  "anime_comedy"                : "Top Anime of Comedy",
+
+  "anime_crimen"                : "Top Anime of Crime",
+
+  "anime_drama"                 : "Top Anime of Drama",
+
+  "anime_mistery"               : "Top Anime of Mistery",
+
+  "anime_fantasy_and_sci_fi"    : "Top Anime of Sci-Fi And Fantasy",
+
+  "anime_war_and_politics"      : "Top Anime of War And Politics",
+
+  "anime_shonen"                : "Top Anime of Shonen",
+
+  "anime_spokon"                : "Top Anime of Spokon",
+
+  "anime_mecha"                 : "Top Anime of Mecha",
+
+  "anime_slice_of_life"         : "Top Anime of Slice of Life",
+
+  "anime_based_on_manga"        : "Top Anime of Based on Manga",
+
+  "anime_romance"               : "Top Anime of Romance",
+
+  "anime_super_natural"         : "Top Anime of Super Natural",
+
+
+  "genre_action"                 : "Action",
+        
+  "genre_adventure"              : "Adventure",
+        
+  "genre_animation"              : "Animation",
+        
+  "genre_comedy"                 : "Comedy",
+
+  "genre_crime"                 : "Crime",
+        
+  "genre_documentary"            : "Documentary",
+        
+  "genre_drama"                  : "Drama",
+        
+  "genre_family"                 : "Family",
+        
+  "genre_fantasy"                : "Fantasy",
+          
+  "genre_history"                : "History",
+        
+  "genre_horror"                 : "Horror",
+        
+  "genre_mistery"                : "Mistery",
+
+  "genre_musical"                : "Musical",
+        
+  "genre_romance"                : "Romance",
+        
+  "genre_scifi"                  : "Sci-Fi",
+        
+  "genre_thriller"               : "Thriller",
+        
+  "genre_war"                    : "War",
+        
+  "genre_western"                : "Western",
+        
+  "genre_action_and_adventure"   : "Action & Adventure",
+
+  "genre_kids"                   : "Kids",
+
+  "genre_scifi_fantasy"          : "SciFi & Fantasy",
+
+  "genre_soap"                   : "Soap",
+
+  "genre_war_politics"           : "War & Politics",
+
+
+  
+  
+
+
+
 
   "login_username":
    "Username",

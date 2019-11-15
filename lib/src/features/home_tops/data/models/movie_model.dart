@@ -4,16 +4,16 @@ import 'package:meta/meta.dart';
 class MovieModel  extends MovieEntity{
 
     MovieModel({
-        @required dynamic posterPath,
+        @required String posterPath,
         @required bool adult,
         @required String overview,
         @required String releaseDate,
-        @required List<int> genreIds,
+        @required List<dynamic> genreIds,
         @required int id,
         @required String originalTitle,
         @required String originalLanguage,
         @required String title,
-        @required dynamic backdropPath,
+        @required String backdropPath,
         @required double popularity,
         @required int voteCount,
         @required bool video,
@@ -39,20 +39,20 @@ class MovieModel  extends MovieEntity{
 
     factory MovieModel.fromJson(Map<String, dynamic> json){
       return MovieModel(
-        posterPath       : json['posterPath'],
+        posterPath       : json['poster_path'],
         adult            : json['adult'],
         overview         : json['overview'],
-        releaseDate      : json['releaseDate'],
-        genreIds         : json['genreIds'],
+        releaseDate      : json['release_date'],
+        genreIds         : json['genre_ids'],
         id               : json['id'],
-        originalTitle    : json['originalTitle'],
-        originalLanguage : json['originalLanguage'],
+        originalTitle    : json['original_title'],
+        originalLanguage : json['original_language'],
         title            : json['title'],
-        backdropPath     : json['backdropPath'],
+        backdropPath     : json['backdrop_path'],
         popularity       : json['popularity'] / 1,
-        voteCount        : json['voteCount'],
+        voteCount        : json['vote_count'],
         video            : json['video'],
-        voteAverage      : json['voteAverage'],
+        voteAverage      : json['vote_average'] / 1,
       );
     }
 

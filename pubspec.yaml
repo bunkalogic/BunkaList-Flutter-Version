@@ -20,9 +20,9 @@ dependencies:
   flutter:
     sdk: flutter 
    # Service locator
-  get_it: 
+  get_it: 3.0.3
   # Bloc for state management
-  flutter_bloc: 
+  flutter_bloc: 2.0.0
   # Value equality
   equatable: 
   # Functional programming thingies
@@ -33,7 +33,7 @@ dependencies:
   # Local cache
   shared_preferences:
   # Swap the connectivity package for this
-  data_connection_checker:
+  data_connection_checker: ^0.3.4
     
 
   flutter_localizations:
@@ -76,6 +76,7 @@ flutter:
   assets:
    - lang/en.json
    - assets/
+   
   #  - lang/
 
   # An image asset can refer to one or more resolution-specific "variants", see

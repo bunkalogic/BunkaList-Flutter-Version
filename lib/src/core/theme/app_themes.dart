@@ -29,8 +29,8 @@ final appThemeData = {
 
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
-      actionsIconTheme: IconThemeData(color: Colors.purple[500]),
-      iconTheme: IconThemeData(color: Colors.purple[500], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
+      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[700], size: 30.0),
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.black,
@@ -74,8 +74,8 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
       elevation: 10.0,
-      actionsIconTheme: IconThemeData(color: Colors.purple[500]),
-      iconTheme: IconThemeData(color: Colors.purple[500], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[400]),
+      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.white,

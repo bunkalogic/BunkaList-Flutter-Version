@@ -7,9 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:bunkalist/injection_container.dart' as ic ;
+
 
 void main() async{
 
+
+  await ic.init();
   final prefs = new Preferences();
   await prefs.initPrefs();
   runApp(MyApp());

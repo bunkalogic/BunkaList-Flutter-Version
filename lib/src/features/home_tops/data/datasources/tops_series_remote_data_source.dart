@@ -36,7 +36,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   
   final _url      = 'api.themoviedb.org';
   final _theSerieDB = theMovieDbAPiKey;
-  int   _page = 0;
+  int   _page = 1;
   bool  _loading = false;
   
 
@@ -45,10 +45,9 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
       
       _loading = true;
       // carga y agrega un pagina
-      _page++;
+      //_page++;
 
-      final url = Uri.https(
-        _url, '3/discover/tv',{
+      final Map<String, String> query = {
           'api_key'         : _theSerieDB,
           'language'        : prefs.getLanguage,
           'page'            : _page.toString(),
@@ -58,7 +57,14 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
           'with_genres'     : genres,
           'with_networks'   : network,
           'without_genres'  : '16'
-      });
+      };
+
+      query.removeWhere((key , value) => value == null);
+      query.removeWhere((key , value) => value == 'null');
+
+
+      final url = Uri.https(
+        _url, '3/discover/tv', query);
 
       
 
@@ -83,7 +89,13 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       final listSeries = new Series.fromJsonList(decodedData['results']);
 
-      return listSeries.items;
+      if(listSeries.items.isNotEmpty){
+        return listSeries.items;
+      }else{
+        return [];
+      }
+
+      
       
 
     }else{
@@ -106,35 +118,35 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(sortBy: ConstSortBy.firstAirDateDesc);
 
-      case Constants.topsSeriesActAndAdvId      : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.actionAndAveture.toString());
+      case Constants.topsSeriesActAndAdvId      : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
-      case Constants.topsSeriesComedyId         : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.comedy.toString());
+      case Constants.topsSeriesComedyId         : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.comedy.toString());
 
-      case Constants.topsSeriesDocumentalId     : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.documentary.toString());
+      case Constants.topsSeriesDocumentalId     : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.documentary.toString());
 
-      case Constants.topsSeriesDramaId          : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.drama.toString());
+      case Constants.topsSeriesDramaId          : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.drama.toString());
 
-      case Constants.topsSeriesFamilyId         : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.family.toString());
+      case Constants.topsSeriesFamilyId         : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.family.toString());
 
-      case Constants.topsSeriesFantasyAndSciFiId: return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.sciFiAndFantasy.toString());
+      case Constants.topsSeriesFantasyAndSciFiId: return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.sciFiAndFantasy.toString());
 
-      case Constants.topsSeriesSoapId           : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.soap.toString());
+      case Constants.topsSeriesSoapId           : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.soap.toString());
 
-      case Constants.topsSeriesWarAndPoliticsId : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.warAndPolitics.toString());
+      case Constants.topsSeriesWarAndPoliticsId : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.warAndPolitics.toString());
 
-      case Constants.topsSeriesMisteryId        : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.mistery.toString());
+      case Constants.topsSeriesMisteryId        : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.mistery.toString());
 
-      case Constants.topsSeriesWesternId        : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 20, genres: ConstGenres.western.toString());     
+      case Constants.topsSeriesWesternId        : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());     
       
-      case Constants.topsSeriesNetflixId        : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, network: '213' );
+      case Constants.topsSeriesNetflixId        : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, network: '213' );
 
-      case Constants.topsSeriesHBOId            : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, network: '49' );
+      case Constants.topsSeriesHBOId            : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, network: '49' );
 
-      case Constants.topsSeriesAmazonPrimeId    : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, network: '1024' );
+      case Constants.topsSeriesAmazonPrimeId    : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, network: '1024' );
 
-      case Constants.topsSeriesBBCOneId         : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, network: '4' );
+      case Constants.topsSeriesBBCOneId         : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, network: '4' );
 
-      case Constants.topsSeriesAMCId            : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, network: '174' );
+      case Constants.topsSeriesAMCId            : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc, network: '174' );
 
       default: return null;
     }

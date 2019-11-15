@@ -14,7 +14,7 @@ class PeopleInfoTab extends StatelessWidget with PosterColumnWidget {
         //_rowSocialMedia(),
         _cardInfoPeople(),
         _labelKnownFor(),
-        _gridKnownFor(context)
+        //_gridKnownFor(context)
       ],
     );
   }
@@ -127,24 +127,24 @@ class PeopleInfoTab extends StatelessWidget with PosterColumnWidget {
     );
   }
 
-  Widget _gridKnownFor(BuildContext context){
-    final double _aspectRatio = 2.5 / 4.1;
+  // Widget _gridKnownFor(BuildContext context){
+  //   final double _aspectRatio = 2.5 / 4.1;
 
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: GridView.builder(
-          shrinkWrap: true,
-          itemBuilder: (context, i) => itemPoster(context),
-          itemCount: 6,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: _aspectRatio
-          ),
-        ),
-      ),
-    );
-  }
+  //   return Container(
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(6.0),
+  //       child: GridView.builder(
+  //         shrinkWrap: true,
+  //         itemBuilder: (context, i) => itemPoster(context),
+  //         itemCount: 6,
+  //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //           crossAxisCount: 3,
+  //           childAspectRatio: _aspectRatio
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   
 }

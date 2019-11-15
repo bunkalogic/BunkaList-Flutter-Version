@@ -12,8 +12,8 @@ class SeriesModel  extends SeriesEntity{
         @required double voteAverage,
         @required String overview,
         @required String firstAirDate,
-        @required List<String> originCountry,
-        @required List<int> genreIds,
+        @required List<dynamic> originCountry,
+        @required List<dynamic> genreIds,
         @required String originalLanguage,
         @required int voteCount,
         @required String name,
@@ -38,19 +38,19 @@ class SeriesModel  extends SeriesEntity{
 
     factory SeriesModel.fromJson(Map<String, dynamic> json){
       return SeriesModel(
-        posterPath       : json['posterPath'],
+        posterPath       : json['poster_path'],
         overview         : json['overview'],
-        firstAirDate     : json['firstAirDate'],
-        genreIds         : json['genreIds'],
+        firstAirDate     : json['first_air_date'],
+        genreIds         : json['genre_ids'],
         id               : json['id'],
-        originalName     : json['originalName'],
-        originalLanguage : json['originalLanguage'],
+        originalName     : json['original_name'],
+        originalLanguage : json['original_language'],
         name             : json['name'],
-        backdropPath     : json['backdropPath'],
-        popularity       : json['popularity'],
-        voteCount        : json['voteCount'],
-        originCountry    : json['originCountry'],
-        voteAverage      : json['voteAverage'],
+        backdropPath     : json['backdrop_path'],
+        popularity       : json['popularity'] / 1,
+        voteCount        : json['vote_count'],
+        originCountry    : json['origin_country'],
+        voteAverage      : json['vote_average'] / 1,
       );
     }
 

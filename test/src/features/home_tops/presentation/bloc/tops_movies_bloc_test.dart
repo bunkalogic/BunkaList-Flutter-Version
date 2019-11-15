@@ -59,7 +59,7 @@ main() {
     test('should get data from the tops movies use case', () async {
       when(mockGetTopsMovies(any)).thenAnswer((_) async => Right(tmovieList));
 
-      bloc.dispatch(GetMoviesTops(tTypeTop));
+      bloc.add(GetMoviesTops(tTypeTop));
 
       await untilCalled(mockGetTopsMovies(any));
 
@@ -76,9 +76,9 @@ main() {
         Loading(),
         Loaded(movies: tmovieList)
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetMoviesTops(tTypeTop));
+      bloc.add(GetMoviesTops(tTypeTop));
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -91,9 +91,9 @@ main() {
         Loading(),
         Error(message: SERVER_FAILURE_MESSAGE),
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetMoviesTops(tTypeTop));
+      bloc.add(GetMoviesTops(tTypeTop));
     });
 
 

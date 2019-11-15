@@ -224,6 +224,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   Container _iconApp() {
+  
     return Container(
             padding: EdgeInsets.all(20.0),
             child: Center(

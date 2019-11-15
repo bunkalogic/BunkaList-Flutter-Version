@@ -1,8 +1,6 @@
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
-import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/sliver_app_bar_delegate.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 

@@ -2,7 +2,6 @@
 
 class Constants {
  
-  //? Consts for Tops Movies
 
   static const topsMoviesPopularId        = 1;
   static const topsMoviesRatedId          = 2;
@@ -27,45 +26,45 @@ class Constants {
 
   //? Consts for Tops Series
 
-  static const topsSeriesPopularId        = 1;
-  static const topsSeriesRatedId          = 2;
-  static const topsSeriesUpcommingId      = 3;
-  static const topsSeriesActAndAdvId      = 4;
-  static const topsSeriesComedyId         = 5;
-  static const topsSeriesCrimenId         = 6;
-  static const topsSeriesDocumentalId     = 7;
-  static const topsSeriesFamilyId         = 8;
-  static const topsSeriesDramaId          = 9;
-  static const topsSeriesMisteryId        = 10;
-  static const topsSeriesFantasyAndSciFiId= 11;
-  static const topsSeriesSoapId           = 12;
-  static const topsSeriesWarAndPoliticsId = 13;
-  static const topsSeriesWesternId        = 14;
-  static const topsSeriesNetflixId        = 15;
-  static const topsSeriesHBOId            = 16;
-  static const topsSeriesAmazonPrimeId    = 17;
-  static const topsSeriesBBCOneId         = 18;
-  static const topsSeriesAMCId            = 19;
+  static const topsSeriesPopularId        = 22;
+  static const topsSeriesRatedId          = 23;
+  static const topsSeriesUpcommingId      = 24;
+  static const topsSeriesActAndAdvId      = 25;
+  static const topsSeriesComedyId         = 26;
+  static const topsSeriesCrimenId         = 27;
+  static const topsSeriesDocumentalId     = 28;
+  static const topsSeriesFamilyId         = 29;
+  static const topsSeriesDramaId          = 30;
+  static const topsSeriesMisteryId        = 31;
+  static const topsSeriesFantasyAndSciFiId= 32;
+  static const topsSeriesSoapId           = 33;
+  static const topsSeriesWarAndPoliticsId = 34;
+  static const topsSeriesWesternId        = 35;
+  static const topsSeriesNetflixId        = 36;
+  static const topsSeriesHBOId            = 37;
+  static const topsSeriesAmazonPrimeId    = 38;
+  static const topsSeriesBBCOneId         = 39;
+  static const topsSeriesAMCId            = 40;
   
   //? Consts for Tops Animes
 
-  static const topsAnimePopularId             = 1;
-  static const topsAnimeRatedId               = 2;
-  static const topsAnimeSeasonId              = 3;
-  static const topsAnimeUpcomingNextSeasonId  = 4;
-  static const topsAnimeActionAndAdventureId  = 5; 
-  static const topsAnimeComedyId              = 6;
-  static const topsAnimeCrimenId              = 7;
-  static const topsAnimeDramaId               = 8;
-  static const topsAnimeMisteryId             = 9;
-  static const topsAnimeFantasyAndSciFiId     = 10;
-  static const topsAnimeWarAndPoliticsId      = 11;
-  static const topsAnimeShonenId              = 12;
-  static const topsAnimeSpokonId              = 13;
-  static const topsAnimeMechaId               = 14;
-  static const topsAnimeSliceOfLifeId         = 15;
-  static const topsAnimeBasedOnMangaId        = 16;
-  static const topsAnimeRomanceId             = 17;
-  static const topsAnimeSuperNaturalId        = 18;
+  static const topsAnimePopularId             = 41;
+  static const topsAnimeRatedId               = 42;
+  static const topsAnimeSeasonId              = 43;
+  static const topsAnimeUpcomingNextSeasonId  = 44;
+  static const topsAnimeActionAndAdventureId  = 45; 
+  static const topsAnimeComedyId              = 46;
+  static const topsAnimeCrimenId              = 47;
+  static const topsAnimeDramaId               = 48;
+  static const topsAnimeMisteryId             = 49;
+  static const topsAnimeFantasyAndSciFiId     = 50;
+  static const topsAnimeWarAndPoliticsId      = 51;
+  static const topsAnimeShonenId              = 52;
+  static const topsAnimeSpokonId              = 53;
+  static const topsAnimeMechaId               = 54;
+  static const topsAnimeSliceOfLifeId         = 55;
+  static const topsAnimeBasedOnMangaId        = 56;
+  static const topsAnimeRomanceId             = 57;
+  static const topsAnimeSuperNaturalId        = 58;
 
 }

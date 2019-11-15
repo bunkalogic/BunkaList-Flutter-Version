@@ -16,6 +16,7 @@ const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Top Id Movie';
 class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
   
   final GetTopsMovies getTopsMovies;
+  //final _moviesController = StreamController<Either<Failures, List<MovieEntity>>.broadcast() ;
 
   TopsMoviesBloc
   ({@required GetTopsMovies movies}) 
@@ -41,10 +42,51 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
         },(topId) async* {
           yield Loading();
           final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
-          
+          //_moviesController.sink.add(failureOrMovies);
           yield* _eitherLoadedOrErrorState(failureOrMovies); 
         });
-    }
+    // } else if(event is GetMoviesTopsPopular )  {
+    //     final inputEither = GetTopId().getValidateTopId(event.topId);
+
+    //   yield* inputEither.fold(
+    //     (failures) async* {
+    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+
+    //     },(topId) async* {
+    //       yield Loading();
+    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
+          
+    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
+    //     });
+    // } else if(event is GetMoviesTopsRated )  {
+    //     final inputEither = GetTopId().getValidateTopId(event.topId);
+
+    //   yield* inputEither.fold(
+    //     (failures) async* {
+    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+
+    //     },(topId) async* {
+    //       yield Loading();
+    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
+          
+    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
+    //     });
+    // } else if(event is GetMoviesTopsUpcoming )  {
+    //     final inputEither = GetTopId().getValidateTopId(event.topId);
+
+    //   yield* inputEither.fold(
+    //     (failures) async* {
+    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+
+    //     },(topId) async* {
+    //       yield Loading();
+    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
+          
+    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
+    //     });
+     }
+
+
   }
 
   Stream<TopsMoviesState> _eitherLoadedOrErrorState
@@ -64,4 +106,11 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
         return 'Unexpected Error';
     }
   }
+
+  // @override
+  // Future<void> close() {
+  //   _moviesController.close();
+  //   return super.close();
+  // }
+
 }

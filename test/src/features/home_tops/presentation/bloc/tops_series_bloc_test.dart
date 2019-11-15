@@ -58,7 +58,7 @@ main() {
     test('should get data from the Tops Series use case', () async {
       when(mockGetTopsSeries(any)).thenAnswer((_) async => Right(tserieList));
 
-      bloc.dispatch(GetSeriesTops(tTypeTop));
+      bloc.add(GetSeriesTops(tTypeTop));
 
       await untilCalled(mockGetTopsSeries(any));
 
@@ -75,9 +75,9 @@ main() {
         Loading(),
         Loaded(series: tserieList)
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetSeriesTops(tTypeTop));
+      bloc.add(GetSeriesTops(tTypeTop));
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -90,9 +90,9 @@ main() {
         Loading(),
         Error(message: SERVER_FAILURE_MESSAGE),
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetSeriesTops(tTypeTop));
+      bloc.add(GetSeriesTops(tTypeTop));
     });
 
 

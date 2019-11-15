@@ -1,4 +1,3 @@
-import 'package:bunkalist/src/features/home_tops/data/models/movie_model.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 
 class AnimeModel  extends AnimeEntity{
@@ -11,8 +10,8 @@ class AnimeModel  extends AnimeEntity{
         final double voteAverage,
         final String overview,
         final String firstAirDate,
-        final List<String> originCountry,
-        final List<int> genreIds,
+        final List<dynamic> originCountry,
+        final List<dynamic> genreIds,
         final String originalLanguage,
         final int voteCount,
         final String name,
@@ -37,19 +36,19 @@ class AnimeModel  extends AnimeEntity{
 
     factory AnimeModel.fromJson(Map<String, dynamic> json){
       return AnimeModel(
-        posterPath       : json['posterPath'],
+        posterPath       : json['poster_path'],
         overview         : json['overview'],
-        firstAirDate     : json['firstAirDate'],
-        genreIds         : json['genreIds'],
+        firstAirDate     : json['first_air_date'],
+        genreIds         : json['genre_ids'],
         id               : json['id'],
-        originalName     : json['originalName'],
-        originalLanguage : json['originalLanguage'],
+        originalName     : json['original_name'],
+        originalLanguage : json['original_language'],
         name             : json['name'],
-        backdropPath     : json['backdropPath'],
-        popularity       : json['popularity'],
-        voteCount        : json['voteCount'],
-        originCountry    : json['originCountry'],
-        voteAverage      : json['voteAverage'],
+        backdropPath     : json['backdrop_path'],
+        popularity       : json['popularity'] / 1,
+        voteCount        : json['vote_count'],
+        originCountry    : json['origin_country'],
+        voteAverage      : json['vote_average'] / 1,
       );
     }
 

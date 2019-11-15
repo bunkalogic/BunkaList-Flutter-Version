@@ -9,8 +9,8 @@ class AnimeEntity extends Equatable {
     final double voteAverage;
     final String overview;
     final String firstAirDate;
-    final List<String> originCountry;
-    final List<int> genreIds;
+    final List<dynamic> originCountry;
+    final List<dynamic> genreIds;
     final String originalLanguage;
     final int voteCount;
     final String name;
@@ -40,8 +40,8 @@ class AnimeEntity extends Equatable {
       voteAverage,
       overview,
       firstAirDate,
-      originCountry,
-      genreIds,
+      originCountry.cast<String>(),
+      genreIds.cast<int>(),
       originalLanguage,
       voteCount,
       name,

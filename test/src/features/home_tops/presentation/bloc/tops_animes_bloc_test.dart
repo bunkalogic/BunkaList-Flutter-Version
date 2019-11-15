@@ -18,7 +18,7 @@ main() {
 
     mockGetTopsAnimes = MockGetTopsAnimes();
 
-    bloc = TopsAnimesBloc(animes: mockGetTopsAnimes);
+    bloc = new TopsAnimesBloc(animes: mockGetTopsAnimes);
 
   });
 
@@ -58,7 +58,7 @@ main() {
     test('should get data from the Tops Animes use case', () async {
       when(mockGetTopsAnimes(any)).thenAnswer((_) async => Right(tanimeList));
 
-      bloc.dispatch(GetAnimesTops(tTypeTop));
+      bloc.add(GetAnimesTops(tTypeTop));
 
       await untilCalled(mockGetTopsAnimes(any));
 
@@ -75,9 +75,9 @@ main() {
         Loading(),
         Loaded(animes: tanimeList)
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetAnimesTops(tTypeTop));
+      bloc.add(GetAnimesTops(tTypeTop));
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -90,9 +90,9 @@ main() {
         Loading(),
         Error(message: SERVER_FAILURE_MESSAGE),
       ];
-      expectLater(bloc.state, emitsInOrder(expected));
+      expectLater(bloc, emitsInOrder(expected));
       // act
-      bloc.dispatch(GetAnimesTops(tTypeTop));
+      bloc.add(GetAnimesTops(tTypeTop));
     });
 
 
@@ -101,5 +101,5 @@ main() {
     
   );
 
-
+  
 }

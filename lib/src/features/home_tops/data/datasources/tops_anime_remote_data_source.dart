@@ -39,7 +39,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
   
   final _url      = 'api.themoviedb.org';
   final _theAnimeDB = theMovieDbAPiKey;
-  int   _page = 0;
+  int   _page = 1;
   bool  _loading = false;
   
 
@@ -48,11 +48,10 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       
       _loading = true;
       // carga y agrega un pagina
-      _page++;
+      //_page++;
 
-      final url = Uri.https(
-        _url, '3/discover/tv',{
-          'api_key'               : _theAnimeDB,
+      final Map<String, String> query = {
+         'api_key'               : _theAnimeDB,
           'language'              : prefs.getLanguage,
           'page'                  : _page.toString(),
           'sort_by'               : sortBy,
@@ -63,12 +62,17 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
           'with_genres'           : '16,$genres',
           'with_original_language': 'ja',
           'with_keywords'         : keywords
+      };
 
-          
-      });
+      query.removeWhere((key , value) => value == null);
+      query.removeWhere((key , value) => value == 'null');
+
+
+      final url = Uri.https(
+        _url, '3/discover/tv', query);
 
       
-
+      
       final resp = await processResponse(url.toString());
       // deja de cargar 
       _loading = false;
@@ -90,7 +94,12 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       final listAnime = new Animes.fromJsonList(decodedData['results']);
 
-      return listAnime.items;
+      if(listAnime.items.isNotEmpty){
+        return listAnime.items;
+      }else{
+        return [];
+      }
+      
       
 
     }else{
