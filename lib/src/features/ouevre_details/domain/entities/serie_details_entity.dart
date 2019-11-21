@@ -4,19 +4,19 @@ import 'package:meta/meta.dart';
 
 class SerieDetailsEntity extends Equatable{
     final String backdropPath;
-    final List<int> episodeRunTime;
+    final List<dynamic> episodeRunTime;
     final String firstAirDate;
     final List<dynamic> genres;
     final String homepage;
     final int id;
     final bool inProduction;
-    final List<String> languages;
+    final List<dynamic> languages;
     final String lastAirDate;
     final String name;
-    final List<Network> networks;
+    final List<dynamic> networks;
     final int numberOfEpisodes;
     final int numberOfSeasons;
-    final List<String> originCountry;
+    final List<dynamic> originCountry;
     final String originalLanguage;
     final String originalName;
     final String overview;
@@ -53,19 +53,19 @@ class SerieDetailsEntity extends Equatable{
         @required this.type,
     }) : super([
       backdropPath,
-      episodeRunTime,
+      episodeRunTime.cast<int>(),
       firstAirDate,
       genres.cast<int>(),
       homepage,
       id,
       inProduction,
-      languages,
+      languages.cast<String>(),
       lastAirDate,
       name,
-      networks,
+      networks.cast<Network>(),
       numberOfEpisodes,
       numberOfSeasons,
-      originCountry,
+      originCountry.cast<String>(),
       originalLanguage,
       originalName,
       overview,

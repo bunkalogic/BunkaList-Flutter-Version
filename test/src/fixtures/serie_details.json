@@ -1,0 +1,56 @@
+{
+    "backdrop_path": "/d2YDPTQPe3mI2LqBWwb0CchN54f.jpg",
+    "episode_run_time": [
+      45,
+      42
+    ],
+    "first_air_date": "2015-03-17",
+    "genres": [
+      {
+        "id": 27,
+        "name": "Horror"
+      },
+      {
+        "id": 18,
+        "name": "Drama"
+      },
+      {
+        "id": 80,
+        "name": "Crime"
+      },
+      {
+        "id": 10765,
+        "name": "Sci-Fi & Fantasy"
+      }
+    ],
+    "homepage": "http://www.cwtv.com/shows/izombie",
+    "id": 60866,
+    "in_production": false,
+    "languages": [
+      "en"
+    ],
+    "last_air_date": "2019-08-01",
+    "name": "iZombie",
+    "next_episode_to_air": null,
+    "networks": [
+      {
+        "name": "The CW",
+        "id": 71,
+        "logo_path": "/ge9hzeaU7nMtQ4PjkFlc68dGAJ9.png",
+        "origin_country": "US"
+      }
+    ],
+    "number_of_episodes": 71,
+    "number_of_seasons": 5,
+    "origin_country": [
+      "US"
+    ],
+    "original_language": "en",
+    "original_name": "iZombie",
+    "overview": "A medical student who becomes a zombie joins a Coroner's Office in order to gain access to the brains she must reluctantly eat so that she can maintain her humanity. But every brain she eats, she also inherits their memories and must now solve their deaths with help from the Medical examiner and a police detective.",
+    "popularity": 43.105,
+    "poster_path": "/q4nqNwAhzVR7JuYctrWJvUWz3xR.jpg",
+    "status": "Ended",
+    "vote_average": 7.1,
+    "vote_count": 520
+  }

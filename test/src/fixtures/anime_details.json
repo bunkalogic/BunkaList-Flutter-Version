@@ -1,0 +1,47 @@
+{
+    "backdrop_path": "/6gNWWuY6KiX4S0zfFAxsptH7L5K.jpg",
+    "episode_run_time": [
+      25
+    ],
+    "first_air_date": "2002-10-01",
+    "genres": [
+      {
+        "id": 16,
+        "name": "Animation"
+      },
+      {
+        "id": 10765,
+        "name": "Sci-Fi & Fantasy"
+      }
+    ],
+    "homepage": "https://v-storage.bnarts.jp/sp-site/ghost-in-the-shell-special/",
+    "id": 1095,
+    "in_production": false,
+    "languages": [
+      "ja"
+    ],
+    "last_air_date": "2005-01-08",
+    "name": "Ghost in the Shell: Stand Alone Complex",
+    "next_episode_to_air": null,
+    "networks": [
+      {
+        "name": "ANIMAX",
+        "id": 171,
+        "logo_path": "/ozIYsP32g0ckOd7e2EqUTNpTwUE.png",
+        "origin_country": "JP"
+      }
+    ],
+    "number_of_episodes": 52,
+    "number_of_seasons": 2,
+    "origin_country": [
+      "JP"
+    ],
+    "original_language": "ja",
+    "original_name": "攻殻機動隊 STAND ALONE COMPLEX",
+    "overview": "In the future when technological enhancements and robotics are a way of life, Major Motoko Kusanagi and Section 9 take care of the jobs that are too difficult for the police. Section 9 employs hackers, sharpshooters, detectives and cyborgs all in an effort to thwart cyber criminals and their plans to attack the innocent.",
+    "popularity": 24.193,
+    "poster_path": "/kmFw6PwdQzmMBIma1f3HbyXSD1H.jpg",
+    "status": "Ended",
+    "vote_average": 8.2,
+    "vote_count": 129
+  }
