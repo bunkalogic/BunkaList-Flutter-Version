@@ -53,11 +53,16 @@ class MovieDetailsModel extends MovieDetailsEntity {
   );
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json){
+
+    var listGenre = json['genres'] as List;
+    List<GenreMovieModel> genreItems = listGenre.map((i) => GenreMovieModel.fromJson(i)).toList();
+
+
     return MovieDetailsModel(
       adult            :  json['adult'],  
       backdropPath     :  json['backdrop_path'],
       budget           :  json['budget'],
-      genres           :  json['genres'],
+      genres           :  genreItems,
       homepage         :  json['homepage'],
       id               :  json['id'],
       imdbId           :  json['imdb_id'],
@@ -105,4 +110,29 @@ class MovieDetailsModel extends MovieDetailsEntity {
   }
 
 
+}
+
+class GenreMovieModel extends GenreMovie{
+  GenreMovieModel({
+    @required int id,
+    @required String name,
+  }) : super (
+      id           :id ,
+      name         :name , 
+  );
+
+  factory GenreMovieModel.fromJson(Map<String, dynamic> json){
+     return GenreMovieModel(
+          id           :json['id'] ,
+          name         :json['name'] , 
+     );
+
+  }
+
+   Map<String, dynamic> toJson(){
+     return{
+      'id'            : id,
+      'name'          : name,
+     };
+   }
 }

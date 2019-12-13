@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/poster_column_widget.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,9 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
       child: CircularProgressIndicator(),
     ) ;
 
-    @override
+  bool loaded = false;
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     BlocProvider.of<TopsAnimesBloc>(context)
@@ -157,7 +160,7 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: 1);
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type));
           },
           child: _poster 
       ),

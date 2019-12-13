@@ -9,18 +9,18 @@ import '../../../../fixtures/fixture_reader.dart';
 main(){
 
 
-  final tanimeDetailsModel = AnimeDetailsModel(
+  final tAnimeDetailsModel = AnimeDetailsModel(
       backdropPath:  '/null',
       episodeRunTime: [16, 18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [16, 18],
+      genres: List<GenreAnimeModel>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['ja', 'en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<Network>(),
+      networks: List<NetworkAnimeModel>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['ja'],
@@ -32,12 +32,13 @@ main(){
       status: 'finish',
       voteAverage: 8.5,
       voteCount: 34,
+      seasonAnime: List<SeasonAnimeModel>()
     );
 
     test('AnimeDetailsModel should be a sub class of animeDetailsEntity', () async {
 
       //assert
-      expect(tanimeDetailsModel, isA<AnimeDetailsEntity>());
+      expect(tAnimeDetailsModel, isA<AnimeDetailsEntity>());
 
 
 
@@ -61,20 +62,20 @@ main(){
       test('should return a Json map containing the proper data', () async {
 
         //act
-        final result = tanimeDetailsModel.toJson();
+        final result = tAnimeDetailsModel.toJson();
         //assert
         final expectedJsonMap = {
           "backdrop_path"      :  '/null',
           "episode_run_time"   : [16, 18] ,
           "first_air_date"     : '2/10/2010' ,
-          "genres"             : [16, 18],
+          "genres"             : List<GenreAnimeModel>(),
           "homepage"           : 'null',
           "id"                 : 3245,
           "in_production"      : false,
           "languages"          : ['ja', 'en'],
           "last_air_date"      : '2/10/2010' ,
           "name"               : 'Name',
-          "networks"           : List<Network>(),
+          "networks"           : List<NetworkAnimeModel>(),
           "number_of_episodes" : 40,
           "number_of_seasons"  : 3,
           "origin_country"     : ['ja'],
@@ -86,6 +87,7 @@ main(){
           "status"             : 'finish',
           "vote_average"       : 8.5,
           "vote_count"         : 34,
+          "seasons"            : List<SeasonAnimeModel>(),
         };
 
 

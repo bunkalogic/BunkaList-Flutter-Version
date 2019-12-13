@@ -12,6 +12,7 @@ import 'package:bunkalist/injection_container.dart' as ic ;
 
 void main() async{
 
+  WidgetsFlutterBinding.ensureInitialized();
 
   await ic.init();
   final prefs = new Preferences();

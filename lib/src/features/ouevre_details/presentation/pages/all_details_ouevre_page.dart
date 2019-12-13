@@ -1,14 +1,18 @@
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../injection_container.dart';
 
 
 class AllDetailsOuevrePage extends StatefulWidget {
 
-  final int data;
+  final Map data;
 
-  AllDetailsOuevrePage({Key key, @required this.data}) : super(key: key);
+  AllDetailsOuevrePage({@required this.data});
 
   
 
@@ -24,7 +28,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   final List<Tab> detailsTabs = <Tab>[
     Tab(key: ValueKey(0), text:'Info', ),
     Tab(key: ValueKey(1), text:'Casting'),
-    Tab(key: ValueKey(2), text:' Trailers'),
+    Tab(key: ValueKey(2), text:'Trailers'),
     Tab(key: ValueKey(3), text:'Review'),
     Tab(key: ValueKey(4), text:'Video Review'),
     Tab(key: ValueKey(5), text:'Similar'),
@@ -63,6 +67,10 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   }
 
   Widget _creteHeaderSliverBuilder(){
+    final int id = widget.data['id'];
+    final String type = widget.data['type'];
+
+
     return NestedScrollView(
           controller: _scrollViewController,
           headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
@@ -74,20 +82,28 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         physics: NeverScrollableScrollPhysics(),    
         controller: _tabController,
         children: detailsTabs.map((Tab tab) {
-          return AllDetailsTabViewControllerWidget(idStatus: tab.key);
+          return AllDetailsTabViewControllerWidget(idStatus: tab.key, id: id, type: type,);
         }).toList(),
       ),
     );
   }
 
   Widget _createSliverAppBar(bool innerBoxScrolled){
+
+    final int id = widget.data['id'];
+    final String type = widget.data['type'];
+
+
     return SliverAppBar(
         leading: AppBarButtonBack(),
         pinned: true,
         floating: false,
         forceElevated: innerBoxScrolled,
         expandedHeight: 300.0,
-        flexibleSpace: AllDetailsHeaderInfo(),
+        flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsHeaderInfo(id: id, type: type),
+        ),
         bottom: _tabBar(),
         
     );
@@ -96,7 +112,13 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
   Widget _tabBar(){
     return TabBar(
-      labelColor: Colors.deepOrange,
+      labelColor: Colors.deepOrangeAccent[400],
+      unselectedLabelColor: Colors.white,
+      unselectedLabelStyle: TextStyle(
+        fontSize: 14.0, 
+        fontWeight: FontWeight.w700,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
+      ),
       isScrollable: true,
       tabs: detailsTabs,
       controller: _tabController,

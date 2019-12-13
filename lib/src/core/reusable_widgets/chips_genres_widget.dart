@@ -13,7 +13,7 @@ class ChipsGenresWidget extends StatefulWidget {
 }
 
 class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
-  final double _aspectRatio =  1.0;
+  final double _aspectRatio =  0.9;
   List<String> _listGenres = new List<String>();
   
   @override
@@ -24,8 +24,9 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
 
     return Container(
        child: GridView.builder(
+         shrinkWrap: true,
          itemCount: _listGenres.length,
-         itemBuilder: (context, i) => _fakeChip( _listGenres[i] , Colors.grey[500].withOpacity(0.1) ),
+         itemBuilder: (context, i) => _fakeChip( _listGenres[i] , Colors.grey[300].withOpacity(0.4) ),
          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: _aspectRatio
@@ -144,7 +145,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
   Widget _fakeChip(String text, Color color) {
     return Card(
       elevation: 5.0,
-      margin: EdgeInsets.symmetric(horizontal: text.length.toDouble(), vertical: 30.0 ),
+      margin: EdgeInsets.symmetric(horizontal: text.length.toDouble() + 1, vertical: 40.0 ),
       color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0)

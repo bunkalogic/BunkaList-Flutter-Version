@@ -29,13 +29,14 @@ final appThemeData = {
 
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
-      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
-      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[700], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
+      iconTheme: IconThemeData(color: Colors.purpleAccent[700], size: 30.0),
+      elevation: 5.0,
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.black,
-        fontSize: 18.0, 
-        fontWeight: FontWeight.w600, 
+        fontSize: 20.0, 
+        fontWeight: FontWeight.w700, 
         fontStyle: FontStyle.italic
         ),
 
@@ -48,10 +49,20 @@ final appThemeData = {
 
 
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.black,
-      unselectedLabelColor: Colors.blueGrey[400],
-      unselectedLabelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic,),
-      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic,),
+      
+      labelColor: Colors.deepOrangeAccent[400],
+      unselectedLabelColor: Colors.blueGrey[200],
+      unselectedLabelStyle: TextStyle(
+        fontSize: 14.0, 
+        fontWeight: FontWeight.w500,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
+      ),
+      labelStyle: TextStyle(
+        fontSize: 18.0, 
+        fontWeight: FontWeight.w800, 
+        fontStyle: FontStyle.italic,
+        shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))]
+      ),
     ),
   ),
 
@@ -68,19 +79,19 @@ final appThemeData = {
     fontFamily: 'SourceSansPro',
 
     cardTheme: CardTheme(
-      color: Colors.grey[850]
+      color: Colors.grey[700]
     ),
 
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
-      elevation: 10.0,
-      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[400]),
-      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
+      elevation: 5.0,
+      actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
+      iconTheme: IconThemeData(color: Colors.purpleAccent[700], size: 30.0),
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.white,
-        fontSize: 18.0, 
-        fontWeight: FontWeight.w600, 
+        fontSize: 20.0, 
+        fontWeight: FontWeight.w700, 
         fontStyle: FontStyle.italic
         ),
 
@@ -93,10 +104,19 @@ final appThemeData = {
     ),
 
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.white,
-      unselectedLabelColor: Colors.blueGrey[400],
-      unselectedLabelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
-      labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic)
+      labelColor: Colors.deepOrangeAccent[400],
+      unselectedLabelColor: Colors.blueGrey[200],
+      unselectedLabelStyle: TextStyle(
+        fontSize: 14.0, 
+        fontWeight: FontWeight.w500,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
+        ),
+      labelStyle: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w800, 
+        fontStyle: FontStyle.italic,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
+        )
     ),
     
   ),

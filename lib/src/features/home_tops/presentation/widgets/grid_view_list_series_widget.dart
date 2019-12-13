@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -152,7 +153,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: 1);
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(seriesEntity.id, seriesEntity.type));
           },
           child: _poster 
       ),

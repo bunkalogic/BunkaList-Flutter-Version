@@ -1,7 +1,5 @@
 import 'package:bunkalist/src/core/error/failures.dart';
-import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart' as animeE ;
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
-import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart' as serieE ;
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details.dart';
@@ -66,7 +64,7 @@ main() {
       adult: false ,
       backdropPath: '/null',
       budget:  20,
-      genres: [18, 34],
+      genres: List<GenreMovie>(),
       homepage: 'null',
       id: 25467,
       imdbId: '32455',
@@ -141,14 +139,14 @@ main() {
       backdropPath:  '/null',
       episodeRunTime: [18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [18],
+      genres: List<GenreSerie>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<serieE.Network>(),
+      networks: List<NetworkSerie>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['us'],
@@ -161,6 +159,7 @@ main() {
       voteAverage: 8.5,
       voteCount: 34,
       type: 'tv',
+      seasonSerie: List<SeasonSerie>()
     );
 
     test('should get data from the Serie details use case', () async {
@@ -219,14 +218,14 @@ main() {
       backdropPath:  '/null',
       episodeRunTime: [16, 18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [16, 18],
+      genres: List<GenreAnime>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['ja', 'en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<animeE.Network>(),
+      networks: List<NetworkAnime>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['ja'],
@@ -239,6 +238,7 @@ main() {
       voteAverage: 8.5,
       voteCount: 34,
       type: 'anime',
+      seasonAnime: List<SeasonAnime>()
     );
 
     test('should get data from the Anime details use case', () async {

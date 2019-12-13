@@ -27,14 +27,14 @@ class MockGetAnimeDetails extends Mock
       backdropPath:  '/null',
       episodeRunTime: [16, 18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [16, 18],
+      genres: List<GenreAnime>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['ja', 'en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<Network>(),
+      networks: List<NetworkAnime>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['ja'],
@@ -47,6 +47,7 @@ class MockGetAnimeDetails extends Mock
       voteAverage: 8.5,
       voteCount: 34,
       type: 'anime',
+      seasonAnime: List<SeasonAnime>()
     );
 
     final int tAnimeId =  3245;

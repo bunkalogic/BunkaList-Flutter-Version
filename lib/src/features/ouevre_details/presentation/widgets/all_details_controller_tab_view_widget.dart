@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_openning_tab.dart';
@@ -8,13 +9,22 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_oue
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_trailers_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_video_review_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../injection_container.dart';
 
 
 
 class AllDetailsTabViewControllerWidget extends StatefulWidget {
-  AllDetailsTabViewControllerWidget({@required this.idStatus});
-
+  
   final Key idStatus;
+  final int id;
+  final String type;
+  
+  
+  AllDetailsTabViewControllerWidget({@required this.idStatus, @required this.id, @required this.type});
+
+  
 
   _AllDetailsTabViewControllerWidgetState createState() => _AllDetailsTabViewControllerWidgetState();
 }
@@ -39,7 +49,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
     switch(idStatus.toString()){
 
-      case '[<0>]': return AllDetailsInfoTab();
+      case '[<0>]': {
+         return new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<1>]': return AllDetailsCastingTab();
 

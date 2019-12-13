@@ -42,9 +42,9 @@ class RouteGeneretor{
         return routeError();  
 
       case '/AllDetails':
-        if(args is int){
+        if(args is Map){
           
-          return SlideRightRoute(page: AllDetailsOuevrePage(data: args,));
+          return SlideRightRoute(page: AllDetailsOuevrePage(data: args));
         }
         return routeError();
 

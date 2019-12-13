@@ -54,7 +54,7 @@ class MovieDetailsEntity extends Equatable {
       adult,
       backdropPath,
       budget,
-      genres.cast<int>(),
+      genres,
       homepage,
       id,
       imdbId,
@@ -73,5 +73,20 @@ class MovieDetailsEntity extends Equatable {
       voteAverage,
       voteCount,
       type  
+    ]);
+}
+
+class GenreMovie extends Equatable {
+    final int id;
+    final String name;
+    
+
+    GenreMovie({
+        @required this.id,
+        @required this.name,
+        
+    }) : super([
+      id, 
+      name,
     ]);
 }

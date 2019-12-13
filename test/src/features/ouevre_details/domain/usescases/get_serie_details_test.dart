@@ -25,14 +25,14 @@ class MockGetSerieDetails extends Mock
       backdropPath:  '/null',
       episodeRunTime: [18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [18],
+      genres: List<GenreSerie>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<Network>(),
+      networks: List<NetworkSerie>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['us'],
@@ -45,6 +45,7 @@ class MockGetSerieDetails extends Mock
       voteAverage: 8.5,
       voteCount: 34,
       type: 'tv',
+      seasonSerie: List<SeasonSerie>()
     );
 
     final int tSerieId =  3245;

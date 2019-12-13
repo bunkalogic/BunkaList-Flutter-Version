@@ -26,6 +26,7 @@ class AnimeDetailsEntity extends Equatable{
     final double voteAverage;
     final int voteCount;
     final String type;
+    final List<dynamic> seasonAnime;
 
     AnimeDetailsEntity({
         @required this.backdropPath,
@@ -51,18 +52,19 @@ class AnimeDetailsEntity extends Equatable{
         @required this.voteAverage,
         @required this.voteCount,
         @required this.type,
+        @required this.seasonAnime
     }) : super([
       backdropPath,
       episodeRunTime.cast<int>(),
       firstAirDate,
-      genres.cast<int>(),
+      genres,
       homepage,
       id,
       inProduction,
       languages.cast<String>(),
       lastAirDate,
       name,
-      networks.cast<Network>(),
+      networks,
       numberOfEpisodes,
       numberOfSeasons,
       originCountry.cast<String>(),
@@ -75,17 +77,18 @@ class AnimeDetailsEntity extends Equatable{
       voteAverage,
       voteCount,
       type,
+      seasonAnime
     ]);
 }
 
 
-class Network extends Equatable {
+class NetworkAnime extends Equatable {
     final String name;
     final int id;
     final String logoPath;
     final String originCountry;
 
-    Network({
+    NetworkAnime({
         @required this.name,
         @required this.id,
         @required this.logoPath,
@@ -95,5 +98,48 @@ class Network extends Equatable {
       id,
       logoPath,
       originCountry,
+    ]);
+}
+
+class GenreAnime extends Equatable {
+    final int id;
+    final String name;
+    
+
+    GenreAnime({
+        @required this.id,
+        @required this.name,
+        
+    }) : super([
+      id, 
+      name,
+    ]);
+}
+
+class SeasonAnime extends Equatable {
+    final String airDate;
+    final int episodeCount;
+    final int id;
+    final String name;
+    final String overview;
+    final String posterPath;
+    final int seasonNumber;
+
+    SeasonAnime({
+        @required this.airDate,
+        @required this.episodeCount,
+        @required this.id,
+        @required this.name,
+        @required this.overview,
+        @required this.posterPath,
+        @required this.seasonNumber,
+    }) : super([
+        airDate,
+        episodeCount,
+        id,
+        name,
+        overview,
+        posterPath,
+        seasonNumber,
     ]);
 }

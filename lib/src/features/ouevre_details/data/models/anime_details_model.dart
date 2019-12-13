@@ -28,6 +28,7 @@ class AnimeDetailsModel extends AnimeDetailsEntity {
     @required String status,
     @required double voteAverage,
     @required int voteCount,
+    @required List<dynamic> seasonAnime,
     String type,
   }) : super (
       backdropPath    :  backdropPath    ,
@@ -52,22 +53,35 @@ class AnimeDetailsModel extends AnimeDetailsEntity {
       status          :  status          ,
       voteAverage     :  voteAverage     ,
       voteCount       :  voteCount       ,
+      seasonAnime     :  seasonAnime     ,
       type            :  'anime'         ,
   );
 
   factory AnimeDetailsModel.fromJson(Map<String, dynamic> json){
+
+      var listGenre = json['genres'] as List;
+    List<GenreAnimeModel> genreItems = listGenre.map((i) => GenreAnimeModel.fromJson(i)).toList();
+
+    var listNetworks = json['networks'] as List;
+    List<NetworkAnimeModel> networkItems = listNetworks.map((i) => NetworkAnimeModel.fromJson(i)).toList();
+
+    var listSeasons = json['seasons'] as List;
+    List<SeasonAnimeModel> seasonItems = listSeasons.map((i) => SeasonAnimeModel.fromJson(i)).toList();
+
+
+
     return AnimeDetailsModel(
       backdropPath    : json['backdrop_path'],
       episodeRunTime  : json['episode_run_time'],
       firstAirDate    : json['first_air_date'],
-      genres          : json['genres'],
+      genres          : genreItems,
       homepage        : json['homepage'],
       id              : json['id'],
       inProduction    : json['in_production'],
       languages       : json['languages'],
       lastAirDate     : json['last_air_date'],
       name            : json['name'],
-      networks        : json['networks'],
+      networks        : networkItems,
       numberOfEpisodes: json['number_of_episodes'],
       numberOfSeasons : json['number_of_seasons'],
       originCountry   : json['origin_country'],
@@ -79,6 +93,7 @@ class AnimeDetailsModel extends AnimeDetailsEntity {
       status          : json['status'],
       voteAverage     : json['vote_average'],
       voteCount       : json['vote_count'],
+      seasonAnime     : seasonItems
     );
   }
 
@@ -106,9 +121,116 @@ class AnimeDetailsModel extends AnimeDetailsEntity {
       'status'            : status          ,
       'vote_average'      : voteAverage     ,
       'vote_count'        : voteCount       ,
+      'seasons'           : seasonAnime     ,
     };
   }
+}
 
+class SeasonAnimeModel extends SeasonAnime {
 
+  SeasonAnimeModel({
+    @required String airDate,
+    @required int episodeCount,
+    @required int id,
+    @required String name,
+    @required String overview,
+    @required String posterPath,
+    @required int seasonNumber,
+  }) : super (
+      airDate      :airDate ,
+      episodeCount :episodeCount ,
+      id           :id ,
+      name         :name ,
+      overview     :overview ,
+      posterPath   :posterPath ,
+      seasonNumber :seasonNumber , 
+  );
+
+  factory SeasonAnimeModel.fromJson(Map<String, dynamic> json){
+     return SeasonAnimeModel(
+          airDate      :json['air_date'],
+          episodeCount :json['episode_count'] ,
+          id           :json['id'] ,
+          name         :json['name'] ,
+          overview     :json['overview'] ,
+          posterPath   :json['poster_path'] ,
+          seasonNumber :json['season_number'] , 
+     );
+
+  }
+
+   Map<String, dynamic> toJson(){
+     return{
+
+      'air_date'      : airDate,
+      'episode_count' : episodeCount,
+      'id'            : id,
+      'name'          : name,
+      'overview'      : overview,
+      'poster_path'   : posterPath,
+      'season_number' : seasonNumber,
+
+     };
+   }
 
 }
+
+class GenreAnimeModel extends GenreAnime{
+  GenreAnimeModel({
+    @required int id,
+    @required String name,
+  }) : super (
+      id           :id ,
+      name         :name , 
+  );
+
+  factory GenreAnimeModel.fromJson(Map<String, dynamic> json){
+     return GenreAnimeModel(
+          id           :json['id'] ,
+          name         :json['name'] , 
+     );
+
+  }
+
+   Map<String, dynamic> toJson(){
+     return{
+      'id'            : id,
+      'name'          : name,
+     };
+   }
+}
+
+class NetworkAnimeModel extends NetworkAnime{
+
+  NetworkAnimeModel({
+    @required int id,
+    @required String name,
+    @required String logoPath,
+    @required String originCountry,
+  }) : super (
+      id           :id ,
+      name         :name ,
+      logoPath     :logoPath,
+      originCountry : originCountry,
+  );
+
+  factory NetworkAnimeModel.fromJson(Map<String, dynamic> json){
+     return NetworkAnimeModel(
+          id           :  json['id'],
+          name         :  json['name'],
+          logoPath     :  json['logo_path'],
+          originCountry:  json['origin_country']  
+     );
+
+  }
+
+   Map<String, dynamic> toJson(){
+     return{
+      'id'            : id,
+      'name'          : name,
+      'logo_path'     : logoPath,
+      'origin_country': originCountry
+     };
+   }
+}
+

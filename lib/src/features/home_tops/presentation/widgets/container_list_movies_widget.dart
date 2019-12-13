@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,7 +62,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 3.1,
+      height: MediaQuery.of(context).size.height / 2.8,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),
@@ -225,8 +226,8 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
               image: (movieEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: MediaQuery.of(context).size.width / 3.8,
+              height: MediaQuery.of(context).size.height / 2.8,
             ),
           );
 
@@ -235,7 +236,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: 1);
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movieEntity.id, movieEntity.type));
           },
           child: _poster 
       ),

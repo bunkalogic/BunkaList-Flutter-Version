@@ -35,14 +35,14 @@ void main() {
       backdropPath:  '/null',
       episodeRunTime: [16, 18] ,
       firstAirDate: '2/10/2010' ,
-      genres: [16, 18],
+      genres: List<GenreAnimeModel>(),
       homepage: 'null',
       id: 3245,
       inProduction: false,
       languages: ['ja', 'en'],
       lastAirDate: '2/10/2010' ,
       name: 'Name',
-      networks: List<Network>(),
+      networks: List<NetworkAnimeModel>(),
       numberOfEpisodes: 40,
       numberOfSeasons: 3,
       originCountry: ['ja'],
@@ -54,6 +54,7 @@ void main() {
       status: 'finish',
       voteAverage: 8.5,
       voteCount: 34,
+      seasonAnime: List<SeasonAnimeModel>()
     );
 
     final tId = 3245;
