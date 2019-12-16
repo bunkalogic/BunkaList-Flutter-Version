@@ -83,7 +83,7 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
 
   Widget _buildCardItem(MovieEntity movie) {
      return Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
+       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
          child: _itemInfo(movie),
          height: 160.0,
@@ -118,12 +118,12 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
     return Container(
       child: Column(
         children: <Widget>[
-          _rowInfoItem(movie),
+          Expanded(child: _rowInfoItem(movie)),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(movie),
           Expanded(child: ChipsGenresWidget(genres: movie.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          _rowButtons(),
+          Expanded(child: _rowButtons()),
         ],
       ),
     );
@@ -135,7 +135,7 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-        Expanded(child: _titleItem(movie), flex: 3, ),
+        Expanded(child: _titleItem(movie), flex: 4, ),
         Spacer(),
         Expanded(child: _yearOfItem(movie), flex: 1,),
         Spacer(),

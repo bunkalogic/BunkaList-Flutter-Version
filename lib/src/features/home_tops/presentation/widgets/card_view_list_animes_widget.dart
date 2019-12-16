@@ -81,7 +81,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
 
   Widget _buildCardItem(AnimeEntity anime) {
      return Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
+       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
          child: _itemInfo(anime),
          height: 160.0,
@@ -116,12 +116,12 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
     return Container(
       child: Column(
         children: <Widget>[
-          _rowInfoItem(anime),
+          Expanded(child: _rowInfoItem(anime)),
           //SizedBox(height: 10.0,),
           // _chipGenresItem(),
           Expanded(child: ChipsGenresWidget(genres: anime.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          _rowButtons(),
+          Expanded(child: _rowButtons()),
         ],
       ),
     );
@@ -133,7 +133,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-        Expanded(child: _titleItem(anime), flex: 3, ),
+        Expanded(child: _titleItem(anime), flex: 4, ),
         Spacer(),
         Expanded(child: _yearOfItem(anime), flex: 1,),
         Spacer(),

@@ -79,7 +79,7 @@ final appThemeData = {
     fontFamily: 'SourceSansPro',
 
     cardTheme: CardTheme(
-      color: Colors.grey[700]
+      color: Colors.grey[850]
     ),
 
     appBarTheme: AppBarTheme(

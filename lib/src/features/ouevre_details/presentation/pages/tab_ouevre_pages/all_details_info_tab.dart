@@ -101,7 +101,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
 
   Widget _boxInfo({Widget child}) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(
@@ -353,7 +353,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
   Widget _boxInfo({Widget child}) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(
@@ -624,7 +624,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
 
   Widget _boxInfo({Widget child}) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(

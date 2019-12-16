@@ -12,27 +12,40 @@ class ChipsGenresWidget extends StatefulWidget {
   _ChipsGenresWidgetState createState() => _ChipsGenresWidgetState();
 }
 
+//!FIXME: mejorar el design de los chip utilizando ActionChip Widget
+
 class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
-  final double _aspectRatio =  0.9;
+  //final double _aspectRatio =  0.9;
   List<String> _listGenres = new List<String>();
   
   @override
   Widget build(BuildContext context) {
 
 
-    _listGenres = _getNameGenres(context, widget.genres);
+    List<String> _listGenres = _getNameGenres(context, widget.genres);
 
-    return Container(
-       child: GridView.builder(
-         shrinkWrap: true,
-         itemCount: _listGenres.length,
-         itemBuilder: (context, i) => _fakeChip( _listGenres[i] , Colors.grey[300].withOpacity(0.4) ),
-         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: _aspectRatio
-                  ),
-       ),
-    );
+    // return Container(
+    //    child: GridView.builder(
+    //      shrinkWrap: true,
+    //      itemCount: _listGenres.length,
+    //      itemBuilder: (context, i) => _chipGenre( _listGenres[i]),
+    //      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //                 crossAxisCount: 3,
+    //                 childAspectRatio: _aspectRatio
+    //               ),
+    //    ),
+    // );
+
+     return Wrap(
+       alignment: WrapAlignment.spaceEvenly,
+       spacing: 1.0,
+       runSpacing: 1.0,
+       crossAxisAlignment: WrapCrossAlignment.center,
+       
+       direction: Axis.horizontal,
+       children: _chipsGenres(_listGenres),
+
+     );
   }
 
   List<String> _getNameGenres(BuildContext context ,List<int> genres){
@@ -142,6 +155,35 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
   }
 
 
+  List<Widget> _chipsGenres(List<String> genres){
+
+    List<Widget> genresChipList = new List();
+
+
+    genres.forEach((item){
+      genresChipList.add(
+        Container(
+      margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+      child: ActionChip(
+          onPressed: () => null,
+          elevation: 4.0,
+          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+          backgroundColor: Colors.grey[400].withOpacity(0.3),
+          label: Text(item,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14.0,
+              fontStyle: FontStyle.italic
+            ),
+          ),
+        ),
+      ),
+      );
+    });
+     
+     return genresChipList;
+  }
+
   Widget _fakeChip(String text, Color color) {
     return Card(
       elevation: 5.0,
@@ -181,4 +223,5 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
       ),
     );
   }
+
 }

@@ -73,7 +73,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
 
   Widget _buildCardItem(SeriesEntity series) {
      return Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
+       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
          child: _itemInfo(series),
          height: 160.0,
@@ -108,12 +108,12 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
     return Container(
       child: Column(
         children: <Widget>[
-          _rowInfoItem(series),
+          Expanded(child: _rowInfoItem(series)),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(series),
           Expanded(child: ChipsGenresWidget(genres: series.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          _rowButtons(),
+          Expanded(child: _rowButtons()),
         ],
       ),
     );
@@ -125,7 +125,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-        Expanded(child: _titleItem(series), flex: 3, ),
+        Expanded(child: _titleItem(series), flex: 4, ),
         Spacer(),
         Expanded(child: _yearOfItem(series), flex: 1,),
         Spacer(),
