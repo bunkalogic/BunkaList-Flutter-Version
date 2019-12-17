@@ -12,7 +12,6 @@ class ChipsGenresWidget extends StatefulWidget {
   _ChipsGenresWidgetState createState() => _ChipsGenresWidgetState();
 }
 
-//!FIXME: mejorar el design de los chip utilizando ActionChip Widget
 
 class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
   //final double _aspectRatio =  0.9;
@@ -23,18 +22,6 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
 
 
     List<String> _listGenres = _getNameGenres(context, widget.genres);
-
-    // return Container(
-    //    child: GridView.builder(
-    //      shrinkWrap: true,
-    //      itemCount: _listGenres.length,
-    //      itemBuilder: (context, i) => _chipGenre( _listGenres[i]),
-    //      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //                 crossAxisCount: 3,
-    //                 childAspectRatio: _aspectRatio
-    //               ),
-    //    ),
-    // );
 
      return Wrap(
        alignment: WrapAlignment.spaceEvenly,

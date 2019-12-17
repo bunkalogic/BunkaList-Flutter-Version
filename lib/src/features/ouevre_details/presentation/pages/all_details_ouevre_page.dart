@@ -35,7 +35,29 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(6), text:'Recomendation'),
     Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
     Tab(key: ValueKey(8), text:' Opennings'), //si es un anime
-    //TODO: crear una BLOC que se encargue devolver una lista dependiendo del tipo que sea la obra
+  ];
+
+  final List<Tab> detailsSerieTabs = <Tab>[
+    Tab(key: ValueKey(0), text:'Info', ),
+    Tab(key: ValueKey(1), text:'Casting'),
+    Tab(key: ValueKey(2), text:'Trailers'),
+    Tab(key: ValueKey(3), text:'Review'),
+    Tab(key: ValueKey(4), text:'Video Review'),
+    Tab(key: ValueKey(5), text:'Similar'),
+    Tab(key: ValueKey(6), text:'Recomendation'),
+    Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
+  ];
+
+  final List<Tab> detailsAnimeTabs = <Tab>[
+    Tab(key: ValueKey(0), text:'Info', ),
+    Tab(key: ValueKey(1), text:'Casting'),
+    Tab(key: ValueKey(2), text:'Trailers'),
+    Tab(key: ValueKey(3), text:'Review'),
+    Tab(key: ValueKey(4), text:'Video Review'),
+    Tab(key: ValueKey(5), text:'Similar'),
+    Tab(key: ValueKey(6), text:'Recomendation'),
+    Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
+    Tab(key: ValueKey(8), text:' Opennings'), //si es un anime
   ];
 
   ScrollController _scrollViewController;
@@ -59,14 +81,14 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     return Scaffold(
       body: DefaultTabController(
         length: detailsTabs.length,
-        child: _creteHeaderSliverBuilder()
+        child: _createHeaderSliverBuilder()
       ),
     ); 
         
     
   }
 
-  Widget _creteHeaderSliverBuilder(){
+  Widget _createHeaderSliverBuilder(){
     final int id = widget.data['id'];
     final String type = widget.data['type'];
 

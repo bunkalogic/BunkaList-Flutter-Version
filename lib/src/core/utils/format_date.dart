@@ -2,12 +2,18 @@ import 'package:intl/intl.dart';
 
 String formatterDate(String date){
 
-  final dateType = DateTime.parse(date);
+  if(date == null){
 
-  var formatter = new DateFormat('dd-MM-yyyy');
+    return 'No date data';
 
-  String formatted = formatter.format(dateType);
+  }else{
+    final dateType = DateTime.parse(date);
 
-  return formatted;
+    var formatter = new DateFormat('dd-MM-yyyy');
+
+    String formatted = formatter.format(dateType);
+
+    return formatted;
+  }
 
 }

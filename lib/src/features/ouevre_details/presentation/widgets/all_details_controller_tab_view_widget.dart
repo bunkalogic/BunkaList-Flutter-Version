@@ -69,7 +69,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<6>]': return AllDetailsRecomendationTab(); 
 
-      case '[<7>]': return AllDetailsSeasonTab(); 
+      case '[<7>]':  {
+         return new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsSeasonTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<8>]': return AllDetailsOpenningTab(); 
 
