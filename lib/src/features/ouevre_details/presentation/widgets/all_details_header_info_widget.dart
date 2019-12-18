@@ -100,6 +100,7 @@ class HeaderInfoMovie  extends StatelessWidget {
   Widget _titleInfo(MovieDetailsEntity movie){
     return Text(
         (movie.title == null) ? movie.originalTitle : movie.title,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w700,
@@ -158,7 +159,7 @@ class HeaderInfoMovie  extends StatelessWidget {
       child: FadeInImage(
           image: (movie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
     );
 
@@ -296,6 +297,7 @@ class HeaderInfoSerie  extends StatelessWidget {
   Widget _titleInfo(SerieDetailsEntity serie){
     return Text(
         (serie.name == null) ? serie.originalName : serie.name,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w700,
@@ -355,7 +357,7 @@ class HeaderInfoSerie  extends StatelessWidget {
       child:FadeInImage(
           image: (serie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
     );
 
@@ -495,6 +497,7 @@ class HeaderInfoAnime extends StatelessWidget {
   Widget _titleInfo(AnimeDetailsEntity anime){
     return Text(
         (anime.name == null) ? anime.originalName : anime.name,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w700,
@@ -554,7 +557,7 @@ class HeaderInfoAnime extends StatelessWidget {
       child:FadeInImage(
           image: (anime.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
     );
 

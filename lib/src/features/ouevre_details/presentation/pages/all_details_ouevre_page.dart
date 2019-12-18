@@ -25,7 +25,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
   TabController _tabController;
 
-  final List<Tab> detailsTabs = <Tab>[
+  final List<Tab> detailsMovieTabs = <Tab>[
     Tab(key: ValueKey(0), text:'Info', ),
     Tab(key: ValueKey(1), text:'Casting'),
     Tab(key: ValueKey(2), text:'Trailers'),
@@ -33,31 +33,29 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(4), text:'Video Review'),
     Tab(key: ValueKey(5), text:'Similar'),
     Tab(key: ValueKey(6), text:'Recomendation'),
-    Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
-    Tab(key: ValueKey(8), text:' Opennings'), //si es un anime
   ];
 
   final List<Tab> detailsSerieTabs = <Tab>[
-    Tab(key: ValueKey(0), text:'Info', ),
-    Tab(key: ValueKey(1), text:'Casting'),
-    Tab(key: ValueKey(2), text:'Trailers'),
-    Tab(key: ValueKey(3), text:'Review'),
-    Tab(key: ValueKey(4), text:'Video Review'),
-    Tab(key: ValueKey(5), text:'Similar'),
-    Tab(key: ValueKey(6), text:'Recomendation'),
-    Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
+    Tab(key: ValueKey(0), text:'Info',),
+    Tab(key: ValueKey(1), text:'Season'),
+    Tab(key: ValueKey(2), text:'Video Review'),
+    Tab(key: ValueKey(3), text:'Casting'),
+    Tab(key: ValueKey(4), text:'Trailers'),
+    Tab(key: ValueKey(5), text:'Review'),
+    Tab(key: ValueKey(6), text:'Similar'),
+    Tab(key: ValueKey(7), text:'Recomendation'),
   ];
 
   final List<Tab> detailsAnimeTabs = <Tab>[
     Tab(key: ValueKey(0), text:'Info', ),
-    Tab(key: ValueKey(1), text:'Casting'),
-    Tab(key: ValueKey(2), text:'Trailers'),
-    Tab(key: ValueKey(3), text:'Review'),
-    Tab(key: ValueKey(4), text:'Video Review'),
-    Tab(key: ValueKey(5), text:'Similar'),
-    Tab(key: ValueKey(6), text:'Recomendation'),
-    Tab(key: ValueKey(7), text:' Season'), //si es una serie o anime
-    Tab(key: ValueKey(8), text:' Opennings'), //si es un anime
+    Tab(key: ValueKey(1), text:'Season'),
+    Tab(key: ValueKey(2), text:'Video Review'),
+    Tab(key: ValueKey(3), text:'Casting'),
+    Tab(key: ValueKey(4), text:'Trailers'),
+    Tab(key: ValueKey(5), text:'Review'),
+    Tab(key: ValueKey(6), text:'Similar'),
+    Tab(key: ValueKey(7), text:'Recomendation'),
+    Tab(key: ValueKey(8), text:'Opennings'), //si es un anime
   ];
 
   ScrollController _scrollViewController;
@@ -66,7 +64,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   void initState() {
     super.initState();
     _scrollViewController = new ScrollController();
-    _tabController = TabController(vsync: this, length: detailsTabs.length);
+    _tabController = TabController(vsync: this, length: _getListTabs().length);
   }
 
   @override
@@ -76,11 +74,29 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     super.dispose();
   }
 
+  List<Tab> _getListTabs(){
+    final String type = widget.data['type'];
+
+    switch(type){
+
+      case 'movie': return detailsMovieTabs;
+        break;
+
+      case 'tv': return detailsSerieTabs;
+        break;
+
+      case 'anime': return detailsAnimeTabs;
+        break;    
+
+      default: return detailsMovieTabs;
+    }
+  }
+
    @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: detailsTabs.length,
+        length: _getListTabs().length,
         child: _createHeaderSliverBuilder()
       ),
     ); 
@@ -103,8 +119,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
           body: TabBarView(   
         physics: NeverScrollableScrollPhysics(),    
         controller: _tabController,
-        children: detailsTabs.map((Tab tab) {
-          return AllDetailsTabViewControllerWidget(idStatus: tab.key, id: id, type: type,);
+        children: _getListTabs().map((Tab tab) {
+          return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type,);
         }).toList(),
       ),
     );
@@ -142,10 +158,12 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
       ),
       isScrollable: true,
-      tabs: detailsTabs,
+      tabs: _getListTabs(),
       controller: _tabController,
     );
   }
+
+  
 
   
    

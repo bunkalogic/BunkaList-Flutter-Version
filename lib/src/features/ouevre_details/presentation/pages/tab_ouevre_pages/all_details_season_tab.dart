@@ -113,7 +113,7 @@ class SeasonSerieItems extends StatelessWidget{
         elevation: 5.0,
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)
+          borderRadius: BorderRadius.circular(15.0)
         ),
         child: _rowSeasonInfo(context, seasonItem),
       ),
@@ -259,7 +259,7 @@ class SeasonAnimeItems extends StatelessWidget{
         elevation: 5.0,
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)
+          borderRadius: BorderRadius.circular(15.0)
         ),
         child: _rowSeasonInfo(context, seasonItem),
       ),

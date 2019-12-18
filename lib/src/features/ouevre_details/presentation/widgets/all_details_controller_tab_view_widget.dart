@@ -17,12 +17,12 @@ import '../../../../../injection_container.dart';
 
 class AllDetailsTabViewControllerWidget extends StatefulWidget {
   
-  final Key idStatus;
+  final Key idTab;
   final int id;
   final String type;
   
   
-  AllDetailsTabViewControllerWidget({@required this.idStatus, @required this.id, @required this.type});
+  AllDetailsTabViewControllerWidget({@required this.idTab, @required this.id, @required this.type});
 
   
 
@@ -36,18 +36,25 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
   @override
   Widget build(BuildContext context) {
-    return _getDetailsTabView(widget.idStatus);
+    switch(widget.type){
+      
+      case 'movie': return _getDetailsMovieTabView(widget.idTab);
+        break;
+
+      case 'tv':  return _getDetailsSerieTabView(widget.idTab);
+        break;
+
+      case 'anime': return _getDetailsAnimeTabView(widget.idTab);
+        break; 
+
+        default: return _getDetailsMovieTabView(widget.idTab); 
+
+    }
   }
 
-  Widget _getDetailsTabView(Key idStatus){
+  Widget _getDetailsMovieTabView(Key idTab){
 
-    /**
-     * TODO: refactorizar y implementar la comprobacion de que tipo
-     *  es devoler las tabs que sean necesarias
-     */
-
-
-    switch(idStatus.toString()){
+      switch(idTab.toString()){
 
       case '[<0>]': {
          return new BlocProvider<OuevreDetailsBloc>(
@@ -69,18 +76,84 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<6>]': return AllDetailsRecomendationTab(); 
 
-      case '[<7>]':  {
+      default: return Center(child: Text('Error tab'),);
+    }
+
+  }
+
+  Widget _getDetailsSerieTabView(Key idTab){
+
+      switch(idTab.toString()){
+
+      case '[<0>]': {
+         return new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
+      case '[<1>]':  {
          return new BlocProvider<OuevreDetailsBloc>(
           builder: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsSeasonTab(id: widget.id, type: widget.type,),
         );
          
-        }
+        } 
 
+      case '[<2>]': return AllDetailsVideoReviewTab();   
+
+      case '[<3>]': return AllDetailsCastingTab();
+
+      case '[<4>]': return AllDetailsTrailerTab();
+
+      case '[<5>]': return AllDetailsReviewTab();
+
+      case '[<6>]': return AllDetailsSimilarTab();
+
+      case '[<7>]': return AllDetailsRecomendationTab(); 
+
+      default: return Center(child: Text('Error tab'),);
+    }
+
+  }
+
+  Widget _getDetailsAnimeTabView(Key idTab){
+
+      switch(idTab.toString()){
+
+      case '[<0>]': {
+         return new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
+      case '[<1>]':  {
+         return new BlocProvider<OuevreDetailsBloc>(
+          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsSeasonTab(id: widget.id, type: widget.type,),
+        );
+         
+        } 
+
+      case '[<2>]': return AllDetailsVideoReviewTab();   
+
+      case '[<3>]': return AllDetailsCastingTab();
+
+      case '[<4>]': return AllDetailsTrailerTab();
+
+      case '[<5>]': return AllDetailsReviewTab();
+
+      case '[<6>]': return AllDetailsSimilarTab();
+
+      case '[<7>]': return AllDetailsRecomendationTab(); 
+      
       case '[<8>]': return AllDetailsOpenningTab(); 
 
       default: return Center(child: Text('Error tab'),);
     }
+
   }
+  
   
 }
