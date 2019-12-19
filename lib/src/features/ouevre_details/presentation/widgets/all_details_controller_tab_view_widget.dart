@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_openning_tab.dart';
@@ -68,7 +69,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': return AllDetailsTrailerTab();
 
-      case '[<3>]': return AllDetailsReviewTab();
+      case '[<3>]': {
+         return new BlocProvider<ReviewsBloc>(
+          builder: (_) => serviceLocator<ReviewsBloc>(),
+          child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<4>]': return AllDetailsVideoReviewTab();
 
@@ -106,7 +113,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': return AllDetailsTrailerTab();
 
-      case '[<5>]': return AllDetailsReviewTab();
+      case '[<5>]': {
+         return new BlocProvider<ReviewsBloc>(
+          builder: (_) => serviceLocator<ReviewsBloc>(),
+          child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<6>]': return AllDetailsSimilarTab();
 
@@ -142,7 +155,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': return AllDetailsTrailerTab();
 
-      case '[<5>]': return AllDetailsReviewTab();
+      case '[<5>]': {
+         return new BlocProvider<ReviewsBloc>(
+          builder: (_) => serviceLocator<ReviewsBloc>(),
+          child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<6>]': return AllDetailsSimilarTab();
 

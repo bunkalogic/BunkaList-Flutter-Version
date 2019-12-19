@@ -16,16 +16,21 @@ import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/to
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/review_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie_details_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/review_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_details_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/review_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_review_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_series_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 import 'package:get_it/get_it.dart';
@@ -212,12 +217,17 @@ initOuevreDetails(){
       serie: serviceLocator(),
       anime: serviceLocator()
       ),
+    );
+    serviceLocator.registerFactory(
+      () => ReviewsBloc(
+        reviews: serviceLocator()
+      ),
     ); 
-  //? Init MoviesDetails, SeriesDetails, AnimeDetails
+  //? Init MoviesDetails, SeriesDetails, AnimeDetails,  ReviewDetails
   initMovieDetails();
   initSerieDetails();
   initAnimeDetails();
-
+  initReviewsDetails();
 }
 
 
@@ -266,5 +276,21 @@ initAnimeDetails(){
   //? Data Sources
   serviceLocator.registerLazySingleton<AnimeDetailsRemoteDataSource>(
     () => AnimeDetailsRemoteDataSourceImpl(client: serviceLocator())
+  );  
+}
+
+initReviewsDetails(){
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetReviewDetails(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<ReviewDetailsContracts>(
+    () => ReviewDetailsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  //? Data Sources
+  serviceLocator.registerLazySingleton<ReviewDetailsRemoteDataSource>(
+    () => ReviewDetailsRemoteDataSourceImpl(client: serviceLocator())
   );  
 }
