@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/credits_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
@@ -65,7 +66,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<1>]': return AllDetailsCastingTab();
+      case '[<1>]': {
+         return new BlocProvider<CreditsBloc>(
+          builder: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<2>]': return AllDetailsTrailerTab();
 
@@ -109,7 +116,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': return AllDetailsVideoReviewTab();   
 
-      case '[<3>]': return AllDetailsCastingTab();
+      case '[<3>]': {
+         return new BlocProvider<CreditsBloc>(
+          builder: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<4>]': return AllDetailsTrailerTab();
 
@@ -151,7 +164,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': return AllDetailsVideoReviewTab();   
 
-      case '[<3>]': return AllDetailsCastingTab();
+      case '[<3>]': {
+         return new BlocProvider<CreditsBloc>(
+          builder: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       case '[<4>]': return AllDetailsTrailerTab();
 

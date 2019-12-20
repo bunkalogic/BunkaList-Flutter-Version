@@ -32,6 +32,8 @@ class ReviewDetailsImpl implements ReviewDetailsContracts{
 
     }on ServerException{
 
+      return Left(ServerFailure());
+
     }
   }
 

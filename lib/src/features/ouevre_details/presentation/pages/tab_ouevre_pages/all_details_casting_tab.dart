@@ -1,19 +1,84 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/credits_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllDetailsCastingTab extends StatelessWidget {
-  const AllDetailsCastingTab({Key key}) : super(key: key);
+class AllDetailsCastingTab extends StatefulWidget {
+
+  final int id;
+  final String type;
+
+  AllDetailsCastingTab({@required this.id, @required this.type});  
+
+  @override
+  _AllDetailsCastingTabState createState() => _AllDetailsCastingTabState();
+}
+
+class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
+
+
+  final loadingPage = Center(
+      child: CircularProgressIndicator(),
+    ) ;
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<CreditsBloc>(context)
+    ..add(GetDetailsCredits(widget.id, widget.type));
+    
+  }  
+
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
-      child: ListView(
-        children: <Widget>[
-          _labelScrollPersonItem('Casting :'),
-          _scrollPersonItem(context),
-          _labelScrollPersonItem('Crew :'),
-          _scrollPersonItem(context)
-        ],
-      )
+      child: BlocBuilder<CreditsBloc, CreditsState>(
+        builder: (context, state) {
+          
+          if(state is Empty){
+
+            return loadingPage;
+
+          }else if(state is Loading){
+            
+            return loadingPage;
+
+          }else if(state is Loaded){
+
+            final credits = state.credits;
+
+            final List<Cast> listCast = new List<Cast>.from(credits.cast);
+            final List<Crew> listCrew = new List<Crew>.from(credits.crew);  
+
+            return Container(
+              child: ListView(
+                children: <Widget>[
+                  _labelScrollPersonItem(AppLocalizations.of(context).translate('casting')),
+                  ScrollCastItem(castList: listCast,),
+                  _labelScrollPersonItem(AppLocalizations.of(context).translate('crew')),
+                  ScrollCrewItem(crewList: listCrew,)
+                ],
+              )
+            );
+
+          }else if(state is Error){
+            
+            return Center(
+              child: Text(state.message),
+            );
+
+          }
+
+          return Center(
+              child: Text('something Error'),
+            );
+
+        },
+      ),
     );
   }
 
@@ -30,52 +95,173 @@ class AllDetailsCastingTab extends StatelessWidget {
     );
   }
 
-  Widget _scrollPersonItem(BuildContext context){
-    return Container(
-      height: 180.0,
-      width: double.infinity,
-      child: ListView.builder(
-        padding: EdgeInsets.all(10.0),
-        scrollDirection: Axis.horizontal,
-        itemCount: 9,
-        itemBuilder: (context, i)=> _personItem(context) ,
-      ),
+  
+}
+
+class ScrollCastItem extends StatelessWidget{
+  
+  final List<Cast> castList;
+
+  ScrollCastItem({@required this.castList});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(castList.isEmpty || castList.length <= 0){
+      return Container(
+        child: Center(
+          child: Text('No Info Available'),
+        ),
+      );
+    }else{
+      return Container(
+        height: 180.0,
+        width: double.infinity,
+        child: ListView.builder(
+          padding: EdgeInsets.all(10.0),
+          scrollDirection: Axis.horizontal,
+          itemCount: castList.length,
+          itemBuilder: (context, i)=> _personItem(context, castList[i]),
+        ),
     );
+    }    
   }
 
-  Widget _personItem(BuildContext context){
+  Widget _personItem(BuildContext context, Cast cast){
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: 1),
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: cast.id),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
         child: Column(
           children: <Widget>[
-            _personPhotoItem(),
-            _columnName(),
+            _personPhotoItem(cast),
+            _columnName(cast),
           ],
         ),
       ),
     );
   }
 
-  Widget _personPhotoItem() {
-    return Container(
-      child: CircleAvatar(
-        radius: 40.0,
-        backgroundImage: NetworkImage('https://image.tmdb.org/t/p/w600_and_h900_bestv2/2RcaC1ictETsTU4ioFlQ32zGYYg.jpg'),
-      ),
-    );
+  Widget _personPhotoItem(Cast cast) {
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/original${cast.profilePath}');
+
+    if(cast.profilePath == null){
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: placeholder,
+        ),
+      );
+
+    }else{
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: photo ,
+        ),
+      );
+    }
   }
 
-  Widget _columnName() {
+   
+
+  Widget _columnName(Cast cast) {
     return Container(
       child: Column(
         children: <Widget>[
-          Text('Damian Lewis', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),),
-          Text('Richard D. Winters', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.grey[400]),),
-          Text('10 Episodes', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Colors.grey[300]),),
+          Text(cast.name, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),),
+          Text(cast.character, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.grey),),
         ],
       ),
     );
   }
+
+}
+
+class ScrollCrewItem extends StatelessWidget{
+  
+  final List<Crew> crewList;
+
+  ScrollCrewItem({@required this.crewList});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(crewList.isEmpty || crewList.length <= 0){
+      return Container(
+        child: Center(
+          child: Text('No Info Available'),
+        ),
+      );
+    }else{
+
+      return Container(
+        height: 180.0,
+        width: double.infinity,
+        child: ListView.builder(
+        padding: EdgeInsets.all(10.0),
+        scrollDirection: Axis.horizontal,
+        itemCount: crewList.length,
+        itemBuilder: (context, i)=> _personItem(context, crewList[i]) ,
+      ),
+      );
+
+    }
+
+    
+  }
+
+
+  Widget _personItem(BuildContext context, Crew crew){
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: crew.id),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+        child: Column(
+          children: <Widget>[
+            _personPhotoItem(crew),
+            _columnName(crew),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _personPhotoItem(Crew crew) {
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/original/${crew.profilePath}');
+
+    if(crew.profilePath == null){
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: placeholder,
+        ),
+      );
+
+    }else{
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: photo ,
+        ),
+      );
+    }
+  }
+
+  Widget _columnName(Crew crew) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text(crew.name, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),),
+          Text(crew.job, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.grey),),
+          Text(crew.department, style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Colors.grey[400]),),
+        ],
+      ),
+    );
+  }
+
 }

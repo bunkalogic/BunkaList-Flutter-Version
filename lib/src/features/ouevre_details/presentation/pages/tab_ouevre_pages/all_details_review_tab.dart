@@ -48,11 +48,17 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
 
           }else if(state is Loaded){
 
-            return ListView.builder(
-              itemCount: state.reviews.length,
-              itemBuilder: (context, i) => _createItemReview(state.reviews[i]),
-            );
-
+            if(state.reviews.isEmpty || state.reviews.length <= 0){
+              return Center(
+                child: Text('no reviews available'),
+              );
+            }else{
+              return ListView.builder(
+                itemCount: state.reviews.length,
+                itemBuilder: (context, i) => _createItemReview(state.reviews[i]),
+              );
+            }
+            
           }else if(state is Error){
             
             return Center(
