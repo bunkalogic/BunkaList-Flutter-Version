@@ -4,30 +4,30 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_deta
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-abstract class RecomAndSimilarState extends Equatable {
-  RecomAndSimilarState([List props = const <dynamic>[]]) : super(props);
+abstract class RecommendationsState extends Equatable {
+  const RecommendationsState([List props = const <dynamic>[]]) : super(props);
 }
 
-class Empty extends RecomAndSimilarState{}
+class Empty extends RecommendationsState{}
 
-class Loading extends RecomAndSimilarState{}
+class Loading extends RecommendationsState{}
 
-class LoadedMovie extends RecomAndSimilarState{
+class LoadedMovie extends RecommendationsState{
   final List<MovieEntityRS> movie;
   LoadedMovie({@required this.movie }) : super([movie]);
 }
 
-class LoadedSerie extends RecomAndSimilarState{
+class LoadedSerie extends RecommendationsState{
   final List<SeriesEntityRS> serie;
   LoadedSerie({@required this.serie }) : super([serie]);
 }
 
-class LoadedAnime extends RecomAndSimilarState{
+class LoadedAnime extends RecommendationsState{
   final List<AnimeEntityRS> anime;
   LoadedAnime({@required this.anime }) : super([anime]);
 }
 
-class Error extends RecomAndSimilarState{
+class Error extends RecommendationsState{
   final String message;
   Error({@required this.message}) : super ([message]);
 }

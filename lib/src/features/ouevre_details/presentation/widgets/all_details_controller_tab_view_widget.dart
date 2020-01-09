@@ -1,6 +1,8 @@
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/credits_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_openning_tab.dart';
@@ -86,9 +88,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': return AllDetailsVideoReviewTab();
 
-      case '[<5>]': return AllDetailsSimilarTab();
+      case '[<5>]': {
+         return new BlocProvider<SimilarBloc>(
+          builder: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
-      case '[<6>]': return AllDetailsRecomendationTab(); 
+      case '[<6>]': {
+         return new BlocProvider<RecommendationsBloc>(
+          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       default: return Center(child: Text('Error tab'),);
     }
@@ -134,9 +148,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<6>]': return AllDetailsSimilarTab();
+      case '[<6>]': {
+         return new BlocProvider<SimilarBloc>(
+          builder: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
-      case '[<7>]': return AllDetailsRecomendationTab(); 
+      case '[<7>]': {
+         return new BlocProvider<RecommendationsBloc>(
+          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
       default: return Center(child: Text('Error tab'),);
     }
@@ -182,9 +208,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<6>]': return AllDetailsSimilarTab();
+      case '[<6>]': {
+         return new BlocProvider<SimilarBloc>(
+          builder: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
 
-      case '[<7>]': return AllDetailsRecomendationTab(); 
+      case '[<7>]':  {
+         return new BlocProvider<RecommendationsBloc>(
+          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+        );
+         
+        }
       
       case '[<8>]': return AllDetailsOpenningTab(); 
 

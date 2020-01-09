@@ -14,28 +14,45 @@ import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_serie
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/tops_series_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/tops_animes_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/credits_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/review_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/serie_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_rec_sim_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/credits_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie_details_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie_details_rec_sim_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/review_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_rec_sim_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details.rec_sim_contracts.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/credits_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_details_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_details_rec_sim_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/review_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_rec_sim_contracts.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_recommendation.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_credits_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details_recommedation.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_review_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie_details_recommendations.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_series_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 import 'package:get_it/get_it.dart';
@@ -236,13 +253,65 @@ initOuevreDetails(){
       ),
     );
 
-  //? Init MoviesDetails, SeriesDetails, AnimeDetails,  ReviewDetails
+  serviceLocator.registerFactory(
+    () => RecommendationsBloc(
+      moviesRecom: serviceLocator(),
+      seriesRecom: serviceLocator(),
+      animeRecom: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerFactory(
+    () => SimilarBloc(
+      moviesSimilar: serviceLocator(),
+      seriesSimilar: serviceLocator(),
+      animeSimilar: serviceLocator(),
+    ),
+  );
+
+    
+
+  //? Init MoviesDetails, SeriesDetails, AnimeDetails, ReviewDetails, CreditsDetails, RecomAndSimilarDetails
   initMovieDetails();
   initSerieDetails();
   initAnimeDetails();
   initReviewsDetails();
   initCreditsDetails();
+  initMovieRecomAndSimilarDetails();
+  initSerieRecomAndSimilarDetails();
+  initAnimeRecomAndSimilarDetails();
 }
+
+// initBlocAndUsesCasesRecommendation(){
+//   //? Bloc
+//   // serviceLocator.registerFactory(
+//   //   () => RecommendationsBloc(
+//   //     moviesRecom: serviceLocator(),
+//   //     seriesRecom: serviceLocator(),
+//   //     animeRecom: serviceLocator(),
+//   //   ),
+//   // );
+//   //? Usescases 
+//   serviceLocator.registerSingleton(() => GetMoviesRecommedations(serviceLocator()));
+//   serviceLocator.registerSingleton(() => GetSeriesRecommedations(serviceLocator()));
+//   serviceLocator.registerSingleton(() => GetAnimeRecommendation(serviceLocator()));
+  
+// }
+// initBlocAndUsesCasesSimilar(){
+//    //? Bloc
+//   // serviceLocator.registerFactory(
+//   //   () => SimilarBloc(
+//   //     moviesSimilar: serviceLocator(),
+//   //     seriesSimilar: serviceLocator(),
+//   //     animeSimilar: serviceLocator(),
+//   //   ),
+//   // );
+//   //? Usescases 
+//   serviceLocator.registerSingleton(() => GetMoviesSimilar(serviceLocator()));
+//   serviceLocator.registerSingleton(() => GetSeriesSimilar(serviceLocator()));
+//   serviceLocator.registerSingleton(() => GetAnimeSimilar(serviceLocator()));
+
+// }
 
 
 initMovieDetails(){
@@ -323,4 +392,60 @@ initCreditsDetails(){
   serviceLocator.registerLazySingleton<CreditsDetailsRemoteDataSource>(
     () => CreditsDetailsRemoteDataSourceImpl(client: serviceLocator())
   );  
+}
+
+initMovieRecomAndSimilarDetails(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetMoviesRecommedations(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMoviesSimilar(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<MoviesDetailsRecommendationAndSimilarContracts>(
+    () => MoviesRecommendationAndSimilarImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    )
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<MoviesRecommendationAndSimilarRemoteDataSource>(
+    () => MoviesRecommendationAndSimilarRemoteDataSourceImpl(client: serviceLocator())
+  );
+
+
+}
+
+initSerieRecomAndSimilarDetails(){
+  //? Usescases
+  
+  serviceLocator.registerLazySingleton(() => GetSeriesRecommedations(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetSeriesSimilar(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<SeriesDetailsRecommendationAndSimilarContracts>(
+    () => SeriesRecommendationAndSimilarImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    )
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<SeriesRecommendationAndSimilarRemoteDataSource>(
+    () => SeriesRecommendationAndSimilarRemoteDataSourceImpl(client: serviceLocator())
+  );
+
+}
+
+initAnimeRecomAndSimilarDetails(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetAnimeRecommendation(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAnimeSimilar(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<AnimeDetailsRecommendationAndSimilarContracts>(
+    () => AnimeRecommendationAndSimilarImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    )
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<AnimeRecommendationAndSimilarRemoteDataSource>(
+    () => AnimeRecommendationAndSimilarRemoteDataSourceImpl(client: serviceLocator())
+  );
+
 }

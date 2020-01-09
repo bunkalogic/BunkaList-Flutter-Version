@@ -1,7 +1,7 @@
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_rs_entity.dart';
 
 class AnimeModelRS  extends AnimeEntityRS{
-
+      
     AnimeModelRS({
         final String posterPath,
         final double popularity,
@@ -31,24 +31,19 @@ class AnimeModelRS  extends AnimeEntityRS{
       voteCount        : voteCount,
       originCountry    : originCountry,
       voteAverage      : voteAverage,
-      type             : ''
+      type             : type
     );
 
     factory AnimeModelRS.fromJson(Map<String, dynamic> json){
 
-      var listGenre = json['genre_ids'] as List<int>;
+      var listGenre = json['genre_ids'] as List;
       String typeFinal; 
 
-       // Se encarga de comprobar en la lista de genres si hay un 16 para saber si es un anime o no  
-       listGenre.forEach((genre){
+      final whatTypeIs = listGenre.contains(16);
 
-         if(genre == 16){
-           typeFinal = 'anime';
-         }else{
-           typeFinal = 'tv';
-         }
-
-       });
+      (whatTypeIs) ?  typeFinal = 'anime' : typeFinal = 'tv';
+       
+      print('is type: ' + typeFinal);
 
       return AnimeModelRS(
         posterPath       : json['poster_path'],
