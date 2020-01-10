@@ -21,6 +21,7 @@ import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_det
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/review_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/serie_details_rec_sim_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/video_youtube_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_rec_sim_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/credits_details_impl.dart';
@@ -29,6 +30,7 @@ import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/review_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_rec_sim_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/youtube_video_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details.rec_sim_contracts.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/credits_details_contract.dart';
@@ -37,6 +39,7 @@ import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_det
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/review_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_rec_sim_contracts.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/video_youtube_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_recommendation.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_similar.dart';
@@ -48,11 +51,13 @@ import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_revie
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie_details_recommendations.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_series_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_videos_youtube_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 import 'package:get_it/get_it.dart';
@@ -269,9 +274,13 @@ initOuevreDetails(){
     ),
   );
 
-    
+  serviceLocator.registerFactory(
+    () => VideoYoutubeBloc(
+      videosYoutube: serviceLocator()
+    ),
+  );  
 
-  //? Init MoviesDetails, SeriesDetails, AnimeDetails, ReviewDetails, CreditsDetails, RecomAndSimilarDetails
+  //? Init MoviesDetails, SeriesDetails, AnimeDetails, ReviewDetails, CreditsDetails, RecomAndSimilarDetails, VideoYoutubeDetails
   initMovieDetails();
   initSerieDetails();
   initAnimeDetails();
@@ -280,38 +289,9 @@ initOuevreDetails(){
   initMovieRecomAndSimilarDetails();
   initSerieRecomAndSimilarDetails();
   initAnimeRecomAndSimilarDetails();
+  initVideoYoutubeDetails();
 }
 
-// initBlocAndUsesCasesRecommendation(){
-//   //? Bloc
-//   // serviceLocator.registerFactory(
-//   //   () => RecommendationsBloc(
-//   //     moviesRecom: serviceLocator(),
-//   //     seriesRecom: serviceLocator(),
-//   //     animeRecom: serviceLocator(),
-//   //   ),
-//   // );
-//   //? Usescases 
-//   serviceLocator.registerSingleton(() => GetMoviesRecommedations(serviceLocator()));
-//   serviceLocator.registerSingleton(() => GetSeriesRecommedations(serviceLocator()));
-//   serviceLocator.registerSingleton(() => GetAnimeRecommendation(serviceLocator()));
-  
-// }
-// initBlocAndUsesCasesSimilar(){
-//    //? Bloc
-//   // serviceLocator.registerFactory(
-//   //   () => SimilarBloc(
-//   //     moviesSimilar: serviceLocator(),
-//   //     seriesSimilar: serviceLocator(),
-//   //     animeSimilar: serviceLocator(),
-//   //   ),
-//   // );
-//   //? Usescases 
-//   serviceLocator.registerSingleton(() => GetMoviesSimilar(serviceLocator()));
-//   serviceLocator.registerSingleton(() => GetSeriesSimilar(serviceLocator()));
-//   serviceLocator.registerSingleton(() => GetAnimeSimilar(serviceLocator()));
-
-// }
 
 
 initMovieDetails(){
@@ -448,4 +428,22 @@ initAnimeRecomAndSimilarDetails(){
     () => AnimeRecommendationAndSimilarRemoteDataSourceImpl(client: serviceLocator())
   );
 
+}
+
+initVideoYoutubeDetails(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetListVideosYoutube(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<VideoYoutubeDetailsContract>(
+    () => VideoYoutubeDetailsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    ),
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<VideoYoutubeDetailsRemoteDataSource>(
+    () => VideoYoutubeDetailsRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
+  );
 }
