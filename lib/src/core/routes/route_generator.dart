@@ -50,7 +50,7 @@ class RouteGeneretor{
         return routeError();
 
       case '/AllDetailsSeason':
-        if(args is int){
+        if(args is Map){
           
           return SlideRightRoute(page: AllDetailsSeasonPage(data: args,));
         }

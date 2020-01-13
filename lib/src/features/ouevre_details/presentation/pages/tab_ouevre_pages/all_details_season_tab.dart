@@ -1,9 +1,12 @@
 
+import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_season_info/seasoninfo_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -106,18 +109,23 @@ class SeasonSerieItems extends StatelessWidget{
   }
 
   Widget _itemSeason(BuildContext context, SeasonSerie seasonItem) {
-    return Container(
-      height: 180.0,
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      child: Card(
-        elevation: 5.0,
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0)
-        ),
-        child: _rowSeasonInfo(context, seasonItem),
+    
+
+    return GestureDetector(
+      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(serie.id , seasonItem.seasonNumber)),
+      child: Container(
+    height: 180.0,
+    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+    child: Card(
+      elevation: 5.0,
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0)
       ),
-    );
+      child: _rowSeasonInfo(context, seasonItem),
+    ),
+        ),
+      );
   }
 
   Widget _rowSeasonInfo(BuildContext context, SeasonSerie seasonItem) {
@@ -217,9 +225,7 @@ class SeasonSerieItems extends StatelessWidget{
   Widget _buttomDetailsSeason(BuildContext context, SeasonSerie seasonItem) {
     return IconButton(
       icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.deepOrange,),
-      onPressed: (){
-        Navigator.pushNamed(context, '/AllDetailsSeason', arguments: seasonItem.id);
-      },
+      onPressed: () => null,
     );
   }
 
@@ -252,18 +258,21 @@ class SeasonAnimeItems extends StatelessWidget{
   }
 
   Widget _itemSeason(BuildContext context, SeasonAnime seasonItem) {
-    return Container(
-      height: 180.0,
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      child: Card(
-        elevation: 5.0,
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0)
-        ),
-        child: _rowSeasonInfo(context, seasonItem),
+    return GestureDetector(
+      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(anime.id , seasonItem.seasonNumber)),
+      child: Container(
+    height: 180.0,
+    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+    child: Card(
+      elevation: 5.0,
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0)
       ),
-    );
+      child: _rowSeasonInfo(context, seasonItem),
+    ),
+        ),
+      );
   }
 
   Widget _rowSeasonInfo(BuildContext context, SeasonAnime seasonItem) {
@@ -364,9 +373,7 @@ class SeasonAnimeItems extends StatelessWidget{
   Widget _buttomDetailsSeason(BuildContext context, SeasonAnime seasonItem){
     return IconButton(
       icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.deepOrange,),
-      onPressed: (){
-        Navigator.pushNamed(context, '/AllDetailsSeason', arguments: seasonItem.id);
-      },
+      onPressed: () => null
     );
   }
 
