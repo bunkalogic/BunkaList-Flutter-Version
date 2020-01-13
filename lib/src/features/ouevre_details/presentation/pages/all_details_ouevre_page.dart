@@ -107,6 +107,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   Widget _createHeaderSliverBuilder(){
     final int id = widget.data['id'];
     final String type = widget.data['type'];
+    final String title = widget.data['title'];
 
 
     return NestedScrollView(
@@ -120,7 +121,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         physics: NeverScrollableScrollPhysics(),    
         controller: _tabController,
         children: _getListTabs().map((Tab tab) {
-          return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type,);
+          return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
         }).toList(),
       ),
     );

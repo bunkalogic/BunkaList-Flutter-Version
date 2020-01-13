@@ -34,7 +34,7 @@ class VideoYoutubeDetailsRemoteDataSourceImpl implements VideoYoutubeDetailsRemo
   Future<List<VideoYoutubeModel>> getListVideoYoutube(String query) async {
     
     Map<String, String> parameters = {
-      'part'              : 'id,snippet',
+      'part'              : 'snippet',
       'maxResults'        : '12',
       'relevanceLanguage' : prefs.getLanguage,
       'type'              : 'video',

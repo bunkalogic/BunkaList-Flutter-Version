@@ -168,7 +168,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type) );
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type, anime.name) );
           },
           child: _poster 
       ),

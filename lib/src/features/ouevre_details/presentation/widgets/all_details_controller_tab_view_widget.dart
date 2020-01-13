@@ -3,6 +3,7 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_det
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/videoyoutube_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_openning_tab.dart';
@@ -24,9 +25,9 @@ class AllDetailsTabViewControllerWidget extends StatefulWidget {
   final Key idTab;
   final int id;
   final String type;
+  final String title;
   
-  
-  AllDetailsTabViewControllerWidget({@required this.idTab, @required this.id, @required this.type});
+  AllDetailsTabViewControllerWidget({@required this.idTab, @required this.id, @required this.type, @required this.title });
 
   
 
@@ -76,7 +77,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<2>]': return AllDetailsTrailerTab();
+      case '[<2>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: widget.title),
+        );
+         
+        }
 
       case '[<3>]': {
          return new BlocProvider<ReviewsBloc>(
@@ -86,7 +93,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<4>]': return AllDetailsVideoReviewTab();
+      case '[<4>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: widget.title,),
+        );
+         
+        }
 
       case '[<5>]': {
          return new BlocProvider<SimilarBloc>(
@@ -128,7 +141,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         } 
 
-      case '[<2>]': return AllDetailsVideoReviewTab();   
+      case '[<2>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: widget.title,),
+        );
+         
+        }  
 
       case '[<3>]': {
          return new BlocProvider<CreditsBloc>(
@@ -138,7 +157,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<4>]': return AllDetailsTrailerTab();
+      case '[<4>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: widget.title,),
+        );
+         
+        }
 
       case '[<5>]': {
          return new BlocProvider<ReviewsBloc>(
@@ -188,7 +213,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         } 
 
-      case '[<2>]': return AllDetailsVideoReviewTab();   
+      case '[<2>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: widget.title,),
+        );
+         
+        }   
 
       case '[<3>]': {
          return new BlocProvider<CreditsBloc>(
@@ -198,7 +229,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<4>]': return AllDetailsTrailerTab();
+      case '[<4>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: widget.title,),
+        );
+         
+        }
 
       case '[<5>]': {
          return new BlocProvider<ReviewsBloc>(
@@ -224,7 +261,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
       
-      case '[<8>]': return AllDetailsOpenningTab(); 
+      case '[<8>]': {
+         return new BlocProvider<VideoYoutubeBloc>(
+          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsOpenningTab(title: widget.title,),
+        );
+         
+        } 
 
       default: return Center(child: Text('Error tab'),);
     }

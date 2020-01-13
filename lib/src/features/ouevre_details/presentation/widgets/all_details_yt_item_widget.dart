@@ -1,44 +1,55 @@
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/youtube_video_details_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
-  const AllDetailsYoutubeVideosItemWidget({Key key}) : super(key: key);
+
+  final VideoYoutubeEntity video;
+
+  const AllDetailsYoutubeVideosItemWidget({@required this.video});
 
   @override
   Widget build(BuildContext context) {
-    return _columnVideoInfo();
+    return _columnVideoInfo(context);
   }
 
-  Widget _columnVideoInfo() {
+  Widget _columnVideoInfo(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Column(
         children: <Widget>[
-          _itemVideoImage(),
+          _itemVideoImage(context),
           _itemVideoTitle(),
-          _rowSubTitle()
+          _itemVideoChannelName(),
+          SizedBox(height: 5.0,),
+          _itemVideoURL()
+          //_rowSubTitle()
         ],
       ),
     );
   }
 
-  Widget _itemVideoImage() {
+  Widget _itemVideoImage(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 6.0, horizontal: 20.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       elevation: 5.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0)
       ),
-      child: _stackImage(),
+      child: _stackImage(context),
     );
   }
-  Widget _stackImage(){
-    return Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        _thumbnailsImage(),
-        _iconPlay()
-      ],
+  Widget _stackImage(BuildContext context){
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/VideoPlayer', arguments: video.id),
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          _thumbnailsImage(),
+          _iconPlay()
+        ],
+      ),
     );
   }
 
@@ -47,17 +58,22 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.0),
       child: Image(
         fit: BoxFit.cover,
-        image: NetworkImage('https://image.tmdb.org/t/p/w533_and_h300_bestv2/8ApdRREQ82KDPAEH6BB15m4rpK3.jpg'),
+        
+        image: NetworkImage(video.thumbnailUrl),
       ),
     );
   }
 
   Widget _iconPlay() {
-    return Align(
-      child: Icon(
-        Icons.play_arrow,
-        size: 80.0,
-        color: Colors.redAccent.withOpacity(0.7),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      child: Center(
+        child: Image(
+        fit: BoxFit.cover,
+        height: 50.0,  
+        image: AssetImage('assets/icon-youtube.png'),
+        
+        ),
       ),
     );
   }
@@ -65,10 +81,40 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
   Widget _itemVideoTitle() {
     return Container(
       child: Text(
-        'Bands of Brothers 2001 Trailer',
+        video.title,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w700
+        ),
+      ),
+    );
+  }
+
+  Widget _itemVideoChannelName() {
+    return Container(
+      child: Text(
+        video.channelTitle,
+        style: TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w600
+        ),
+      ),
+    );
+  }
+
+  Widget _itemVideoURL() {
+    final url = 'https://www.youtube.com/watch?v=${video.id}';
+    return GestureDetector(
+      onTap: () => launch(url),
+      child: Container(
+        child: Text(
+          url,
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w500,
+            color: Colors.blue,
+            decoration: TextDecoration.underline
+          ),
         ),
       ),
     );

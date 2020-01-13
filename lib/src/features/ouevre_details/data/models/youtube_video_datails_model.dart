@@ -20,11 +20,11 @@ class VideoYoutubeModel extends VideoYoutubeEntity{
 
   factory VideoYoutubeModel.fromJson(Map<String, dynamic> snippet){
       return VideoYoutubeModel(
-      id            : snippet['resourceId']['videoId'],
-      title         : snippet['title'],
-      thumbnailUrl  : snippet['thumbnails']['high']['url'],
-      channelTitle  : snippet['channelTitle'],
-      publishedAt   : snippet['publishedAt'] 
+      id            : snippet['id']['videoId'],
+      title         : snippet['snippet']['title'],
+      thumbnailUrl  : snippet['snippet']['thumbnails']['high']['url'],
+      channelTitle  : snippet['snippet']['channelTitle'],
+      publishedAt   : snippet['snippet']['publishedAt'] 
     );
   }
 

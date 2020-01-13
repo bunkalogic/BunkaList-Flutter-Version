@@ -160,7 +160,7 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type, animeEntity.name));
           },
           child: _poster 
       ),

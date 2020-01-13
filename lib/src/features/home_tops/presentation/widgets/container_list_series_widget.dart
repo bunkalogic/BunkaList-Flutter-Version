@@ -232,7 +232,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(seriesEntity.id, seriesEntity.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(seriesEntity.id, seriesEntity.type, seriesEntity.name));
           },
           child: _poster 
       ),

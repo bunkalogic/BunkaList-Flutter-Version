@@ -1,4 +1,3 @@
-import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import '../../../../../injection_container.dart';
 
 class ContainerListAnimeWidget extends StatefulWidget {
   final String title;
@@ -235,7 +233,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type,  animeEntity.name));
           },
           child: _poster 
       ),

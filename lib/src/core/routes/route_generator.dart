@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -61,6 +62,14 @@ class RouteGeneretor{
           return SlideRightRoute(page: AllDetailsPeoplePage(data: args,));
         }
         return routeError();
+
+      case '/VideoPlayer':
+        if(args is String){
+          
+          return SlideRightRoute(page: VideoPlayerWidget(id: args,));
+        }
+        return routeError();
+
 
       case '/Login':
         return SlideRightRoute(page: LoginHomePage());

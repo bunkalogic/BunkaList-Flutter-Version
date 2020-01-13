@@ -159,7 +159,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(series.id, series.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(series.id, series.type, series.name));
           },
           child: _poster 
       ),

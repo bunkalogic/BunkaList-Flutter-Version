@@ -169,7 +169,7 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movie.id, movie.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movie.id, movie.type, movie.title));
           },
           child: _poster 
       ),

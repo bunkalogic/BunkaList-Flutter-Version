@@ -7,6 +7,7 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_deta
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AllDetailsInfoTab extends StatefulWidget {
   
@@ -257,7 +258,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
             '\$${movie.revenue}'
             ),
           SizedBox(height: 10.0,),
-          _rowWebExtraInfo(
+          _rowTaglineExtraInfo(
             AppLocalizations.of(context).translate('details_tagline'), 
             movie.tagline
           ),
@@ -281,6 +282,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
         textAlign: TextAlign.justify,
+        overflow: TextOverflow.ellipsis,
       ),
     ); 
   }
@@ -314,7 +316,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
     );
   }
 
-  Widget _rowWebExtraInfo(String label, String data,){
+  Widget _rowTaglineExtraInfo(String label, String data,){
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -324,10 +326,31 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
             child: Text(
               (data == null ) ? 'info not yet available' : data,
               overflow: TextOverflow.ellipsis ,
-              style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 16.0),
+              style: TextStyle(fontSize: 16.0),
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _rowWebExtraInfo(String label, String data,){
+    return GestureDetector(
+      onTap: () => launch(data),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _labelExtraInfo(label, 14.0, FontWeight.w800),
+            Expanded(
+              child: Text(
+                (data == null ) ? 'info not yet available' : data,
+                overflow: TextOverflow.ellipsis ,
+                style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 16.0),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -535,7 +558,10 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
              serie.originCountry.first, 
              serie.status
             ),
-          _rowWebExtraInfo(context)
+          _rowWebExtraInfo(
+            AppLocalizations.of(context).translate('details_web'), 
+            serie.homepage
+          )
 
         ],
       ),
@@ -585,20 +611,23 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     );
   }
 
-  Widget _rowWebExtraInfo(BuildContext context){
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _labelExtraInfo(AppLocalizations.of(context).translate('details_web'), 14.0, FontWeight.w800),
-          Expanded(
-            child: Text(
-              (serie.homepage == null)? 'info not yet available' : serie.homepage,
-              overflow: TextOverflow.ellipsis ,
-              style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 14.0),
-            ),
-          )
-        ],
+  Widget _rowWebExtraInfo(String label, String data,){
+    return GestureDetector(
+      onTap: () => launch(data),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _labelExtraInfo(label, 14.0, FontWeight.w800),
+            Expanded(
+              child: Text(
+                (data == null ) ? 'info not yet available' : data,
+                overflow: TextOverflow.ellipsis ,
+                style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 16.0),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -799,7 +828,10 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
              anime.originCountry.first, 
              anime.status
             ),
-          _rowWebExtraInfo(context)
+          _rowWebExtraInfo(
+            AppLocalizations.of(context).translate('details_web'), 
+            anime.homepage
+          )
 
         ],
       ),
@@ -849,22 +881,26 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
     );
   }
 
-  Widget _rowWebExtraInfo(BuildContext context){
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _labelExtraInfo(AppLocalizations.of(context).translate('details_web'), 18.0, FontWeight.w800),
-          Expanded(
-            child: Text(
-               (anime.homepage == null)? 'info not yet available' : anime.homepage,
-              overflow: TextOverflow.ellipsis ,
-              style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 16.0),
-            ),
-          )
-        ],
+ Widget _rowWebExtraInfo(String label, String data,){
+    return GestureDetector(
+      onTap: () => launch(data),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _labelExtraInfo(label, 14.0, FontWeight.w800),
+            Expanded(
+              child: Text(
+                (data == null ) ? 'info not yet available' : data,
+                overflow: TextOverflow.ellipsis ,
+                style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: 16.0),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
+
 
 }

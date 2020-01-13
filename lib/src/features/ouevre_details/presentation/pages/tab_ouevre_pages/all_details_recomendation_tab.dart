@@ -206,7 +206,7 @@ class ItemPosterMovie extends StatelessWidget{
       //margin: EdgeInsets.only(right: 25.0),
       child: GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movie.id, movie.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movie.id, movie.type, movie.title));
           },
           child: _poster 
       ),
@@ -312,7 +312,7 @@ class ItemPosterSerie extends StatelessWidget{
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(serie.id, serie.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(serie.id, serie.type, serie.name));
           },
           child: _poster 
       ),
@@ -418,7 +418,7 @@ class ItemPosterAnime extends StatelessWidget{
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type, anime.name));
           },
           child: _poster 
       ),
