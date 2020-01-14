@@ -13,8 +13,6 @@ class PeopleInfoTab extends StatelessWidget with PosterColumnWidget {
         _peopleDate(),
         //_rowSocialMedia(),
         _cardInfoPeople(),
-        _labelKnownFor(),
-        //_gridKnownFor(context)
       ],
     );
   }
