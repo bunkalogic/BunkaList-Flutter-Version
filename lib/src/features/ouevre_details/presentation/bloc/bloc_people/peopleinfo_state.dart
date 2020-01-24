@@ -29,8 +29,8 @@ class LoadedCreditsPeople extends PeopleInfoState{
 
 class LoadedSocialMediaPeople extends PeopleInfoState{
 
-  final PeopleSocialMediaEntity people;
-  LoadedSocialMediaPeople({@required this.people}) : super ([people]); 
+  final PeopleSocialMediaEntity peopleSocialMedia;
+  LoadedSocialMediaPeople({@required this.peopleSocialMedia}) : super ([peopleSocialMedia]); 
 }
 
 class Error extends PeopleInfoState{

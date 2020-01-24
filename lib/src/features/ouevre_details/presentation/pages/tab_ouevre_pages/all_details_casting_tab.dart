@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/credits_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +131,7 @@ class ScrollCastItem extends StatelessWidget{
 
   Widget _personItem(BuildContext context, Cast cast){
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: cast.id),
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(cast.id, cast.name)),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
         child: Column(
@@ -217,7 +218,7 @@ class ScrollCrewItem extends StatelessWidget{
 
   Widget _personItem(BuildContext context, Crew crew){
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: crew.id),
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(crew.id, crew.name)),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
         child: Column(

@@ -38,7 +38,7 @@ class PeopleDetailsRemoteDataSourceImpl implements PeopleDetailsRemoteDataSource
       'language': prefs.getLanguage.toString()
     };
 
-    final url = Uri.https(_url, '/3/people/$id', _query);
+    final url = Uri.https(_url, '/3/person/$id', _query);
 
     final resp = await processResponse(url.toString());
 

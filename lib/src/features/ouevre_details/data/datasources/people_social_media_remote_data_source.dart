@@ -36,7 +36,7 @@ class PeopleSocialMediaRemoteDataSourceImpl implements PeopleSocialMediaRemoteDa
       'language': prefs.getLanguage.toString()
     };
 
-    final url = Uri.https(_url, '/3/people/$id/external_ids', _query);
+    final url = Uri.https(_url, '/3/person/$id/external_ids', _query);
 
     final resp = await processResponse(url.toString());
 

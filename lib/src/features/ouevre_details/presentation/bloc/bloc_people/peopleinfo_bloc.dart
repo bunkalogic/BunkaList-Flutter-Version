@@ -78,7 +78,7 @@ class PeopleInfoBloc extends Bloc<PeopleInfoEvent, PeopleInfoState> {
 
           yield failureOrPeopleSocialMedia.fold(
             (failure) => Error(message: _mapFailureToMessage(failure)), 
-            (people) => LoadedSocialMediaPeople(people: people)
+            (people) => LoadedSocialMediaPeople(peopleSocialMedia: people)
           );
 
         }

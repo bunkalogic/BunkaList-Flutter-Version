@@ -1,7 +1,10 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_people/bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_people_pages/people_cast_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_people_pages/people_info_tab.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 
@@ -9,9 +12,14 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_peo
 
 
 class AllDetailsTabPersonControllerWidget extends StatefulWidget {
-  AllDetailsTabPersonControllerWidget({@required this.idStatus});
+
 
   final Key idStatus;
+  final int idCast;
+
+  AllDetailsTabPersonControllerWidget({@required this.idStatus, @required this.idCast});
+
+  
 
   _AllDetailsTabPersonControllerWidgetState createState() => _AllDetailsTabPersonControllerWidgetState();
 }
@@ -36,14 +44,26 @@ class _AllDetailsTabPersonControllerWidgetState extends State<AllDetailsTabPerso
 
     switch(idStatus.toString()){
 
-      case '[<0>]': return PeopleInfoTab();
+      case '[<0>]': {
+        return new BlocProvider<PeopleInfoBloc>(
+          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          child: PeopleInfoTab(id: widget.idCast,),
+        );
+      }
 
-      case '[<1>]': return PeopleCastTab();
+      case '[<1>]':  {
+        return new BlocProvider<PeopleInfoBloc>(
+          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          child: PeopleCastTab(id: widget.idCast,),
+        );
+      }
 
-      case '[<2>]': return PeopleCastTab();
-
-      case '[<3>]': return PeopleCastTab();
- 
+      case '[<2>]':  {
+        return new BlocProvider<PeopleInfoBloc>(
+          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          child: PeopleCrewTab(id: widget.idCast,),
+        );
+      }
 
       default: return Center(child: Text('Error tab'),);
     }

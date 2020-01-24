@@ -25,3 +25,16 @@ Map<String, dynamic> getIdAndSeasonId(int id , int seasonId){
     return mapIdAndType;
 
 }
+
+Map<String, dynamic> getIdAndNameCast(int id , String name){
+
+  final Map<String, dynamic> mapIdAndType = new Map();
+
+    mapIdAndType.addAll({
+      'id'  : id,
+      'name': name
+    });
+
+    return mapIdAndType;
+
+}

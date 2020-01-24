@@ -37,7 +37,7 @@ class PeopleCreditsRemoteDataSourceImpl implements PeopleCreditsRemoteDataSource
       'language': prefs.getLanguage.toString()
     };
 
-    final url = Uri.https(_url, '/3/people/$id/combined_credits', _query);
+    final url = Uri.https(_url, '/3/person/$id/combined_credits', _query);
 
     final resp = await processResponse(url.toString());
 

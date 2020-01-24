@@ -61,7 +61,6 @@ class VideoYoutubeDetailsRemoteDataSourceImpl implements VideoYoutubeDetailsRemo
 
       final decodedData = json.decode(response.body);
 
-      print(decodedData);
 
       final listVideoYoutube = new ListVideosYoutube.fromJsonList(decodedData['items']);
 

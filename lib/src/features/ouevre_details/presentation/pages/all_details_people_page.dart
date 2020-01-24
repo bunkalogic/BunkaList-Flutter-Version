@@ -6,9 +6,9 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_d
 
 class AllDetailsPeoplePage extends StatefulWidget {
 
-  final int data;
+  final Map data;
 
-  const AllDetailsPeoplePage({Key key, @required this.data}) : super(key: key);
+  const AllDetailsPeoplePage({ @required this.data});
 
   @override
   _AllDetailsPeoplePageState createState() => _AllDetailsPeoplePageState();
@@ -21,9 +21,8 @@ class _AllDetailsPeoplePageState extends State<AllDetailsPeoplePage> with Single
 
   final List<Tab> personTabs = <Tab>[
     Tab(key: ValueKey(0), text:'Info'),
-    Tab(key: ValueKey(1), text:'Movies'),
-    Tab(key: ValueKey(2), text:'Series TV'),
-    Tab(key: ValueKey(3), text:'Anime'),
+    Tab(key: ValueKey(1), text:'Cast'),
+    Tab(key: ValueKey(2), text:'Crew'),
   ];
 
   @override
@@ -46,7 +45,7 @@ class _AllDetailsPeoplePageState extends State<AllDetailsPeoplePage> with Single
       body:  TabBarView(
         controller: _tabController,
         children: personTabs.map((Tab tab) {
-          return AllDetailsTabPersonControllerWidget(idStatus: tab.key,);
+          return AllDetailsTabPersonControllerWidget(idStatus: tab.key, idCast: widget.data['id'],);
         }).toList(),
       ),
     );
@@ -55,7 +54,7 @@ class _AllDetailsPeoplePageState extends State<AllDetailsPeoplePage> with Single
   Widget _appBarPeople() {
     return AppBar(
       leading: AppBarButtonBack(),
-      title: Text('Damian Lewis'),
+      title: Text(widget.data['name']),
       bottom: _tabBar(),
     );
   }

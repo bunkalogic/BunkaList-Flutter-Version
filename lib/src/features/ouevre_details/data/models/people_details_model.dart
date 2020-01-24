@@ -11,7 +11,7 @@ class PeopleModel extends PeopleEntity {
     @required dynamic deathday,
     @required int id,
     @required String name,
-    @required List<String> alsoKnownAs,
+    @required List<dynamic> alsoKnownAs,
     @required int gender,
     @required String biography,
     @required double popularity,

@@ -7,7 +7,7 @@ class PeopleEntity extends Equatable {
     final dynamic deathday;
     final int id;
     final String name;
-    final List<String> alsoKnownAs;
+    final List<dynamic> alsoKnownAs;
     final int gender;
     final String biography;
     final double popularity;

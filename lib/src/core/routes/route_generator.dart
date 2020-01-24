@@ -57,7 +57,7 @@ class RouteGeneretor{
         return routeError();
 
       case '/AllDetailsPeople':
-        if(args is int){
+        if(args is Map){
           
           return SlideRightRoute(page: AllDetailsPeoplePage(data: args,));
         }
