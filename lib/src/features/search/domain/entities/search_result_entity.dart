@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 class ResultsEntity extends Equatable {
     final int page;
-    final List<Result> results;
+    final List<dynamic> results;
     final int totalResults;
     final int totalPages;
 
