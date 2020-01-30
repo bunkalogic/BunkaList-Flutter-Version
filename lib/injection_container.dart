@@ -76,12 +76,17 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_rev
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_season_info/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
+import 'package:bunkalist/src/features/search/data/datasources/search_result_remote_data_source.dart';
+import 'package:bunkalist/src/features/search/data/implementations/search_result_impl.dart';
+import 'package:bunkalist/src/features/search/domain/contracts/search_result_contract.dart';
+import 'package:bunkalist/src/features/search/domain/usescases/get_search.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 import 'src/features/ouevre_details/data/datasources/serie_details_remote_data_source.dart';
+import 'src/features/search/presentation/bloc/bloc.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -92,6 +97,8 @@ Future<void> init() async {
   initTopsAnime();
   //! Ouevre Details Features
   initOuevreDetails();
+  //! Search Features
+  initSearch();
 
   //? Core
 
@@ -253,6 +260,29 @@ initTopsAnime(){
   
 }
 
+
+initSearch(){
+  //? Blocs
+  serviceLocator.registerFactory(
+    () => SearchBloc(
+      search: serviceLocator()
+      )
+    );
+  //? UseCases
+  serviceLocator.registerLazySingleton(() => GetSearch(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<SearchResultContract>(
+    () => SearchResultImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    );
+
+  //? Data Sources
+  serviceLocator.registerLazySingleton<SearchResultRemoteDataSource>(
+    () => SearchResultRemoteDataSourceImpl(client: serviceLocator())
+  );
+}
 
 initOuevreDetails(){
   //? BLoc
