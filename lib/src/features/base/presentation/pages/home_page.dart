@@ -1,7 +1,12 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
+import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
+import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -54,7 +59,11 @@ Widget _createAppBarPlatform(BuildContext context) {
       ),
 
       actions: <Widget>[
-        _materialButtonSearch()
+        new BlocProvider(
+          builder: (_) => serviceLocator<SearchBloc>(),
+          child:SearchButton(),
+        ),
+        
       ],
     
     );
@@ -79,6 +88,21 @@ Widget _createAppBarPlatform(BuildContext context) {
       ],
     );
   }
+
+  Widget _loadingPage(int position){
+  
+  switch(position){
+    
+    case 0: return TopsPage();
+
+    case 1: return ProfilePage();
+
+    case 2: return SettingsPage();
+
+    default: return TopsPage();
+    
+  }
+}
 
 // Widget _createNavBarPlaform(BuildContext context) {
 
@@ -122,20 +146,7 @@ Widget _createAppBarPlatform(BuildContext context) {
 //   }
 // }
 
-Widget _loadingPage(int position){
-  
-  switch(position){
-    
-    case 0: return TopsPage();
 
-    case 1: return ProfilePage();
-
-    case 2: return SettingsPage();
-
-    default: return TopsPage();
-    
-  }
-}
  
 
 //! Material Components (Android)
@@ -169,18 +180,6 @@ Widget _loadingPage(int position){
   //     ]
   //   );
   // }
-
-  Widget _materialButtonSearch() {
-    return IconButton(
-      iconSize: 35.0,
-      color: Colors.purple[500],
-      icon: Icon(Icons.search),
-      onPressed: (){
-        //* search all the TMDB
-        
-      },
-    );
-  }
 
   // MaterialNavBarData _navBarMaterial() {
   //   return MaterialNavBarData( 
@@ -264,13 +263,27 @@ Widget _loadingPage(int position){
   //   );
   // }
 
-  
+}
 
-  
 
- 
+class SearchButton extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    
+    return IconButton(
+      iconSize: 35.0,
+      color: Colors.deepPurpleAccent[400],
+      icon: Icon(Icons.search),
+      onPressed: (){
+        
+         showSearch<ResultsEntity>(
+          context: context,
+          delegate: MultiSearchWidget(BlocProvider.of<SearchBloc>(context)),
+        );
+       
+      },
+    );
 
-  
+  }
 
-  
 }

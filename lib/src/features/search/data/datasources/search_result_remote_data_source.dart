@@ -35,7 +35,9 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
     
     final Map<String, String> _query = {
       'api_key' : _theMovieDB,
-      'language': prefs.getLanguage.toString()
+      'language': prefs.getLanguage.toString(),
+      'query'   : query,
+      'page'    :  '1',
     };
 
     final url = Uri.https(_url, '/3/search/multi', _query);

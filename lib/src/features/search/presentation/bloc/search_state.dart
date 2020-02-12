@@ -1,40 +1,69 @@
 
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 
-abstract class SearchState extends Equatable {
+
+class SearchState {
   
-  const SearchState([List props = const <dynamic>[]]) : super(props);
-
-}
-
-class Empty extends SearchState{}
-
-class Loading extends SearchState{}
-
-class LoadedMovie extends SearchState{
+  final bool isLoading;
   final List<Result> results;
-  LoadedMovie({ @required this.results }) : super([results]);
+  final bool hasError;
+  final String errorMessage;
+  
+  const SearchState({
+  this.isLoading, 
+  this.results,  
+  this.hasError,
+  this.errorMessage
+  });
+
+
+  factory SearchState.initial(){
+    
+    return SearchState(
+      results: [],
+      isLoading: false,
+      hasError: false,
+      errorMessage: ''
+    );
+  }
+
+  factory SearchState.loading(){
+    
+    return SearchState(
+      results: [],
+      isLoading: true,
+      hasError: false,
+      errorMessage: ''
+    );
+  }
+
+  factory SearchState.success(List<Result> results){
+    
+    return SearchState(
+      results: results,
+      isLoading: false,
+      hasError: false,
+      errorMessage: ''
+    );
+  }
+
+
+  factory SearchState.error(String message){
+    
+    return SearchState(
+      results: [],
+      isLoading: false,
+      hasError: true,
+      errorMessage: message
+    );
+  }
+
+  
+   @override
+  String toString() =>
+      'SearchState {results: ${results.toString()}, isLoading: $isLoading, hasError: $hasError , errorMessage: $errorMessage }';
+
 }
 
-class LoadedSerie extends SearchState{
-  final List<Result> results;
-  LoadedSerie({ @required this.results }) : super([results]);
-}
 
-class LoadedAnime extends SearchState{
-  final List<Result> results;
-  LoadedAnime({ @required this.results }) : super([results]);
-}
-
-class LoadedPerson extends SearchState{
-  final List<Result> results;
-  LoadedPerson({ @required this.results }) : super([results]);
-}
-
-class Error extends SearchState{
-  final String message;
-  Error({@required this.message}) : super ([message]);
-}

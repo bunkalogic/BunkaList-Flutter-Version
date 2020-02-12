@@ -28,7 +28,7 @@ class Result extends Equatable {
     final int voteCount;
     final String name;
     final String originalName;
-    final DateTime releaseDate;
+    final String releaseDate;
     final String originalTitle;
     final String title;
     final String profilePath;

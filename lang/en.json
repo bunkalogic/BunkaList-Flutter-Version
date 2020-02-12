@@ -5,6 +5,14 @@
   "login_email"             : "Email",
 
   
+  "movies"              : "Movies",
+
+  "series"              : "Tv Series",
+
+  "animes"              : "Animes",
+
+  "people"              : "People",
+
   "top_movies"              : "Tops Movies",
   
   "movies_popular"          : "Top Popular Movies",
@@ -207,7 +215,7 @@
 
   "crew"                        : "Crew",
   
-
+  "search_must_longer"          : "Search term must be longer than two letters.",
 
 
   

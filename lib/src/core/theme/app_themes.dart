@@ -44,9 +44,10 @@ final appThemeData = {
     ),
     
     primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.black)
+      title: TextStyle(color: Colors.black),
     ),
 
+    
 
     tabBarTheme: TabBarTheme(
       
