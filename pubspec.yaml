@@ -40,6 +40,10 @@ dependencies:
   url_launcher: ^5.1.2
   # bottom navigation
   fancy_bottom_navigation: ^0.3.2
+  # firebase auth
+  firebase_auth: ^0.15.4
+  # flutter secure storage
+  flutter_secure_storage: ^3.3.1+1
     
 
   flutter_localizations:

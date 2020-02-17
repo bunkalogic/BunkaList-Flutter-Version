@@ -12,6 +12,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="bunkalist"
+        android:allowBackup="false"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
