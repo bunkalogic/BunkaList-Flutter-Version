@@ -3,11 +3,11 @@ import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/usescases/usescase.dart';
 import 'package:dartz/dartz.dart';
 
-class GetUserAuthToken extends UseCase< void, NoParams>{
+class GetUserDeleteToken extends UseCase< void, NoParams>{
   
   final UserAuthTokenContracts contract;
 
-  GetUserAuthToken(this.contract);
+  GetUserDeleteToken(this.contract);
 
 
 

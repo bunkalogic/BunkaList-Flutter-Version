@@ -14,6 +14,20 @@ import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_serie
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/tops_series_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/tops_animes_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
+import 'package:bunkalist/src/features/login/data/datasources/user_auth_remote_data_source.dart';
+import 'package:bunkalist/src/features/login/data/datasources/user_auth_token_remote_data_source.dart';
+import 'package:bunkalist/src/features/login/data/datasources/user_register_remote_data_source.dart';
+import 'package:bunkalist/src/features/login/data/implementations/user_auth_impl.dart';
+import 'package:bunkalist/src/features/login/data/implementations/user_auth_token_impl.dart';
+import 'package:bunkalist/src/features/login/data/implementations/user_register_impl.dart';
+import 'package:bunkalist/src/features/login/domain/contracts/user_auth_contract.dart';
+import 'package:bunkalist/src/features/login/domain/contracts/user_auth_token_contract.dart';
+import 'package:bunkalist/src/features/login/domain/contracts/user_register_auth_contract.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_delete_token.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_has_token.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_persist_token.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_register.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/credits_details_remote_data_source.dart';
@@ -85,6 +99,8 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
+import 'src/features/login/presentation/bloc/bloc_auth/bloc.dart';
+import 'src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'src/features/ouevre_details/data/datasources/serie_details_remote_data_source.dart';
 import 'src/features/search/presentation/bloc/bloc.dart';
 
@@ -99,6 +115,7 @@ Future<void> init() async {
   initOuevreDetails();
   //! Search Features
   initSearch();
+  initLogin();
 
   //? Core
 
@@ -281,6 +298,64 @@ initSearch(){
   //? Data Sources
   serviceLocator.registerLazySingleton<SearchResultRemoteDataSource>(
     () => SearchResultRemoteDataSourceImpl(client: serviceLocator())
+  );
+}
+
+initLogin(){
+  //? Blocs
+  serviceLocator.registerFactory(
+    () => AuthenticationBloc(
+      hasToken: serviceLocator(),
+      deleteToken: serviceLocator(),
+      persistToken: serviceLocator()
+      )
+    );
+
+  serviceLocator.registerFactory(
+    () => LoginBloc(
+      authBloc: serviceLocator(),
+      userAuth: serviceLocator(),
+      userRegister: serviceLocator()
+      )
+    );
+
+  //? UseCases
+  serviceLocator.registerLazySingleton(() => GetUserRegister(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserAuth(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserHasToken(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserDeleteToken(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserPersistToken(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<UserEmailAuthContract>(
+    () => UserEmailAuthImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  serviceLocator.registerLazySingleton<UserAuthTokenContracts>(
+    () => UserAuthTokenImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  serviceLocator.registerLazySingleton<UserRegisterContract>(
+    () => UserRegisterImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );  
+
+
+  //? Data Sources
+  serviceLocator.registerLazySingleton<UserAuthRemoteDataSource>(
+    () => UserAuthRemoteDataSourceImpl()
+  );
+
+  serviceLocator.registerLazySingleton<UserAuthTokenRemoteDataSource>(
+    () => UserAuthTokenRemoteDataSourceImpl()
+  );
+
+  serviceLocator.registerLazySingleton<UserRegisterRemoteDataSource>(
+    () => UserRegisterRemoteDataSourceImpl()
   );
 }
 

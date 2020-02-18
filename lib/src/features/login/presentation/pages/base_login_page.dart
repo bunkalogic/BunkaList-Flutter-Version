@@ -11,7 +11,7 @@ class LoginHomePage extends StatefulWidget {
 
 class _LoginHomePageState extends State<LoginHomePage> {
 
-  PageController _controller = new PageController(initialPage: 1, viewportFraction: 1.0);//!FIXME: initial page : 1
+  PageController _controller = new PageController(initialPage: 1, viewportFraction: 1.0);
 
   @override
   void initState() {
@@ -108,6 +108,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: <Widget>[
                                           Icon(
+                                            //! Add the icon of Google
                                             const IconData(0xea88,
                                                 fontFamily: 'icomoon'),
                                             color: Colors.white,
