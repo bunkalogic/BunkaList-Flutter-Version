@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bunkalist/src/core/error/failures.dart';
+import 'package:bunkalist/src/core/usescases/usescase.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth_with_google.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth.dart';
@@ -18,18 +20,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GetUserRegister getUserRegister;
   final GetUserAuth getUserAuth;
   final AuthenticationBloc authenticationBloc;
+  final GetUserWithGoogleAuth getGoogleAuth;
 
   LoginBloc({
     @required GetUserRegister userRegister,
     @required GetUserAuth userAuth,
-    @required AuthenticationBloc authBloc
+    @required AuthenticationBloc authBloc,
+    @required GetUserWithGoogleAuth googleAuth
   }) 
    :  assert(userRegister != null),
       assert(userAuth != null),
       assert(authBloc != null),
+      assert(googleAuth != null),
       getUserRegister = userRegister,
       getUserAuth = userAuth,
-      authenticationBloc = authBloc;
+      authenticationBloc = authBloc,
+      getGoogleAuth = googleAuth;
 
 
 
@@ -46,15 +52,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
 
       final eitherFailureOrAuth = await getUserAuth(paramsAuth.Params(email: event.email, password: event.password));
-
-      eitherFailureOrAuth.fold(
+      event.toString();
+      yield eitherFailureOrAuth.fold(
         (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
         (token){
-
+          
           authenticationBloc.add(LoggedIn(token: token));
-          return LoginInitial();
+
+          return LoginSuccess();
         } 
       );
+
+      
 
     }else if(event is SignInButtonPressed){
 
@@ -64,9 +73,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       yield eitherFailureOrSign.fold(
         (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
-        (empty) =>  LoginInitial()
+        (empty) =>  LoginSuccess()
       );
 
+
+    }else if(event is SignInWithGoogleButtonPressed){
+      
+      yield LoginLoading();
+
+      final eitherFailureOrSignGoogle = await getGoogleAuth(NoParams());
+
+      yield eitherFailureOrSignGoogle.fold(
+        (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
+        (empty) =>  LoginSuccess()
+      ); 
 
     }
   }

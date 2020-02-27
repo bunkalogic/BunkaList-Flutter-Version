@@ -1,6 +1,11 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/login_widget.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/signup_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class LoginHomePage extends StatefulWidget {
@@ -34,9 +39,15 @@ class _LoginHomePageState extends State<LoginHomePage> {
       physics: new AlwaysScrollableScrollPhysics(),
       scrollDirection: Axis.horizontal,
       children: <Widget>[
-        LoginWidget(),
-        _baseLogin(context),
-        SignUpWidget()
+       BlocProvider<LoginBloc>(
+      builder: (_) => serviceLocator<LoginBloc>(),
+      child: LoginWidget(),
+      ),
+      _baseLogin(context),
+       BlocProvider<LoginBloc>(
+      builder: (_) => serviceLocator<LoginBloc>(),
+      child: SignUpWidget(),
+      ),
       ],
     );
   }
@@ -49,13 +60,13 @@ class _LoginHomePageState extends State<LoginHomePage> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.purple[900],
-            Colors.purple[800], 
+            Colors.purple[500],
             Colors.purple[700], 
-            Colors.purple[600],
-            Colors.purple[500], 
-            Colors.purple[400],
-            Colors.purple[300], 
+            Colors.purple[900], 
+            //Colors.purple[600],
+            //Colors.purple[500], 
+            //Colors.purple[400],
+            //Colors.purple[300], 
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),
@@ -67,78 +78,16 @@ class _LoginHomePageState extends State<LoginHomePage> {
           _buttonSignUp(),
           _buttonLogin(),
           _borderWithConnect(context),
-          _buttonConnectWithGoogle(context)
+          BlocProvider<LoginBloc>(
+            builder: (_) => serviceLocator<LoginBloc>(),
+            child: ButtonSignInWithGoogle(),
+          ),
         ],
       ),
     );
   }
 
-  Container _buttonConnectWithGoogle(BuildContext context) {
-    return new Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new Container(
-                    margin: EdgeInsets.only(left: 8.0),
-                    alignment: Alignment.center,
-                    child: new Row(
-                      children: <Widget>[
-                        new Expanded(
-                          child: new FlatButton(
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(15.0),
-                            ),
-                            color: Color(0Xffdb3236),
-                            onPressed: () => {},
-                            child: new Container(
-                              child: new Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  new Expanded(
-                                    child: new FlatButton(
-                                      onPressed: ()=> Navigator.pushNamed(context, '/'),
-                                      padding: EdgeInsets.only(
-                                        top: 20.0,
-                                        bottom: 20.0,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Icon(
-                                            //! Add the icon of Google
-                                            const IconData(0xea88,
-                                                fontFamily: 'icomoon'),
-                                            color: Colors.white,
-                                            size: 15.0,
-                                          ),
-                                          Text(
-                                            "WITH GOOGLE",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-  }
+  
 
   Container _borderWithConnect(BuildContext context) {
     return new Container(
@@ -154,7 +103,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                   ),
                 ),
                 Text(
-                  "OR CONNECT WITH",
+                  AppLocalizations.of(context).translate("or_connect"),
                   style: TextStyle(
                     color: Colors.grey[300],
                     fontWeight: FontWeight.bold,
@@ -171,7 +120,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           );
   }
 
-  Container _buttonLogin() {
+  Widget _buttonLogin() {
     return new Container(
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
@@ -194,7 +143,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                       children: <Widget>[
                         new Expanded(
                           child: Text(
-                            "LOGIN",
+                            AppLocalizations.of(context).translate("login"),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.deepPurpleAccent[400],
@@ -211,7 +160,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
         );
   }
 
-  Container _buttonSignUp() {
+  Widget _buttonSignUp() {
     return new Container(
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 40.0),
@@ -235,7 +184,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                       children: <Widget>[
                         new Expanded(
                           child: Text(
-                            "SIGN UP",
+                            AppLocalizations.of(context).translate("sign_up"),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.white,
@@ -258,7 +207,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           child: Center(
             child: Image(
               image: AssetImage('assets/bunkalist-banner.png'),
-              height: 160.0,
+              height: 120.0,
               fit: BoxFit.cover,
             ),
           ),
@@ -295,6 +244,94 @@ class _LoginHomePageState extends State<LoginHomePage> {
       2,
       duration: Duration(milliseconds: 800),
       curve: Curves.decelerate,
+    );
+  }
+}
+
+
+
+class ButtonSignInWithGoogle extends StatefulWidget {
+
+  @override
+  _ButtonSignInWithGoogleState createState() => _ButtonSignInWithGoogleState();
+}
+
+class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
+  @override
+  Widget build(BuildContext context) {
+
+    _pressedButtonSignInWithGoogle(){
+
+      BlocProvider.of<LoginBloc>(context)..add(
+        SignInWithGoogleButtonPressed()
+      );
+       print('button sign with google pressed');
+      
+    }
+
+
+    return BlocListener<LoginBloc, LoginState>(
+      
+      listener: (context, state){
+        if(state is LoginFailure){
+          print('login failure');
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${state.error}'),
+              backgroundColor: Colors.redAccent[400],
+            ),
+          );
+        }
+        
+        if(state is LoginLoading){
+          print('login is loading');
+        }
+        
+        if(state is LoginSuccess){
+          print('login success');
+          Navigator.pushReplacementNamed(context, '/Home');
+        }
+      },
+          
+          child: BlocBuilder<LoginBloc, LoginState>(
+            builder: (context, state) {
+              return new Container(
+                margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+                width: MediaQuery.of(context).size.width,
+                child: new RaisedButton(
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10.0)),
+                  padding: EdgeInsets.only(top: 3.0,bottom: 3.0,left: 1.0),
+                  color: const Color(0xFF4285F4),
+                  onPressed: state is! LoginLoading ? _pressedButtonSignInWithGoogle : null,
+                    child: new Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new Image.asset(
+                          'assets/btn_google.png',
+                          height: 48.0,
+                        ),
+                        SizedBox(width: 40.0,),
+                        new Container(
+                          padding: EdgeInsets.only(left: 10.0,right: 10.0),
+                          child: new Text(
+                            AppLocalizations.of(context).translate("sign_with_google"),
+                            style: GoogleFonts.roboto(
+                              textStyle: TextStyle(
+                               fontSize: 16.0,
+                               fontWeight: FontWeight.w700,
+                               color: Colors.white 
+                              )
+                            ),
+                          )
+                        ),
+                        Spacer(),
+                      ],
+                    )
+                  ),
+                );
+            },
+          )
     );
   }
 }

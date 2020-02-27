@@ -60,7 +60,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       yield AuthenticationLoading();
      
       await userPersistToken(Params(token: event.token));
-
+      event.toString();
       yield AuthenticationAuthenticated();
     }
 

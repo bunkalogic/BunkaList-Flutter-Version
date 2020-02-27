@@ -16,7 +16,7 @@ class GetUserAuth extends UseCase<String, Params>{
 
   @override
   Future<Either<Failures, String>> call(params) async {
-    
+
     return await contract.getAuthenticate(email: params.email, password: params.password);
 
   }

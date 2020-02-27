@@ -216,12 +216,41 @@
   "crew"                        : "Crew",
   
   "search_must_longer"          : "Search term must be longer than two letters.",
-
-
   
   
+  "sign_up"                     : "SIGN UP",
 
+  "login"                       : "LOGIN",
 
+  "sign_with_google"            : "Sign in with Google",
+
+  "or_connect"                  : "OR CONNECT WITH",
+
+  "email"                       : "EMAIL",
+
+  "password"                    : "PASSWORD",
+
+  "confirm_password"            : "CONFIRM PASSWORD",
+
+  "have_account"                : "Already have an account ?",
+
+  "btn_create_account"          : "Create a new account",
+
+  "forgot_password"             : "Have you forgotten the password?",
+
+  "email_or_password_empty"     : "The email or password is incorrect or empty, try again",
+
+  "empty_email"                 : "Please add your email",
+
+  "empty_password"              : "Please add your password",
+
+  "reset_password"              : "Reset your password",
+
+  "email_verification"          : "An email has been sent to you. Please confirm before sign in",
+
+  "password_error"              : "Confirm Password should match password",
+
+  "password_lenght"             : "Password should have at least 8 characters",
 
 
   "login_username":

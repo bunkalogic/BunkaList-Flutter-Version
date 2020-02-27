@@ -7,28 +7,30 @@ abstract class UserAuthRemoteDataSource{
   Future<String> getAuthenticate({String email, String password});
 }
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
 class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource{
   
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Future<String> getAuthenticate({String email, String password}) async {
     
      String token;
-
+  
     final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
       email: email,
       password: password
     )).user;
 
-    if(user != null){
-
-      String newToken = user.getIdToken(refresh: true).toString();
-
-      token = newToken;
+    print('get firebase user uid: ${user.uid}');
+    if(user != null && user.isEmailVerified){  
+      Future<IdTokenResult> newToken = user.getIdToken();
+      
+      token = newToken.toString();
     }
-
-    return token;
+    
+    return token.toString(); 
 
   }
 

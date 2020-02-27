@@ -16,14 +16,18 @@ import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/to
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_auth_remote_data_source.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_auth_token_remote_data_source.dart';
+import 'package:bunkalist/src/features/login/data/datasources/user_auth_with_google_remote_data_source.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_register_remote_data_source.dart';
 import 'package:bunkalist/src/features/login/data/implementations/user_auth_impl.dart';
 import 'package:bunkalist/src/features/login/data/implementations/user_auth_token_impl.dart';
+import 'package:bunkalist/src/features/login/data/implementations/user_auth_with_google_impl.dart';
 import 'package:bunkalist/src/features/login/data/implementations/user_register_impl.dart';
 import 'package:bunkalist/src/features/login/domain/contracts/user_auth_contract.dart';
 import 'package:bunkalist/src/features/login/domain/contracts/user_auth_token_contract.dart';
+import 'package:bunkalist/src/features/login/domain/contracts/user_auth_with_google_contract.dart';
 import 'package:bunkalist/src/features/login/domain/contracts/user_register_auth_contract.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth.dart';
+import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth_with_google.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_delete_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_has_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_persist_token.dart';
@@ -315,7 +319,8 @@ initLogin(){
     () => LoginBloc(
       authBloc: serviceLocator(),
       userAuth: serviceLocator(),
-      userRegister: serviceLocator()
+      userRegister: serviceLocator(),
+      googleAuth: serviceLocator(),
       )
     );
 
@@ -325,6 +330,7 @@ initLogin(){
   serviceLocator.registerLazySingleton(() => GetUserHasToken(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserDeleteToken(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserPersistToken(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserWithGoogleAuth(serviceLocator()));
   //? Repository - Contracts
   serviceLocator.registerLazySingleton<UserEmailAuthContract>(
     () => UserEmailAuthImpl(
@@ -342,6 +348,12 @@ initLogin(){
     () => UserRegisterImpl(
       remoteDataSource: serviceLocator(),
       ),
+    );
+
+    serviceLocator.registerLazySingleton<UserWithGoogleAuthContract>(
+    () => UserWithGoogleAuthImpl(
+      remoteDataSource: serviceLocator(),
+      ),
     );  
 
 
@@ -357,6 +369,10 @@ initLogin(){
   serviceLocator.registerLazySingleton<UserRegisterRemoteDataSource>(
     () => UserRegisterRemoteDataSourceImpl()
   );
+  serviceLocator.registerLazySingleton<UserWithGoogleAuthRemoteDataSource>(
+    () => UserWithGoogleAuthRemoteDataSourceImpl()
+  );
+
 }
 
 initOuevreDetails(){

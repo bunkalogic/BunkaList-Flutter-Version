@@ -1,21 +1,29 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DialogForGotPassword{
 
-  Widget openDialog(){
+  final emailController = TextEditingController();
+
+  Widget openDialog(BuildContext context){
     return SimpleDialog(
-      backgroundColor: Colors.purpleAccent[700],
+      backgroundColor: Colors.deepPurpleAccent[400],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0)
       ),
       elevation: 5.0,
       contentPadding: EdgeInsets.all(10.0),
-      title: Text('Restore Password', textAlign: TextAlign.center,),
+      title: Text(
+        AppLocalizations.of(context).translate("reset_password"), 
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.white),
+      ),
       titlePadding: EdgeInsets.all(5.0),
       children: <Widget>[
-        _labelEmail(),
+        _labelEmail(context),
         _emailTextField(),
-        _buttonLogin()
+        _buttonLogin(context)
       ],
     );
   }
@@ -23,7 +31,7 @@ class DialogForGotPassword{
   Container _emailTextField() {
     return new Container(
             width: 20.0,
-            margin: const EdgeInsets.only(left: 5.0, right: 5.0, top: 10.0),
+            margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               border: Border(
@@ -40,6 +48,7 @@ class DialogForGotPassword{
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: emailController,
                     obscureText: false,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -54,14 +63,14 @@ class DialogForGotPassword{
           );
   }
 
-  Row _labelEmail() {
+  Row _labelEmail(BuildContext context) {
     return new Row(
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: new Text(
-                    "EMAIL",
+                    AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrangeAccent,
@@ -74,9 +83,9 @@ class DialogForGotPassword{
           );
   }
 
-  Container _buttonLogin() {
+  Container _buttonLogin(BuildContext context) {
     return new Container(
-            width: 20.0,
+            width: 15.0,
             margin: const EdgeInsets.only(left: 5.0, right: 5.0, top: 10.0),
             alignment: Alignment.center,
             child: new Row(
@@ -87,18 +96,18 @@ class DialogForGotPassword{
                       borderRadius: new BorderRadius.circular(15.0),
                     ),
                     color: Colors.orange[900],
-                    onPressed: () => {},
+                    onPressed: () => _buttonPressedResetPassword(context, emailController.text),
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 20.0,
-                        horizontal: 20.0,
+                        vertical: 15.0,
+                        horizontal: 15.0,
                       ),
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Expanded(
                             child: Text(
-                              "RESTORE PASSWORD",
+                              AppLocalizations.of(context).translate("reset_password"),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.white,
@@ -113,6 +122,17 @@ class DialogForGotPassword{
               ],
             ),
           );
+  }
+
+  void _buttonPressedResetPassword(BuildContext context, String email) async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    if(email.isNotEmpty){
+      await _auth.sendPasswordResetEmail(email: email);
+    }
+    
+
+    Navigator.pop(context);  
   }
 
 }

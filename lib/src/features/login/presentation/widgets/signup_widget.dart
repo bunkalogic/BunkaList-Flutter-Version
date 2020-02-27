@@ -1,4 +1,8 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
+import 'package:bunkalist/src/features/login/presentation/pages/base_login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpWidget extends StatefulWidget {
   SignUpWidget({Key key}) : super(key: key);
@@ -8,21 +12,59 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
+  
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  var passKey = GlobalKey<FormFieldState>();
+  
   @override
   Widget build(BuildContext context) {
-    return new Container(
+
+    
+
+    return BlocListener<LoginBloc, LoginState>(
+      
+      listener: (context, state){
+        if(state is LoginFailure){
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${state.error}'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+
+        if(state is LoginLoading){
+          print('login is loading');
+        }
+        
+        if(state is LoginSuccess){
+           Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context).translate("email_verification")),
+              backgroundColor: Colors.greenAccent[400],
+            ),
+          );
+          
+        }
+      },
+
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state){
+
+          return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
           gradient: new LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.orange[300],
-              Colors.orange[400], 
+              //Colors.orange[300],
+              //Colors.orange[400], 
+              //Colors.orange[500], 
+              //Colors.orange[600],
               Colors.orange[500], 
-              Colors.orange[600],
-              Colors.orange[700], 
-              Colors.orange[800],
+              Colors.orange[700],
               Colors.orange[900], 
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
@@ -47,13 +89,60 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             height: 24.0, color: Colors.transparent,
           ),
           _buttonHaveAccount(),
-          _buttonSignUp(context),
+          _buttonSignUp(context, state),
+          SizedBox(height: 6.0,),
+          Container(
+            child: Center(
+              child: state is LoginLoading
+              ? CircularProgressIndicator()
+              : null,
+            ),
+          ),
         ],
       ),
     );
+        },
+      ),
+    );
+
+    
   }
 
-  Container _buttonSignUp(BuildContext context) {
+  _onSignUpButtonPressed(){
+
+    if(passKey.currentState.validate() != true){
+
+        Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context).translate("password_error")),
+              backgroundColor: Colors.redAccent[700],
+            ),
+          );
+      }
+
+    if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && passKey.currentState.validate()){
+      
+      BlocProvider.of<LoginBloc>(context)..add(
+        SignInButtonPressed(
+          email: _emailController.text, 
+          password: _passwordController.text
+        )
+      );
+
+    }else{
+
+        Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context).translate("email_or_password_empty")),
+              backgroundColor: Colors.redAccent[400],
+            ),
+          );
+      }
+      
+      
+    }
+
+  Container _buttonSignUp(BuildContext context, LoginState state) {
     return new Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
@@ -66,7 +155,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       borderRadius: new BorderRadius.circular(15.0),
                     ),
                     color: Colors.purpleAccent[700],
-                    onPressed: () => {},
+                    onPressed: state is! LoginLoading ? _onSignUpButtonPressed: null,
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -77,7 +166,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         children: <Widget>[
                           new Expanded(
                             child: Text(
-                              "SIGN UP",
+                              AppLocalizations.of(context).translate("sign_up"),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.white,
@@ -102,7 +191,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: new FlatButton(
                   child: new Text(
-                    "Already have an account?",
+                    AppLocalizations.of(context).translate("have_account"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.purpleAccent[700],
@@ -110,7 +199,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                     textAlign: TextAlign.end,
                   ),
-                  onPressed: () => {},
+                  onPressed:(){
+                    // TODO: ir al login widget 
+                  },
                 ),
               ),
             ],
@@ -136,7 +227,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new Expanded(
-                  child: TextField(
+                  child: TextFormField(
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -144,6 +235,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       hintText: '*********',
                       hintStyle: TextStyle(color: Colors.grey[300]),
                     ),
+                    validator: (confirmation){
+                      var password = passKey.currentState.value;
+                      return (confirmation == password) ? null : AppLocalizations.of(context).translate("password_error");
+                    },
                   ),
                 ),
               ],
@@ -158,7 +253,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 child: new Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: new Text(
-                    "CONFIRM PASSWORD",
+                    AppLocalizations.of(context).translate("confirm_password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.purpleAccent[700],
@@ -190,7 +285,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new Expanded(
-                  child: TextField(
+                  child: TextFormField(
+                    controller: _passwordController,
+                    key: passKey,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -198,6 +295,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       hintText: '*********',
                       hintStyle: TextStyle(color: Colors.grey[300]),
                     ),
+                    validator:  (password){
+                      var result = password.length < 8 ? AppLocalizations.of(context).translate("password_lenght") : null;
+                      return result;
+                    },
                   ),
                 ),
               ],
@@ -212,7 +313,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 child: new Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: new Text(
-                    "PASSWORD",
+                    AppLocalizations.of(context).translate("password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.purpleAccent[700],
@@ -245,6 +346,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: _emailController,
                     obscureText: false,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -266,7 +368,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 child: new Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: new Text(
-                    "EMAIL",
+                    AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.purpleAccent[700],

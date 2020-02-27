@@ -1,8 +1,11 @@
+import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
+import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
@@ -84,7 +87,10 @@ class _SettingsPageState extends State<SettingsPage> {
         _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, "rate the App", ''),
         Divider(),
         SizedBox(height: 10.0,),
-        _buttonLogOutMaterial(),
+        BlocProvider<AuthenticationBloc>(
+      builder: (_) => serviceLocator<AuthenticationBloc>(),
+      child: ButtomLogOut(),
+      ),
 
       ],
     );
@@ -118,7 +124,7 @@ class _SettingsPageState extends State<SettingsPage> {
         textColor: Colors.white,
         child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
         onPressed: (){
-          //TODO: Agregar logOut
+          BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
           Navigator.pushNamed(context, '/Login');
         },
 
@@ -201,4 +207,28 @@ class _SettingsPageState extends State<SettingsPage> {
   
 
   
+}
+
+
+class ButtomLogOut extends StatelessWidget {
+  const ButtomLogOut({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        color: Colors.purple,
+        textColor: Colors.white,
+        child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
+        onPressed: (){
+          BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
+          Navigator.pushNamed(context, '/Login');
+        },
+
+      ),
+    );
+  }
 }

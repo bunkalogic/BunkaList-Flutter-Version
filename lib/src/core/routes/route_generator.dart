@@ -1,3 +1,6 @@
+import 'package:bunkalist/src/features/base/presentation/pages/initial_controller_page.dart';
+import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
+import 'package:bunkalist/src/features/base/presentation/pages/splash_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +29,17 @@ class RouteGeneretor{
     switch(settings.name){
       
       case '/':
+        return MaterialPageRoute(builder: (_) => InitialController());
+
+      case '/Splash':
+        return MaterialPageRoute(builder: (_) => SplashPage());
+
+      case '/Loading':
+        return MaterialPageRoute(builder: (_) => LoadingPage());  
+
+      case '/Home':
         return MaterialPageRoute(builder: (_) => HomePage());
+  
       
       case '/TopList':
         if(args is String){

@@ -38,3 +38,17 @@ class SignInButtonPressed extends LoginEvent {
   String toString() =>
       'SignInButtonPressed  { email: $email, password: $password }';
 }
+
+
+class SignInWithGoogleButtonPressed extends LoginEvent {
+  
+
+  const SignInWithGoogleButtonPressed ();
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() =>
+      'SignInWithGoogleButtonPressed';
+}
