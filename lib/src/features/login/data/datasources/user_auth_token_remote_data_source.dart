@@ -1,5 +1,5 @@
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class UserAuthTokenRemoteDataSource{
 
@@ -12,7 +12,6 @@ abstract class UserAuthTokenRemoteDataSource{
 
 }
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class UserAuthTokenRemoteDataSourceImpl implements UserAuthTokenRemoteDataSource{
   
@@ -20,38 +19,36 @@ class UserAuthTokenRemoteDataSourceImpl implements UserAuthTokenRemoteDataSource
   // Create storage
   final storage = new FlutterSecureStorage();
 
+  Preferences prefs = new Preferences();
+
   @override
   Future<void> deleteToken() async {
 
-    final FirebaseUser user = await _auth.currentUser();
-    print(user.uid);
-    print(user.getIdToken());
-    await storage.delete(key: user.uid);
+    await storage.delete(key: prefs.getCurrentUserUid);
 
     return;
   }
 
   @override
   Future<bool> hasToken() async {
-    final FirebaseUser user = await _auth.currentUser();
   
-    if(user == null){
+    if(prefs.getCurrentUserUid == null){
       return false;
     }
 
-    String value = await storage.read(key: user.uid);
+    String value = await storage.read(key: prefs.getCurrentUserUid);
+    print('Token saved: $value');
+    prefs.currentUserHasToken = (value == null) ? false : true;
 
-    bool hasToken = (value == null) ? false : true;
-
-    return hasToken; 
+    return prefs.currentUserHasToken; 
 
   }
 
   @override
   Future<void> persistToken(String token) async {
-    final FirebaseUser user = await _auth.currentUser();
-    print(token);
-    await storage.write(key: user.uid, value: token);
+    
+    print('persist token is $token');
+    await storage.write(key: prefs.getCurrentUserUid, value: token);
 
     return;
   }

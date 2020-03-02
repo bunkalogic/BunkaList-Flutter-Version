@@ -54,14 +54,14 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
 
         if(state is AuthenticationAuthenticated){
           print('Authenticated');
-          await Future.delayed(Duration(seconds: 2));
+          await Future.delayed(Duration(seconds: 1));
           return Navigator.pushReplacementNamed(context, '/Home');
           
         }
 
         if(state is AuthenticationUnauthenticated){
           print('Unauthenticated');
-          await Future.delayed(Duration(seconds: 2));
+          await Future.delayed(Duration(seconds: 1));
           return Navigator.pushReplacementNamed(context, '/Login');
         }
 
@@ -69,7 +69,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
           print('loading login');
           return _loadingPage();
         }
-        //_getNavgation();   
+           
       },
       child:_loadingPage(),
     );

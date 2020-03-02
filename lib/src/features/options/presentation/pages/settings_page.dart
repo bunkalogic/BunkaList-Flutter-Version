@@ -213,8 +213,12 @@ class _SettingsPageState extends State<SettingsPage> {
 class ButtomLogOut extends StatelessWidget {
   const ButtomLogOut({Key key}) : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
+    Preferences prefs = new Preferences();
+
     return Center(
       child: RaisedButton(
         shape: RoundedRectangleBorder(
@@ -224,6 +228,12 @@ class ButtomLogOut extends StatelessWidget {
         textColor: Colors.white,
         child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
         onPressed: (){
+          
+          prefs.getCurrentUsername = '';
+          prefs.getCurrentUserPhoto = '';
+          prefs.getCurrentUserUid = '';
+          prefs.currentUserHasToken = false;
+
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
           Navigator.pushNamed(context, '/Login');
         },

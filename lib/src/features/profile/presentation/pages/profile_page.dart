@@ -1,5 +1,5 @@
 
-import 'package:bunkalist/src/features/home_tops/presentation/widgets/tops_scrollview_widget.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +13,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  Preferences prefs = new Preferences();
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -84,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _profileName() {
-    return Text('Username', style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold), );
+    return Text(prefs.getCurrentUsername, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold), );
   }
 
   Widget _profileViews() {

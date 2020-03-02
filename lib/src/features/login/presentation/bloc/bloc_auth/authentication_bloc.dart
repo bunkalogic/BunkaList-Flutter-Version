@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/usescases/usescase.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_delete_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_has_token.dart';
@@ -40,6 +41,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     if (event is AppStarted) {
       
       final Either<Failures, bool> eitherFailOrBolean = await userHasToken(NoParams());
+      
 
       bool hasToken;
 
@@ -48,6 +50,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         (boolean) => hasToken = boolean
         );
         print('has token: $hasToken');
+        
 
       if (hasToken) {
         yield AuthenticationAuthenticated();

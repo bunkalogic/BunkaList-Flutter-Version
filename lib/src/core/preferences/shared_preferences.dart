@@ -16,6 +16,8 @@ class Preferences{
     this._prefs = await SharedPreferences.getInstance();
   }
 
+  
+
   //? se en encarga de guardar el modo de tema 
   get whatModeIs {
     return _prefs.getBool('whatModeIs') ?? false;
@@ -25,7 +27,7 @@ class Preferences{
     _prefs.setBool('whatModeIs', value);
   }
 
-  //? se en encarga de guardar el modo de tema 
+  //? se en encarga de guardar el language code 
   get getLanguage {
     return _prefs.getString('language') ?? 'en';
   }
@@ -34,6 +36,42 @@ class Preferences{
     _prefs.setString('language', value);
   }
 
+  //? se encarga de guardar current User Id
 
+  get getCurrentUserUid {
+    return _prefs.getString('currentUserUid') ?? '';
+  }
 
+  set getCurrentUserUid  (String value) {
+    _prefs.setString('currentUserUid', value);
+  }
+
+  //? se encarga de guardar current Username
+
+  get getCurrentUsername {
+    return _prefs.getString('currentUsername') ?? '';
+  }
+
+  set getCurrentUsername  (String value) {
+    _prefs.setString('currentUsername', value);
+  }
+
+  //? se encarga de guardar current Username
+
+  get getCurrentUserPhoto {
+    return _prefs.getString('currentUserPhoto') ?? '';
+  }
+
+  set getCurrentUserPhoto  (String value) {
+    _prefs.setString('currentUserPhoto', value);
+  }
+
+  //? se en encarga de saber si tiene token el usuario 
+  get currentUserHasToken {
+    return _prefs.getBool('hasToken') ?? false;
+  }
+
+  set currentUserHasToken (bool value) {
+    _prefs.setBool('hasToken', value);
+  }
 }

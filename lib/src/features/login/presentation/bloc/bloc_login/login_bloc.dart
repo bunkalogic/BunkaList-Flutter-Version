@@ -85,7 +85,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       yield eitherFailureOrSignGoogle.fold(
         (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
-        (empty) =>  LoginSuccess()
+        (token) {
+
+          authenticationBloc.add(LoggedIn(token: token));   
+
+          return LoginSuccess();
+        } 
       ); 
 
     }

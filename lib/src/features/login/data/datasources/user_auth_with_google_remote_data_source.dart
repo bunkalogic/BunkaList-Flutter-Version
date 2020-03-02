@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -17,6 +18,8 @@ class UserWithGoogleAuthRemoteDataSourceImpl implements UserWithGoogleAuthRemote
     
     String token;
 
+    Preferences prefs = new Preferences();
+
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
 
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -34,6 +37,11 @@ class UserWithGoogleAuthRemoteDataSourceImpl implements UserWithGoogleAuthRemote
 
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
+
+    
+    prefs.getCurrentUsername = user.displayName;
+    prefs.getCurrentUserPhoto = user.photoUrl;
+    prefs.getCurrentUserUid = user.uid;
 
 
     Future<IdTokenResult> newToken = currentUser.getIdToken();
