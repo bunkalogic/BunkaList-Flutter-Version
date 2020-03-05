@@ -14,7 +14,7 @@ class GetDeleteOuevre extends UseCase<void, Params>{
   GetDeleteOuevre(this.contract);
 
   @override
-  Future<Either<Failures, List<OuevreEntity>>> call(Params params) async {
+  Future<Either<Failures, void>> call(Params params) async {
 
     return await contract.deleteOuevreInFirebase(params.ouevreEntity ,params.type);
     
