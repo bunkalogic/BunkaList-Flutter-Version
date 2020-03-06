@@ -4,7 +4,7 @@ import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_delete_ouevre.dart';
-import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete_and_update/bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete/bloc.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 

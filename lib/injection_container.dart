@@ -94,19 +94,36 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_rev
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_season_info/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
+import 'package:bunkalist/src/features/profile/data/datasources/crud_ouevre_remote_data_source.dart';
+import 'package:bunkalist/src/features/profile/data/implementations/add_ouevre_impl.dart';
+import 'package:bunkalist/src/features/profile/data/implementations/delete_ouevre_impl.dart';
+import 'package:bunkalist/src/features/profile/data/implementations/get_ouevre_impl.dart';
+import 'package:bunkalist/src/features/profile/data/implementations/update_ouevre_impl.dart';
+import 'package:bunkalist/src/features/profile/domain/contracts/add_ouevre_contract.dart';
+import 'package:bunkalist/src/features/profile/domain/contracts/delete_ouevre_contract.dart';
+import 'package:bunkalist/src/features/profile/domain/contracts/get_ouevre_contract.dart';
+import 'package:bunkalist/src/features/profile/domain/contracts/update_ouevre_contract.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_add_ouevre.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_delete_ouevre.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_get_ouevre.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_update_ouevre.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete/bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_update/update_bloc.dart';
 import 'package:bunkalist/src/features/search/data/datasources/search_result_remote_data_source.dart';
 import 'package:bunkalist/src/features/search/data/implementations/search_result_impl.dart';
 import 'package:bunkalist/src/features/search/domain/contracts/search_result_contract.dart';
 import 'package:bunkalist/src/features/search/domain/usescases/get_search.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
-
-import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
-
 import 'src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'src/features/ouevre_details/data/datasources/serie_details_remote_data_source.dart';
 import 'src/features/search/presentation/bloc/bloc.dart';
+
+
+import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 
 final serviceLocator = GetIt.instance;
 
@@ -371,6 +388,73 @@ initLogin(){
   );
   serviceLocator.registerLazySingleton<UserWithGoogleAuthRemoteDataSource>(
     () => UserWithGoogleAuthRemoteDataSourceImpl()
+  );
+
+}
+
+initProfile(){
+  //? Blocs
+  serviceLocator.registerFactory(
+    () => AddOuevreBloc(
+      addOuevre: serviceLocator()
+      )
+    );
+
+  serviceLocator.registerFactory(
+    () => DeleteBloc(
+      deleteOuevre: serviceLocator()
+      )
+    );
+
+  serviceLocator.registerFactory(
+    () => UpdateBloc(
+      updateOuevre: serviceLocator()
+      )
+    );
+
+  serviceLocator.registerFactory(
+    () => GetListsBloc(
+      allOuevre: serviceLocator()
+      )
+    );      
+
+  
+
+  //? UseCases
+  serviceLocator.registerLazySingleton(() => GetAllOuevre(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAddOuevre(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetDeleteOuevre(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUpdateOuevre(serviceLocator()));
+  
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<GetOuevreContract>(
+    () => GetOuevreImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  serviceLocator.registerLazySingleton<AddOuevreContract>(
+    () => AddOuevreImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  serviceLocator.registerLazySingleton<UpdateOuevreContract>(
+    () => UpdateOuevreImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+    serviceLocator.registerLazySingleton<DeleteOuevreContract>(
+    () => DeleteOuevreImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );  
+
+
+  //? Data Sources
+  serviceLocator.registerLazySingleton<CrudOuevreRemoteDataSource>(
+    () => CrudOuevreRemoteDataSourceImpl()
   );
 
 }

@@ -14,7 +14,7 @@ class GetAddOuevre extends UseCase<void, Params>{
   GetAddOuevre(this.contract);
 
   @override
-  Future<Either<Failures, List<OuevreEntity>>> call(Params params) async {
+  Future<Either<Failures, void>> call(Params params) async {
 
     return await contract.addOuevreInFirebase(params.ouevreEntity ,params.type);
     
