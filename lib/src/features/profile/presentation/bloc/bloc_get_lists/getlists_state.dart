@@ -7,7 +7,6 @@ abstract class GetListsState extends Equatable {
   List<Object> get props => [];
 }
 
-class GetListsInitial extends GetListsState {}
 
 class GetListsLoading extends GetListsState {}
 

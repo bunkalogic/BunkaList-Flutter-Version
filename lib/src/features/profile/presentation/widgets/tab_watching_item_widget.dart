@@ -1,8 +1,22 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 
 class TabItemWatchingWidget extends StatefulWidget {
-  const TabItemWatchingWidget({Key key}) : super(key: key);
+  
+  final String type; 
+  final String status;
+
+  const TabItemWatchingWidget({
+    @required this.type,
+    @required this.status
+  });
+  
 
   @override
   _TabItemWatchingWidgetState createState() => _TabItemWatchingWidgetState();
@@ -10,6 +24,19 @@ class TabItemWatchingWidget extends StatefulWidget {
 
 class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
+
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<GetListsBloc>(context)..add(
+      GetYourLists( type: widget.type, status: widget.status)
+    );
+  }
+
+  final loadingPage = Center(
+      child: CircularProgressIndicator(),
+    ) ;  
 
   double cardSize = 120.0;
 
@@ -24,10 +51,38 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _itemTab();
+    return BlocBuilder<GetListsBloc, GetListsState>(
+      builder: (context, state) {
+        if(state is GetListsLoading){
+          
+          return loadingPage;
+
+        }else if(state is GetListsLoaded){
+
+          return Container(
+      child: ListView.builder(
+        itemCount: state.ouevreList.length,
+        itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
+        ),
+    );
+
+        }else if(state is GetlistsError){
+          
+          return Center(
+              child: Text('something Error'),
+          );
+
+        }
+
+        return Center(
+              child: Text('something Error'),
+        );
+
+      },
+    );
   }
 
-  Widget _itemTab() {
+  Widget _itemTab(OuevreEntity ouevre) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 800),
       curve: Curves.decelerate,
@@ -46,10 +101,10 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
           child: Stack(
            fit: StackFit.expand, 
            children: <Widget>[
-             _imageBackground(),
+             _imageBackground(ouevre),
              _gradientBackground(),
-             _listTileInfoItem(),
-             _buttomExtend(),
+             _listTileInfoItem(ouevre),
+             _buttomExtend(ouevre),
              
            ],
           ),
@@ -58,13 +113,13 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     );
   }
 
-  Widget _imageBackground() {
+  Widget _imageBackground(OuevreEntity ouevre) {
     return Container(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: FadeInImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/original/A30ZqEoDbchvE7mCZcSp6TEwB1Q.jpg'),
-            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/A30ZqEoDbchvE7mCZcSp6TEwB1Q.jpg', scale: 200 / 400 ),
+            image: NetworkImage(ouevre.oeuvrePoster),
+            placeholder: AssetImage('assets/poster_placeholder.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -93,21 +148,22 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     );
   }
 
-  Widget _listTileInfoItem(){
+  Widget _listTileInfoItem(OuevreEntity ouevre){
     return ListTile(
       leading: _itemRate(),
-      title: _titleItem(),
-      trailing: _itemDate(),
-      subtitle: _rowInfoSeasonAndEpisode(),
+      title: _titleItem(ouevre),
+      trailing: _itemDate(ouevre),
+      subtitle: _rowInfoSeasonAndEpisode(ouevre),
       
     );
 
   }
 
-  Widget _titleItem() {
+  Widget _titleItem(OuevreEntity ouevre) {
     return Text(
-      'Vikings',
+      ouevre.oeuvreTitle,
       textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: Colors.white,
         fontSize: 18.0,
@@ -124,7 +180,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.stars, color: Colors.deepOrange,),
-        Text('No rate', 
+        Text('-.-', 
         style: TextStyle(
           fontSize: 14.0, 
           fontWeight: FontWeight.w900, 
@@ -139,12 +195,20 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     );
   }
 
-  Widget _itemDate() {
+  Widget _itemDate(OuevreEntity ouevre) {
+
+    final DateTime datetime = ouevre.addDate;
+
+    final formatter = DateFormat('dd-MM-yy');
+
+    final date = formatter.format(datetime);
+
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.today, color: Colors.deepOrange,),
-        Text('22/07/19', 
+        Text(date, 
         style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -158,31 +222,41 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     );
   }
 
-  Widget _buttomExtend() {
+  Widget _buttomExtend(OuevreEntity ouevre) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
         onPressed: (){
-          //TODO: Dialog para cambiar el Status
+          ButtomUpdateAndDelete(
+              type: ouevre.oeuvreType,
+              ouevre: ouevre,
+            ).showBottonModalOptions(context);
         },
       ),
     );
   }
 
-  _rowInfoSeasonAndEpisode(){
+  _rowInfoSeasonAndEpisode(OuevreEntity ouevre){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _subTitleSeasonInfo(),
-        _threeTitleEpisodeInfo()
+        _subTitleSeasonInfo(ouevre),
+        _threeTitleEpisodeInfo(ouevre)
       ],
     );
   }
 
-  Widget _subTitleSeasonInfo() {
+  Widget _subTitleSeasonInfo(OuevreEntity ouevre) {
+
+    if(ouevre.oeuvreType == "movie") return Container();
+
+    final String season = AppLocalizations.of(context).translate("season");
+
+    final String watchSeason = ouevre.seasons.toString();
+    
     return Text(
-      'Season: 3',
+      '$season : $watchSeason',
        style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -194,9 +268,16 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
       );
   }
 
-  Widget _threeTitleEpisodeInfo() {
+  Widget _threeTitleEpisodeInfo(OuevreEntity ouevre) {
+
+    if(ouevre.oeuvreType == "movie") return Container();
+    
+    final String episode = AppLocalizations.of(context).translate("episode");
+
+    final String watchEpisode = ouevre.episodes.toString();
+
     return Text(
-      'Episode: 11',
+      '$episode : $watchEpisode',
        style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 

@@ -211,11 +211,15 @@
 
   "episode"                     : "Episodes",
 
+  "season"                      : "Season",
+
   "casting"                     : "Casting",
 
   "crew"                        : "Crew",
   
   "search_must_longer"          : "Search term must be longer than two letters.",
+
+  "premiere_day"                : "Premiere Day:",
   
   
   "sign_up"                     : "SIGN UP",
@@ -251,6 +255,120 @@
   "password_error"              : "Confirm Password should match password",
 
   "password_lenght"             : "Password should have at least 8 characters",
+
+  "what_season"                 : "What season are you going?",
+
+  "what_episode"                : "What episode are you going?",
+
+  "helper_comment"              : "Comment your opinion (it is optional)",
+
+  "label_comment_pause"         : "Why do you leave this ouevre on pause or dropped",
+
+  "label_comment_completed"     : "What did you think of the oeuvre?",
+
+  "add_in_list"                 : "Add in your list",
+
+  "title_simple_rating"         : "Simple Rating",
+  
+  "label_simple_rating"         : "Rate the ouevre in a general way and comment on your opinion.",
+
+  "title_details_rating"        : "Rating in Detail",
+
+  "label_details_rating"        : "Rate the ouevre in detail, evaluating the plot, characters, photography, soundtrack and entertainment.",
+
+  "added_success_completed"     : "Successfully added to your completed list!!!",
+
+  "added_success_watching"      : "Successfully added to your watch list!!!",
+
+  "added_success_pause"         : "Successfully added to your pause list!!!",
+
+  "added_success_dropped"       : "Successfully added to your dropped list!!!",
+
+  "added_success_wish"          : "Successfully added to your wish list!!!",
+
+  "rating_in_general"           : "Rating in general: ",
+
+  "rating_in_plot"              : "Rating the Plot: ",
+
+  "rating_in_characters"        : "Rating the Characters: ",
+
+  "rating_in_photography"       : "Rating the Photography: ",
+
+  "rating_in_soundtrack"        : "Rating the Soundtrack: ",
+
+  "rating_in_entertainment"     : "Rating the Entertainment: ",
+
+  "status_completed"            : "Completed",
+
+  "status_watching"             : "Watching",
+
+  "status_pause"                : "Pause",
+
+  "status_dropped"              : "Dropped",
+
+  "status_wishlist"             : "Wish List",
+
+  "last_views_movie"             : "Latest Movies added to your lists :",
+
+  "last_views_serie"             : "Latest Series added to your lists :",
+
+  "last_views_anime"             : "Latest Animes added to your lists :",
+
+  "list_movies"                  : "List Movies",
+                
+  "list_series"                  : "List Series",
+                
+  "list_animes"                  : "List Animes",
+
+  "total_movies"                 : "Total Movies",
+                
+ "total_series"                  : "Total Series",
+                
+  "total_animes"                 : "Total Animes",
+
+  "title_update_ouevre"          : "Update this Ouevre",
+  
+  "label_update_ouevre"          : "Change the status of this ouevre or change its rating.",
+
+  "title_delete_ouevre"          : "Delete this Ouevre",
+
+  "label_delete_ouevre"          : "Delete this ouevre from your list",
+  
+  "cancel"                       : "Cancel",
+
+  "accept"                       : "Accept",
+
+  "success_delete_ouevre"        : "Successfully removed from your list",
+
+  "label_dialog_delete_ouevre"   : "Are you sure to delete this ouevre from your list?",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   "login_username":

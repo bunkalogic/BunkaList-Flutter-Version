@@ -18,7 +18,7 @@ class AddOuevreImpl implements AddOuevreContract{
   Future<Either<Failures, void>> addOuevreInFirebase(OuevreEntity ouevre, String type) async {
     try{
 
-      final remote = await remoteDataSource.addInFirebase(ouevre, type);
+      final remote = await remoteDataSource.addInFirebase(ouevre.toModel(), type);
 
       return Right(remote); 
 

@@ -1,8 +1,14 @@
 
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
@@ -36,10 +42,10 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _createBox() {
         //! posible cambio por un card para ponerle elevation
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: 250.0,
+          height: 185.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -58,19 +64,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _infoProfileBox() {
      return Container(
-       padding: EdgeInsets.all(15.0),
+       padding: EdgeInsets.all(6.0),
        child: Column(
          crossAxisAlignment: CrossAxisAlignment.center,
          children: <Widget>[
            _profileImage(),
            _profileName(),
-           SizedBox(height: 10.0,),
-           _profileViews(),
            SizedBox(height: 8.0,),
-           _profileViews(),
-           SizedBox(height: 8.0,),
-           Expanded(child: _itemTotalTimeView())
-           
+           _profileTotalViews(),
          ],
        ),
      );
@@ -78,10 +79,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _profileImage() {
     return Container(
-      width: 100.0,
-      height: 100.0,
+      width: 80.0,
+      height: 80.0,
       child: CircleAvatar(
-        backgroundImage: NetworkImage('https://avatarfiles.alphacoders.com/175/175534.jpg'),
+        backgroundImage: NetworkImage(prefs.getCurrentUserPhoto),
       )
     );
   }
@@ -90,24 +91,27 @@ class _ProfilePageState extends State<ProfilePage> {
     return Text(prefs.getCurrentUsername, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold), );
   }
 
-  Widget _profileViews() {
+  Widget _profileTotalViews() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        _itemViews(),
-        SizedBox(width: 40.0,),
-        _itemViews(),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: TotalViewsWidget(status: 'Total', type: 'movie',),
+          ),
+        new BlocProvider<GetListsBloc>(
+          builder: (_) => serviceLocator<GetListsBloc>(),
+          child: TotalViewsWidget(status: 'Total', type: 'tv',),
+        ),
+        new BlocProvider<GetListsBloc>(
+          builder: (_) => serviceLocator<GetListsBloc>(),
+          child: TotalViewsWidget(status: 'Total', type: 'anime',),
+        ),
       ],
     );
   }
 
-  Widget _itemViews() {
-    return Text('Movies views: 124', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 16.0),);
-  }
-
-  Widget _itemTotalTimeView() {
-    return Text('total time views: 14 day and 12 hours', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),);
-  }
+  
 
   Widget _titleScrollSection(String title) {
     return Container(
@@ -119,10 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // TODO: cambiar cuando se agregue la parte de Firebase
-  // Widget _scrollViewsExample(){
-  //   return TopsScrollViewHorizontal();
-  // }
+  
 
   Widget _buttomPlatformList(BuildContext context){
     return PlatformWidget(
@@ -141,19 +142,27 @@ class _ProfilePageState extends State<ProfilePage> {
         _createBox(),
         SizedBox(height: 5.0,),
         _buttomPlatformList(context),
-        SizedBox(height: 20.0,),
-        _titleScrollSection('The last views :'),
         SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list watching :'),
+        _titleScrollSection(AppLocalizations.of(context).translate("last_views_movie")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'movie',),
+          ),
         SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list awaiting :'),
+        _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'tv',),
+          ),
         SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-       // SizedBox(height: 2.0,),
+        _titleScrollSection(AppLocalizations.of(context).translate("last_views_anime")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'anime',),
+          ),
       ],
     );
   }
@@ -162,11 +171,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _buttonTypeMaterial(context, 'List Movies', Colors.redAccent, 0),
+        _buttonTypeMaterial(context, AppLocalizations.of(context).translate("list_movies"), Colors.redAccent, 0),
         SizedBox(width: 10.0,),
-        _buttonTypeMaterial(context, 'List Series TV', Colors.greenAccent[400], 1),
+        _buttonTypeMaterial(context,  AppLocalizations.of(context).translate("list_series"), Colors.greenAccent[400], 1),
         SizedBox(width: 10.0,),
-        _buttonTypeMaterial(context, 'List Anime', Colors.lightBlueAccent, 2),
+        _buttonTypeMaterial(context,  AppLocalizations.of(context).translate("list_animes"), Colors.lightBlueAccent, 2),
       ],
     );
   }
@@ -201,18 +210,24 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 5.0,),
         _buttomPlatformList(context),
         SizedBox(height: 20.0,),
-        _titleScrollSection('The last views :'),
+        _titleScrollSection('The last views of Movies :'),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'movie',),
+          ),
+        _titleScrollSection('The last views of Series :'),
         SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list watching :'),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'tv',),
+          ),
+        _titleScrollSection('The last views of Animes :'),
         SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-        //SizedBox(height: 1.0,),
-        _titleScrollSection('The list awaiting :'),
-        SizedBox(height: 10.0,),
-        //_scrollViewsExample(),
-       // SizedBox(height: 2.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: LastAddedItem(status: 'Last', type: 'anime',),
+          ),
       ],
     );
   }

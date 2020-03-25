@@ -1,7 +1,10 @@
 
-
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
+
 
 abstract class UserAuthRemoteDataSource{
 
@@ -11,6 +14,10 @@ abstract class UserAuthRemoteDataSource{
 
 
 class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource{
+
+  final http.Client client;
+
+  UserAuthRemoteDataSourceImpl({@required this.client});
   
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Preferences prefs = new Preferences();
@@ -36,9 +43,15 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource{
       
       token = newToken.toString();
     }
-    
+
+    String guestSesionId = await getUserGuestSessionId(client); 
+
+    prefs.getGuestSessionId = guestSesionId;  
+
     return token.toString(); 
 
   }
+
+  
 
 }

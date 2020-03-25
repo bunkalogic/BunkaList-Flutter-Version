@@ -1,6 +1,7 @@
 
 
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/profile/data/datasources/post_rate_in_tmdb.dart';
 import 'package:bunkalist/src/features/profile/data/models/oeuvre_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,10 +30,16 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
     final ouevreCollection = firebase
     .collection('user/${prefs.getCurrentUserUid}/list$type');
 
+    if(ouevre.status == 1){
+      postRateTMDb(ouevre.oeuvreId.toString(), type, ouevre.finalRate);
+    }
+    
+
     return await ouevreCollection
     .document(ouevre.oeuvreId.toString())
     .setData(ouevre.toDocument());
 
+    
   }
 
   @override
@@ -67,8 +74,8 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       case 'Completed':{
 
         return ouevreCollection
-        .where('status',isEqualTo: 'Completed')
-        .orderBy('finalRate')
+        .where('status',isEqualTo: 1)
+        .orderBy('finalRate', descending: true)
         .snapshots().map((snap){
           
           return snap.documents
@@ -82,7 +89,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       case 'Watching':{
         
         return ouevreCollection
-        .where('status',isEqualTo: 'Watching')
+        .where('status',isEqualTo: 2)
         .orderBy('addDate', descending: true)
         .snapshots().map((snap){
           
@@ -97,7 +104,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       case 'Pause':{
 
         return ouevreCollection
-        .where('status',isEqualTo: 'Pause')
+        .where('status',isEqualTo: 3)
         .orderBy('addDate', descending: true)
         .snapshots().map((snap){
           
@@ -111,7 +118,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       
       case 'Dropped':{
         return ouevreCollection
-        .where('status',isEqualTo: 'Dropped')
+        .where('status',isEqualTo: 4)
         .orderBy('addDate', descending: true)
         .snapshots().map((snap){
           
@@ -124,7 +131,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       
       case 'WishList':{
         return ouevreCollection
-        .where('status',isEqualTo: 'WishList')
+        .where('status',isEqualTo: 5)
         .orderBy('addDate', descending: true)
         .snapshots().map((snap){
           
@@ -148,10 +155,21 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
 
+      case 'Total': {
+        return ouevreCollection
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+
+        });
+      }
+
       
       default:{
         return ouevreCollection
-        .where('status',isEqualTo: 'WishList')
+        .where('status',isEqualTo: 5)
         .orderBy('addDate', descending: true)
         .snapshots().map((snap){
           

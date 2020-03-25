@@ -1,7 +1,11 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,7 +125,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
           // _chipGenresItem(),
           Expanded(child: ChipsGenresWidget(genres: anime.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          Expanded(child: _rowButtons()),
+          Expanded(child: _rowButtons(anime)),
         ],
       ),
     );
@@ -247,29 +251,13 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
   //   );
   // }
 
-  Widget _rowButtons() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-         _buttonActions(Icons.check_circle, Colors.green), 
-         _buttonActions(Icons.play_circle_filled, Colors.blue),
-         _buttonActions(Icons.pause_circle_filled, Colors.orange),
-         _buttonActions(Icons.remove_circle, Colors.red),
-         _buttonActions(Icons.add_circle, Colors.purple),
-        ],
-      ),
-    );
+  Widget _rowButtons(AnimeEntity anime) {
+    return BlocProvider<AddOuevreBloc>(
+          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          child: MultiButtonsAdded(ouevre: anime, type: anime.type, objectType: ConstantsTypeObject.animeEntity,),
+        );
+  
   }
 
-  Widget _buttonActions(IconData icon, Color color){
-    return IconButton(
-      icon: Icon(
-        icon, 
-        size: 25.0, 
-        color: color,
-        ),
-        onPressed: () {},
-    );
-  }
+ 
 }

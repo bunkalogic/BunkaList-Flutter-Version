@@ -6,10 +6,9 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 class OuevreEntity extends Equatable{
-
-  final String   id;             
+             
   final DateTime addDate;          
-  final String   status;           
+  final int   status;           
   final int      seasons;           
   final int      episodes;          
   final String   comment;           
@@ -26,12 +25,13 @@ class OuevreEntity extends Equatable{
   final double   oeuvreRating;      
   final int      seasonTotal;       
   final int      episodeTotal;      
-  final String   oeuvreType;        
+  final String   oeuvreType;
+  final bool     isFavorite;   
+  final int      positionListFav;
+  final String   reviewExt;
 
 
-
-   OuevreEntity({
-    this.id,           
+   OuevreEntity({           
     this.addDate,          
     this.status,           
     this.seasons,          
@@ -50,9 +50,12 @@ class OuevreEntity extends Equatable{
     this.oeuvreRating,     
     this.seasonTotal,      
     this.episodeTotal,     
-    this.oeuvreType,       
+    this.oeuvreType,
+    this.isFavorite,
+    this.positionListFav,
+    this.reviewExt       
    }) : super([
-    id,           
+           
     addDate,          
     status,           
     seasons,          
@@ -71,12 +74,14 @@ class OuevreEntity extends Equatable{
     oeuvreRating,     
     seasonTotal,      
     episodeTotal,     
-    oeuvreType,       
+    oeuvreType,
+    isFavorite,
+    positionListFav,
+    reviewExt       
   ]);
 
   OuevreModel toModel(){
-    return  OuevreModel(
-      id                 : id,           
+    return  OuevreModel(          
       addDate            : addDate,          
       status             : status,           
       seasons            : seasons,          
@@ -95,13 +100,15 @@ class OuevreEntity extends Equatable{
       oeuvreRating       : oeuvreRating,     
       seasonTotal        : seasonTotal,      
       episodeTotal       : episodeTotal,     
-      oeuvreType         : oeuvreType, 
+      oeuvreType         : oeuvreType,
+      isFavorite         : isFavorite,
+      positionListFav    : positionListFav,
+      reviewExt          : reviewExt 
     );
   }
 
   static OuevreEntity fromModel(OuevreModel model){
-    return OuevreEntity(
-      id                 : model.id,           
+    return OuevreEntity(           
       addDate            : model.addDate,          
       status             : model.status,           
       seasons            : model.seasons ?? 0,          
@@ -121,6 +128,9 @@ class OuevreEntity extends Equatable{
       seasonTotal        : model.seasonTotal ?? 0,      
       episodeTotal       : model.episodeTotal ?? 0,     
       oeuvreType         : model.oeuvreType,
+      isFavorite         : model.isFavorite ?? false,
+      positionListFav    : model.positionListFav ?? 0,
+      reviewExt          : model.reviewExt ?? '' 
     );
   }
 

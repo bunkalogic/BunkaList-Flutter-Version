@@ -1,9 +1,12 @@
+import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/list_profile_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class ListProfilePage extends StatefulWidget {
@@ -57,10 +60,27 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       body:  TabBarView(
         controller: _tabController,
         children: myTabs.map((Tab tab) {
-          return ListTabProfileWidget(idStatus: tab.key,);
+          return new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: ListTabProfileWidget(idStatus: tab.key, type: _getTypeName(),),
+          );
+          
         }).toList(),
       ),  
     );
+  }
+
+  String _getTypeName(){
+    switch(widget.data){
+      
+      case 0: return 'movie';
+
+      case 1: return 'tv';
+
+      case 2: return 'anime';
+
+      default: return 'movie';
+    }
   }
 
   Widget _appBarTitle(){

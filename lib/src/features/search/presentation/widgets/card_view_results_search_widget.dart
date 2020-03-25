@@ -1,9 +1,14 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/core/utils/get_search_filter_by_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardViewSearchResultsWidget extends StatefulWidget {
   
@@ -85,7 +90,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
           //_chipGenresItem(result),
           Expanded(child: ChipsGenresWidget(genres: result.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          Expanded(child: _rowButtons(),flex: 1,),
+          Expanded(child: _rowButtons(result),flex: 1,),
         ],
       ),
     );
@@ -112,6 +117,8 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
      final placeholder = AssetImage('assets/poster_placeholder.png'); 
      final poster = NetworkImage('https://image.tmdb.org/t/p/original${ result.posterPath }');
 
+     final title = (result.title != null) ? result.title : result.name;
+
     //! Agregar el Hero
     final _poster = Container(
       width: 110.0,
@@ -130,7 +137,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
       //margin: EdgeInsets.only(right: 25.0),
       child: GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(result.id, result.mediaType, result.title));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(result.id, result.mediaType, title));
           },
           child: _poster 
       ),
@@ -183,29 +190,12 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     );
   }
 
-  Widget _rowButtons() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-         _buttonActions(Icons.check_circle, Colors.green), 
-         _buttonActions(Icons.play_circle_filled, Colors.blue),
-         _buttonActions(Icons.pause_circle_filled, Colors.orange),
-         _buttonActions(Icons.remove_circle, Colors.red),
-         _buttonActions(Icons.add_circle, Colors.purple),
-        ],
-      ),
-    );
+  Widget _rowButtons(Result result) {
+    return BlocProvider<AddOuevreBloc>(
+          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          child: MultiButtonsAdded(ouevre: result, type: result.mediaType, objectType: ConstantsTypeObject.searchResult,),
+        );
   }
 
-  Widget _buttonActions(IconData icon, Color color){
-    return IconButton(
-      icon: Icon(
-        icon, 
-        size: 25.0, 
-        color: color,
-        ),
-        onPressed: () {},
-    );
-  }
+  
 }

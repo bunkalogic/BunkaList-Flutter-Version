@@ -46,6 +46,16 @@ class Preferences{
     _prefs.setString('currentUserUid', value);
   }
 
+  //? se encarga de guardar la guest session id de TMDb
+
+  get getGuestSessionId {
+    return _prefs.getString('guestSessionId') ?? '';
+  }
+
+  set getGuestSessionId  (String value) {
+    _prefs.setString('guestSessionId', value);
+  }
+
   //? se encarga de guardar current Username
 
   get getCurrentUsername {

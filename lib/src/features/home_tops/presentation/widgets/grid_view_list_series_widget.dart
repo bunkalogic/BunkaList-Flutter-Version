@@ -1,12 +1,10 @@
-import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class GridViewListSeriesWidget extends StatefulWidget {
   final int typeId;
@@ -93,7 +91,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
         children: <Widget>[
           Expanded(child: _itemImageAndRating(context, seriesEntity), flex: 4,),
           _itemTitle(seriesEntity),
-          Expanded(child: _iconButton(context), flex: 1,),
+          Expanded(child: _iconButton(context, seriesEntity), flex: 1,),
         ],
     );
   }
@@ -173,13 +171,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+  Widget _iconButton(BuildContext context, SeriesEntity seriesEntity){
+    return ButtonAddedArrowDown(ouevre: seriesEntity, type: seriesEntity.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntity,);
   }
 }

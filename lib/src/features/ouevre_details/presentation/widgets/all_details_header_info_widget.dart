@@ -1,3 +1,5 @@
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
@@ -173,7 +175,7 @@ class HeaderInfoMovie  extends StatelessWidget {
           
           children: <Widget>[
             _infoPoster(context, movie),
-            _buttonAddInList(),
+            _buttonAddInList(context, movie),
             _durationInfo(movie),
             
           ],
@@ -181,7 +183,7 @@ class HeaderInfoMovie  extends StatelessWidget {
     ); 
   }
 
-  Widget _buttonAddInList(){
+  Widget _buttonAddInList(BuildContext context,MovieDetailsEntity movie){
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
@@ -195,7 +197,14 @@ class HeaderInfoMovie  extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
           onPressed: (){
-            // TODO: Agregar la logica para agregar esta Movie a Lista del Usuario
+            
+            return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: movie,
+              type: movie.type,
+              objectType: ConstantsTypeObject.movieDetailsEntity
+            ).showBottomModal();
           },
       ),
     );
@@ -370,7 +379,7 @@ class HeaderInfoSerie  extends StatelessWidget {
         child: Column(
           children: <Widget>[
             _infoPoster(context, serie),
-            _buttonAddInList(),
+            _buttonAddInList(context, serie),
             _durationInfo(serie),
             
           ],
@@ -378,7 +387,7 @@ class HeaderInfoSerie  extends StatelessWidget {
     ); 
   }
 
-  Widget _buttonAddInList(){
+  Widget _buttonAddInList(BuildContext context, SerieDetailsEntity serie){
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
@@ -392,7 +401,13 @@ class HeaderInfoSerie  extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
           onPressed: (){
-             // TODO: Agregar la logica para agregar esta Movie a Lista del Usuario
+             return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: serie,
+              type: serie.type,
+              objectType: ConstantsTypeObject.serieDetailsEntity
+            ).showBottomModal();
           },
       ),
     );
@@ -570,7 +585,7 @@ class HeaderInfoAnime extends StatelessWidget {
         child: Column(
           children: <Widget>[
             _infoPoster(context,anime),
-            _buttonAddInList(),
+            _buttonAddInList(context, anime),
             _durationInfo(anime),
             
           ],
@@ -578,7 +593,7 @@ class HeaderInfoAnime extends StatelessWidget {
     ); 
   }
 
-  Widget _buttonAddInList(){
+  Widget _buttonAddInList(BuildContext context, AnimeDetailsEntity anime){
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
@@ -592,7 +607,13 @@ class HeaderInfoAnime extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
           onPressed: (){
-             // TODO: Agregar la logica para agregar esta Movie a Lista del Usuario
+             return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: anime,
+              type: anime.type,
+              objectType: ConstantsTypeObject.animeDetailsEntity
+            ).showBottomModal();
           },
       ),
     );

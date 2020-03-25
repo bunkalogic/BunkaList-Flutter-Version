@@ -5,10 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class OuevreModel extends OuevreEntity{
        
 
-  OuevreModel({
-    final String   id,           
+  OuevreModel({           
     final DateTime addDate,          
-    final String   status,           
+    final int   status,           
     final int      seasons,          
     final int      episodes,         
     final String   comment,          
@@ -25,9 +24,11 @@ class OuevreModel extends OuevreEntity{
     final double   oeuvreRating,     
     final int      seasonTotal,      
     final int      episodeTotal,     
-    final String   oeuvreType,       
-  }): super(
-    id                 : id,           
+    final String   oeuvreType,
+    final bool     isFavorite,   
+    final int      positionListFav,
+    final String   reviewExt,       
+  }): super(           
     addDate            : addDate,          
     status             : status,           
     seasons            : seasons,          
@@ -46,14 +47,22 @@ class OuevreModel extends OuevreEntity{
     oeuvreRating       : oeuvreRating,     
     seasonTotal        : seasonTotal,      
     episodeTotal       : episodeTotal,     
-    oeuvreType         : oeuvreType,       
+    oeuvreType         : oeuvreType,
+    isFavorite         : isFavorite,
+    positionListFav    : positionListFav,
+    reviewExt          : reviewExt        
   );
 
 
   factory OuevreModel.fromSnapshot(DocumentSnapshot snap){
+
+    Timestamp timestamp = snap.data['addDate'];
+    
+    DateTime datetime = timestamp.toDate();
+    
+
     return OuevreModel(
-      id                 :   snap.documentID,
-      addDate            :   snap.data['addDate'],          
+      addDate            :   datetime,          
       status             :   snap.data['status'],           
       seasons            :   snap.data['seasons'],          
       episodes           :   snap.data['episodes'],         
@@ -71,7 +80,10 @@ class OuevreModel extends OuevreEntity{
       oeuvreRating       :   snap.data['oeuvreRating'],     
       seasonTotal        :   snap.data['seasonTotal'],      
       episodeTotal       :   snap.data['episodeTotal'],     
-      oeuvreType         :   snap.data['oeuvreType'], 
+      oeuvreType         :   snap.data['oeuvreType'],
+      isFavorite         :   snap.data['isFavorite'],
+      positionListFav    :   snap.data['positionListFav'],
+      reviewExt          :   snap.data['reviewExt']  
     );
   }
 
@@ -95,7 +107,10 @@ class OuevreModel extends OuevreEntity{
     "oeuvreRating"      : oeuvreRating,          
     "seasonTotal"       : seasonTotal,            
     "episodeTotal"      : episodeTotal,          
-    "oeuvreType"        : oeuvreType,         
+    "oeuvreType"        : oeuvreType,
+    "isFavorite"        : isFavorite,
+    "positionListFav"   : positionListFav,
+    "reviewExt"         : reviewExt          
     };
   }
 

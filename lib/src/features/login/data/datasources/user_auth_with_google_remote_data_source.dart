@@ -1,6 +1,9 @@
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
 abstract class UserWithGoogleAuthRemoteDataSource{
 
@@ -9,6 +12,10 @@ abstract class UserWithGoogleAuthRemoteDataSource{
 
 
 class UserWithGoogleAuthRemoteDataSourceImpl implements UserWithGoogleAuthRemoteDataSource{
+
+  final http.Client client;
+
+  UserWithGoogleAuthRemoteDataSourceImpl({@required this.client});
   
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -47,6 +54,10 @@ class UserWithGoogleAuthRemoteDataSourceImpl implements UserWithGoogleAuthRemote
     Future<IdTokenResult> newToken = currentUser.getIdToken();
 
     token = newToken.toString();
+
+    String guestSesionId = await getUserGuestSessionId(client); 
+
+    prefs.getGuestSessionId = guestSesionId;
 
     return token;
 

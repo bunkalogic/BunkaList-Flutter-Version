@@ -1,11 +1,13 @@
 
+import 'dart:io';
+
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/routes/route_generator.dart';
 import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
+import 'package:bunkalist/src/core/utils/http_overrrides.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bunkalist/injection_container.dart' as ic ;
@@ -15,6 +17,7 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
 
+  HttpOverrides.global = new MyHttpOverrides();
   await ic.init();
   final prefs = new Preferences();
   await prefs.initPrefs();

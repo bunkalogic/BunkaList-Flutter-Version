@@ -1,10 +1,9 @@
 import 'dart:core';
-import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:meta/meta.dart';
 
 
@@ -69,7 +68,7 @@ class _TopsScrollViewHorizontalState extends State<TopsScrollViewHorizontal> {
         children: <Widget>[
           Expanded(child: _itemImageAndRating(context, movieEntity), flex: 4,),
           _itemTitle(movieEntity),
-          Expanded(child: _iconButton(context), flex: 1,),
+          //Expanded(child: _iconButton(context, movieEntity), flex: 1,),
         ],
     );
   }
@@ -149,14 +148,8 @@ class _TopsScrollViewHorizontalState extends State<TopsScrollViewHorizontal> {
       
   }
 
-  Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+  Widget _iconButton(BuildContext context, MovieEntity movieEntity){
+    //return ButtonAddedArrowDown(ouevre: movieEntity, type: movieEntity.type, isUpdated: false,);
   }
 }  
 

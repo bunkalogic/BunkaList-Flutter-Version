@@ -14,10 +14,10 @@ class GetOuevreImpl implements GetOuevreContract{
   GetOuevreImpl({@required this.remoteDataSource});
 
   @override
-  Future<Either<Failures, Stream<List<OuevreEntity>>>> getOuevreInFirebase(String type, String status) async {
+  Either<Failures, Stream<List<OuevreEntity>>> getOuevreInFirebase(String type, String status) {
     try{
 
-      final remote = await remoteDataSource.getOfFirebase(type, status);
+      final remote = remoteDataSource.getOfFirebase(type, status);
 
       return Right(remote);
 

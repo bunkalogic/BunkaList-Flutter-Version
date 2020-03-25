@@ -137,7 +137,9 @@ Future<void> init() async {
   //! Search Features
   initSearch();
   initLogin();
-
+  //! Profile Features
+  initProfile();
+  
   //? Core
 
   serviceLocator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(serviceLocator()));
@@ -376,7 +378,9 @@ initLogin(){
 
   //? Data Sources
   serviceLocator.registerLazySingleton<UserAuthRemoteDataSource>(
-    () => UserAuthRemoteDataSourceImpl()
+    () => UserAuthRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
   );
 
   serviceLocator.registerLazySingleton<UserAuthTokenRemoteDataSource>(
@@ -387,10 +391,14 @@ initLogin(){
     () => UserRegisterRemoteDataSourceImpl()
   );
   serviceLocator.registerLazySingleton<UserWithGoogleAuthRemoteDataSource>(
-    () => UserWithGoogleAuthRemoteDataSourceImpl()
+    () => UserWithGoogleAuthRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
   );
 
 }
+
+
 
 initProfile(){
   //? Blocs

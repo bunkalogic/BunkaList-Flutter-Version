@@ -1,8 +1,22 @@
+import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 
 class TabItemCompletedWidget extends StatefulWidget {
-  const TabItemCompletedWidget({Key key}) : super(key: key);
+
+  
+
+  final String type; 
+  final String status;
+
+  const TabItemCompletedWidget({
+    @required this.type,
+    @required this.status
+  });
 
   @override
   _TabItemCompletedWidgetState createState() => _TabItemCompletedWidgetState();
@@ -10,6 +24,19 @@ class TabItemCompletedWidget extends StatefulWidget {
 
 class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<GetListsBloc>(context)..add(
+      GetYourLists( type: widget.type, status: widget.status)
+    );
+  }
+
+  
+  final loadingPage = Center(
+      child: CircularProgressIndicator(),
+    ) ;
 
   double cardSize = 120.0;
 
@@ -24,10 +51,42 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _itemTab();
+
+    return BlocBuilder<GetListsBloc, GetListsState>(
+      builder: (context, state) {
+        if(state is GetListsLoading){
+          
+          return loadingPage;
+
+        }else if(state is GetListsLoaded){
+
+          return Container(
+      child: ListView.builder(
+        itemCount: state.ouevreList.length,
+        itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
+        ),
+    );
+
+        }else if(state is GetlistsError){
+          
+          return Center(
+            child: Text('something Error'),
+          );
+
+        }
+
+        return Center(
+          child: Text('something Error'),
+        );
+
+      },
+    );
+
+
+    
   }
 
-  Widget _itemTab() {
+  Widget _itemTab(OuevreEntity ouevre) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 800),
       curve: Curves.decelerate,
@@ -46,11 +105,11 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           child: Stack(
            fit: StackFit.expand, 
            children: <Widget>[
-             _imageBackground(),
-             _gradientBackground(),
-             _listTileInfoItem(),
+             _imageBackground(ouevre),
+             _gradientBackground(ouevre),
+             _listTileInfoItem(ouevre),
              _buttomExtend(),
-             _showAllRating(),
+             _showAllRating(ouevre),
              
            ],
           ),
@@ -59,20 +118,20 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _imageBackground() {
+  Widget _imageBackground(OuevreEntity ouevre) {
     return Container(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: FadeInImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/original/9gkG3bgwAguIjrUmjZxW5UaqKaC.jpg'),
-            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/9gkG3bgwAguIjrUmjZxW5UaqKaC.jpg', scale: 200 / 400 ),
+            image: NetworkImage(ouevre.oeuvrePoster),
+            placeholder: AssetImage('assets/poster_placeholder.png'),
             fit: BoxFit.cover,
           ),
         ),
       );
   }
 
-  Widget _gradientBackground() {
+  Widget _gradientBackground(OuevreEntity ouevre) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -94,19 +153,20 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _listTileInfoItem(){
+  Widget _listTileInfoItem(OuevreEntity ouevre){
     return ListTile(
-      leading: _itemRate(),
-      title: _titleItem(),
-      trailing: _itemDate(),
+      leading: _itemRate(ouevre),
+      title: _titleItem(ouevre),
+      trailing: _itemDate(ouevre),
     );
 
   }
 
-  Widget _titleItem() {
+  Widget _titleItem(OuevreEntity ouevre) {
     return Text(
-      'John Wick 3 Parabellum',
+      ouevre.oeuvreTitle,
       textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: Colors.white,
         fontSize: 18.0,
@@ -118,12 +178,12 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _itemRate() {
+  Widget _itemRate(OuevreEntity ouevre) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.stars, color: Colors.deepOrange,),
-        Text('8.6', 
+        Text(ouevre.finalRate.toString(), 
         style: TextStyle(
           fontSize: 18.0, 
           fontWeight: FontWeight.w900, 
@@ -138,12 +198,19 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _itemDate() {
+  Widget _itemDate(OuevreEntity ouevre) {
+
+    final DateTime datetime = ouevre.addDate;
+
+    final formatter = DateFormat('dd-MM-yy');
+
+    final date = formatter.format(datetime);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.today, color: Colors.deepOrange,),
-        Text('22/07/19', 
+        Text(date, 
         style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -170,7 +237,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _showAllRating(){
+  Widget _showAllRating(OuevreEntity ouevre){
     if(cardSize == 220.0){
       return Align(
         alignment: Alignment.center,
@@ -182,9 +249,9 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Icon(Icons.book, color: Colors.orange[900],           size: 28.0,),
+                      Icon(Icons.book, color: Colors.orange[900], size: 28.0,),
                       Icon(Icons.people, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.music_video, color: Colors.orange[900],    size: 28.0,),
+                      Icon(Icons.music_video, color: Colors.orange[900], size: 28.0,),
                       Icon(Icons.movie_filter, color: Colors.orange[900], size: 28.0,),
                       Icon(Icons.insert_emoticon, color: Colors.orange[900],size: 28.0,),
                     ],
@@ -194,17 +261,17 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                   Text('7.0', style: styleAllRates),
-                   Text('9.0', style: styleAllRates),
-                   Text('8.5', style: styleAllRates),
-                   Text('9.5', style: styleAllRates),
-                   Text('8.0', style: styleAllRates),
+                   Text(ouevre.historyRate.toString(), style: styleAllRates),
+                   Text(ouevre.characterRate.toString(), style: styleAllRates),
+                   Text(ouevre.ostRate.toString(), style: styleAllRates),
+                   Text(ouevre.effectsRate.toString(), style: styleAllRates),
+                   Text(ouevre.enjoymentRate.toString(), style: styleAllRates),
 
                 ],
               ),
             ),
             SizedBox(height: 5.0,),
-            _buttonChangedRate()      
+            _buttonChangedRate(ouevre)      
           ],
         ),
       );
@@ -215,7 +282,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
 
-  Widget _buttonChangedRate(){
+  Widget _buttonChangedRate(OuevreEntity ouevre){
     if(cardSize == 220.0){
       return Container(
         child: FlatButton(
@@ -225,7 +292,12 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
             side: BorderSide(width: 1.5, color: Colors.orange[900]) 
           ),
           child: Text('New Rate', style: styleAllRates,),
-          onPressed: () {}
+          onPressed: () {
+            ButtomUpdateAndDelete(
+              type: ouevre.oeuvreType,
+              ouevre: ouevre,
+            ).showBottonModalOptions(context);
+          }
     ),
       );
     }else{

@@ -22,7 +22,7 @@ class GetListsBloc extends Bloc<GetListsEvent, GetListsState> {
   
   
   @override
-  GetListsState get initialState => GetListsInitial();
+  GetListsState get initialState => GetListsLoading();
 
   @override
   Stream<GetListsState> mapEventToState(
@@ -30,30 +30,40 @@ class GetListsBloc extends Bloc<GetListsEvent, GetListsState> {
   ) async* {
     if(event is GetYourLists){
 
-     yield GetListsLoading();
-
      final eitherFailureOrLists = await 
      getAllOuevre(Params(type: event.type, status: event.status));
 
-    yield eitherFailureOrLists.fold(
+     //yield* _eitherLoadedOuevresOrErrorState(eitherFailureOrLists);
+
+     eitherFailureOrLists.fold(
        (failure) => GetlistsError(), 
        (lists){
          _listsSubscription?.cancel();
 
-         List<OuevreEntity> listOuevre = new List();
-
          _listsSubscription = lists.listen(
-            (ouevre) => listOuevre.addAll(ouevre),
+            (ouevres) => add(GetYourListsUpdated(ouevres)),
          );
-
-         return GetListsLoaded(listOuevre);
 
        }
     );
 
+    }else if (event is GetYourListsUpdated){
+      yield* _getListUpdated(event);
     }
   
   }
+
+
+   Stream<GetListsState> _getListUpdated(GetYourListsUpdated event) async*{
+    /// Motivo por el que no paso directamente la lista desde el bloc ver en el enlace:
+    /// https://github.com/felangel/bloc/issues/253
+    /// y el ejemplo:
+    /// https://github.com/felangel/bloc/tree/master/examples/flutter_bloc_with_stream
+     
+    yield GetListsLoaded(event.ouevreList);
+
+   }
+
 
   @override
   Future<void> close() {

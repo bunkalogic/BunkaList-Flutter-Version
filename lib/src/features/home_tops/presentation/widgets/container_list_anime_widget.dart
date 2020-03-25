@@ -1,11 +1,11 @@
-import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
 class ContainerListAnimeWidget extends StatefulWidget {
@@ -173,7 +173,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
         children: <Widget>[
           Expanded(child: _itemImageAndRating(context, animeEntity), flex: 4,),
           _itemTitle(animeEntity),
-          Expanded(child: _iconButton(context), flex: 1,),
+          Expanded(child: _iconButton(context, animeEntity), flex: 1,),
         ],
     );
   }
@@ -253,14 +253,10 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+  Widget _iconButton(BuildContext context, AnimeEntity animeEntity){
+
+    return ButtonAddedArrowDown(ouevre: animeEntity, type: animeEntity.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
+        
   }
 
 

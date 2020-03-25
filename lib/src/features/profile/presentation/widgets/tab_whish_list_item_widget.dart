@@ -1,8 +1,24 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/utils/format_date.dart';
+import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 
 class TabItemWhishListWidget extends StatefulWidget {
-  const TabItemWhishListWidget({Key key}) : super(key: key);
+  
+  final String type; 
+  final String status;
+
+  const TabItemWhishListWidget({
+    @required this.type,
+    @required this.status
+  });
+
+  
 
   @override
   _TabItemWhishListWidgetState createState() => _TabItemWhishListWidgetState();
@@ -10,6 +26,19 @@ class TabItemWhishListWidget extends StatefulWidget {
 
 class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
+
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<GetListsBloc>(context)..add(
+      GetYourLists( type: widget.type, status: widget.status)
+    );
+  }
+
+  final loadingPage = Center(
+      child: CircularProgressIndicator(),
+    ) ;
 
   double cardSize = 120.0;
 
@@ -24,10 +53,38 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _itemTab();
+   return BlocBuilder<GetListsBloc, GetListsState>(
+      builder: (context, state) {
+        if(state is GetListsLoading){
+          
+          return loadingPage;
+
+        }else if(state is GetListsLoaded){
+
+          return Container(
+      child: ListView.builder(
+        itemCount: state.ouevreList.length,
+        itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
+        ),
+    );
+
+        }else if(state is GetlistsError){
+          
+          return Center(
+              child: Text('something Error'),
+          );
+
+        }
+
+        return Center(
+              child: Text('something Error'),
+        );
+
+      },
+    );
   }
 
-  Widget _itemTab() {
+  Widget _itemTab(OuevreEntity ouevre) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 800),
       curve: Curves.decelerate,
@@ -44,10 +101,10 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
           child: Stack(
            fit: StackFit.expand, 
            children: <Widget>[
-             _imageBackground(),
+             _imageBackground(ouevre),
              _gradientBackground(),
-             _listTileInfoItem(),
-             _buttomExtend(),
+             _listTileInfoItem(ouevre),
+             _buttomExtend(ouevre),
              
            ],
           ),
@@ -56,13 +113,13 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
     );
   }
 
-  Widget _imageBackground() {
+  Widget _imageBackground(OuevreEntity ouevre) {
     return Container(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: FadeInImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/original/hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg'),
-            placeholder: NetworkImage('https://image.tmdb.org/t/p/original/hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg', scale: 200 / 400 ),
+            image: NetworkImage(ouevre.oeuvrePoster),
+            placeholder: AssetImage('assets/poster_placeholder.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -91,21 +148,22 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
     );
   }
 
-  Widget _listTileInfoItem(){
+  Widget _listTileInfoItem(OuevreEntity ouevre){
     return ListTile(
       leading: _itemRate(),
-      title: _titleItem(),
-      trailing: _itemDate(),
-      subtitle: _rowExtraInfo(),
+      title: _titleItem(ouevre),
+      trailing: _itemDate(ouevre),
+      subtitle: _rowExtraInfo(ouevre),
       
     );
 
   }
 
-  Widget _titleItem() {
+  Widget _titleItem(OuevreEntity ouevre) {
     return Text(
-      'Joker',
+      ouevre.oeuvreTitle,
       textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: Colors.white,
         fontSize: 18.0,
@@ -122,7 +180,7 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.stars, color: Colors.deepOrange,),
-        Text('No rate', 
+        Text('-.-', 
         style: TextStyle(
           fontSize: 14.0, 
           fontWeight: FontWeight.w900, 
@@ -137,12 +195,19 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
     );
   }
 
-  Widget _itemDate() {
+  Widget _itemDate(OuevreEntity ouevre) {
+
+    final DateTime datetime = ouevre.addDate;
+
+    final formatter = DateFormat('dd-MM-yy');
+
+    final date = formatter.format(datetime);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(Icons.today, color: Colors.deepOrange,),
-        Text('12/08/19', 
+        Text(date, 
         style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -156,31 +221,34 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
     );
   }
 
-  Widget _buttomExtend() {
+  Widget _buttomExtend(OuevreEntity ouevre) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
         onPressed: (){
-          //TODO: Dialog para cambiar el Status
+          ButtomUpdateAndDelete(
+              type: ouevre.oeuvreType,
+              ouevre: ouevre,
+            ).showBottonModalOptions(context);
         },
       ),
     );
   }
 
-  _rowExtraInfo(){
+  _rowExtraInfo(OuevreEntity ouevre){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Expanded(child: _subTitleRatingInfo()),
-        Expanded(child: _threeTitleAirDateInfo())
+        Expanded(child: _subTitleRatingInfo(ouevre)),
+        Expanded(child: _threeTitleAirDateInfo(ouevre))
       ],
     );
   }
 
-  Widget _subTitleRatingInfo() {
+  Widget _subTitleRatingInfo(OuevreEntity ouevre) {
     return Text(
-      'Rating: 8.8',
+      'Rating: ${ouevre.oeuvreRating.toString()}',
        style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 
@@ -192,9 +260,14 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
       );
   }
 
-  Widget _threeTitleAirDateInfo() {
+  Widget _threeTitleAirDateInfo(OuevreEntity ouevre) {
+
+    final String premiere = AppLocalizations.of(context).translate("premiere_day");
+
+    final date = formatterDate(ouevre.oeuvreReleaseDate);
+
     return Text(
-      'Premiere Day: 4/10/19 ',
+      '$premiere $date',
        style: TextStyle(
           color: Colors.white,
           fontSize: 14.0, 

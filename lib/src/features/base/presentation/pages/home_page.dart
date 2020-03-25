@@ -53,7 +53,7 @@ Widget _createAppBarPlatform(BuildContext context) {
         children: <Widget>[
           Image(
             height: 60.0,
-             image: AssetImage('assets/bunkalist-banner.png'),
+             image: (prefs.whatModeIs) ? AssetImage('assets/bunkalist-banner-purple.png') : AssetImage('assets/bunkalist-banner.png'),
            ),
         ],
       ),
@@ -72,9 +72,10 @@ Widget _createAppBarPlatform(BuildContext context) {
 
   Widget _createNavBar(){
     return FancyBottomNavigation(
+      barBackgroundColor: (prefs.whatModeIs) ? Colors.blueGrey[800] : Colors.grey[100],
       activeIconColor: Colors.deepOrangeAccent[400] ,
-      inactiveIconColor: Colors.deepPurpleAccent[700] ,
-      circleColor: Colors.deepPurpleAccent[700],
+      inactiveIconColor: Colors.purple[400] ,
+      circleColor: Colors.purple[700],
       initialSelection: _selectedTabIndex,
       onTabChangedListener: (position) {
         setState(() {
@@ -272,7 +273,7 @@ class SearchButton extends StatelessWidget{
     
     return IconButton(
       iconSize: 35.0,
-      color: Colors.deepPurpleAccent[400],
+      color: Colors.purple[700],
       icon: Icon(Icons.search),
       onPressed: (){
         

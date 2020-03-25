@@ -19,3 +19,16 @@ class GetYourLists extends GetListsEvent{
   @override
   List<Object> get props => [type, status];
 }
+
+
+class GetYourListsUpdated extends GetListsEvent{
+  final List<OuevreEntity> ouevreList;
+
+  const GetYourListsUpdated(
+    this.ouevreList,
+  );
+
+  @override
+  List<Object> get props => [ouevreList];
+}
+

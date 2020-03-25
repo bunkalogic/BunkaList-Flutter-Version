@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class GetOuevreContract{
 
-  Future<Either<Failures, Stream<List<OuevreEntity>>>> getOuevreInFirebase( String type, String status);
+  Either<Failures, Stream<List<OuevreEntity>>> getOuevreInFirebase( String type, String status);
 
 
 }

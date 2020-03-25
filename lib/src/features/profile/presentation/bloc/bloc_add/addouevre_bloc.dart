@@ -34,7 +34,7 @@ class AddOuevreBloc extends Bloc<AddOuevreEvent, AddOuevreState> {
     AddOuevreEvent event,
   ) async* {
     
-    if(event is  ButtonAddPressed){
+    if(event is ButtonAddPressed){
       
       yield AddOuevreLoading();
 

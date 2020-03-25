@@ -15,10 +15,10 @@ class GetAllOuevre extends UseCase<Stream<List<OuevreEntity>>, Params>{
 
   @override
   Future<Either<Failures, Stream<List<OuevreEntity>>>> call(Params params) async {
-
-    return await contract.getOuevreInFirebase(params.type, params.status);
-    
+   return contract.getOuevreInFirebase(params.type, params.status);
   }
+
+  
 
 }
 

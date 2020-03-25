@@ -1,4 +1,3 @@
-import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -89,7 +88,7 @@ abstract class PosterColumnWidget{
           iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
           androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
           onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
+            //BottomSheetAddInList().showButtomModalMaterial(context);
           },
         );
   }

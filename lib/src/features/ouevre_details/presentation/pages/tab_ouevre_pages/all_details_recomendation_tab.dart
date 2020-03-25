@@ -1,5 +1,6 @@
-import 'package:bunkalist/src/core/reusable_widgets/bottom_sheet_add_your_list_widget.dart';
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_rs_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_rs_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_rs_entity.dart';
@@ -7,7 +8,6 @@ import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_rec
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
 class AllDetailsRecomendationTab extends StatefulWidget {
@@ -227,13 +227,7 @@ class ItemPosterMovie extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+   return ButtonAddedArrowDown(ouevre: movie, type: movie.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntityRS,);
   }
 
 }
@@ -333,13 +327,7 @@ class ItemPosterSerie extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+   return ButtonAddedArrowDown(ouevre: serie, type: serie.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntityRS,);
   }
 
 }
@@ -439,13 +427,7 @@ class ItemPosterAnime extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
-    return PlatformIconButton(
-          iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-          androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-          onPressed: (){
-            BottomSheetAddInList().showButtomModalMaterial(context);
-          },
-        );
+    return ButtonAddedArrowDown(ouevre: anime, type: anime.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntityRS,);
   }
 
 }
