@@ -38,7 +38,9 @@ class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab>
 
   @override
   Widget build(BuildContext context) {
-    final double _aspectRatio = 2.8 / 4.1;
+    //final double _aspectRatio = 2.8 / 4.1;
+
+    final double _aspectRatio = 2.7 / 4.2;
 
     return Padding(
       padding: const EdgeInsets.all(10.0),

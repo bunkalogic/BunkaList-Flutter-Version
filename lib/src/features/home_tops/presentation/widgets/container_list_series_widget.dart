@@ -57,7 +57,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
     });
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.8,
+      height: MediaQuery.of(context).size.height / 2.6,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),

@@ -35,6 +35,7 @@ class ButtonAddedArrowDown extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return PlatformIconButton(
+      padding: EdgeInsets.only(bottom: 4.0),
       iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
       androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
       onPressed: () => _showBottomModal(context),
