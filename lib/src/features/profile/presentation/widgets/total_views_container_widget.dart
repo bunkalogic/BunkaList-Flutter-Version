@@ -30,59 +30,55 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
     );
   }
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    );
+  
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: Column(
+        children: <Widget>[
+          _labelTotalViewsWidget(context),
+          SizedBox(height: 5.0,),
+          _valueTotalViewsWidget(),
+        ],
+      ),
+    );
+  }
+
+  
+
+  Widget _valueTotalViewsWidget(){
+    return Container(
        child:BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
         if(state is GetListsLoading){
-
-          return loadingPage;
-
-        }else if(state is GetListsLoaded){
-
-          return Container(
-            child: _columnTotalViewsWidget(context, state.ouevreList.length),
+          return Center(
+              child: Text('--'),
           );
+        } else if(state is GetListsLoaded){
+
+        return Text(
+        '${state.ouevreList.length}',
+        style: TextStyle(
+          fontSize: 20.0, 
+          fontWeight: FontWeight.w900,
+          fontStyle: FontStyle.italic
+        ),
+    );
 
         }else if(state is GetlistsError){
 
           return Center(
-              child: Text('something Error'),
+              child: Text('Error'),
           );
 
         }
 
         return Center(
-              child: Text('something Error'),
+              child: Text('--'),
         );
 
       },
-      ),
-    );
-  }
-
-  Widget _columnTotalViewsWidget(BuildContext context, int totalViewsWidget){
-    return Column(
-      children: <Widget>[
-        _labelTotalViewsWidget(context),
-        SizedBox(height: 5.0,),
-        _valueTotalViewsWidget(totalViewsWidget),
-      ],
-    );
-  }
-
-  Widget _valueTotalViewsWidget(int totalViewsWidget){
-    return Text(
-      '$totalViewsWidget',
-      style: TextStyle(
-        fontSize: 20.0, 
-        fontWeight: FontWeight.w900,
-        fontStyle: FontStyle.italic
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
@@ -93,7 +94,16 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       height: cardSize,
       child: GestureDetector(
         onTap: (){
-          //TODO: implementar pushNamed al AllDetails
+          
+          Navigator.pushNamed(
+              context, '/AllDetails', 
+              arguments: 
+              getIdAndType(
+                ouevre.oeuvreId, 
+                ouevre.oeuvreType,  
+                ouevre.oeuvreTitle)
+            );
+
         },
         child: Card(
           shape: RoundedRectangleBorder(

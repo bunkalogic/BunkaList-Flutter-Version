@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
+import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
@@ -90,7 +91,16 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
       curve: Curves.decelerate,
       height: cardSize,
       child: GestureDetector(
-        //TODO: implementar pushNamed al AllDetails
+        onTap: (){
+          Navigator.pushNamed(
+              context, '/AllDetails', 
+              arguments: 
+              getIdAndType(
+                ouevre.oeuvreId, 
+                ouevre.oeuvreType,  
+                ouevre.oeuvreTitle)
+            );
+        },
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0)

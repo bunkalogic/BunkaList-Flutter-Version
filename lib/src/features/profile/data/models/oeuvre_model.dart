@@ -7,7 +7,7 @@ class OuevreModel extends OuevreEntity{
 
   OuevreModel({           
     final DateTime addDate,          
-    final int   status,           
+    final int      status,           
     final int      seasons,          
     final int      episodes,         
     final String   comment,          
