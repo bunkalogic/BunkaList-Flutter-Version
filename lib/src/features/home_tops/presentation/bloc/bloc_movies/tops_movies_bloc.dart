@@ -26,7 +26,7 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
   
   
   @override
-  TopsMoviesState get initialState => Empty();
+  TopsMoviesState get initialState => EmptyMovies();
 
   @override
   Stream<TopsMoviesState> mapEventToState(
@@ -37,10 +37,10 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
 
       yield* inputEither.fold(
         (failures) async* {
-          yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+          yield ErrorMovies(message: INVALID_INPUT_FAILURE_MESSAGE );
 
         },(topId) async* {
-          yield Loading();
+          yield LoadingMovies();
           final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
           //_moviesController.sink.add(failureOrMovies);
           yield* _eitherLoadedOrErrorState(failureOrMovies); 
@@ -92,8 +92,8 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
   Stream<TopsMoviesState> _eitherLoadedOrErrorState
   (Either<Failures, List<MovieEntity>> either) async* {
     yield either.fold(
-      (failure) => Error(message: _mapFailureToMessage(failure)), 
-      (movies)  => Loaded(movies: movies)
+      (failure) => ErrorMovies(message: _mapFailureToMessage(failure)), 
+      (movies)  => LoadedMovies(movies: movies)
     );
   }
   

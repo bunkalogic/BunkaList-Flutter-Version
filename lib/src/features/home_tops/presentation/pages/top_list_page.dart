@@ -1,7 +1,6 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
-import 'package:bunkalist/src/core/utils/get_top_id_from_key.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
@@ -11,61 +10,94 @@ import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_animes_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_movies_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_series_widget.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/widgets/list_all_tops_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../injection_container.dart';
 
 
-class TopsListPage extends StatefulWidget {
+class TopsListPage extends StatelessWidget {
+  
+  final String data;
+
+  TopsListPage({
+    @required this.data
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+         BlocProvider<TopsMoviesBloc>(
+          builder: (_) => serviceLocator<TopsMoviesBloc>(),
+        ),
+         BlocProvider<TopsSeriesBloc>(
+          builder: (_) => serviceLocator<TopsSeriesBloc>(),
+        ),
+         BlocProvider<TopsAnimesBloc>(
+          builder: (_) => serviceLocator<TopsAnimesBloc>(),
+        ),
+      ], 
+      child: BuildTopsListPage(data: data),
+    );
+  }
+}
+
+
+
+class BuildTopsListPage extends StatefulWidget {
   
   
   final String data;
 
 
-  TopsListPage({
+  BuildTopsListPage({
     Key key,
     @required this.data
   }) : super(key: key);
 
   @override
-  _TopsListPageState createState() => _TopsListPageState();
+  _BuildTopsListPageState createState() => _BuildTopsListPageState();
 }
 
-class _TopsListPageState extends State<TopsListPage> with SingleTickerProviderStateMixin {
+class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTickerProviderStateMixin {
   //? Variables
   bool changeDesign = false;
-  TabController _tabController;
-  
+  //TabController _tabController;
+  int ouevreTopId = -1;
+  String titleUpdated = '';
+
+  final double _aspectRatio = 2.7 / 4.2;
+
+  final loadingPage = Center(
+      child: CircularProgressIndicator(),
+    ) ;
 
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 18 );
-  }
+    print('initial topId: $ouevreTopId');
+  }  
 
-  @override
-  void dispose() { 
-    _tabController.dispose();
-    super.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: _createAppBar(context, _whatTypeIs(context)),
-      body:   _changedListDesign(context),
+      appBar: _createAppBar(context, (titleUpdated == '') ? _whatTypeIs(context) : titleUpdated),
+      body:   _changedListDesign(),
     );
   }
 
   Widget _createAppBar(BuildContext context, String title) {
     
     return AppBar(
-      title: Text(title),
+      title: _titleWithButton(title),
       leading: AppBarButtonBack(),
-      bottom: _tabBar(context),
+      //bottom: _tabBar(context),
       actions: <Widget>[
         IconButton(
           icon: _changedIcon(),
@@ -81,6 +113,80 @@ class _TopsListPageState extends State<TopsListPage> with SingleTickerProviderSt
           )
       ],
     ); 
+  }
+
+  Widget _titleWithButton(String title){
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: GestureDetector(
+            onTap: () => getListTopsOptions(),
+            child: Text(
+              title,
+              overflow: TextOverflow.ellipsis, 
+              // style: TextStyle(
+              //   fontSize: 18.0, 
+              //   fontWeight: FontWeight.w400, 
+              //   fontStyle: FontStyle.italic
+              // ),
+            ),
+          ),
+        ),
+        IconButton(
+          icon: Icon(Icons.arrow_drop_down, size: 30.0,), 
+          onPressed: () => getListTopsOptions(),
+        ),
+      ],
+    );
+  }
+
+  void getListTopsOptions() async {
+    
+    var result = await Navigator.of(context).push(PageRouteBuilder(
+      opaque: false,
+      pageBuilder: (BuildContext context, _, __) => ListSelectOfTypeTops(type: widget.data, ),
+    ));
+
+    Map<String, dynamic> mapResults = result as Map;
+    String newTitle = (mapResults['title'] == '' ) ? _whatTypeIs(context) : mapResults['title'];
+    int topId = mapResults['topid'];
+
+    print(topId);
+    print(newTitle);
+
+    titleUpdated = newTitle;
+    ouevreTopId = topId;
+
+    setState(() {});
+
+    switch(widget.data){
+        
+        case 'movies' : {
+          final topMovieId = (ouevreTopId == -1) ? Constants.topsMoviesPopularId : ouevreTopId;  
+
+          BlocProvider.of<TopsMoviesBloc>(context)
+            ..add(GetMoviesTops( topMovieId ));
+        }
+        break;
+
+        case 'tv'     : {
+          final topSerieId = (ouevreTopId == -1) ? Constants.topsSeriesPopularId : ouevreTopId;
+
+          BlocProvider.of<TopsSeriesBloc>(context)
+            ..add(GetSeriesTops(topSerieId));
+        }
+        break;
+
+        case 'animes' : {
+          final topAnimeId = (ouevreTopId == -1) ? Constants.topsAnimePopularId : ouevreTopId;
+            
+            BlocProvider.of<TopsAnimesBloc>(context)
+            ..add(GetAnimesTops(topAnimeId));
+        }
+        break;
+
+      }
   }
 
   String _whatTypeIs(BuildContext context){
@@ -104,28 +210,28 @@ class _TopsListPageState extends State<TopsListPage> with SingleTickerProviderSt
   
 
 
-  Widget _changedListDesign(BuildContext context) {
+  Widget _changedListDesign() {
 
-     
-      if(!changeDesign){
+     switch(widget.data){
         
-        return TabBarView(
-        controller: _tabController,
-        children: _getTabs(context).map((Tab tab) {
-          return _getGridViewList(GetTopIdFromKey().getTopId(tab.key));
-        }).toList(),
-       );
+        case 'movies' : {
+          return _buildCardOrGridViewMovies();
+        }
+        break;
 
-      }else {
+        case 'tv'     : {
+          return _buildCardOrGridViewSeries();
+        }
+        break;
 
-        return TabBarView(
-        controller: _tabController,
-        children: _getTabs(context).map((Tab tab) {
-          return _getCardViewList(GetTopIdFromKey().getTopId(tab.key));
-        }).toList(),
-       );
+        case 'animes' : {
+          return _buildCardOrGridViewAnimes();
+        }
+        break;
 
-      }
+        default: return Center(child: Text('No type'),);
+
+    }
       
       
   }
@@ -140,172 +246,178 @@ class _TopsListPageState extends State<TopsListPage> with SingleTickerProviderSt
       
       
   }
+  
+ 
 
-  Widget _tabBar(BuildContext context) {
-    return TabBar(
-      labelColor: Colors.deepOrange,
-      isScrollable: true,
-      tabs: _getTabs(context),
-      controller: _tabController,
+  Widget _buildCardOrGridViewMovies(){
+      return Container(
+      child: BlocBuilder<TopsMoviesBloc, TopsMoviesState>(
+        builder: (context, state) {
+          if(state is EmptyMovies){
+
+            if(ouevreTopId == -1){
+              BlocProvider.of<TopsMoviesBloc>(context)
+            ..add(GetMoviesTops(Constants.topsMoviesPopularId));
+            }
+              
+            return loadingPage;
+            
+          }else if(state is LoadingMovies){
+
+            return loadingPage;
+
+          }else if (state is LoadedMovies){
+
+
+            if(!changeDesign){
+              
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  itemBuilder: (context, i) => GridViewListMoviesWidget(movie: state.movies[i],),
+                  itemCount: state.movies.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: _aspectRatio
+                  ),
+                ),
+              );
+              
+
+            }else {
+
+              return Container(
+              child: ListView.builder(
+                itemCount: state.movies.length,
+                itemBuilder: (context , i) => CardViewListMoviesWidget(movie: state.movies[i],),
+              ),
+            );
+
+            }
       
+            
+
+            
+          }else if(state is ErrorMovies){
+            return Text(state.message);
+          }
+
+          return Center(child: Text('something Error'));
+        },
+      ),  
     );
   }
 
-  List<Tab> _getTabs(BuildContext context) {
+  Widget _buildCardOrGridViewSeries(){
+      return Container(
+      child: BlocBuilder<TopsSeriesBloc, TopsSeriesState>(
+        builder: (context, state) {
+          if(state is EmptySeries){
 
-  // movies tabs length  = 18
-  final List<Tab> moviesTabs = <Tab>[
-    Tab(key: ValueKey(Constants.topsMoviesPopularId), text: AppLocalizations.of(context).translate("movies_popular")),
-    Tab(key: ValueKey(Constants.topsMoviesRatedId), text: AppLocalizations.of(context).translate("movies_rated")),
-    Tab(key: ValueKey(Constants.topsMoviesUpcommingId), text: AppLocalizations.of(context).translate("movies_upcoming")),
-    Tab(key: ValueKey(Constants.topsMoviesActionId), text: AppLocalizations.of(context).translate("movies_action")),
-    Tab(key: ValueKey(Constants.topsMoviesAdventureId), text: AppLocalizations.of(context).translate("movies_adventure")),      
-    Tab(key: ValueKey(Constants.topsMoviesComedyId), text: AppLocalizations.of(context).translate("movies_comedy")),
-    Tab(key: ValueKey(Constants.topsMoviesWarId), text: AppLocalizations.of(context).translate("movies_war")),
-    Tab(key: ValueKey(Constants.topsMoviesScienceFictionId), text: AppLocalizations.of(context).translate("movies_scifi")),
-    Tab(key: ValueKey(Constants.topsMoviesCrimeId), text: AppLocalizations.of(context).translate("movies_crime")),
-    Tab(key: ValueKey(Constants.topsMoviesDramaId), text: AppLocalizations.of(context).translate("movies_drama")),
-    Tab(key: ValueKey(Constants.topsMoviesFantasyId), text: AppLocalizations.of(context).translate("movies_fantasy")),
-    Tab(key: ValueKey(Constants.topsMoviesHistoryId), text: AppLocalizations.of(context).translate("movies_history")),
-    Tab(key: ValueKey(Constants.topsAnimeMisteryId), text: AppLocalizations.of(context).translate("movies_mistery")),
-    Tab(key: ValueKey(Constants.topsMoviesMusicalId), text: AppLocalizations.of(context).translate("movies_musical")),
-    Tab(key: ValueKey(Constants.topsMoviesRomanceId), text: AppLocalizations.of(context).translate("movies_romance")),
-    Tab(key: ValueKey(Constants.topsMoviesThillerId), text: AppLocalizations.of(context).translate("movies_thiller")),
-    Tab(key: ValueKey(Constants.topsMoviesTerrorId), text: AppLocalizations.of(context).translate("movies_terror")),
-    Tab(key: ValueKey(Constants.topsMoviesWesternId), text: AppLocalizations.of(context).translate("movies_western")),
-    
-    
-  ];
+            if(ouevreTopId == -1){
+              BlocProvider.of<TopsSeriesBloc>(context)
+            ..add(GetSeriesTops(Constants.topsSeriesPopularId));
+            }
 
-  // series tabs length  = 18
-  final List<Tab> seriesTabs = <Tab>[
-    Tab(key: ValueKey(Constants.topsSeriesPopularId), text: AppLocalizations.of(context).translate("series_popular"           )),
-    Tab(key: ValueKey(Constants.topsSeriesRatedId), text: AppLocalizations.of(context).translate("series_rated"             )),
-    Tab(key: ValueKey(Constants.topsSeriesUpcommingId), text: AppLocalizations.of(context).translate("series_upcomming "        )),
-    Tab(key: ValueKey(Constants.topsSeriesActAndAdvId), text: AppLocalizations.of(context).translate("series_act_and_adv"       )),
-    Tab(key: ValueKey(Constants.topsSeriesComedyId), text: AppLocalizations.of(context).translate("series_comedy"            )),
-    Tab(key: ValueKey(Constants.topsSeriesCrimenId), text: AppLocalizations.of(context).translate("series_crimen"            )),
-    Tab(key: ValueKey(Constants.topsSeriesDocumentalId), text: AppLocalizations.of(context).translate("series_documental"        )),
-    Tab(key: ValueKey(Constants.topsSeriesFamilyId), text: AppLocalizations.of(context).translate("series_family"            )),
-    Tab(key: ValueKey(Constants.topsSeriesDramaId), text: AppLocalizations.of(context).translate("series_drama"             )),
-    Tab(key: ValueKey(Constants.topsSeriesMisteryId), text: AppLocalizations.of(context).translate("series_mistery"           )),
-    Tab(key: ValueKey(Constants.topsSeriesFantasyAndSciFiId), text: AppLocalizations.of(context).translate("series_fantasy_and_sci_fi")),
-    Tab(key: ValueKey(Constants.topsSeriesWarAndPoliticsId), text: AppLocalizations.of(context).translate("series_war_and_politics " )),
-    Tab(key: ValueKey(Constants.topsSeriesWesternId), text: AppLocalizations.of(context).translate("series_western"           )),
-    Tab(key: ValueKey(Constants.topsSeriesNetflixId), text: AppLocalizations.of(context).translate("series_netflix"           )),
-    Tab(key: ValueKey(Constants.topsSeriesHBOId), text: AppLocalizations.of(context).translate("series_hbo"               )),
-    Tab(key: ValueKey(Constants.topsSeriesAmazonPrimeId), text: AppLocalizations.of(context).translate("series_amazon_prime"      )),
-    Tab(key: ValueKey(Constants.topsSeriesBBCOneId), text: AppLocalizations.of(context).translate("series_bbc_one"           )), 
-    Tab(key: ValueKey(Constants.topsSeriesAMCId), text: AppLocalizations.of(context).translate("series_amc"               )),
-  ];
-  
-  // animes tabs length  = 18
-  final List<Tab> animesTabs = <Tab>[
-    Tab(key: ValueKey(Constants.topsAnimePopularId), text: AppLocalizations.of(context).translate("anime_popular"             )),
-    Tab(key: ValueKey(Constants.topsAnimeRatedId), text: AppLocalizations.of(context).translate("anime_rated"               )),
-    Tab(key: ValueKey(Constants.topsAnimeSeasonId), text: AppLocalizations.of(context).translate("anime_season"              )),
-    Tab(key: ValueKey(Constants.topsAnimeUpcomingNextSeasonId), text: AppLocalizations.of(context).translate("anime_upcoming_next_season")),
-    Tab(key: ValueKey(Constants.topsAnimeActionAndAdventureId), text: AppLocalizations.of(context).translate("anime_action_and_adventure")),
-    Tab(key: ValueKey(Constants.topsAnimeComedyId), text: AppLocalizations.of(context).translate("anime_comedy"              )),
-    Tab(key: ValueKey(Constants.topsAnimeCrimenId), text: AppLocalizations.of(context).translate("anime_crimen"              )),
-    Tab(key: ValueKey(Constants.topsAnimeDramaId), text: AppLocalizations.of(context).translate("anime_drama"               )),
-    Tab(key: ValueKey(Constants.topsAnimeMisteryId), text: AppLocalizations.of(context).translate("anime_mistery"             )),
-    Tab(key: ValueKey(Constants.topsAnimeFantasyAndSciFiId), text: AppLocalizations.of(context).translate("anime_fantasy_and_sci_fi"  )),
-    Tab(key: ValueKey(Constants.topsAnimeWarAndPoliticsId), text: AppLocalizations.of(context).translate("anime_war_and_politics"    )),
-    Tab(key: ValueKey(Constants.topsAnimeShonenId), text: AppLocalizations.of(context).translate("anime_shonen"              )),
-    Tab(key: ValueKey(Constants.topsAnimeSpokonId), text: AppLocalizations.of(context).translate("anime_spokon"              )),
-    Tab(key: ValueKey(Constants.topsAnimeMechaId), text: AppLocalizations.of(context).translate("anime_mecha"               )),
-    Tab(key: ValueKey(Constants.topsAnimeSliceOfLifeId), text: AppLocalizations.of(context).translate("anime_slice_of_life"       )),
-    Tab(key: ValueKey(Constants.topsAnimeBasedOnMangaId), text: AppLocalizations.of(context).translate("anime_based_on_manga"      )),
-    Tab(key: ValueKey(Constants.topsAnimeRomanceId), text: AppLocalizations.of(context).translate("anime_romance"             )),
-    Tab(key: ValueKey(Constants.topsAnimeSuperNaturalId), text: AppLocalizations.of(context).translate("anime_super_natural"       )),
-  ];
+            return loadingPage;
+            
+          }else if(state is LoadingSeries){
 
-    switch (widget.data) {
-      case 'movies': {
-        return moviesTabs;
-        }
-        break;
+            return loadingPage;
 
-      case  'tv': { 
-        return seriesTabs;
-      }
-        break;
+          }else if (state is LoadedSeries){
+      
+            if(!changeDesign){
+              
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  itemBuilder: (context, i) =>  GridViewListSeriesWidget(series: state.series[i]) ,  
+                  itemCount: state.series.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: _aspectRatio
+                  ),
+                ),
+              );
+              
 
-      case  'animes': {
-        return animesTabs;
-        }
-        break;
+            }else {
 
-      default: return [];
-    }
+              return Container(
+              child: ListView.builder(
+                itemCount: state.series.length,
+                itemBuilder: (context , i) => CardViewListSeriesWidget(series: state.series[i],),
+              ),
+            );
+
+            }
+
+            
+          }else if(state is ErrorSeries){
+            return Text(state.message);
+          }
+
+          return Center(child: Text('something Error'));
+        },
+      ),  
+    );
   }
 
-  Widget _getCardViewList(int key){
-    
-    switch(widget.data){
-        
-        case 'movies' : {
-          return BlocProvider<TopsMoviesBloc>(
-          builder: (_) => serviceLocator<TopsMoviesBloc>(),
-          child: CardViewListMoviesWidget(topId: key)
-        );
-        }
-        break;
+  Widget _buildCardOrGridViewAnimes(){
+      return Container(
+      child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
+        builder: (context, state) {
+          if(state is EmptyAnimes){
 
-        case 'tv'     : {
-          return BlocProvider<TopsSeriesBloc>(
-          builder: (_) => serviceLocator<TopsSeriesBloc>(),
-          child: CardViewListSeriesWidget(typeId: key,)
-        );
-        }
-        break;
+            if(ouevreTopId == -1){
+              BlocProvider.of<TopsAnimesBloc>(context)
+            ..add(GetAnimesTops(Constants.topsAnimePopularId));
+            }
 
-        case 'animes' : {
-          return BlocProvider<TopsAnimesBloc>(
-          builder: (_) => serviceLocator<TopsAnimesBloc>(),
-          child: CardViewListAnimesWidget(typeId: key,)
-        );
-        }
-        break;
+            return loadingPage;
+            
+          }else if(state is LoadingAnimes){
 
-        default: return Center(child: Text('No type'),);
+            return loadingPage;
 
-    }
-  }
+          }else if (state is LoadedAnimes){
+      
+            if(!changeDesign){
+              
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  itemBuilder: (context, i) => GridViewListAnimesWidget(anime: state.animes[i]) ,
+                  itemCount: state.animes.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: _aspectRatio
+                  ),
+                ),
+              );
+              
 
+            }else {
 
-  Widget _getGridViewList(int key){
-    
-    switch(widget.data){
-        
-        case 'movies' : {
-          return BlocProvider<TopsMoviesBloc>(
-          builder: (_) => serviceLocator<TopsMoviesBloc>(),
-          child: GridViewListMoviesWidget(typeId: key,)
-        );
-        }
-        break;
+              return Container(
+              child: ListView.builder(
+                itemCount: state.animes.length,
+                itemBuilder: (context , i) => CardViewListAnimesWidget(anime: state.animes[i],),
+              ),
+            );
 
-        case 'tv'     : {
-          return BlocProvider<TopsSeriesBloc>(
-          builder: (_) => serviceLocator<TopsSeriesBloc>(),
-          child: GridViewListSeriesWidget(typeId: key)
-        );
-        }
-        break;
+            }
 
-        case 'animes' : {
-          return BlocProvider<TopsAnimesBloc>(
-          builder: (_) => serviceLocator<TopsAnimesBloc>(),
-          child: GridViewListAnimesWidget(typeId: key)
-        );
-        }
-        break;
+            
+          }else if(state is ErrorAnimes){
+            return Text(state.message);
+          }
 
-        default: return Center(child: Text('No type'),);
-
-    }
+          return Center(child: Text('something Error'));
+        },
+      ),  
+    );
   }
 
 

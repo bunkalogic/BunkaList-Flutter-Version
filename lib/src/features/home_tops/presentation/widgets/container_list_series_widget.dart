@@ -64,15 +64,15 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
           Expanded(child: BlocBuilder<TopsSeriesBloc, TopsSeriesState>(
         //bloc: serviceLocator<TopsSeriesBloc>(),
         builder: (context, state) {
-          if(state is Empty){
+          if(state is EmptySeries){
             
             return loadingPage;
 
-          }else if(state is Loading){
+          }else if(state is LoadingSeries){
 
             return loadingPage;
 
-          }else if (state is Loaded){
+          }else if (state is LoadedSeries){
             
               if(state.series.isNotEmpty){
 
@@ -91,7 +91,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
 
 
             
-          }else if(state is Error){
+          }else if(state is ErrorSeries){
             return Text(state.message);
           }
           return Center(child: Text('something Error'));

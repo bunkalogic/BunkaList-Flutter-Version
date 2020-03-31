@@ -63,17 +63,17 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
            Expanded(child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
          //bloc: serviceLocator<TopsAnimesBloc>(),
          builder: (context, state) {
-           if(state is Empty){
+           if(state is EmptyAnimes){
 
              
              
              return loadingPage;
 
-           }else if(state is Loading){
+           }else if(state is LoadingAnimes){
 
              return loadingPage;
 
-           }else if (state is Loaded){
+           }else if (state is LoadedAnimes){
              
              if(state.animes.isNotEmpty){
 
@@ -90,7 +90,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
                return Center(child: Text('No Anime Found'));
              }
              
-           }else if(state is Error){
+           }else if(state is ErrorAnimes){
              return Text(state.message);
            }
            return Center(child: Text('something Error'));

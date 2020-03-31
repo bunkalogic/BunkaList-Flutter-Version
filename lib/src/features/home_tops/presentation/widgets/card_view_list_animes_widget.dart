@@ -12,9 +12,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardViewListAnimesWidget extends StatefulWidget {
   
-  final int typeId;
+  final AnimeEntity anime;
 
-  CardViewListAnimesWidget({@required this.typeId});
+  CardViewListAnimesWidget({@required this.anime});
 
   @override
   _CardViewListAnimesWidgetState createState() => _CardViewListAnimesWidgetState();
@@ -22,72 +22,14 @@ class CardViewListAnimesWidget extends StatefulWidget {
 
 class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
   
-  
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-    @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<TopsAnimesBloc>(context)
-    ..add(GetAnimesTops(widget.typeId));
-  }
-  
-  
   
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
-         //bloc: serviceLocator<TopsAnimesBloc>(),
-         builder: (context, state) {
-           if(state is Empty){
-             
-             return loadingPage;
-
-           }else if(state is Loading){
-
-             return loadingPage;
-
-           }else if (state is Loaded){
-             
-             if(state.animes.isNotEmpty){
-
-                return Container(   
-               child: ListView.builder(
-                itemCount: state.animes.length,
-                itemBuilder: (context , i) => _buildCardItem(state.animes[i]),
-              ),
-             );
-
-             }else{
-               return Center(child: Text('No Anime Found'));
-             }
-             
-           }else if(state is Error){
-             return Text(state.message);
-           }
-           return Center(child: Text('something Error'));
-         },
-       ),
-      
-      
-      
-      
-      
-      
-      
-       
-    );
-  }
-
-  Widget _buildCardItem(AnimeEntity anime) {
-     return Padding(
+    return Padding(
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
-         child: _itemInfo(anime),
+         child: _itemInfo(),
          height: 160.0,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -104,52 +46,54 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
      ); 
   }
 
-  Widget _itemInfo(AnimeEntity anime) {
+ 
+
+  Widget _itemInfo() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _posterItem(anime),
+        _posterItem(),
         SizedBox(width: 6.0,),
-        Expanded(child: _columnCenterItem(anime))
+        Expanded(child: _columnCenterItem())
       ],
     );
 
   }
 
-  Widget _columnCenterItem(AnimeEntity anime){
+  Widget _columnCenterItem(){
     return Container(
       child: Column(
         children: <Widget>[
-          Expanded(child: _rowInfoItem(anime)),
+          Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
           // _chipGenresItem(),
-          Expanded(child: ChipsGenresWidget(genres: anime.genreIds.cast<int>(),), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: widget.anime.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          Expanded(child: _rowButtons(anime)),
+          Expanded(child: _rowButtons()),
         ],
       ),
     );
   }
 
-  Widget _rowInfoItem(AnimeEntity anime){
+  Widget _rowInfoItem(){
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-        Expanded(child: _titleItem(anime), flex: 4, ),
-        Spacer(),
-        Expanded(child: _yearOfItem(anime), flex: 1,),
-        Spacer(),
-        Expanded(child: _rateItem(anime), flex: 2, )
+        Expanded(child: _titleItem(), flex: 5, ),
+        //Spacer(),
+        Expanded(child: _yearOfItem(), flex: 3,),
+        //Spacer(),
+        Expanded(child: _rateItem(), flex: 2, )
         ],
       ),
     );
   }
 
-  Widget _posterItem(AnimeEntity anime) {
+  Widget _posterItem() {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ anime.posterPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.anime.posterPath }');
 
     //! Agregar el Hero
     final _poster = Container(
@@ -158,7 +102,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: FadeInImage(
-          image: (anime.posterPath == null) ? placeholder : poster,//? Image Poster Item,
+          image: (widget.anime.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
           fit: BoxFit.fill,
         ),
@@ -172,7 +116,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type, anime.name) );
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.anime.id, widget.anime.type, widget.anime.name) );
           },
           child: _poster 
       ),
@@ -180,11 +124,11 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
 
   }
 
-  Widget _titleItem(AnimeEntity anime) {
+  Widget _titleItem() {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0,),
+      padding: const EdgeInsets.only(top: 1.0,),
       child: Text(
-          anime.name, 
+          widget.anime.name, 
             style: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w700, 
@@ -195,13 +139,13 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
     );
   }
 
-  Widget _yearOfItem(AnimeEntity anime) {
+  Widget _yearOfItem() {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: const EdgeInsets.only(top: 1.0),
       child: Text(
-          DateTime.parse(anime.firstAirDate).year.toString(), 
+          DateTime.parse(widget.anime.firstAirDate).year.toString(), 
             style: TextStyle(
-              fontSize: 14.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.w700, 
               fontStyle: FontStyle.italic
             ),   
@@ -209,12 +153,12 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
     );
   }
 
-  Widget _rateItem(AnimeEntity anime) {
+  Widget _rateItem() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.5),
       child: Row(
         children: <Widget>[
-          Text(anime.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
+          Text(widget.anime.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
           Icon(Icons.star, size: 20, color: Colors.orange[800], ) 
         ],
       ),
@@ -251,10 +195,10 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
   //   );
   // }
 
-  Widget _rowButtons(AnimeEntity anime) {
+  Widget _rowButtons() {
     return BlocProvider<AddOuevreBloc>(
           builder: (_) => serviceLocator<AddOuevreBloc>(),
-          child: MultiButtonsAdded(ouevre: anime, type: anime.type, objectType: ConstantsTypeObject.animeEntity,),
+          child: MultiButtonsAdded(ouevre: widget.anime, type: widget.anime.type, objectType: ConstantsTypeObject.animeEntity,),
         );
   
   }

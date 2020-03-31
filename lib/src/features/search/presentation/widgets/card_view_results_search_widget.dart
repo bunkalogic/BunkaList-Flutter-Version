@@ -102,10 +102,10 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-        Expanded(child: _titleItem(result), flex: 3, ),
-        Spacer(),
-        Expanded(child: _yearOfItem(result), flex: 1,),
-        Spacer(),
+        Expanded(child: _titleItem(result), flex: 5, ),
+        //Spacer(),
+        Expanded(child: _yearOfItem(result), flex: 3,),
+        //Spacer(),
         Expanded(child: _rateItem(result), flex: 2, )
         ],
       ),
@@ -148,7 +148,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
 
     final String title = (result.title == null) ? result.name : result.title;
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: const EdgeInsets.only(top: 1.0),
       child: Text(
           title, 
             style: TextStyle(
@@ -166,7 +166,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     final String date = (result.releaseDate == null) ? result.firstAirDate : result.releaseDate;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: const EdgeInsets.only(top: 1.0),
       child: Text(
           (date.isEmpty)  ?'No date'  : DateTime.parse(date).year.toString(), 
             style: TextStyle(
@@ -180,7 +180,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
 
   Widget _rateItem(Result result) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.5),
       child: Row(
         children: <Widget>[
           Text(result.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),

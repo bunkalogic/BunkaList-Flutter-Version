@@ -2,14 +2,12 @@ import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GridViewListSeriesWidget extends StatefulWidget {
-  final int typeId;
+  final SeriesEntity series;
 
-  GridViewListSeriesWidget({@required this.typeId});
+  GridViewListSeriesWidget({@required this.series});
 
   @override
   _GridViewListSeriesWidgetState createState() => _GridViewListSeriesWidgetState();
@@ -18,97 +16,36 @@ class GridViewListSeriesWidget extends StatefulWidget {
 class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
 
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<TopsSeriesBloc>(context)
-    ..add(GetSeriesTops(widget.typeId));
-  }
-
 
 
   @override
   Widget build(BuildContext context) {
 
-    //final double _aspectRatioOriginal = 5.4 / 7.8;
-    //final double _aspectRatio =  2.8 / 4.1;
-    final double _aspectRatio = 2.7 / 4.2;
-
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: BlocBuilder<TopsSeriesBloc, TopsSeriesState>(
-        //bloc: serviceLocator<TopsSeriesBloc>(),
-        builder: (context, state) {
-          if(state is Empty){
-
-            
-            
-            return loadingPage;
-
-          }else if(state is Loading){
-
-            return loadingPage;
-
-          }else if (state is Loaded){
-            
-              if(state.series.isNotEmpty){
-
-                return Container(      
-                  child: GridView.builder(
-                  itemBuilder: (context, i) => _itemPoster(context, state.series[i]),  //itemPoster(context),
-                  itemCount: state.series.length ,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: _aspectRatio
-                    ),
-                  ),
-            );
-
-             }else{
-               return Center(child: Text('No Series TV Found'));
-             }
-
-
-            
-          }else if(state is Error){
-            return Text(state.message);
-          }
-          return Center(child: Text('something Error'));
-        },
-      ), 
-    );
-  }
-
-  Widget _itemPoster(BuildContext context, SeriesEntity seriesEntity) {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImageAndRating(context, seriesEntity), flex: 4,),
-          _itemTitle(seriesEntity),
-          Expanded(child: _iconButton(context, seriesEntity), flex: 1,),
+          Expanded(child: _itemImageAndRating(), flex: 4,),
+          Expanded(child: _itemTitle(), flex: 1,),
+          Expanded(child: _iconButton(), flex: 1,),
         ],
     );
   }
 
-  Widget _itemImageAndRating(BuildContext context, SeriesEntity seriesEntity){
+  
+
+  Widget _itemImageAndRating(){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context, seriesEntity),
-          _itemRating(seriesEntity)
+          _itemImage(),
+          _itemRating()
         ],
       ),
     );
   }
 
-  Widget _itemRating(SeriesEntity seriesEntity){
+  Widget _itemRating(){
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(2.0),
@@ -117,7 +54,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
         color: Colors.grey[400].withOpacity(0.3)
       ),
       child: Text(
-        seriesEntity.voteAverage.toString(),
+        widget.series.voteAverage.toString(),
         style: TextStyle(
           color: Colors.white,
           fontSize: 16.0,
@@ -130,16 +67,16 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
     );
   }
 
-  Widget _itemImage(BuildContext context, SeriesEntity seriesEntity) {
+  Widget _itemImage() {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ seriesEntity.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.series.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
-              image: (seriesEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
+              image: (widget.series.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width / 4.0,
@@ -152,18 +89,18 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(seriesEntity.id, seriesEntity.type, seriesEntity.name));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.series.id, widget.series.type, widget.series.name));
           },
           child: _poster 
       ),
     );
   }
 
-  Widget _itemTitle(SeriesEntity seriesEntity) {
+  Widget _itemTitle() {
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Text(
-            seriesEntity.name,//? Title of Item
+            widget.series.name,//? Title of Item
             style: TextStyle(fontSize: 14.0,  fontWeight: FontWeight.w700,),
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
@@ -172,7 +109,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context, SeriesEntity seriesEntity){
-    return ButtonAddedArrowDown(ouevre: seriesEntity, type: seriesEntity.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntity,);
+  Widget _iconButton(){
+    return ButtonAddedArrowDown(ouevre: widget.series, type: widget.series.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntity,);
   }
 }

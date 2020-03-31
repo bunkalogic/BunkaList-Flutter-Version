@@ -7,18 +7,18 @@ abstract class TopsSeriesState extends Equatable {
 TopsSeriesState([List props = const <dynamic>[]]) : super(props);
 }
 
-class Empty extends TopsSeriesState{}
+class EmptySeries extends TopsSeriesState{}
 
-class Loading extends TopsSeriesState{}
+class LoadingSeries extends TopsSeriesState{}
 
-class Loaded extends TopsSeriesState{
+class LoadedSeries extends TopsSeriesState{
   final List<SeriesEntity> series;
 
-  Loaded({@required this.series}) : super([series]);
+  LoadedSeries({@required this.series}) : super([series]);
 }
 
-class Error extends TopsSeriesState{
+class ErrorSeries extends TopsSeriesState{
   final String message;
-  Error({@required this.message}) : super([message]);
+  ErrorSeries({@required this.message}) : super([message]);
 }
 

@@ -4,7 +4,6 @@ import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,10 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardViewListSeriesWidget extends StatefulWidget {
   
-  final int typeId;
+  final SeriesEntity series;
   
 
-  CardViewListSeriesWidget({@required this.typeId});
+  CardViewListSeriesWidget({@required this.series});
 
   @override
   _CardViewListSeriesWidgetState createState() => _CardViewListSeriesWidgetState();
@@ -24,62 +23,15 @@ class CardViewListSeriesWidget extends StatefulWidget {
 class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
 
 
-   final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<TopsSeriesBloc>(context)
-    ..add(GetSeriesTops(widget.typeId));
-  }
 
 
 
-
-  @override
+   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:BlocBuilder<TopsSeriesBloc, TopsSeriesState>(
-        //bloc: serviceLocator<TopsSeriesBloc>(),
-        builder: (context, state) {
-          if(state is Empty){
-            
-            return loadingPage;
-
-          }else if(state is Loading){
-
-            return loadingPage;
-
-          }else if (state is Loaded){
-            
-              if(state.series.isNotEmpty){
-                return ListView.builder(
-                  itemCount: state.series.length,
-                  itemBuilder: (context , i) => _buildCardItem(state.series[i]),
-                ); 
-               
-
-             }else{
-               return Center(child: Text('No Series TV Found'));
-             }
-            
-          }else if(state is Error){
-            return Text(state.message);
-          }
-          return Center(child: Text('something Error'));
-        },
-      ),
-    );
-  }
-
-  Widget _buildCardItem(SeriesEntity series) {
-     return Padding(
+    return Padding(
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
-         child: _itemInfo(series),
+         child: _itemInfo(),
          height: 160.0,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -96,52 +48,55 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
      ); 
   }
 
-  Widget _itemInfo(SeriesEntity series) {
+  
+
+  Widget _itemInfo() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _posterItem(series),
+        _posterItem(),
         SizedBox(width: 6.0,),
-        Expanded(child: _columnCenterItem(series))
+        Expanded(child: _columnCenterItem())
       ],
     );
 
   }
+  
 
-  Widget _columnCenterItem(SeriesEntity series){
+  Widget _columnCenterItem(){
     return Container(
       child: Column(
         children: <Widget>[
-          Expanded(child: _rowInfoItem(series)),
+          Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
-          //_chipGenresItem(series),
-          Expanded(child: ChipsGenresWidget(genres: series.genreIds.cast<int>(),), flex: 1,),
+          //_chipGenresItem(widget.series),
+          Expanded(child: ChipsGenresWidget(genres: widget.series.genreIds.cast<int>(),), flex: 1,),
           //SizedBox(height: 35.0,),
-          Expanded(child: _rowButtons(series)),
+          Expanded(child: _rowButtons()),
         ],
       ),
     );
   }
 
-  Widget _rowInfoItem(SeriesEntity series){
+  Widget _rowInfoItem(){
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-        Expanded(child: _titleItem(series), flex: 4, ),
-        Spacer(),
-        Expanded(child: _yearOfItem(series), flex: 1,),
-        Spacer(),
-        Expanded(child: _rateItem(series), flex: 2, )
+        Expanded(child: _titleItem(), flex: 5, ),
+        //Spacer(),
+        Expanded(child: _yearOfItem(), flex: 3,),
+        //Spacer(),
+        Expanded(child: _rateItem(), flex: 2, )
         ],
       ),
     );
   }
 
-  Widget _posterItem(SeriesEntity series) {
+  Widget _posterItem() {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ series.posterPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.series.posterPath }');
 
     //! Agregar el Hero
     final _poster = Container(
@@ -150,7 +105,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: FadeInImage(
-          image: (series.posterPath == null) ? placeholder : poster,//? Image Poster Item,
+          image: (widget.series.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
           fit: BoxFit.fill,
         ),
@@ -163,18 +118,18 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(series.id, series.type, series.name));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.series.id, widget.series.type, widget.series.name));
           },
           child: _poster 
       ),
     );
   }
 
-  Widget _titleItem(SeriesEntity series) {
+  Widget _titleItem() {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0,),
+      padding: const EdgeInsets.only(top: 1.0,),
       child: Text(
-          series.name, 
+          widget.series.name, 
             style: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w700, 
@@ -185,11 +140,11 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
     );
   }
 
-  Widget _yearOfItem(SeriesEntity series) {
+  Widget _yearOfItem() {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: const EdgeInsets.only(top: 1.0),
       child: Text(
-          DateTime.parse(series.firstAirDate).year.toString(), 
+          DateTime.parse(widget.series.firstAirDate).year.toString(), 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -200,19 +155,19 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
     );
   }
 
-  Widget _rateItem(SeriesEntity series) {
+  Widget _rateItem() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.5),
       child: Row(
         children: <Widget>[
-          Text(series.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
+          Text(widget.series.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
           Icon(Icons.star, size: 20, color: Colors.orange[800], ) 
         ],
       ),
     );
   }
 
-  // Widget _chipGenresItem(SeriesEntity series) {
+  // Widget _chipGenresItem(widget.seriesEntity widget.series) {
   //   return SizedBox(
   //     height: 70.0,
   //     width: double.maxFinite,
@@ -242,10 +197,10 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
   //   );
   // }
 
-  Widget _rowButtons(SeriesEntity series) {
+  Widget _rowButtons() {
     return BlocProvider<AddOuevreBloc>(
           builder: (_) => serviceLocator<AddOuevreBloc>(),
-          child: MultiButtonsAdded(ouevre: series, type: series.type, objectType: ConstantsTypeObject.serieEntity,),
+          child: MultiButtonsAdded(ouevre: widget.series, type: widget.series.type, objectType: ConstantsTypeObject.serieEntity,),
         );
   }
 

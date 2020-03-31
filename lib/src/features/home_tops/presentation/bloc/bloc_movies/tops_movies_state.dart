@@ -7,17 +7,17 @@ abstract class TopsMoviesState extends Equatable {
 TopsMoviesState([List props = const <dynamic>[]]) : super(props);
 }
 
-class Empty extends TopsMoviesState{}
+class EmptyMovies extends TopsMoviesState{}
 
-class Loading extends TopsMoviesState{}
+class LoadingMovies extends TopsMoviesState{}
 
-class Loaded extends TopsMoviesState{
+class LoadedMovies extends TopsMoviesState{
   final List<MovieEntity> movies;
 
-  Loaded({@required this.movies}) : super([movies]);
+  LoadedMovies({@required this.movies}) : super([movies]);
 }
 
-class Error extends TopsMoviesState{
+class ErrorMovies extends TopsMoviesState{
   final String message;
-  Error({@required this.message}) : super([message]);
+  ErrorMovies({@required this.message}) : super([message]);
 }

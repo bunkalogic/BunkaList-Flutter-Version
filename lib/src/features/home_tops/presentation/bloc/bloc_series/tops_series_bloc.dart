@@ -25,7 +25,7 @@ class TopsSeriesBloc extends Bloc<TopsSeriesEvent, TopsSeriesState> {
   
   
   @override
-  TopsSeriesState get initialState => Empty();
+  TopsSeriesState get initialState => EmptySeries();
 
   @override
   Stream<TopsSeriesState> mapEventToState(
@@ -36,10 +36,10 @@ class TopsSeriesBloc extends Bloc<TopsSeriesEvent, TopsSeriesState> {
 
       yield* inputEither.fold(
         (failures) async* {
-          yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+          yield ErrorSeries(message: INVALID_INPUT_FAILURE_MESSAGE );
 
         },(topId) async* {
-          yield Loading();
+          yield LoadingSeries();
           final failureOrSeries = await getTopsSeries(Params(topTypeId: topId));
           
           yield* _eitherLoadedOrErrorState(failureOrSeries); 
@@ -50,8 +50,8 @@ class TopsSeriesBloc extends Bloc<TopsSeriesEvent, TopsSeriesState> {
   Stream<TopsSeriesState> _eitherLoadedOrErrorState
   (Either<Failures, List<SeriesEntity>> either) async* {
     yield either.fold(
-      (failure) => Error(message: _mapFailureToMessage(failure)), 
-      (series)  => Loaded(series: series)
+      (failure) => ErrorSeries(message: _mapFailureToMessage(failure)), 
+      (series)  => LoadedSeries(series: series)
     );
   }
   

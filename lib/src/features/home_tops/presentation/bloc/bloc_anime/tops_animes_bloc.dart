@@ -25,7 +25,7 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
   
   
   @override
-  TopsAnimesState get initialState => Empty();
+  TopsAnimesState get initialState => EmptyAnimes();
 
   @override
   Stream<TopsAnimesState> mapEventToState(
@@ -36,10 +36,10 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
 
       yield* inputEither.fold(
         (failures) async* {
-          yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+          yield ErrorAnimes(message: INVALID_INPUT_FAILURE_MESSAGE );
 
         },(topId) async* {
-          yield Loading();
+          yield LoadingAnimes();
           final failureOrAnimes = await getTopsAnimes(Params(topTypeId: topId));
           
           yield* _eitherLoadedOrErrorState(failureOrAnimes); 
@@ -50,8 +50,8 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
   Stream<TopsAnimesState> _eitherLoadedOrErrorState
   (Either<Failures, List<AnimeEntity>> either) async* {
     yield either.fold(
-      (failure) => Error(message: _mapFailureToMessage(failure)), 
-      (animes)  => Loaded(animes: animes)
+      (failure) => ErrorAnimes(message: _mapFailureToMessage(failure)), 
+      (animes)  => LoadedAnimes(animes: animes)
     );
   }
   

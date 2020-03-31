@@ -114,7 +114,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesPopularId        : return getListSerieFromApi(sortBy: ConstSortBy.popularityDesc);
 
-      case Constants.topsSeriesRatedId          : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 2800);
+      case Constants.topsSeriesRatedId          : return getListSerieFromApi(sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
       case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(sortBy: ConstSortBy.firstAirDateDesc);
 

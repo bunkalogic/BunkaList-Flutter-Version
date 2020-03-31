@@ -124,19 +124,19 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(sortBy: ConstSortBy.popularityDesc, airDate: '2020-02-28', firstAirDate: '2019-12-25' );
 
-      case Constants.topsAnimeActionAndAdventureId : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.actionAndAveture.toString(), voteCount: 10 );
+      case Constants.topsAnimeActionAndAdventureId : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.actionAndAveture.toString(), voteCount: 5 );
 
-      case Constants.topsAnimeComedyId             : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.comedy.toString(), voteCount: 10 );
+      case Constants.topsAnimeComedyId             : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.comedy.toString(), voteCount: 5 );
         
-      case Constants.topsAnimeCrimenId             : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.crime.toString(), voteCount: 10 );
+      case Constants.topsAnimeCrimenId             : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.crime.toString(), voteCount: 5 );
         
-      case Constants.topsAnimeDramaId              : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.drama.toString(), voteCount: 10 );
+      case Constants.topsAnimeDramaId              : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.drama.toString(), voteCount: 5 );
         
-      case Constants.topsAnimeMisteryId            : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.mistery.toString(), voteCount: 10 );
+      case Constants.topsAnimeMisteryId            : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.mistery.toString(), voteCount: 5 );
         
-      case Constants.topsAnimeFantasyAndSciFiId    : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.sciFiAndFantasy.toString(), voteCount: 10);
+      case Constants.topsAnimeFantasyAndSciFiId    : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.sciFiAndFantasy.toString(), voteCount: 5);
         
-      case Constants.topsAnimeWarAndPoliticsId     : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.warAndPolitics.toString(), voteCount: 10);
+      case Constants.topsAnimeWarAndPoliticsId     : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.warAndPolitics.toString(),);
         
       case Constants.topsAnimeShonenId             : return await getListAnimeFromApi(sortBy: ConstSortBy.voteAverageDesc, keywords: '207826');
         

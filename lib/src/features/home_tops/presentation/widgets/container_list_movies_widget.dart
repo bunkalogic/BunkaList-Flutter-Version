@@ -67,15 +67,15 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
           Expanded(child: BlocBuilder<TopsMoviesBloc, TopsMoviesState>(
         //bloc: serviceLocator<TopsMoviesBloc>(),
         builder: (context, state) {
-          if(state is Empty){
+          if(state is EmptyMovies){
 
             return loadingPage;
 
-          }else if(state is Loading){
+          }else if(state is LoadingMovies){
 
             return loadingPage;
 
-          }else if (state is Loaded){
+          }else if (state is LoadedMovies){
             
               if(state.movies.isNotEmpty){
 
@@ -95,7 +95,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
 
             
-          }else if(state is Error){
+          }else if(state is ErrorMovies){
             return Text(state.message);
           }
           return Center(child: Text('something Error'));

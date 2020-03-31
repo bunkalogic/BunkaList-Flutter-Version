@@ -2,16 +2,14 @@ import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GridViewListAnimesWidget extends StatefulWidget {
-  final int typeId;
+  final AnimeEntity anime;
 
-  GridViewListAnimesWidget({ @required this.typeId});
+  GridViewListAnimesWidget({ @required this.anime});
 
   @override
   _GridViewListAnimesWidgetState createState() => _GridViewListAnimesWidgetState();
@@ -20,102 +18,35 @@ class GridViewListAnimesWidget extends StatefulWidget {
 class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
 
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-  bool loaded = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<TopsAnimesBloc>(context)
-    ..add(GetAnimesTops(widget.typeId));
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
 
-    //final double _aspectRatioOriginal = 5.4 / 7.8;
-    final double _aspectRatio = 2.7 / 4.2;
-
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
-         //bloc: serviceLocator<TopsAnimesBloc>(),
-         builder: (context, state) {
-           if(state is Empty){
-  
-             return loadingPage;
-
-           }else if(state is Loading){
-
-             return loadingPage;
-
-           }else if (state is Loaded){
-             
-             if(state.animes.isNotEmpty){
-
-                return Container(   
-               child: GridView.builder(
-                  itemBuilder: (context, i) => _itemPoster(context, state.animes[i]),  //itemPoster(context),
-                  itemCount: state.animes.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: _aspectRatio
-                  ),
-                ),
-             );
-
-             }else{
-               return Center(child: Text('No Anime Found'));
-             }
-             
-           }else if(state is Error){
-             return Text(state.message);
-           }
-           return Center(child: Text('something Error'));
-         },
-       ),
-      
-      
-      
-      
-      
-      
-    );
-  }
-
-  void nextPage(BuildContext context, typeId){
-    return BlocProvider.of<TopsAnimesBloc>(context).add(GetAnimesTops(typeId));
-  }
-
-  Widget _itemPoster(BuildContext context, AnimeEntity animeEntity) {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImageAndRating(context, animeEntity), flex: 4,),
-          _itemTitle(animeEntity),
-          Expanded(child: _iconButton(context, animeEntity), flex: 1,),
+          Expanded(child: _itemImageAndRating(), flex: 4,),
+          Expanded(child: _itemTitle(), flex: 1,),
+          Expanded(child: _iconButton(), flex: 1,),
         ],
     );
+    
+    
   }
 
-  Widget _itemImageAndRating(BuildContext context, AnimeEntity animeEntity){
+  Widget _itemImageAndRating(){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context, animeEntity),
-          _itemRating(animeEntity)
+          _itemImage(),
+          _itemRating()
         ],
       ),
     );
   }
 
-  Widget _itemRating(AnimeEntity animeEntity){
+  Widget _itemRating(){
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(2.0),
@@ -124,7 +55,7 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
         color: Colors.grey[400].withOpacity(0.3)
       ),
       child: Text(
-        animeEntity.voteAverage.toString(),
+        widget.anime.voteAverage.toString(),
         style: TextStyle(
           color: Colors.white,
           fontSize: 16.0,
@@ -137,16 +68,16 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
     );
   }
 
-  Widget _itemImage(BuildContext context, AnimeEntity animeEntity) {
+  Widget _itemImage() {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ animeEntity.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.anime.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
-              image: (animeEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
+              image: (widget.anime.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width / 4.0,
@@ -159,18 +90,18 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(animeEntity.id, animeEntity.type, animeEntity.name));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.anime.id, widget.anime.type, widget.anime.name));
           },
           child: _poster 
       ),
     );
   }
 
-  Widget _itemTitle(AnimeEntity animeEntity) {
+  Widget _itemTitle() {
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Text(
-            animeEntity.name,//? Title of Item
+            widget.anime.name,//? Title of Item
             style: TextStyle(fontSize: 14.0,  fontWeight: FontWeight.w700,),
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
@@ -179,7 +110,7 @@ class _GridViewListAnimesWidgetState extends State<GridViewListAnimesWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context, AnimeEntity animeEntity){
-   return ButtonAddedArrowDown(ouevre: animeEntity, type: animeEntity.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
+  Widget _iconButton(){
+   return ButtonAddedArrowDown(ouevre: widget.anime, type: widget.anime.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
   }
 }

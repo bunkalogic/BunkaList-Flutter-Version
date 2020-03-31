@@ -40,8 +40,8 @@ final appThemeData = {
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.black,
-        fontSize: 20.0, 
-        fontWeight: FontWeight.w700, 
+        fontSize: 18.0, 
+        fontWeight: FontWeight.w600, 
         fontStyle: FontStyle.italic
         ),
 
@@ -100,8 +100,8 @@ final appThemeData = {
       textTheme: TextTheme(
       title: TextStyle(
         color: Colors.white,
-        fontSize: 20.0, 
-        fontWeight: FontWeight.w700, 
+        fontSize: 18.0, 
+        fontWeight: FontWeight.w600, 
         fontStyle: FontStyle.italic
         ),
 
