@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 abstract class SeriesTopsRepository {
 
 
-  Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop) async {
+  Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop, int page) async {
     switch (typeTop) {
       
       case Constants.topsSeriesPopularId        : return await    _getTopSeriesPopular();  

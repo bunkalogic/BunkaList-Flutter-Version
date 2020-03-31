@@ -19,11 +19,11 @@ class AnimeTopRepositoryImpl implements AnimeTopsRepository {
   });
 
   @override
-  Future<Either<Failures, List<AnimeEntity>>> getTopsAnime(int typeTop) async {
+  Future<Either<Failures, List<AnimeEntity>>> getTopsAnime(int typeTop, int page) async {
     networkInfo.isConnected;
     try {
 
-      final remoteAnime = await remoteDataSource.getTopsAnimes(typeTop);
+      final remoteAnime = await remoteDataSource.getTopsAnimes(typeTop, page);
       return Right(remoteAnime);
 
     } on ServerException {

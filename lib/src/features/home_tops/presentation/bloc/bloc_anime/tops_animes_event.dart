@@ -8,5 +8,6 @@ abstract class TopsAnimesEvent extends Equatable {
 
 class GetAnimesTops extends TopsAnimesEvent {
   final int topId;
-  GetAnimesTops(this.topId) : super([topId]);
+  final int page;
+  GetAnimesTops(this.topId, this.page) : super([topId, page]);
 }

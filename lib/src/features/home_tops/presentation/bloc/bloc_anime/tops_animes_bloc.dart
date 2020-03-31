@@ -40,7 +40,7 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
 
         },(topId) async* {
           yield LoadingAnimes();
-          final failureOrAnimes = await getTopsAnimes(Params(topTypeId: topId));
+          final failureOrAnimes = await getTopsAnimes(Params(topTypeId: topId, page: event.page));
           
           yield* _eitherLoadedOrErrorState(failureOrAnimes); 
         });

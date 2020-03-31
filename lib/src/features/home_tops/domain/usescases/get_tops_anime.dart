@@ -19,12 +19,13 @@ class GetTopsAnime  extends UseCase<List<AnimeEntity>, Params> {
 
   @override
   Future<Either<Failures, List<AnimeEntity>>> call(Params params) async {
-    return await repository.getTopsAnime(params.topTypeId);
+    return await repository.getTopsAnime(params.topTypeId, params.page);
   }
 }
 
 class Params extends Equatable {
   final int topTypeId;
+  final int page;
 
-  Params({@required this.topTypeId}) :super([topTypeId]);
+  Params({@required this.topTypeId, @required this.page}) :super([topTypeId]);
 }

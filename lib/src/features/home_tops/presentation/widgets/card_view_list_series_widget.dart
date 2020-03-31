@@ -157,7 +157,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
 
   Widget _rateItem() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.5),
+      padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
       child: Row(
         children: <Widget>[
           Text(widget.series.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),

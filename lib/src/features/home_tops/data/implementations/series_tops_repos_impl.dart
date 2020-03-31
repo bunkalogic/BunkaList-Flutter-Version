@@ -22,11 +22,11 @@ class SeriesTopRepositoryImpl implements SeriesTopsRepository{
 
 
   @override
-  Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop) async {
+  Future<Either<Failures, List<SeriesEntity>>> getTopsSeries(int typeTop, int page) async {
     networkInfo.isConnected;
     try {
 
-      final remoteSeries = await remoteDataSource.getTopsSeries(typeTop);
+      final remoteSeries = await remoteDataSource.getTopsSeries(typeTop, page);
       return Right(remoteSeries);
 
     } on ServerException {

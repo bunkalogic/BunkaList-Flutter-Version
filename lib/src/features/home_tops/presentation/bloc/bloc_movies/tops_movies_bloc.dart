@@ -41,7 +41,7 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
 
         },(topId) async* {
           yield LoadingMovies();
-          final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
+          final failureOrMovies = await getTopsMovies(Params(topTypeId: topId, page: event.page));
           //_moviesController.sink.add(failureOrMovies);
           yield* _eitherLoadedOrErrorState(failureOrMovies); 
         });

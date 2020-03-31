@@ -22,6 +22,8 @@ class ContainerListAnimeWidget extends StatefulWidget {
 
 class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
 
+  int page = 1;
+
   final _pageController = new PageController(
     initialPage: 1,
     viewportFraction: 0.3,
@@ -35,7 +37,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     BlocProvider.of<TopsAnimesBloc>(context)
-    ..add(GetAnimesTops(widget.typeId));
+    ..add(GetAnimesTops(widget.typeId, page));
   }
 
 
@@ -44,14 +46,21 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
     
     _pageController.addListener( (){
 
-      if(_pageController.position.pixels >= _pageController.position.maxScrollExtent - 15){
+      if(_pageController.offset >= _pageController.position.maxScrollExtent 
+      && !_pageController.position.outOfRange){
          
-         nextPage(context, widget.typeId);
+         BlocProvider.of<TopsAnimesBloc>(context)
+        ..add(GetAnimesTops(widget.typeId, page + 1));
+         
       }
 
-      //  if(_pageController.position.pixels >= _pageController.position.minScrollExtent - 10){
-      //     if(widget.page != 0) widget.page--;
-      // }
+       if(_pageController.offset <= _pageController.position.minScrollExtent 
+      && !_pageController.position.outOfRange ){
+          page = (page - 1 == 0 ) ? 1 : page - 1;
+          
+          BlocProvider.of<TopsAnimesBloc>(context)
+          ..add(GetAnimesTops(widget.typeId, page));
+      }
 
     });
 
@@ -61,7 +70,6 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
          children: <Widget>[
            titleListTop(widget.title, context),
            Expanded(child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
-         //bloc: serviceLocator<TopsAnimesBloc>(),
          builder: (context, state) {
            if(state is EmptyAnimes){
 
@@ -103,56 +111,9 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
   ),
 );  
 
-//   return BlocProvider<TopsAnimesBloc>(
-//     builder: (_) => serviceLocator<TopsAnimesBloc>(),
-//     child: new Container(
-//       height: MediaQuery.of(context).size.height / 3.2,
-//       child: Column(
-//         children: <Widget>[
-//           titleListTop(widget.title, context),
-//           Expanded(child: BlocBuilder<TopsAnimesBloc, TopsAnimesState>(
-//         //bloc: serviceLocator<TopsAnimesBloc>(),
-//         builder: (context, state) {
-//           if(state is Empty){
-
-            
-            
-//             return loadingPage;
-
-//           }else if(state is Loading){
-
-//             return loadingPage;
-
-//           }else if (state is Loaded){
-            
-//             return Container(
-      
-//               child: PageView.builder(
-//                 pageSnapping: false,
-//                 controller: _pageController,
-//                 itemCount: state.animes.length,
-//                 itemBuilder: (context, i) => _itemPoster(context, state.animes[i]),
-//               ),
-//             );
-//           }else if(state is Error){
-//             return Text(state.message);
-//           }
-//           return Center(child: Text('something Error'));
-//         },
-//       ),
-              
-          
-//       ),
-//     ],
-//   ),
-// ),
-// );  
 
   }
 
-  void nextPage(BuildContext context, typeId){
-    return BlocProvider.of<TopsAnimesBloc>(context).add(GetAnimesTops(typeId));
-  }
 
   Widget titleListTop(String title, BuildContext context ){
     return ListTile(

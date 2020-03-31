@@ -40,7 +40,7 @@ class TopsSeriesBloc extends Bloc<TopsSeriesEvent, TopsSeriesState> {
 
         },(topId) async* {
           yield LoadingSeries();
-          final failureOrSeries = await getTopsSeries(Params(topTypeId: topId));
+          final failureOrSeries = await getTopsSeries(Params(topTypeId: topId, page: event.page));
           
           yield* _eitherLoadedOrErrorState(failureOrSeries); 
         });

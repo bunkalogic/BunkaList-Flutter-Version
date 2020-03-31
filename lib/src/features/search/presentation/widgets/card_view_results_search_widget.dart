@@ -180,7 +180,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
 
   Widget _rateItem(Result result) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.5),
+      padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
       child: Row(
         children: <Widget>[
           Text(result.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),

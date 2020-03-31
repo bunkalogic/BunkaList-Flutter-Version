@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 abstract class AnimeTopsRepository {
 
 
-  Future<Either<Failures, List<AnimeEntity>>> getTopsAnime(int typeTop) async {
+  Future<Either<Failures, List<AnimeEntity>>> getTopsAnime(int typeTop, int page) async {
     
     switch (typeTop) {
       

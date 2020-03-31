@@ -22,6 +22,8 @@ class ContainerListMoviesWidget extends StatefulWidget {
 
 class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
+  int page = 1;
+
   final _pageController = new PageController(
     initialPage: 1,
     viewportFraction: 0.3,
@@ -36,7 +38,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     BlocProvider.of<TopsMoviesBloc>(context)
-    ..add(GetMoviesTops(widget.typeId));
+    ..add(GetMoviesTops(widget.typeId, page));
   }
   
 
@@ -46,15 +48,20 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
     
   _pageController.addListener( (){
 
-      if(_pageController.position.pixels >= _pageController.position.maxScrollExtent - 15){
+      if(_pageController.offset >= _pageController.position.maxScrollExtent 
+      && !_pageController.position.outOfRange){
          
          BlocProvider.of<TopsMoviesBloc>(context)
-         ..add(GetMoviesTops(widget.typeId));
+         ..add(GetMoviesTops(widget.typeId, page + 1 ));
       }
 
-      //  if(_pageController.position.pixels >= _pageController.position.minScrollExtent - 10){
-      //     if(widget.page != 0) widget.page--;
-      // }
+       if(_pageController.offset <= _pageController.position.minScrollExtent 
+      && !_pageController.position.outOfRange ){
+        page = (page - 1 == 0 ) ? 1 : page - 1;
+
+        BlocProvider.of<TopsMoviesBloc>(context)
+         ..add(GetMoviesTops(widget.typeId, page));
+      }
 
     });
 
@@ -105,52 +112,6 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
     ],
   ),
 );  
-
-     
-
-//   return BlocProvider<TopsMoviesBloc>(
-//     builder: (_) => serviceLocator<TopsMoviesBloc>(),
-//     child: new Container(
-//       height: MediaQuery.of(context).size.height / 3.2,
-//       child: Column(
-//         children: <Widget>[
-//           titleListTop(widget.title, context),
-//           Expanded(child: BlocBuilder<TopsMoviesBloc, TopsMoviesState>(
-//         //bloc: serviceLocator<TopsMoviesBloc>(),
-//         builder: (context, state) {
-//           if(state is Empty){
-
-//             return loadingPage;
-
-//           }else if(state is Loading){
-
-//             return loadingPage;
-
-//           }else if (state is Loaded){
-            
-//             return Container(
-      
-//               child: PageView.builder(
-//                 pageSnapping: false,
-//                 controller: _pageController,
-//                 itemCount: state.movies.length,
-//                 itemBuilder: (context, i) => _itemPoster(context, state.movies[i]),
-//               ),
-//             );
-//           }else if(state is Error){
-//             return Text(state.message);
-//           }
-//           return Center(child: Text('something Error'));
-//         },
-//       ),
-              
-          
-//       ),
-//     ],
-//   ),
-// ),
-// );  
-
 
 
   }

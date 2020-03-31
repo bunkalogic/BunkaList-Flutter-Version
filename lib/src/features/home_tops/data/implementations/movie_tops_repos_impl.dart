@@ -20,11 +20,11 @@ class MovieTopsRepositoryImpl implements MovieTopsRepository{
   });
 
   @override
-  Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop) async {
+  Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop, int page) async {
     networkInfo.isConnected;
     try {
 
-      final remoteMovies = await remoteDataSource.getTopsMovies(typeTop);
+      final remoteMovies = await remoteDataSource.getTopsMovies(typeTop, page);
       return Right(remoteMovies);
 
     } on ServerException {

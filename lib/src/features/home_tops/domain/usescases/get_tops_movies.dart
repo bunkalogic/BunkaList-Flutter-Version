@@ -17,12 +17,13 @@ class GetTopsMovies extends UseCase<List<MovieEntity>, Params> {
 
   @override
   Future<Either<Failures, List<MovieEntity>>> call(Params params) async {
-    return await repository.getTopsMovies( params.topTypeId );
+    return await repository.getTopsMovies( params.topTypeId, params.page );
   }
 }
 
 class Params extends Equatable {
   final int topTypeId;
+  final int page;
 
-  Params({@required this.topTypeId}) :super([topTypeId]);
+  Params({@required this.topTypeId, @required this.page}) :super([topTypeId]);
 }

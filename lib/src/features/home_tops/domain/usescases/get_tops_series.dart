@@ -18,12 +18,13 @@ class GetTopsSeries  extends UseCase<List<SeriesEntity>, Params> {
 
   @override
   Future<Either<Failures, List<SeriesEntity>>> call(Params params) async {
-    return await repository.getTopsSeries(params.topTypeId);
+    return await repository.getTopsSeries(params.topTypeId, params.page);
   }
 }
 
 class Params extends Equatable {
   final int topTypeId;
+  final int page;
 
-  Params({@required this.topTypeId}) :super([topTypeId]);
+  Params({@required this.topTypeId, @required this.page}) :super([topTypeId, page]);
 }
