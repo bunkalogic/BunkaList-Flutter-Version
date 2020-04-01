@@ -69,70 +69,85 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
       child: CircularProgressIndicator(),
     ) ;
 
-  ScrollController _cardScrollController;
-
-  ScrollController _gridScrollController;
+  ScrollController _scrollController;
 
 
+  bool isLoading = false;
   bool changeDesign = false;
   int page = 1;
   int ouevreTopId = -1;
   String titleUpdated = '';
 
 
-  @override
-  void initState() {
-    super.initState();
-    _cardScrollController = ScrollController();
-    _gridScrollController = ScrollController();
-  }
-  
+  _scrollListener(){
+    
+      if(_scrollController.offset >= _scrollController.position.maxScrollExtent 
+      && !_scrollController.position.outOfRange){
+           
 
+        print('page initial: $page');
 
-  
-
-  @override
-  Widget build(BuildContext context) {
-
-    _cardScrollController.addListener((){
-
-      if(_cardScrollController.offset >= _cardScrollController.position.maxScrollExtent 
-      && !_cardScrollController.position.outOfRange){
-         
         switch(widget.data){
         
         case 'movies' : { 
           final topMovieId = (ouevreTopId == -1) ? Constants.topsMoviesPopularId : ouevreTopId; 
 
-          BlocProvider.of<TopsMoviesBloc>(context)
-          ..add(GetMoviesTops( topMovieId, page + 1 ));
+          isLoading = true;
+          print('movies page initial: $page');
 
+          (!isLoading) ? page : page++;
+
+          print('movies page++: $page');
+
+          BlocProvider.of<TopsMoviesBloc>(context)
+          ..add(GetMoviesTops( topMovieId, page ));
+          
+          
         }
         break;
 
         case 'tv'     : {
           final topSerieId = (ouevreTopId == -1) ? Constants.topsSeriesPopularId : ouevreTopId;
+          isLoading = true;
+
+          print('series page initial: $page');
+
+          (!isLoading) ? page : page++;
+          
+          print('series page++: $page');
 
           BlocProvider.of<TopsSeriesBloc>(context)
-            ..add(GetSeriesTops(topSerieId, page + 1));
+            ..add(GetSeriesTops(topSerieId, page));
+           
+           
         }
         break;
 
         case 'animes' : {
           final topAnimeId = (ouevreTopId == -1) ? Constants.topsAnimePopularId : ouevreTopId;
+          isLoading = true;
+
+          print('animes page initial: $page');
+
+          (!isLoading) ? page : page++;
+          
+          print('animes page++: $page');
 
             BlocProvider.of<TopsAnimesBloc>(context)
-            ..add(GetAnimesTops(topAnimeId, page + 1));
+            ..add(GetAnimesTops(topAnimeId, page));
+            
+            
         }
         break;
 
         }
-         
+        
       }
 
-      if(_cardScrollController.offset <= _cardScrollController.position.minScrollExtent 
-      && !_cardScrollController.position.outOfRange ){
-          page = (page - 1 == 0 ) ? 1 : page - 1;
+      if(_scrollController.offset <= _scrollController.position.minScrollExtent 
+      && !_scrollController.position.outOfRange ){
+          page = (page-- == 0 ) ? 1 : page--;
+          print('page--: $page');
           
         switch(widget.data){
         
@@ -155,95 +170,44 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
         case 'animes' : {
             final topAnimeId = (ouevreTopId == -1) ? Constants.topsAnimePopularId : ouevreTopId;
-
+            
             BlocProvider.of<TopsAnimesBloc>(context)
             ..add(GetAnimesTops(topAnimeId, page));
+            
         }
         break;
 
         }
       }
+      
+  }
 
-    });
 
-    _gridScrollController.addListener((){
 
-      if(_gridScrollController.offset >= _gridScrollController.position.maxScrollExtent 
-      && !_gridScrollController.position.outOfRange){
-         
-        switch(widget.data){
-        
-        case 'movies' : { 
-          final topMovieId = (ouevreTopId == -1) ? Constants.topsMoviesPopularId : ouevreTopId; 
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
 
-          BlocProvider.of<TopsMoviesBloc>(context)
-          ..add(GetMoviesTops( topMovieId, page + 1 ));
+  
+  
 
-        }
-        break;
 
-        case 'tv'     : {
-          final topSerieId = (ouevreTopId == -1) ? Constants.topsSeriesPopularId : ouevreTopId;
+  
 
-          BlocProvider.of<TopsSeriesBloc>(context)
-            ..add(GetSeriesTops(topSerieId, page + 1));
-        }
-        break;
-
-        case 'animes' : {
-          final topAnimeId = (ouevreTopId == -1) ? Constants.topsAnimePopularId : ouevreTopId;  
-
-            BlocProvider.of<TopsAnimesBloc>(context)
-            ..add(GetAnimesTops(topAnimeId, page + 1));
-        }
-        break;
-
-        }
-         
-      }
-
-      if(_gridScrollController.offset <= _gridScrollController.position.minScrollExtent 
-      && !_gridScrollController.position.outOfRange ){
-          page = (page - 1 == 0 ) ? 1 : page - 1;
-          
-        switch(widget.data){
-        
-        case 'movies' : { 
-          final topMovieId = (ouevreTopId == -1) ? Constants.topsMoviesPopularId : ouevreTopId; 
-
-          BlocProvider.of<TopsMoviesBloc>(context)
-          ..add(GetMoviesTops( topMovieId, page ));
-
-        }
-        break;
-
-        case 'tv'     : {
-          final topSerieId = (ouevreTopId == -1) ? Constants.topsSeriesPopularId : ouevreTopId;
-
-          BlocProvider.of<TopsSeriesBloc>(context)
-            ..add(GetSeriesTops(topSerieId, page));
-        }
-        break;
-
-        case 'animes' : {
-            final topAnimeId = (ouevreTopId == -1) ? Constants.topsAnimePopularId : ouevreTopId;
-
-            BlocProvider.of<TopsAnimesBloc>(context)
-            ..add(GetAnimesTops(topAnimeId, page));
-        }
-        break;
-
-        }
-      }
-
-    });    
-
+  @override
+  Widget build(BuildContext context) {   
 
     return Scaffold(
       appBar: _createAppBar(context, (titleUpdated == '') ? _whatTypeIs(context) : titleUpdated),
       body:   _changedListDesign(),
     );
   }
+
+
+
 
   Widget _createAppBar(BuildContext context, String title) {
     
@@ -418,7 +382,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               BlocProvider.of<TopsMoviesBloc>(context)
             ..add(GetMoviesTops(Constants.topsMoviesPopularId, page));
             }
-              
+            
             return loadingPage;
             
           }else if(state is LoadingMovies){
@@ -426,14 +390,14 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             return loadingPage;
 
           }else if (state is LoadedMovies){
-
+            isLoading = false;  
 
             if(!changeDesign){
               
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder(
-                  controller: _gridScrollController,
+                  controller: _scrollController,
                   itemBuilder: (context, i) => GridViewListMoviesWidget(movie: state.movies[i],),
                   itemCount: state.movies.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -448,7 +412,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
               return Container(
               child: ListView.builder(
-                controller: _cardScrollController,
+                controller: _scrollController,
                 itemCount: state.movies.length,
                 itemBuilder: (context , i) => CardViewListMoviesWidget(movie: state.movies[i],),
               ),
@@ -479,6 +443,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               BlocProvider.of<TopsSeriesBloc>(context)
             ..add(GetSeriesTops(Constants.topsSeriesPopularId, page));
             }
+            
 
             return loadingPage;
             
@@ -487,13 +452,13 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             return loadingPage;
 
           }else if (state is LoadedSeries){
-      
+            isLoading = false;
             if(!changeDesign){
               
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder(
-                  controller: _gridScrollController,
+                  controller: _scrollController,
                   itemBuilder: (context, i) =>  GridViewListSeriesWidget(series: state.series[i]) ,  
                   itemCount: state.series.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -508,7 +473,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
               return Container(
               child: ListView.builder(
-                controller: _cardScrollController,
+                controller: _scrollController,
                 itemCount: state.series.length,
                 itemBuilder: (context , i) => CardViewListSeriesWidget(series: state.series[i],),
               ),
@@ -537,6 +502,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               BlocProvider.of<TopsAnimesBloc>(context)
             ..add(GetAnimesTops(Constants.topsAnimePopularId, page));
             }
+            
 
             return loadingPage;
             
@@ -545,13 +511,13 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             return loadingPage;
 
           }else if (state is LoadedAnimes){
-      
+            isLoading = false;
             if(!changeDesign){
               
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder(
-                  controller: _gridScrollController,
+                  controller: _scrollController,
                   itemBuilder: (context, i) => GridViewListAnimesWidget(anime: state.animes[i]) ,
                   itemCount: state.animes.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -566,7 +532,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
               return Container(
               child: ListView.builder(
-                controller: _cardScrollController,
+                controller: _scrollController,
                 itemCount: state.animes.length,
                 itemBuilder: (context , i) => CardViewListAnimesWidget(anime: state.animes[i],),
               ),

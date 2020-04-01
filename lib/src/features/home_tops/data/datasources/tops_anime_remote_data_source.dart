@@ -40,6 +40,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
   final _url      = 'api.themoviedb.org';
   final _theAnimeDB = theMovieDbAPiKey;
   bool  _loading = false;
+  int totalPage = 1;
   
 
   Future<List<AnimeModel>>  getListAnimeFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String keywords,String airDate, String firstAirDate,}) async {
@@ -48,11 +49,14 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       _loading = true;
       // carga y agrega un pagina
       //_page++;
+      page = (page <= totalPage) ? page : totalPage;
+
+      final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
          'api_key'               : _theAnimeDB,
           'language'              : prefs.getLanguage,
-          'page'                  : page.toString(),
+          'page'                  : _page.toString(),
           'sort_by'               : sortBy,
           'air_date.lte'          : airDate,
           'first_air_date.gte'    : firstAirDate,
@@ -90,6 +94,8 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
     if(response.statusCode == 200){
       final decodedData = json.decode(response.body);
       print('Get Tops Anime total results: ${ decodedData['total_results'] }');
+
+      totalPage = decodedData['total_pages'];
 
       final listAnime = new Animes.fromJsonList(decodedData['results']);
 

@@ -41,7 +41,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   final _url      = 'api.themoviedb.org';
   final _theMovieDB = theMovieDbAPiKey;
   bool  _loading = false;
-  
+  int totalPage = 1;
 
   Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres}) async {
       if(_loading) return [];
@@ -49,11 +49,14 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       _loading = true;
       // carga y agrega un pagina
       // _page++
+      page = (page <= totalPage) ? page : totalPage;
+
+      final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
           'api_key'         : _theMovieDB,
           'language'        : prefs.getLanguage,
-          'page'            : page.toString(),
+          'page'            : _page.toString(),
           'sort_by'         : sortBy,
           'vote_count.gte'  : voteCount.toString(),
           'vote_average.gte': voteAverage.toString(),
@@ -87,6 +90,8 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
     if(response.statusCode == 200){
       final decodedData = json.decode(response.body);
       print('Get Tops Movies total results: ${ decodedData['total_results'] }');
+
+      totalPage = decodedData['total_pages'];
 
       final listMovies = new Movies.fromJsonList(decodedData['results']);
 
