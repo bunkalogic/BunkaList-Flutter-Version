@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,10 +25,10 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
   int page = 1;
 
-  final _pageController = new PageController(
-    initialPage: 1,
-    viewportFraction: 0.3,
-  );
+  // final _pageController = new PageController(
+  //   initialPage: 1,
+  //   viewportFraction: 0.3,
+  // );
 
   final loadingPage = Center(
       child: CircularProgressIndicator(),
@@ -46,24 +47,24 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
   Widget build(BuildContext context) {
     
     
-  _pageController.addListener( (){
+  // _pageController.addListener( (){
 
-      if(_pageController.offset >= _pageController.position.maxScrollExtent 
-      && !_pageController.position.outOfRange){
+  //     if(_pageController.offset >= _pageController.position.maxScrollExtent 
+  //     && !_pageController.position.outOfRange){
          
-         BlocProvider.of<TopsMoviesBloc>(context)
-         ..add(GetMoviesTops(widget.typeId, page + 1 ));
-      }
+  //        BlocProvider.of<TopsMoviesBloc>(context)
+  //        ..add(GetMoviesTops(widget.typeId, page + 1 ));
+  //     }
 
-       if(_pageController.offset <= _pageController.position.minScrollExtent 
-      && !_pageController.position.outOfRange ){
-        page = (page - 1 == 0 ) ? 1 : page - 1;
+  //      if(_pageController.offset <= _pageController.position.minScrollExtent 
+  //     && !_pageController.position.outOfRange ){
+  //       page = (page - 1 == 0 ) ? 1 : page - 1;
 
-        BlocProvider.of<TopsMoviesBloc>(context)
-         ..add(GetMoviesTops(widget.typeId, page));
-      }
+  //       BlocProvider.of<TopsMoviesBloc>(context)
+  //        ..add(GetMoviesTops(widget.typeId, page));
+  //     }
 
-    });
+  //   });
 
 
     return new Container(
@@ -88,9 +89,11 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
                return Container(
       
-              child: PageView.builder(
-                pageSnapping: false,
-                controller: _pageController,
+              child: CarouselSlider.builder(
+                enlargeCenterPage: true, 
+                aspectRatio: 16 / 9,
+                autoPlay: false,
+                viewportFraction: 0.35,
                 itemCount: state.movies.length,
                 itemBuilder: (context, i) => _itemPoster(context, state.movies[i]),
               ),

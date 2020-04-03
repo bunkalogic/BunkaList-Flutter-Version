@@ -43,7 +43,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
   int totalPage = 1;
   
 
-  Future<List<AnimeModel>>  getListAnimeFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String keywords,String airDate, String firstAirDate,}) async {
+  Future<List<AnimeModel>>  getListAnimeFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String keywords,String airDate, String firstAirDate, String airDateGte}) async {
       if(_loading) return [];
       
       _loading = true;
@@ -58,6 +58,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
           'language'              : prefs.getLanguage,
           'page'                  : _page.toString(),
           'sort_by'               : sortBy,
+          'air_date.gte'          : airDateGte,
           'air_date.lte'          : airDate,
           'first_air_date.gte'    : firstAirDate,
           'vote_count.gte'        : voteCount.toString(),
@@ -125,9 +126,9 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeRatedId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 45);
 
-      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDate: '2019-11-30', firstAirDate: '2019-09-01' );
+      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-01', airDate: '2020-05-01' );
 
-      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDate: '2020-02-28', firstAirDate: '2019-12-25' );
+      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-06-20', airDate: '2020-07-30' );
 
       case Constants.topsAnimeActionAndAdventureId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.actionAndAveture.toString(), voteCount: 5 );
 
@@ -156,10 +157,8 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       case Constants.topsAnimeRomanceId            : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '9840');
         
       case Constants.topsAnimeSuperNaturalId       : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '6152');
-        
 
-
-          
+      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-04-01', airDate: '2020-05-01' );
       
       
 

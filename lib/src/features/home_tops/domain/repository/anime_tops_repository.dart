@@ -20,6 +20,8 @@ abstract class AnimeTopsRepository {
 
       case Constants.topsAnimeUpcomingNextSeasonId: return await    _getAnimeUpcomingNextSeason();
 
+      case Constants.topsAnimeSeasonAirId         : return await    _getAnimeSeasonAir();
+
       case Constants.topsAnimeActionAndAdventureId: return await    _getAnimeGenresActionAndAdventure(); 
 
       case Constants.topsAnimeComedyId            : return await    _getAnimeGenresComedy();
@@ -48,6 +50,8 @@ abstract class AnimeTopsRepository {
 
       case Constants.topsAnimeSuperNaturalId      : return await   _getAnimeGenresSuperNatural();
 
+      case Constants.topsAnimeSeasonAirId         : return await    _getAnimeSeasonAir();
+
       default: return await   _getTopAnimePopular();
     }
     
@@ -62,6 +66,8 @@ abstract class AnimeTopsRepository {
   Future<Either<Failures, List<AnimeEntity>>> _getAnimeSeason();
 
   Future<Either<Failures, List<AnimeEntity>>> _getAnimeUpcomingNextSeason();
+
+  Future<Either<Failures, List<AnimeEntity>>> _getAnimeSeasonAir();
 
   //? Anime Popular Genres
 

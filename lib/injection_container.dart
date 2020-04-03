@@ -1,19 +1,26 @@
 import 'package:bunkalist/src/core/platform/network_info.dart';
+import 'package:bunkalist/src/features/home_tops/data/datasources/movie_cinema_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_anime_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_movie_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_series_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/implementations/anime_tops_repos_impl.dart';
+import 'package:bunkalist/src/features/home_tops/data/implementations/movie_cinema_repos_impl.dart';
 import 'package:bunkalist/src/features/home_tops/data/implementations/movie_tops_repos_impl.dart';
 import 'package:bunkalist/src/features/home_tops/data/implementations/series_tops_repos_impl.dart';
 import 'package:bunkalist/src/features/home_tops/domain/repository/anime_tops_repository.dart';
+import 'package:bunkalist/src/features/home_tops/domain/repository/movie_cinema_repository.dart';
 import 'package:bunkalist/src/features/home_tops/domain/repository/movie_tops_repository.dart';
 import 'package:bunkalist/src/features/home_tops/domain/repository/serie_tops_repository.dart';
+import 'package:bunkalist/src/features/home_tops/domain/usescases/get_cinema_movie.dart';
 import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_anime.dart';
 import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_movies.dart';
 import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_series.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime_season/animeseason_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/tops_series_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/tops_animes_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series_air_month/seriesair_bloc.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_auth_remote_data_source.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_auth_token_remote_data_source.dart';
 import 'package:bunkalist/src/features/login/data/datasources/user_auth_with_google_remote_data_source.dart';
@@ -130,6 +137,7 @@ final serviceLocator = GetIt.instance;
 Future<void> init() async {
   //! Home Tops Features
   initTopsMovies();
+  initCinemaMovie();
   initTopsSeries();
   initTopsAnime();
   //! Ouevre Details Features
@@ -250,6 +258,29 @@ initTopsMovies(){
   
 }
 
+initCinemaMovie(){
+  //? BLoc
+  serviceLocator.registerFactory(
+    () => CinemaMovieBloc(
+      cinemaMovies: serviceLocator(),
+      ),
+    ); 
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetCinemaMovies(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<MoviesCinemaRepository>(
+    () => MovieCinemaRepositoryImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  //? Data Sources
+  serviceLocator.registerLazySingleton<CinemaMovieRemoteDataSource>(
+    () => CinemaMovieRemoteDataSourceImpl(client: serviceLocator())
+  );  
+  
+}
+
 
 initTopsSeries(){
   //? Blocs
@@ -258,6 +289,13 @@ initTopsSeries(){
       series: serviceLocator()
     ),
   );
+
+  serviceLocator.registerFactory(
+    () => SeriesAirBloc(
+      series: serviceLocator()
+    ),
+  );
+
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetTopsSeries(serviceLocator()));
   //? Repository - Contracts
@@ -282,6 +320,12 @@ initTopsAnime(){
       animes: serviceLocator()
       )
     );
+
+  serviceLocator.registerFactory(
+    () => AnimeSeasonBloc(
+      animes: serviceLocator()
+      )
+    );  
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetTopsAnime(serviceLocator()));
   //? Repository - Contracts

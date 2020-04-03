@@ -45,6 +45,9 @@ class Constants {
   static const topsSeriesAmazonPrimeId    = 38;
   static const topsSeriesBBCOneId         = 39;
   static const topsSeriesAMCId            = 40;
+
+
+  static const topsSeriesMonthId          = 80;
   
   //? Consts for Tops Animes
 
@@ -66,5 +69,10 @@ class Constants {
   static const topsAnimeBasedOnMangaId        = 56;
   static const topsAnimeRomanceId             = 57;
   static const topsAnimeSuperNaturalId        = 58;
+
+
+  static const topsAnimeSeasonAirId           = 81;
+
+
 
 }

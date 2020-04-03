@@ -163,6 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'anime',),
           ),
+        SizedBox(height: 25.0,),    
       ],
     );
   }

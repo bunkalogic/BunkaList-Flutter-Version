@@ -6,7 +6,6 @@ import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/error/exception.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
-import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,7 +42,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   bool  _loading = false;
   int totalPage = 1;
 
-  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres}) async {
+  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, int releaseYear, String releaseDateGte}) async {
       if(_loading) return [];
       
       _loading = true;
@@ -54,13 +53,15 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
-          'api_key'         : _theMovieDB,
-          'language'        : prefs.getLanguage,
-          'page'            : _page.toString(),
-          'sort_by'         : sortBy,
-          'vote_count.gte'  : voteCount.toString(),
-          'vote_average.gte': voteAverage.toString(),
-          'with_genres'     : genres
+          'api_key'                   : _theMovieDB,
+          'language'                  : prefs.getLanguage,
+          'page'                      : _page.toString(),
+          'sort_by'                   : sortBy,
+          'primary_release_year'      : releaseYear.toString(),
+          'primary_release_date.gte'  : releaseDateGte,
+          'vote_count.gte'            : voteCount.toString(),
+          'vote_average.gte'          : voteAverage.toString(),
+          'with_genres'               : genres
       };
 
       
@@ -123,7 +124,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   
       case Constants.topsMoviesRatedId          : return await getListMovieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 2800);
   
-      case Constants.topsMoviesUpcommingId      : return await getListMovieFromApi(page, sortBy: ConstSortBy.primaryReleaseDateDesc);
+      case Constants.topsMoviesUpcommingId      : return await getListMovieFromApi(page, sortBy: ConstSortBy.primaryReleaseDateAsc, releaseYear: 2020, releaseDateGte: '2020-05-01');
   
       case Constants.topsMoviesActionId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.action.toString());
   

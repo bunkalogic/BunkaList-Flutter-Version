@@ -25,5 +25,5 @@ class Params extends Equatable {
   final int topTypeId;
   final int page;
 
-  Params({@required this.topTypeId, @required this.page}) :super([topTypeId]);
+  Params({@required this.topTypeId, @required this.page}) :super([topTypeId, page]);
 }

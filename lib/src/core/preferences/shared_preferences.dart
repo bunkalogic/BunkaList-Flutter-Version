@@ -36,6 +36,16 @@ class Preferences{
     _prefs.setString('language', value);
   }
 
+  
+  //? se en encarga de guardar el language code 
+  get getCountryCode {
+    return _prefs.getString('countryCode') ?? 'US';
+  }
+
+  set getCountryCode (String value) {
+    _prefs.setString('countryCode', value);
+  }
+
   //? se encarga de guardar current User Id
 
   get getCurrentUserUid {

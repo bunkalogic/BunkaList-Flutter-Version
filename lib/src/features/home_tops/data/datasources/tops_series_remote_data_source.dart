@@ -40,7 +40,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   bool  _loading = false;
   
 
-  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network}) async {
+  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte}) async {
       if(_loading) return [];
       
       _loading = true;
@@ -55,6 +55,8 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
           'language'        : prefs.getLanguage,
           'page'            : _page.toString(),
           'sort_by'         : sortBy,
+          'air_date.gte'    : airDateGte,
+          'air_date.lte'    : airDateLte,
           'vote_count.gte'  : voteCount.toString(),
           'vote_average.gte': voteAverage.toString(),
           'with_genres'     : genres,
@@ -121,7 +123,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesRatedId          : return getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
-      case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(page, sortBy: ConstSortBy.firstAirDateDesc);
+      case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-31', airDateLte: '2020-06-31' );
 
       case Constants.topsSeriesActAndAdvId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
@@ -152,6 +154,9 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
       case Constants.topsSeriesBBCOneId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '4' );
 
       case Constants.topsSeriesAMCId            : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
+
+      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-01', airDateLte: '2020-05-01'  );
+
 
       default: return null;
     }

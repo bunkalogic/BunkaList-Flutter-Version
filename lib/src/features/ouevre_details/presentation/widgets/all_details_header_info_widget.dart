@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
@@ -188,7 +189,7 @@ class HeaderInfoMovie  extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
           child: Text(
-            'Add in your List',
+            AppLocalizations.of(context).translate("add_in_list"),
             style: TextStyle(
               color: Colors.white,
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],

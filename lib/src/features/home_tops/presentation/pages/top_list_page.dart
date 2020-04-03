@@ -63,7 +63,7 @@ class BuildTopsListPage extends StatefulWidget {
 
 class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTickerProviderStateMixin {
   //? Variables
-  final double _aspectRatio = 2.7 / 4.2;
+  final double _aspectRatio = 16 / 9;
 
   final loadingPage = Center(
       child: CircularProgressIndicator(),
@@ -145,7 +145,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
       }
 
       if(_scrollController.offset <= _scrollController.position.minScrollExtent 
-      && !_scrollController.position.outOfRange ){
+      && !_scrollController.position.outOfRange && page > 1 ){
           page = (page-- == 0 ) ? 1 : page--;
           print('page--: $page');
           
@@ -394,16 +394,13 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
             if(!changeDesign){
               
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) => GridViewListMoviesWidget(movie: state.movies[i],),
-                  itemCount: state.movies.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+              return GridView.builder(
+                controller: _scrollController,
+                itemBuilder: (context, i) => GridViewListMoviesWidget(movie: state.movies[i],),
+                itemCount: state.movies.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: _aspectRatio
                 ),
               );
               
@@ -455,16 +452,13 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             isLoading = false;
             if(!changeDesign){
               
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) =>  GridViewListSeriesWidget(series: state.series[i]) ,  
-                  itemCount: state.series.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+              return GridView.builder(
+                controller: _scrollController,
+                itemBuilder: (context, i) =>  GridViewListSeriesWidget(series: state.series[i]) ,  
+                itemCount: state.series.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: _aspectRatio
                 ),
               );
               
@@ -514,16 +508,13 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             isLoading = false;
             if(!changeDesign){
               
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) => GridViewListAnimesWidget(anime: state.animes[i]) ,
-                  itemCount: state.animes.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+              return GridView.builder(
+                controller: _scrollController,
+                itemBuilder: (context, i) => GridViewListAnimesWidget(anime: state.animes[i]) ,
+                itemCount: state.animes.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: _aspectRatio
                 ),
               );
               

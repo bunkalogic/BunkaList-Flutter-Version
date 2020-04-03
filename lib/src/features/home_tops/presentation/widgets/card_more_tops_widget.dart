@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,11 +19,17 @@ class CardMoreTopsWidget extends StatelessWidget {
 
 
     return Container(
-      height: MediaQuery.of(context).size.height / 3.6,
-      child: PageView(
-        controller: _pageController,
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
+      height: MediaQuery.of(context).size.height / 3.8,
+      child: CarouselSlider(
+        enlargeCenterPage: true,
+        viewportFraction: 0.9,
+        aspectRatio: 2.0,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        pauseAutoPlayOnTouch: Duration(seconds: 10),
+        items: <Widget>[
           _itemMoreTops(context, Colors.pinkAccent , Colors.pinkAccent[400], Colors.redAccent[400], Colors.redAccent[700], moreMoviesLabel, 'movies'),
           _itemMoreTops(context, Colors.tealAccent , Colors.tealAccent[400], Colors.greenAccent[400], Colors.greenAccent[700], moreSeriesLabel,'tv'),
           _itemMoreTops(context, Colors.cyanAccent , Colors.cyanAccent[400], Colors.blueAccent[400], Colors.blueAccent[400], moreAnimesLabel, 'animes'),
@@ -39,8 +46,8 @@ class CardMoreTopsWidget extends StatelessWidget {
       child: Card(
         elevation: 15.0,
         margin: EdgeInsets.symmetric(
-          horizontal: 50.0,
-          vertical: 30.0
+          horizontal: 5.0,
+          vertical: 20.0
         ),
         color: Colors.transparent,
         child: Container(

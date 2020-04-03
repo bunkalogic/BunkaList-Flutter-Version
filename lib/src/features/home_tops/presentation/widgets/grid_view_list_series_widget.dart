@@ -21,14 +21,17 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(), flex: 4,),
-          Expanded(child: _itemTitle(), flex: 1,),
-          Expanded(child: _iconButton(), flex: 1,),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: _itemImageAndRating(), flex: 6,),
+            Expanded(child: _itemTitle(), flex: 1,),
+            Expanded(child: _iconButton(), flex: 1,),
+          ],
+      ),
     );
   }
 

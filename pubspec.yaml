@@ -58,6 +58,8 @@ dependencies:
   flutter_fluid_slider: ^1.0.2
   # format date &  provides internationalization
   intl: ^0.16.0
+  # carrusel slider
+  carousel_slider: ^1.4.1
   
   flutter_localizations:
     sdk: flutter

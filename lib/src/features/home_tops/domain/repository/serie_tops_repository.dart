@@ -49,6 +49,8 @@ abstract class SeriesTopsRepository {
 
       case Constants.topsSeriesAMCId            : return await   _getSeriesCompanyAMC();
 
+      case Constants.topsSeriesMonthId          : return await   _getSeriesAirInMonth();
+
       default: return await   _getTopSeriesPopular();
     }
   }
@@ -96,6 +98,8 @@ abstract class SeriesTopsRepository {
   Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyBBCOne();
 
   Future<Either<Failures, List<SeriesEntity>>> _getSeriesCompanyAMC();
+
+  Future<Either<Failures, List<SeriesEntity>>> _getSeriesAirInMonth();
 
   
 

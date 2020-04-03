@@ -4,6 +4,7 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,10 +26,10 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
 
   int page = 1;
 
-  final _pageController = new PageController(
-    initialPage: 1,
-    viewportFraction: 0.3,
-  );
+  // final _pageController = new PageController(
+  //   initialPage: 1,
+  //   viewportFraction: 0.3,
+  // );
 
   final loadingPage = Center(
       child: CircularProgressIndicator(),
@@ -45,24 +46,24 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
   @override
   Widget build(BuildContext context) {
     
-    _pageController.addListener( (){
+    // _pageController.addListener( (){
 
-      if(_pageController.offset >= _pageController.position.maxScrollExtent 
-      && !_pageController.position.outOfRange){
-         BlocProvider.of<TopsSeriesBloc>(context)
-        ..add(GetSeriesTops(widget.typeId, page + 1));
+    //   if(_pageController.offset >= _pageController.position.maxScrollExtent 
+    //   && !_pageController.position.outOfRange){
+    //      BlocProvider.of<TopsSeriesBloc>(context)
+    //     ..add(GetSeriesTops(widget.typeId, page + 1));
          
-      }
+    //   }
 
-       if(_pageController.offset <= _pageController.position.minScrollExtent 
-      && !_pageController.position.outOfRange ){
-          page = (page - 1 == 0 ) ? 1 : page - 1;
+    //    if(_pageController.offset <= _pageController.position.minScrollExtent 
+    //   && !_pageController.position.outOfRange ){
+    //       page = (page - 1 == 0 ) ? 1 : page - 1;
 
-          BlocProvider.of<TopsSeriesBloc>(context)
-          ..add(GetSeriesTops(widget.typeId, page));
-      }
+    //       BlocProvider.of<TopsSeriesBloc>(context)
+    //       ..add(GetSeriesTops(widget.typeId, page));
+    //   }
 
-    });
+    // });
 
     return new Container(
       height: MediaQuery.of(context).size.height / 2.6,
@@ -85,9 +86,11 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
               if(state.series.isNotEmpty){
 
                 return Container(      
-              child: PageView.builder(
-                pageSnapping: false,
-                controller: _pageController,
+              child: CarouselSlider.builder(
+                 enlargeCenterPage: true, 
+                 aspectRatio: 16 / 9,
+                 autoPlay: false,
+                 viewportFraction: 0.35,
                 itemCount: state.series.length,
                 itemBuilder: (context, i) => _itemPoster(context, state.series[i]),
               ),

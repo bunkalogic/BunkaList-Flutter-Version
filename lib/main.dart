@@ -52,10 +52,15 @@ Widget _materialApp(BuildContext context, ThemeState state){
         onGenerateRoute: RouteGeneretor.generateRoute,
         localeListResolutionCallback: ( devicesLocale , supportedLocales ){
           myLocale = devicesLocale.first;
+
           print(myLocale.countryCode);
           print(myLocale.languageCode);
+
           prefs.getLanguage = '${myLocale.languageCode}-${myLocale.countryCode}';
+          prefs.getCountryCode = '${myLocale.countryCode}';
+
           print('language code: ${prefs.getLanguage}');
+          
           return null; 
         },
         //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED

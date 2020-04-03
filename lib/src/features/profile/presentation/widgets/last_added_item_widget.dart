@@ -2,6 +2,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,11 +33,6 @@ class _LastAddedItemState extends State<LastAddedItem> {
     );
   }
 
-  final _pageController = new PageController(
-    initialPage: 1,
-    viewportFraction: 0.3,
-  );  
-
   final loadingPage = Center(
       child: CircularProgressIndicator(),
     );
@@ -44,7 +40,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
   @override
   Widget build(BuildContext context) {
    return Container(
-     height: MediaQuery.of(context).size.height / 3.0,
+     height: MediaQuery.of(context).size.height / 2.6,
      child: BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
         if(state is GetListsLoading){
@@ -54,9 +50,11 @@ class _LastAddedItemState extends State<LastAddedItem> {
         }else if(state is GetListsLoaded){
 
           return Container(
-            child: PageView.builder(
-              pageSnapping: false,
-              controller: _pageController,
+            child: CarouselSlider.builder(
+              enlargeCenterPage: true, 
+              height: MediaQuery.of(context).size.height / 2.6,
+              autoPlay: false,
+              viewportFraction: 0.36,
               itemCount: state.ouevreList.length,
               itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
             ),
