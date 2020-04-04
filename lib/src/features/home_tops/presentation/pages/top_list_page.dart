@@ -63,7 +63,7 @@ class BuildTopsListPage extends StatefulWidget {
 
 class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTickerProviderStateMixin {
   //? Variables
-  final double _aspectRatio = 16 / 9;
+  final double _aspectRatio = 2.7 / 4.2;
 
   final loadingPage = Center(
       child: CircularProgressIndicator(),
