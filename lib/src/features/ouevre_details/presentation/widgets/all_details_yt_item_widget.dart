@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/youtube_video_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,7 +43,12 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
   }
   Widget _stackImage(BuildContext context){
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/VideoPlayer', arguments: video.id),
+      onTap: () {
+        Navigator.of(context).push(PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) => VideoPlayerWidget( id: video.id, ),
+        ));
+      },
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[

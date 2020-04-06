@@ -60,6 +60,8 @@ dependencies:
   intl: ^0.16.0
   # carrusel slider
   carousel_slider: ^1.4.1
+  # snap floating container
+  snap: ^1.0.5
   
   flutter_localizations:
     sdk: flutter
