@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/forgot_password_dialog.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,36 +15,48 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+
+  bool get isPopulated =>
+      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+
+  bool isLoginButtonEnabled(LoginState state) {
+    return state.isFormValid && isPopulated && !state.isSubmitting;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _emailController.addListener(_onEmailChanged);
+    _passwordController.addListener(_onPasswordChanged);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
-
-    
-
     return BlocListener<LoginBloc, LoginState>(
       
       listener: (context, state){
-        if(state is LoginFailure){
+        if(state.isFailure){
           print('login failure');
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text('${state.error}'),
-              backgroundColor: Colors.redAccent[400],
-            ),
-          );
+          _flushbarLoginError();
         }
         
-        if(state is LoginLoading){
+        if(state.isSubmitting){
           print('login is loading');
+          _flushbarLoginSubmitting();
         }
         
-        if(state is LoginSuccess){
+        if(state.isSuccess){
           print('login success');
           Navigator.pushReplacementNamed(context, '/Home');
         }
       },
+
 
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state){
@@ -71,21 +84,14 @@ class _LoginWidgetState extends State<LoginWidget> {
         children: <Widget>[
             _iconApp(),
             _labelEmail(),
-            _emailTextField(context),
+            _emailTextField(context, state),
             Divider(height: 16.0, color: Colors.transparent,),
             _labelPassword(),
-            _passwordTextField(context),
+            _passwordTextField(context, state),
             Divider(height: 16.0, color: Colors.transparent,),
             _buttonForGotPassword(),
             _buttonLogin(context, state),
             SizedBox(height: 6.0,),
-             Container( 
-              child: Center(
-                child: state is LoginLoading
-              ? CircularProgressIndicator()
-              : null,
-              )
-            ),
         ],
       ),
     ),
@@ -97,30 +103,6 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     
   }
-
-
-  void _onLoginButtonPressed(){
-
-      if(!_formKey.currentState.validate()){
-        Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(AppLocalizations.of(context).translate("email_or_password_empty")),
-              backgroundColor: Colors.deepOrangeAccent[400],
-            ),
-          );
-      }
-    
-      if(_emailController.text.isNotEmpty &&  _passwordController.text.isNotEmpty && _formKey.currentState.validate()){
-  
-        BlocProvider.of<LoginBloc>(context)..add(
-        LoginButtonPressed(
-          email: _emailController.text,
-          password: _passwordController.text)
-      );
-       print('button login pressed');
-      }
-      
-    }
 
   Container _buttonLogin(BuildContext context, LoginState state) {
     return new Container(
@@ -135,7 +117,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                       borderRadius: new BorderRadius.circular(15.0),
                     ),
                     color: Colors.orange[900],
-                    onPressed: state is! LoginLoading ? _onLoginButtonPressed: null,
+
+                    onPressed: isLoginButtonEnabled(state)
+                              ? _onFormSubmitted
+                              : null,
+
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -192,7 +178,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           );
   }
 
-  Container _passwordTextField(BuildContext context) {
+  Container _passwordTextField(BuildContext context, LoginState state) {
     return new Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
@@ -213,10 +199,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 new Expanded(
                   child: TextFormField(
                     validator: (String value) {
-                      if (value.isEmpty) {
-                        return AppLocalizations.of(context).translate("empty_password");
-                      }
-                        return null;
+                       return !state.isPasswordValid ? AppLocalizations.of(context).translate("empty_password") : null;
                     },
                     controller: _passwordController,
                     obscureText: true,
@@ -254,7 +237,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           );
   }
 
-  Container _emailTextField(BuildContext context) {
+  Container _emailTextField(BuildContext context, LoginState state) {
     return new Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
@@ -274,12 +257,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: <Widget>[
                 new Expanded(
                   child: TextFormField(
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return AppLocalizations.of(context).translate("empty_email");
-                      }
-                        return null;
-                      },
+                    validator: (_) {
+                      return !state.isEmailValid ? AppLocalizations.of(context).translate("empty_email") : null;
+                    },
                     controller: _emailController,
                     obscureText: false,
                     textAlign: TextAlign.left,
@@ -331,6 +311,46 @@ class _LoginWidgetState extends State<LoginWidget> {
           );
   }
 
+
+  void _flushbarLoginError(){
+    Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.redAccent[700], Colors.redAccent[400]],),
+      backgroundColor: Colors.red[500],
+      boxShadows: [BoxShadow(color: Colors.red[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 3),
+      messageText: Text(
+        AppLocalizations.of(context).translate("email_or_password_empty"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
+  }
+
+  void _flushbarLoginSubmitting(){
+     Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
+      backgroundColor: Colors.blue[500],
+      boxShadows: [BoxShadow(color: Colors.blue[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 3),
+      messageText: Text(
+        AppLocalizations.of(context).translate("login_submitted"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
+  }
+
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -338,6 +358,26 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.dispose();
   }
 
+   void _onEmailChanged() {
+    BlocProvider.of<LoginBloc>(context)..add(
+      EmailChanged(email: _emailController.text),
+    );
+  }
+
+  void _onPasswordChanged() {
+    BlocProvider.of<LoginBloc>(context)..add(
+      PasswordChanged(password: _passwordController.text),
+    );
+  }
+
+  void _onFormSubmitted() {
+    BlocProvider.of<LoginBloc>(context)..add(
+      LoginWithCredentialsPressed(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ),
+    );
+  }
   
 
   

@@ -1,6 +1,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
+import 'package:bunkalist/src/features/login/presentation/bloc/bloc_register/register_bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/login_widget.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/signup_widget.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +45,8 @@ class _LoginHomePageState extends State<LoginHomePage> {
       child: LoginWidget(),
       ),
       _baseLogin(context),
-       BlocProvider<LoginBloc>(
-      builder: (_) => serviceLocator<LoginBloc>(),
+       BlocProvider<RegisterBloc>(
+      builder: (_) => serviceLocator<RegisterBloc>(),
       child: SignUpWidget(),
       ),
       ],
@@ -263,75 +264,49 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
     _pressedButtonSignInWithGoogle(){
 
       BlocProvider.of<LoginBloc>(context)..add(
-        SignInWithGoogleButtonPressed()
+         LoginWithGooglePressed(),
       );
        print('button sign with google pressed');
-      
+
+      Navigator.pushReplacementNamed(context, '/Home');
     }
 
-
-    return BlocListener<LoginBloc, LoginState>(
-      
-      listener: (context, state){
-        if(state is LoginFailure){
-          print('login failure');
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text('${state.error}'),
-              backgroundColor: Colors.redAccent[400],
-            ),
-          );
-        }
-        
-        if(state is LoginLoading){
-          print('login is loading');
-        }
-        
-        if(state is LoginSuccess){
-          print('login success');
-          Navigator.pushReplacementNamed(context, '/Home');
-        }
-      },
-          
-          child: BlocBuilder<LoginBloc, LoginState>(
-            builder: (context, state) {
-              return new Container(
-                margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-                width: MediaQuery.of(context).size.width,
-                child: new RaisedButton(
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0)),
-                  padding: EdgeInsets.only(top: 3.0,bottom: 3.0,left: 1.0),
-                  color: const Color(0xFF4285F4),
-                  onPressed: state is! LoginLoading ? _pressedButtonSignInWithGoogle : null,
-                    child: new Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        new Image.asset(
-                          'assets/btn_google.png',
-                          height: 48.0,
-                        ),
-                        SizedBox(width: 40.0,),
-                        new Container(
-                          padding: EdgeInsets.only(left: 10.0,right: 10.0),
-                          child: new Text(
-                            AppLocalizations.of(context).translate("sign_with_google"),
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                               fontSize: 16.0,
-                               fontWeight: FontWeight.w700,
-                               color: Colors.white 
-                              )
-                            ),
-                          )
-                        ),
-                        Spacer(),
-                      ],
+    return new Container(
+      margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+      width: MediaQuery.of(context).size.width,
+      child: new RaisedButton(
+        shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(10.0)),
+        padding: EdgeInsets.only(top: 3.0,bottom: 3.0,left: 1.0),
+        color: const Color(0xFF4285F4),
+        onPressed: () => _pressedButtonSignInWithGoogle(),
+          child: new Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new Image.asset(
+                'assets/btn_google.png',
+                height: 48.0,
+              ),
+              SizedBox(width: 40.0,),
+              new Container(
+                padding: EdgeInsets.only(left: 10.0,right: 10.0),
+                child: new Text(
+                  AppLocalizations.of(context).translate("sign_with_google"),
+                  style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                     fontSize: 16.0,
+                     fontWeight: FontWeight.w700,
+                     color: Colors.white 
                     )
                   ),
-                );
-            },
+                )
+              ),
+              Spacer(),
+            ],
           )
-    );
+        ),
+      );
+
+   
   }
 }

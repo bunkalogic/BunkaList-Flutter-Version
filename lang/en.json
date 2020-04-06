@@ -262,6 +262,10 @@
 
   "password_lenght"             : "Password should have at least 8 characters",
 
+  "login_submitted"             : "Logging In...",
+
+  "register_submitted"          : "Registering...",
+
   "what_season"                 : "What season are you going?",
 
   "what_episode"                : "What episode are you going?",

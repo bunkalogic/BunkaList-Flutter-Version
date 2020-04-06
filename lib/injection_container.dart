@@ -39,6 +39,7 @@ import 'package:bunkalist/src/features/login/domain/usescases/get_user_delete_to
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_has_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_persist_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_register.dart';
+import 'package:bunkalist/src/features/login/presentation/bloc/bloc_register/register_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/credits_details_remote_data_source.dart';
@@ -382,10 +383,15 @@ initLogin(){
     () => LoginBloc(
       authBloc: serviceLocator(),
       userAuth: serviceLocator(),
-      userRegister: serviceLocator(),
       googleAuth: serviceLocator(),
       )
     );
+
+  serviceLocator.registerFactory(
+    () => RegisterBloc(
+      userRegister: serviceLocator()
+      )
+    );  
 
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetUserRegister(serviceLocator()));
@@ -394,6 +400,7 @@ initLogin(){
   serviceLocator.registerLazySingleton(() => GetUserDeleteToken(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserPersistToken(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserWithGoogleAuth(serviceLocator()));
+  
   //? Repository - Contracts
   serviceLocator.registerLazySingleton<UserEmailAuthContract>(
     () => UserEmailAuthImpl(

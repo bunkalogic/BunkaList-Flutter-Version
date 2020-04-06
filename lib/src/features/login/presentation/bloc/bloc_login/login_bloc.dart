@@ -1,14 +1,12 @@
 import 'dart:async';
 
-import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/usescases/usescase.dart';
+import 'package:bunkalist/src/core/utils/validator_email_and_password.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth_with_google.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth.dart';
-import 'package:bunkalist/src/features/login/domain/usescases/get_user_register.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_auth.dart' as paramsAuth;
-import 'package:bunkalist/src/features/login/domain/usescases/get_user_register.dart' as paramsSign;
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 
 import 'bloc.dart';
@@ -17,22 +15,18 @@ const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   
-  final GetUserRegister getUserRegister;
   final GetUserAuth getUserAuth;
   final AuthenticationBloc authenticationBloc;
   final GetUserWithGoogleAuth getGoogleAuth;
 
   LoginBloc({
-    @required GetUserRegister userRegister,
     @required GetUserAuth userAuth,
     @required AuthenticationBloc authBloc,
     @required GetUserWithGoogleAuth googleAuth
   }) 
-   :  assert(userRegister != null),
-      assert(userAuth != null),
+   :  assert(userAuth != null),
       assert(authBloc != null),
       assert(googleAuth != null),
-      getUserRegister = userRegister,
       getUserAuth = userAuth,
       authenticationBloc = authBloc,
       getGoogleAuth = googleAuth;
@@ -41,68 +35,68 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   
   @override
-  LoginState get initialState => LoginInitial();
+  LoginState get initialState => LoginState.empty();
 
   @override
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    if(event is LoginButtonPressed){
+    if (event is EmailChanged) {
+      yield* _mapEmailChangedToState(event.email);
+    } else if (event is PasswordChanged) {
+      yield* _mapPasswordChangedToState(event.password);
+    } else if (event is LoginWithGooglePressed) {
+      yield* _mapLoginWithGooglePressedToState();
+    } else if (event is LoginWithCredentialsPressed) {
+      yield* _mapLoginWithCredentialsPressedToState(
+        email: event.email,
+        password: event.password,
+      );
+    }
+  }
 
-      yield LoginLoading();
+   Stream<LoginState> _mapEmailChangedToState(String email) async* {
+    yield state.update(
+      isEmailValid: Validators.isValidEmail(email),
+    );
+  }
 
-      final eitherFailureOrAuth = await getUserAuth(paramsAuth.Params(email: event.email, password: event.password));
-      event.toString();
-      yield eitherFailureOrAuth.fold(
-        (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
+  Stream<LoginState> _mapPasswordChangedToState(String password) async* {
+    yield state.update(
+      isPasswordValid: Validators.isValidPassword(password),
+    );
+  }
+
+  Stream<LoginState> _mapLoginWithGooglePressedToState() async* {
+    final eitherFailureOrSignGoogle = await getGoogleAuth(NoParams());
+
+    yield eitherFailureOrSignGoogle.fold(
+        (failure) => LoginState.failure(), 
+        (token)  {
+          authenticationBloc.add(LoggedIn(token: token)); 
+          return LoginState.success();
+        } ,
+      ); 
+  }
+
+  Stream<LoginState> _mapLoginWithCredentialsPressedToState({
+    String email,
+    String password,
+  }) async* {
+    yield LoginState.loading();
+    
+    final eitherFailureOrAuth = await getUserAuth(paramsAuth.Params(email: email, password: password));
+
+     yield eitherFailureOrAuth.fold(
+        (failure) => LoginState.failure(), 
         (token){
           
           authenticationBloc.add(LoggedIn(token: token));
 
-          return LoginSuccess();
-        } 
-      );
-
-      
-
-    }else if(event is SignInButtonPressed){
-
-      yield LoginLoading();
-
-      final eitherFailureOrSign = await getUserRegister(paramsSign.Params(email: event.email, password: event.password ));
-
-      yield eitherFailureOrSign.fold(
-        (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
-        (empty) =>  LoginSuccess()
-      );
-
-
-    }else if(event is SignInWithGoogleButtonPressed){
-      
-      yield LoginLoading();
-
-      final eitherFailureOrSignGoogle = await getGoogleAuth(NoParams());
-
-      yield eitherFailureOrSignGoogle.fold(
-        (failure) => LoginFailure(error: _mapFailureToMessage(failure)), 
-        (token) {
-
-          authenticationBloc.add(LoggedIn(token: token));   
-
-          return LoginSuccess();
+          return LoginState.success();
         } 
       ); 
 
-    }
   }
 
-  String _mapFailureToMessage(Failures failure) {
-  // Instead of a regular 'if (failure is ServerFailure)...'
-    switch (failure.runtimeType) {
-      case ServerFailure:
-        return SERVER_FAILURE_MESSAGE;
-      default:
-        return 'Unexpected Error';
-    }
-  }
 }

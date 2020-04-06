@@ -1,16 +1,13 @@
-import 'package:meta/meta.dart';
-import 'package:equatable/equatable.dart';
+part of 'register_bloc.dart';
 
-abstract class LoginEvent extends Equatable {
-  const LoginEvent();
+abstract class RegisterEvent extends Equatable {
+  const RegisterEvent();
 
   @override
   List<Object> get props => [];
 }
 
-
-
-class EmailChanged extends LoginEvent {
+class EmailChanged extends RegisterEvent {
   final String email;
 
   const EmailChanged({@required this.email});
@@ -22,9 +19,7 @@ class EmailChanged extends LoginEvent {
   String toString() => 'EmailChanged { email :$email }';
 }
 
-
-
-class PasswordChanged extends LoginEvent {
+class PasswordChanged extends RegisterEvent {
   final String password;
 
   const PasswordChanged({@required this.password});
@@ -36,9 +31,7 @@ class PasswordChanged extends LoginEvent {
   String toString() => 'PasswordChanged { password: $password }';
 }
 
-
-
-class Submitted extends LoginEvent {
+class Submitted extends RegisterEvent {
   final String email;
   final String password;
 
@@ -55,24 +48,3 @@ class Submitted extends LoginEvent {
     return 'Submitted { email: $email, password: $password }';
   }
 }
-
-
-class LoginWithCredentialsPressed extends LoginEvent {
-  final String email;
-  final String password;
-
-  const LoginWithCredentialsPressed({
-    @required this.email,
-    @required this.password,
-  });
-
-  @override
-  List<Object> get props => [email, password];
-
-  @override
-  String toString() {
-    return 'LoginWithCredentialsPressed { email: $email, password: $password }';
-  }
-}
-
-class LoginWithGooglePressed extends LoginEvent {}
