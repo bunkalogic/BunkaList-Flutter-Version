@@ -268,7 +268,9 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
       );
        print('button sign with google pressed');
 
-      Navigator.pushReplacementNamed(context, '/Home');
+      //Navigator.pushReplacementNamed(context, '/Home');
+      // Navigator.of(context).pushReplacementNamed('/Home');
+      _navigateToHome(context);
     }
 
     return new Container(
@@ -309,4 +311,8 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
 
    
   }
+
+  void _navigateToHome(BuildContext context){
+     Navigator.pushNamedAndRemoveUntil(context, '/Home', (_) => false);
+   } 
 }

@@ -125,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
         onPressed: (){
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
-          Navigator.pushNamed(context, '/Login');
+          Navigator.pushNamedAndRemoveUntil(context, '/Login', (_) => false);
         },
 
       ),
@@ -235,10 +235,14 @@ class ButtomLogOut extends StatelessWidget {
           prefs.currentUserHasToken = false;
 
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
-          Navigator.pushNamed(context, '/Login');
+          _goToLogin(context);
         },
 
       ),
     );
+  }
+
+  _goToLogin(BuildContext context){
+    Navigator.pushNamedAndRemoveUntil(context, '/Login', (_) => false);
   }
 }

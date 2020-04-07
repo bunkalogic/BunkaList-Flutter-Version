@@ -38,7 +38,8 @@ class RouteGeneretor{
         return MaterialPageRoute(builder: (_) => LoadingPage());  
 
       case '/Home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        
+        return SlideRightRoute(page: HomePage());
   
       
       case '/TopList':

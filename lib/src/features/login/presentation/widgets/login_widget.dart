@@ -1,3 +1,4 @@
+
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/forgot_password_dialog.dart';
@@ -53,7 +54,9 @@ class _LoginWidgetState extends State<LoginWidget> {
         
         if(state.isSuccess){
           print('login success');
-          Navigator.pushReplacementNamed(context, '/Home');
+          //Navigator.of(context).pushReplacementNamed('/Home');
+          //Navigator.pushReplacementNamed(context, '/Home');
+          _navigateToHome(context);
         }
       },
 
@@ -103,6 +106,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     
   }
+
+   void _navigateToHome(BuildContext context){
+     Navigator.pushNamedAndRemoveUntil(context, '/Home', (_) => false);
+   } 
 
   Container _buttonLogin(BuildContext context, LoginState state) {
     return new Container(
