@@ -1,4 +1,3 @@
-import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class LicensePage extends StatelessWidget {

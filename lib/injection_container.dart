@@ -40,6 +40,14 @@ import 'package:bunkalist/src/features/login/domain/usescases/get_user_has_token
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_persist_token.dart';
 import 'package:bunkalist/src/features/login/domain/usescases/get_user_register.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_register/register_bloc.dart';
+import 'package:bunkalist/src/features/options/data/datasources/update_user_info_remote_data_source.dart';
+import 'package:bunkalist/src/features/options/data/implementations/changed_profile_image_impl.dart';
+import 'package:bunkalist/src/features/options/data/implementations/changed_username_impl.dart';
+import 'package:bunkalist/src/features/options/domain/contracts/changed_profile_image_contract.dart';
+import 'package:bunkalist/src/features/options/domain/contracts/changed_username_contract.dart';
+import 'package:bunkalist/src/features/options/domain/usescases/get_changed_profile_image.dart';
+import 'package:bunkalist/src/features/options/domain/usescases/get_changed_username.dart';
+import 'package:bunkalist/src/features/options/presentation/bloc/bloc_edit_profile/editprofile_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/credits_details_remote_data_source.dart';
@@ -148,6 +156,8 @@ Future<void> init() async {
   initLogin();
   //! Profile Features
   initProfile();
+  //! Setting Features
+  initEditProfile();
   
   //? Core
 
@@ -162,79 +172,9 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton(() => DataConnectionChecker());
 
 
-
-
-
-
-
-  // //? Blocs
-  // serviceLocator.registerLazySingleton(
-  //   () => TopsMoviesBloc(
-  //     movies: serviceLocator(),
-  //     ),
-  //   );  
-
-  // serviceLocator.registerLazySingleton(
-  //   () => TopsSeriesBloc(
-  //     series: serviceLocator()
-  //   ),
-  // );
-  // serviceLocator.registerLazySingleton(
-  //   () => TopsAnimesBloc(
-  //     animes: serviceLocator()
-  //     )
-  //   );
-  // //?UsesCases
-  // serviceLocator.registerLazySingleton(() => GetTopsMovies(serviceLocator()));
-  // serviceLocator.registerLazySingleton(() => GetTopsSeries(serviceLocator()));
-  // serviceLocator.registerLazySingleton(() => GetTopsAnime(serviceLocator()));
-
-  // //? Repository - Contracts
-  // serviceLocator.registerLazySingleton<MovieTopsRepository>(
-  //   () => MovieTopsRepositoryImpl(
-  //     remoteDataSource: serviceLocator(),
-  //     networkInfo: serviceLocator()
-  //     ),
-  //   );
-  // serviceLocator.registerLazySingleton<SeriesTopsRepository>(
-  //   () => SeriesTopRepositoryImpl(
-  //     remoteDataSource: serviceLocator(),
-  //     networkInfo: serviceLocator()
-  //     ),
-  //   );
-  // serviceLocator.registerLazySingleton<AnimeTopsRepository>(
-  //   () => AnimeTopRepositoryImpl(
-  //     remoteDataSource: serviceLocator(),
-  //     networkInfo: serviceLocator()
-  //     ),
-  //   );
-
-  // //? Data Sources
-  // serviceLocator.registerLazySingleton<TopsMovieRemoteDataSource>(
-  //   () => TopsMoviesRemoteDataSourceImpl(client: serviceLocator())
-  // );
-
-  // serviceLocator.registerLazySingleton<TopsSeriesRemoteDataSource>(
-  //   () => TopsSeriesRemoteDataSourceImpl(client: serviceLocator())
-  // );
-
-  // serviceLocator.registerLazySingleton<TopsAnimeRemoteDataSource>(
-  //   () => TopsAnimeRemoteDataSourceImpl(client: serviceLocator())
-  // );
-
-  // //? Core
-
-  // serviceLocator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(serviceLocator()));
-
-  // //? External
-
-  
-
-  // serviceLocator.registerLazySingleton(() => http.Client());
-
-  // serviceLocator.registerLazySingleton(() => DataConnectionChecker());
-
 }
+
+
 
 initTopsMovies(){
   //? BLoc
@@ -516,6 +456,35 @@ initProfile(){
     () => CrudOuevreRemoteDataSourceImpl()
   );
 
+}
+
+initEditProfile(){
+  //? Blocs
+  serviceLocator.registerFactory(
+    () => EditprofileBloc(
+      changedUsername: serviceLocator(),
+      changedProfileImage: serviceLocator()
+      )
+    );
+  //? UseCases
+  serviceLocator.registerLazySingleton(() => GetChangedUsername(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetChangedProfileImage(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<ChangeUsernameContract>(
+    () => ChangedUsernameImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+   serviceLocator.registerLazySingleton<ChangeProfileImageContract>(
+    () => ChangedProfileImageImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  //? Data Sources
+  serviceLocator.registerLazySingleton<UpdateUserInfoRemoteDataSource>(
+    () => UpdateUserInfoRemoteDataSourceImpl()
+  );
 }
 
 initOuevreDetails(){

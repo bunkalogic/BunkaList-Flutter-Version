@@ -11,7 +11,7 @@ class SaveDefaultTheme{
   final prefs = new Preferences();
 
   changedTheme(BuildContext context) {
-    if(prefs.whatModeIs) {
+    if(prefs.whatModeIs == true) {
       prefs.whatModeIs = false;
       BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.LightTheme ));
     }else{

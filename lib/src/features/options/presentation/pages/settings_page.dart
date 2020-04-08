@@ -1,4 +1,6 @@
+import 'package:app_review/app_review.dart';
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class SettingsPage extends StatefulWidget {
@@ -51,12 +54,12 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _createItemSettings(BuildContext context, Color color, IconData icon, String text, String routeName) {
+  Widget _createItemSettings(BuildContext context, Color color, IconData icon, String text, Function() onTap) {
     return ListTile(
       title: Text(text, style: TextStyle(fontSize: 18.0),),
       leading: Icon(icon, size: 25.0, color: color,),
       trailing: Icon(Icons.arrow_forward_ios, size: 20.0,),
-      onTap: () => Navigator.pushNamed(context, routeName),
+      onTap: onTap,
     );
   }
 
@@ -68,23 +71,37 @@ class _SettingsPageState extends State<SettingsPage> {
         //TODO: agregar el banner de publicadad aqui
         SizedBox(height: 15.0,),
         //TODO: agregar el card the version premium
-        _titleOfSections('Configuration'),
+        _titleOfSections(AppLocalizations.of(context).translate("configuration")),
         Divider(),
-        _createItemSettings(context, Colors.green , Icons.supervised_user_circle, 'Edit your Profile', '' ),
-        _createItemSettings(context, Colors.lightBlue, Icons.settings_applications, 'Edit your preferences', ''),
-        _createItemSettings(context, Colors.red, Icons.local_play, 'Go Premium', ''),
+        _createItemSettings(context, Colors.green , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
+          Navigator.pushNamed(context, '/EditProfile');
+        } ),
+        //_createItemSettings(context, Colors.lightBlue, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), null),
+        _createItemSettings(context, Colors.red, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), null),
+        _createItemSettings(context, Colors.purpleAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), null),
         SizedBox(height: 10.0,),
-        _titleOfSections('Changed Mode'),
+        _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
         Divider(),
         SizedBox(height: 15.0,),
         _createButtonChangedThemeMaterial(context),
         SizedBox(height: 15.0,),
-        _titleOfSections('About the App'),
+        _titleOfSections(AppLocalizations.of(context).translate("label_about_app")),
         Divider(),
-        _createItemSettings(context, Colors.greenAccent, Icons.format_list_bulleted, "license of open source", '/Licenses'),
-        _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, "policy of privacity", ''),
-        _createItemSettings(context, Colors.redAccent, Icons.verified_user, "condtion of use", ''),
-        _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, "rate the App", ''),
+        _createItemSettings(context, Colors.greenAccent, Icons.format_list_bulleted, AppLocalizations.of(context).translate("label_license_open_source"), (){
+          Navigator.pushNamed(context, '/Licenses');
+        }),
+        _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, AppLocalizations.of(context).translate("label_privacity"), (){
+          launch('https://www.iubenda.com/privacy-policy/33068007');
+        }),
+        _createItemSettings(context, Colors.redAccent, Icons.business_center, AppLocalizations.of(context).translate("label_about_bunkalist"), null),
+        _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, AppLocalizations.of(context).translate("label_rate_app"), (){
+          AppReview.writeReview.then((onValue){
+            setState(() {
+              print(onValue);
+            });
+            
+          });
+        }),
         Divider(),
         SizedBox(height: 10.0,),
         BlocProvider<AuthenticationBloc>(
@@ -142,9 +159,9 @@ class _SettingsPageState extends State<SettingsPage> {
         //TODO: agregar el card the version premium
         _titleOfSections('Configuration'),
         Divider(),
-        _createItemSettings(context, Colors.green , CupertinoIcons.profile_circled, 'Edit your Profile', ''),
-        _createItemSettings(context, Colors.lightBlue, CupertinoIcons.settings, 'Edit your preferences', ''),
-        _createItemSettings(context, Colors.red, CupertinoIcons.plus_circled, 'Go Premium', ''),
+        _createItemSettings(context, Colors.green , CupertinoIcons.profile_circled, 'Edit your Profile', null),
+        _createItemSettings(context, Colors.lightBlue, CupertinoIcons.settings, 'Edit your preferences', null),
+        _createItemSettings(context, Colors.red, CupertinoIcons.plus_circled, 'Go Premium', null),
         SizedBox(height: 10.0,),
         _titleOfSections('Changed Mode'),
         Divider(),
@@ -153,10 +170,10 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections('About the App'),
         Divider(),
-        _createItemSettings(context, Colors.greenAccent, CupertinoIcons.folder_open, "license of open source", ''),
-        _createItemSettings(context, Colors.blueAccent, CupertinoIcons.info, "policy of privacity", ''),
-        _createItemSettings(context, Colors.redAccent, CupertinoIcons.bookmark, "condtion of use", ''),
-        _createItemSettings(context, Colors.purpleAccent, CupertinoIcons.check_mark, "rate the App", ''),
+        _createItemSettings(context, Colors.greenAccent, CupertinoIcons.folder_open, "license of open source", null),
+        _createItemSettings(context, Colors.blueAccent, CupertinoIcons.info, "policy of privacity", null),
+        _createItemSettings(context, Colors.redAccent, CupertinoIcons.bookmark, "condtion of use", null),
+        _createItemSettings(context, Colors.purpleAccent, CupertinoIcons.check_mark, "rate the App", null),
         Divider(),
         SizedBox(height: 10.0,),
         _buttonLogOutCupertino()
@@ -226,12 +243,13 @@ class ButtomLogOut extends StatelessWidget {
         ),
         color: Colors.purple,
         textColor: Colors.white,
-        child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
+        child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 18.0),),
         onPressed: (){
           
           prefs.getCurrentUsername = '';
           prefs.getCurrentUserPhoto = '';
           prefs.getCurrentUserUid = '';
+          prefs.whatModeIs = false;
           prefs.currentUserHasToken = false;
 
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());

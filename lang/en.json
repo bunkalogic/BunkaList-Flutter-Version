@@ -356,9 +356,50 @@
 
   "label_serie_month"            : "Series On Air this week",
   
-  "label_anime_season"            : "Spring Anime Season 2020",
+  "label_anime_season"           : "Spring Anime Season 2020",
+
+  "configuration"                : "Configuration",
+
+  "label_edit_profile"           : "Edit your Profile",
+
+  "label_edit_preferences"       : "Edit your Preferences",
+
+  "label_premium"                : "Coming soon with Premium",
+
+  "label_ads"                    : "Remove Advertisements",
+
+  "label_change_theme"           : "Change a Theme",
+
+  "label_about_app"              : "About the App",
+
+  "label_license_open_source"    : "License of Open Source",
+
+  "label_privacity"              : "Policy of Privacity",
+
+  "label_about_bunkalist"        : "About of Bunkalist",
+
+  "label_rate_app"               : "Rate the App",
+
+  "button_logout"                : "Logout",
+
+  "label_change_profile_image"   : "Change your Profile Image",
+
+  "button_change_profile_image"  : "Change the Image",
+
+  "label_change_username"        : "Change your Username",
+
+  "button_change_username"        : "Change Username",
+
+  "validate_username"            : "the username must not be empty", 
+
+  "edit_profile_success"        : "Successfully updated your profile info.",
+
+  "edit_profile_error"          : "An error occurred while updating your profile info.",
+  
 
 
+
+  
 
 
 

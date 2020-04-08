@@ -8,14 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/tops_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/settings_page.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/profile_page.dart';
-import 'package:bunkalist/src/features/timeline/presentation/pages/timeline_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -53,7 +51,7 @@ Widget _createAppBarPlatform(BuildContext context) {
         children: <Widget>[
           Image(
             height: 60.0,
-             image: (prefs.whatModeIs) ? AssetImage('assets/bunkalist-banner-purple.png') : AssetImage('assets/bunkalist-banner.png'),
+             image: _getAppBarImage(),
            ),
         ],
       ),
@@ -69,10 +67,19 @@ Widget _createAppBarPlatform(BuildContext context) {
     );
   }
 
+  ImageProvider _getAppBarImage(){
+    final bool theme = prefs.whatModeIs;
+
+    if(theme){
+      return AssetImage('assets/bunkalist-banner-purple.png');
+    }else{
+      return AssetImage('assets/bunkalist-banner.png');
+    }
+  }
 
   Widget _createNavBar(){
     return FancyBottomNavigation(
-      barBackgroundColor: (prefs.whatModeIs) ? Colors.blueGrey[800] : Colors.grey[100],
+      barBackgroundColor: _getTabbarBackgroundColor(),
       activeIconColor: Colors.deepOrangeAccent[400] ,
       inactiveIconColor: Colors.purple[400] ,
       circleColor: Colors.purple[700],
@@ -104,6 +111,17 @@ Widget _createAppBarPlatform(BuildContext context) {
     
   }
 }
+
+ Color _getTabbarBackgroundColor(){
+
+    final bool theme = prefs.whatModeIs;
+    
+    if(theme){
+      return Colors.blueGrey[800];
+    }else{
+      return Colors.grey[100];
+    }
+ }
 
 // Widget _createNavBarPlaform(BuildContext context) {
 
