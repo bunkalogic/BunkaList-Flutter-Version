@@ -70,6 +70,8 @@ dependencies:
   firebase_storage: ^3.1.5
   # unique id generator
   uuid: ^2.0.4
+  # svg render
+  flutter_svg: ^0.17.4
   
   flutter_localizations:
     sdk: flutter

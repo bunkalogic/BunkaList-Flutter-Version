@@ -1,7 +1,9 @@
 import 'package:bunkalist/src/features/base/presentation/pages/initial_controller_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/splash_page.dart';
+import 'package:bunkalist/src/features/options/presentation/pages/about_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_page.dart';
+import 'package:bunkalist/src/features/options/presentation/pages/premium_soon_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -93,7 +95,13 @@ class RouteGeneretor{
         return SlideRightRoute(page: LicensePage());
 
       case '/EditProfile':
-        return SlideRightRoute(page: EditProfilePage());            
+        return SlideRightRoute(page: EditProfilePage());
+
+      case '/About':
+        return SlideRightRoute(page: AboutPage());
+
+      case '/Premium':
+        return SlideRightRoute(page: PremiumSoonPage());                
 
       
       

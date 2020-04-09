@@ -77,8 +77,10 @@ class _SettingsPageState extends State<SettingsPage> {
           Navigator.pushNamed(context, '/EditProfile');
         } ),
         //_createItemSettings(context, Colors.lightBlue, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), null),
-        _createItemSettings(context, Colors.red, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), null),
-        _createItemSettings(context, Colors.purpleAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), null),
+        // _createItemSettings(context, Colors.red, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), (){
+        //   Navigator.pushNamed(context, '/Premium');
+        // }),
+        _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), null),
         SizedBox(height: 10.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
         Divider(),
@@ -87,13 +89,6 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_about_app")),
         Divider(),
-        _createItemSettings(context, Colors.greenAccent, Icons.format_list_bulleted, AppLocalizations.of(context).translate("label_license_open_source"), (){
-          Navigator.pushNamed(context, '/Licenses');
-        }),
-        _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, AppLocalizations.of(context).translate("label_privacity"), (){
-          launch('https://www.iubenda.com/privacy-policy/33068007');
-        }),
-        _createItemSettings(context, Colors.redAccent, Icons.business_center, AppLocalizations.of(context).translate("label_about_bunkalist"), null),
         _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, AppLocalizations.of(context).translate("label_rate_app"), (){
           AppReview.writeReview.then((onValue){
             setState(() {
@@ -101,6 +96,15 @@ class _SettingsPageState extends State<SettingsPage> {
             });
             
           });
+        }),
+        _createItemSettings(context, Colors.redAccent, Icons.business_center, AppLocalizations.of(context).translate("label_about_bunkalist"), (){
+          Navigator.pushNamed(context, '/About');
+        }),
+        _createItemSettings(context, Colors.greenAccent, Icons.format_list_bulleted, AppLocalizations.of(context).translate("label_license_open_source"), (){
+          Navigator.pushNamed(context, '/Licenses');
+        }),
+        _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, AppLocalizations.of(context).translate("label_privacity"), (){
+          launch('https://www.iubenda.com/privacy-policy/33068007');
         }),
         Divider(),
         SizedBox(height: 10.0,),

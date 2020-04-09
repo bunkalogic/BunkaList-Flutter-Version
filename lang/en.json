@@ -390,13 +390,15 @@
 
   "button_change_username"        : "Change Username",
 
-  "validate_username"            : "the username must not be empty", 
+  "validate_username"             : "the username must not be empty", 
 
-  "edit_profile_success"        : "Successfully updated your profile info.",
+  "edit_profile_success"          : "Successfully updated your profile info.",
 
-  "edit_profile_error"          : "An error occurred while updating your profile info.",
-  
+  "edit_profile_error"            : "An error occurred while updating your profile info.",
 
+  "api_label"                     : "Powered by",
+
+  "attribute_label"               : "Bunkalist uses the TMDb Api and Youtube Api but not endorsed or certified by TMDb and Youtube.",
 
 
   
