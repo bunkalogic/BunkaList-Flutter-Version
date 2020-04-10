@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/empty_last_added_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,11 @@ class _LastAddedItemState extends State<LastAddedItem> {
 
         }else if(state is GetListsLoaded){
 
-          return Container(
+          if(state.ouevreList.isEmpty){
+            return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
+          }else{
+
+            return Container(
             child: CarouselSlider.builder(
               enlargeCenterPage: true, 
               height: MediaQuery.of(context).size.height / 2.6,
@@ -59,17 +64,17 @@ class _LastAddedItemState extends State<LastAddedItem> {
             ),
           );
 
+          }
+
+          
+
         }else if(state is GetlistsError){
 
-          return Center(
-              child: Text('something Error'),
-          );
+          return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
 
         }
 
-        return Center(
-              child: Text('something Error'),
-        );
+        return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
 
       },
       )

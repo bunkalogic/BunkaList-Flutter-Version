@@ -1,7 +1,9 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,9 +56,17 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
       builder: (context, state) {
         if(state is GetListsLoading){
           
-          return LoadingCustomWidget();
+          return _getEmptyLabel();
 
         }else if(state is GetListsLoaded){
+
+          if(state.ouevreList.isEmpty){
+            return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("dropped_empty_label"),
+            color: Colors.redAccent[400],
+            icon: Icons.remove_circle_outline,
+            );
+          }
 
           return Container(
       child: ListView.builder(
@@ -67,18 +77,42 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
 
         }else if(state is GetlistsError){
           
-          return Center(
-              child: Text('something Error'),
-          );
+          return _getEmptyLabel();
 
         }
 
-        return Center(
-              child: Text('something Error'),
-        );
+        return _getEmptyLabel();
 
       },
     );
+  }
+
+  Widget _getEmptyLabel(){
+
+    switch(widget.status){
+
+      case "Pause": return ListProfileEmptyIconWidget(
+        title: AppLocalizations.of(context).translate("pause_empty_label"),
+        color: Colors.orangeAccent[400],
+        icon: Icons.pause_circle_outline,
+      );  
+      break;
+
+      case "Dropped": return ListProfileEmptyIconWidget(
+        title: AppLocalizations.of(context).translate("dropped_empty_label"),
+        color: Colors.redAccent[400],
+        icon: Icons.remove_circle_outline,
+      );
+      break;
+
+      default: return ListProfileEmptyIconWidget(
+        title: AppLocalizations.of(context).translate("pause_empty_label"),
+        color: Colors.orangeAccent[400],
+        icon: Icons.pause_circle_outline,
+      );
+      break;  
+    }
+
   }
 
   Widget _itemTab(OuevreEntity ouevre) {

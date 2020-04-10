@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
@@ -69,7 +70,9 @@ class _AllDetailsSimilarTabState extends State<AllDetailsSimilarTab> {
             );
 
              }else{
-               return Center(child: Text('No Recommendations Found'));
+
+              return EmptyIconWidget();
+
              }
 
           }else if(state is LoadedSerie){
@@ -89,7 +92,7 @@ class _AllDetailsSimilarTabState extends State<AllDetailsSimilarTab> {
             );
 
              }else{
-               return Center(child: Text('No Recommendations Found'));
+               return EmptyIconWidget();
              }
 
 
@@ -110,20 +113,16 @@ class _AllDetailsSimilarTabState extends State<AllDetailsSimilarTab> {
             );
 
              }else{
-               return Center(child: Text('No Recommendations Found'));
+               return EmptyIconWidget();
              }
 
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
+            return EmptyIconWidget();
 
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+         return EmptyIconWidget();
 
         },
       ),

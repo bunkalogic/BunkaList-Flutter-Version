@@ -1,5 +1,6 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
@@ -89,24 +90,20 @@ class _SeasonInfoBodyWidgetState extends State<SeasonInfoBodyWidget> {
           }else if(state is Loaded){
 
             if(state.episode.isEmpty || state.episode.length <= 0){
-              return Center(
-                child: Text('no episodes info available'),
-              );
+             
+             return EmptyIconWidget();
+
             }else{
               return SeasonInfoWidget(episodes: state.episode);
             }
             
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
-
+            return EmptyIconWidget();
+            
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
 
         },
       ),

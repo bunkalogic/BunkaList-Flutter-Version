@@ -1,6 +1,7 @@
 
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
@@ -61,15 +62,11 @@ class _AllDetailsSeasonTabState extends State<AllDetailsSeasonTab> {
 
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
+            return EmptyIconWidget();
 
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
 
         },
       ),

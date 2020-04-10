@@ -81,8 +81,8 @@ Widget _createAppBarPlatform(BuildContext context) {
     return FancyBottomNavigation(
       barBackgroundColor: _getTabbarBackgroundColor(),
       activeIconColor: Colors.deepOrangeAccent[400] ,
-      inactiveIconColor: Colors.purple[400] ,
-      circleColor: Colors.purple[700],
+      inactiveIconColor: Colors.deepPurpleAccent,
+      circleColor: Colors.deepPurpleAccent[400],
       initialSelection: _selectedTabIndex,
       onTabChangedListener: (position) {
         setState(() {
@@ -291,7 +291,7 @@ class SearchButton extends StatelessWidget{
     
     return IconButton(
       iconSize: 35.0,
-      color: Colors.purple[700],
+      color: Colors.deepPurpleAccent,
       icon: Icon(Icons.search),
       onPressed: (){
         

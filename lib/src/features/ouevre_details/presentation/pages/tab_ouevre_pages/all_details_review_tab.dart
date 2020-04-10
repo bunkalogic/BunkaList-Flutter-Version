@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/review_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
@@ -60,15 +61,10 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
             
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
-
+            return EmptyIconWidget();
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
 
         },
       ),

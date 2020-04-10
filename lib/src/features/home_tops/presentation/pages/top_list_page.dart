@@ -1,6 +1,8 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
@@ -65,9 +67,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
   //? Variables
   final double _aspectRatio = 2.7 / 4.2;
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
   ScrollController _scrollController;
 
@@ -383,11 +383,11 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             ..add(GetMoviesTops(Constants.topsMoviesPopularId, page));
             }
             
-            return loadingPage;
+            return LoadingCustomWidget();
             
           }else if(state is LoadingMovies){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if (state is LoadedMovies){
             isLoading = false;  
@@ -442,11 +442,11 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             }
             
 
-            return loadingPage;
+            return LoadingCustomWidget();
             
           }else if(state is LoadingSeries){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if (state is LoadedSeries){
             isLoading = false;
@@ -477,10 +477,10 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
             
           }else if(state is ErrorSeries){
-            return Text(state.message);
+            return EmptyIconWidget();
           }
 
-          return Center(child: Text('something Error'));
+          return EmptyIconWidget();
         },
       ),  
     );
@@ -498,11 +498,11 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
             }
             
 
-            return loadingPage;
+            return LoadingCustomWidget();
             
           }else if(state is LoadingAnimes){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if (state is LoadedAnimes){
             isLoading = false;
@@ -533,10 +533,10 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
 
             
           }else if(state is ErrorAnimes){
-            return Text(state.message);
+            return EmptyIconWidget();
           }
 
-          return Center(child: Text('something Error'));
+          return EmptyIconWidget();
         },
       ),  
     );

@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
@@ -62,15 +63,11 @@ class _AllDetailsInfoTabState extends State<AllDetailsInfoTab> {
 
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
+            return EmptyIconWidget();
 
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
 
         },
       ),

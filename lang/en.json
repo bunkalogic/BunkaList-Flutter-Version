@@ -400,11 +400,21 @@
 
   "attribute_label"               : "Bunkalist uses the TMDb Api and Youtube Api but not endorsed or certified by TMDb and Youtube.",
 
+  "search_label"                  : "Search Movies, TV Series & Anime.",
 
+  "empty_label"                   : "No results or error occurred.",
   
+  "completed_empty_label"         : "Your list of Completed is empty, add something.",
+  
+  "watching_empty_label"          : "Your list of Watching is empty, add something.",
 
+  "pause_empty_label"             : "Your list of Pause is empty, add something.",
 
+  "dropped_empty_label"           : "Your list of Dropped is empty, add something.",
 
+  "wishlist_empty_label"          : "Your list of WishList is empty, add something.",
+
+  "empty_last_added_label"        : "You have nothing added to your lists, Add something.",
 
 
 

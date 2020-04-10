@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_yt_item_widget.dart';
@@ -42,9 +43,9 @@ class _AllDetailsOpenningTabState extends State<AllDetailsOpenningTab> {
           }else if(state is Loaded){
 
             if(state.videos.isEmpty || state.videos.length <= 0){
-              return Center(
-                child: Text('no openning available'),
-              );
+              
+              return EmptyIconWidget();
+
             }else{
               return ListView.builder(
                 padding: EdgeInsets.all(5.0),
@@ -55,15 +56,11 @@ class _AllDetailsOpenningTabState extends State<AllDetailsOpenningTab> {
             
           }else if(state is Error){
             
-            return Center(
-              child: Text(state.message),
-            );
+            return EmptyIconWidget();
 
           }
 
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
 
         },
       ),

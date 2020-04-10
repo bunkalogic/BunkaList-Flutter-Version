@@ -13,10 +13,10 @@ final appThemeData = {
 
   //?Light Theme
   Apptheme.LightTheme : ThemeData(
-    primaryColor: Colors.purple[700],
+    primaryColor: Colors.deepPurpleAccent[400],
     primaryColorLight: Colors.deepPurpleAccent,
-    primaryColorDark: Colors.purple[900],
-    accentColor: Colors.deepOrange,
+    primaryColorDark: Colors.deepPurpleAccent[700],
+    accentColor: Colors.deepOrangeAccent[400],
     brightness: Brightness.light,
     backgroundColor: Colors.grey[100],
     scaffoldBackgroundColor: Colors.white,
@@ -32,6 +32,7 @@ final appThemeData = {
     ),
     
 
+    
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
       actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
@@ -74,10 +75,10 @@ final appThemeData = {
 
   //?Dark Theme
   Apptheme.DarkTheme : ThemeData(
-    primaryColor: Colors.purple[700],
+    primaryColor: Colors.deepPurpleAccent[400],
     primaryColorLight: Colors.deepPurpleAccent,
-    primaryColorDark: Colors.purple[900],
-    accentColor: Colors.deepOrange[600],
+    primaryColorDark: Colors.deepPurpleAccent[700],
+    accentColor: Colors.deepOrangeAccent[400],
     brightness: Brightness.dark,
     backgroundColor: Colors.blueGrey[800],
     scaffoldBackgroundColor: Colors.blueGrey[900],
@@ -86,7 +87,7 @@ final appThemeData = {
     cardTheme: CardTheme(
       color: Colors.blueGrey[800]
     ),
-
+    
     bottomAppBarTheme: BottomAppBarTheme(
       color: Colors.blueGrey[800],
       elevation: 5.0,

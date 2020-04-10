@@ -4,6 +4,7 @@ import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,6 +62,14 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
         }else if(state is GetListsLoaded){
 
+          if(state.ouevreList.isEmpty){
+            return ListProfileEmptyIconWidget(
+              title: AppLocalizations.of(context).translate("wishlist_empty_label"),
+              color: Colors.purpleAccent[400],
+              icon: Icons.add_circle_outline,
+            );
+          }
+
           return Container(
       child: ListView.builder(
         itemCount: state.ouevreList.length,
@@ -70,14 +79,18 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
 
         }else if(state is GetlistsError){
           
-          return Center(
-              child: Text('something Error'),
+          return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("wishlist_empty_label"),
+            color: Colors.purpleAccent[400],
+            icon: Icons.add_circle_outline,
           );
 
         }
 
-        return Center(
-              child: Text('something Error'),
+        return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("wishlist_empty_label"),
+            color: Colors.purpleAccent[400],
+            icon: Icons.add_circle_outline,
         );
 
       },

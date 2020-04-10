@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,6 +60,16 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
         }else if(state is GetListsLoaded){
 
+          if(state.ouevreList.isEmpty){
+
+            return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
+            );
+
+          }
+
           return Container(
       child: ListView.builder(
         itemCount: state.ouevreList.length,
@@ -68,15 +79,19 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
         }else if(state is GetlistsError){
           
-          return Center(
-              child: Text('something Error'),
+          return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
           );
 
         }
 
-        return Center(
-              child: Text('something Error'),
-        );
+        return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
+          );
 
       },
     );
