@@ -138,6 +138,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         pinned: true,
         floating: false,
         forceElevated: innerBoxScrolled,
+        
         expandedHeight: 300.0,
         flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
           builder: (_) => serviceLocator<OuevreDetailsBloc>(),

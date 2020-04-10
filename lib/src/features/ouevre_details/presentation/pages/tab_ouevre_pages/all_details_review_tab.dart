@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/review_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_reviews/bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,7 @@ class AllDetailsReviewTab extends StatefulWidget {
 
 class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
   
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
 
   @override
@@ -40,11 +39,11 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loaded){
 

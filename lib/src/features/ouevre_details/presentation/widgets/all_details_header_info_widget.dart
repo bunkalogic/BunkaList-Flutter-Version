@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
@@ -21,18 +22,14 @@ class AllDetailsHeaderInfo extends StatefulWidget  {
 
 class _AllDetailsHeaderInfoState extends State<AllDetailsHeaderInfo> {
 
-   final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
     BlocProvider.of<OuevreDetailsBloc>(context)
     ..add(GetDetailsOuevre(widget.id, widget.type));
-    
-  }
+    super.initState();
+  } 
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +39,11 @@ class _AllDetailsHeaderInfoState extends State<AllDetailsHeaderInfo> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedMovie){
 
@@ -83,6 +80,8 @@ class HeaderInfoMovie  extends StatelessWidget {
   final MovieDetailsEntity movie;
 
   HeaderInfoMovie({@required this.movie});
+
+  
   
   @override
   Widget build(BuildContext context) {
@@ -91,27 +90,39 @@ class HeaderInfoMovie  extends StatelessWidget {
   }
 
   Widget _buildFlexibleSpaceBar(BuildContext context, MovieDetailsEntity movie) {
+   
+
     return FlexibleSpaceBar(    
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, movie),
     centerTitle: true,
     titlePadding: EdgeInsets.only(bottom: 60.0),
-    title: _titleInfo(movie),
+    title: _titleInfo(context ,movie),
   );
   }
 
-  Widget _titleInfo(MovieDetailsEntity movie){
-    return Text(
-        (movie.title == null) ? movie.originalTitle : movie.title,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.italic,
-          color: Colors.deepOrangeAccent[400],
-          shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+  Widget _titleInfo(BuildContext context, MovieDetailsEntity movie){
+
+    final mediaQuery = MediaQuery.of(context);
+
+    final availableWidth = mediaQuery.size.width - 120;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: availableWidth,
+      ),
+      child: Text(
+          (movie.title == null) ? movie.originalTitle : movie.title,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.italic,
+            color: Colors.deepOrangeAccent[400],
+            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+          ),
         ),
-      );
+    );
   }
 
   
@@ -300,22 +311,31 @@ class HeaderInfoSerie  extends StatelessWidget {
     background: _stackInfoBackground(context, serie),
     centerTitle: true,
     titlePadding: EdgeInsets.only(bottom: 60.0),
-    title: _titleInfo(serie),
+    title: _titleInfo(context, serie),
   );
   }
 
-  Widget _titleInfo(SerieDetailsEntity serie){
-    return Text(
-        (serie.name == null) ? serie.originalName : serie.name,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.italic,
-          color:  Colors.deepOrangeAccent[400],
-          shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+  Widget _titleInfo(BuildContext context, SerieDetailsEntity serie){
+    final mediaQuery = MediaQuery.of(context);
+
+    final availableWidth = mediaQuery.size.width - 120;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: availableWidth,
+      ),
+      child: Text(
+          (serie.name == null) ? serie.originalName : serie.name,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.italic,
+            color: Colors.deepOrangeAccent[400],
+            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+          ),
         ),
-      );
+    );
   }
 
   
@@ -506,22 +526,31 @@ class HeaderInfoAnime extends StatelessWidget {
     background: _stackInfoBackground(context, anime),
     centerTitle: true,
     titlePadding: EdgeInsets.only(bottom: 60.0),
-    title: _titleInfo(anime),
+    title: _titleInfo(context ,anime),
   );
   }
 
-  Widget _titleInfo(AnimeDetailsEntity anime){
-    return Text(
-        (anime.name == null) ? anime.originalName : anime.name,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.italic,
-          color: Colors.deepOrangeAccent[400],
-          shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+  Widget _titleInfo(BuildContext context, AnimeDetailsEntity anime){
+   final mediaQuery = MediaQuery.of(context);
+
+    final availableWidth = mediaQuery.size.width - 120;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: availableWidth,
+      ),
+      child: Text(
+          (anime.name == null) ? anime.originalName : anime.name,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.italic,
+            color: Colors.deepOrangeAccent[400],
+            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+          ),
         ),
-      );
+    );
   }
 
   

@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
@@ -37,9 +38,7 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
     );
   }
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
   double cardSize = 120.0;
 
@@ -58,7 +57,7 @@ class _TabItemWhishListWidgetState extends State<TabItemWhishListWidget> {
       builder: (context, state) {
         if(state is GetListsLoading){
           
-          return loadingPage;
+          return LoadingCustomWidget();
 
         }else if(state is GetListsLoaded){
 

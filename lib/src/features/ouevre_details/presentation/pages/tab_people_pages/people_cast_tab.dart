@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_credits_entity.dart';
@@ -17,9 +18,7 @@ class PeopleCastTab extends StatefulWidget {
 
 class _PeopleCastTabState extends State<PeopleCastTab> {
   
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
        
 
@@ -41,11 +40,11 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedCreditsPeople){
 
@@ -288,9 +287,6 @@ class PeopleCrewTab extends StatefulWidget {
 
 class _PeopleCrewTabState extends State<PeopleCrewTab> {
   
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
 
        
 
@@ -312,11 +308,11 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedCreditsPeople){
 

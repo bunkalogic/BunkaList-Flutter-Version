@@ -2,6 +2,7 @@
 
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
@@ -22,29 +23,30 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
   
   MovieEntity _movieEntity;
   
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-    @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<CinemaMovieBloc>(context)
+  
+  @override
+  void initState() {
+     BlocProvider.of<CinemaMovieBloc>(context)
     ..add(GetMoviesCinema( 1 ));
+    super.initState();
   }
+
+  
   
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CinemaMovieBloc, CinemaMovieState>(
+    return Container(
+      height: MediaQuery.of(context).size.height / 2.15,
+      child: BlocBuilder<CinemaMovieBloc, CinemaMovieState>(
       builder: (context, state) {
         
         if(state is CinemaMovieInitial){
 
-          return loadingPage;
+          return LoadingCustomWidget();
 
         }else if(state is CinemaMovieLoading){
 
-          return loadingPage;
+          return LoadingCustomWidget();
 
         }else if(state is CinemaMovieLoaded){
 
@@ -52,9 +54,7 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height / 2.6,
-                child: CarouselSlider.builder(
+               CarouselSlider.builder(
                   itemCount: state.movies.length,
                   enlargeCenterPage: true, 
                   height: MediaQuery.of(context).size.height / 2.6,
@@ -69,7 +69,6 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
                     return _itemCarousel(context, _movieEntity);
                   } ,
                 ),
-              ),
               _iconButton(context),
 
             ],
@@ -77,13 +76,14 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
 
         }else if(state is CinemaMovieError){
 
-          return Center(child: Text('something Error ${state.message}'));
+          return Center(child: Text('Something Error'));
 
         }
 
-        return Center(child: Text('something Error'));
+        return Center(child: Text('Something Error'));
 
       },
+      )  
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
@@ -22,9 +23,7 @@ class AllDetailsInfoTab extends StatefulWidget {
 
 class _AllDetailsInfoTabState extends State<AllDetailsInfoTab> {
 
-   final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
 
   @override
@@ -43,11 +42,11 @@ class _AllDetailsInfoTabState extends State<AllDetailsInfoTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedMovie){
 
@@ -96,6 +95,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       children: <Widget>[
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
+        
       ],
     );
   }
@@ -273,16 +273,18 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
   }
 
   Widget _labelExtraInfo(String text, double size, FontWeight fontWeight, {Color color}) {
-    return Padding(
-      padding: EdgeInsets.all(1.0),
-      child: Text( (text == null) ? 'info not yet available' : text,
-        style: TextStyle(
-          color: color,
-          fontSize: size,
-          fontWeight: FontWeight.w600,
+    return Flexible(
+      child: Container(
+        padding: EdgeInsets.all(1.0),
+        child: Text( (text == null) ? 'info not yet available' : text,
+          style: TextStyle(
+            color: color,
+            fontSize: size,
+            fontWeight: FontWeight.w600,
+          ),
+          textAlign: TextAlign.justify,
+          overflow: TextOverflow.ellipsis,
         ),
-        textAlign: TextAlign.justify,
-        overflow: TextOverflow.ellipsis,
       ),
     ); 
   }

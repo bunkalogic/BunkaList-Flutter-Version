@@ -1,6 +1,7 @@
 
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
@@ -17,17 +18,14 @@ class CarouselSeriesInMonthWidget extends StatefulWidget {
 
 class _CarouselSeriesInMonthWidgetState extends State<CarouselSeriesInMonthWidget> {
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-    @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    BlocProvider.of<SeriesAirBloc>(context)
+  
+  @override
+  void initState() {
+     BlocProvider.of<SeriesAirBloc>(context)
     ..add(GetSeriesAirInMonth(Constants.topsSeriesMonthId, 1));
+    super.initState();
   }
-
+  
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +35,11 @@ class _CarouselSeriesInMonthWidgetState extends State<CarouselSeriesInMonthWidge
         builder: (context, state) {
           if(state is SeriesAirInitial){
               
-              return loadingPage;
+              return LoadingCustomWidget();
 
             }else if(state is LoadingSeries){
 
-              return loadingPage;
+              return LoadingCustomWidget();
 
             }else if (state is LoadedSeries){
               

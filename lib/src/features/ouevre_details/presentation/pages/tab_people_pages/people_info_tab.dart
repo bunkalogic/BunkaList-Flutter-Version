@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_social_media_entity.dart';
@@ -20,9 +21,7 @@ class PeopleInfoTab extends StatefulWidget {
 class _PeopleInfoTabState extends State<PeopleInfoTab> {
 
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
        
 
@@ -45,11 +44,11 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedDetailsPeople){
 
@@ -211,10 +210,6 @@ class _ContainerSocialMediaState extends State<ContainerSocialMedia> {
   }
 
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
   @override
   Widget build(BuildContext context) {
 
@@ -224,11 +219,11 @@ class _ContainerSocialMediaState extends State<ContainerSocialMedia> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedSocialMediaPeople){
 

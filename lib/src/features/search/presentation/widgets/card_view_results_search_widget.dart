@@ -2,7 +2,6 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
-import 'package:bunkalist/src/core/utils/get_search_filter_by_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
@@ -23,9 +22,6 @@ class CardViewSearchResultsWidget extends StatefulWidget {
 class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidget> {
   
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
   
   
   @override

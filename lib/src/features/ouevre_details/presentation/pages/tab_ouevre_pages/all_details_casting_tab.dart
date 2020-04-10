@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/credits_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
@@ -19,11 +20,6 @@ class AllDetailsCastingTab extends StatefulWidget {
 class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
 
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -42,11 +38,11 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loaded){
 

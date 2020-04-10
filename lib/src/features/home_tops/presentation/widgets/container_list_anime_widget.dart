@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
@@ -30,9 +31,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
   //   viewportFraction: 0.35,
   // );
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+  
 
 
   // _addListener(){
@@ -63,13 +62,20 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
   //   _pageController.addListener(_addListener);
   // }  
 
-
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
     BlocProvider.of<TopsAnimesBloc>(context)
     ..add(GetAnimesTops(widget.typeId, page));
+    super.initState();
   }
+
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   BlocProvider.of<TopsAnimesBloc>(context)
+  //   ..add(GetAnimesTops(widget.typeId, page));
+  // }
 
 
   @override
@@ -84,11 +90,11 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
          builder: (context, state) {
            if(state is EmptyAnimes){
 
-             return loadingPage;
+             return LoadingCustomWidget();
 
            }else if(state is LoadingAnimes){
 
-             return loadingPage;
+             return LoadingCustomWidget();
 
            }else if (state is LoadedAnimes){
              

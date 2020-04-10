@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -34,9 +35,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
     );
   }
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;  
+  
 
   double cardSize = 120.0;
 
@@ -55,7 +54,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
       builder: (context, state) {
         if(state is GetListsLoading){
           
-          return loadingPage;
+          return LoadingCustomWidget();
 
         }else if(state is GetListsLoaded){
 

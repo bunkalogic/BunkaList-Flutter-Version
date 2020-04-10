@@ -1,6 +1,7 @@
 
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
@@ -33,9 +34,7 @@ class _AllDetailsSeasonTabState extends State<AllDetailsSeasonTab> {
     ..add(GetDetailsOuevre(widget.id, widget.type));
   }
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    );
+ 
 
 
   @override
@@ -46,11 +45,11 @@ class _AllDetailsSeasonTabState extends State<AllDetailsSeasonTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadedSerie){
 

@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_yt_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,7 @@ class AllDetailsVideoReviewTab extends StatefulWidget {
 
 class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
+
 
 
   @override
@@ -35,11 +34,11 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
           
           if(state is Empty){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loading){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is Loaded){
 

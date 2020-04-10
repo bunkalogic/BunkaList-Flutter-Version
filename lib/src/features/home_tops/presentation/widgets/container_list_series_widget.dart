@@ -1,5 +1,6 @@
 
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
@@ -31,17 +32,20 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
   //   viewportFraction: 0.3,
   // );
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
     BlocProvider.of<TopsSeriesBloc>(context)
     ..add(GetSeriesTops(widget.typeId, page));
+    super.initState();
   }
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   BlocProvider.of<TopsSeriesBloc>(context)
+  //   ..add(GetSeriesTops(widget.typeId, page));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +79,11 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
         builder: (context, state) {
           if(state is EmptySeries){
             
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadingSeries){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if (state is LoadedSeries){
             

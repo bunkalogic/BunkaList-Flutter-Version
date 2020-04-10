@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
@@ -17,16 +18,15 @@ class CaruoselAnimeSeasonWidget extends StatefulWidget {
 
 class _CaruoselAnimeSeasonWidgetState extends State<CaruoselAnimeSeasonWidget> {
   
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
 
-    @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  @override
+  void initState() {
     BlocProvider.of<AnimeSeasonBloc>(context)
     ..add(GetSeasonAnime(Constants.topsAnimeSeasonAirId, 1));
+    super.initState();
   }
+
+  
 
 
   @override
@@ -37,11 +37,11 @@ class _CaruoselAnimeSeasonWidgetState extends State<CaruoselAnimeSeasonWidget> {
         builder: (context, state) {
           if(state is AnimeSeasonInitial){
 
-             return loadingPage;
+             return LoadingCustomWidget();
 
            }else if(state is LoadingAnimes){
 
-             return loadingPage;
+             return LoadingCustomWidget();
 
            }else if (state is LoadedAnimes){
              

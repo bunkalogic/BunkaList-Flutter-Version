@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
@@ -30,41 +31,25 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
   //   viewportFraction: 0.3,
   // );
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    ) ;
-
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
     BlocProvider.of<TopsMoviesBloc>(context)
     ..add(GetMoviesTops(widget.typeId, page));
-  }
+    super.initState();
+  }  
+
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   BlocProvider.of<TopsMoviesBloc>(context)
+  //   ..add(GetMoviesTops(widget.typeId, page));
+  // }
   
 
   @override
   Widget build(BuildContext context) {
-    
-    
-  // _pageController.addListener( (){
-
-  //     if(_pageController.offset >= _pageController.position.maxScrollExtent 
-  //     && !_pageController.position.outOfRange){
-         
-  //        BlocProvider.of<TopsMoviesBloc>(context)
-  //        ..add(GetMoviesTops(widget.typeId, page + 1 ));
-  //     }
-
-  //      if(_pageController.offset <= _pageController.position.minScrollExtent 
-  //     && !_pageController.position.outOfRange ){
-  //       page = (page - 1 == 0 ) ? 1 : page - 1;
-
-  //       BlocProvider.of<TopsMoviesBloc>(context)
-  //        ..add(GetMoviesTops(widget.typeId, page));
-  //     }
-
-  //   });
 
 
     return new Container(
@@ -77,11 +62,11 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
         builder: (context, state) {
           if(state is EmptyMovies){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if(state is LoadingMovies){
 
-            return loadingPage;
+            return LoadingCustomWidget();
 
           }else if (state is LoadedMovies){
             

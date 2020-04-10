@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -33,9 +34,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
     );
   }
 
-  final loadingPage = Center(
-      child: CircularProgressIndicator(),
-    );
+  
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
       builder: (context, state) {
         if(state is GetListsLoading){
 
-          return loadingPage;
+          return LoadingCustomWidget();
 
         }else if(state is GetListsLoaded){
 
