@@ -14,7 +14,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   @override
   bool isSupported(Locale locale) {
     // Include all of your supported language codes here
-    return ['en'].contains(locale.languageCode);
+    return ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'hi', 'ja', 'ko'].contains(locale.languageCode);
   }
 
   @override
@@ -22,6 +22,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
     // AppLocalizations class is where the JSON loading actually runs
    
     AppLocalizations localizations = new AppLocalizations(locale);
+    
     await localizations.load();
     
     return localizations;

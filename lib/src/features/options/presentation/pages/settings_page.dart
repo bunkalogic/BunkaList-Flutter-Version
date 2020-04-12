@@ -245,7 +245,7 @@ class ButtomLogOut extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
-        color: Colors.purple,
+        color: Colors.deepPurpleAccent[400],
         textColor: Colors.white,
         child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 18.0),),
         onPressed: (){

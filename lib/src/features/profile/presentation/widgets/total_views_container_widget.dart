@@ -34,13 +34,15 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          _labelTotalViewsWidget(context),
-          SizedBox(height: 5.0,),
-          _valueTotalViewsWidget(),
-        ],
+    return Expanded(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            _labelTotalViewsWidget(context),
+            SizedBox(height: 5.0,),
+            _valueTotalViewsWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -86,6 +88,7 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
   Widget _labelTotalViewsWidget(BuildContext context){
     return Text(
       _getLabelTotalViewsWidget(context),
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: 16.0, 
         fontWeight: FontWeight.w600,

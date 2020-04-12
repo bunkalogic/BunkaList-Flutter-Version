@@ -90,9 +90,9 @@ Widget _createAppBarPlatform(BuildContext context) {
         });
       },
       tabs: [
-        TabData(title: AppLocalizations.of(context).translate('btn_nav_top'), iconData: Icons.home, ),
-        TabData(title: AppLocalizations.of(context).translate('btn_nav_profile'), iconData: Icons.person, ),
-        TabData(title: AppLocalizations.of(context).translate('btn_nav_settings'), iconData: Icons.settings, ),
+        TabData(title: AppLocalizations.of(context).translate("btn_nav_top"), iconData: Icons.home, ),
+        TabData(title: AppLocalizations.of(context).translate("btn_nav_profile"), iconData: Icons.person, ),
+        TabData(title: AppLocalizations.of(context).translate("btn_nav_settings"), iconData: Icons.settings, ),
       ],
     );
   }

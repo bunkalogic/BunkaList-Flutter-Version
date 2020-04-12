@@ -182,21 +182,25 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buttonTypeMaterial(BuildContext context,String title, Color color, int type) {
-      return RaisedButton(
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.0),
+      return Flexible(
+        child: RaisedButton(
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.0),
+          ),
+          color: color,
+          child: Text(title,
+          overflow: TextOverflow.ellipsis, 
+          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
+          onPressed: (){
+            //TODO refactor this method 
+            //? pushNamed con los arguments con el numberType de la firestore
+            // movies == 0
+            // series == 1
+            // anime == 2
+            Navigator.pushNamed(context, '/ListProfile', arguments: type);
+          },
         ),
-        color: color,
-        child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
-        onPressed: (){
-          //TODO refactor this method 
-          //? pushNamed con los arguments con el numberType de la firestore
-          // movies == 0
-          // series == 1
-          // anime == 2
-          Navigator.pushNamed(context, '/ListProfile', arguments: type);
-        },
       );
   }
   

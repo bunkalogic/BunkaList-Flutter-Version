@@ -112,6 +112,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - lang/en.json
+   - lang/de.json
+   - lang/es.json
+   - lang/fr.json
+   - lang/hi.json
+   - lang/it.json
+   - lang/ja.json
+   - lang/ko.json
+   - lang/pt.json
+   - lang/ru.json
    - assets/
    
   #  - lang/

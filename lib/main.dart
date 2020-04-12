@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 Widget _materialApp(BuildContext context, ThemeState state){
    
    Preferences prefs = Preferences();
-    Locale myLocale;
+    //Locale myLocale;
 
 
   return MaterialApp(
@@ -50,23 +50,32 @@ Widget _materialApp(BuildContext context, ThemeState state){
         title: 'Bunkalist',
         initialRoute: '/',
         onGenerateRoute: RouteGeneretor.generateRoute,
-        localeListResolutionCallback: ( devicesLocale , supportedLocales ){
-          myLocale = devicesLocale.first;
-
-          print(myLocale.countryCode);
-          print(myLocale.languageCode);
-
-          prefs.getLanguage = '${myLocale.languageCode}-${myLocale.countryCode}';
-          prefs.getCountryCode = '${myLocale.countryCode}';
-
-          print('language code: ${prefs.getLanguage}');
-          
-          return null; 
-        },
+        //localeListResolutionCallback: ( devicesLocale , supportedLocales ){
+        //  myLocale = devicesLocale.first;
+//
+        //  print(myLocale.countryCode);
+        //  print(myLocale.languageCode);
+//
+        //  prefs.getLanguage = '${myLocale.languageCode}-${myLocale.countryCode}';
+        //  prefs.getCountryCode = '${myLocale.countryCode}';
+//
+        //  print('language code: ${prefs.getLanguage}');
+        //  
+        //  return null; 
+        //},
         //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
         supportedLocales: [
           //* LIST ALL OF THE APPs SUPPORT LOCALES HERE
           Locale('en', 'US'),
+          Locale('es', 'ES'),
+          Locale('it', 'IT'),
+          Locale('de', 'DE'),
+          Locale('fr', 'FR'),
+          Locale('hi', 'IN'),
+          Locale('ja', 'JP'),
+          Locale('ko', 'KR'),
+          Locale('pt', 'PT'),
+          Locale('ru', 'RU'),
         ] ,
         localizationsDelegates: [
           //* A CLASS WHICH LOADS THE TRANSLATIONS FROM JSON FILE
@@ -76,7 +85,7 @@ Widget _materialApp(BuildContext context, ThemeState state){
           //* BUILT-IN LOCALIZATION OF BASIC TEXT FOR WIDGETS Cupertino
           GlobalCupertinoLocalizations.delegate,
           //* BUILT-IN LOCALIZATION OF BASIC TEXT DIRECTION left to right or viceversa
-          //? GlobalWidgetsLocalizations.delegate
+          GlobalWidgetsLocalizations.delegate
         ],
         //* RETURNS A LOCALE WHICH BE USED BY THE APP
         localeResolutionCallback: (locale, supportedLocales){
@@ -84,10 +93,25 @@ Widget _materialApp(BuildContext context, ThemeState state){
           for (var supportedLocale in supportedLocales){
             if(supportedLocale.languageCode == locale.languageCode 
             && supportedLocale.countryCode == locale.countryCode){
+
+              print(supportedLocale.countryCode);
+              print(supportedLocale.languageCode);
+
+              prefs.getLanguage = '${supportedLocale.languageCode}-${supportedLocale.countryCode}';
+              prefs.getCountryCode = '${supportedLocale.countryCode}';
+
+              print('language code: ${prefs.getLanguage}');
+
               return supportedLocale;
             }
           }
           //* If the locale of the device is not supported use the first one (English, this case).
+
+          prefs.getLanguage = '${supportedLocales.first.languageCode}-${supportedLocales.first.countryCode}';
+          prefs.getCountryCode = '${supportedLocales.first.countryCode}';
+
+          print('language code: ${prefs.getLanguage}');
+
           return supportedLocales.first; 
         },
         

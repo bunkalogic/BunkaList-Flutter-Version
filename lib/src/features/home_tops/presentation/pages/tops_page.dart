@@ -15,7 +15,6 @@ import 'package:bunkalist/src/features/home_tops/presentation/widgets/scroll_mov
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/series_month_widget.dart';
 
 import 'package:flutter/widgets.dart';
-import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
