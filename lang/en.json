@@ -216,6 +216,18 @@
 
   "details_tagline"             : "Tagline",
 
+  "info"                        : "Info",
+
+  "trailer"                     : "Trailer",
+
+  "review"                      : "Review",
+
+  "video_review"                : "Video Review",
+
+  "similar"                     : "Similar",
+
+  "recommedation"               : "Recomendation",
+
   "episode"                     : "Episodes",
 
   "season"                      : "Season",

@@ -1,4 +1,5 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -25,21 +26,18 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
 
   TabController _tabController;
 
-  final List<Tab> myTabs = <Tab>[
-    Tab(key: ValueKey(0) , text:'Completed', icon: Icon(Icons.check_circle, color: Colors.green,) ,),
-    Tab(key: ValueKey(1), text:'Watching',  icon: Icon(Icons.play_circle_filled, color: Colors.blue, ),),
-    Tab(key: ValueKey(2), text:'On Pause',  icon: Icon(Icons.pause_circle_filled, color: Colors.orange),),
-    Tab(key: ValueKey(3), text:'Dropped',   icon: Icon(Icons.remove_circle, color: Colors.redAccent,),),
-    Tab(key: ValueKey(4), text:'WhishList', icon: Icon(Icons.add_circle, color: Colors.purple,),),
-
-  ];
-
-
+  
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: myTabs.length);
+
+    _tabController = TabController(vsync: this, length: 5);
+    
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   _tabController = TabController(vsync: this, length: _getListTabs(context).length);
+    // });
+    
   }
 
   @override
@@ -48,27 +46,52 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
     super.dispose();
   }
 
+   List<Tab> _getListTabs(BuildContext context){
+
+    final List<Tab> myTabs = <Tab>[
+    Tab(key: ValueKey(0), text: AppLocalizations.of(context).translate("status_completed"), icon: Icon(Icons.check_circle, color: Colors.greenAccent[400],) ,),
+    Tab(key: ValueKey(1), text: AppLocalizations.of(context).translate("status_watching"),  icon: Icon(Icons.play_circle_filled, color: Colors.blueAccent[400], ),),
+    Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("status_pause"),     icon: Icon(Icons.pause_circle_filled, color: Colors.orangeAccent[400]),),
+    Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("status_dropped"),   icon: Icon(Icons.remove_circle, color: Colors.redAccent[400],),),
+    Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("status_wishlist"),  icon: Icon(Icons.add_circle, color: Colors.purpleAccent[400],),),
+
+    ];
+
+    return myTabs;
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _appBarTitle(),
-        bottom: _tabBar(),
-        leading: AppBarButtonBack(),
-        ),
-      body:  TabBarView(
-        controller: _tabController,
-        children: myTabs.map((Tab tab) {
-          return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child: ListTabProfileWidget(idStatus: tab.key, type: _getTypeName(),),
-          );
-          
-        }).toList(),
-      ),  
+      appBar: buildAppBar(),
+      body:  buildTabBarView(context),  
     );
   }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      title: _appBarTitle(),
+      bottom: _tabBar(),
+      leading: AppBarButtonBack(),
+      );
+  }
+
+  TabBarView buildTabBarView(BuildContext context) {
+    return TabBarView(
+      children: _getListTabs(context).map((Tab tab) {
+        return new BlocProvider<GetListsBloc>(
+          builder: (_) => serviceLocator<GetListsBloc>(),
+          child: ListTabProfileWidget(idStatus: tab.key, type: _getTypeName(),),
+        );
+        
+      }).toList(),
+      controller: _tabController,
+    );
+  }
+
+ 
 
   String _getTypeName(){
     switch(widget.data){
@@ -86,18 +109,18 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
   Widget _appBarTitle(){
     switch(widget.data){
 
-      case 0: return Text('List Movies');
-      case 1: return Text('List Series TV');
-      case 2: return Text('List Anime');
+      case 0: return Text(AppLocalizations.of(context).translate("list_movies"));
+      case 1: return Text(AppLocalizations.of(context).translate("list_series"));
+      case 2: return Text(AppLocalizations.of(context).translate("list_animes"));
 
-      default: return Text('List Movies');
+      default: return Text(AppLocalizations.of(context).translate("list_movies"));
     }
   }
 
   Widget _tabBar() {
     return TabBar(
       isScrollable: true,
-      tabs: myTabs,
+      tabs: _getListTabs(context),
       controller: _tabController,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
@@ -24,47 +25,16 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
 
   TabController _tabController;
-
-  final List<Tab> detailsMovieTabs = <Tab>[
-    Tab(key: ValueKey(0), text:'Info', ),
-    Tab(key: ValueKey(1), text:'Casting'),
-    Tab(key: ValueKey(2), text:'Trailers'),
-    Tab(key: ValueKey(3), text:'Review'),
-    Tab(key: ValueKey(4), text:'Video Review'),
-    Tab(key: ValueKey(5), text:'Similar'),
-    Tab(key: ValueKey(6), text:'Recomendation'),
-  ];
-
-  final List<Tab> detailsSerieTabs = <Tab>[
-    Tab(key: ValueKey(0), text:'Info',),
-    Tab(key: ValueKey(1), text:'Season'),
-    Tab(key: ValueKey(2), text:'Video Review'),
-    Tab(key: ValueKey(3), text:'Casting'),
-    Tab(key: ValueKey(4), text:'Trailers'),
-    Tab(key: ValueKey(5), text:'Review'),
-    Tab(key: ValueKey(6), text:'Similar'),
-    Tab(key: ValueKey(7), text:'Recomendation'),
-  ];
-
-  final List<Tab> detailsAnimeTabs = <Tab>[
-    Tab(key: ValueKey(0), text:'Info', ),
-    Tab(key: ValueKey(1), text:'Season'),
-    Tab(key: ValueKey(2), text:'Video Review'),
-    Tab(key: ValueKey(3), text:'Casting'),
-    Tab(key: ValueKey(4), text:'Trailers'),
-    Tab(key: ValueKey(5), text:'Review'),
-    Tab(key: ValueKey(6), text:'Similar'),
-    Tab(key: ValueKey(7), text:'Recomendation'),
-    Tab(key: ValueKey(8), text:'Opennings'), //si es un anime
-  ];
-
   ScrollController _scrollViewController;
 
   @override
   void initState() {
     super.initState();
     _scrollViewController = new ScrollController();
-    _tabController = TabController(vsync: this, length: _getListTabs().length);
+     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _tabController = TabController(vsync: this, length: _getListTabs(context).length);
+    });
+    
   }
 
   @override
@@ -74,7 +44,43 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     super.dispose();
   }
 
-  List<Tab> _getListTabs(){
+  List<Tab> _getListTabs(BuildContext context){
+
+    final List<Tab> detailsMovieTabs = <Tab>[
+    Tab(key: ValueKey(0), text: AppLocalizations.of(context).translate("info"),),
+    Tab(key: ValueKey(1), text: AppLocalizations.of(context).translate("casting")),
+    Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("trailer")),
+    Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("review")),
+    Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("video_review")),
+    Tab(key: ValueKey(5), text: AppLocalizations.of(context).translate("similar")),
+    Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("recommedation")),
+  ];
+
+  final List<Tab> detailsSerieTabs = <Tab>[
+    Tab(key: ValueKey(0), text: AppLocalizations.of(context).translate("info"),),
+    Tab(key: ValueKey(1), text: AppLocalizations.of(context).translate("season")),
+    Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("video_review")),
+    Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("casting")),
+    Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("trailer")),
+    Tab(key: ValueKey(5), text: AppLocalizations.of(context).translate("review")),
+    Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("similar")),
+    Tab(key: ValueKey(7), text: AppLocalizations.of(context).translate("recommedation")),
+  ];
+
+  final List<Tab> detailsAnimeTabs = <Tab>[
+    Tab(key: ValueKey(0), text:AppLocalizations.of(context).translate("info"),),
+    Tab(key: ValueKey(1), text:AppLocalizations.of(context).translate("season")),
+    Tab(key: ValueKey(2), text:AppLocalizations.of(context).translate("video_review")),
+    Tab(key: ValueKey(3), text:AppLocalizations.of(context).translate("casting")),
+    Tab(key: ValueKey(4), text:AppLocalizations.of(context).translate("trailer")),
+    Tab(key: ValueKey(5), text:AppLocalizations.of(context).translate("review")),
+    Tab(key: ValueKey(6), text:AppLocalizations.of(context).translate("similar")),
+    Tab(key: ValueKey(7), text:AppLocalizations.of(context).translate("recommedation")),
+    //Tab(key: ValueKey(8), text:'Opennings'), //si es un anime
+  ];
+
+
+
     final String type = widget.data['type'];
 
     switch(type){
@@ -96,7 +102,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: _getListTabs().length,
+        length: _getListTabs(context).length,
         child: _createHeaderSliverBuilder()
       ),
     ); 
@@ -120,7 +126,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
           body: TabBarView(   
         physics: NeverScrollableScrollPhysics(),    
         controller: _tabController,
-        children: _getListTabs().map((Tab tab) {
+        children: _getListTabs(context).map((Tab tab) {
           return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
         }).toList(),
       ),
@@ -160,7 +166,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
       ),
       isScrollable: true,
-      tabs: _getListTabs(),
+      tabs: _getListTabs(context),
       controller: _tabController,
     );
   }

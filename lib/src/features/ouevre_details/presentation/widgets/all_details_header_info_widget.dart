@@ -413,7 +413,7 @@ class HeaderInfoSerie  extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
           child: Text(
-            'Add in your List',
+            AppLocalizations.of(context).translate("add_in_list"),
             style: TextStyle(
               color: Colors.white,
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
@@ -628,7 +628,7 @@ class HeaderInfoAnime extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
           child: Text(
-            'Add in your List',
+            AppLocalizations.of(context).translate("add_in_list"),
             style: TextStyle(
               color: Colors.white,
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],

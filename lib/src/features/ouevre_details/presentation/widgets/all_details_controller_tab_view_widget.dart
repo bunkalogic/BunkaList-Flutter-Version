@@ -261,13 +261,13 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
       
-      case '[<8>]': {
-         return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
-          child: AllDetailsOpenningTab(title: widget.title,),
-        );
+      // case '[<8>]': {
+      //    return new BlocProvider<VideoYoutubeBloc>(
+      //     builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+      //     child: AllDetailsOpenningTab(title: widget.title,),
+      //   );
          
-        } 
+      //   } 
 
       default: return Center(child: Text('Error tab'),);
     }
