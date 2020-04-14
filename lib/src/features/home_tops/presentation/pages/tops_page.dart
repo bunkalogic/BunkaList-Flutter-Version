@@ -1,5 +1,8 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime_season/animeseason_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
@@ -17,6 +20,7 @@ import 'package:bunkalist/src/features/home_tops/presentation/widgets/series_mon
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 
 import '../../../../../injection_container.dart';
 
@@ -32,6 +36,7 @@ class TopsPage extends StatefulWidget {
 
 class _TopsPageState extends State<TopsPage> {
 
+  final _controller = NativeAdmobController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +52,11 @@ class _TopsPageState extends State<TopsPage> {
   }
 
   Widget _listTops(BuildContext context) {
+    
+
 
     return ListView(
       children: <Widget>[
-        //* Add Ads banner
         ListTile(
           title: Text(AppLocalizations.of(context).translate("label_movie_cinema"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
         ),
@@ -63,6 +69,7 @@ class _TopsPageState extends State<TopsPage> {
           builder: (_) => serviceLocator<TopsMoviesBloc>(),
           child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate('movies_popular'), typeId: Constants.topsMoviesPopularId,),
         ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/2168759652', ),
         SizedBox(height: 2.0,),
         ListTile(
           title: Text(AppLocalizations.of(context).translate("label_serie_month"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
@@ -76,6 +83,7 @@ class _TopsPageState extends State<TopsPage> {
           builder: (_) => serviceLocator<TopsSeriesBloc>(),
           child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate('series_popular'), typeId: Constants.topsSeriesPopularId,),
         ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5724861288', ),
         SizedBox(height: 2.0,),
         ListTile(
           title: Text(AppLocalizations.of(context).translate("label_anime_season"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
@@ -89,6 +97,7 @@ class _TopsPageState extends State<TopsPage> {
           builder: (_) => serviceLocator<TopsAnimesBloc>(),
           child:ContainerListAnimeWidget(title: AppLocalizations.of(context).translate('anime_popular'), typeId: Constants.topsAnimePopularId,),
         ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1785616276', ),
         CardMoreTopsWidget(),
       ],
     );

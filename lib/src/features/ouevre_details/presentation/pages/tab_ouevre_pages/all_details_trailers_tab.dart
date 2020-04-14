@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
@@ -49,10 +50,20 @@ class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
               return EmptyIconWidget();
 
             }else{
-              return ListView.builder(
-                padding: EdgeInsets.all(5.0),
-                itemCount: state.videos.length,
-                itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i],),
+              return Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1043380245',),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.all(5.0),
+                        itemCount: state.videos.length,
+                        itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i],),
+                      ),
+                    ),
+                  ],
+                ),
               );
             }
             

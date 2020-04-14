@@ -2,6 +2,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
@@ -21,6 +23,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   Preferences prefs = new Preferences();
+  final _controller = NativeAdmobController();
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'movie',),
           ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),  
         SizedBox(height: 10.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
         SizedBox(height: 5.0,),
@@ -163,6 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'anime',),
           ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),  
         SizedBox(height: 25.0,),    
       ],
     );

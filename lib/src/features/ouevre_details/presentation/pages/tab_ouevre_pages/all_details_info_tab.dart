@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
@@ -91,7 +92,9 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
         _boxInfo(child: _columnInfo()),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
         
       ],
     );
@@ -367,8 +370,10 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
-        _boxInfo(child: _columnInfo()),
+       _boxInfo(child: _columnInfo()),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
       ],
     );
   }
@@ -645,7 +650,9 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
         _boxInfo(child: _columnInfo()),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
       ],
     );
   }

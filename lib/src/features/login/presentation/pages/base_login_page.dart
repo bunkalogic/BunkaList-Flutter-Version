@@ -4,6 +4,7 @@ import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.d
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_register/register_bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/login_widget.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/signup_widget.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -267,13 +268,30 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
          LoginWithGooglePressed(),
       );
        print('button sign with google pressed');
-
-      //Navigator.pushReplacementNamed(context, '/Home');
-      // Navigator.of(context).pushReplacementNamed('/Home');
-      _navigateToHome(context);
+      
     }
 
-    return new Container(
+     return BlocListener<LoginBloc, LoginState>(
+      
+      listener: (context, state){
+        if(state.isFailure){
+          print('login failure');
+          _flushbarLoginError();
+        }
+        
+        if(state.isSubmitting){
+          print('login is loading');
+          _flushbarLoginSubmitting();
+        }
+        
+        if(state.isSuccess){
+          print('login success');
+          _navigateToHome(context);
+        }
+      },
+
+
+      child: Container(
       margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
       width: MediaQuery.of(context).size.width,
       child: new RaisedButton(
@@ -307,9 +325,47 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
             ],
           )
         ),
-      );
-
+      )
+     );
    
+  }
+
+  void _flushbarLoginError(){
+    Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.redAccent[700], Colors.redAccent[400]],),
+      backgroundColor: Colors.red[500],
+      boxShadows: [BoxShadow(color: Colors.red[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 3),
+      messageText: Text(
+        AppLocalizations.of(context).translate("email_or_password_empty"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
+  }
+
+  void _flushbarLoginSubmitting(){
+     Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
+      backgroundColor: Colors.blue[500],
+      boxShadows: [BoxShadow(color: Colors.blue[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 3),
+      messageText: Text(
+        AppLocalizations.of(context).translate("login_submitted"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
   }
 
   void _navigateToHome(BuildContext context){

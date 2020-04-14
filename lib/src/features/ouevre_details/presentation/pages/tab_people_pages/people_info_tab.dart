@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_details_entity.dart';
@@ -83,6 +84,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
           child: ContainerSocialMedia(id: widget.id,),
         ),
           _cardInfoPeople(people),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/6111874096',),
         ],
       ),
     );

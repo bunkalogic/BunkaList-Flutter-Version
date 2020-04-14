@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
@@ -58,7 +59,8 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
                   _labelScrollPersonItem(AppLocalizations.of(context).translate('casting')),
                   ScrollCastItem(castList: listCast,),
                   _labelScrollPersonItem(AppLocalizations.of(context).translate('crew')),
-                  ScrollCrewItem(crewList: listCrew,)
+                  ScrollCrewItem(crewList: listCrew,),
+                  MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4251997510',),
                 ],
               )
             );

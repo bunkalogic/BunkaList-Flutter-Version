@@ -15,6 +15,11 @@
         android:label="bunkalist"
         android:allowBackup="false"
         android:icon="@mipmap/launcher_icon">
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+            <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value=""/>    
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -29,6 +34,7 @@
             <meta-data
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
+        
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

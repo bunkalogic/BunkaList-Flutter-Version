@@ -1,6 +1,7 @@
 
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
@@ -95,9 +96,14 @@ class SeasonSerieItems extends StatelessWidget{
     if(listSerieSeasons.isEmpty){
       return Center(child: Text('No data Seasons'),);
     }else{
-      return ListView.builder(
-       itemCount: listSerieSeasons.length,
-       itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
+      return Column(
+        children: <Widget>[
+          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7009829277',),
+          ListView.builder(
+           itemCount: listSerieSeasons.length,
+           itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
+          ),
+        ],
       );
     }
     
@@ -244,9 +250,19 @@ class SeasonAnimeItems extends StatelessWidget{
     if(listAnimeSeasons.isEmpty){
       return Center(child: Text('No data Seasons'),);
     }else{
-      return ListView.builder(
-       itemCount: listAnimeSeasons.length,
-       itemBuilder:  (context, i) => _itemSeason(context, listAnimeSeasons[i]),
+      return Container(
+        child: Column(
+           mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7009829277',),
+            Expanded(
+              child: ListView.builder(
+               itemCount: listAnimeSeasons.length,
+               itemBuilder:  (context, i) => _itemSeason(context, listAnimeSeasons[i]),
+              ),
+            ),
+          ],
+        ),
       );
     }
     

@@ -74,6 +74,8 @@ dependencies:
   flutter_svg: ^0.17.4
   # flutter in app purchase
   flutter_inapp_purchase: ^2.1.5
+  # admob native flutter
+  flutter_native_admob: ^2.1.0
   
   flutter_localizations:
     sdk: flutter

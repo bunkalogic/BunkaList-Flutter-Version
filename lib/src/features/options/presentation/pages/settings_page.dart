@@ -2,6 +2,7 @@ import 'package:app_review/app_review.dart';
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'package:flushbar/flushbar.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,6 +23,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
 
   final prefs = new Preferences();
+  final _controller = NativeAdmobController();
+
 
   
 
@@ -116,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (_) => serviceLocator<AuthenticationBloc>(),
       child: ButtomLogOut(),
       ),
-
+      MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4711162518',),
       ],
     );
   }
