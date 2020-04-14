@@ -211,9 +211,15 @@
     "pause_empty_label"           : "一時停止リストが空です。何かを追加してください",
     "dropped_empty_label"         : "破棄済みのリストが空です。何かを追加してください",
     "wishlist_empty_label"        : "ウィッシュリストが空です。何かを追加してください",
-    "empty_last_added_label"      : "リストに何も追加されていません。何か追加してください"
-
-  
+    "empty_last_added_label"      : "リストに何も追加されていません。何か追加してください",
+    "label_remove_ads"              : "Bunkalist開発をサポートし,広告を削除してください。",
+    "label_month_ads"               : "0,99 $。*の広告なしの1か月",
+    "label_year_ads"                : "1年間$ 0.33 /月、広告なし。*",
+    "label_never_ads"               : " 6.99ドルの広告を削除するには、一度支払う。",
+    "label_never_ads_with_premium"  : "このオプションにはプレミアムも含まれます。**",
+    "label_subscription"            : "* Google Playでいつでもサブスクリプションをキャンセルできます。",
+    "label_include_premium"         : "**プレミアムが到着したとき,あなたは他に何も支払う必要はありません。将来のアップデートでは,プレミアムがもたらすすべての新機能に関する詳細情報があります。",
+    "in_progress"                   : "このオプションはまだ利用できません。次のアップデートで利用できます。"
   
   
   

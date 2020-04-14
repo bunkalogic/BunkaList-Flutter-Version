@@ -427,9 +427,16 @@
 
   "wishlist_empty_label"          : "Your list of WishList is empty, add something.",
 
-  "empty_last_added_label"        : "You have nothing added to your lists, Add something."
+  "empty_last_added_label"        : "You have nothing added to your lists, Add something.",
 
-
+  "label_remove_ads"              : "Support Bunkalist development and remove Ads.",
+  "label_month_ads"               : "1 Month without ads for 0,99$.*",
+  "label_year_ads"                : "1 Year without ads for 0,33$ per month.*",
+  "label_never_ads"               : "Pay once and remove ads by 6,99$.",
+  "label_never_ads_with_premium"  : "This option also includes the Premium. **",
+  "label_subscription"            : "* Cancel subscription any time in Google Play.",
+  "label_include_premium"         : "** When the Premium arrives you will not have to pay anything else. In future updates there will be more information about all the new features that the Premium will bring.",
+  "in_progress"                   : "This option is not yet available, for the next update it will be available."
 
 
 }

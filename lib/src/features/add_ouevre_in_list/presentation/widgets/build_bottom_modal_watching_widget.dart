@@ -175,7 +175,7 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
 
   void getFlushbarSuccessWatching(BuildContext context){
     Flushbar(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 100.0),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
       backgroundColor: Colors.blue[500],

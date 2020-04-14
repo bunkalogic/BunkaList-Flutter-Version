@@ -211,9 +211,15 @@
     "pause_empty_label"           : "일시 정지 목록이 비어 있습니다. 추가하십시오",
     "dropped_empty_label"         : "버려진 목록이 비어 있습니다. 추가하십시오",
     "wishlist_empty_label"        : "당신의 위시리스트가 비어 있습니다, 무언가를 추가하십시오",
-    "empty_last_added_label"      : "목록에 추가 된 것이 없습니다"
-
-  
+    "empty_last_added_label"      : "목록에 추가 된 것이 없습니다",
+    "label_remove_ads": "Bunkalist 개발 지원 및 광고 제거",
+    "label_month_ads": "$ 0.99에 광고없이 1 개월. *",
+    "label_year_ads": "매월 0,33 $에 광고가없는 1 년. *",
+    "label_never_ads": "한 번 지불하고 6.99 달러에 광고를 제거하십시오",
+    "label_never_ads_with_premium": "이 옵션은 프리미엄도 포함합니다. **",
+    "label_subscription": "* 언제든지 Google Play 구독을 취소합니다.",
+    "label_include_premium": "** Premium이 도착하면 다른 비용을 지불하지 않아도됩니다. 향후 업데이트에서는 Premium이 가져올 모든 새로운 기능에 대한 자세한 정보가있을 것입니다.",
+    "in_progress"                   : "이 옵션은 아직 사용할 수 없습니다. 다음 업데이트에서는 사용할 수 있습니다."
   
   
   

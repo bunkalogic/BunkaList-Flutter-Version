@@ -174,7 +174,7 @@ class _BuildBottomModalCompleteSimpleState extends State<BuildBottomModalComplet
 
   void getFlushbarSuccessComplete(BuildContext context){
     Flushbar(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 100.0),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.greenAccent[700], Colors.greenAccent[400]],),
       backgroundColor: Colors.green[500],

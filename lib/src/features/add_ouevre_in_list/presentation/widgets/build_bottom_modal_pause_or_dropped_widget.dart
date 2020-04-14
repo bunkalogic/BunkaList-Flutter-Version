@@ -233,7 +233,7 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
 
   void getFlushbarSuccessPause(BuildContext context){
     Flushbar(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 100.0),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.orangeAccent[700], Colors.orangeAccent[400]],),
       backgroundColor: Colors.orange[500],
@@ -253,7 +253,7 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
 
   void getFlushbarSuccessDropped(BuildContext context){
     Flushbar(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 100.0),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.redAccent[700], Colors.redAccent[400]],),
       backgroundColor: Colors.red[500],

@@ -4,6 +4,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -80,7 +81,10 @@ class _SettingsPageState extends State<SettingsPage> {
         // _createItemSettings(context, Colors.red, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), (){
         //   Navigator.pushNamed(context, '/Premium');
         // }),
-        _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), null),
+        _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), (){
+          //Navigator.pushNamed(context, '/NoAds');
+          _flushbarInProgress();
+        } ),
         SizedBox(height: 10.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
         Divider(),
@@ -115,6 +119,26 @@ class _SettingsPageState extends State<SettingsPage> {
 
       ],
     );
+  }
+
+
+  void _flushbarInProgress(){
+     Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
+      backgroundColor: Colors.blue[500],
+      boxShadows: [BoxShadow(color: Colors.blue[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 5),
+      messageText: Text(
+        AppLocalizations.of(context).translate("in_progress"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
   }
 
   

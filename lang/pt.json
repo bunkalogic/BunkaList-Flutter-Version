@@ -211,9 +211,15 @@
     "pause_empty_label"           : "Sua lista de Pausa está vazia, adicione algo.",
     "dropped_empty_label"         : "Sua lista de Dropped está vazia, adicione algo.",
     "wishlist_empty_label"        : "Sua lista de WishList está vazia, adicione algo.",
-    "empty_last_added_label"      : "Você não adicionou nada às suas listas, adicione algo."
-  
-  
+    "empty_last_added_label"      : "Você não adicionou nada às suas listas, adicione algo.",
+    "label_remove_ads"            : "Apoie o desenvolvimento do Bunkalist e remova os anúncios.",
+    "label_month_ads"               : "1 mês sem anúncios por 0,99 $. *",
+    "label_year_ads"                : "1 ano sem anúncios por 0,33 $ por mês. *",
+    "label_never_ads"               : "Pague uma vez e remova os anúncios em US $ 6,99.",
+    "label_never_ads_with_premium"  : "Esta opção também inclui o Premium. **",
+    "label_subscription"            : "* Cancele a assinatura a qualquer momento no Google Play.",
+    "label_include_premium"         : "** Quando o Premium chegar, você não precisará pagar mais nada. Em futuras atualizações, haverá mais informações sobre todos os novos recursos que o Premium trará.",
+    "in_progress"                   : "Esta opção ainda não está disponível, para a próxima atualização estará disponível."
   
   
   }

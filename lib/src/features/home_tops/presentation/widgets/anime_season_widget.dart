@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
@@ -59,13 +60,13 @@ class _CaruoselAnimeSeasonWidgetState extends State<CaruoselAnimeSeasonWidget> {
               );
 
              }else{
-               return Center(child: Text('No Anime Found'));
+               return EmptyIconWidget();
              }
              
            }else if(state is ErrorAnimes){
-             return Text(state.message);
+            return EmptyIconWidget();
            }
-           return Center(child: Text('something Error'));
+           return EmptyIconWidget();
         },
       ),
     );

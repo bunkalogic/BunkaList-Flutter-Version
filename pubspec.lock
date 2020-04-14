@@ -328,6 +328,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  flutter_inapp_purchase:
+    dependency: "direct main"
+    description:
+      name: flutter_inapp_purchase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.5"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
