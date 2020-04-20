@@ -274,16 +274,6 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
      return BlocListener<LoginBloc, LoginState>(
       
       listener: (context, state){
-        if(state.isFailure){
-          print('login failure');
-          _flushbarLoginError();
-        }
-        
-        if(state.isSubmitting){
-          print('login is loading');
-          _flushbarLoginSubmitting();
-        }
-        
         if(state.isSuccess){
           print('login success');
           _navigateToHome(context);

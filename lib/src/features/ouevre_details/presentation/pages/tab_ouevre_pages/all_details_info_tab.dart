@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
@@ -91,6 +92,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
+        _boxInfo(child: _rowRatingAndNetwork()),
         _boxInfo(child: _columnInfo()),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
@@ -130,7 +132,6 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          _rowRatingAndNetwork(),
           _overviewInfo(),
           ChipsGenresWidget(genres: genreIds,)
           //_chipGenresItem()
@@ -155,13 +156,21 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          SizedBox(width: 60.0,),
-          Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
-          Text(movie.voteCount.toString(), style: _voteCountStyle,),
-          Spacer(),
-          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
-          Text(movie.voteAverage.toString(), style: _ratingStyle,),
-          SizedBox(width: 60.0,),
+           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
+                Text(movie.voteCount.toString(), style: _voteCountStyle,),
+              ],
+            ),
+          ),
+          //Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BigCircularChartRating(movie.voteAverage),
+          ),
+          //Spacer(),
           // Spacer(),
           // Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
           // Image.network('https://image.tmdb.org/t/p/h50_filter(negate,000,666)/tuomPhY2UtuPTqqFnKMVHvSb724.png', height: 15.0,)
@@ -370,7 +379,8 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
-       _boxInfo(child: _columnInfo()),
+        _boxInfo(child: _rowRatingAndNetwork()),
+        _boxInfo(child: _columnInfo()),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
@@ -406,7 +416,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _rowRatingAndNetwork(),
+          //_rowRatingAndNetwork(),
           _overviewInfo(),
           //_chipGenresItem(),
           ChipsGenresWidget(genres: genreIds,)
@@ -439,14 +449,30 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
-          Text(serie.voteCount.toString(), style: _voteCountStyle,),
-          Spacer(),
-          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
-          Text(serie.voteAverage.toString(), style: _ratingStyle,),
-          Spacer(),
-          Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
-          _imageNetworkLogo(logo)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
+                Text(serie.voteCount.toString(), style: _voteCountStyle,),
+              ],
+            ),
+          ),
+          //Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: BigCircularChartRating(serie.voteAverage),
+          ),
+          //Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
+                _imageNetworkLogo(logo),
+              ],
+            ),
+          ),
           //Image.network('https://image.tmdb.org/t/p/orginal/' + logo, height: 15.0,)
 
         ],
@@ -465,7 +491,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
           placeholder: placeholder, //? PlaceHolder Item,
           fit: BoxFit.cover,
           // height: MediaQuery.of(context).size.height / 30.0,
-          height: 22.0,
+          height: 18.0,
     );
 
   }
@@ -649,6 +675,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
+        _boxInfo(child: _rowRatingAndNetwork()),
         _boxInfo(child: _columnInfo()),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
@@ -685,7 +712,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          _rowRatingAndNetwork(),
+          
           _overviewInfo(),
           ChipsGenresWidget(genres: genreIds,)
           //_chipGenresItem()
@@ -715,14 +742,30 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
-          Text(anime.voteCount.toString(), style: _voteCountStyle,),
-          Spacer(),
-          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
-          Text(anime.voteAverage.toString(), style: _ratingStyle,),
-          Spacer(),
-          Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
-          _imageNetworkLogo(logo),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.people, color: Colors.grey[400], size: 25.0, ),
+                Text(anime.voteCount.toString(), style: _voteCountStyle,),
+              ],
+            ),
+          ),
+          //Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: BigCircularChartRating(anime.voteAverage),
+          ),
+          //Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
+                _imageNetworkLogo(logo),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -739,7 +782,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
           placeholder: placeholder, //? PlaceHolder Item,
           fit: BoxFit.cover,
           // height: MediaQuery.of(context).size.height / 30.0,
-          height: 22.0,
+          height: 18.0,
     );
 
   }

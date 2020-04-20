@@ -20,7 +20,7 @@ class _LoadingCustomWidgetState extends State<LoadingCustomWidget> with SingleTi
     _colorAnimation = _animationController.drive(
       ColorTween(
         begin: Colors.deepPurpleAccent[400],
-        end: Colors.tealAccent[400]
+        end: Colors.deepOrangeAccent[400]
       )
     );
     _animationController.repeat();

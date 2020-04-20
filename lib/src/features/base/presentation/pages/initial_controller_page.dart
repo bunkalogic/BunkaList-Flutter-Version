@@ -2,9 +2,10 @@
 
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:in_app_update/in_app_update.dart';
 
 class InitialController extends StatelessWidget {
   
@@ -29,6 +30,9 @@ class InitialControllerPage extends StatefulWidget {
 class _InitialControllerPageState extends State<InitialControllerPage> {
 
 
+   AppUpdateInfo _updateInfo;
+  bool _flexibleUpdateAvailable = false;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -36,9 +40,40 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
     BlocProvider.of<AuthenticationBloc>(context)
     ..add(AppStarted());
 
-    
-
   }
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        _updateInfo = info;
+      });
+    }).catchError((e) => _showError(e));
+  }
+
+   void _showError(dynamic exception) {
+     FlushbarHelper.createError(message: exception.toString(), title: 'Error');
+   }
+
+   startFlexibleUpdate(){
+     if(_updateInfo?.updateAvailable == true){
+
+      InAppUpdate.startFlexibleUpdate().then((_) {
+        setState(() {
+          _flexibleUpdateAvailable = true;
+        });
+      }).catchError((e) => _showError(e));
+
+     }
+   }
+
+   completeFlexibleUpdate(){
+     if(_flexibleUpdateAvailable){
+        InAppUpdate.completeFlexibleUpdate().then((_) {
+          FlushbarHelper.createSuccess(message: 'Success!!!');
+        }).catchError((e) => _showError(e));
+     }
+     
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +84,8 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
         
         if(state is AuthenticationUninitialized){
           print('login init');
+          checkForUpdate();
+          startFlexibleUpdate();
           return _splashPage();
         }
 
@@ -67,6 +104,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
 
         if(state is AuthenticationLoading){
           print('loading login');
+          completeFlexibleUpdate();
           return _loadingPage();
         }
            
@@ -144,4 +182,6 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
       ),
     );
   }
+
+ 
 }

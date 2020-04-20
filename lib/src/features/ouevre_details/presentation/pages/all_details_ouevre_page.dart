@@ -31,9 +31,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   void initState() {
     super.initState();
     _scrollViewController = new ScrollController();
-     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _tabController = TabController(vsync: this, length: _getListTabs(context).length);
-    });
+    _tabController = TabController(vsync: this, length: getTotalTabs());
     
   }
 
@@ -42,6 +40,24 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     _scrollViewController.dispose(); 
     _tabController.dispose();
     super.dispose();
+  }
+
+  int getTotalTabs(){
+    final String type = widget.data['type'];
+
+    switch(type){
+
+      case 'movie': return 7;
+        break;
+
+      case 'tv': return 8;
+        break;
+
+      case 'anime': return 8;
+        break;    
+
+      default: return 8;
+    }
   }
 
   List<Tab> _getListTabs(BuildContext context){

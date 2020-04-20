@@ -60,7 +60,7 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
                   ScrollCastItem(castList: listCast,),
                   _labelScrollPersonItem(AppLocalizations.of(context).translate('crew')),
                   ScrollCrewItem(crewList: listCrew,),
-                  MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4251997510',),
+                  BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4251997510',),
                 ],
               )
             );

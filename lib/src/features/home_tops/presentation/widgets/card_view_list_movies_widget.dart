@@ -1,6 +1,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
@@ -83,9 +84,9 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
         children: <Widget>[
         Expanded(child: _titleItem(), flex: 5, ),
         //Spacer(),
-        Expanded(child: _yearOfItem(), flex: 3,),
+        Expanded(child: _yearOfItem(), flex: 2,),
         //Spacer(),
-        Expanded(child: _rateItem(), flex: 2, )
+        Expanded(child: _rateItem(), flex: 3, )
         ],
       ),
     );
@@ -154,12 +155,7 @@ class _CardViewListMoviesWidgetState extends State<CardViewListMoviesWidget> {
   Widget _rateItem() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
-      child: Row(
-        children: <Widget>[
-          Text(widget.movie.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
-          Icon(Icons.star, size: 20, color: Colors.orange[800], ) 
-        ],
-      ),
+      child: MiniCircularChartRating(widget.movie.voteAverage)
     );
   }
 

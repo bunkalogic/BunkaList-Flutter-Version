@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,52 @@ class MiniContainerAdsWidget extends StatefulWidget {
 class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
 
   final _nativeAdController = NativeAdmobController();
+  Preferences prefs = Preferences();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+      height: 95.0,
+      color: Colors.blueGrey[400].withOpacity(0.1),
+      child: NativeAdmob(
+        adUnitID: widget.adUnitID,
+        controller: _nativeAdController,
+        loading: LoadingCustomWidget(),
+        error: EmptyIconWidget(),
+        type: NativeAdmobType.banner,
+        options: NativeAdmobOptions(
+          showMediaContent: false,
+          headlineTextStyle: NativeTextStyle(
+            fontSize: 16.0,
+            color: (prefs.whatModeIs) ? Colors.white : Colors.black 
+          ),
+          bodyTextStyle: NativeTextStyle(
+            fontSize: 12.0,
+            color: (prefs.whatModeIs) ? Colors.white : Colors.black 
+          )
+        ) ,
+      ),
+    );
+  }
+}
+
+
+class BigContainerAdsWidget extends StatefulWidget {
+  final String adUnitID;
+  
+
+  BigContainerAdsWidget({this.adUnitID});
+
+  @override
+  _BigContainerAdsWidgetState createState() => _BigContainerAdsWidgetState();
+}
+
+class _BigContainerAdsWidgetState extends State<BigContainerAdsWidget> {
+
+  final _nativeAdController = NativeAdmobController();
+  
+
   double _height = 0;
 
   StreamSubscription _subscription;
@@ -48,7 +95,7 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
 
       case AdLoadState.loadCompleted:
         setState(() {
-          _height = 200;
+          _height = 330;
         });
         break;
 
@@ -60,41 +107,18 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(8.0),
       height: _height,
       child: NativeAdmob(
         adUnitID: widget.adUnitID,
-        controller: _nativeAdController,
+        controller:  _nativeAdController,
         loading: LoadingCustomWidget(),
         error: Container(),
+        type: NativeAdmobType.full,
       ),
     );
   }
-}
 
 
-class BigContainerAdsWidget extends StatefulWidget {
-  final String adUnitID;
-  final NativeAdmobController controller;
-
-  BigContainerAdsWidget({this.adUnitID, this.controller});
-
-  @override
-  _BigContainerAdsWidgetState createState() => _BigContainerAdsWidgetState();
-}
-
-class _BigContainerAdsWidgetState extends State<BigContainerAdsWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8.0),
-      height: 300.0,
-      child: NativeAdmob(
-        adUnitID: widget.adUnitID,
-        controller: widget.controller,
-        loading: LoadingCustomWidget(),
-        error: Container(),
-      ),
-    );
-  }
+  
 }

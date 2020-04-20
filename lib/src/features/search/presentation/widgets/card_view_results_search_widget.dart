@@ -1,6 +1,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
@@ -100,9 +101,9 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
         children: <Widget>[
         Expanded(child: _titleItem(result), flex: 5, ),
         //Spacer(),
-        Expanded(child: _yearOfItem(result), flex: 3,),
+        Expanded(child: _yearOfItem(result), flex: 2,),
         //Spacer(),
-        Expanded(child: _rateItem(result), flex: 2, )
+        Expanded(child: _rateItem(result), flex: 3, )
         ],
       ),
     );
@@ -177,12 +178,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   Widget _rateItem(Result result) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
-      child: Row(
-        children: <Widget>[
-          Text(result.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
-          Icon(Icons.star, size: 20, color: Colors.orange[800], ) 
-        ],
-      ),
+      child: MiniCircularChartRating(result.voteAverage),
     );
   }
 

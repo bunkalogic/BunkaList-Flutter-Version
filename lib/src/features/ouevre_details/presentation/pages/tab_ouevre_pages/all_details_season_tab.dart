@@ -99,9 +99,11 @@ class SeasonSerieItems extends StatelessWidget{
       return Column(
         children: <Widget>[
           MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7009829277',),
-          ListView.builder(
-           itemCount: listSerieSeasons.length,
-           itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
+          Expanded(
+            child: ListView.builder(
+             itemCount: listSerieSeasons.length,
+             itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
+            ),
           ),
         ],
       );
