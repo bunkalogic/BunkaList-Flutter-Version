@@ -145,7 +145,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       case 'Last':{
         return ouevreCollection
         .orderBy('addDate', descending: true)
-        .limit(10)
+        .limit(15)
         .snapshots().map((snap){
           
           return snap.documents

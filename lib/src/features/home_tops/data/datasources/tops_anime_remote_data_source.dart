@@ -124,7 +124,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimePopularId            : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc);
 
-      case Constants.topsAnimeRatedId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 45);
+      case Constants.topsAnimeRatedId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 35);
 
       case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-01', airDate: '2020-05-01' );
 
@@ -134,9 +134,9 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeComedyId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.comedy.toString(), voteCount: 5 );
         
-      case Constants.topsAnimeCrimenId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.crime.toString(), voteCount: 5 );
+      case Constants.topsAnimeCrimenId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.crime.toString(), voteCount: 1 );
         
-      case Constants.topsAnimeDramaId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.drama.toString(), voteCount: 5 );
+      case Constants.topsAnimeDramaId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.drama.toString(), voteCount: 3 );
         
       case Constants.topsAnimeMisteryId            : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.mistery.toString(), voteCount: 5 );
         

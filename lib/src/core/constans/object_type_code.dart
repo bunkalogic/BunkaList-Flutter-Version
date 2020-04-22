@@ -17,4 +17,6 @@ class ConstantsTypeObject{
  
   static const int searchResult = 10;
 
+  static const int castAndCrew = 11;
+
 }

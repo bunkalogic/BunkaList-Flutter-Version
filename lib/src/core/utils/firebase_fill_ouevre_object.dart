@@ -6,6 +6,7 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_deta
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_rs_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_rs_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_credits_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_rs_entity.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
@@ -39,6 +40,7 @@ class FirebaseFillOuevreObject{
     AnimeEntityRS animeEntityRS;
     Result result;
     OuevreEntity ouevreEntity;
+    CastAndCrew cast;
 
     switch (typeObject) {
       case ConstantsTypeObject.movieEntity:{
@@ -95,6 +97,11 @@ class FirebaseFillOuevreObject{
         ouevreEntity = ouevre as OuevreEntity;
 
         return _fillObjectOuevreOfOldOuevre(ouevreEntity);
+      }
+      case ConstantsTypeObject.castAndCrew:{
+        cast = ouevre as CastAndCrew;
+        
+        return _fillObjectOuevreOfCastAndCrew(cast);
       }
 
         
@@ -267,6 +274,21 @@ class FirebaseFillOuevreObject{
      status: status,
      episodes: oldOuevre.episodes,
      seasons: oldOuevre.seasons
+    );
+
+    return ouevreEntity;
+  }
+
+  OuevreEntity _fillObjectOuevreOfCastAndCrew(CastAndCrew cast){
+    final ouevreEntity = new OuevreEntity(
+     oeuvreId: cast.id,
+     oeuvreTitle: (cast.title != null) ? cast.title : cast.name,
+     oeuvrePoster: (cast.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ cast.backdropPath }' : 'https://image.tmdb.org/t/p/original${ cast.posterPath }',
+     oeuvreRating: cast.voteAverage,
+     oeuvreReleaseDate: (cast.releaseDate != null) ? cast.releaseDate : cast.firstAirDate,
+     oeuvreType: cast.mediaType,
+     addDate: DateTime.now(),
+     status: status,
     );
 
     return ouevreEntity;

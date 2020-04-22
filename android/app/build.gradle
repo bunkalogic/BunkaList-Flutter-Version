@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '44'
+    flutterVersionCode = '47'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '2.0.02'
+    flutterVersionName = '2.0.06'
 }
 
 apply plugin: 'com.android.application'
@@ -61,13 +61,13 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
-            // signingConfig signingConfigs.release
+            //signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             
-            // minifyEnabled true
-            // useProguard true
+            minifyEnabled true
+            useProguard true
 
-            // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }

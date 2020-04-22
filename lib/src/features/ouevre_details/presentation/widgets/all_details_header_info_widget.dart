@@ -460,7 +460,7 @@ class HeaderInfoSerie  extends StatelessWidget {
 
   Widget _durationInfo(SerieDetailsEntity serie) {
     final time = 
-    (serie.episodeRunTime == null && serie.episodeRunTime.isEmpty) ? 'no info' : serie.episodeRunTime[0].toString();
+    (serie.episodeRunTime.isEmpty) ? 'no info' : serie.episodeRunTime[0].toString();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 2.0),
@@ -475,7 +475,7 @@ class HeaderInfoSerie  extends StatelessWidget {
             Icon(Icons.timer,color: Colors.purpleAccent[700], size: 28.0, ),
             SizedBox(width: 2.0,),
             Text(
-               (time == null && time.isEmpty) ? 'no info' : time + 'min.', 
+              time + ' min.', 
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -676,7 +676,7 @@ class HeaderInfoAnime extends StatelessWidget {
   Widget _durationInfo(AnimeDetailsEntity anime) {
 
     final time = 
-    (anime.episodeRunTime == null && anime.episodeRunTime.isEmpty) ? 'no info' : anime.episodeRunTime[0].toString();
+    (anime.episodeRunTime.isEmpty) ? 'no info' : anime.episodeRunTime[0].toString();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 2.0),
@@ -691,7 +691,7 @@ class HeaderInfoAnime extends StatelessWidget {
             Icon(Icons.timer,color: Colors.purpleAccent[700], size: 28.0, ),
             SizedBox(width: 2.0,),
             Text(
-              (time == null && time.isEmpty ) ? 'no info' : time + 'min.', 
+              time + ' min.', 
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

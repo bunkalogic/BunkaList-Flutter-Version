@@ -1,6 +1,8 @@
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_credits_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_people/bloc.dart';
 import 'package:flutter/material.dart';
@@ -124,7 +126,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
           _infoCharacter(cast),
           _infoEpisodeCount(cast),
           //SizedBox(height: 35.0,),
-          _rowButtons(),
+          _rowButtons(cast),
         ],
       ),
     );
@@ -191,7 +193,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          DateTime.parse(getDate).year.toString(), 
+          (getDate != null) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -248,19 +250,19 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
    
   }
 
-   Widget _rowButtons() {
+   Widget _rowButtons(CastAndCrew cast) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400]), 
+         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400], cast), 
          
         ],
       ),
     );
   }
 
-  Widget _buttonActions(IconData icon, Color color){
+  Widget _buttonActions(IconData icon, Color color, CastAndCrew cast){
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: IconButton(
@@ -269,7 +271,15 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
           size: 35.0, 
           color: color,
           ),
-          onPressed: () {},
+          onPressed: () {
+            return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: cast,
+              type: cast.mediaType,
+              objectType: ConstantsTypeObject.castAndCrew
+            ).showBottomModal();
+          },
       ),
     );
   }
@@ -393,7 +403,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
           _infoCharacter(cast),
           _infoEpisodeCount(cast),
           //SizedBox(height: 35.0,),
-          _rowButtons(),
+          _rowButtons(cast),
         ],
       ),
     );
@@ -460,7 +470,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          DateTime.parse(getDate).year.toString(), 
+          (getDate != null) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -517,19 +527,19 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
    
   }
 
-   Widget _rowButtons() {
+   Widget _rowButtons(CastAndCrew cast) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400]), 
+         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400], cast), 
          
         ],
       ),
     );
   }
 
-  Widget _buttonActions(IconData icon, Color color){
+  Widget _buttonActions(IconData icon, Color color, CastAndCrew cast){
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: IconButton(
@@ -538,7 +548,15 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
           size: 35.0, 
           color: color,
           ),
-          onPressed: () {},
+          onPressed: () {
+            return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: cast,
+              type: cast.mediaType,
+              objectType: ConstantsTypeObject.castAndCrew
+            ).showBottomModal();
+          },
       ),
     );
   }
