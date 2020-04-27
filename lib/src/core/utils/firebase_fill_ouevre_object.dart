@@ -114,7 +114,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: movie.id,
      oeuvreTitle: movie.title,
-     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ movie.posterPath }',
+     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ movie.posterPath }',
      oeuvreRating: movie.voteAverage,
      oeuvreReleaseDate: movie.releaseDate,
      oeuvreType: movie.type,
@@ -129,7 +129,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: serie.id ,
      oeuvreTitle: serie.name,
-     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ serie.posterPath }',
+     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ serie.posterPath }',
      oeuvreRating: serie.voteAverage,
      oeuvreReleaseDate: serie.firstAirDate,
      oeuvreType: serie.type,
@@ -144,7 +144,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: anime.id,
      oeuvreTitle: anime.name,
-     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/original${ anime.posterPath }',
+     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ anime.posterPath }',
      oeuvreRating: anime.voteAverage,
      oeuvreReleaseDate: anime.firstAirDate,
      oeuvreType:  anime.type,
@@ -160,7 +160,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: movie.id,
      oeuvreTitle: movie.title,
-     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ movie.posterPath }',
+     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ movie.posterPath }',
      oeuvreRating: movie.voteAverage,
      oeuvreReleaseDate: movie.releaseDate,
      oeuvreType: movie.type,
@@ -175,7 +175,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: serie.id ,
      oeuvreTitle: serie.name,
-     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ serie.posterPath }',
+     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ serie.posterPath }',
      oeuvreRating: serie.voteAverage,
      oeuvreReleaseDate: serie.firstAirDate,
      oeuvreType: serie.type,
@@ -190,7 +190,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: anime.id,
      oeuvreTitle: anime.name,
-     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/original${ anime.posterPath }',
+     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ anime.posterPath }',
      oeuvreRating: anime.voteAverage,
      oeuvreReleaseDate: anime.firstAirDate,
      oeuvreType:  anime.type,
@@ -206,7 +206,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: movie.id,
      oeuvreTitle: movie.title,
-     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ movie.posterPath }',
+     oeuvrePoster: (movie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ movie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ movie.posterPath }',
      oeuvreRating: movie.voteAverage,
      oeuvreReleaseDate: movie.releaseDate,
      oeuvreType: movie.type,
@@ -221,7 +221,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: serie.id ,
      oeuvreTitle: serie.name,
-     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/original${ serie.posterPath }',
+     oeuvrePoster: (serie.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ serie.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ serie.posterPath }',
      oeuvreRating: serie.voteAverage,
      oeuvreReleaseDate: serie.firstAirDate,
      oeuvreType: serie.type,
@@ -236,7 +236,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: anime.id,
      oeuvreTitle: anime.name,
-     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/original${ anime.posterPath }',
+     oeuvrePoster: (anime.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ anime.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ anime.posterPath }',
      oeuvreRating: anime.voteAverage,
      oeuvreReleaseDate: anime.firstAirDate,
      oeuvreType:  anime.type,
@@ -251,7 +251,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: result.id,
      oeuvreTitle: (result.title != null) ? result.title : result.name,
-     oeuvrePoster: (result.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ result.backdropPath }' : 'https://image.tmdb.org/t/p/original${ result.posterPath }',
+     oeuvrePoster: (result.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ result.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ result.posterPath }',
      oeuvreRating: result.voteAverage,
      oeuvreReleaseDate: (result.releaseDate != null) ? result.releaseDate : result.firstAirDate,
      oeuvreType: result.mediaType,
@@ -283,7 +283,7 @@ class FirebaseFillOuevreObject{
     final ouevreEntity = new OuevreEntity(
      oeuvreId: cast.id,
      oeuvreTitle: (cast.title != null) ? cast.title : cast.name,
-     oeuvrePoster: (cast.backdropPath != null) ? 'https://image.tmdb.org/t/p/original${ cast.backdropPath }' : 'https://image.tmdb.org/t/p/original${ cast.posterPath }',
+     oeuvrePoster: (cast.backdropPath != null) ? 'https://image.tmdb.org/t/p/w780${ cast.backdropPath }' : 'https://image.tmdb.org/t/p/w780${ cast.posterPath }',
      oeuvreRating: cast.voteAverage,
      oeuvreReleaseDate: (cast.releaseDate != null) ? cast.releaseDate : cast.firstAirDate,
      oeuvreType: cast.mediaType,

@@ -164,7 +164,7 @@ class HeaderInfoMovie  extends StatelessWidget {
 
   Widget _imageBackground(MovieDetailsEntity movie) {
      final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ movie.backdropPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w1280${ movie.backdropPath }');
 
 
     return SizedBox(
@@ -225,7 +225,7 @@ class HeaderInfoMovie  extends StatelessWidget {
   Widget _infoPoster(BuildContext context, MovieDetailsEntity movie) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ movie.posterPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ movie.posterPath }');
 
   // TODO: Agregar el HERO
     return Container(
@@ -379,7 +379,7 @@ class HeaderInfoSerie  extends StatelessWidget {
   Widget _imageBackground(SerieDetailsEntity serie) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ serie.backdropPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w1280${ serie.backdropPath }');
 
     return SizedBox(
       height: double.infinity,
@@ -437,7 +437,7 @@ class HeaderInfoSerie  extends StatelessWidget {
   Widget _infoPoster(BuildContext context, SerieDetailsEntity serie) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ serie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ serie.posterPath }');
   //TODO agregar el HERO
     return Container(
       margin: const EdgeInsets.all(2.0),
@@ -594,7 +594,7 @@ class HeaderInfoAnime extends StatelessWidget {
   Widget _imageBackground(AnimeDetailsEntity anime) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ anime.backdropPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w1280${ anime.backdropPath }');
 
     return SizedBox(
       height: double.infinity,
@@ -652,7 +652,7 @@ class HeaderInfoAnime extends StatelessWidget {
   Widget _infoPoster(BuildContext context, AnimeDetailsEntity anime) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ anime.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ anime.posterPath }');
   //TODO agregar el HERO
     return Container(
       margin: const EdgeInsets.all(2.0),

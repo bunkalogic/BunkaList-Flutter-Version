@@ -184,7 +184,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
   Widget _itemImage(BuildContext context, SeriesEntity seriesEntity) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ seriesEntity.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ seriesEntity.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(

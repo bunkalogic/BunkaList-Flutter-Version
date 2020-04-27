@@ -26,13 +26,19 @@ class AllDetailsRecomendationTab extends StatefulWidget {
 class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab> {
 
 
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   BlocProvider.of<RecommendationsBloc>(context)
+  //   ..add((GetRecommendations(widget.id, widget.type)));
+  // }
+  
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
     BlocProvider.of<RecommendationsBloc>(context)
     ..add((GetRecommendations(widget.id, widget.type)));
+    super.initState();
   }
-  
   
 
 
@@ -190,7 +196,7 @@ class ItemPosterMovie extends StatelessWidget{
   Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ movie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ movie.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
@@ -289,7 +295,7 @@ class ItemPosterSerie extends StatelessWidget{
   Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ serie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ serie.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
@@ -389,7 +395,7 @@ class ItemPosterAnime extends StatelessWidget{
   Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ anime.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ anime.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(

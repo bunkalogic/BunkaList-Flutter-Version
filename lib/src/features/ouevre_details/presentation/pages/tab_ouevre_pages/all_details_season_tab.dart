@@ -147,7 +147,7 @@ class SeasonSerieItems extends StatelessWidget{
   Widget _imageSeasonItem(SeasonSerie seasonItem) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original/${seasonItem.posterPath}');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w342/${seasonItem.posterPath}');
 
 
     return Container(
@@ -304,7 +304,7 @@ class SeasonAnimeItems extends StatelessWidget{
   Widget _imageSeasonItem(SeasonAnime seasonItem) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original/${seasonItem.posterPath}');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w500/${seasonItem.posterPath}');
 
 
     return Container(

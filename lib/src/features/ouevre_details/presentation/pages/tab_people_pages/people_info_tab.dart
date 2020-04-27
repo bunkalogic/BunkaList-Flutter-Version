@@ -97,7 +97,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
       child: Align(
         alignment: Alignment.topCenter,
         child: CircleAvatar(
-          backgroundImage: NetworkImage('https://image.tmdb.org/t/p/original/${people.profilePath}'),
+          backgroundImage: NetworkImage('https://image.tmdb.org/t/p/w185/${people.profilePath}'),
           radius: 60.0,
         ),
       ),

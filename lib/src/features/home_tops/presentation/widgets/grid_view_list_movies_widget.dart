@@ -78,7 +78,7 @@ class _GridViewListMoviesWidgetState extends State<GridViewListMoviesWidget> {
   Widget _itemImage() {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.movie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.movie.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(

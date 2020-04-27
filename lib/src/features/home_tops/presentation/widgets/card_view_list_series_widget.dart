@@ -97,7 +97,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
 
   Widget _posterItem() {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.series.posterPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.series.posterPath }');
 
     //! Agregar el Hero
     final _poster = Container(

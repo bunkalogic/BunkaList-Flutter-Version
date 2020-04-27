@@ -141,7 +141,7 @@ class ScrollCastItem extends StatelessWidget{
 
   Widget _personPhotoItem(Cast cast) {
     final placeholder = AssetImage('assets/photo-placeholder.png');
-    final photo = NetworkImage('https://image.tmdb.org/t/p/original${cast.profilePath}');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/w185${cast.profilePath}');
 
     if(cast.profilePath == null){
        return Container(
@@ -228,7 +228,7 @@ class ScrollCrewItem extends StatelessWidget{
 
   Widget _personPhotoItem(Crew crew) {
     final placeholder = AssetImage('assets/photo-placeholder.png');
-    final photo = NetworkImage('https://image.tmdb.org/t/p/original/${crew.profilePath}');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/w185/${crew.profilePath}');
 
     if(crew.profilePath == null){
        return Container(

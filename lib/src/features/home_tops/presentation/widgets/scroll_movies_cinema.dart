@@ -134,7 +134,7 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
   Widget _itemImage(BuildContext context, MovieEntity movieEntity) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ movieEntity.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w500${ movieEntity.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(

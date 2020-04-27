@@ -150,7 +150,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
 
   Widget _posterItem(CastAndCrew cast) {
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ cast.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ cast.posterPath }');
 
     //! Agregar el Hero
     return Container(
@@ -427,7 +427,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
 
   Widget _posterItem(CastAndCrew cast) {
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ cast.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ cast.posterPath }');
 
     //! Agregar el Hero
     return Container(

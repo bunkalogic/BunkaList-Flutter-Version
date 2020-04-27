@@ -112,7 +112,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   Widget _posterItem(Result result) {
 
      final placeholder = AssetImage('assets/poster_placeholder.png'); 
-     final poster = NetworkImage('https://image.tmdb.org/t/p/original${ result.posterPath }');
+     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ result.posterPath }');
 
      final title = (result.title != null) ? result.title : result.name;
 

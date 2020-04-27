@@ -73,7 +73,7 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
   Widget _itemImage() {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ widget.series.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.series.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(

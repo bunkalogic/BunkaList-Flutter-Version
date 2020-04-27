@@ -125,7 +125,7 @@ class _CarouselSeriesInMonthWidgetState extends State<CarouselSeriesInMonthWidge
 
   Widget _imageBackground(BuildContext context, SeriesEntity serie) {
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/original${ serie.backdropPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w780${ serie.backdropPath }');
 
     //! Agregar el Hero
     return  GestureDetector(
