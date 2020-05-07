@@ -73,7 +73,7 @@ dependencies:
   # svg render
   flutter_svg: ^0.17.4
   # flutter in app purchase
-  flutter_inapp_purchase: ^2.2.0
+  in_app_purchase: ^0.3.3
   # admob native flutter
   flutter_native_admob: ^2.1.0
   # in app update

@@ -23,6 +23,7 @@ class Constants {
   static const topsMoviesThillerId        = 18;
   static const topsMoviesTerrorId         = 19;
   static const topsMoviesWesternId        = 20;
+  static const topsMoviesKoreanId         = 82;
 
   //? Consts for Tops Series
 
@@ -48,6 +49,7 @@ class Constants {
 
 
   static const topsSeriesMonthId          = 80;
+  static const topsSeriesKoreanId         = 83;
   
   //? Consts for Tops Animes
 
@@ -72,6 +74,7 @@ class Constants {
 
 
   static const topsAnimeSeasonAirId           = 81;
+  static const topsAnimesSeinen               = 84;
 
 
 

@@ -219,7 +219,10 @@
     "label_never_ads_with_premium"  : "Esta opção também inclui o Premium. **",
     "label_subscription"            : "* Cancele a assinatura a qualquer momento no Google Play.",
     "label_include_premium"         : "** Quando o Premium chegar, você não precisará pagar mais nada. Em futuras atualizações, haverá mais informações sobre todos os novos recursos que o Premium trará.",
-    "in_progress"                   : "Esta opção ainda não está disponível, para a próxima atualização estará disponível."
-  
+    "in_progress"                   : "Esta opção ainda não está disponível, para a próxima atualização estará disponível.",
+
+    "anime_seinen"                : "Top Anime Seinen",
+    "series_korean"               : "Korean Drama Series",
+    "movies_korean"               : "Filmes coreanos"
   
   }

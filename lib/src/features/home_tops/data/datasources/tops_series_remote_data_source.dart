@@ -40,28 +40,30 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   bool  _loading = false;
   
 
-  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte}) async {
+  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre}) async {
       if(_loading) return [];
       
       _loading = true;
-      // carga y agrega un pagina
-      //_page++;
+      
+      // esto se encarga de que la pagina no supere la total page
       page = (page <= totalPage) ? page : totalPage;
 
+      // esto se encarga de que la page no sea inferior a 1 
       final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
-          'api_key'         : _theSerieDB,
-          'language'        : prefs.getLanguage,
-          'page'            : _page.toString(),
-          'sort_by'         : sortBy,
-          'air_date.gte'    : airDateGte,
-          'air_date.lte'    : airDateLte,
-          'vote_count.gte'  : voteCount.toString(),
-          'vote_average.gte': voteAverage.toString(),
-          'with_genres'     : genres,
-          'with_networks'   : network,
-          'without_genres'  : '16'
+          'api_key'               : _theSerieDB,
+          'language'              : prefs.getLanguage,
+          'page'                  : _page.toString(),
+          'sort_by'               : sortBy,
+          'air_date.gte'          : airDateGte,
+          'air_date.lte'          : airDateLte,
+          'vote_count.gte'        : voteCount.toString(),
+          'vote_average.gte'      : voteAverage.toString(),
+          'with_genres'           : genres,
+          'with_networks'         : network,
+          'without_genres'        : '16',
+          'with_original_language': languageOuevre
       };
 
       query.removeWhere((key , value) => value == null);
@@ -155,7 +157,9 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesAMCId            : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
 
-      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-01', airDateLte: '2020-05-01'  );
+      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-05', airDateLte: '2020-06-05'  );
+
+      case Constants.topsSeriesKoreanId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
 
 
       default: return null;

@@ -1,6 +1,10 @@
 
 
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/base/domain/entities/user_entity.dart';
+import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +16,19 @@ class InitialController extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthenticationBloc>(
-      builder: (_) => serviceLocator<AuthenticationBloc>(),
+    // return BlocProvider<AuthenticationBloc>(
+    //   builder: (_) => serviceLocator<AuthenticationBloc>(),
+    //   child: InitialControllerPage(),
+    // );
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthenticationBloc>(
+          builder: (_) => serviceLocator<AuthenticationBloc>(),
+        ),
+        BlocProvider<UserdataBloc>(
+          builder: (_) => serviceLocator<UserdataBloc>(),
+        ),
+      ], 
       child: InitialControllerPage(),
     );
   }
@@ -29,8 +44,9 @@ class InitialControllerPage extends StatefulWidget {
 
 class _InitialControllerPageState extends State<InitialControllerPage> {
 
-
-   AppUpdateInfo _updateInfo;
+  
+  Preferences prefs = Preferences();
+  AppUpdateInfo _updateInfo;
   bool _flexibleUpdateAvailable = false;
 
   @override
@@ -75,6 +91,17 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
      
    }
 
+  addUserDataInFirebase(){
+    final UserEntity userData = new UserEntity(
+      username: prefs.getCurrentUsername,
+      photoUrl: prefs.getCurrentUserPhoto
+    );
+
+    BlocProvider.of<UserdataBloc>(context).add(
+      AddDataUser(userEntity: userData)
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -91,14 +118,15 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
 
         if(state is AuthenticationAuthenticated){
           print('Authenticated');
-          await Future.delayed(Duration(seconds: 1));
+          addUserDataInFirebase();
+          await Future.delayed(Duration(milliseconds: 1500));
           return Navigator.pushReplacementNamed(context, '/Home');
           
         }
 
         if(state is AuthenticationUnauthenticated){
           print('Unauthenticated');
-          await Future.delayed(Duration(seconds: 1));
+          await Future.delayed(Duration(milliseconds: 500));
           return Navigator.pushReplacementNamed(context, '/Login');
         }
 

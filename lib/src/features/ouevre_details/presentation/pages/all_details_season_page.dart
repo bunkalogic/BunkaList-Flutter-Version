@@ -166,7 +166,7 @@ class SeasonInfoWidget extends StatelessWidget{
           borderRadius: BorderRadius.circular(10.0),
           child: Image(
             fit: BoxFit.cover,
-            image: NetworkImage('https://image.tmdb.org/t/p/w300/${episode.stillPath}'),
+            image: NetworkImage('https://image.tmdb.org/t/p/w780/${episode.stillPath}'),
           ),
       ),
     );

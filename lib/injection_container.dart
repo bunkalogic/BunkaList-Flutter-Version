@@ -1,4 +1,11 @@
 import 'package:bunkalist/src/core/platform/network_info.dart';
+import 'package:bunkalist/src/features/base/data/datasources/crud_user_remote_data_source.dart';
+import 'package:bunkalist/src/features/base/data/implementations/crud_user_data_impl.dart';
+import 'package:bunkalist/src/features/base/domain/contracts/crud_data_user_contract.dart';
+import 'package:bunkalist/src/features/base/domain/usescases/add_user_data.dart';
+import 'package:bunkalist/src/features/base/domain/usescases/get_user_data.dart';
+import 'package:bunkalist/src/features/base/domain/usescases/update_user_data.dart';
+import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/movie_cinema_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_anime_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_movie_remote_data_source.dart';
@@ -158,6 +165,8 @@ Future<void> init() async {
   initProfile();
   //! Setting Features
   initEditProfile();
+  //! Base Features
+  initDataUser();
   
   //? Core
 
@@ -389,6 +398,37 @@ initLogin(){
 
 }
 
+initDataUser(){
+  //? Blocs
+  serviceLocator.registerFactory(
+    () => UserdataBloc(
+      addUser: serviceLocator(),
+      getUser: serviceLocator(),
+      updateUser: serviceLocator()
+      )
+    );      
+
+  
+
+  //? UseCases
+  serviceLocator.registerLazySingleton(() => AddUserData(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserData(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => UpdateUserData(serviceLocator()));
+  
+  
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<CrudDataUserContract>(
+    () => CrudUserDataImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    );
+
+  //? Data Sources
+  serviceLocator.registerLazySingleton< CrudUserRemoteDataSource>(
+    () =>  CrudUserRemoteDataSourceImpl()
+  );
+
+}
 
 
 initProfile(){

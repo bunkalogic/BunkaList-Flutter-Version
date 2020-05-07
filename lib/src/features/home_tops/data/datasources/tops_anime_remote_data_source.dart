@@ -47,10 +47,11 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       if(_loading) return [];
       
       _loading = true;
-      // carga y agrega un pagina
-      //_page++;
+      
+     // esto se encarga de que la pagina no supere la total page
       page = (page <= totalPage) ? page : totalPage;
 
+      // esto se encarga de que la page no sea inferior a 1 
       final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
@@ -66,6 +67,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
           'with_genres'           : '16,$genres',
           'with_original_language': 'ja',
           'with_keywords'         : keywords
+          
       };
 
       query.removeWhere((key , value) => value == null);
@@ -160,6 +162,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-04-01', airDate: '2020-05-01' );
       
+      case Constants.topsAnimesSeinen              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '195668');
       
 
       default: return null;

@@ -161,6 +161,8 @@ class GetTopIdFromKey {
         break;
       case 17: return Constants.topsMoviesWesternId;
         break;
+      case 18: return Constants.topsMoviesKoreanId;
+        break;
       
       default: return Constants.topsMoviesPopularId;
 
@@ -205,6 +207,8 @@ class GetTopIdFromKey {
         break;
       case 17: return Constants.topsSeriesAMCId;
         break;
+      case 18: return Constants.topsSeriesKoreanId;
+        break;  
 
       default: return  Constants.topsSeriesPopularId;
     }
@@ -248,6 +252,8 @@ class GetTopIdFromKey {
         break; 
       case 17: return Constants.topsAnimeSuperNaturalId;
         break; 
+      case 18: return Constants.topsAnimesSeinen;
+        break;
 
       default: return  Constants.topsAnimePopularId;
     }

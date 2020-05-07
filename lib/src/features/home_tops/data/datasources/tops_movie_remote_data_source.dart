@@ -42,14 +42,15 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   bool  _loading = false;
   int totalPage = 1;
 
-  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, int releaseYear, String releaseDateGte}) async {
+  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, int releaseYear, String releaseDateGte, String languageOuevre}) async {
       if(_loading) return [];
       
       _loading = true;
-      // carga y agrega un pagina
-      // _page++
+      
+      // esto se encarga de que la pagina no supere la total page
       page = (page <= totalPage) ? page : totalPage;
 
+      // esto se encarga de que la page no sea inferior a 1 
       final _page = (page == 0) ? 1 : page;
 
       final Map<String, String> query = {
@@ -61,7 +62,8 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
           'primary_release_date.gte'  : releaseDateGte,
           'vote_count.gte'            : voteCount.toString(),
           'vote_average.gte'          : voteAverage.toString(),
-          'with_genres'               : genres
+          'with_genres'               : genres,
+          'with_original_language'    : languageOuevre
       };
 
       
@@ -159,6 +161,8 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       case Constants.topsMoviesTerrorId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.horror.toString());
  
       case Constants.topsMoviesWesternId        : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());
+
+      case Constants.topsMoviesKoreanId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 40);
  
       default: return null;
     }

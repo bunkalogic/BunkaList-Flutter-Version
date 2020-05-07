@@ -41,7 +41,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
     return Container(
       margin: EdgeInsets.only(top: 60.0, bottom: 55.0),
       child: ListView.builder(
-        itemCount: 18,
+        itemCount: 19,
         itemBuilder: (context, i) => _listTypesTops(context, _getListTopsString(i), i),
       ),
     );
@@ -117,6 +117,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
      AppLocalizations.of(context).translate("movies_thiller"),
      AppLocalizations.of(context).translate("movies_terror"),
      AppLocalizations.of(context).translate("movies_western"),
+     AppLocalizations.of(context).translate("movies_korean"),
   ];
 
   final List<String> seriesList = <String>[
@@ -138,6 +139,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
     AppLocalizations.of(context).translate("series_amazon_prime"),
     AppLocalizations.of(context).translate("series_bbc_one"), 
     AppLocalizations.of(context).translate("series_amc"),
+    AppLocalizations.of(context).translate("series_korean"),
   ];
   
   final List<String> animesList = <String>[
@@ -159,6 +161,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
     AppLocalizations.of(context).translate("anime_based_on_manga"),
     AppLocalizations.of(context).translate("anime_romance"),
     AppLocalizations.of(context).translate("anime_super_natural"),
+    AppLocalizations.of(context).translate("anime_seinen"),
   ]; 
 
 
