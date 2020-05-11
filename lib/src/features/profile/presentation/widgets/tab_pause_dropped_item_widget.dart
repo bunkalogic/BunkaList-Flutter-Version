@@ -39,7 +39,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
 
   
 
-  double cardSize = 120.0;
+  double cardSize = 100.0;
 
   final styleAllRates = TextStyle(
     color: Colors.white,
@@ -277,13 +277,69 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
   }
 
   Widget _commentWhyPauseOrDropped(OuevreEntity ouevre) {
-    if(ouevre.comment == null) return Container();
+    if(ouevre.comment.isEmpty && ouevre.seasons != null && ouevre.episodes != null){
+      return _rowInfoSeasonAndEpisode(ouevre);
+    }else if(ouevre.seasons == null && ouevre.episodes == null){
+      return Container();
+    } 
 
     return Text(
       ouevre.comment,
        style: TextStyle(
           color: Colors.white,
           fontSize: 12.0, 
+          fontWeight: FontWeight.w800,
+          shadows: [
+          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+          ) 
+      );
+  }
+
+   _rowInfoSeasonAndEpisode(OuevreEntity ouevre){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        _subTitleSeasonInfo(ouevre),
+        _threeTitleEpisodeInfo(ouevre)
+      ],
+    );
+  }
+
+  Widget _subTitleSeasonInfo(OuevreEntity ouevre) {
+
+    if(ouevre.oeuvreType == "movie") return Container();
+
+    final String season = AppLocalizations.of(context).translate("season");
+
+    final String watchSeason = ouevre.seasons.toString();
+    
+    return Text(
+      '$season : $watchSeason',
+       style: TextStyle(
+          color: Colors.white,
+          fontSize: 14.0, 
+          fontWeight: FontWeight.w800,
+          shadows: [
+          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+          ) 
+      );
+  }
+
+  Widget _threeTitleEpisodeInfo(OuevreEntity ouevre) {
+
+    if(ouevre.oeuvreType == "movie") return Container();
+    
+    final String episode = AppLocalizations.of(context).translate("episode");
+
+    final String watchEpisode = ouevre.episodes.toString();
+
+    return Text(
+      '$episode : $watchEpisode',
+       style: TextStyle(
+          color: Colors.white,
+          fontSize: 14.0, 
           fontWeight: FontWeight.w800,
           shadows: [
           Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))

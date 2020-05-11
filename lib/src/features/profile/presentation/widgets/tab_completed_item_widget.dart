@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
@@ -40,7 +41,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   
  
 
-  double cardSize = 120.0;
+  double cardSize = 100.0;
 
   final styleAllRates = TextStyle(
     color: Colors.white,
@@ -183,6 +184,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       leading: _itemRate(ouevre),
       title: _titleItem(ouevre),
       trailing: _itemDate(ouevre),
+      contentPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0 ),
     );
 
   }
@@ -204,23 +206,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
   Widget _itemRate(OuevreEntity ouevre) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Icon(Icons.stars, color: Colors.deepOrange,),
-        Text(ouevre.finalRate.toString(), 
-        style: TextStyle(
-          fontSize: 18.0, 
-          fontWeight: FontWeight.w900, 
-          color: Colors.deepOrange,
-          shadows: [
-          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
-          ]
-          )
-        ),
-        
-      ],
-    );
+    return MiniCircularChartRating(ouevre.finalRate);
   }
 
   Widget _itemDate(OuevreEntity ouevre) {
@@ -270,15 +256,16 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            SizedBox(height: 5.0,),
             Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Icon(Icons.book, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.people, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.music_video, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.movie_filter, color: Colors.orange[900], size: 28.0,),
-                      Icon(Icons.insert_emoticon, color: Colors.orange[900],size: 28.0,),
+                      Icon(Icons.book, color: Colors.deepOrangeAccent[400], size: 24.0,),
+                      Icon(Icons.people, color: Colors.deepOrangeAccent[400], size: 24.0,),
+                      Icon(Icons.music_video, color: Colors.deepOrangeAccent[400], size: 24.0,),
+                      Icon(Icons.movie_filter, color: Colors.deepOrangeAccent[400], size: 24.0,),
+                      Icon(Icons.insert_emoticon, color: Colors.deepOrangeAccent[400],size: 24.0,),
                     ],
                   ),
                   ),
@@ -314,7 +301,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           color: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
-            side: BorderSide(width: 1.5, color: Colors.orange[900]) 
+            side: BorderSide(width: 1.5, color: Colors.deepOrangeAccent[400]) 
           ),
           child: Text('New Rate', style: styleAllRates,),
           onPressed: () {
@@ -332,16 +319,16 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
   void _changedSizedCard() {
-    if(cardSize == 120.0){
+    if(cardSize == 100.0){
       cardSize = 220.0;
       setState(() {});
     }else{
-      cardSize = 120.0;
+      cardSize = 100.0;
       setState(() {});
     }
   }
   Widget _changedIcon(){
-    if(cardSize == 120.0){
+    if(cardSize == 100.0){
       return Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,);
     }else{
       return Icon(Icons.keyboard_arrow_up, color: Colors.purple[400], size: 35.0,);

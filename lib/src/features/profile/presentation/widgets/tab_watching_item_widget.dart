@@ -39,7 +39,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
    
 
-  double cardSize = 120.0;
+  double cardSize = 100.0;
 
   final styleAllRates = TextStyle(
     color: Colors.white,
