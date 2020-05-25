@@ -126,7 +126,7 @@ class _CaruoselAnimeSeasonWidgetState extends State<CaruoselAnimeSeasonWidget> {
   Widget _imageBackground(BuildContext context, AnimeEntity anime) {
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w780${ anime.backdropPath }');
-
+    
     //! Agregar el Hero
     return  GestureDetector(
       onTap: (){

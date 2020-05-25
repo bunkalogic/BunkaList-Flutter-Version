@@ -80,7 +80,11 @@ dependencies:
   in_app_update: ^1.1.7
   # circular chart 
   flutter_circular_chart: ^0.1.0
-  
+  # chart common
+  charts_flutter: ^0.9.0
+  # infinite list view
+  infinite_listview: ^1.0.1+1
+
   flutter_localizations:
     sdk: flutter
 

@@ -223,6 +223,10 @@
   
     "anime_seinen"                : "शीर्ष मोबाइल फोनों Seinen",
     "series_korean"               : "कोरियन ड्रामा सीरीज़",
-    "movies_korean"               : "कोरियन मूवीज"
+    "movies_korean"               : "कोरियन मूवीज",
+    "label_media_lists" : "आपकी सूचियों का औसत स्कोर।",
+    "label_total_chart_movie" : "स्टेटस द्वारा टोटल मूवीज़।",
+    "label_total_chart_serie" : "स्थिति द्वारा कुल श्रृंखला।",
+    "label_total_chart_anime" : "स्थिति के आधार पर कुल एनिमे।"
   
   }

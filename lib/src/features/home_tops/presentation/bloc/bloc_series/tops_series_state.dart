@@ -13,8 +13,30 @@ class LoadingSeries extends TopsSeriesState{}
 
 class LoadedSeries extends TopsSeriesState{
   final List<SeriesEntity> series;
+  final bool hasReachedMax;
+  final int latestPage;
+  final int latestTopId;
 
-  LoadedSeries({@required this.series}) : super([series]);
+  LoadedSeries({
+    this.series,
+    this.hasReachedMax,
+    this.latestPage,
+    this.latestTopId
+  }) : super([series, hasReachedMax, latestPage, latestTopId]);
+
+  LoadedSeries copyWith({
+    List<SeriesEntity> series,
+    bool hasReachedMax,
+    int latestPage,
+    int latestTopId
+  }) {
+    return LoadedSeries(
+      series: series ?? this.series,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      latestPage: this.latestPage,
+      latestTopId: this.latestTopId
+    );
+  }  
 }
 
 class ErrorSeries extends TopsSeriesState{

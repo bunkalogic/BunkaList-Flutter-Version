@@ -140,9 +140,9 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
         
       case Constants.topsAnimeDramaId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.drama.toString(), voteCount: 3 );
         
-      case Constants.topsAnimeMisteryId            : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.mistery.toString(), voteCount: 5 );
+      case Constants.topsAnimeMisteryId            : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.mistery.toString(), voteCount: 3 );
         
-      case Constants.topsAnimeFantasyAndSciFiId    : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.sciFiAndFantasy.toString(), voteCount: 5);
+      case Constants.topsAnimeFantasyAndSciFiId    : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.sciFiAndFantasy.toString(), voteCount: 3);
         
       case Constants.topsAnimeWarAndPoliticsId     : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.warAndPolitics.toString(),);
         

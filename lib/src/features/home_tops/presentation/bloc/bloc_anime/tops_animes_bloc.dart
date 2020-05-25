@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_anime
 import 'package:dartz/dartz.dart';
 import './bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Top Id Movie';
@@ -27,31 +28,86 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
   @override
   TopsAnimesState get initialState => EmptyAnimes();
 
+
+  @override
+  Stream<TopsAnimesState> transformEvents(Stream<TopsAnimesEvent> events, Stream<TopsAnimesState> Function(TopsAnimesEvent event) next) {
+    return super.transformEvents( 
+      (events as Observable<TopsAnimesEvent>).debounceTime(
+        Duration(milliseconds: 500),
+      ), 
+      next
+    );
+  }
+
   @override
   Stream<TopsAnimesState> mapEventToState(
     TopsAnimesEvent event,
   ) async* {
-    if(event is GetAnimesTops){
-      final inputEither = GetTopId().getValidateTopId(event.topId);
+    final currentState = state;
+
+    if(event is GetAnimesTops && !_hasReachedMax(currentState)){
+      
+      if(currentState is EmptyAnimes){
+        final inputEither = GetTopId().getValidateTopId(event.topId);
 
       yield* inputEither.fold(
         (failures) async* {
           yield ErrorAnimes(message: INVALID_INPUT_FAILURE_MESSAGE );
 
         },(topId) async* {
-          yield LoadingAnimes();
+          //yield LoadingAnimes();
           final failureOrAnimes = await getTopsAnimes(Params(topTypeId: topId, page: event.page));
           
-          yield* _eitherLoadedOrErrorState(failureOrAnimes); 
+          yield* _eitherLoadedOrErrorState(failureOrAnimes, topId);
+          return; 
         });
+      }
+
+      if(currentState is LoadedAnimes){
+        final inputEither = GetTopId().getValidateTopId(event.topId);
+
+        yield* inputEither.fold(
+        (failures) async* {
+          yield ErrorAnimes(message: INVALID_INPUT_FAILURE_MESSAGE );
+
+        },(topId) async* {
+          //yield LoadingAnimes();
+          
+          final failureOrAnimes = await getTopsAnimes(Params(topTypeId: topId, page: event.page));
+          
+           yield failureOrAnimes.fold(
+            (failure) => ErrorAnimes(message: _mapFailureToMessage(failure)), 
+            (animes)  {
+
+              if (animes.isEmpty) {
+                return currentState.copyWith(hasReachedMax: true, latestPage: event.page, latestTopId: topId);
+              } else {
+        
+                return LoadedAnimes(
+                  animes: (currentState.latestTopId == topId) ? currentState.animes + animes : animes, 
+                  hasReachedMax: false, 
+                  latestPage: event.page,
+                  latestTopId: topId 
+                );
+
+              }
+            } 
+          );
+        });
+      }
+
+
     }
+
+
+    
   }
 
   Stream<TopsAnimesState> _eitherLoadedOrErrorState
-  (Either<Failures, List<AnimeEntity>> either) async* {
+  (Either<Failures, List<AnimeEntity>> either, int topId) async* {
     yield either.fold(
       (failure) => ErrorAnimes(message: _mapFailureToMessage(failure)), 
-      (animes)  => LoadedAnimes(animes: animes)
+      (animes)  => LoadedAnimes(animes: animes, hasReachedMax: false, latestPage: 1, latestTopId: topId)
     );
   }
   
@@ -64,5 +120,8 @@ class TopsAnimesBloc extends Bloc<TopsAnimesEvent, TopsAnimesState> {
         return 'Unexpected Error';
     }
   }
+
+  bool _hasReachedMax(TopsAnimesState state) =>
+      state is LoadedAnimes && state.hasReachedMax;
 }
 

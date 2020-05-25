@@ -4,6 +4,8 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: 185.0,
+          height: 270.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -75,6 +77,8 @@ class _ProfilePageState extends State<ProfilePage> {
            _profileName(),
            SizedBox(height: 8.0,),
            _profileTotalViews(),
+           _labelProfileRateAverage(),
+           _profileRateAverage(),
          ],
        ),
      );
@@ -114,6 +118,41 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  Widget _labelProfileRateAverage(){
+    return Padding(
+      padding: EdgeInsets.all(2.0),
+      child: Text(
+        AppLocalizations.of(context).translate("label_media_lists"),
+        textAlign: TextAlign.center,
+        style: TextStyle(
+        fontSize: 16.0, 
+        fontWeight: FontWeight.w600,
+        fontStyle: FontStyle.italic
+      ),
+      ),
+    );
+  }
+
+  Widget _profileRateAverage() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child: MediaRatingWidget(status: 'Completed', type: 'movie',),
+          ),
+        new BlocProvider<GetListsBloc>(
+          builder: (_) => serviceLocator<GetListsBloc>(),
+          child: MediaRatingWidget(status: 'Completed', type: 'tv',),
+        ),
+        new BlocProvider<GetListsBloc>(
+          builder: (_) => serviceLocator<GetListsBloc>(),
+          child: MediaRatingWidget(status: 'Completed', type: 'anime',),
+        ),
+      ],
+    );
+  }
+
   
 
   Widget _titleScrollSection(String title) {
@@ -145,14 +184,15 @@ class _ProfilePageState extends State<ProfilePage> {
         _createBox(),
         SizedBox(height: 5.0,),
         _buttomPlatformList(context),
+        ListContainerChartViews(),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
         SizedBox(height: 10.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_movie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'movie',),
-          ),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),  
+          ),  
         SizedBox(height: 10.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
         SizedBox(height: 5.0,),

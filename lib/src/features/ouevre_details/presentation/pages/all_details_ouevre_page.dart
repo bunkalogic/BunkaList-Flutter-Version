@@ -153,7 +153,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
     final int id = widget.data['id'];
     final String type = widget.data['type'];
-
+    
 
     return SliverAppBar(
         leading: AppBarButtonBack(),

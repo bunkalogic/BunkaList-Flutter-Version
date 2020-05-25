@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_movie
 import 'package:dartz/dartz.dart';
 import './bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Top Id Movie';
@@ -28,74 +29,89 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
   @override
   TopsMoviesState get initialState => EmptyMovies();
 
+
+  @override
+  Stream<TopsMoviesState> transformEvents(Stream<TopsMoviesEvent> events, Stream<TopsMoviesState> Function(TopsMoviesEvent event) next) {
+    return super.transformEvents( 
+      (events as Observable<TopsMoviesEvent>).debounceTime(
+        Duration(milliseconds: 500),
+      ), 
+      next
+    );
+  }
+
   @override
   Stream<TopsMoviesState> mapEventToState(
     TopsMoviesEvent event,
   ) async* {
-    if(event is GetMoviesTops){
+    final currentState = state;
+
+    if(event is GetMoviesTops && !_hasReachedMax(currentState)){
+
+      if(currentState is EmptyMovies){
       final inputEither = GetTopId().getValidateTopId(event.topId);
 
-      yield* inputEither.fold(
+        yield* inputEither.fold(
+          (failures) async* {
+            yield ErrorMovies(message: INVALID_INPUT_FAILURE_MESSAGE );
+
+          },(topId) async* {
+          //yield LoadingMovies();
+          final failureOrMovies = await getTopsMovies(Params(topTypeId: topId, page: event.page));
+          
+          yield* _eitherLoadedOrErrorState(failureOrMovies, topId);
+          return; 
+        });
+      }
+
+      if(currentState is LoadedMovies){
+        final inputEither = GetTopId().getValidateTopId(event.topId);
+
+        yield* inputEither.fold(
         (failures) async* {
           yield ErrorMovies(message: INVALID_INPUT_FAILURE_MESSAGE );
 
         },(topId) async* {
-          yield LoadingMovies();
+          //yield LoadingMovies();
+          
           final failureOrMovies = await getTopsMovies(Params(topTypeId: topId, page: event.page));
-          //_moviesController.sink.add(failureOrMovies);
-          yield* _eitherLoadedOrErrorState(failureOrMovies); 
+          
+           yield failureOrMovies.fold(
+            (failure) => ErrorMovies(message: _mapFailureToMessage(failure)), 
+            (movies)  {
+
+              if (movies.isEmpty) {
+                return currentState.copyWith(hasReachedMax: true, latestPage: event.page, latestTopId: topId);
+              } else {
+        
+                return LoadedMovies(
+                  movies: (currentState.latestTopId == topId) ? currentState.movies + movies : movies, 
+                  hasReachedMax: false, 
+                  latestPage: event.page,
+                  latestTopId: topId 
+                );
+
+              }
+            } 
+          );
         });
-    // } else if(event is GetMoviesTopsPopular )  {
-    //     final inputEither = GetTopId().getValidateTopId(event.topId);
+      }
 
-    //   yield* inputEither.fold(
-    //     (failures) async* {
-    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
-
-    //     },(topId) async* {
-    //       yield Loading();
-    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
-          
-    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
-    //     });
-    // } else if(event is GetMoviesTopsRated )  {
-    //     final inputEither = GetTopId().getValidateTopId(event.topId);
-
-    //   yield* inputEither.fold(
-    //     (failures) async* {
-    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
-
-    //     },(topId) async* {
-    //       yield Loading();
-    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
-          
-    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
-    //     });
-    // } else if(event is GetMoviesTopsUpcoming )  {
-    //     final inputEither = GetTopId().getValidateTopId(event.topId);
-
-    //   yield* inputEither.fold(
-    //     (failures) async* {
-    //       yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
-
-    //     },(topId) async* {
-    //       yield Loading();
-    //       final failureOrMovies = await getTopsMovies(Params(topTypeId: topId));
-          
-    //       yield* _eitherLoadedOrErrorState(failureOrMovies); 
-    //     });
+      
      }
 
 
   }
 
   Stream<TopsMoviesState> _eitherLoadedOrErrorState
-  (Either<Failures, List<MovieEntity>> either) async* {
+  (Either<Failures, List<MovieEntity>> either, int topId) async* {
     yield either.fold(
       (failure) => ErrorMovies(message: _mapFailureToMessage(failure)), 
-      (movies)  => LoadedMovies(movies: movies)
+      (movies)  => LoadedMovies(movies: movies, hasReachedMax: false, latestPage: 1, latestTopId: topId)
     );
   }
+
+  
   
   String _mapFailureToMessage(Failures failure) {
   // Instead of a regular 'if (failure is ServerFailure)...'
@@ -107,10 +123,7 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
     }
   }
 
-  // @override
-  // Future<void> close() {
-  //   _moviesController.close();
-  //   return super.close();
-  // }
+  bool _hasReachedMax(TopsMoviesState state) =>
+      state is LoadedMovies && state.hasReachedMax;
 
 }

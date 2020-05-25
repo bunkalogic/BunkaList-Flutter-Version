@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_get_ouevre.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_total_by_status.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -11,14 +12,18 @@ part 'getlists_state.dart';
 
 class GetListsBloc extends Bloc<GetListsEvent, GetListsState> {
   
+  final GetTotalByStatus getTotalByStatus;
   final GetAllOuevre getAllOuevre;
   StreamSubscription _listsSubscription;
 
   GetListsBloc({
     @required GetAllOuevre allOuevre,
+    @required GetTotalByStatus totalByStatus
   }) : 
   assert(allOuevre != null),
-  getAllOuevre = allOuevre;
+  assert(totalByStatus != null),
+  getAllOuevre = allOuevre,
+  getTotalByStatus = totalByStatus;
   
   
   @override
@@ -49,6 +54,14 @@ class GetListsBloc extends Bloc<GetListsEvent, GetListsState> {
 
     }else if (event is GetYourListsUpdated){
       yield* _getListUpdated(event);
+    }else if(event is GetTotalByStatusEvent){
+      
+      final either = await getTotalByStatus(ParamsTotal(type: event.type));
+
+      yield either.fold(
+        (failure) => GetlistsError(), 
+        (listByStatus) => GetTotalByStatusLoaded(listByStatus) 
+      );
     }
   
   }

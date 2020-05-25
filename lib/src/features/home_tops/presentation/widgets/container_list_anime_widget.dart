@@ -195,7 +195,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ animeEntity.posterPath }');
 
-    //! Agregar el Hero
+    
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(

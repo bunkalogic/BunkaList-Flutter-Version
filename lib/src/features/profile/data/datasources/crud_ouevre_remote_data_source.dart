@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class CrudOuevreRemoteDataSource{
 
+  Future<List<int>> getTotalByStatus(String type);
+
   Future<void> addInFirebase(OuevreModel ouevre, String type);
 
   Future<void> deleteInFirebase(OuevreModel ouevre, String type);
@@ -14,6 +16,8 @@ abstract class CrudOuevreRemoteDataSource{
   Stream<List<OuevreModel>> getOfFirebase( String type, String status);
 
   Future<void> updateInFirebase(OuevreModel ouevre, String type);
+
+  
   
 }
 
@@ -180,6 +184,65 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }  
     }
+  }
+
+  @override
+  Future<List<int>> getTotalByStatus(String type) async {
+    List<int> listTotalByStatus = new List<int>();
+
+    print('getting total by status');
+
+    final ouevreCollection = firebase
+    .collection('user/${prefs.getCurrentUserUid}/list$type');
+
+    final QuerySnapshot completed = await ouevreCollection
+        .where('status',isEqualTo: 1)
+        .getDocuments();    
+    
+
+    listTotalByStatus
+    ..add(completed.documents.length);
+    
+
+    final QuerySnapshot watching = await ouevreCollection
+        .where('status',isEqualTo: 2)
+        .getDocuments();
+
+
+    listTotalByStatus
+    ..add(watching.documents.length);
+
+    final QuerySnapshot pause = await ouevreCollection
+        .where('status',isEqualTo: 3)
+        .getDocuments();
+
+
+
+    listTotalByStatus
+    ..add(pause.documents.length);
+
+    final QuerySnapshot dropped = await ouevreCollection
+        .where('status',isEqualTo: 4)
+        .getDocuments();
+
+    
+
+    listTotalByStatus
+    ..add(dropped.documents.length);    
+
+    final QuerySnapshot wishlist = await ouevreCollection
+        .where('status',isEqualTo: 5)
+        .getDocuments();
+    
+        
+
+    listTotalByStatus
+    ..add(wishlist.documents.length);
+
+    print('get list $type by total status $listTotalByStatus');
+
+    return listTotalByStatus;                                
+
   }
 
   

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class SeriesEntity extends Equatable {
+    
     final String posterPath;
     final double popularity;
     final int id;

@@ -125,7 +125,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesRatedId          : return getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
-      case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-31', airDateLte: '2020-06-31' );
+      case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-07-20' );
 
       case Constants.topsSeriesActAndAdvId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
@@ -157,7 +157,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesAMCId            : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
 
-      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-05', airDateLte: '2020-06-05'  );
+      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-06-20'  );
 
       case Constants.topsSeriesKoreanId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
 

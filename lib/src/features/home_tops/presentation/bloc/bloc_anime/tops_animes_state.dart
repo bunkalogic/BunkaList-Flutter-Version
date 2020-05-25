@@ -13,8 +13,30 @@ class LoadingAnimes extends TopsAnimesState{}
 
 class LoadedAnimes extends TopsAnimesState{
   final List<AnimeEntity> animes;
+  final bool hasReachedMax;
+  final int latestPage;
+  final int latestTopId;
 
-  LoadedAnimes({@required this.animes}) : super([animes]);
+  LoadedAnimes({
+    this.animes,
+    this.hasReachedMax,
+    this.latestPage,
+    this.latestTopId
+  }) : super([animes, hasReachedMax, latestPage, latestTopId]);
+
+  LoadedAnimes copyWith({
+    List<AnimeEntity> animes,
+    bool hasReachedMax,
+    int latestPage,
+    int latestTopId
+  }) {
+    return LoadedAnimes(
+      animes: animes ?? this.animes,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      latestPage: this.latestPage,
+      latestTopId: this.latestTopId
+    );
+  }  
 }
 
 class ErrorAnimes extends TopsAnimesState{

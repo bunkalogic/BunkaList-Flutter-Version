@@ -223,7 +223,11 @@
 
     "anime_seinen"                : "Top Anime Seinen",
     "series_korean"               : "Série dramatique coréenne",
-    "movies_korean"               : "Films coréens"
-  
+    "movies_korean"               : "Films coréens",
+
+    "label_media_lists" : "Score moyen de vos listes.",
+    "label_total_chart_movie" : "Total des Films par statut.",
+    "label_total_chart_serie" : "Total des Series par status.",
+    "label_total_chart_anime" : "Total des Animes par statut."
   
   }

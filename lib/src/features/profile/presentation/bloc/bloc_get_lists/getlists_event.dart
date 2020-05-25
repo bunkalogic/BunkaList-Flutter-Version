@@ -20,6 +20,18 @@ class GetYourLists extends GetListsEvent{
   List<Object> get props => [type, status];
 }
 
+class GetTotalByStatusEvent extends GetListsEvent{
+  final String type;
+
+  const GetTotalByStatusEvent({
+    @required this.type,
+  });
+
+  @override
+  List<Object> get props => [type];
+  
+}
+
 
 class GetYourListsUpdated extends GetListsEvent{
   final List<OuevreEntity> ouevreList;

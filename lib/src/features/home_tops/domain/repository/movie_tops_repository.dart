@@ -11,7 +11,7 @@ import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.da
 abstract class MovieTopsRepository {
 
   
-   Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop, int page) async {
+   Future<Either<Failures, List<MovieEntity>>> getTopsMovies(int typeTop, int page,) async {
     
     switch (typeTop) {
 

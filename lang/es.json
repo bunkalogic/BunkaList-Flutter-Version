@@ -152,7 +152,7 @@
     "label_details_rating"        : "Califique la obra en detalle, evaluando la trama, los personajes, la fotografía, la banda sonora y el entretenimiento",
     "added_success_completed"     : "¡Agregado exitosamente a su lista Completados!",
     "added_success_watching"      : "¡Agregada exitosamente a su lista de Viendo!",
-    "added_success_pause"         : "Agregada exitosamente a su lista de Pausa!",
+    "added_success_pause"         : "Agregada exitosamente a su lista de Pausadas!",
     "added_success_dropped"       : "¡Agregado exitosamente a su lista Abandonadas!",
     "added_success_wish"          : "Agregado exitosamente a su lista de Deseos!",
     "rating_in_general"           : "Valoración en general:",
@@ -160,12 +160,12 @@
     "rating_in_characters"        : "Calificación de los personajes:",
     "rating_in_photography"       : "Calificación de la fotografía:",
     "rating_in_soundtrack"        : "Calificación de la banda sonora:",
-    "rating_in_entertainment"     : "Calificación del entretenimiento:",
+    "rating_in_entertainment"     : "Calificación de entretenimiento:",
     "status_completed"            : "Completada",
     "status_watching"             : "Viendola",
-    "status_pause"                : "Pausa",
+    "status_pause"                : "Pausada",
     "status_dropped"              : "Abandonada",
-    "status_wishlist"             : "Lista de Deseos o por ver",
+    "status_wishlist"             : "Planeas ver",
     "last_views_movie"            : "Últimas películas agregadas a sus listas:",
     "last_views_serie"            : "Últimas series agregadas a sus listas:",
     "last_views_anime"            : "Últimos animes agregados a sus listas:",
@@ -222,8 +222,11 @@
     "label_never_ads_with_premium": "Esta opción también incluye el Premium. **",
     "label_subscription": "* Cancelar suscripción en cualquier momento en Google Play.",
     "label_include_premium": "** Cuando llegue el Premium, no tendrá que pagar nada más. En futuras actualizaciones habrá más información sobre todas las nuevas características que traerá el Premium.",
-    "in_progress"                   : "Esta opción aún no está disponible, para la próxima actualización estará disponible."
+    "in_progress"                   : "Esta opción aún no está disponible, para la próxima actualización estará disponible.",
+    "label_media_lists" : "Puntuación media de sus listas.",
+    "label_total_chart_movie" : "Total de Peliculas por estados.",
+    "label_total_chart_serie" : "Total de Series por estados.",
+    "label_total_chart_anime" : "Total de Animes por estados."
   
-  
-  
+
   }

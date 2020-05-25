@@ -223,7 +223,10 @@
   
     "anime_seinen"                : "топ аниме сейнен",
     "series_korean"               : "Корейский драматический сериал",
-    "movies_korean"               : "Корейские фильмы"
+    "movies_korean"               : "Корейские фильмы",
   
-  
+    "label_media_lists" : "Средняя оценка ваших списков.",
+    "label_total_chart_movie" : "Всего фильмов по статусу.",
+    "label_total_chart_serie" : "Всего серий по статусу.",
+    "label_total_chart_anime" : "Всего аниме по статусу."
   }

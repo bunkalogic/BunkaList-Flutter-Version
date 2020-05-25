@@ -223,7 +223,12 @@
 
     "anime_seinen"                : "トップアニメ青年",
     "series_korean"               : "韓国ドラマシリーズ",
-    "movies_korean"               : "韓国映画"
+    "movies_korean"               : "韓国映画",
+
+    "label_media_lists" : "リストの平均スコア。",
+    "label_total_chart_movie" : "ステータス別の合計映画。",
+    "label_total_chart_serie" : "ステータス別合計シリーズ。",
+    "label_total_chart_anime" : "ステータス別の合計アニメ。"
   
   
   }

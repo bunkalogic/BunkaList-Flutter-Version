@@ -21,4 +21,17 @@ class GetListsLoaded extends GetListsState {
   
 }
 
+class GetTotalByStatusLoaded extends GetListsState {
+  
+  final List<int> listTotalByStatus;
+
+  const GetTotalByStatusLoaded([this.listTotalByStatus = const []]);
+
+  @override
+  List<Object> get props => [listTotalByStatus];
+  
+}
+
+
+
 class GetlistsError extends GetListsState {}

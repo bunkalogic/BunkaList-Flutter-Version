@@ -223,7 +223,11 @@
 
     "anime_seinen"                : "최고 애니메이션 seinen",
     "series_korean"               : "한국 드라마 시리즈",
-    "movies_korean"               : "한국 영화"
-  
+    "movies_korean"               : "한국 영화",
+
+    "label_media_lists" : "목록의 평균 점수.",
+    "label_total_chart_movie" : "상태 별 총 영화 수",
+    "label_total_chart_serie" : "상태 별 총 시리즈.",
+    "label_total_chart_anime" : "상태 별 총 애니메이션"
   
   }

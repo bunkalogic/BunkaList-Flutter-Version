@@ -121,14 +121,17 @@ import 'package:bunkalist/src/features/profile/data/datasources/crud_ouevre_remo
 import 'package:bunkalist/src/features/profile/data/implementations/add_ouevre_impl.dart';
 import 'package:bunkalist/src/features/profile/data/implementations/delete_ouevre_impl.dart';
 import 'package:bunkalist/src/features/profile/data/implementations/get_ouevre_impl.dart';
+import 'package:bunkalist/src/features/profile/data/implementations/get_total_by_status_impl.dart';
 import 'package:bunkalist/src/features/profile/data/implementations/update_ouevre_impl.dart';
 import 'package:bunkalist/src/features/profile/domain/contracts/add_ouevre_contract.dart';
 import 'package:bunkalist/src/features/profile/domain/contracts/delete_ouevre_contract.dart';
 import 'package:bunkalist/src/features/profile/domain/contracts/get_ouevre_contract.dart';
+import 'package:bunkalist/src/features/profile/domain/contracts/get_total_by_status_contract.dart';
 import 'package:bunkalist/src/features/profile/domain/contracts/update_ouevre_contract.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_add_ouevre.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_delete_ouevre.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_get_ouevre.dart';
+import 'package:bunkalist/src/features/profile/domain/usescases/get_total_by_status.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_update_ouevre.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete/bloc.dart';
@@ -453,7 +456,8 @@ initProfile(){
 
   serviceLocator.registerFactory(
     () => GetListsBloc(
-      allOuevre: serviceLocator()
+      allOuevre: serviceLocator(),
+      totalByStatus: serviceLocator()
       )
     );      
 
@@ -464,6 +468,8 @@ initProfile(){
   serviceLocator.registerLazySingleton(() => GetAddOuevre(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetDeleteOuevre(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUpdateOuevre(serviceLocator()));
+   serviceLocator.registerLazySingleton(() => GetTotalByStatus(serviceLocator()));
+  
   
   //? Repository - Contracts
   serviceLocator.registerLazySingleton<GetOuevreContract>(
@@ -486,6 +492,12 @@ initProfile(){
 
     serviceLocator.registerLazySingleton<DeleteOuevreContract>(
     () => DeleteOuevreImpl(
+      remoteDataSource: serviceLocator(),
+      ),
+    ); 
+
+    serviceLocator.registerLazySingleton<GetTotalByStatusContract>(
+    () => GetTotalByStatusImpl(
       remoteDataSource: serviceLocator(),
       ),
     );  
