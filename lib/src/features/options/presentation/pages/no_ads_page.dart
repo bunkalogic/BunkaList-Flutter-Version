@@ -15,7 +15,7 @@ class NoAdsPage extends StatefulWidget {
 
 class _NoAdsPageState extends State<NoAdsPage> {
 
-   StreamSubscription _purchaseUpdatedSubscription;
+  StreamSubscription _purchaseUpdatedSubscription;
   StreamSubscription _purchaseErrorSubscription;
   StreamSubscription _conectionSubscription;
   final List<String> _productLists = [
@@ -88,15 +88,17 @@ class _NoAdsPageState extends State<NoAdsPage> {
   }
 
    void _requestPurchase(IAPItem item) {
+     print('item buying: ${item.toString()}');
     FlutterInappPurchase.instance.requestPurchase(item.productId);
+    
+
   }
 
   Future _getProduct() async {
     List<IAPItem> items = await FlutterInappPurchase.instance.getProducts(_productLists);
     for (var item in items) {
-      print('${item.toString()}');
-      // if(item.productId == widget.productId){
-      //}
+      print('getting a product: ${item.toString()}');
+      this._items.add(item);
       
     }
 
@@ -115,7 +117,7 @@ class _NoAdsPageState extends State<NoAdsPage> {
     for (var item in items) {
       
       if(item.productId == _productLists[position]){
-        print('${item.toString()}');
+        print(' getting a sub :${item.toString()}');
         this._items.add(item);
       }
       
@@ -127,15 +129,13 @@ class _NoAdsPageState extends State<NoAdsPage> {
     });
   }
 
-  Future _getPurchases(int position) async {
+  Future _getPurchases() async {
     List<PurchasedItem> items =
         await FlutterInappPurchase.instance.getAvailablePurchases();
     for (var item in items) {
       
-      if(item.productId == _productLists[position]){
-        print('${item.toString()}');
+      print('${item.toString()}');
         this._purchases.add(item);
-      }
     }
 
     setState(() {
@@ -260,7 +260,7 @@ class _NoAdsPageState extends State<NoAdsPage> {
   Widget _containerOneMouthNoAds() {
     return Padding(
       padding: EdgeInsets.symmetric( 
-        horizontal: 60.0, 
+        horizontal: 70.0, 
         vertical: 15.0
       ),
       child: Container(
@@ -288,19 +288,15 @@ class _NoAdsPageState extends State<NoAdsPage> {
 
             print("---------- Get Sub Month in process");
             this._getSubscriptions(2);
-
-            this._items.map((item) {
-              this._requestSubscription(item);
-            } );
-
-            print("---------- Get Purchases Button Pressed");
-            this._getPurchases(2); 
            
-            print("---------- Buy Item in process");
-            this._items.map((item) {
-              this._requestPurchase(item);
-            } );
+            print("---------- Get Purchases Button Pressed");
+            this._getPurchases(); 
 
+            print("---------- Buy Item in process");  
+
+            IAPItem item = this._items[0];
+
+            this._requestPurchase(item);
             
                         
           },
@@ -312,13 +308,13 @@ class _NoAdsPageState extends State<NoAdsPage> {
   Widget _containerOneYearNoAds() {
     return Padding(
       padding: EdgeInsets.symmetric( 
-        horizontal: 40.0, 
+        horizontal: 50.0, 
         vertical: 15.0
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Colors.tealAccent[400],
+          color: Colors.blueGrey[600],
         ),
         child: ListTile(
           leading: Icon(Icons.local_offer, color: Colors.deepOrangeAccent[400], size: 30.0,),
@@ -334,24 +330,20 @@ class _NoAdsPageState extends State<NoAdsPage> {
             ),
           ),
           onTap: () async {
-            print("---------- Connect Billing Button Pressed");
+            print("---------- Connect Billing in process");
             await FlutterInappPurchase.instance.initConnection;
 
-            this._items.map((item) {
-              this._requestSubscription(item);
-            } );
-
-
-            print("---------- Get Sub Month Button Pressed");
+            print("---------- Get Sub Month in process");
             this._getSubscriptions(1);
+           
+            print("---------- Get Purchases Button Pressed");
+            this._getPurchases(); 
 
-            print("---------- Buy Item in process");
-            this._items.map((item) {
-              this._requestPurchase(item);
-            } );
+            print("---------- Buy Item in process");  
+        
+            IAPItem item = this._items[1];
 
-            // print("---------- Get Purchases Button Pressed");
-            // this._getPurchases(1);
+            this._requestPurchase(item);
           },
         ),
       ), 
@@ -361,12 +353,12 @@ class _NoAdsPageState extends State<NoAdsPage> {
   Widget _containerLifetimeNoAds() {
     return Padding(
       padding: EdgeInsets.symmetric( 
-        horizontal: 20.0, 
+        horizontal: 30.0, 
         vertical: 15.0
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.deepPurpleAccent[400],
+          color: Colors.blueGrey[800],
           borderRadius: BorderRadius.circular(10.0)
         ),
         child: ListTile(
@@ -394,8 +386,21 @@ class _NoAdsPageState extends State<NoAdsPage> {
               ]
             ),
             ),
-          onTap: (){
-            //AppPurchasePage(productId: 'remove_ads_and_premium',);
+          onTap: () async{
+            print("---------- Connect Billing in process");
+            await FlutterInappPurchase.instance.initConnection;
+
+            print("---------- Get Sub Month in process");
+            this._getProduct();
+           
+            print("---------- Get Purchases Button Pressed");
+            this._getPurchases(); 
+
+            print("---------- Buy Item in process");  
+
+            IAPItem item = this._items[0];
+
+            this._requestPurchase(item);
           },
         ),
       ), 

@@ -84,6 +84,8 @@ dependencies:
   charts_flutter: ^0.9.0
   # infinite list view
   infinite_listview: ^1.0.1+1
+  # facebook ads
+  facebook_audience_network: ^0.6.1
 
   flutter_localizations:
     sdk: flutter

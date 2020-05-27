@@ -1,3 +1,5 @@
+import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/initial_controller_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/splash_page.dart';
@@ -18,6 +20,7 @@ import 'package:bunkalist/src/features/profile/presentation/pages/list_profile_p
 import 'package:bunkalist/src/features/login/presentation/pages/base_login_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_people_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_season_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 
@@ -105,7 +108,12 @@ class RouteGeneretor{
         return SlideRightRoute(page: PremiumSoonPage());                
 
       case '/NoAds':
-        return SlideRightRoute(page: NoAdsPage());
+        return SlideRightRoute(
+          page: BlocProvider<UserdataBloc>(
+            builder:(BuildContext context) => serviceLocator<UserdataBloc>(),
+            child: NoAdsPage(),
+          )
+        );
       
       
       

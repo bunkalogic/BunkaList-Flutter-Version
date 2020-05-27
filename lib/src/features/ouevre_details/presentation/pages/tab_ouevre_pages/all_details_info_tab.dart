@@ -379,6 +379,9 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
+        _buttonWatchInNetflix(),
+        _buttonWatchInHBO(),
+        _buttonWatchInAmazonPrimeVideo(),
         _boxInfo(child: _rowRatingAndNetwork()),
         _boxInfo(child: _columnInfo()),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
@@ -421,6 +424,111 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
           //_chipGenresItem(),
           ChipsGenresWidget(genres: genreIds,)
         ],
+      ),
+    );
+  }
+
+  Widget _buttonWatchInNetflix(){
+    final serieNetwork = serie.networks;
+
+    final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
+
+    if(listSerieNetwork[0].id != 213) return Container();
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 110.0),
+      child: RaisedButton(
+        elevation: 10.0,
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(0.0),
+        onPressed: (){
+          launch(serie.homepage);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+              colors: <Color>[
+                Colors.redAccent[700],
+                Colors.redAccent[400],
+                Colors.redAccent,
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(12.0),
+          child:
+              const Text('Watch on Netflix', style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonWatchInHBO(){
+    final serieNetwork = serie.networks;
+
+    final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
+
+    if(listSerieNetwork[0].id != 49) return Container();
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 110.0),
+      child: RaisedButton(
+        elevation: 10.0,
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(0.0),
+        onPressed: (){
+          launch(serie.homepage);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+              colors: <Color>[
+                Colors.grey[850],
+                Colors.grey[700],
+                Colors.grey[600],
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(12.0),
+          child:
+              const Text('Watch on HBO', style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonWatchInAmazonPrimeVideo(){
+    final serieNetwork = serie.networks;
+
+    final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
+
+    if(listSerieNetwork[0].id != 1024) return Container();
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 90.0),
+      child: RaisedButton(
+        elevation: 10.0,
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(0.0),
+        onPressed: (){
+          launch(serie.homepage);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+              colors: <Color>[
+                Colors.lightBlueAccent[700],
+                Colors.lightBlueAccent[400],
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(12.0),
+          child:
+              const Text('Watch on Prime Video', style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+        ),
       ),
     );
   }
