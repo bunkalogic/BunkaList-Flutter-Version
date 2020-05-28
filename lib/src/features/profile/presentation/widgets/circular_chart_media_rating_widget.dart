@@ -112,7 +112,7 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
     }
 
     return new AnimatedCircularChart(
-      duration: Duration(milliseconds: 700),
+      duration: Duration(milliseconds: 600),
       key: _chartKey,
       size: Size(60.0, 60.0), 
       initialChartData: nextData,

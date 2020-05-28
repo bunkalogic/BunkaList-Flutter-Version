@@ -6,6 +6,7 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/routes/route_generator.dart';
 import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
 import 'package:bunkalist/src/core/utils/http_overrrides.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +22,9 @@ void main() async{
   await ic.init();
   final prefs = new Preferences();
   await prefs.initPrefs();
+  FacebookAudienceNetwork.init(
+    testingId: "7fb5fc6f-cfb7-4761-ba77-5879cbaba7ae"
+  );
   runApp(MyApp());
 } 
  

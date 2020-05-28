@@ -20,7 +20,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 3.4,
+      height: MediaQuery.of(context).size.height / 2.8,
       child: CarouselSlider(
         enlargeCenterPage: true,
         viewportFraction: 0.9,
@@ -37,7 +37,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
 
   Widget _containerExample(String title, String type){
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
       child: Container(
           child: _columnTitleAndCharts(title, type),   
           height: 160.0,

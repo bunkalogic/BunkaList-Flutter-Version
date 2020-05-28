@@ -120,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (_) => serviceLocator<AuthenticationBloc>(),
       child: ButtomLogOut(),
       ),
-      MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4711162518',),
+      //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4711162518',),
       ],
     );
   }
