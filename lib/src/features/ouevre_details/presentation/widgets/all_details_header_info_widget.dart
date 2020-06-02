@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
@@ -81,7 +82,7 @@ class HeaderInfoMovie  extends StatelessWidget {
 
   HeaderInfoMovie({@required this.movie});
 
-  
+  final Preferences prefs = Preferences();
   
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class HeaderInfoMovie  extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, movie),
     centerTitle: true,
-    titlePadding: EdgeInsets.only(bottom: 60.0),
+    titlePadding: EdgeInsets.only(bottom: 65.0),
     title: _titleInfo(context ,movie),
   );
   }
@@ -106,6 +107,9 @@ class HeaderInfoMovie  extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     final availableWidth = mediaQuery.size.width - 120;
+
+    List<Shadow> shadowBlack = [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))];
+    List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
 
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -118,8 +122,8 @@ class HeaderInfoMovie  extends StatelessWidget {
             fontSize: 18.0,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.italic,
-            color: Colors.deepOrangeAccent[400],
-            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+            //color: Colors.white,
+            shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
           ),
         ),
     );
@@ -133,7 +137,7 @@ class HeaderInfoMovie  extends StatelessWidget {
         fit: StackFit.loose,
         children: <Widget>[
           _imageBackground(movie),
-          //_containerGradient(),
+          _containerGradient(),
           _columnBackground(context, movie), 
         ],
       ),
@@ -141,21 +145,36 @@ class HeaderInfoMovie  extends StatelessWidget {
   }
 
   Widget _containerGradient(){
+
+    List<Color> colorsThemeDark = [
+      Colors.blueGrey[800].withOpacity(0.1),
+      Colors.blueGrey[800].withOpacity(0.3),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.7),
+      Colors.blueGrey[900].withOpacity(0.9),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+    ]; 
+
+    List<Color> colorsThemeDay = [
+      Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.white.withOpacity(0.9),
+      Colors.white.withOpacity(1.0),
+      Colors.white.withOpacity(1.0),
+    ]; 
+
     return SizedBox(
-      height: 550.0,
+      height: 600.0,
       child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               tileMode: TileMode.clamp,
               begin: Alignment.center,
-              end: Alignment.topCenter,
-              colors: [
-                //TODO que sea dependiendo del tema que esta selecionado
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.5),
-                Colors.grey[100].withOpacity(0.9),
-
-              ]
+              end: Alignment.bottomCenter,
+              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),
@@ -183,14 +202,24 @@ class HeaderInfoMovie  extends StatelessWidget {
 
   Widget _columnBackground(BuildContext context,MovieDetailsEntity movie) {
     return SafeArea(
-        child: Column(
-          
-          children: <Widget>[
-            _infoPoster(context, movie),
-            _buttonAddInList(context, movie),
-            _durationInfo(movie),
-            
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _infoPoster(context, movie),
+              // _durationInfo(movie),
+              // _buttonAddInList(context, movie),
+                SizedBox(width: 5.0,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _durationInfo(movie),
+                    _buttonAddInList(context, movie),
+                  ],
+                ),
+            ],
+          ),
         ),
     ); 
   }
@@ -227,19 +256,19 @@ class HeaderInfoMovie  extends StatelessWidget {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
      final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ movie.posterPath }');
 
-  // TODO: Agregar el HERO
+  
     return Container(
       margin: const EdgeInsets.all(2.0),
       child: Container(
-          width: MediaQuery.of(context).size.width / 5.0,
-          height: 120.0,
-          alignment: Alignment.bottomCenter,
+          width: MediaQuery.of(context).size.width / 4.5,
+          height: 140.0,
+          alignment: Alignment.center,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(12.0),
             child: FadeInImage(
               image: (movie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
       ),
@@ -254,12 +283,12 @@ class HeaderInfoMovie  extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.today,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.today,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             _yearInfo(movie),
             SizedBox(width: 8.0),
-            Icon(Icons.timer,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.timer,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             Text(
               movie.runtime.toString() + " min." , 
               style: TextStyle(
@@ -279,7 +308,7 @@ class HeaderInfoMovie  extends StatelessWidget {
     return Text(
          DateTime.parse(movie.releaseDate).year.toString(),
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 18.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic,
           color: Colors.white,
@@ -298,6 +327,8 @@ class HeaderInfoSerie  extends StatelessWidget {
   final SerieDetailsEntity serie;
 
   HeaderInfoSerie({@required this.serie});
+
+  final Preferences prefs = Preferences();
   
   @override
   Widget build(BuildContext context) {
@@ -310,7 +341,7 @@ class HeaderInfoSerie  extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, serie),
     centerTitle: true,
-    titlePadding: EdgeInsets.only(bottom: 60.0),
+    titlePadding: EdgeInsets.only(bottom: 65.0),
     title: _titleInfo(context, serie),
   );
   }
@@ -319,6 +350,9 @@ class HeaderInfoSerie  extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     final availableWidth = mediaQuery.size.width - 120;
+
+    List<Shadow> shadowBlack = [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))];
+    List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
 
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -331,8 +365,8 @@ class HeaderInfoSerie  extends StatelessWidget {
             fontSize: 18.0,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.italic,
-            color: Colors.deepOrangeAccent[400],
-            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+            //color: Colors.white,
+            shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
           ),
         ),
     );
@@ -346,30 +380,45 @@ class HeaderInfoSerie  extends StatelessWidget {
         fit: StackFit.loose,
         children: <Widget>[
           _imageBackground(serie),
-          //_containerGradient(),
+          _containerGradient(),
           _columnBackground(context, serie),
-          //TODO: agregar los botones y el icono de la productora 
+           
         ],
       ),
     );
   }
 
   Widget _containerGradient(){
+
+    List<Color> colorsThemeDark = [
+      Colors.blueGrey[800].withOpacity(0.1),
+      Colors.blueGrey[800].withOpacity(0.3),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.7),
+      Colors.blueGrey[900].withOpacity(0.9),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+    ]; 
+
+    List<Color> colorsThemeDay = [
+      Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.white.withOpacity(0.9),
+      Colors.white.withOpacity(1.0),
+      Colors.white.withOpacity(1.0),
+    ]; 
+
     return SizedBox(
-      height: 550.0,
+      height: 600.0,
       child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               tileMode: TileMode.clamp,
               begin: Alignment.center,
-              end: Alignment.topCenter,
-              colors: [
-                //TODO que sea dependiendo del tema que esta selecionado
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.5),
-                Colors.grey[100].withOpacity(0.9),
-
-              ]
+              end: Alignment.bottomCenter,
+              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),
@@ -396,14 +445,25 @@ class HeaderInfoSerie  extends StatelessWidget {
   
 
   Widget _columnBackground(BuildContext context, SerieDetailsEntity serie) {
-    return SafeArea(
-        child: Column(
-          children: <Widget>[
-            _infoPoster(context, serie),
-            _buttonAddInList(context, serie),
-            _durationInfo(serie),
-            
-          ],
+   return SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _infoPoster(context, serie),
+              // _durationInfo(movie),
+              // _buttonAddInList(context, movie),
+                SizedBox(width: 5.0,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _durationInfo(serie),
+                    _buttonAddInList(context, serie),
+                  ],
+                ),
+            ],
+          ),
         ),
     ); 
   }
@@ -438,15 +498,15 @@ class HeaderInfoSerie  extends StatelessWidget {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ serie.posterPath }');
-  //TODO agregar el HERO
+  
     return Container(
-      margin: const EdgeInsets.all(2.0),
+      margin: const EdgeInsets.all(4.0),
       child: Container(
-          width: MediaQuery.of(context).size.width / 5.0,
-          height: 120.0,
+          width: MediaQuery.of(context).size.width / 4.5,
+          height: 140.0,
           alignment: Alignment.bottomCenter,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(12.0),
             child: FadeInImage(
           image: (serie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
@@ -468,12 +528,12 @@ class HeaderInfoSerie  extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.today,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.today,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             _yearInfo(serie),
             SizedBox(width: 8.0),
-            Icon(Icons.timer,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.timer,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             Text(
               time + ' min.', 
               style: TextStyle(
@@ -493,7 +553,7 @@ class HeaderInfoSerie  extends StatelessWidget {
     return Text(
         DateTime.parse(serie.firstAirDate).year.toString(), 
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 18.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic,
           color: Colors.white,
@@ -513,6 +573,8 @@ class HeaderInfoAnime extends StatelessWidget {
 
   HeaderInfoAnime({@required this.anime});
   
+
+  final Preferences prefs = Preferences();
   
   @override
   Widget build(BuildContext context) {
@@ -525,7 +587,7 @@ class HeaderInfoAnime extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, anime),
     centerTitle: true,
-    titlePadding: EdgeInsets.only(bottom: 60.0),
+    titlePadding: EdgeInsets.only(bottom: 65.0),
     title: _titleInfo(context ,anime),
   );
   }
@@ -534,6 +596,9 @@ class HeaderInfoAnime extends StatelessWidget {
    final mediaQuery = MediaQuery.of(context);
 
     final availableWidth = mediaQuery.size.width - 120;
+
+    List<Shadow> shadowBlack = [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))];
+    List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
 
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -546,8 +611,8 @@ class HeaderInfoAnime extends StatelessWidget {
             fontSize: 18.0,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.italic,
-            color: Colors.deepOrangeAccent[400],
-            shadows: [Shadow(blurRadius: 1.0, color: Colors.grey[850], offset: Offset(1.0, 1.0))],
+            //color: Colors.white,
+            shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
           ),
         ),
     );
@@ -561,30 +626,44 @@ class HeaderInfoAnime extends StatelessWidget {
         fit: StackFit.loose,
         children: <Widget>[
           _imageBackground(anime),
-          //_containerGradient(),
+          _containerGradient(),
           _columnBackground(context, anime),
-          //TODO: agregar los botones y el icono de la productora 
         ],
       ),
     );
   }
 
   Widget _containerGradient(){
+
+    List<Color> colorsThemeDark = [
+      Colors.blueGrey[800].withOpacity(0.1),
+      Colors.blueGrey[800].withOpacity(0.3),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.5),
+      Colors.blueGrey[800].withOpacity(0.7),
+      Colors.blueGrey[900].withOpacity(0.9),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+      Colors.blueGrey[900].withOpacity(1.0),
+    ]; 
+
+    List<Color> colorsThemeDay = [
+      Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.white.withOpacity(0.9),
+      Colors.white.withOpacity(1.0),
+      Colors.white.withOpacity(1.0),
+    ]; 
+
     return SizedBox(
-      height: 550.0,
+      height: 600.0,
       child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               tileMode: TileMode.clamp,
               begin: Alignment.center,
-              end: Alignment.topCenter,
-              colors: [
-                //TODO que sea dependiendo del tema que esta selecionado
-                Colors.grey[100].withOpacity(0.0),
-                Colors.grey[100].withOpacity(0.5),
-                Colors.grey[100].withOpacity(0.9),
-
-              ]
+              end: Alignment.bottomCenter,
+              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),
@@ -612,13 +691,24 @@ class HeaderInfoAnime extends StatelessWidget {
 
   Widget _columnBackground(BuildContext context, AnimeDetailsEntity anime) {
     return SafeArea(
-        child: Column(
-          children: <Widget>[
-            _infoPoster(context,anime),
-            _buttonAddInList(context, anime),
-            _durationInfo(anime),
-            
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _infoPoster(context, anime),
+              // _durationInfo(anime),
+              // _buttonAddInList(context, anime),
+                SizedBox(width: 5.0,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _durationInfo(anime),
+                    _buttonAddInList(context, anime),
+                  ],
+                ),
+            ],
+          ),
         ),
     ); 
   }
@@ -653,15 +743,15 @@ class HeaderInfoAnime extends StatelessWidget {
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ anime.posterPath }');
-  //TODO agregar el HERO
+  
     return Container(
       margin: const EdgeInsets.all(2.0),
       child: Container(
-          width: MediaQuery.of(context).size.width / 5.0,
-          height: 120.0,
+          width: MediaQuery.of(context).size.width / 4.5,
+          height: 140.0,
           alignment: Alignment.bottomCenter,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(12.0),
             child: FadeInImage(
           image: (anime.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
@@ -684,12 +774,12 @@ class HeaderInfoAnime extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.today,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.today,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             _yearInfo(anime),
             SizedBox(width: 8.0),
-            Icon(Icons.timer,color: Colors.purpleAccent[700], size: 28.0, ),
-            SizedBox(width: 2.0,),
+            Icon(Icons.timer,color: Colors.deepPurpleAccent[400], size: 28.0, ),
+            SizedBox(width: 3.0,),
             Text(
               time + ' min.', 
               style: TextStyle(
@@ -709,7 +799,7 @@ class HeaderInfoAnime extends StatelessWidget {
     return Text(
         DateTime.parse(anime.firstAirDate).year.toString(), 
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 18.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic,
           color: Colors.white,

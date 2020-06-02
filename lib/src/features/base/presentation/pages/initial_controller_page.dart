@@ -4,7 +4,6 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/base/domain/entities/user_entity.dart';
 import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
-import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -42,12 +41,49 @@ class InitialControllerPage extends StatefulWidget {
   _InitialControllerPageState createState() => _InitialControllerPageState();
 }
 
-class _InitialControllerPageState extends State<InitialControllerPage> {
+class _InitialControllerPageState extends State<InitialControllerPage> with SingleTickerProviderStateMixin {
 
   
   Preferences prefs = Preferences();
   AppUpdateInfo _updateInfo;
   bool _flexibleUpdateAvailable = false;
+
+  AnimationController _controller;
+
+  Animatable<Color> background = TweenSequence<Color>(
+    [
+      TweenSequenceItem(
+        weight: 1.0,
+        tween: ColorTween(
+          begin: Colors.deepPurpleAccent,
+          end: Colors.deepPurpleAccent[400],
+        ),
+      ),
+      TweenSequenceItem(
+        weight: 1.0,
+        tween: ColorTween(
+          begin: Colors.deepPurpleAccent[700],
+          end: Colors.deepOrangeAccent,
+        ),
+      ),
+      TweenSequenceItem(
+        weight: 1.0,
+        tween: ColorTween(
+          begin:Colors.deepOrangeAccent[400],
+          end: Colors.deepOrangeAccent[700],
+        ),
+      ),
+    ],
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 10),
+      vsync: this,
+    )..repeat();
+  }
 
   @override
   void didChangeDependencies() {
@@ -119,14 +155,14 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
         if(state is AuthenticationAuthenticated){
           print('Authenticated');
           addUserDataInFirebase();
-          await Future.delayed(Duration(milliseconds: 1500));
+          await Future.delayed(Duration(seconds: 2));
           return Navigator.pushReplacementNamed(context, '/Home');
           
         }
 
         if(state is AuthenticationUnauthenticated){
           print('Unauthenticated');
-          await Future.delayed(Duration(milliseconds: 500));
+          await Future.delayed(Duration(seconds: 1));
           return Navigator.pushReplacementNamed(context, '/Login');
         }
 
@@ -170,6 +206,40 @@ class _InitialControllerPageState extends State<InitialControllerPage> {
   }
 
   Widget _loadingPage(){
+
+     return AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Scaffold(
+            body: Container(
+              color: background
+                  .evaluate(AlwaysStoppedAnimation(_controller.value)),
+              child: ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 2.0,
+                  vertical: MediaQuery.of(context).size.height / 2.5
+                ),
+                children: <Widget>[
+                  Center(
+                    child: Image(
+                      image: AssetImage('assets/bunkalist-banner.png'),
+                      height: 100.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SizedBox(),
+                  Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.purple,
+                      )
+                  )
+
+                ],
+              ),    
+            ),
+          );
+        });
+
     return Container(
       child: Container(
         height: MediaQuery.of(context).size.height,

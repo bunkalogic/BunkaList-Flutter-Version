@@ -49,12 +49,20 @@ class EmptyLastAddedIconWidget extends StatelessWidget {
   _buttonGoToListHomeTops(BuildContext context) {
     return FloatingActionButton(
       onPressed: (){
-        Navigator.pushNamed(context, '/TopList', arguments: typeOuevre);
+        Navigator.pushNamed(context, '/TopList', arguments: _fixArgument(typeOuevre));
       },
       elevation: 10.0,
       heroTag: null,
       backgroundColor: Colors.deepPurpleAccent[400],
       child: Icon(Icons.arrow_forward, color: Colors.deepOrangeAccent[400],),
     );
+  }
+
+  String _fixArgument( String type ){
+    if(type == "movie") type = "movies";
+    if(type == "tv") type = "tv";
+    if(type == "anime") type = "animes";
+
+    return type;
   }
 }

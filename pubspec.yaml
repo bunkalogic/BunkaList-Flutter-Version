@@ -86,6 +86,10 @@ dependencies:
   infinite_listview: ^1.0.1+1
   # facebook ads
   facebook_audience_network: ^0.6.1
+  # tab indicator rounded
+  md2_tab_indicator: ^1.0.2
+  # purchases
+  purchases_flutter: ^1.0.4
 
   flutter_localizations:
     sdk: flutter

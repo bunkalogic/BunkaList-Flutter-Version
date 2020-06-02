@@ -1,10 +1,12 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
 import '../../../../../injection_container.dart';
 
@@ -26,6 +28,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
   TabController _tabController;
   ScrollController _scrollViewController;
+  Preferences prefs = Preferences();
 
   @override
   void initState() {
@@ -160,8 +163,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         pinned: true,
         floating: false,
         forceElevated: innerBoxScrolled,
-        
-        expandedHeight: 300.0,
+        expandedHeight: 320.0,
         flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
           builder: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsHeaderInfo(id: id, type: type),
@@ -173,13 +175,26 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
 
   Widget _tabBar(){
+    List<Shadow> shadowBlack = [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))];
+    List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
+
     return TabBar(
       labelColor: Colors.deepOrangeAccent[400],
-      unselectedLabelColor: Colors.white,
+      unselectedLabelColor: prefs.whatModeIs ? Colors.grey[400] : Colors.grey[800],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
+        fontWeight: FontWeight.w600,
+        shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
+      ),
+      labelStyle: TextStyle(
+        fontSize: 16.0, 
         fontWeight: FontWeight.w700,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
+        shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
+      ),
+      indicator: MD2Indicator(
+        indicatorHeight: 3, 
+        indicatorColor: Colors.deepOrangeAccent[400], 
+        indicatorSize: MD2IndicatorSize.normal
       ),
       isScrollable: true,
       tabs: _getListTabs(context),

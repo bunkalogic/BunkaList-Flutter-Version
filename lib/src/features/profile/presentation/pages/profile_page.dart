@@ -25,7 +25,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   Preferences prefs = new Preferences();
-  final _controller = NativeAdmobController();
+  //final _controller = NativeAdmobController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _createBox() {
-        //! posible cambio por un card para ponerle elevation
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Container(   
@@ -192,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'movies',),
+            child: LastAddedItem(status: 'Last', type: 'movie',),
           ),  
         SizedBox(height: 10.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
@@ -206,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'animes',),
+            child: LastAddedItem(status: 'Last', type: 'anime',),
           ),
         //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
         MaxNativeBannerAds(adPlacementID: "177059330328908_179577480077093",),  
@@ -240,11 +239,6 @@ class _ProfilePageState extends State<ProfilePage> {
           overflow: TextOverflow.ellipsis, 
           style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
           onPressed: (){
-            //TODO refactor this method 
-            //? pushNamed con los arguments con el numberType de la firestore
-            // movies == 0
-            // series == 1
-            // anime == 2
             Navigator.pushNamed(context, '/ListProfile', arguments: type);
           },
         ),
@@ -303,11 +297,7 @@ class _ProfilePageState extends State<ProfilePage> {
         color: color,
         child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
         onPressed: (){
-          //TODO refactor this method 
-          //? pushNamed con los arguments con el numberType de la firestore
-          // movies == 0
-          // series == 1
-          // anime == 2
+          
           Navigator.pushNamed(context, '/ListProfile', arguments: type);
         },
       );

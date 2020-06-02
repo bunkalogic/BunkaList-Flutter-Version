@@ -200,7 +200,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
     
     // final List<int> genres = movie.genres.cast<int>();
     // return ChipsGenresWidget(genres: genres,);
-    //! FIXME: cambiar MovieDetailsEntity para genres List<dynamic> sea una Clase aparte  
+     
 
     return Container(
       padding: EdgeInsets.all(4.0),
@@ -987,7 +987,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
             AppLocalizations.of(context).translate('details_status'), 
           ),
           _rowDataExtraInfo(
-             anime.originCountry.first, 
+             anime.originCountry.isEmpty ? 'no data' : anime.originCountry.first, 
              anime.status
             ),
           _rowWebExtraInfo(

@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
 
 class ListProfilePage extends StatefulWidget {
@@ -122,6 +123,11 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       isScrollable: true,
       tabs: _getListTabs(context),
       controller: _tabController,
+      indicator: MD2Indicator(
+        indicatorHeight: 3, 
+        indicatorColor: Colors.deepOrangeAccent[400], 
+        indicatorSize: MD2IndicatorSize.normal
+      ),
     );
   }
 }
