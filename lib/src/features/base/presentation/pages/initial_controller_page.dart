@@ -9,6 +9,7 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:in_app_update/in_app_update.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 class InitialController extends StatelessWidget {
   
@@ -136,6 +137,10 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
     BlocProvider.of<UserdataBloc>(context).add(
       AddDataUser(userEntity: userData)
     );
+
+    // Later log in provided user Id
+    Purchases.identify(prefs.getCurrentUserUid);
+
   }
 
   @override

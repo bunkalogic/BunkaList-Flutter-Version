@@ -93,12 +93,12 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
         _boxInfo(child: _rowRatingAndNetwork()),
-        MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+        //MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
-        MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );
   }
@@ -384,12 +384,12 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         _buttonWatchInHBO(),
         _buttonWatchInAmazonPrimeVideo(),
         _boxInfo(child: _rowRatingAndNetwork()),
-        MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+        //MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
-        MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );
   }
@@ -787,12 +787,12 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
         _boxInfo(child: _rowRatingAndNetwork()),
-        MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+        //MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnExtrasInfo(context)),
-        //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
-        MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );
   }

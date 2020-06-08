@@ -12,6 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -73,9 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _listOptionMaterial(BuildContext context) {
     return ListView(
       children: <Widget>[
-        //TODO: agregar el banner de publicadad aqui
         SizedBox(height: 15.0,),
-        //TODO: agregar el card the version premium
         _titleOfSections(AppLocalizations.of(context).translate("configuration")),
         Divider(),
         _createItemSettings(context, Colors.green , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
@@ -86,8 +85,8 @@ class _SettingsPageState extends State<SettingsPage> {
         //   Navigator.pushNamed(context, '/Premium');
         // }),
         _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), (){
-          //Navigator.pushNamed(context, '/NoAds');
-          _flushbarInProgress();
+          Navigator.pushNamed(context, '/NoAds');
+          //_flushbarInProgress();
         } ),
         SizedBox(height: 10.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
@@ -278,11 +277,14 @@ class ButtomLogOut extends StatelessWidget {
         child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 18.0),),
         onPressed: (){
           
+
           prefs.getCurrentUsername = '';
           prefs.getCurrentUserPhoto = '';
           prefs.getCurrentUserUid = '';
           prefs.whatModeIs = false;
           prefs.currentUserHasToken = false;
+
+          Purchases.reset();
 
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
           _goToLogin(context);

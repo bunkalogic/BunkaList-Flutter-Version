@@ -54,8 +54,8 @@ class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1043380245',),
-                    MaxNativeBannerAds(adPlacementID: "177059330328908_179582826743225",),
+                    MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1043380245',),
+                    //MaxNativeBannerAds(adPlacementID: "177059330328908_179582826743225",),
                     Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.all(5.0),

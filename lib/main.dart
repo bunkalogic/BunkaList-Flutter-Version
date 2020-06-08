@@ -12,19 +12,26 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bunkalist/injection_container.dart' as ic ;
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-
+  
   HttpOverrides.global = new MyHttpOverrides();
+  // Inicializando el injection container
   await ic.init();
+  // Inicializando las Preferences
   final prefs = new Preferences();
   await prefs.initPrefs();
-  FacebookAudienceNetwork.init(
-    testingId: "7fb5fc6f-cfb7-4761-ba77-5879cbaba7ae"
-  );
+  // Inicializando Purchases
+  Purchases.setDebugLogsEnabled(true);
+  await Purchases.setup("SNQQEwiQBuwpLzXsWBgSEktUJusayMzd");
+  // Inicializando el Facebook Ads
+  // FacebookAudienceNetwork.init(
+  //   testingId: "7fb5fc6f-cfb7-4761-ba77-5879cbaba7ae"
+  // );
   runApp(MyApp());
 } 
  

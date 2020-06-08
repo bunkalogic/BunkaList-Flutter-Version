@@ -53,8 +53,8 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
                 child: Column(
                    mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4818973727',),
-                    MaxNativeBannerAds(adPlacementID: "177059330328908_179583233409851",),
+                    MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4818973727',),
+                    //MaxNativeBannerAds(adPlacementID: "177059330328908_179583233409851",),
                     Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.all(5.0),

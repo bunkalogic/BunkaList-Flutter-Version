@@ -27,6 +27,15 @@ class Preferences{
     _prefs.setBool('whatModeIs', value);
   }
 
+  //? se en encarga de guardar el modo de tema 
+  get isNotAds {
+    return _prefs.getBool('isNotAds') ?? false;
+  }
+
+  set isNotAds (bool value) {
+    _prefs.setBool('isNotAds', value);
+  }
+
   //? se en encarga de guardar el language code 
   get getLanguage {
     return _prefs.getString('language') ?? 'en';
