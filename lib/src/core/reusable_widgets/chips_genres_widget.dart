@@ -155,7 +155,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
           onPressed: () => null,
           elevation: 4.0,
           labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
-          backgroundColor: Colors.blueGrey[400].withOpacity(0.3),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
           label: Text(item,
             style: TextStyle(
               fontWeight: FontWeight.w600,

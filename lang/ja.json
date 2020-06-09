@@ -228,7 +228,10 @@
     "label_media_lists" : "リストの平均スコア。",
     "label_total_chart_movie" : "ステータス別の合計映画。",
     "label_total_chart_serie" : "ステータス別合計シリーズ。",
-    "label_total_chart_anime" : "ステータス別の合計アニメ。"
-  
+    "label_total_chart_anime" : "ステータス別の合計アニメ。",
+
+    "label_theme_light"       : "クリアテーマ",
+    "label_theme_light_dark"  : "クリアナイトのテーマ",
+    "label_theme_dark"        : "ダークナイトのテーマ"
   
   }

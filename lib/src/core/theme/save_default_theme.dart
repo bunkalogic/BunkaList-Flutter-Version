@@ -10,19 +10,36 @@ class SaveDefaultTheme{
 
   final prefs = new Preferences();
 
-  changedTheme(BuildContext context) {
-    if(prefs.whatModeIs == true) {
-      prefs.whatModeIs = false;
-      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.LightTheme ));
-    }else{
-      prefs.whatModeIs = true;
-      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.DarkTheme ));
-    }
+  changedTheme(BuildContext context, Apptheme theme) {
+    // if(prefs.whatModeIs == isDark) {
+    //   prefs.whatModeIs = false;
+    //   BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: theme));
+    // }else if(prefs.whatDarkIs){
+    //   prefs.whatModeIs = true;
+    //   BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: theme));
+    // }
+    BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: theme));
   }
 
+  // changedTheme(BuildContext context) {
+  //   if(prefs.whatModeIs == true) {
+  //     prefs.whatModeIs = false;
+  //     BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.LightTheme ));
+  //   }else{
+  //     prefs.whatModeIs = true;
+  //     BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(theme: Apptheme.DarkTheme ));
+  //   }
+  // }
+
   ThemeData changedInitialTheme() {
-    if(prefs.whatModeIs) {
+    if(prefs.whatModeIs && prefs.whatDarkIs == false) {
+
       return appThemeData[Apptheme.DarkTheme];
+
+    }else if(prefs.whatModeIs && prefs.whatDarkIs){
+      
+      return appThemeData[Apptheme.DarkerTheme];
+
     }else{
       return appThemeData[Apptheme.LightTheme];
     }

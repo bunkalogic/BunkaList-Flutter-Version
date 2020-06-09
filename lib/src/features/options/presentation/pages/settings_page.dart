@@ -3,7 +3,9 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/theme/app_themes.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,7 +94,8 @@ class _SettingsPageState extends State<SettingsPage> {
         _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
         Divider(),
         SizedBox(height: 15.0,),
-        _createButtonChangedThemeMaterial(context),
+        //_createButtonChangedThemeMaterial(context),
+        _createItemSettings(context, Colors.yellowAccent[400], Icons.lightbulb_outline, AppLocalizations.of(context).translate("label_change_theme"), () => _showBottomModalChangedTheme() ),
         SizedBox(height: 15.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_about_app")),
         Divider(),
@@ -146,39 +149,51 @@ class _SettingsPageState extends State<SettingsPage> {
 
   
 
-  Widget _createButtonChangedThemeMaterial(BuildContext context){
-    return IconButton(
-      icon: _changedIconThemeMaterial(), //? is responsible for changing the icon depending on the theme
-      onPressed: () => SaveDefaultTheme().changedTheme(context), // ? is responsible for changing the theme
-    );
-  }
+  // Widget _createButtonChangedThemeMaterial(BuildContext context){
+  //   return IconButton(
+  //     icon: _changedIconThemeMaterial(), //? is responsible for changing the icon depending on the theme
+  //     onPressed: () => SaveDefaultTheme().changedTheme(context), // ? is responsible for changing the theme
+  //   );
+  // }
       
-  Widget _changedIconThemeMaterial() {
+  // Widget _changedIconThemeMaterial() {
     
-    if(prefs.whatModeIs){
-      return Icon(Icons.brightness_2, size: 40.0, color: Colors.yellow,);
-    }else{
-      return Icon(Icons.brightness_7, size: 40.0, color: Colors.orange,);
+  //   if(prefs.whatModeIs){
+  //     return Icon(Icons.brightness_2, size: 40.0, color: Colors.yellow,);
+  //   }else{
+  //     return Icon(Icons.brightness_7, size: 40.0, color: Colors.orange,);
+  //   }
+  // }
+
+    _showBottomModalChangedTheme(){
+      showModalBottomSheet(
+      elevation: 10.0,
+      backgroundColor: _getBackgroundColorTheme(), 
+      context: context,
+      builder: (context) => BuildBottomModalChangedTheme(), 
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: const Radius.circular(30),
+          topRight: const Radius.circular(30)
+        )
+      )
+    );
+    }
+
+    Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
+      return Colors.grey[100];
     }
   }
 
-  Widget _buttonLogOutMaterial(){
-    return Center(
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        color: Colors.purple,
-        textColor: Colors.white,
-        child: Text('LogOut', style: TextStyle(fontSize: 18.0),),
-        onPressed: (){
-          BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
-          Navigator.pushNamedAndRemoveUntil(context, '/Login', (_) => false);
-        },
-
-      ),
-    );
-  }
+  
 
   //! Cupertino Components (iOS)
 
@@ -197,7 +212,7 @@ class _SettingsPageState extends State<SettingsPage> {
         _titleOfSections('Changed Mode'),
         Divider(),
          SizedBox(height: 15.0,),
-        _createButtonChangedThemeCupertino(context),
+        // _createButtonChangedThemeCupertino(context),
         SizedBox(height: 15.0,),
         _titleOfSections('About the App'),
         Divider(),
@@ -223,21 +238,21 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _createButtonChangedThemeCupertino(BuildContext context){
-    return IconButton(
-      icon: _changedIconThemeCupertino(), //? is responsible for changing the icon depending on the theme
-      onPressed: () => SaveDefaultTheme().changedTheme(context), // ? is responsible for changing the theme
-    );
-  }
+  // Widget _createButtonChangedThemeCupertino(BuildContext context){
+  //   return IconButton(
+  //     icon: _changedIconThemeCupertino(), //? is responsible for changing the icon depending on the theme
+  //     onPressed: () => SaveDefaultTheme().changedTheme(context), // ? is responsible for changing the theme
+  //   );
+  // }
 
-   Widget _changedIconThemeCupertino() {
+  //  Widget _changedIconThemeCupertino() {
     
-    if(prefs.whatModeIs){
-      return Icon(CupertinoIcons.lab_flask_solid, size: 40.0, color: Colors.yellow,);
-    }else{
-      return Icon(CupertinoIcons.lab_flask, size: 40.0, color: Colors.orange,);
-    }
-  }
+  //   if(prefs.whatModeIs){
+  //     return Icon(CupertinoIcons.lab_flask_solid, size: 40.0, color: Colors.yellow,);
+  //   }else{
+  //     return Icon(CupertinoIcons.lab_flask, size: 40.0, color: Colors.orange,);
+  //   }
+  // }
 
   Widget _buttonLogOutCupertino() {
     return CupertinoButton(
@@ -256,6 +271,54 @@ class _SettingsPageState extends State<SettingsPage> {
 
   
 }
+
+class BuildBottomModalChangedTheme extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        _createItemSettings(context, Colors.orangeAccent[400], Icons.brightness_7, 
+        AppLocalizations.of(context).translate("label_theme_light"),
+        () {
+          prefs.whatModeIs = false;
+          prefs.whatDarkIs = false;
+          SaveDefaultTheme().changedTheme(context, Apptheme.LightTheme,);
+          Navigator.of(context).pop();
+        },), 
+        _createItemSettings(context, Colors.yellowAccent[100], Icons.brightness_1,
+        AppLocalizations.of(context).translate("label_theme_light_dark"),
+         () {
+          prefs.whatModeIs = true;
+          prefs.whatDarkIs = false;
+          SaveDefaultTheme().changedTheme(context, Apptheme.DarkTheme,);
+          Navigator.of(context).pop();
+        },), 
+        _createItemSettings(context, Colors.yellowAccent[400], Icons.brightness_3, 
+        AppLocalizations.of(context).translate("label_theme_dark"),
+         () {
+          prefs.whatModeIs = true;
+          prefs.whatDarkIs = true;
+          SaveDefaultTheme().changedTheme(context, Apptheme.DarkerTheme,);
+          Navigator.of(context).pop();
+        },), 
+      ],
+    );
+  }
+  
+  Widget _createItemSettings(BuildContext context, Color color, IconData icon, String text, Function() onTap) {
+    return ListTile(
+      title: Text(text, style: TextStyle(fontSize: 18.0),),
+      leading: Icon(icon, size: 25.0, color: color,),
+      onTap: onTap,
+    );
+  }
+
+
+}
+
 
 
 class ButtomLogOut extends StatelessWidget {
@@ -282,6 +345,7 @@ class ButtomLogOut extends StatelessWidget {
           prefs.getCurrentUserPhoto = '';
           prefs.getCurrentUserUid = '';
           prefs.whatModeIs = false;
+          prefs.whatDarkIs = false;
           prefs.currentUserHasToken = false;
 
           Purchases.reset();

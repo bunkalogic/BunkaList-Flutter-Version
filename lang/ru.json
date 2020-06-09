@@ -228,5 +228,9 @@
     "label_media_lists" : "Средняя оценка ваших списков.",
     "label_total_chart_movie" : "Всего фильмов по статусу.",
     "label_total_chart_serie" : "Всего серий по статусу.",
-    "label_total_chart_anime" : "Всего аниме по статусу."
+    "label_total_chart_anime" : "Всего аниме по статусу.",
+
+    "label_theme_light"       : "Очистить тему",
+    "label_theme_light_dark"  : "Чистая ночь тема",
+    "label_theme_dark"        : "Темная ночь"
   }

@@ -130,7 +130,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
       title: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange[800], fontSize: 16.0 ),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
     );
   }
 

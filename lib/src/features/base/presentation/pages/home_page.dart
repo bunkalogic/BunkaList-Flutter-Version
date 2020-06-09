@@ -1,4 +1,5 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
@@ -115,9 +116,12 @@ Widget _createAppBarPlatform(BuildContext context) {
  Color _getTabbarBackgroundColor(){
 
     final bool theme = prefs.whatModeIs;
+    final bool dark = prefs.whatDarkIs;
     
-    if(theme){
+    if(theme && dark == false){
       return Colors.blueGrey[800];
+    }else if(theme && dark){
+      return Colors.grey[900];
     }else{
       return Colors.grey[100];
     }

@@ -21,48 +21,27 @@
   "more_tops_animes"           : "More Animes Tops",
   
   "top_movies"                 : "Tops Movies",
-    
-  "movies_popular"             : "Top Popular Movies",
-  
-  "movies_rated"               : "Top Rated Movies",
-  
-  "movies_upcoming"            : "Top Upcoming Movies",
-  
-  "movies_action"              : "Top Movies Of The Action Genre",
-  
-  "movies_adventure"           : "Top Movies Of The Adventure Genre",
-  
-  "movies_comedy"              : "Top Movies Of The Comedy Genre",
-  
-  "movies_war"                 : "Top Movies Of The War Genre",
-  
-  "movies_scifi"               : "Top Movies Of The Science Fiction Genre",
-  
-  "movies_crime"               : "Top Movies Of The Crime Genre",
-  
-  "movies_documental"          : "Top Movies Of The Dcumental Genre",
-  
-  "movies_drama"               : "Top Movies Of The Drama Genre",
-  
-  "movies_family"              : "Top Movies Of The Family Genre",
-  
-  "movies_fantasy"             : "Top Movies Of The Fantasy Genre",
-  
-  "movies_history"             : "Top Movies Of The History Genre",
-  
-  "movies_mistery"             : "Top Movies Of The Mistery Genre",
-  
-  "movies_musical"             : "Top Movies Of The Musical Genre",
-  
-  "movies_romance"             : "Top Movies Of The Romance Genre",
-  
-  "movies_thiller"             : "Top Movies Of The Thiller Genre",
-  
-  "movies_terror"              : "Top Movies Of The Terror Genre",
-  
-  "movies_western"             : "Top Movies Of The Western Genre",
-  
-  
+
+  "movies_popular"             : "Popular Movies",
+  "movies_rated"               : "Rated Movies",
+  "movies_upcoming"            : "Upcoming Movies",
+  "movies_action"              : "Movies Of The Action Genre",
+  "movies_adventure"           : "Movies Of The Adventure Genre",
+  "movies_comedy"              : "Movies Of The Comedy Genre",
+  "movies_war"                 : "Movies Of The War Genre",
+  "movies_scifi"               : "Movies Of The Science Fiction Genre",
+  "movies_crime"               : "Movies Of The Crime Genre",
+  "movies_documental"          : "Movies Of The Dcumental Genre",
+  "movies_drama"               : "Movies Of The Drama Genre",
+  "movies_family"              : "Movies Of The Family Genre",
+  "movies_fantasy"             : "Movies Of The Fantasy Genre",
+  "movies_history"             : "Movies Of The History Genre",
+  "movies_mistery"             : "Movies Of The Mistery Genre",
+  "movies_musical"             : "Movies Of The Musical Genre",
+  "movies_romance"             : "Movies Of The Romance Genre",
+  "movies_thiller"             : "Movies Of The Thiller Genre",
+  "movies_terror"              : "Movies Of The Terror Genre",
+  "movies_western"             : "Movies Of The Western Genre",
   
   "top_series"                 :  "Tops Series",
   
@@ -445,5 +424,8 @@
   "label_media_lists" : "Average score of your lists.",
   "label_total_chart_movie" : "Total Movies by status.",
   "label_total_chart_serie" : "Total Series by status.",
-  "label_total_chart_anime" : "Total Animes by status."
+  "label_total_chart_anime" : "Total Animes by status.",
+  "label_theme_light"       : "Clear Theme",
+  "label_theme_light_dark"  : "Clear Night Theme",
+  "label_theme_dark"        : "Dark Night Theme"
 }

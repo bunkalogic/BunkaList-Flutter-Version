@@ -27,6 +27,15 @@ class Preferences{
     _prefs.setBool('whatModeIs', value);
   }
 
+  //? se en encarga de guardar el modo de tema oscuro
+  get whatDarkIs {
+    return _prefs.getBool('whatDarkIs') ?? false;
+  }
+
+  set whatDarkIs (bool value) {
+    _prefs.setBool('whatDarkIs', value);
+  }
+
   //? se en encarga de guardar el modo de tema 
   get isNotAds {
     return _prefs.getBool('isNotAds') ?? false;

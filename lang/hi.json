@@ -227,6 +227,10 @@
     "label_media_lists" : "आपकी सूचियों का औसत स्कोर।",
     "label_total_chart_movie" : "स्टेटस द्वारा टोटल मूवीज़।",
     "label_total_chart_serie" : "स्थिति द्वारा कुल श्रृंखला।",
-    "label_total_chart_anime" : "स्थिति के आधार पर कुल एनिमे।"
+    "label_total_chart_anime" : "स्थिति के आधार पर कुल एनिमे।",
+
+    "label_theme_light"       : "स्पष्ट थीम",
+    "label_theme_light_dark"  : "क्लियर नाइट थीम",
+    "label_theme_dark"        : "डार्क नाइट थीम"
   
   }

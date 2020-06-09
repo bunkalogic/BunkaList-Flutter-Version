@@ -386,7 +386,7 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
     return Container(
     padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
     height: 95.0,
-    color: (prefs.whatModeIs) ? Colors.blueGrey[900] : Colors.white,
+    color: Colors.transparent,
     child: NativeAdmob(
       adUnitID: widget.adUnitID,
       controller: _nativeAdController,
@@ -400,7 +400,7 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
           color: (prefs.whatModeIs) ? Colors.grey[200] : Colors.grey[700]
         ),
         headlineTextStyle: NativeTextStyle(
-          fontSize: 16.0,
+          fontSize: 14.0,
           color: (prefs.whatModeIs) ? Colors.grey[100] : Colors.grey[800]
         ),
         bodyTextStyle: NativeTextStyle(
@@ -571,7 +571,7 @@ class _BigContainerAdsWidgetState extends State<BigContainerAdsWidget> {
     return Container(
     padding: EdgeInsets.all(8.0),
     height: _height,
-    color: (prefs.whatModeIs) ? Colors.blueGrey[900] : Colors.white,
+    color: Colors.transparent,
     child: NativeAdmob(
       adUnitID: widget.adUnitID,
       controller:  _nativeAdController,

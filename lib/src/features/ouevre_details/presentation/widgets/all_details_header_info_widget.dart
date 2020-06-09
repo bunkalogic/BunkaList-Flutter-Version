@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
+import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
@@ -158,12 +159,28 @@ class HeaderInfoMovie  extends StatelessWidget {
       Colors.blueGrey[900].withOpacity(1.0),
     ]; 
 
+    List<Color> colorsThemeDarker = [
+      Colors.grey[850].withOpacity(0.1),
+      Colors.grey[850].withOpacity(0.3),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.7),
+      Colors.grey[900].withOpacity(0.9),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.black87.withOpacity(1.0),
+    ]; 
+
     List<Color> colorsThemeDay = [
       Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.3),
       Colors.grey[100].withOpacity(0.5),
-      Colors.white.withOpacity(0.9),
-      Colors.white.withOpacity(1.0),
-      Colors.white.withOpacity(1.0),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.grey[100].withOpacity(0.7),
+      Colors.grey[50].withOpacity(0.9),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.white70.withOpacity(1.0),
     ]; 
 
     return SizedBox(
@@ -174,7 +191,7 @@ class HeaderInfoMovie  extends StatelessWidget {
               tileMode: TileMode.clamp,
               begin: Alignment.center,
               end: Alignment.bottomCenter,
-              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
+              colors: prefs.whatModeIs ? prefs.whatDarkIs ? colorsThemeDarker : colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),
@@ -402,12 +419,28 @@ class HeaderInfoSerie  extends StatelessWidget {
       Colors.blueGrey[900].withOpacity(1.0),
     ]; 
 
+    List<Color> colorsThemeDarker = [
+      Colors.grey[850].withOpacity(0.1),
+      Colors.grey[850].withOpacity(0.3),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.7),
+      Colors.grey[900].withOpacity(0.9),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.black87.withOpacity(1.0),
+    ]; 
+
     List<Color> colorsThemeDay = [
       Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.3),
       Colors.grey[100].withOpacity(0.5),
-      Colors.white.withOpacity(0.9),
-      Colors.white.withOpacity(1.0),
-      Colors.white.withOpacity(1.0),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.grey[100].withOpacity(0.7),
+      Colors.grey[50].withOpacity(0.9),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.white70.withOpacity(1.0),
     ]; 
 
     return SizedBox(
@@ -418,7 +451,7 @@ class HeaderInfoSerie  extends StatelessWidget {
               tileMode: TileMode.clamp,
               begin: Alignment.center,
               end: Alignment.bottomCenter,
-              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
+              colors: prefs.whatModeIs ? prefs.whatDarkIs ? colorsThemeDarker : colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),
@@ -647,12 +680,28 @@ class HeaderInfoAnime extends StatelessWidget {
       Colors.blueGrey[900].withOpacity(1.0),
     ]; 
 
+    List<Color> colorsThemeDarker = [
+      Colors.grey[850].withOpacity(0.1),
+      Colors.grey[850].withOpacity(0.3),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.5),
+      Colors.grey[850].withOpacity(0.7),
+      Colors.grey[900].withOpacity(0.9),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.grey[900].withOpacity(1.0),
+      Colors.black87.withOpacity(1.0),
+    ]; 
+
     List<Color> colorsThemeDay = [
       Colors.grey[100].withOpacity(0.3),
+      Colors.grey[100].withOpacity(0.3),
       Colors.grey[100].withOpacity(0.5),
-      Colors.white.withOpacity(0.9),
-      Colors.white.withOpacity(1.0),
-      Colors.white.withOpacity(1.0),
+      Colors.grey[100].withOpacity(0.5),
+      Colors.grey[100].withOpacity(0.7),
+      Colors.grey[50].withOpacity(0.9),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.grey[50].withOpacity(1.0),
+      Colors.white70.withOpacity(1.0),
     ]; 
 
     return SizedBox(
@@ -663,7 +712,7 @@ class HeaderInfoAnime extends StatelessWidget {
               tileMode: TileMode.clamp,
               begin: Alignment.center,
               end: Alignment.bottomCenter,
-              colors: prefs.whatModeIs ? colorsThemeDark : colorsThemeDay,
+              colors: prefs.whatModeIs ? prefs.whatDarkIs ? colorsThemeDarker : colorsThemeDark : colorsThemeDay,
             ),
           ),
       ),

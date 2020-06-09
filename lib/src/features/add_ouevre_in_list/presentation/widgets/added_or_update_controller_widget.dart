@@ -500,9 +500,12 @@ class GetBottomModalStatus {
 Color _getBackgroundColorTheme() {
     final prefs = new Preferences();
 
-    if(prefs.whatModeIs){
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
       return Colors.blueGrey[900];
-    }else{
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
       return Colors.grey[100];
     }
   }

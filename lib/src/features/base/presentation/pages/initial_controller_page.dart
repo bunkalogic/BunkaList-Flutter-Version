@@ -49,42 +49,30 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
   AppUpdateInfo _updateInfo;
   bool _flexibleUpdateAvailable = false;
 
-  AnimationController _controller;
+  AnimationController _animationController;
+  Animation<Color> _colorAnimation;
 
-  Animatable<Color> background = TweenSequence<Color>(
-    [
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.deepPurpleAccent,
-          end: Colors.deepPurpleAccent[400],
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.deepPurpleAccent[700],
-          end: Colors.deepOrangeAccent,
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin:Colors.deepOrangeAccent[400],
-          end: Colors.deepOrangeAccent[700],
-        ),
-      ),
-    ],
-  );
+  
+
+   @override
+  void initState() {
+    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _colorAnimation = _animationController.drive(
+      ColorTween(
+        begin: Colors.deepOrangeAccent[400],
+        end: Colors.deepOrangeAccent[700]
+      )
+    );
+    _animationController.repeat();
+    super.initState();
+  }
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 10),
-      vsync: this,
-    )..repeat();
+  dispose() {
+    _animationController.dispose(); // you need this
+    super.dispose();
   }
+
 
   @override
   void didChangeDependencies() {
@@ -212,77 +200,61 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
   Widget _loadingPage(){
 
-     return AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Scaffold(
-            body: Container(
-              color: background
-                  .evaluate(AlwaysStoppedAnimation(_controller.value)),
-              child: ListView(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 2.0,
-                  vertical: MediaQuery.of(context).size.height / 2.5
-                ),
-                children: <Widget>[
-                  Center(
-                    child: Image(
-                      image: AssetImage('assets/bunkalist-banner.png'),
-                      height: 100.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(),
-                  Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.purple,
-                      )
-                  )
-
-                ],
-              ),    
-            ),
-          );
-        });
-
     return Container(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.purple[700],
-            Colors.purple[900],  
-            Colors.deepOrangeAccent[400],
-          ], // whitish to gray
-          tileMode: TileMode.repeated, // repeats the gradient over the canvas
-        ),
+      height: MediaQuery.of(context).size.height,
+    decoration: new BoxDecoration(
+      gradient: new LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.deepPurple[900],
+          Colors.deepPurple[900],
+          Colors.deepPurple[800],
+          Colors.deepPurple[800],
+          Colors.deepPurple[700],
+          Colors.deepPurple[700],
+          Colors.deepPurple[600],
+          Colors.deepPurple,
+          Colors.deepPurple[600],
+          Colors.deepPurple[700],
+          Colors.deepPurple[700],
+          Colors.deepPurple[800],
+          Colors.deepPurple[800],
+          Colors.deepPurple[900],
+          Colors.deepPurple[900],
+        ], // whitish to gray
+        tileMode: TileMode.repeated, // repeats the gradient over the canvas
       ),
-      child: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: 2.0,
-          vertical: MediaQuery.of(context).size.height / 2.5
-        ),
-        children: <Widget>[
-          Center(
-            child: Image(
-              image: AssetImage('assets/bunkalist-banner.png'),
-              height: 100.0,
-              fit: BoxFit.cover,
-            ),
+    ),
+    child: Column(
+      
+      children: <Widget>[
+        Spacer(),
+        Align(
+          alignment: Alignment.center,
+          child: Image(
+            image: AssetImage('assets/bunkalist-banner.png'),
+            height: 120.0,
+            fit: BoxFit.cover,
           ),
-          SizedBox(),
-          Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.purple,
-              )
+        ),
+        Spacer(),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 14.0,
+              horizontal: 2.0
+            ),
+            child: LinearProgressIndicator(
+              backgroundColor: Colors.transparent,
+              valueColor: _colorAnimation,
+            ),
           )
+        )
 
-        ],
-      ),
-      ),
+      ],
+    ),
     );
   }
 

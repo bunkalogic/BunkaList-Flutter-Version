@@ -44,9 +44,14 @@ class ButtomUpdateAndDelete {
   }
 
   Color _getBackgroundColorTheme() {
-    if(prefs.whatModeIs){
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
       return Colors.blueGrey[900];
-    }else{
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
       return Colors.grey[100];
     }
   }
@@ -146,9 +151,14 @@ class _BuildDialogDeleteState extends State<BuildDialogDelete> {
   }
 
   Color _getBackgroundColorTheme() {
-    if(prefs.whatModeIs){
-      return Colors.blueGrey[800];
-    }else{
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
       return Colors.grey[100];
     }
   }

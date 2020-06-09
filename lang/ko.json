@@ -228,6 +228,10 @@
     "label_media_lists" : "목록의 평균 점수.",
     "label_total_chart_movie" : "상태 별 총 영화 수",
     "label_total_chart_serie" : "상태 별 총 시리즈.",
-    "label_total_chart_anime" : "상태 별 총 애니메이션"
+    "label_total_chart_anime" : "상태 별 총 애니메이션",
+
+    "label_theme_light"       : "명확한 테마",
+    "label_theme_light_dark"  : "클리어 나이트 테마",
+    "label_theme_dark"        : "다크 나이트 테마"
   
   }
