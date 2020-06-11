@@ -4,6 +4,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,11 +28,6 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
   int page = 1;
 
-  // final _pageController = new PageController(
-  //   initialPage: 1,
-  //   viewportFraction: 0.3,
-  // );
-
 
   @override
   void initState() {
@@ -40,13 +36,6 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
     super.initState();
   }  
 
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   BlocProvider.of<TopsMoviesBloc>(context)
-  //   ..add(GetMoviesTops(widget.typeId, page));
-  // }
   
 
   @override
@@ -81,7 +70,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
                 autoPlay: false,
                 viewportFraction: 0.35,
                 itemCount: state.movies.length,
-                itemBuilder: (context, i) => _itemPoster(context, state.movies[i]),
+                itemBuilder: (context, i) =>  ItemPosterMovies(state.movies[i])
               ),
             );
 
@@ -110,37 +99,146 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'movies');
       },
-      title: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
     );
   }
 
+}
 
 
-  Widget _itemPoster(BuildContext context, MovieEntity movieEntity) {
+class ContainerListCinemaMoviesWidget extends StatefulWidget {
+  final String title;
+  
+  
+  ContainerListCinemaMoviesWidget({@required this.title,});
+
+  @override
+  _ContainerListCinemaMoviesWidgetState createState() => _ContainerListCinemaMoviesWidgetState();
+}
+
+class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMoviesWidget> {
+
+  int page = 1;
+
+
+  @override
+  void initState() {
+    BlocProvider.of<CinemaMovieBloc>(context)
+    ..add(GetMoviesCinema(page));
+    super.initState();
+  }  
+
+  
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return new Container(
+      height: MediaQuery.of(context).size.height / 2.6,
+      child: Column(
+        children: <Widget>[
+          titleListTop(widget.title, context),
+          Expanded(child: BlocBuilder<CinemaMovieBloc, CinemaMovieState>(
+        //bloc: serviceLocator<TopsMoviesBloc>(),
+        builder: (context, state) {
+          if(state is CinemaMovieInitial){
+
+            return LoadingCustomWidget();
+
+          }else if(state is CinemaMovieLoading){
+
+            return LoadingCustomWidget();
+
+          }else if (state is CinemaMovieLoaded ){
+            
+              if(state.movies.isNotEmpty){
+
+               return Container(
+      
+              child: CarouselSlider.builder(
+                enlargeCenterPage: true, 
+                aspectRatio: 16 / 9,
+                autoPlay: false,
+                viewportFraction: 0.35,
+                itemCount: state.movies.length,
+                itemBuilder: (context, i) =>  ItemPosterMovies(state.movies[i])
+              ),
+            );
+
+             }else{
+               return EmptyIconWidget();
+             }
+
+
+            
+          }else if(state is CinemaMovieError){
+            return Text(state.message);
+          }
+          return EmptyIconWidget();
+        },
+      ),  
+      ),
+    ],
+  ),
+);  
+
+
+  }
+
+  Widget titleListTop(String title, BuildContext context ){
+    return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, '/TopList', arguments: 'movies');
+      },
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+    );
+  }
+
+}
+
+
+
+  
+
+
+
+
+class ItemPosterMovies extends StatelessWidget {
+  final MovieEntity movieEntity;
+
+  const ItemPosterMovies(this.movieEntity);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImageAndRating(context, movieEntity), flex: 4,),
-          _itemTitle(movieEntity),
-          Expanded(child: _iconButton(context, movieEntity), flex: 1,),
+          Expanded(child: _itemImageAndRating(context), flex: 4,),
+          _itemTitle(),
+          Expanded(child: _iconButton(context), flex: 1,),
         ],
     );
   }
 
-  Widget _itemImageAndRating(BuildContext context, MovieEntity movieEntity){
+  
+ 
+
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context, movieEntity),
-          _itemRating(movieEntity)
+          _itemImage(context, ),
+          _itemRating()
         ],
       ),
     );
   }
 
-  Widget _itemRating(MovieEntity movieEntity){
+  Widget _itemRating(){
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(2.0),
@@ -162,7 +260,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
     );
   }
 
-  Widget _itemImage(BuildContext context, MovieEntity movieEntity) {
+  Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ movieEntity.posterPath }');
@@ -191,7 +289,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
     );
   }
 
-  Widget _itemTitle(MovieEntity movieEntity) {
+  Widget _itemTitle() {
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Text(
@@ -204,45 +302,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context, MovieEntity movieEntity){
+  Widget _iconButton(BuildContext context){
     return ButtonAddedArrowDown(ouevre: movieEntity, type: movieEntity.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntity,);
   }
-
-
-  
-
-
-
-
-
 }
-  
-
-
-
-
-  
-
-  
-  
-  // void _dispatchTopId(BuildContext context, int topId, int page){
-  //   switch (topId) {
-  //     case Constants.topsMoviesPopularId:
-  //       return BlocProvider.of<TopsMoviesBloc>(context).add(new GetMoviesTopsPopular(page));
-  //       break;
-
-  //     case Constants.topsMoviesRatedId:
-  //       return BlocProvider.of<TopsMoviesBloc>(context).add(new GetMoviesTopsRated(page));
-  //       break;
-
-  //     case Constants.topsMoviesUpcommingId:
-  //       return BlocProvider.of<TopsMoviesBloc>(context).add(new GetMoviesTopsUpcoming(page));
-  //       break;  
-
-  //     default: return BlocProvider.of<TopsMoviesBloc>(context).add(new GetMoviesTopsPopular(page));
-  //   }
-    
-
-    
-    
-  // }

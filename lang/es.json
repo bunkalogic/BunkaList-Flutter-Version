@@ -229,6 +229,9 @@
     "label_total_chart_anime" : "Total de Animes por estados.",
     "label_theme_light"       : "Tema Claro",
     "label_theme_light_dark"  : "Tema Noche Clara",
-    "label_theme_dark"        : "Tema Noche Oscura"
+    "label_theme_dark"        : "Tema Noche Oscura",
+    "label_selection_movies"  : "Peliculas que podrian interesarte",
+    "label_selection_series"  : "Series que podrian interesarte",
+    "label_selection_animes"  : "Animes que podrian interesarte"
 
   }

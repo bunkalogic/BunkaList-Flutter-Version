@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_series/selectionseries_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,11 +29,6 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
 
   int page = 1;
 
-  // final _pageController = new PageController(
-  //   initialPage: 1,
-  //   viewportFraction: 0.3,
-  // );
-
 
   @override
   void initState() {
@@ -41,34 +37,9 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
     super.initState();
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   BlocProvider.of<TopsSeriesBloc>(context)
-  //   ..add(GetSeriesTops(widget.typeId, page));
-  // }
 
   @override
   Widget build(BuildContext context) {
-    
-    // _pageController.addListener( (){
-
-    //   if(_pageController.offset >= _pageController.position.maxScrollExtent 
-    //   && !_pageController.position.outOfRange){
-    //      BlocProvider.of<TopsSeriesBloc>(context)
-    //     ..add(GetSeriesTops(widget.typeId, page + 1));
-         
-    //   }
-
-    //    if(_pageController.offset <= _pageController.position.minScrollExtent 
-    //   && !_pageController.position.outOfRange ){
-    //       page = (page - 1 == 0 ) ? 1 : page - 1;
-
-    //       BlocProvider.of<TopsSeriesBloc>(context)
-    //       ..add(GetSeriesTops(widget.typeId, page));
-    //   }
-
-    // });
 
     return new Container(
       height: MediaQuery.of(context).size.height / 2.6,
@@ -97,7 +68,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
                  autoPlay: false,
                  viewportFraction: 0.35,
                 itemCount: state.series.length,
-                itemBuilder: (context, i) => _itemPoster(context, state.series[i]),
+                itemBuilder: (context, i) => ItemPosterSeries(state.series[i]),
               ),
             );
 
@@ -129,37 +100,139 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
-      title: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
     );
   }
 
+}
 
 
-  Widget _itemPoster(BuildContext context, SeriesEntity seriesEntity) {
-    return Column(
+class ContainerListSelectionSeriesWidget extends StatefulWidget {
+  final String title;
+  final int typeId;
+  
+  
+  
+  ContainerListSelectionSeriesWidget({@required this.title, @required this.typeId });
+
+  @override
+  _ContainerListSelectionSeriesWidgetState createState() => _ContainerListSelectionSeriesWidgetState();
+}
+
+class _ContainerListSelectionSeriesWidgetState extends State<ContainerListSelectionSeriesWidget> {
+
+  int page = 1;
+
+
+  @override
+  void initState() {
+    BlocProvider.of<SelectionseriesBloc>(context)
+    ..add(GetSelectionSeriesMonth(widget.typeId, page));
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return new Container(
+      height: MediaQuery.of(context).size.height / 2.6,
+      child: Column(
+        children: <Widget>[
+          titleListTop(widget.title, context),
+          Expanded(child: BlocBuilder<SelectionseriesBloc, SelectionseriesState>(
+        builder: (context, state) {
+          if(state is SelectionseriesInitial){
+            
+            return LoadingCustomWidget();
+
+          }else if(state is LoadingSelectionSeries){
+
+            return LoadingCustomWidget();
+
+          }else if (state is LoadedSelectionSeries){
+            
+              if(state.series.isNotEmpty){
+
+                return Container(      
+              child: CarouselSlider.builder(
+                 enlargeCenterPage: true, 
+                 aspectRatio: 16 / 9,
+                 autoPlay: false,
+                 viewportFraction: 0.35,
+                itemCount: state.series.length,
+                itemBuilder: (context, i) => ItemPosterSeries(state.series[i]),
+              ),
+            );
+
+             }else{
+               return EmptyIconWidget();
+             }
+
+
+            
+          }else if(state is ErrorSelectionSeries){
+            return Text(state.message);
+          }
+          return EmptyIconWidget();
+        },
+      ),
+              
+          
+      ),
+    ],
+  ),
+);  
+
+     
+
+  }
+
+  Widget titleListTop(String title, BuildContext context ){
+    return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, '/TopList', arguments: 'tv');
+      },
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+    );
+  }
+
+}
+
+
+class ItemPosterSeries extends StatelessWidget {
+  final SeriesEntity seriesEntity;
+
+  const ItemPosterSeries(this.seriesEntity);
+
+  @override
+  Widget build(BuildContext context) {
+   return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImageAndRating(context, seriesEntity), flex: 4,),
-          _itemTitle(seriesEntity),
-          Expanded(child: _iconButton(context, seriesEntity), flex: 1,),
+          Expanded(child: _itemImageAndRating(context), flex: 4,),
+          _itemTitle(),
+          Expanded(child: _iconButton(context), flex: 1,),
         ],
     );
   }
 
-  Widget _itemImageAndRating(BuildContext context, SeriesEntity seriesEntity){
+
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context, seriesEntity),
-          _itemRating(seriesEntity)
+          _itemImage(context),
+          _itemRating()
         ],
       ),
     );
   }
 
-  Widget _itemRating(SeriesEntity seriesEntity){
+  Widget _itemRating(){
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(2.0),
@@ -181,7 +254,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
     );
   }
 
-  Widget _itemImage(BuildContext context, SeriesEntity seriesEntity) {
+  Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ seriesEntity.posterPath }');
@@ -210,7 +283,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
     );
   }
 
-  Widget _itemTitle(SeriesEntity seriesEntity) {
+  Widget _itemTitle() {
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Text(
@@ -223,15 +296,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context, SeriesEntity seriesEntity){
+  Widget _iconButton(BuildContext context){
     return ButtonAddedArrowDown(ouevre: seriesEntity, type: seriesEntity.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntity,);
   }
-
-
-  
-
-
-
-
-
 }

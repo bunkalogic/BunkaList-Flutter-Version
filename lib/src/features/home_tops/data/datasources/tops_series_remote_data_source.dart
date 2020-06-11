@@ -41,7 +41,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   
 
   Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre}) async {
-      if(_loading) return [];
+      if(_loading) return await [];
       
       _loading = true;
       
@@ -84,6 +84,25 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
       
   }
 
+  Future<List<SeriesModel>>  getListSeriesSelection(int page) async {
+    final listId = 145395;
+
+    final Map<String, String> query = {
+        'api_key'                   : _theSerieDB,
+        'language'                  : prefs.getLanguage,
+        'page'                      : page.toString(),
+        'sort_by'                   : "title.asc"
+    };
+    
+    final url = Uri.https(
+      _url, '4/list/$listId', query);
+    
+    final resp = await processResponse(url.toString(),);
+    
+    return resp;
+  }
+
+
   Future<List<SeriesModel>> processResponse(String url) async {
     print(url);
     final response = await client.get( url, 
@@ -99,7 +118,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
       final listSeries = new Series.fromJsonList(decodedData['results']);
 
       if(listSeries.items.isNotEmpty){
-        return listSeries.items;
+        return  listSeries.items;
       }else{
         return [];
       }
@@ -118,51 +137,52 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   
   
   @override
-  Future<List<SeriesModel>> getTopsSeries(int topId, int page) {
+  Future<List<SeriesModel>> getTopsSeries(int topId, int page) async {
     switch (topId) {
 
-      case Constants.topsSeriesPopularId        : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc);
+      case Constants.topsSeriesPopularId        : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc);
 
-      case Constants.topsSeriesRatedId          : return getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
+      case Constants.topsSeriesRatedId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
-      case Constants.topsSeriesUpcommingId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-07-20' );
+      case Constants.topsSeriesUpcommingId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-07-20' );
 
-      case Constants.topsSeriesActAndAdvId      : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
+      case Constants.topsSeriesActAndAdvId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
-      case Constants.topsSeriesComedyId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.comedy.toString());
+      case Constants.topsSeriesComedyId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.comedy.toString());
 
-      case Constants.topsSeriesDocumentalId     : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.documentary.toString());
+      case Constants.topsSeriesDocumentalId     : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.documentary.toString());
 
-      case Constants.topsSeriesDramaId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.drama.toString());
+      case Constants.topsSeriesDramaId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.drama.toString());
 
-      case Constants.topsSeriesFamilyId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.family.toString());
+      case Constants.topsSeriesFamilyId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.family.toString());
 
-      case Constants.topsSeriesFantasyAndSciFiId: return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.sciFiAndFantasy.toString());
+      case Constants.topsSeriesFantasyAndSciFiId: return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.sciFiAndFantasy.toString());
 
-      case Constants.topsSeriesSoapId           : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.soap.toString());
+      case Constants.topsSeriesSoapId           : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.soap.toString());
 
-      case Constants.topsSeriesWarAndPoliticsId : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.warAndPolitics.toString());
+      case Constants.topsSeriesWarAndPoliticsId : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.warAndPolitics.toString());
 
-      case Constants.topsSeriesMisteryId        : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.mistery.toString());
+      case Constants.topsSeriesMisteryId        : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.mistery.toString());
 
-      case Constants.topsSeriesWesternId        : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());     
+      case Constants.topsSeriesWesternId        : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());     
       
-      case Constants.topsSeriesNetflixId        : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '213' );
+      case Constants.topsSeriesNetflixId        : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '213' );
 
-      case Constants.topsSeriesHBOId            : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '49' );
+      case Constants.topsSeriesHBOId            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '49' );
 
-      case Constants.topsSeriesAmazonPrimeId    : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '1024' );
+      case Constants.topsSeriesAmazonPrimeId    : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '1024' );
 
-      case Constants.topsSeriesBBCOneId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '4' );
+      case Constants.topsSeriesBBCOneId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '4' );
 
-      case Constants.topsSeriesAMCId            : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
+      case Constants.topsSeriesAMCId            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
 
-      case Constants.topsSeriesMonthId          : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-06-20'  );
+      case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-05-20', airDateLte: '2020-06-20'  );
 
-      case Constants.topsSeriesKoreanId         : return getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
+      case Constants.topsSeriesKoreanId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
 
+      case Constants.selectionSeriesId : return await getListSeriesSelection(page);
 
-      default: return null;
+      default: return await null;
     }
   }
 

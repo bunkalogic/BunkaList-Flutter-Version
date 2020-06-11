@@ -7,6 +7,9 @@ import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bl
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime_season/animeseason_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_animes/selectionanimes_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_movies/selectionmovies_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_series/selectionseries_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series_air_month/seriesair_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/anime_season_widget.dart';
@@ -58,20 +61,28 @@ class _TopsPageState extends State<TopsPage> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text(AppLocalizations.of(context).translate("label_movie_cinema"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
+          title: Text(AppLocalizations.of(context).translate("label_selection_movies"), style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
         ),
-        new BlocProvider<CinemaMovieBloc>(
-          builder: (_) => serviceLocator<CinemaMovieBloc>(),
-          child: CarouselMoviesInCinemaWidget(),
+        new BlocProvider<SelectionmoviesBloc>(
+          builder: (_) => serviceLocator<SelectionmoviesBloc>(),
+          child: CarouselMoviesSelectionWidget(),
         ),
-        SizedBox(height: 1.0,),
-        //MiniNativeBannerAds(adPlacementID: "177059330328908_177063066995201",),
         SizedBox(height: 1.0,),
         new BlocProvider<TopsMoviesBloc>(
           builder: (_) => serviceLocator<TopsMoviesBloc>(),
-          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate('movies_popular'), typeId: Constants.topsMoviesPopularId,),
+          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("movies_popular"), typeId: Constants.topsMoviesPopularId,),
+        ),
+        SizedBox(height: 4.0,),
+        new BlocProvider<CinemaMovieBloc>(
+          builder: (_) => serviceLocator<CinemaMovieBloc>(),
+          child:ContainerListCinemaMoviesWidget(title: AppLocalizations.of(context).translate("label_movie_cinema"),),
         ),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/2168759652', ),
+        SizedBox(height: 2.0,),
+        new BlocProvider<SelectionseriesBloc>(
+          builder: (_) => serviceLocator<SelectionseriesBloc>(),
+          child: ContainerListSelectionSeriesWidget(title: AppLocalizations.of(context).translate("label_selection_series"), typeId: Constants.selectionSeriesId,),
+        ),
         SizedBox(height: 2.0,),
         ListTile(
           title: Text(AppLocalizations.of(context).translate("label_serie_month"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),
@@ -85,9 +96,13 @@ class _TopsPageState extends State<TopsPage> {
         SizedBox(height: 1.0,),
         new BlocProvider<TopsSeriesBloc>(
           builder: (_) => serviceLocator<TopsSeriesBloc>(),
-          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate('series_popular'), typeId: Constants.topsSeriesPopularId,),
+          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("series_popular"), typeId: Constants.topsSeriesPopularId,),
         ),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5724861288', ),
+        new BlocProvider<SelectionanimesBloc>(
+          builder: (_) => serviceLocator<SelectionanimesBloc>(),
+          child: ContainerListSelectionAnimeWidget(title: AppLocalizations.of(context).translate("label_selection_animes"), typeId: Constants.selectionAnimesId,),
+        ),
         SizedBox(height: 2.0,),
         ListTile(
           title: Text(AppLocalizations.of(context).translate("label_anime_season"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600,), textAlign: TextAlign.center,),

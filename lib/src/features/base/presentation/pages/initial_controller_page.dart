@@ -243,7 +243,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 14.0,
+              vertical: 1.0,
               horizontal: 2.0
             ),
             child: LinearProgressIndicator(

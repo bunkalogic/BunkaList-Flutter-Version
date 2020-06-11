@@ -84,6 +84,24 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       
   }
 
+  
+  Future<List<MovieModel>>  getListMovieSelection(int page) async {
+    final listId = 145390;
+
+    final Map<String, String> query = {
+        'api_key'                   : _theMovieDB,
+        'language'                  : prefs.getLanguage,
+        'page'                      : page.toString(),
+        'sort_by'                   : "title.desc"
+    };
+    final url = Uri.https(
+      _url, '4/list/$listId', query);
+      final resp = await processResponse(url.toString(),);
+    
+    return resp;
+  }
+
+
   Future<List<MovieModel>> processResponse(String url) async {
     print(url);
     final response = await client.get( url, 
@@ -94,7 +112,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       final decodedData = json.decode(response.body);
       print('Get Tops Movies total results: ${ decodedData['total_results'] }');
 
-      totalPage = decodedData['total_pages'];
+      //totalPage = decodedData['total_pages'];
 
       final listMovies = new Movies.fromJsonList(decodedData['results']);
 
@@ -113,6 +131,8 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
     }
     
   }
+
+  
   
 
   
@@ -162,7 +182,9 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
  
       case Constants.topsMoviesWesternId        : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());
 
-      case Constants.topsMoviesKoreanId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 40);
+      case Constants.topsMoviesKoreanId : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 40);
+
+      case Constants.selectionMoviesId  : return await getListMovieSelection(page);
  
       default: return null;
     }

@@ -232,5 +232,8 @@
 
     "label_theme_light"       : "Очистить тему",
     "label_theme_light_dark"  : "Чистая ночь тема",
-    "label_theme_dark"        : "Темная ночь"
+    "label_theme_dark"        : "Темная ночь",
+    "label_selection_movies"  : "Фильмы, которые могут вас заинтересовать",
+    "label_selection_series"  : "Серия, которая может вас заинтересовать",
+    "label_selection_animes"  : "Аниме, которые могут вас заинтересовать"
   }

@@ -232,6 +232,9 @@
 
     "label_theme_light"       : "명확한 테마",
     "label_theme_light_dark"  : "클리어 나이트 테마",
-    "label_theme_dark"        : "다크 나이트 테마"
+    "label_theme_dark"        : "다크 나이트 테마",
+    "label_selection_movies"  : "관심있는 영화",
+    "label_selection_series"  : "관심이가는 시리즈",
+    "label_selection_animes"  : "관심있는 애니메이션"
   
   }

@@ -24,6 +24,9 @@ import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_movie
 import 'package:bunkalist/src/features/home_tops/domain/usescases/get_tops_series.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime_season/animeseason_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_animes/selectionanimes_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_movies/selectionmovies_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_series/selectionseries_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/tops_series_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/tops_animes_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
@@ -195,6 +198,11 @@ initTopsMovies(){
       movies: serviceLocator(),
       ),
     ); 
+  serviceLocator.registerFactory(
+    () => SelectionmoviesBloc(
+      movies: serviceLocator(),
+      ),
+    );   
   //?UsesCases
   serviceLocator.registerLazySingleton(() => GetTopsMovies(serviceLocator())); 
   //? Repository - Contracts
@@ -248,6 +256,11 @@ initTopsSeries(){
       series: serviceLocator()
     ),
   );
+  serviceLocator.registerFactory(
+    () => SelectionseriesBloc(
+      series: serviceLocator()
+    ),
+  );
 
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetTopsSeries(serviceLocator()));
@@ -279,6 +292,11 @@ initTopsAnime(){
       animes: serviceLocator()
       )
     );  
+  serviceLocator.registerFactory(
+    () => SelectionanimesBloc(
+      animes: serviceLocator()
+      )
+    );    
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetTopsAnime(serviceLocator()));
   //? Repository - Contracts

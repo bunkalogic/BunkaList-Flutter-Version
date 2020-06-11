@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_p
 import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/premium_soon_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profile_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -91,6 +92,8 @@ class RouteGeneretor{
         }
         return routeError();
 
+      case '/ListFavProfile':
+        return SlideRightRoute(page: ListFavoriteProfilePage());
 
       case '/Login':
         return SlideRightRoute(page: LoginHomePage());

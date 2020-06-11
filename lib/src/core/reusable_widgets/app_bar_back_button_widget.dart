@@ -6,7 +6,7 @@ class AppBarButtonBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back_ios, color: Colors.purpleAccent[700], size: 26.0,),
+      icon: Icon(Icons.keyboard_arrow_down, color: Colors.deepPurpleAccent[400], size: 35.0,),
       onPressed: () => Navigator.pop(context),
     );
 

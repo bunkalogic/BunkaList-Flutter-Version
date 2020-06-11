@@ -170,6 +170,19 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
 
+      case 'Favorite':{
+        return ouevreCollection
+        .where('isFavorite',isEqualTo: true)
+        .orderBy('positionListFav', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+
+        });
+      }
+
       
       default:{
         return ouevreCollection

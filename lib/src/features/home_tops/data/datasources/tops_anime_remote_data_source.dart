@@ -88,6 +88,26 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       
   }
 
+
+  Future<List<AnimeModel>>  getListAnimesSelection(int page) async {
+    final listId = 145397;
+
+    final Map<String, String> query = {
+        'api_key'                   : _theAnimeDB,
+        'language'                  : prefs.getLanguage,
+        'page'                      : page.toString(),
+        'sort_by'                   : "original_order.asc"
+    };
+    
+    final url = Uri.https(
+      _url, '4/list/$listId', query);
+    
+    final resp = await processResponse(url.toString(),);
+    
+    return resp;
+  }
+
+
   Future<List<AnimeModel>> processResponse(String url) async {
     print(url);
     final response = await client.get( url, 
@@ -163,6 +183,8 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-04-01', airDate: '2020-05-01' );
       
       case Constants.topsAnimesSeinen              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '195668');
+
+      case Constants.selectionAnimesId  : return await getListAnimesSelection(page);
       
 
       default: return null;

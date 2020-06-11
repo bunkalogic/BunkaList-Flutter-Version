@@ -231,6 +231,9 @@
 
     "label_theme_light"       : "Tema chiaro",
     "label_theme_light_dark"  : "Tema notte chiara",
-    "label_theme_dark"        : "Tema notte oscura"
+    "label_theme_dark"        : "Tema notte oscura",
+    "label_selection_movies"  : "Films che potrebbero interessarti",
+    "label_selection_series"  : "Series che potrebbero interessarti",
+    "label_selection_animes"  : "Animes che potrebbero interessarti"
   
   }

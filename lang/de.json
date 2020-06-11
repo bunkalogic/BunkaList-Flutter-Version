@@ -231,5 +231,8 @@
     "label_total_chart_anime" : "Gesamtzahl der Anime nach status.",
     "label_theme_light"      : "Klares Thema",
     "label_theme_light_dark" : "Klares Nachtthema",
-    "label_theme_dark"       : "Dunkles Nachtthema"
+    "label_theme_dark"       : "Dunkles Nachtthema",
+    "label_selection_movies"  : "Filme, die Sie interessieren könnten",
+    "label_selection_series"  : "Serien, die Sie interessieren könnten",
+    "label_selection_animes"  : "Anime, der dich interessieren könnte"
   }

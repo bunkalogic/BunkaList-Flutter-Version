@@ -427,5 +427,8 @@
   "label_total_chart_anime" : "Total Animes by status.",
   "label_theme_light"       : "Clear Theme",
   "label_theme_light_dark"  : "Clear Night Theme",
-  "label_theme_dark"        : "Dark Night Theme"
+  "label_theme_dark"        : "Dark Night Theme",
+  "label_selection_movies"    : "Movies that might interest you",
+    "label_selection_series"  : "Series that might interest you",
+    "label_selection_animes"  : "Animes that might interest you"
 }

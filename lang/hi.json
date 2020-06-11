@@ -231,6 +231,9 @@
 
     "label_theme_light"       : "स्पष्ट थीम",
     "label_theme_light_dark"  : "क्लियर नाइट थीम",
-    "label_theme_dark"        : "डार्क नाइट थीम"
+    "label_theme_dark"        : "डार्क नाइट थीम",
+    "label_selection_movies"  : "ऐसी फिल्में जो आपकी रुचि हो सकती हैं",
+    "label_selection_series"  : "श्रृंखला जो आपको रुचि दे सकती है",
+    "label_selection_animes"  : "एनिम्स जो आपको रुचि दे सकते हैं"
   
   }

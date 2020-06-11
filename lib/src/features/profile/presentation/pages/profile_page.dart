@@ -1,4 +1,5 @@
 
+
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
@@ -49,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: 270.0,
+          height: 265.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -178,11 +179,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _profileDesignMaterial(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(5.0),
+      //padding: EdgeInsets.all(5.0),
       children: <Widget>[
         _createBox(),
-        SizedBox(height: 5.0,),
+        //SizedBox(height: 5.0,),
         _buttomPlatformList(context),
+        //_buttonOutlineFavoritesOuevres(),
         ListContainerChartViews(),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
         //MiniNativeBannerAds(adPlacementID: "177059330328908_179577013410473",),
@@ -243,6 +245,35 @@ class _ProfilePageState extends State<ProfilePage> {
           },
         ),
       );
+  }
+
+  Widget _buttonOutlineFavoritesOuevres(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 55.0,
+          vertical: 2.0
+        ),
+      child: OutlineButton(
+        onPressed: (){
+           Navigator.pushNamed(context, '/ListFavProfile',);
+        },
+        child: Text(
+          "Your Ouevres Favorites",
+          style: TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.italic
+          ),
+        ),
+        borderSide: BorderSide(
+          color: Colors.deepOrangeAccent[400],
+          width: 2.0,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6.0)
+        ),
+      ),
+    );
   }
   
 

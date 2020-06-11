@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_animes/selectionanimes_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,56 +28,12 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
 
   int page = 1;
 
-  // final _pageController = new PageController(
-  //   initialPage: 1,
-  //   viewportFraction: 0.35,
-  // );
-
-  
-
-
-  // _addListener(){
-  //   _pageController.addListener( (){
-
-  //     if(_pageController.offset >= _pageController.position.maxScrollExtent 
-  //     && !_pageController.position.outOfRange){
-         
-  //        BlocProvider.of<TopsAnimesBloc>(context)
-  //       ..add(GetAnimesTops(widget.typeId, page++));
-         
-  //     }
-
-  //      if(_pageController.offset <= _pageController.position.minScrollExtent 
-  //     && !_pageController.position.outOfRange ){
-  //         page = (page-- == 0 ) ? 1 : page--;
-          
-  //         BlocProvider.of<TopsAnimesBloc>(context)
-  //         ..add(GetAnimesTops(widget.typeId, page));
-  //     }
-
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _pageController.addListener(_addListener);
-  // }  
-
   @override
   void initState() {
     BlocProvider.of<TopsAnimesBloc>(context)
     ..add(GetAnimesTops(widget.typeId, page));
     super.initState();
   }
-
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   BlocProvider.of<TopsAnimesBloc>(context)
-  //   ..add(GetAnimesTops(widget.typeId, page));
-  // }
 
 
   @override
@@ -108,7 +65,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
                  autoPlay: false,
                  viewportFraction: 0.35,
                  itemCount: state.animes.length,
-                 itemBuilder: (context, i) => _itemPoster(context, state.animes[i]),
+                 itemBuilder: (context, i) => ItemPosterAnimes(state.animes[i])
                ),
              );
 
@@ -138,37 +95,140 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'animes');
       },
-      title: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
     );
   }
 
 
 
-  Widget _itemPoster(BuildContext context, AnimeEntity animeEntity) {
+}
+
+
+class ContainerListSelectionAnimeWidget extends StatefulWidget {
+  final String title;
+  final int typeId;
+  
+  
+  
+  ContainerListSelectionAnimeWidget({@required this.title, @required this.typeId });
+
+  @override
+  _ContainerListSelectionAnimeWidgetState createState() => _ContainerListSelectionAnimeWidgetState();
+}
+
+class _ContainerListSelectionAnimeWidgetState extends State<ContainerListSelectionAnimeWidget> {
+
+  int page = 1;
+
+  @override
+  void initState() {
+    BlocProvider.of<SelectionanimesBloc>(context)
+    ..add(GetSelectionAnime(widget.typeId, page));
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+
+     return new Container(
+       height: MediaQuery.of(context).size.height / 2.6,
+       child: Column(
+         children: <Widget>[
+           titleListTop(widget.title, context),
+           Expanded(child: BlocBuilder<SelectionanimesBloc, SelectionanimesState>(
+         builder: (context, state) {
+           if(state is SelectionanimesInitial){
+
+             return LoadingCustomWidget();
+
+           }else if(state is LoadingSelectionanimesBlocAnimes){
+
+             return LoadingCustomWidget();
+
+           }else if (state is LoadedSelectionanimesBlocAnimes){
+             
+             if(state.animes.isNotEmpty){
+
+                return Container(   
+               child: CarouselSlider.builder(
+                 enlargeCenterPage: true, 
+                 aspectRatio: 16 / 9,
+                 autoPlay: false,
+                 viewportFraction: 0.35,
+                 itemCount: state.animes.length,
+                 itemBuilder: (context, i) => ItemPosterAnimes(state.animes[i])
+               ),
+             );
+
+             }else{
+               return EmptyIconWidget();
+             }
+             
+           }else if(state is ErrorSelectionanimesBlocAnimes){
+             return Text(state.message);
+           }
+           return EmptyIconWidget();
+         },
+       ),
+               
+           
+       ),
+     ],
+  ),
+);  
+
+
+  }
+
+
+  Widget titleListTop(String title, BuildContext context ){
+    return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, '/TopList', arguments: 'animes');
+      },
+      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+    );
+  }
+
+
+
+}
+
+
+
+class ItemPosterAnimes extends StatelessWidget {
+  final AnimeEntity animeEntity;
+
+  const ItemPosterAnimes(this.animeEntity);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImageAndRating(context, animeEntity), flex: 4,),
-          _itemTitle(animeEntity),
-          Expanded(child: _iconButton(context, animeEntity), flex: 1,),
+          Expanded(child: _itemImageAndRating(context,), flex: 4,),
+          _itemTitle(),
+          Expanded(child: _iconButton(context,), flex: 1,),
         ],
     );
   }
 
-  Widget _itemImageAndRating(BuildContext context, AnimeEntity animeEntity){
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context, animeEntity),
-          _itemRating(animeEntity)
+          _itemImage(context),
+          _itemRating()
         ],
       ),
     );
   }
 
-  Widget _itemRating(AnimeEntity animeEntity){
+  Widget _itemRating(){
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(2.0),
@@ -190,7 +250,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
     );
   }
 
-  Widget _itemImage(BuildContext context, AnimeEntity animeEntity) {
+  Widget _itemImage(BuildContext context,) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ animeEntity.posterPath }');
@@ -219,7 +279,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
     );
   }
 
-  Widget _itemTitle(AnimeEntity animeEntity) {
+  Widget _itemTitle() {
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Text(
@@ -232,17 +292,10 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       
   }
 
-  Widget _iconButton(BuildContext context, AnimeEntity animeEntity){
+  Widget _iconButton(BuildContext context){
 
     return ButtonAddedArrowDown(ouevre: animeEntity, type: animeEntity.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
         
   }
-
-
-  
-
-
-
-
 
 }
