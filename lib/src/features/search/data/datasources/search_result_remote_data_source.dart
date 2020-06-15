@@ -59,7 +59,7 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
 
         final decodedData = json.decode(response.body);
 
-        final search = ResultsModel.fromJson(decodedData);
+        final search = new ResultsModel.fromJson(decodedData);
 
         return search;
 

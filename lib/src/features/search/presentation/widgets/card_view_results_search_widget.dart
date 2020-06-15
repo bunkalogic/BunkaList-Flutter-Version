@@ -54,13 +54,13 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            gradient: LinearGradient(
-              colors: [
-                Colors.grey[400].withOpacity(0.1),
-                Colors.grey[500].withOpacity(0.1),
-                Colors.grey[600].withOpacity(0.1),
-              ]
-            ) 
+            // gradient: LinearGradient(
+            //   colors: [
+            //     Colors.grey[400].withOpacity(0.1),
+            //     Colors.grey[500].withOpacity(0.1),
+            //     Colors.grey[600].withOpacity(0.1),
+            //   ]
+            // ) 
           ),
        ),
      ); 

@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/card_view_results_search_widget.dart';
+import 'package:bunkalist/src/features/search/presentation/widgets/list_tile_results_search_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/search_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
@@ -71,7 +72,9 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
           
           return LoadingCustomWidget();
           
-        }else if (state.hasError) {
+        }
+        
+        if (state.hasError) {
           // return Center(
           //   child: Container(
           //     child: Text('No Results Found. '),
@@ -79,24 +82,16 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
           // );
           return SearchIconWidget();
 
-        }else if(state.results.isNotEmpty){
-
-          return CardViewSearchResultsWidget(results: state.results);
-
+        } 
+        
+        if(state.results.isEmpty){
+          return SearchIconWidget();
         }
 
-        if(query.length < 3){
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Center(
-              child: Text(AppLocalizations.of(context).translate("search_must_longer")),
-              )
-            ],
-          );
-        }
+        return CardViewSearchResultsWidget(results: state.results);
 
-        return SearchIconWidget();
+
+        
 
         
 
@@ -121,28 +116,22 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
 
          return LoadingCustomWidget();
 
-        }else if (state.hasError) {
+        }
+        
+        if (state.hasError) {
 
           return SearchIconWidget();
 
-        }else if(state.results.isNotEmpty){
+        }
+        
+        if(state.results.isEmpty){
 
-          return CardViewSearchResultsWidget(results: state.results);
+          return SearchIconWidget();
           
         }
 
-        if(query.length < 3){
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Center(
-              child: Text(AppLocalizations.of(context).translate("search_must_longer")),
-              )
-            ],
-          );
-        }
-
-        return SearchIconWidget();
+        return ListTileResultsSearchWidget(results: state.results,);  
+        
         
       },
     );

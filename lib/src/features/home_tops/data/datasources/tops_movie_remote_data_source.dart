@@ -112,7 +112,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       final decodedData = json.decode(response.body);
       print('Get Tops Movies total results: ${ decodedData['total_results'] }');
 
-      //totalPage = decodedData['total_pages'];
+      totalPage = decodedData['total_pages'];
 
       final listMovies = new Movies.fromJsonList(decodedData['results']);
 
@@ -144,9 +144,9 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
 
       case Constants.topsMoviesPopularId        : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc);
   
-      case Constants.topsMoviesRatedId          : return await getListMovieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 2800);
+      case Constants.topsMoviesRatedId          : return await getListMovieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 2000);
   
-      case Constants.topsMoviesUpcommingId      : return await getListMovieFromApi(page, sortBy: ConstSortBy.primaryReleaseDateAsc, releaseYear: 2020, releaseDateGte: '2020-05-01');
+      case Constants.topsMoviesUpcommingId      : return await getListMovieFromApi(page, sortBy: ConstSortBy.primaryReleaseDateAsc, releaseYear: 2020, releaseDateGte: '2020-08-01');
   
       case Constants.topsMoviesActionId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.action.toString());
   
@@ -186,7 +186,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
 
       case Constants.selectionMoviesId  : return await getListMovieSelection(page);
  
-      default: return null;
+      default: return await null;
     }
   }
 
