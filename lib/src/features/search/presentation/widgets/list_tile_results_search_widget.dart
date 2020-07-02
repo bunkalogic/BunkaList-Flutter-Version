@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
 
@@ -36,9 +37,14 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
 
 
   Widget _itemResultsListTile(Result result){
+    if(result.mediaType == "person"){
+      return _listTilePerson(result);
+    }
+    
     final title = (result.title != null) ? result.title : result.name;
 
     final String date = (result.releaseDate == null) ? result.firstAirDate : result.releaseDate;
+
 
     return ListTile(
       leading:  _itemResultPoster(result),
@@ -80,5 +86,41 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
     );
 
     return _poster;
+  }
+
+  Widget _listTilePerson(Result result) {
+    return ListTile(
+      leading: _personPhoto(result),
+      title: Text(
+        result.name,
+        style: TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(result.id, result.name)),
+    );
+  }
+
+  Widget _personPhoto(Result result) {
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/w185${result.profilePath}');
+
+    if(result.profilePath == null){
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: placeholder,
+        ),
+      );
+
+    }else{
+       return Container(
+        child: CircleAvatar(
+          radius: 30.0,
+          backgroundImage: photo ,
+        ),
+      );
+    }
   }
 }

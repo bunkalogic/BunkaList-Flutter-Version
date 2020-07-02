@@ -5,8 +5,9 @@ import 'package:dartz/dartz.dart';
 class GetValidateQuery{
   Either<Failures, String> getValidateQuery(String query){
     try {
-      //if(query == null || query.isEmpty) throw FormatException();
-      return Right(query);
+      String _query;
+      if(query != null || query.isNotEmpty) _query = query;
+      return Right(_query);
       
     } on FormatException {
 

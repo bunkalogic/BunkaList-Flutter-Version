@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "ホーム",
+    "btn_nav_explore"            : "見る",
     "btn_nav_profile"             : "プロフィール",
     "btn_nav_settings"            : "設定",
     "movies"                      : "映画",
@@ -182,7 +183,7 @@
     "label_dialog_delete_ouevre"  : "この作品をリストから削除してもよろしいですか？",
     "label_movie_cinema"          : "プレミア映画",
     "label_serie_month"           : "今週放送されるシリーズ",
-    "label_anime_season"          : "2020年春のアニメ",
+    "label_anime_season"          : "夏アニメ2020",
     "configuration"               : "構成",
     "label_edit_profile"          : "プロフィールを編集してください",
     "label_edit_preferences"      : "設定を編集してください",
@@ -235,6 +236,13 @@
     "label_theme_dark"        : "ダークナイトのテーマ",
     "label_selection_movies"  : "あなたに興味があるかもしれない映画",
     "label_selection_series"  : "あなたに興味があるかもしれないシリーズ",
-    "label_selection_animes"  : "アニメセレクション"
-    
+    "label_selection_animes"  : "アニメセレクション",
+    "wishlist_views_movie"            : "映画を見る計画に追加されました：",
+    "wishlist_views_serie"            : "シリーズを見る計画に追加：",
+    "wishlist_views_anime"            : "アニメを見るために追加されたアニメ：",
+    "empty_search_label" : "結果が見つかりません",
+    "title_label_explore" : "探検＆発見",
+    "label_genres_movie"  : "映画のジャンル",
+    "label_genres_serie"  : "シリーズのジャンル",
+    "label_genres_anime"  : "アニメジャンル"
   }

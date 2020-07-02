@@ -6,6 +6,21 @@ import 'package:bunkalist/src/features/base/domain/usescases/add_user_data.dart'
 import 'package:bunkalist/src/features/base/domain/usescases/get_user_data.dart';
 import 'package:bunkalist/src/features/base/domain/usescases/update_user_data.dart';
 import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
+import 'package:bunkalist/src/features/explorer/data/datasources/anime_explorer_remote_data_source.dart';
+import 'package:bunkalist/src/features/explorer/data/datasources/movies_explorer_remote_data_source.dart';
+import 'package:bunkalist/src/features/explorer/data/datasources/series_explorer_remote_source.dart';
+import 'package:bunkalist/src/features/explorer/data/implementations/anime_explorer_impl.dart';
+import 'package:bunkalist/src/features/explorer/data/implementations/movies_explorer_impl.dart';
+import 'package:bunkalist/src/features/explorer/data/implementations/series_explorer_impl.dart';
+import 'package:bunkalist/src/features/explorer/domain/contracts/anime_explorer_contract.dart';
+import 'package:bunkalist/src/features/explorer/domain/contracts/movie_explorer_contract.dart';
+import 'package:bunkalist/src/features/explorer/domain/contracts/serie_explorer_contract.dart';
+import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_animes.dart';
+import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_movies.dart';
+import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_series.dart';
+import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_animes/animes_explorer_bloc.dart';
+import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_movies/moviesexplorer_bloc.dart';
+import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_series/series_explorer_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/movie_cinema_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_anime_remote_data_source.dart';
 import 'package:bunkalist/src/features/home_tops/data/datasources/tops_movie_remote_data_source.dart';
@@ -162,6 +177,10 @@ Future<void> init() async {
   initCinemaMovie();
   initTopsSeries();
   initTopsAnime();
+  //! Explorer Features
+  initExplorerMovies();
+  initExplorerSeries();
+  initExplorerAnimes();
   //! Ouevre Details Features
   initOuevreDetails();
   //! Search Features
@@ -313,6 +332,72 @@ initTopsAnime(){
   );
 
   
+}
+
+initExplorerMovies(){
+  //? BLoc
+  serviceLocator.registerFactory(
+    () => MoviesExplorerBloc(
+      explorerMovies: serviceLocator(),
+      ),
+    ); 
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetExplorerMovies(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<MovieExplorerContract>(
+    () => MoviesExplorerImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  //? Data Sources
+  serviceLocator.registerLazySingleton<MoviesExplorerRemoteDataSource>(
+    () => MoviesExplorerRemoteDataSourceImpl(client: serviceLocator())
+  );  
+}
+
+initExplorerSeries(){
+  //? BLoc
+  serviceLocator.registerFactory(
+    () => SeriesExplorerBloc(
+      explorerSeries: serviceLocator(),
+      ),
+    ); 
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetExplorerSeries(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<SerieExplorerContract>(
+    () => SeriesExplorerImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  //? Data Sources
+  serviceLocator.registerLazySingleton<SeriesExplorerRemoteDataSource>(
+    () => SeriesExplorerRemoteDataSourceImpl(client: serviceLocator())
+  );  
+}
+
+initExplorerAnimes(){
+  //? BLoc
+  serviceLocator.registerFactory(
+    () => AnimesExplorerBloc(
+      explorerAnime: serviceLocator(),
+      ),
+    ); 
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetExplorerAnime(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<AnimeExplorerContract>(
+    () => AnimesExplorerImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  //? Data Sources
+  serviceLocator.registerLazySingleton<AnimesExplorerRemoteDataSource>(
+    () => AnimesExplorerRemoteDataSourceImpl(client: serviceLocator())
+  );  
 }
 
 

@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/plan_to_watch_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -186,30 +187,53 @@ class _ProfilePageState extends State<ProfilePage> {
         _buttomPlatformList(context),
         //_buttonOutlineFavoritesOuevres(),
         ListContainerChartViews(),
+        
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
         //MiniNativeBannerAds(adPlacementID: "177059330328908_179577013410473",),
+        _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_movie")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child:  PlanToWatchItem(status: 'WishList', type: 'movie',),
+          ),
+          SizedBox(height: 10.0,),
+          _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_serie")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child:  PlanToWatchItem(status: 'WishList', type: 'tv',),
+          ),
         SizedBox(height: 10.0,),
+          _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_anime")),
+        SizedBox(height: 5.0,),
+        new BlocProvider<GetListsBloc>(
+            builder: (_) => serviceLocator<GetListsBloc>(),
+            child:  PlanToWatchItem(status: 'WishList', type: 'anime',),
+          ),
+
+         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),     
+
+        SizedBox(height: 20.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_movie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'movie',),
           ),  
-        SizedBox(height: 10.0,),
+        SizedBox(height: 15.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'tv',),
           ),
-        SizedBox(height: 10.0,),
+        SizedBox(height: 15.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_anime")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: 'Last', type: 'anime',),
           ),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179577480077093",),  
         SizedBox(height: 25.0,),    
       ],

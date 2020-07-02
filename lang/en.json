@@ -2,6 +2,8 @@
         		
   "btn_nav_top"                : "Home",
 
+  "btn_nav_explore"            : "Explore",
+
   "btn_nav_profile"            : "Profile",
 
   "btn_nav_settings"           : "Settings",
@@ -348,7 +350,7 @@
 
   "label_serie_month"            : "Series On Air this week",
   
-  "label_anime_season"           : "Spring Anime Season 2020",
+  "label_anime_season"           : "Summer Anime Season 2020",
 
   "configuration"                : "Configuration",
 
@@ -430,5 +432,14 @@
   "label_theme_dark"        : "Dark Night Theme",
   "label_selection_movies"    : "Movies that might interest you",
     "label_selection_series"  : "Series that might interest you",
-    "label_selection_animes"  : "Animes that might interest you"
+    "label_selection_animes"  : "Animes that might interest you",
+    "wishlist_views_movie"            : "Movies added to plan to see:",
+    "wishlist_views_serie"            : "Series added to plan to see:",
+    "wishlist_views_anime"            : "Anime added to plan to see:",
+    "empty_search_label" : "No results found",
+    "title_label_explore" : "Explore & Discover",
+    "label_genres_movie"  : "Movies Genres",
+    "label_genres_serie"  : "Series Genres",
+    "label_genres_anime"  : "Animes Genres"
+
 }

@@ -1,4 +1,5 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_page.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
@@ -33,13 +34,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: _createAppBarPlatform(context),
+      appBar: (_selectedTabIndex == 1) ? _hideAppbar() : _createAppBarPlatform(context),
       body: _loadingPage(_selectedTabIndex),
       bottomNavigationBar: _createNavBar(),
     );
   }
   
 //!  Common Components (Android & iOS)
+
+Widget _hideAppbar(){
+  return PreferredSize(
+    preferredSize: Size(0.0, 0.0),
+    child: Container(),
+  );
+}
 
 
 Widget _createAppBarPlatform(BuildContext context) {
@@ -92,6 +100,7 @@ Widget _createAppBarPlatform(BuildContext context) {
       },
       tabs: [
         TabData(title: AppLocalizations.of(context).translate("btn_nav_top"), iconData: Icons.home, ),
+        TabData(title: AppLocalizations.of(context).translate("btn_nav_explore"), iconData: Icons.explore, ),
         TabData(title: AppLocalizations.of(context).translate("btn_nav_profile"), iconData: Icons.person, ),
         TabData(title: AppLocalizations.of(context).translate("btn_nav_settings"), iconData: Icons.settings, ),
       ],
@@ -104,9 +113,11 @@ Widget _createAppBarPlatform(BuildContext context) {
     
     case 0: return TopsPage();
 
-    case 1: return ProfilePage();
+    case 1: return ExplorerPage();
 
-    case 2: return SettingsPage();
+    case 2: return ProfilePage();
+
+    case 3: return SettingsPage();
 
     default: return TopsPage();
     

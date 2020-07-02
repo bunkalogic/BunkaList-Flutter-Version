@@ -67,7 +67,7 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
 
       throw ServerException();
 
-    } 
+      } 
   }
 
 }

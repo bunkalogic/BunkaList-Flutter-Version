@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "घर",
+    "btn_nav_explore"            : "अन्वेषण करना",
     "btn_nav_profile"             : "प्रोफाइल",
     "btn_nav_settings"            : "सेटिंग",
     "movies"                      : "फिल्म",
@@ -182,7 +183,7 @@
     "label_dialog_delete_ouevre"  : "क्या आप अपनी सूची से इस काम को निकालना सुनिश्चित कर रहे हैं?",
     "label_movie_cinema"          : "द प्रीमियर मूवीज",
     "label_serie_month"           : "इस सप्ताह श्रृंखला का प्रसारण",
-    "label_anime_season"          : "स्प्रिंग सीजन 2020 का समय",
+    "label_anime_season"          : "ग्रीष्मकालीन एनीमे सीजन 2020",
     "configuration"               : "सेटिंग",
     "label_edit_profile"          : "अपना प्रोफ़ाइल संपादित करें",
     "label_edit_preferences"      : "अपनी प्राथमिकताएं संपादित करें",
@@ -234,6 +235,14 @@
     "label_theme_dark"        : "डार्क नाइट थीम",
     "label_selection_movies"  : "ऐसी फिल्में जो आपकी रुचि हो सकती हैं",
     "label_selection_series"  : "श्रृंखला जो आपको रुचि दे सकती है",
-    "label_selection_animes"  : "एनिम्स जो आपको रुचि दे सकते हैं"
+    "label_selection_animes"  : "एनिम्स जो आपको रुचि दे सकते हैं",
+    "wishlist_views_movie"            : "फिल्मों को देखने की योजना में जोड़ा गया:",
+    "wishlist_views_serie"            : "श्रृंखला को देखने की योजना में जोड़ा गया:",
+    "wishlist_views_anime"            : "एनीमे को देखने की योजना में जोड़ा गया:",
+    "empty_search_label" : "कोई परिणाम नहीं मिला",
+    "title_label_explore" : "अन्वेषण और खोज",
+    "label_genres_movie"  : "मूवी शैलियों",
+    "label_genres_serie"  : "श्रृंखला शैली",
+    "label_genres_anime"  : "एनीमे शैली"
   
   }

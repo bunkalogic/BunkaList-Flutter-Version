@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "Главная",
+    "btn_nav_explore"            : "Explorer",
     "btn_nav_profile"             : "Профиль",
     "btn_nav_settings"            : "Настройка",
     "movies"                      : "Фильмы",
@@ -182,7 +183,7 @@
     "label_dialog_delete_ouevre"  : "Вы уверены, что удалили эту работу из своего списка?",
     "label_movie_cinema"          : "Премьера фильмов",
     "label_serie_month"           : "Сериалы на этой неделе",
-    "label_anime_season"          : "Аниме весеннего сезона 2020",
+    "label_anime_season"          : "Аниме лето сезона 2020",
     "configuration"               : "Настройка",
     "label_edit_profile"          : "Редактировать свой профиль",
     "label_edit_preferences"      : "Изменить ваши настройки",
@@ -235,5 +236,14 @@
     "label_theme_dark"        : "Темная ночь",
     "label_selection_movies"  : "Фильмы, которые могут вас заинтересовать",
     "label_selection_series"  : "Серия, которая может вас заинтересовать",
-    "label_selection_animes"  : "Аниме, которые могут вас заинтересовать"
+    "label_selection_animes"  : "Аниме, которые могут вас заинтересовать",
+    "wishlist_views_movie"            : "Фильмы добавлены в план, чтобы увидеть:",
+    "wishlist_views_serie"            : "Сериал добавлен в план, чтобы увидеть:",
+    "wishlist_views_anime"            : "Аниме добавлено в план, чтобы увидеть:",
+    "empty_search_label" : "Результатов не найдено",
+    "title_label_explore" : "Исследуй и открывай",
+    "label_genres_movie"  : "Кино жанры",
+    "label_genres_serie"  : "Жанры серии",
+    "label_genres_anime"  : "Аниме Жанры"
+
   }

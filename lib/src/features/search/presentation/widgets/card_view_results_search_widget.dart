@@ -46,6 +46,10 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   }
 
   Widget _buildCardItem(Result result) {
+    if(result.mediaType == "person"){
+      return _listTilePerson(result);
+    }
+    
      return Padding(
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
@@ -187,6 +191,42 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
           builder: (_) => serviceLocator<AddOuevreBloc>(),
           child: MultiButtonsAdded(ouevre: result, type: result.mediaType, objectType: ConstantsTypeObject.searchResult,),
         );
+  }
+
+  Widget _listTilePerson(Result result) {
+    return ListTile(
+      leading: _personPhoto(result),
+      title: Text(
+        result.name,
+        style: TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
+      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(result.id, result.name)),
+    );
+  }
+
+  Widget _personPhoto(Result result) {
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/w185${result.profilePath}');
+
+    if(result.profilePath == null){
+       return Container(
+        child: CircleAvatar(
+          radius: 45.0,
+          backgroundImage: placeholder,
+        ),
+      );
+
+    }else{
+       return Container(
+        child: CircleAvatar(
+          radius: 30.0,
+          backgroundImage: photo ,
+        ),
+      );
+    }
   }
 
   

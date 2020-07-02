@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "Home",
+    "btn_nav_explore"            : "Esplorare",
     "btn_nav_profile"             : "Profilo",
     "btn_nav_settings"            : "Impostazioni",
     "movies"                      : "Film",
@@ -182,7 +183,7 @@
     "label_dialog_delete_ouevre"  : "Sei sicuro di eliminare questo ouevre dal tuo elenco?",
     "label_movie_cinema"          : "The Premiere Movies",
     "label_serie_month"           : "Serie in onda questa settimana",
-    "label_anime_season"          : "Spring Anime Season 2020",
+    "label_anime_season"          : "Estate Anime Season 2020",
     "configuration"               : "Configurazione",
     "label_edit_profile"          : "Modifica il tuo profilo",
     "label_edit_preferences"      : "Modifica le tue preferenze",
@@ -234,6 +235,14 @@
     "label_theme_dark"        : "Tema notte oscura",
     "label_selection_movies"  : "Films che potrebbero interessarti",
     "label_selection_series"  : "Series che potrebbero interessarti",
-    "label_selection_animes"  : "Animes che potrebbero interessarti"
+    "label_selection_animes"  : "Animes che potrebbero interessarti",
+    "wishlist_views_movie"            : "Film aggiunti al piano per vedere::",
+    "wishlist_views_serie"            : "Serie aggiunti al piano per vedere:",
+    "wishlist_views_anime"            : "Anime aggiunti al piano per vedere:",
+    "empty_search_label" : "Nessun risultato trovato",
+    "title_label_explore" : "Esplora e scopri",
+    "label_genres_movie"  : "Generi di cinematografici",
+    "label_genres_serie"  : "Generi di Series",
+    "label_genres_anime"  : "Generi di Animes"
   
   }

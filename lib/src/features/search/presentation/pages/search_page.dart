@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/card_view_results_search_widget.dart';
+import 'package:bunkalist/src/features/search/presentation/widgets/empty_icon_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/list_tile_results_search_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/search_icon_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
   final Bloc<SearchEvent, SearchState> searchBloc;
 
   MultiSearchWidget (this.searchBloc);
+
 
   
 
@@ -56,43 +58,40 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
       onPressed: () => close(context, null),
     );
   }
+  
 
   @override
   Widget buildResults(BuildContext context) {
     
-    
     //We pass the query to the event bloc
-    searchBloc..add(GetResults(query));
+    searchBloc.add(TextSearchChanged(text: query));
 
     return BlocBuilder(
       bloc: searchBloc,
       builder: (BuildContext context, SearchState state){
+
         
-        if(state.isLoading){
-          
-          return LoadingCustomWidget();
-          
-        }
         
-        if (state.hasError) {
-          // return Center(
-          //   child: Container(
-          //     child: Text('No Results Found. '),
-          //   ),
-          // );
+        if (state is EmptySearch) {
+
           return SearchIconWidget();
 
-        } 
-        
-        if(state.results.isEmpty){
-          return SearchIconWidget();
-        }
+        }else if(state is LoadingSearch){
+
+         return LoadingCustomWidget();
+
+        }else if(state is ErrorEmptySearch){
+
+          return EmptyIconWidget();
+
+        }else if(state is LoadedSearch){
 
         return CardViewSearchResultsWidget(results: state.results);
 
+        }
 
+        return SearchIconWidget();
         
-
         
 
       },
@@ -102,35 +101,39 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
 
   }
 
+  
+
   @override
   Widget buildSuggestions(BuildContext context) {
 
    //We pass the query to the event bloc
-    searchBloc..add(GetResults(query));
+    searchBloc.add(TextSearchChanged(text: query));
 
     return BlocBuilder(
       bloc: searchBloc,
       builder: (BuildContext context, SearchState state){
         
-        if(state.isLoading){
+        if (state is EmptySearch) {
+
+          return SearchIconWidget();
+
+        }else if(state is LoadingSearch){
 
          return LoadingCustomWidget();
 
+        }else if(state is ErrorEmptySearch){
+
+          return EmptyIconWidget();
+
+        }else if(state is LoadedSearch){
+
+        return ListTileResultsSearchWidget(results: state.results,); 
+
         }
+
+        return SearchIconWidget();
         
-        if (state.hasError) {
-
-          return SearchIconWidget();
-
-        }
-        
-        if(state.results.isEmpty){
-
-          return SearchIconWidget();
-          
-        }
-
-        return ListTileResultsSearchWidget(results: state.results,);  
+         
         
         
       },

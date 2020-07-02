@@ -31,7 +31,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
   TopsAnimeRemoteDataSourceImpl({@required this.client});
 
-  /// Calls the http://theAnimedb.org/3/discover/Anime endpoint.
+  /// Calls the http://themoviedb.org/3/discover/tv endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   Preferences prefs = new Preferences();
@@ -180,7 +180,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
         
       case Constants.topsAnimeSuperNaturalId       : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '6152');
 
-      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-04-01', airDate: '2020-05-01' );
+      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-06-20', airDate: '2020-07-25' );
       
       case Constants.topsAnimesSeinen              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '195668');
 

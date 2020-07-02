@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "Inicio",
+    "btn_nav_explore"            : "Explorar",
     "btn_nav_profile"             : "Perfil",
     "btn_nav_settings"            : "Configuración",
     "movies"                      : "Películas",
@@ -91,7 +92,7 @@
     "genre_thriller"              : "Suspense",
     "genre_war"                   : "Guerra",
     "genre_western"               : "Western",
-    "genre_action_and_adventure"  : "Acción Aventura",
+    "genre_action_and_adventure"  : "Acción & Aventura",
     "genre_kids"                  : "Infantil",
     "genre_scifi_fantasy"         : "Ciencia ficción y fantasía",
     "genre_soap"                  : "Telenovela",
@@ -185,7 +186,7 @@
     "label_dialog_delete_ouevre"  : "¿Está seguro de eliminar esta obra de su lista?",
     "label_movie_cinema"          : "Las películas de estreno",
     "label_serie_month"           : "Serie en emision esta semana",
-    "label_anime_season"          : "Animes de la temporada de primavera 2020",
+    "label_anime_season"          : "Animes de la temporada de verano 2020",
     "configuration"               : "Configuración",
     "label_edit_profile"          : "Edite su perfil",
     "label_edit_preferences"      : "Edite sus preferencias",
@@ -232,6 +233,13 @@
     "label_theme_dark"        : "Tema Noche Oscura",
     "label_selection_movies"  : "Peliculas que podrian interesarte",
     "label_selection_series"  : "Series que podrian interesarte",
-    "label_selection_animes"  : "Animes que podrian interesarte"
-
+    "label_selection_animes"  : "Animes que podrian interesarte",
+    "wishlist_views_movie"            : "Películas agregadas a planeas ver:",
+    "wishlist_views_serie"            : "Series agregadas a planeas ver:",
+    "wishlist_views_anime"            : "Animes agregados a planeas ver:",
+    "empty_search_label" : "No se encontrado resultados",
+    "title_label_explore" : "Explora y descubre",
+    "label_genres_movie"  : "Generos de Peliculas",
+    "label_genres_serie"  : "Generos de Series",
+    "label_genres_anime"  : "Generos de Animes"
   }

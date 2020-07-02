@@ -1,6 +1,7 @@
 {
         		
     "btn_nav_top"                 : "시작",
+    "btn_nav_explore"            : "탐색",
     "btn_nav_profile"             : "프로필",
     "btn_nav_settings"            : "구성",
     "movies"                      : "영화",
@@ -182,7 +183,7 @@
     "label_dialog_delete_ouevre"  : "이 작품을 목록에서 제거하겠습니까?",
     "label_movie_cinema"          : "프리미어 영화",
     "label_serie_month"           : "이번 주 방송",
-    "label_anime_season"          : "2020 년 봄 시즌의 애니메이션",
+    "label_anime_season"          : "여름 애니메이션 시즌 2020",
     "configuration"               : "구성",
     "label_edit_profile"          : "프로필 수정",
     "label_edit_preferences"      : "환경 설정 편집",
@@ -235,6 +236,13 @@
     "label_theme_dark"        : "다크 나이트 테마",
     "label_selection_movies"  : "관심있는 영화",
     "label_selection_series"  : "관심이가는 시리즈",
-    "label_selection_animes"  : "관심있는 애니메이션"
-  
+    "label_selection_animes"  : "관심있는 애니메이션",
+    "wishlist_views_movie"            : "볼 계획에 추가 된 영화:",
+    "wishlist_views_serie"            : "볼 계획에 추가 된 시리즈:",
+    "wishlist_views_anime"            : "볼 계획에 추가 된 추가:",
+    "empty_search_label" : "검색 결과가 없습니다",
+    "title_label_explore" : "탐험 및 발견",
+    "label_genres_movie"  : "영화 장르",
+    "label_genres_serie"  : "시리즈 장르",
+    "label_genres_anime"  : "애니메이션 장르"
   }
