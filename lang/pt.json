@@ -243,6 +243,16 @@
     "title_label_explore" : "Explorar e descobrir",
     "label_genres_movie"  : "Gêneros de filmes",
     "label_genres_serie"  : "Gêneros da série",
-    "label_genres_anime"  : "Gêneros de anime"
+    "label_genres_anime"  : "Gêneros de anime",
+    "order_by"            : "Por ordem",
+    "label_asc"           : "Ascendente",
+    "label_desc"          : "Descendente",
+    "sort_popular"        : "Por popularidade",
+    "sort_vote_average"   : "Por média de votos",
+    "sort_vote_count"     : "Por número de votos",
+    "sort_date"           : "Por data de partida",
+    "label_year"          : "Por ano",
+    "label_one_year"      : "Um ano",
+    "label_anyone"        : "Qualquer um"
   
   }

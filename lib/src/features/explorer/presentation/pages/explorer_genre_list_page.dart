@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
@@ -8,6 +9,7 @@ import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_animes/animes_explorer_bloc.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_movies/moviesexplorer_bloc.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_series/series_explorer_bloc.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/bottom_modal_filter.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_animes_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_movies_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_series_widget.dart';
@@ -62,7 +64,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
   //? Variables
   final double _aspectRatio = 2.7 / 4.2;
 
-  
+  FilterOptions finalFilterOptions = new FilterOptions();
 
   ScrollController _scrollController;
   final _scrollThreshold = 100.0;
@@ -118,14 +120,98 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
               setState(() { });
             }
           },
-          )
+        ),
+        IconButton(
+          icon: Icon(Icons.tune, size: 26,), 
+          onPressed: () async {
+            FilterOptions result = await showModalBottomSheet<FilterOptions>(
+              isScrollControlled: true,
+              elevation: 10.0,
+              isDismissible: false,
+              backgroundColor: _getBackgroundColorTheme(), 
+              context: context,
+              builder: (context) => BuildBottomModalFilter(type: widget.data.type,),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30),
+                  topRight: const Radius.circular(30)
+                )
+              )
+            );
+
+            
+            
+            finalFilterOptions = result;
+            print('result of showModal year: ${result.year}');
+
+             print('result of showModal sort by: ${result.sortBy}');
+
+            setState(() {}); 
+
+             switch(widget.data.type){
+        
+              case 'movies' : {
+                
+                BlocProvider.of<MoviesExplorerBloc>(context)
+                ..add(GetMoviesExplorer(
+                  page: page,
+                  sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
+                  genre: widget.data.id,
+                  year: finalFilterOptions.year ?? 0,
+
+                ));
+              }
+              break;
+
+              case 'tv'     : {
+                BlocProvider.of<SeriesExplorerBloc>(context)
+                ..add(GetSeriesExplorer(
+                  page: page,
+                  sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
+                  genre: widget.data.id,
+                  year: finalFilterOptions.year ?? 0
+                ));
+              }
+              break;
+
+              case 'animes' : {
+                
+                 BlocProvider.of<AnimesExplorerBloc>(context)
+                  ..add(GetAnimesExplorer(
+                    page: page,
+                    sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
+                    genre: (widget.data.isKeyword) ? null : widget.data.id,
+                    withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
+                    year: finalFilterOptions.year ?? 0
+                  ));
+
+              }
+              break;
+
+              default: return Center(child: Text('No type'),);
+
+            }
+
+          }
+        ),
       ],
     ); 
   }
 
   
 
-  
+   Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
+      return Colors.grey[100];
+    }
+  }
 
   
 
@@ -216,18 +302,20 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
               
           if(state is MoviesExplorerInitial){
 
-             BlocProvider.of<MoviesExplorerBloc>(context)
+            if(page == 1){
+              BlocProvider.of<MoviesExplorerBloc>(context)
             ..add(GetMoviesExplorer(
               page: page,
               sortBy: ConstSortBy.popularityDesc,
               genre: widget.data.id,
             ));
+            }
+             
             
           }
           
           if (state is LoadedExplorerMovies){
             
-            //isLoading = state.hasReachedMax;
             isLoading = false;
 
             if(state.movies.isEmpty){
@@ -237,6 +325,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
             }else{
 
               if(!changeDesign){
+                
               
               return NotificationListener<ScrollNotification>(
                  onNotification: _handleScrollNotification,
@@ -300,12 +389,15 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
         builder: (context, state) {
           if(state is SeriesExplorerInitial){
 
-             BlocProvider.of<SeriesExplorerBloc>(context)
+            if(page == 1){
+               BlocProvider.of<SeriesExplorerBloc>(context)
             ..add(GetSeriesExplorer(
               page: page,
               sortBy: ConstSortBy.popularityDesc,
               genre: widget.data.id,
             ));
+            }
+            
             
             
           }
@@ -381,18 +473,20 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
   }
 
   Widget _buildCardOrGridViewAnimes(){
-      return Container(
-      child: BlocBuilder<AnimesExplorerBloc, AnimesExplorerState>(
+      return BlocBuilder<AnimesExplorerBloc, AnimesExplorerState>(
         builder: (context, state) {
           if(state is AnimesExplorerInitial){
 
-            BlocProvider.of<AnimesExplorerBloc>(context)
+            if(page == 1){
+              BlocProvider.of<AnimesExplorerBloc>(context)
             ..add(GetAnimesExplorer(
               page: page,
               sortBy: ConstSortBy.popularityDesc,
               genre: (widget.data.isKeyword) ? null : widget.data.id,
               withKeywords: (widget.data.isKeyword) ? widget.data.id : null
             ));
+            }
+            
             
             
             
@@ -465,15 +559,18 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
 
           return LoadingCustomWidget();
         },
-      ),  
-    );
+      );
   }
 
 
 
   bool _handleScrollNotification(ScrollNotification notification) {
+
+     final offsetVisibleThreshold = 50; // or something else..
+
     if (notification is ScrollEndNotification &&
-        _scrollController.position.extentAfter == 0) {
+       _scrollController.offset + offsetVisibleThreshold >=
+        _scrollController.position.maxScrollExtent) {
       switch(widget.data.type){
         
         case 'movies' : {  
@@ -485,12 +582,14 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
 
           print('movies page++: $page');
 
-          BlocProvider.of<MoviesExplorerBloc>(context)
-            ..add(GetMoviesExplorer(
-              page: page,
-              sortBy: ConstSortBy.popularityDesc,
-              genre: widget.data.id,
-            ));
+           BlocProvider.of<MoviesExplorerBloc>(context)
+                ..add(GetMoviesExplorer(
+                  page: page,
+                  sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
+                  genre: widget.data.id,
+                  year: finalFilterOptions.year ?? null,
+
+                ));
           
           
         }
@@ -507,11 +606,12 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
           print('series page++: $page');
 
           BlocProvider.of<SeriesExplorerBloc>(context)
-            ..add(GetSeriesExplorer(
-              page: page,
-              sortBy: ConstSortBy.popularityDesc,
-              genre: widget.data.id,
-            ));
+                ..add(GetSeriesExplorer(
+                  page: page,
+                  sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
+                  genre: widget.data.id,
+                  year: finalFilterOptions.year ?? null
+                ));
            
            
         }
@@ -528,12 +628,13 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
           print('animes page++: $page');
 
           BlocProvider.of<AnimesExplorerBloc>(context)
-            ..add(GetAnimesExplorer(
-              page: page,
-              sortBy: ConstSortBy.popularityDesc,
-              genre: (widget.data.isKeyword) ? null : widget.data.id,
-              withKeywords: (widget.data.isKeyword) ? widget.data.id : null
-            ));
+                  ..add(GetAnimesExplorer(
+                    page: page,
+                    sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
+                    genre: (widget.data.isKeyword) ? null : widget.data.id,
+                    withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
+                    year: finalFilterOptions.year ?? null
+                  ));
             
             
         }

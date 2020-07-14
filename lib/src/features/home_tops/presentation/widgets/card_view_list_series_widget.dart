@@ -71,7 +71,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
           Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(widget.series),
-          Expanded(child: ChipsGenresWidget(genres: widget.series.genreIds.cast<int>(),), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: widget.series.genreIds.cast<int>(), type: widget.series.type,), flex: 1,),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons()),
         ],

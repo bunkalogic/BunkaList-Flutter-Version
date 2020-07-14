@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/utils/get_tops_id.dart';
 import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_animes.dart';
@@ -48,8 +49,8 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
     if(event is GetAnimesExplorer && !_hasReachedMax(currentState)){
       final inputEither = GetTopId().getValidateTopId(event.page);
 
-
-       yield* inputEither.fold(
+      if(currentState is AnimesExplorerInitial){
+        yield* inputEither.fold(
           (failures) async* {
             yield ErrorExplorerAnimes(message: INVALID_INPUT_FAILURE_MESSAGE );
 
@@ -69,6 +70,8 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
           yield* _eitherLoadedOrErrorState(failureOrAnimes);
           return; 
         });
+      }
+       
 
 
         if(currentState is LoadedExplorerAnimes){
@@ -97,11 +100,21 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
             (animes)  {
 
               if (animes.isEmpty) {
-                return currentState.copyWith(hasReachedMax: true, latestPage: event.page);
+                return currentState.copyWith(
+                  hasReachedMax: true, 
+                  latestPage: event.page,
+                  latestSortBy: ConstSortBy.popularityDesc, 
+                  latestYear: 0
+                );
               } else {
+
+                 final allAnimes = currentState.animes + animes;
+
         
                 return LoadedExplorerAnimes(
-                  animes: currentState.animes + animes, 
+                  animes: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  ? allAnimes
+                  : animes, 
                   hasReachedMax: false, 
                   latestPage: event.page,
                 );
@@ -124,7 +137,7 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
   (Either<Failures, List<AnimeEntity>> either) async* {
     yield either.fold(
       (failure) => ErrorExplorerAnimes(message: _mapFailureToMessage(failure)), 
-      (animes)  => LoadedExplorerAnimes(animes: animes, hasReachedMax: false, latestPage: 1,)
+      (animes)  => LoadedExplorerAnimes(animes: animes, hasReachedMax: false, latestPage: 1,latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
     );
   }
 

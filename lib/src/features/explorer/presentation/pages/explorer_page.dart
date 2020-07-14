@@ -2,6 +2,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/card_tops_types.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_row_genres.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
@@ -39,7 +40,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
         ScrollRowGenres(genres:  getListGenresSeries(context),),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_anime")),
         ScrollRowGenres(genres:  getListGenresAnimes(context),),
-        SizedBox(height: 40.0,),
+        BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/6111874096',),
         
       ],
     );

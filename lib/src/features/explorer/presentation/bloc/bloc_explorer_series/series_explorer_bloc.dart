@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/utils/get_tops_id.dart';
 import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_series.dart';
@@ -50,8 +51,8 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
     if(event is GetSeriesExplorer && !_hasReachedMax(currentState)){
       final inputEither = GetTopId().getValidateTopId(event.page);
 
-
-       yield* inputEither.fold(
+      if( currentState is SeriesExplorerInitial){
+        yield* inputEither.fold(
           (failures) async* {
             yield ErrorExplorerSeries(message: INVALID_INPUT_FAILURE_MESSAGE );
 
@@ -71,6 +72,8 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
           yield* _eitherLoadedOrErrorState(failureOrSeries);
           return; 
         });
+      }
+       
 
 
         if(currentState is LoadedExplorerSeries){
@@ -99,13 +102,25 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
             (series)  {
 
               if (series.isEmpty) {
-                return currentState.copyWith(hasReachedMax: true, latestPage: event.page);
+                return currentState.copyWith(
+                  hasReachedMax: true, 
+                  latestPage: event.page, 
+                  latestSortBy: event.sortBy, 
+                  latestYear: event.year
+                );
               } else {
+
+                final allSeries = currentState.series + series;
+
         
                 return LoadedExplorerSeries(
-                  series: currentState.series + series, 
+                  series: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  ? allSeries
+                  : series, 
                   hasReachedMax: false, 
                   latestPage: event.page,
+                  latestSortBy: event.sortBy, 
+                  latestYear: event.year
                 );
 
               }
@@ -126,7 +141,7 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
   (Either<Failures, List<SeriesEntity>> either) async* {
     yield either.fold(
       (failure) => ErrorExplorerSeries(message: _mapFailureToMessage(failure)), 
-      (series)  => LoadedExplorerSeries(series: series, hasReachedMax: false, latestPage: 1,)
+      (series)  => LoadedExplorerSeries(series: series, hasReachedMax: false, latestPage: 1, latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
     );
   }
 

@@ -84,7 +84,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
           child: ContainerSocialMedia(id: widget.id,),
         ),
           _cardInfoPeople(people),
-        BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/6111874096',),
+        
         ],
       ),
     );

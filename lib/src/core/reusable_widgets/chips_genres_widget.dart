@@ -1,12 +1,14 @@
 import 'package:bunkalist/src/core/constans/constans_genres_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:flutter/material.dart';
 
 
 class ChipsGenresWidget extends StatefulWidget {
+  final String type;
   final List<int> genres;
   
-  ChipsGenresWidget({@required this.genres});
+  ChipsGenresWidget({@required this.genres, @required this.type});
 
   @override
   _ChipsGenresWidgetState createState() => _ChipsGenresWidgetState();
@@ -146,17 +148,26 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
 
     List<Widget> genresChipList = new List();
 
-
-    genres.forEach((item){
+    for (var i = 0; i < genres.length; i++) {
+      
       genresChipList.add(
         Container(
       margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
       child: ActionChip(
-          onPressed: () => null,
+          onPressed: () {
+            Genres genresData = new Genres(
+              id: widget.genres[i].toString(),
+              label: genres[i],
+              isKeyword: false,
+              type: widget.type
+            );
+
+            Navigator.pushNamed(context, '/ExplorerGenre', arguments: genresData);
+          },
           elevation: 4.0,
           labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
-          label: Text(item,
+          label: Text(genres[i],
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 14.0,
@@ -166,7 +177,37 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
         ),
       ),
       );
-    });
+    }
+
+    // genres.forEach((item){
+    //   genresChipList.add(
+    //     Container(
+    //   margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+    //   child: ActionChip(
+    //       onPressed: () {
+    //         Genres genresData = new Genres(
+    //           id: ,
+    //           label: item,
+    //           isKeyword: false,
+    //           type: 
+    //         );
+
+    //         Navigator.pushNamed(context, '/ExplorerGenre', arguments: genres);
+    //       },
+    //       elevation: 4.0,
+    //       labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+    //       backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+    //       label: Text(item,
+    //         style: TextStyle(
+    //           fontWeight: FontWeight.w600,
+    //           fontSize: 14.0,
+    //           fontStyle: FontStyle.italic
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    //   );
+    // });
      
      return genresChipList;
   }

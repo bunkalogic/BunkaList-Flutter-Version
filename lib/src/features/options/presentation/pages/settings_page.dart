@@ -114,7 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
           Navigator.pushNamed(context, '/Licenses');
         }),
         _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, AppLocalizations.of(context).translate("label_privacity"), (){
-          launch('https://www.iubenda.com/privacy-policy/33068007');
+          Navigator.pushNamed(context, '/Policy');
         }),
         Divider(),
         SizedBox(height: 10.0,),

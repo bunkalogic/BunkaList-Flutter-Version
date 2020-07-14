@@ -83,13 +83,21 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   }
 
   Widget _columnCenterItem(Result result){
+
+    final type = 
+    result.mediaType == 'movie' 
+    ? 'movies' : 
+    result.mediaType == 'anime' 
+    ? 'animes' : "tv";
+
     return Container(
       child: Column(
         children: <Widget>[
           Expanded(child: _rowInfoItem(result)),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(result),
-          Expanded(child: ChipsGenresWidget(genres: result.genreIds.cast<int>(),), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: result.genreIds.cast<int>(),
+          type: type,), flex: 1,),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons(result),flex: 1,),
         ],

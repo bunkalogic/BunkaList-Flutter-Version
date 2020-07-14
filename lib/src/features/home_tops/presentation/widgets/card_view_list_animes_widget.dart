@@ -5,7 +5,6 @@ import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/anime_entity.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -68,7 +67,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
           Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
           // _chipGenresItem(),
-          Expanded(child: ChipsGenresWidget(genres: widget.anime.genreIds.cast<int>(),), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: widget.anime.genreIds.cast<int>(), type: 'animes',), flex: 1,),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons()),
         ],

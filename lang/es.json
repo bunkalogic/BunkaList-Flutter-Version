@@ -241,5 +241,15 @@
     "title_label_explore" : "Explora y descubre",
     "label_genres_movie"  : "Generos de Peliculas",
     "label_genres_serie"  : "Generos de Series",
-    "label_genres_anime"  : "Generos de Animes"
+    "label_genres_anime"  : "Generos de Animes",
+    "order_by"            : "Por Orden",
+    "label_asc"           : "Ascendente",
+    "label_desc"          : "Descendente",
+    "sort_popular"        : "Por popularidad",
+    "sort_vote_average"   : "Por la media de votos",
+    "sort_vote_count"     : "Por número de votos",
+    "sort_date"           : "Por fecha de salida",
+    "label_year"          : "Por Año",
+    "label_one_year"      : "Un año",
+    "label_anyone"        : "Cualquiera"
   }

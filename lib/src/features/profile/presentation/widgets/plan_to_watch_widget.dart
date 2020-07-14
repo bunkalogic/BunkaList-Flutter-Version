@@ -156,7 +156,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Icon(Icons.today, color: Colors.white, size: 25.0,),
+        Icon(Icons.today, color: Colors.deepPurpleAccent[400], size: 25.0,),
         Text( date,
             style: TextStyle(
               fontWeight: FontWeight.w600,

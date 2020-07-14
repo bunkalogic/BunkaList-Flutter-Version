@@ -12,22 +12,30 @@ class LoadedExplorerSeries extends SeriesExplorerState{
   final List<SeriesEntity> series;
   final bool hasReachedMax;
   final int latestPage;
+  final String latestSortBy;
+  final int latestYear;
 
      LoadedExplorerSeries({
     this.series,
     this.hasReachedMax,
     this.latestPage,
-  }): super([series, hasReachedMax, latestPage]);
+    this.latestSortBy,
+    this.latestYear
+  }): super([series, hasReachedMax, latestPage, latestSortBy, latestYear]);
 
   LoadedExplorerSeries copyWith({
     List<SeriesEntity> series,
     bool hasReachedMax,
     int latestPage,
+    String latestSortBy,
+    int latestYear,
   }) {
     return LoadedExplorerSeries(
       series: series ?? this.series,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       latestPage: this.latestPage,
+      latestSortBy: this.latestSortBy,
+      latestYear: this.latestYear
     );
   }  
 }

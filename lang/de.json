@@ -243,5 +243,15 @@
     "title_label_explore" : "Erkunden & Entdecken",
     "label_genres_movie": "Movie Genres",
     "label_genres_serie": "Serien Genres",
-    "label_genres_anime": "Anime Genres"
+    "label_genres_anime": "Anime Genres",
+    "order_by"            : "Nach Reienfolge",
+    "label_asc"           : "Aufsteigend",
+    "label_desc"          : "Absteigend",
+    "sort_popular"        : "Nach Beliebtheit",
+    "sort_vote_average"   : "Nach Abstimmungsdurchschnitt",
+    "sort_vote_count"     : "Nach Anzahl der Stimmen",
+    "sort_date"           : "Bis zum Abreisetag",
+    "label_year"          : "Pro Jahr",
+    "label_one_year"      : "Ein Jahr",
+    "label_anyone"        : "Jemand"
   }

@@ -551,7 +551,7 @@ class _BigContainerAdsWidgetState extends State<BigContainerAdsWidget> {
 
       case AdLoadState.loadCompleted:
         setState(() {
-          _height = 330;
+          _height = 220;
         });
         break;
 

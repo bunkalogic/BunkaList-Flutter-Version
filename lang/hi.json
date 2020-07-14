@@ -243,6 +243,16 @@
     "title_label_explore" : "अन्वेषण और खोज",
     "label_genres_movie"  : "मूवी शैलियों",
     "label_genres_serie"  : "श्रृंखला शैली",
-    "label_genres_anime"  : "एनीमे शैली"
+    "label_genres_anime"  : "एनीमे शैली",
+    "order_by"            : "हुक्म से",
+    "label_asc"           : "आरोही",
+    "label_desc"          : "अवरोही",
+    "sort_popular"        : "लोकप्रियता स",
+    "sort_vote_average"   : "वोट औसत से",
+    "sort_vote_count"     : "वोटों की संख्या से",
+    "sort_date"           : "प्रस्थान तिथि से",
+    "label_year"          : "वर्ष द्वारा",
+    "label_one_year"      : "एक साल",
+    "label_anyone"        : "किसी को"
   
   }

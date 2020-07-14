@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
 import 'package:bunkalist/src/core/utils/get_tops_id.dart';
 import 'package:bunkalist/src/features/explorer/domain/usescases/get_explorer_movies.dart';
@@ -47,8 +48,8 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
     if(event is GetMoviesExplorer && !_hasReachedMax(currentState)){
       final inputEither = GetTopId().getValidateTopId(event.page);
 
-
-       yield* inputEither.fold(
+      if (currentState is MoviesExplorerInitial){
+        yield* inputEither.fold(
           (failures) async* {
             yield ErrorExplorerMovies(message: INVALID_INPUT_FAILURE_MESSAGE );
 
@@ -66,15 +67,14 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
           ));
           
           yield* _eitherLoadedOrErrorState(failureOrMovies);
-          return; 
         });
-
-
-        if(currentState is LoadedExplorerMovies){
+      } 
+      
+      if(currentState is LoadedExplorerMovies){
         final inputEither = GetTopId().getValidateTopId(event.page);
 
 
-       yield* inputEither.fold(
+        yield* inputEither.fold(
           (failures) async* {
             yield ErrorExplorerMovies(message: INVALID_INPUT_FAILURE_MESSAGE );
 
@@ -96,16 +96,20 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
             (movies)  {
 
               if (movies.isEmpty) {
-                return currentState.copyWith(hasReachedMax: true, latestPage: event.page);
-              } else {
-        
-                return LoadedExplorerMovies(
-                  movies: currentState.movies + movies, 
-                  hasReachedMax: false, 
-                  latestPage: event.page,
-                );
-
+                return currentState.copyWith(hasReachedMax: true, latestPage: page, latestSortBy: event.sortBy, latestYear: event.year);
               }
+
+              final allMovies = currentState.movies + movies;
+
+                return LoadedExplorerMovies(
+                  movies: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  ? allMovies
+                  : movies, 
+                  hasReachedMax: false, 
+                  latestPage: page,
+                  latestSortBy: event.sortBy, 
+                  latestYear: event.year
+                );
             });
 
           
@@ -123,7 +127,7 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
   (Either<Failures, List<MovieEntity>> either) async* {
     yield either.fold(
       (failure) => ErrorExplorerMovies(message: _mapFailureToMessage(failure)), 
-      (movies)  => LoadedExplorerMovies(movies: movies, hasReachedMax: false, latestPage: 1,)
+      (movies)  => LoadedExplorerMovies(movies: movies, hasReachedMax: false, latestPage: 1, latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
     );
   }
 

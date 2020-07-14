@@ -1,7 +1,8 @@
 part of 'moviesexplorer_bloc.dart';
 
+@immutable
 abstract class MoviesExplorerEvent extends Equatable {
-  const MoviesExplorerEvent([List props = const <dynamic>[]]) : super(props);
+  MoviesExplorerEvent([List props = const <dynamic>[]]) : super(props);
 }
 
 

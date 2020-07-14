@@ -90,6 +90,8 @@ dependencies:
   md2_tab_indicator: ^1.0.2
   # purchases
   purchases_flutter: ^1.0.4
+  # flutter neumorphic
+  flutter_neumorphic: ^3.0.1
 
   flutter_localizations:
     sdk: flutter

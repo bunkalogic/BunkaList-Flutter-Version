@@ -244,5 +244,15 @@
     "title_label_explore" : "탐험 및 발견",
     "label_genres_movie"  : "영화 장르",
     "label_genres_serie"  : "시리즈 장르",
-    "label_genres_anime"  : "애니메이션 장르"
+    "label_genres_anime"  : "애니메이션 장르",
+    "order_by"            : "주문",
+    "label_asc"           : "오름차순",
+    "label_desc"          : "내림차순",
+    "sort_popular"        : "인기순으로",
+    "sort_vote_average"   : "투표 평균으로",
+    "sort_vote_count"     : "투표 수",
+    "sort_date"           : "출발일까지",
+    "label_year"          : "년마다",
+    "label_one_year"      : "1 년",
+    "label_anyone"        : "누군가"
   }

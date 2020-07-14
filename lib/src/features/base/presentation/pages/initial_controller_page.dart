@@ -197,6 +197,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
       ),
     );
   }
+  
 
   Widget _loadingPage(){
 

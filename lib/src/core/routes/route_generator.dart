@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_genr
 import 'package:bunkalist/src/features/options/presentation/pages/about_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.dart';
+import 'package:bunkalist/src/features/options/presentation/pages/policy_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/premium_soon_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profile_page.dart';
@@ -115,6 +116,9 @@ class RouteGeneretor{
 
       case '/About':
         return SlideRightRoute(page: AboutPage());
+
+      case '/Policy':
+        return SlideRightRoute(page: PolicyPage());  
 
       case '/Premium':
         return SlideRightRoute(page: PremiumSoonPage());                

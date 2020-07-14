@@ -12,22 +12,30 @@ class LoadedExplorerAnimes extends AnimesExplorerState{
   final List<AnimeEntity> animes;
   final bool hasReachedMax;
   final int latestPage;
+  final String latestSortBy;
+  final int latestYear;
 
      LoadedExplorerAnimes({
     this.animes,
     this.hasReachedMax,
     this.latestPage,
-  }): super([animes, hasReachedMax, latestPage]);
+    this.latestSortBy,
+    this.latestYear
+  }): super([animes, hasReachedMax, latestPage, latestSortBy, latestYear]);
 
   LoadedExplorerAnimes copyWith({
     List<AnimeEntity> animes,
     bool hasReachedMax,
     int latestPage,
+    String latestSortBy,
+    int latestYear,
   }) {
     return LoadedExplorerAnimes(
       animes: animes ?? this.animes,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       latestPage: this.latestPage,
+      latestSortBy: this.latestSortBy,
+      latestYear: this.latestYear
     );
   }  
 }

@@ -215,8 +215,8 @@
     "empty_last_added_label"      : "リストに何も追加されていません。何か追加してください",
     "label_remove_ads"              : "Bunkalist開発をサポートし,広告を削除してください。",
     "label_month_ads"               : "0,99 $。*の広告なしの1か月",
-    "label_year_ads"                : "1年間$ 0.33 /月、広告なし。*",
-    "label_never_ads"               : " 6.99ドルの広告を削除するには、一度支払う。",
+    "label_year_ads"                : "1年間$ 0.33 /月,広告なし。*",
+    "label_never_ads"               : " 6.99ドルの広告を削除するには,一度支払う。",
     "label_never_ads_with_premium"  : "このオプションにはプレミアムも含まれます。**",
     "label_subscription"            : "* Google Playでいつでもサブスクリプションをキャンセルできます。",
     "label_include_premium"         : "**プレミアムが到着したとき,あなたは他に何も支払う必要はありません。将来のアップデートでは,プレミアムがもたらすすべての新機能に関する詳細情報があります。",
@@ -244,5 +244,15 @@
     "title_label_explore" : "探検＆発見",
     "label_genres_movie"  : "映画のジャンル",
     "label_genres_serie"  : "シリーズのジャンル",
-    "label_genres_anime"  : "アニメジャンル"
+    "label_genres_anime"  : "アニメジャンル",
+    "order_by"            : "命令により",
+    "label_asc"           : "上昇",
+    "label_desc"          : "下降",
+    "sort_popular"        : "人気順",
+    "sort_vote_average"   : "平均投票",
+    "sort_vote_count"     : "投票数による",
+    "sort_date"           : "出発日別",
+    "label_year"          : "年ごと",
+    "label_one_year"      : "一年",
+    "label_anyone"        : "誰でも"
   }

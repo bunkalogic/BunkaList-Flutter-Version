@@ -440,6 +440,16 @@
     "title_label_explore" : "Explore & Discover",
     "label_genres_movie"  : "Movies Genres",
     "label_genres_serie"  : "Series Genres",
-    "label_genres_anime"  : "Animes Genres"
+    "label_genres_anime"  : "Animes Genres",
+    "order_by"            : "By Order",
+    "label_asc"           : "Ascendant",
+    "label_desc"          : "Descending",
+    "sort_popular"        : "By Popularity",
+    "sort_vote_average"   : "By Vote Average",
+    "sort_vote_count"     : "By number of Votes",
+    "sort_date"           : "By departure Date",
+    "label_year"          : "By Year",
+    "label_one_year"      : "One year",
+    "label_anyone"        : "Anyone"
 
 }

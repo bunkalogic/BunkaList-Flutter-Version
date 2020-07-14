@@ -244,6 +244,16 @@
     "title_label_explore" : "Исследуй и открывай",
     "label_genres_movie"  : "Кино жанры",
     "label_genres_serie"  : "Жанры серии",
-    "label_genres_anime"  : "Аниме Жанры"
+    "label_genres_anime"  : "Аниме Жанры",
+    "order_by"            : "По порядку",
+    "label_asc"           : "По возрастанию",
+    "label_desc"          : "По убыванию",
+    "sort_popular"        : "По популярности",
+    "sort_vote_average"   : "Средний балл",
+    "sort_vote_count"     : "По количеству голосов",
+    "sort_date"           : "По дате отъезда",
+    "label_year"          : "По годам",
+    "label_one_year"      : "Один год",
+    "label_anyone"        : "Кто угодно"
 
   }
