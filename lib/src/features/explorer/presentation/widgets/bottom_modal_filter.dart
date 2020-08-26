@@ -894,7 +894,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
       child: ToggleButtons(
         constraints: BoxConstraints(minHeight: 40.0),
         borderColor: Colors.deepPurpleAccent[400],
-        fillColor: Colors.deepPurpleAccent.withOpacity(0.4),
+        fillColor: Colors.deepPurpleAccent[400],
         borderWidth: 2.0,
         selectedBorderColor: Colors.deepPurpleAccent[400],
         selectedColor: Colors.white,
@@ -922,7 +922,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   Widget _toogleButton(String title, IconData icon){
     return Container(
-      width: (MediaQuery.of(context).size.width - 200)/2,
+      width: (MediaQuery.of(context).size.width - 150)/2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -1060,7 +1060,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
           child: ToggleButtons(
             constraints: BoxConstraints(minHeight: 40.0),
             borderColor: Colors.deepPurpleAccent[400],
-            fillColor: Colors.deepPurpleAccent.withOpacity(0.4),
+            fillColor: Colors.deepPurpleAccent[400],
             borderWidth: 2.0,
             selectedBorderColor: Colors.deepPurpleAccent[400],
             selectedColor: Colors.white,

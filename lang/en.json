@@ -450,6 +450,9 @@
     "sort_date"           : "By departure Date",
     "label_year"          : "By Year",
     "label_one_year"      : "One year",
-    "label_anyone"        : "Anyone"
+    "label_anyone"        : "Anyone",
+    "label_intro_1"       : "Discover and find thanks to the tops thousands of Movies, Series and Animes. (In this app you cannot see Movies, Series and Animes)",
+    "label_intro_2"       : "Manage or manage Movies, Series and Animes in lists ordered by viewing status",
+    "label_intro_3"       : "Rate your Movies, Series or Animes with 2 ways to rate Simple or In Detail, you manage to value each aspect of a work."
 
 }

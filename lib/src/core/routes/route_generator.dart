@@ -2,10 +2,12 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/initial_controller_page.dart';
+import 'package:bunkalist/src/features/base/presentation/pages/intro_slider_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/splash_page.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_genre_list_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/about_page.dart';
+import 'package:bunkalist/src/features/options/presentation/pages/change_language_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/policy_page.dart';
@@ -39,6 +41,9 @@ class RouteGeneretor{
 
     switch(settings.name){
       
+      case '/Intro':
+        return MaterialPageRoute(builder: (_) => IntroSliderPage());
+
       case '/':
         return MaterialPageRoute(builder: (_) => InitialController());
 
@@ -121,7 +126,12 @@ class RouteGeneretor{
         return SlideRightRoute(page: PolicyPage());  
 
       case '/Premium':
-        return SlideRightRoute(page: PremiumSoonPage());                
+        return SlideRightRoute(page: PremiumSoonPage());
+
+      case '/Language':
+        return SlideRightRoute(page: ChangeLanguagePage());
+
+
 
       case '/NoAds':
         return SlideRightRoute(

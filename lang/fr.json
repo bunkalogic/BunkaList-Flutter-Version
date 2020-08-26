@@ -253,6 +253,9 @@
     "sort_date"           : "Par date de départ",
     "label_year"          : "Par année",
     "label_one_year"      : "Un ans",
-    "label_anyone"        : "N'importe qui"
+    "label_anyone"        : "N'importe qui",
+    "label_intro_1"       : "Découvrez et trouvez grâce aux milliers de films, séries et animes. (Dans cette application, vous ne pouvez pas voir de films, séries et animes)",
+    "label_intro_2"       : "Gérer ou gérer les films, séries et animes dans des listes classées par statut d'affichage",
+    "label_intro_3"       : "Évaluez vos films, séries ou animes avec 2 façons d'évaluer Simple ou En détail, vous parvenez à valoriser chaque aspect d'une œuvre."
   
   }

@@ -137,6 +137,10 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
     return BlocListener<AuthenticationBloc, AuthenticationState>(
 
       listener: (context, state) async {
+
+        if(state is AuthenticationFirstTimeOpen){
+          return Navigator.pushReplacementNamed(context, '/Intro');
+        }
         
         if(state is AuthenticationUninitialized){
           print('login init');
@@ -203,30 +207,31 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
     return Container(
       height: MediaQuery.of(context).size.height,
-    decoration: new BoxDecoration(
-      gradient: new LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.deepPurple[900],
-          Colors.deepPurple[900],
-          Colors.deepPurple[800],
-          Colors.deepPurple[800],
-          Colors.deepPurple[700],
-          Colors.deepPurple[700],
-          Colors.deepPurple[600],
-          Colors.deepPurple,
-          Colors.deepPurple[600],
-          Colors.deepPurple[700],
-          Colors.deepPurple[700],
-          Colors.deepPurple[800],
-          Colors.deepPurple[800],
-          Colors.deepPurple[900],
-          Colors.deepPurple[900],
-        ], // whitish to gray
-        tileMode: TileMode.repeated, // repeats the gradient over the canvas
-      ),
-    ),
+      color: Colors.deepPurpleAccent[700],
+    // decoration: new BoxDecoration(
+    //   gradient: new LinearGradient(
+    //     begin: Alignment.topCenter,
+    //     end: Alignment.bottomCenter,
+    //     colors: [
+    //       Colors.deepPurple[900],
+    //       Colors.deepPurple[900],
+    //       Colors.deepPurple[800],
+    //       Colors.deepPurple[800],
+    //       Colors.deepPurple[700],
+    //       Colors.deepPurple[700],
+    //       Colors.deepPurple[600],
+    //       Colors.deepPurple,
+    //       Colors.deepPurple[600],
+    //       Colors.deepPurple[700],
+    //       Colors.deepPurple[700],
+    //       Colors.deepPurple[800],
+    //       Colors.deepPurple[800],
+    //       Colors.deepPurple[900],
+    //       Colors.deepPurple[900],
+    //     ], // whitish to gray
+    //     tileMode: TileMode.repeated, // repeats the gradient over the canvas
+    //   ),
+    // ),
     child: Column(
       
       children: <Widget>[

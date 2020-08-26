@@ -6,7 +6,6 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/routes/route_generator.dart';
 import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
 import 'package:bunkalist/src/core/utils/http_overrrides.dart';
-import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,19 +60,19 @@ Widget _materialApp(BuildContext context, ThemeState state){
         title: 'Bunkalist',
         initialRoute: '/',
         onGenerateRoute: RouteGeneretor.generateRoute,
-        //localeListResolutionCallback: ( devicesLocale , supportedLocales ){
+        // localeListResolutionCallback: ( devicesLocale , supportedLocales ){
         //  myLocale = devicesLocale.first;
-//
+
         //  print(myLocale.countryCode);
         //  print(myLocale.languageCode);
-//
+
         //  prefs.getLanguage = '${myLocale.languageCode}-${myLocale.countryCode}';
         //  prefs.getCountryCode = '${myLocale.countryCode}';
-//
+
         //  print('language code: ${prefs.getLanguage}');
-        //  
+         
         //  return null; 
-        //},
+        // },
         //* THESE DELEGATES MAKE SURE THAT THE LOCALIZATION DATA FOR THE PROPER LANGUAGE IS LOADED
         supportedLocales: [
           //* LIST ALL OF THE APPs SUPPORT LOCALES HERE
@@ -100,6 +99,7 @@ Widget _materialApp(BuildContext context, ThemeState state){
         ],
         //* RETURNS A LOCALE WHICH BE USED BY THE APP
         localeResolutionCallback: (locale, supportedLocales){
+
           //* check if the current device locale is supported 
           for (var supportedLocale in supportedLocales){
             if(supportedLocale.languageCode == locale.languageCode 

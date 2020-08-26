@@ -62,13 +62,9 @@ class _LoginHomePageState extends State<LoginHomePage> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.purple[500],
-            Colors.purple[700], 
-            Colors.purple[900], 
-            //Colors.purple[600],
-            //Colors.purple[500], 
-            //Colors.purple[400],
-            //Colors.purple[300], 
+            Colors.deepPurpleAccent,
+            Colors.deepPurpleAccent[400], 
+            Colors.deepPurpleAccent[700], 
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),

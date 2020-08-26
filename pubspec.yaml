@@ -71,7 +71,7 @@ dependencies:
   # unique id generator
   uuid: ^2.0.4
   # svg render
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.18.0
   # flutter in app purchase
   flutter_inapp_purchase: ^2.2.0
   # admob native flutter
@@ -92,6 +92,8 @@ dependencies:
   purchases_flutter: ^1.0.4
   # flutter neumorphic
   flutter_neumorphic: ^3.0.1
+  # flutter intro slider
+  intro_slider: ^2.3.1
 
   flutter_localizations:
     sdk: flutter

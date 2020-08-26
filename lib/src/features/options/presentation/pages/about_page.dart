@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class AboutPage extends StatelessWidget {
@@ -22,7 +23,8 @@ class AboutPage extends StatelessWidget {
         _labelApi(context),
         SizedBox(height: 20.0),
         _rowLogoApis(),
-        _labelAttributeUses(context)
+        _labelAttributeUses(context),
+        _labelAttributeImage(context)
       ],
       ),
     );
@@ -101,6 +103,27 @@ class AboutPage extends StatelessWidget {
             fontSize: 16.0,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w500
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _labelAttributeImage(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        launch('https://www.flaticon.com/authors/smashicons');
+      },
+      child: Center(
+        child: Container(
+          padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+          child: Text(
+            'Used icons of Smashicons from flaticon.com',
+            style: TextStyle(
+              fontSize: 16.0,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w500
+            ),
           ),
         ),
       ),

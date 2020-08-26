@@ -251,5 +251,8 @@
     "sort_date"           : "Por fecha de salida",
     "label_year"          : "Por Año",
     "label_one_year"      : "Un año",
-    "label_anyone"        : "Cualquiera"
+    "label_anyone"        : "Cualquiera",
+    "label_intro_1"       : "Descubre y encuentra gracias a los tops miles de Peliculas, Series y Animes.(En esta app no puede ver Peliculas, Series y Animes)",
+    "label_intro_2"       : "Gestione o administre las Peliculas, Series y Animes en listas ordenadas por el estado de visualización ",
+    "label_intro_3"       : "Califica o puntúa tus Películas, Series o Animes con 2 formas de valorar Simple o En Detalle."
   }

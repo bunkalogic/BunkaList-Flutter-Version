@@ -66,13 +66,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              //Colors.orange[300],
-              //Colors.orange[400], 
-              //Colors.orange[500], 
-              //Colors.orange[600],
-              Colors.orange[500], 
-              Colors.orange[700],
-              Colors.orange[900], 
+              Colors.orangeAccent,
+              Colors.orangeAccent[400],
+              Colors.orangeAccent[700]
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
           ),

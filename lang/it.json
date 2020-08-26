@@ -253,6 +253,9 @@
     "sort_date"           : "Per data di partenza",
     "label_year"          : "Per anno",
     "label_one_year"      : "Un anno",
-    "label_anyone"        : "Chiunque"
+    "label_anyone"        : "Chiunque",
+    "label_intro_1"       : "Scopri e trova grazie alle migliaia di film, serie e anime migliori. (In questa app non puoi vedere film, serie e anime)",
+    "label_intro_2"       : "Gestisci o gestisci film, serie e animazioni in elenchi ordinati in base allo stato di visualizzazione",
+    "label_intro_3"       : "Valuta i tuoi film, serie o animazioni con 2 modi per valutare Semplice o In dettaglio, riesci a valutare ogni aspetto di un'opera."
   
   }

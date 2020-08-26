@@ -148,9 +148,9 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeRatedId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 35);
 
-      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-04-01', airDate: '2020-05-01' );
+      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-07-01', airDate: '2020-08-01' );
 
-      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-07-01', airDate: '2020-08-01' );
+      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-10-01', airDate: '2020-11-01' );
 
       case Constants.topsAnimeActionAndAdventureId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.actionAndAveture.toString(), voteCount: 5 );
 

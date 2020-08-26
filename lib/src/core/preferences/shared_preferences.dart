@@ -16,7 +16,14 @@ class Preferences{
     this._prefs = await SharedPreferences.getInstance();
   }
 
+  //? se en encarga de guardar el modo de tema 
+  get isOpenFirstTime {
+    return _prefs.getBool('isOpenFirstTime') ?? true;
+  }
   
+  set isOpenFirstTime (bool value) {
+    _prefs.setBool('isOpenFirstTime', value);
+  }
 
   //? se en encarga de guardar el modo de tema 
   get whatModeIs {
@@ -62,6 +69,25 @@ class Preferences{
 
   set getCountryCode (String value) {
     _prefs.setString('countryCode', value);
+  }
+
+  //? se en encarga de guardar el language code 
+  get getLanguageOfDevice {
+    return _prefs.getString('languageOfDevice') ?? 'en';
+  }
+
+  set getLanguageOfDevice (String value) {
+    _prefs.setString('languageOfDevice', value);
+  }
+
+  
+  //? se en encarga de guardar el language code 
+  get getCountryCodeOfDevice  {
+    return _prefs.getString('countryCodeOfDevice') ?? 'US';
+  }
+
+  set getCountryCodeOfDevice (String value) {
+    _prefs.setString('countryCodeOfDevice', value);
   }
 
   //? se encarga de guardar current User Id

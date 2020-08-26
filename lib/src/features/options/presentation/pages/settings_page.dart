@@ -90,6 +90,13 @@ class _SettingsPageState extends State<SettingsPage> {
           Navigator.pushNamed(context, '/NoAds');
           //_flushbarInProgress();
         } ),
+        _createItemSettings(context, Colors.redAccent, Icons.translate, 'Change the language', () async{
+          final result = await Navigator.pushNamed(context, '/Language');
+
+          if(result){
+            setState(() {});
+          }
+        } ),
         SizedBox(height: 10.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_change_theme")),
         Divider(),

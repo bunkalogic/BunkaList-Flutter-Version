@@ -14,6 +14,7 @@ import 'bloc.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   
+  Preferences prefs = Preferences();
   final GetUserHasToken userHasToken;
   final GetUserDeleteToken userDeleteToken;
   final GetUserPersistToken userPersistToken;
@@ -39,7 +40,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     AuthenticationEvent event,
   ) async* {
     if (event is AppStarted) {
-      
+      if(prefs.isOpenFirstTime){
+        yield AuthenticationFirstTimeOpen();
+      } 
+
+
       final Either<Failures, bool> eitherFailOrBolean = await userHasToken(NoParams());
       
 
@@ -50,7 +55,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         (boolean) => hasToken = boolean
         );
         print('has token: $hasToken');
-        
+
+       
 
       if (hasToken) {
         yield AuthenticationAuthenticated();
