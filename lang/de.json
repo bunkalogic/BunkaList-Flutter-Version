@@ -256,5 +256,7 @@
     "label_anyone"        : "Jemand",
     "label_intro_1"       : "Entdecken und finden Sie dank der Top Tausende von Filmen, Serien und Animes. (In dieser App können Sie keine Filme, Serien und Animes sehen)",
     "label_intro_2"       : "Verwalten oder verwalten Sie Filme, Serien und Animes in Listen, die nach Anzeigestatus sortiert sind",
-    "label_intro_3"       : "Bewerten Sie Ihre Filme, Serien oder Animes auf zwei Arten, um Einfach oder Im Detail zu bewerten. Sie können jeden Aspekt einer Arbeit bewerten."
+    "label_intro_3"       : "Bewerten Sie Ihre Filme, Serien oder Animes auf zwei Arten, um Einfach oder Im Detail zu bewerten. Sie können jeden Aspekt einer Arbeit bewerten.",
+    "label_company_series": "TV-Serien-Unternehmen",
+    "label_company_animes": "Animes Firmen"
   }

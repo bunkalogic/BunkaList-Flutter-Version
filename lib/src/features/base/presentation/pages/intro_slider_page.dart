@@ -90,7 +90,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
    void onDonePress() {
     
     prefs.isOpenFirstTime = false;
-    Navigator.pushNamed(context, '/');
+    Navigator.pushReplacementNamed(context, '/');
   }
 
 

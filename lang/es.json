@@ -254,5 +254,7 @@
     "label_anyone"        : "Cualquiera",
     "label_intro_1"       : "Descubre y encuentra gracias a los tops miles de Peliculas, Series y Animes.(En esta app no puede ver Peliculas, Series y Animes)",
     "label_intro_2"       : "Gestione o administre las Peliculas, Series y Animes en listas ordenadas por el estado de visualización ",
-    "label_intro_3"       : "Califica o puntúa tus Películas, Series o Animes con 2 formas de valorar Simple o En Detalle."
+    "label_intro_3"       : "Califica o puntúa tus Películas, Series o Animes con 2 formas de valorar Simple o En Detalle.",
+    "label_company_series": "Compañias de Series TV",
+    "label_company_animes" : "Compañias de Animes"
   }

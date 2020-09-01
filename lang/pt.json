@@ -256,6 +256,8 @@
     "label_anyone"        : "Qualquer um",
     "label_intro_1"       : "Descubra e encontre graças aos melhores milhares de filmes, séries e animes. (Neste aplicativo você não pode ver filmes, séries e animes)",
     "label_intro_2"       : "Gerenciar ou gerenciar filmes, séries e animes em listas ordenadas por status de visualização",
-    "label_intro_3"       : "Avalie seus filmes, séries ou animes com 2 maneiras de classificar Simples ou Em Detalhe, você consegue valorizar cada aspecto de uma obra."
+    "label_intro_3"       : "Avalie seus filmes, séries ou animes com 2 maneiras de classificar Simples ou Em Detalhe, você consegue valorizar cada aspecto de uma obra.",
+    "label_company_series": "Empresas de Séries de TV",
+    "label_company_animes": "Empresas Animes"
   
   }

@@ -3,7 +3,9 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/card_tops_types.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_company_widget.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_row_genres.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
@@ -34,6 +36,11 @@ class _ExplorerPageState extends State<ExplorerPage> {
           child: BoxSearch(),
         ),
         CardTypesMoreTopsWidget(),
+        _labelScrollGenres(AppLocalizations.of(context).translate("label_company_series")),
+        ScrollCompanyWidget(companies: getListSeriesCompany(),),
+        _labelScrollGenres(AppLocalizations.of(context).translate("label_company_animes")),
+        ScrollCompanyWidget(companies: getListAnimesCompany(),),
+        SizedBox(height: 30.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_movie")),
         ScrollRowGenres(genres:  getListGenresMovies(context),),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_serie")),

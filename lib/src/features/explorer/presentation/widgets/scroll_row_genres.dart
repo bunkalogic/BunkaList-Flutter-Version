@@ -1,5 +1,4 @@
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 

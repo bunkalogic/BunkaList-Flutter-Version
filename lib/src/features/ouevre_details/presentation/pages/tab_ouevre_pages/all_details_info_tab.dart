@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
+import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
@@ -383,7 +384,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         _buttonWatchInNetflix(),
         _buttonWatchInHBO(),
         _buttonWatchInAmazonPrimeVideo(),
-        _boxInfo(child: _rowRatingAndNetwork()),
+        _boxInfo(child: _rowRatingAndNetwork(context)),
         //MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
@@ -536,7 +537,8 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     );
   }
 
-  Widget _rowRatingAndNetwork() {
+  Widget _rowRatingAndNetwork(BuildContext context) {
+    
     final _ratingStyle = new TextStyle(
       color: Colors.deepOrange,
       fontSize: 20.0,
@@ -554,6 +556,13 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
     final logo = listSerieNetwork[0].logoPath;  
     
+
+    final Company company = new Company(
+      id: listSerieNetwork[0].id.toString(),
+      imagePath: logo,
+      label: listSerieNetwork[0].name,
+      type: 'tv'
+    );
     
 
     return Container(
@@ -577,11 +586,16 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
           //Spacer(),
           Padding(
             padding: const EdgeInsets.all(2.0),
-            child: Column(
-              children: <Widget>[
-                Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
-                _imageNetworkLogo(logo),
-              ],
+            child: GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, '/ExplorerCompany', arguments: company);
+              },
+              child: Column(
+                children: <Widget>[
+                  Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
+                  _imageNetworkLogo(logo),
+                ],
+              ),
             ),
           ),
           //Image.network('https://image.tmdb.org/t/p/orginal/' + logo, height: 15.0,)
@@ -600,9 +614,9 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     return FadeInImage(
           image: (logoPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
-          fit: BoxFit.cover,
-          // height: MediaQuery.of(context).size.height / 30.0,
-          height: 18.0,
+          fit: BoxFit.contain,
+          height: 40.0,
+          width: 40.0,
     );
 
   }
@@ -786,7 +800,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
-        _boxInfo(child: _rowRatingAndNetwork()),
+        _boxInfo(child: _rowRatingAndNetwork(context)),
         //MiniNativeBannerAds(adPlacementID: "177059330328908_179579176743590",),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
@@ -833,7 +847,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       ),
     );
   }
-  Widget _rowRatingAndNetwork() {
+  Widget _rowRatingAndNetwork(BuildContext context) {
     final _ratingStyle = new TextStyle(
       color: Colors.deepOrange,
       fontSize: 20.0,
@@ -850,6 +864,13 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
     final List<NetworkAnime> listAnimeNetwork = new List<NetworkAnime>.from(animeNetwork);
 
     final logo = listAnimeNetwork[0].logoPath;
+
+    final Company company = new Company(
+      id: listAnimeNetwork[0].id.toString(),
+      imagePath: logo,
+      label: listAnimeNetwork[0].name,
+      type: 'animes'
+    );
 
     return Container(
       child: Row(
@@ -872,11 +893,16 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
           //Spacer(),
           Padding(
             padding: const EdgeInsets.all(2.0),
-            child: Column(
-              children: <Widget>[
-                Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
-                _imageNetworkLogo(logo),
-              ],
+            child: GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, '/ExplorerCompany', arguments: company);
+              },
+              child: Column(
+                children: <Widget>[
+                  Icon(Icons.business, color: Colors.grey[400], size: 25.0, ),
+                  _imageNetworkLogo(logo),
+                ],
+              ),
             ),
           ),
         ],
@@ -891,11 +917,11 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
 
 
     return FadeInImage(
-          image: (logoPath == null) ? placeholder : poster,//? Image Poster Item,
-          placeholder: placeholder, //? PlaceHolder Item,
-          fit: BoxFit.cover,
-          // height: MediaQuery.of(context).size.height / 30.0,
-          height: 18.0,
+      image: (logoPath == null) ? placeholder : poster,//? Image Poster Item,
+      placeholder: placeholder, //? PlaceHolder Item,
+      fit: BoxFit.contain,
+      height: 40.0,
+      width: 40.0,
     );
 
   }
