@@ -1,25 +1,15 @@
 # **_BunkaList_**
 Bunkalist is a project to save what you have seen or are watching either movies, series or anime in an orderly manner and the one that scores or values each work in a more realistic way.
 
+This has been my personal project in recent months with which I learned what it is to develop a real app. In which I learned to create design style, to use software design pattern (TDD), the process of optimizing the file of a mobile application in an application store (ASO), multilanguage support.
+
 > If you are interested and want to support you can donate [PayPal](https://paypal.me/bunkalist?locale.x=es_ES)
 
-# **The Bunkalist Version Flutter TODO Map**
-
-- [x] Create the basis of the application design.
-
-- [X] Create the design of the App regarding the use of the Api.
-
-- [x] Create the design of the App regarding the use of Firestore.
-
-- [ ] Add the logic part of [Api TMDb](https://www.themoviedb.org/documentation/api).
-
-- [ ] Add the part of the Firestore logic.
-
-
-# **The Bunkalist Road Map** :clipboard:
-- Replace the [native Android](https://github.com/bunkalogic/BunkaList) version with the Flutter version by the beginning of next year. 
-- Improve stability and add new features.
+# **The Bunkalist Road Map 2020/2021** :clipboard:
+- Add the iOS version to the Apple Store.
+- Refactor and redesign the app for the Web version.
 - Implement that users can also add manga and books to their lists.
+- Create and implement the Premium version.
 
 # **License**
 ```
