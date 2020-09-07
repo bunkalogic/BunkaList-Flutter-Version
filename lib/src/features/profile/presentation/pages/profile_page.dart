@@ -185,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
         _createBox(),
         //SizedBox(height: 5.0,),
         _buttomPlatformList(context),
-        //_buttonOutlineFavoritesOuevres(),
+        // _buttonOutlineFavoritesOuevres(),
         ListContainerChartViews(),
         
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
@@ -296,7 +296,7 @@ class _ProfilePageState extends State<ProfilePage> {
           width: 2.0,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0)
+          borderRadius: BorderRadius.circular(4.0)
         ),
       ),
     );

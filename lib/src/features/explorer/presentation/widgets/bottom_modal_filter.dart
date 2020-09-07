@@ -606,6 +606,8 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   int _finalSelectedYear = -1;
 
+  double _sliderYear = 2000;
+
   
 
   List<int> listOfYear = [
@@ -795,9 +797,12 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8.0),
-      height: MediaQuery.of(context).size.height * 0.95,
+      // padding: EdgeInsets.all(8.0),
+      // height: MediaQuery.of(context).size.height * 0.95,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
         children:[ 
           _labelFilterYear(),
           _toogleButtonsYear(),
@@ -805,7 +810,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
           _labelFilterOptions(),
          _toogleButtonsOrder(),
           _listRadioButtons(),
-          Spacer(),
+          // Spacer(),
           _rowTopActions(),
         ]  
       ),
@@ -874,7 +879,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   Widget _labelFilterOptions() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
@@ -961,7 +966,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
             AppLocalizations.of(context).translate('sort_popular'),
             textAlign: TextAlign.right,
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic
             ),
@@ -983,7 +988,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
             AppLocalizations.of(context).translate('sort_vote_average'),
             textAlign: TextAlign.right,
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic
             ),
@@ -1040,7 +1045,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   Widget _labelFilterYear() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
@@ -1075,6 +1080,12 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
             ], 
             onPressed: (int index) {
               setState(() {
+              // for (int i = 0; i < isSelectedYear.length; i++) {
+              //    _selectedYear = isSelectedYear[i] = i == index;
+
+              //   _finalSelectedYear = !_selectedYear ? -1 : _finalSelectedYear;
+              //   print(_finalSelectedYear);
+              // }
               for (int i = 0; i < isSelectedYear.length; i++) {
                  _selectedYear = isSelectedYear[i] = i == index;
 
@@ -1087,39 +1098,60 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
           ),
         );
 
-       final carouselYear = Container(
+      //  final carouselYear = Container(
+      //   padding: EdgeInsets.all(8.0),
+      //   child: CarouselSlider.builder(
+      //     enlargeCenterPage: true, 
+      //     height: MediaQuery.of(context).size.height / 12.0,
+      //     autoPlay: false,
+      //     viewportFraction: 0.36,
+      //     initialPage: 100,
+      //     itemCount: listOfYear.length,
+      //     onPageChanged: (int i){
+      //       setState((){
+      //         _selectedYearIndex = i;
+
+      //         _finalSelectedYear = listOfYear[i];
+      //         print(_finalSelectedYear);
+      //       });
+
+      //     },
+      //     itemBuilder: (context, i) => Text(
+      //       listOfYear[i].toString(),
+      //       style: TextStyle(
+      //         fontSize: _selectedYearIndex == i ? 22.0 : 20.0,
+      //         fontWeight: _selectedYearIndex == i ? FontWeight.w900 : FontWeight.w400,
+      //         fontStyle: _selectedYearIndex == i ? FontStyle.italic: FontStyle.normal,
+      //       ),
+      //     ),
+      //   ),
+      // );
+
+      final sliderYear = Container(
         padding: EdgeInsets.all(8.0),
-        child: CarouselSlider.builder(
-          enlargeCenterPage: true, 
-          height: MediaQuery.of(context).size.height / 12.0,
-          autoPlay: false,
-          viewportFraction: 0.36,
-          initialPage: 100,
-          itemCount: listOfYear.length,
-          onPageChanged: (int i){
-            setState((){
-              _selectedYearIndex = i;
+        child: Slider(
+          inactiveColor: Colors.deepPurpleAccent[100],
+          activeColor: Colors.deepPurpleAccent[400],
+          label: '${_sliderYear.toInt()}',
+          value: _sliderYear, 
+          onChanged: (newValue){
+          setState(() {
+            _sliderYear = newValue;
+            _finalSelectedYear = _sliderYear.toInt();
+          });
 
-              _finalSelectedYear = listOfYear[i];
-              print(_finalSelectedYear);
-            });
-
+          
           },
-          itemBuilder: (context, i) => Text(
-            listOfYear[i].toString(),
-            style: TextStyle(
-              fontSize: _selectedYearIndex == i ? 22.0 : 20.0,
-              fontWeight: _selectedYearIndex == i ? FontWeight.w900 : FontWeight.w400,
-              fontStyle: _selectedYearIndex == i ? FontStyle.italic: FontStyle.normal,
-            ),
-          ),
+          min: 1920,
+          max: 2020,
+          divisions: 100,
         ),
-      );
+      );  
 
       return Column(
         children: [
           toogleButtonsYear,
-          _selectedYear ? carouselYear : Container(),
+          _selectedYear ? sliderYear : Container(),
         ],
       );
     }

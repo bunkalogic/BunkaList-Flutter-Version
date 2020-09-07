@@ -8,6 +8,7 @@ import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_animes/animes_explorer_bloc.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_series/series_explorer_bloc.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/bottom_modal_filter.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_animes_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/card_view_list_series_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/grid_view_list_animes_widget.dart';
@@ -56,6 +57,8 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
   //? Variables
   final double _aspectRatio = 2.7 / 4.2;
 
+  FilterOptions finalFilterOptions = new FilterOptions();
+
   ScrollController _scrollController;
   
   bool isLoading = false;
@@ -66,7 +69,6 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
   @override
   void initState() {
     _scrollController = ScrollController();
-    //_scrollController.addListener(_onScroll);
     super.initState();
 
   }
@@ -104,6 +106,66 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
               setState(() { });
             }
           },
+        ),
+        IconButton(
+          icon: Icon(Icons.tune, size: 26,), 
+          onPressed: () async {
+            FilterOptions result = await showModalBottomSheet<FilterOptions>(
+              isScrollControlled: true,
+              elevation: 10.0,
+              isDismissible: false,
+              backgroundColor: _getBackgroundColorTheme(), 
+              context: context,
+              builder: (context) => BuildBottomModalFilter(type: widget.data.type,),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30),
+                  topRight: const Radius.circular(30)
+                )
+              )
+            );
+
+            
+            
+            finalFilterOptions = result;
+            print('result of showModal year: ${result.year}');
+
+             print('result of showModal sort by: ${result.sortBy}');
+
+            setState(() {}); 
+
+             switch(widget.data.type){
+        
+
+              case 'tv'     : {
+                BlocProvider.of<SeriesExplorerBloc>(context)
+                ..add(GetSeriesExplorer(
+                  page: page,
+                  sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
+                  withNetwork:  widget.data.id,
+                  year: finalFilterOptions.year ?? 0
+                ));
+              }
+              break;
+
+              case 'animes' : {
+                
+                 BlocProvider.of<AnimesExplorerBloc>(context)
+                  ..add(GetAnimesExplorer(
+                    page: page,
+                    sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
+                    withNetwork:  widget.data.id,
+                    year: finalFilterOptions.year ?? 0
+                  ));
+
+              }
+              break;
+
+              default: return Center(child: Text('No type'),);
+
+            }
+
+          }
         ),
       ],
     ); 
@@ -388,8 +450,9 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
           BlocProvider.of<SeriesExplorerBloc>(context)
                 ..add(GetSeriesExplorer(
                   page: page,
-                  sortBy: ConstSortBy.popularityDesc,
+                  sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                   withNetwork: widget.data.id,
+                  year: finalFilterOptions.year ?? null
                 ));
            
            
@@ -409,8 +472,9 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
           BlocProvider.of<AnimesExplorerBloc>(context)
                   ..add(GetAnimesExplorer(
                     page: page,
-                    sortBy: ConstSortBy.popularityDesc,
+                    sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                     withNetwork:  widget.data.id,
+                    year: finalFilterOptions.year ?? null
                   ));
             
             
