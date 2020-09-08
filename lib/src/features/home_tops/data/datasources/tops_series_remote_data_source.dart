@@ -91,7 +91,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
         'api_key'                   : _theSerieDB,
         'language'                  : prefs.getLanguage,
         'page'                      : page.toString(),
-        'sort_by'                   : "title.asc"
+        'sort_by'                   : "vote_average.desc"
     };
     
     final url = Uri.https(

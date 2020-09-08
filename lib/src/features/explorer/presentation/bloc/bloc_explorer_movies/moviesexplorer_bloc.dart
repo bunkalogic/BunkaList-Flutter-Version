@@ -102,7 +102,7 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
               final allMovies = currentState.movies + movies;
 
                 return LoadedExplorerMovies(
-                  movies: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  movies: (currentState.latestYear == event.year && currentState.latestSortBy == event.sortBy) 
                   ? allMovies
                   : movies, 
                   hasReachedMax: false, 

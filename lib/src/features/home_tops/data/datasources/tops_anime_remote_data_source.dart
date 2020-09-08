@@ -96,7 +96,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
         'api_key'                   : _theAnimeDB,
         'language'                  : prefs.getLanguage,
         'page'                      : page.toString(),
-        'sort_by'                   : "original_order.asc"
+        'sort_by'                   : "vote_average.desc"
     };
     
     final url = Uri.https(

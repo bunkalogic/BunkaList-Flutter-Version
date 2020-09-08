@@ -74,6 +74,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
   bool changeDesign = false;
   int page = 1;
 
+  int lastYear = 0;
+  String lastSortBy = ConstSortBy.popularityDesc;
 
   
 
@@ -139,7 +141,9 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
               )
             );
 
-            
+            if(lastYear != result.year || lastSortBy != result.sortBy){
+              page = 1;
+            }
             
             finalFilterOptions = result;
             print('result of showModal year: ${result.year}');
@@ -587,7 +591,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                   page: page,
                   sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                   genre: widget.data.id,
-                  year: finalFilterOptions.year ?? null,
+                  year: finalFilterOptions.year ?? 0,
 
                 ));
           
@@ -610,7 +614,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                   page: page,
                   sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                   genre: widget.data.id,
-                  year: finalFilterOptions.year ?? null
+                  year: finalFilterOptions.year ?? 0
                 ));
            
            
@@ -633,7 +637,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                     sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
                     genre: (widget.data.isKeyword) ? null : widget.data.id,
                     withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
-                    year: finalFilterOptions.year ?? null
+                    year: finalFilterOptions.year ?? 0
                   ));
             
             

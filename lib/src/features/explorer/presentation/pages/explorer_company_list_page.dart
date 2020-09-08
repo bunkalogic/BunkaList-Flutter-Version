@@ -65,6 +65,8 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
   bool changeDesign = false;
   int page = 1;
   
+  int lastYear = 0;
+  String lastSortBy = ConstSortBy.popularityDesc;
   
   @override
   void initState() {
@@ -110,6 +112,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
         IconButton(
           icon: Icon(Icons.tune, size: 26,), 
           onPressed: () async {
+            
             FilterOptions result = await showModalBottomSheet<FilterOptions>(
               isScrollControlled: true,
               elevation: 10.0,
@@ -125,6 +128,9 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
               )
             );
 
+            if(lastYear != result.year || lastSortBy != result.sortBy){
+              page = 1;
+            }
             
             
             finalFilterOptions = result;
@@ -452,7 +458,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
                   page: page,
                   sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                   withNetwork: widget.data.id,
-                  year: finalFilterOptions.year ?? null
+                  year: finalFilterOptions.year ?? 0
                 ));
            
            
@@ -474,7 +480,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
                     page: page,
                     sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
                     withNetwork:  widget.data.id,
-                    year: finalFilterOptions.year ?? null
+                    year: finalFilterOptions.year ?? 0
                   ));
             
             

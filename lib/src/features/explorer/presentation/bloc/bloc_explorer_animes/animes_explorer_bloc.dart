@@ -103,8 +103,8 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
                 return currentState.copyWith(
                   hasReachedMax: true, 
                   latestPage: event.page,
-                  latestSortBy: ConstSortBy.popularityDesc, 
-                  latestYear: 0
+                  latestSortBy: event.sortBy, 
+                  latestYear: event.year
                 );
               } else {
 
@@ -112,11 +112,13 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
 
         
                 return LoadedExplorerAnimes(
-                  animes: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  animes: (currentState.latestYear == event.year && currentState.latestSortBy == event.sortBy) 
                   ? allAnimes
                   : animes, 
                   hasReachedMax: false, 
                   latestPage: event.page,
+                  latestSortBy: event.sortBy,
+                  latestYear: event.year
                 );
 
               }

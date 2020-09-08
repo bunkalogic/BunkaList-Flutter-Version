@@ -92,7 +92,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
         'api_key'                   : _theMovieDB,
         'language'                  : prefs.getLanguage,
         'page'                      : page.toString(),
-        'sort_by'                   : "title.desc"
+        'sort_by'                   : "vote_average.desc"
     };
     final url = Uri.https(
       _url, '4/list/$listId', query);

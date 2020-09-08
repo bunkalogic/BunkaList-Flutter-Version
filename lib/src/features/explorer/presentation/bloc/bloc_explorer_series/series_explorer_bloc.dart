@@ -114,7 +114,7 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
 
         
                 return LoadedExplorerSeries(
-                  series: (currentState.latestYear == event.year || currentState.latestSortBy == event.sortBy) 
+                  series: (currentState.latestYear == event.year && currentState.latestSortBy == event.sortBy) 
                   ? allSeries
                   : series, 
                   hasReachedMax: false, 
