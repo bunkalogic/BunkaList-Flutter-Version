@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/provider/push_notifications_provider.dart';
 import 'package:bunkalist/src/core/routes/route_generator.dart';
 import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
 import 'package:bunkalist/src/core/utils/http_overrrides.dart';
@@ -34,9 +35,26 @@ void main() async{
   runApp(MyApp());
 } 
  
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
 
   
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    final pushProvider = new PushNotificationsProvider();
+
+    pushProvider.initNotifications();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

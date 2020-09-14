@@ -59,12 +59,12 @@ class _LoginHomePageState extends State<LoginHomePage> {
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [
-            Colors.deepPurpleAccent,
-            Colors.deepPurpleAccent[400], 
-            Colors.deepPurpleAccent[700], 
+            Colors.blueAccent,
+            Colors.deepPurpleAccent, 
+            Colors.pinkAccent, 
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),

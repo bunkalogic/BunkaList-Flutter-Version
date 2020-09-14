@@ -97,7 +97,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
   Widget renderNextBtn() {
     return Icon(
       Icons.navigate_next,
-      color: Colors.deepOrangeAccent,
+      color: Colors.deepOrangeAccent[400],
       size: 35.0,
     );
   }
@@ -105,14 +105,14 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
   Widget renderDoneBtn() {
     return Icon(
       Icons.done,
-      color: Colors.deepOrangeAccent,
+      color: Colors.deepOrangeAccent[400],
     );
   }
 
   Widget renderSkipBtn() {
     return Icon(
         Icons.skip_next,
-        color: Colors.deepOrangeAccent,
+        color: Colors.deepOrangeAccent[400],
       );
   }
 
@@ -161,11 +161,12 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
         description: AppLocalizations.of(context).translate('label_intro_1'),
         styleDescription: TextStyle(
           color: Colors.grey[200],
-          fontSize: 22.0,
+          fontSize: 20.0,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w600
         ),
-        backgroundColor: Colors.deepPurpleAccent,
+        colorBegin: Colors.deepPurpleAccent,
+        colorEnd: Colors.pinkAccent,
         pathImage: 'assets/film-reel.png'
       )
     );
@@ -179,7 +180,8 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w600
         ),
-        backgroundColor: Colors.deepPurpleAccent[400],
+        colorBegin: Colors.deepPurpleAccent[400],
+        colorEnd: Colors.pinkAccent[400],
         pathImage: 'assets/smartphone.png'
       )
     );
@@ -189,11 +191,12 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
         description: AppLocalizations.of(context).translate('label_intro_3'),
         styleDescription: TextStyle(
           color: Colors.grey[200],
-          fontSize: 22.0,
+          fontSize: 20.0,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w600
         ),
-        backgroundColor: Colors.deepPurpleAccent[700],
+        colorBegin: Colors.deepPurpleAccent[700],
+        colorEnd: Colors.pinkAccent[700],
         pathImage: 'assets/dashboard.png'
       )
     );
@@ -205,7 +208,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
 
       // Skip button
       renderSkipBtn: this.renderSkipBtn(),
-      colorSkipBtn: Colors.deepOrangeAccent[400].withOpacity(0.5),
+      colorSkipBtn: Colors.blueAccent[400].withOpacity(0.5),
       highlightColorSkipBtn: Colors.deepOrangeAccent,
       
 
@@ -216,7 +219,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
       // Done button
       renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
-      colorDoneBtn: Colors.deepOrangeAccent[400].withOpacity(0.5),
+      colorDoneBtn: Colors.blueAccent[400].withOpacity(0.5),
       highlightColorDoneBtn: Colors.deepOrangeAccent,
 
       // Dot indicator

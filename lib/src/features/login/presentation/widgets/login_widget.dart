@@ -69,12 +69,12 @@ class _LoginWidgetState extends State<LoginWidget> {
       height: MediaQuery.of(context).size.height,
       decoration:  new BoxDecoration(
         gradient: new LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
             colors: [
-              Colors.deepPurpleAccent[700],
-              Colors.deepPurpleAccent[400], 
+              Colors.pinkAccent,
               Colors.deepPurpleAccent, 
+              Colors.blueAccent,
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),

@@ -63,12 +63,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
           gradient: new LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
             colors: [
-              Colors.orangeAccent,
-              Colors.orangeAccent[400],
-              Colors.orangeAccent[700]
+              Colors.amberAccent[400],
+              Colors.orangeAccent[700],
+              Colors.pinkAccent
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
           ),

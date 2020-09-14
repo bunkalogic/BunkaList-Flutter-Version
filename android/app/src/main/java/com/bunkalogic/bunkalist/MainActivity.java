@@ -1,4 +1,4 @@
-package com.example.bunkalist;
+package com.bunkalogic.bunkalist;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
