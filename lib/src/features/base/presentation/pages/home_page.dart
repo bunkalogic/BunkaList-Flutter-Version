@@ -5,6 +5,7 @@ import 'package:bunkalist/src/features/search/domain/entities/search_result_enti
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,6 +17,7 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/tops_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/settings_page.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:in_app_update/in_app_update.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -28,7 +30,44 @@ class _HomePageState extends State<HomePage> {
   //? Variables
   int _selectedTabIndex = 0;
   final prefs = new Preferences();
+  AppUpdateInfo _updateInfo;
+  bool _flexibleUpdateAvailable = false;
 
+  ///TODO implement In App Update for native app android, example:
+  ///https://github.com/feilfeilundfeil/flutter_in_app_update/blob/master/example/lib/main.dart
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        _updateInfo = info;
+      });
+    }).catchError((e) => _showError(e));
+  }
+
+   void _showError(dynamic exception) {
+     FlushbarHelper.createError(message: exception.toString(), title: 'Error');
+   }
+
+   startFlexibleUpdate(){
+     if(_updateInfo?.updateAvailable == true){
+
+      InAppUpdate.startFlexibleUpdate().then((_) {
+        setState(() {
+          _flexibleUpdateAvailable = true;
+        });
+      }).catchError((e) => _showError(e));
+
+     }
+   }
+
+   completeFlexibleUpdate(){
+     if(_flexibleUpdateAvailable){
+        InAppUpdate.completeFlexibleUpdate().then((_) {
+          FlushbarHelper.createSuccess(message: 'Success!!!');
+        }).catchError((e) => _showError(e));
+     }
+     
+   }
   
   @override
   Widget build(BuildContext context) {

@@ -25,23 +25,45 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
   int inputSeason = 0;
   int inputEpisode = 0;
 
+  TextEditingController _textSeasonController;
+  TextEditingController _textEpisodeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textSeasonController = TextEditingController();
+    _textEpisodeController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _textSeasonController.dispose();
+    _textEpisodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(height: 5.0,),
-        _labelSeasonInput(),
-        SizedBox(height: 10.0,),
-        _rowSeasonInput(),
-        SizedBox(height: 15.0,),
-        _labelEpisodeInput(),
-        SizedBox(height: 10.0,),
-        _rowEpisodeInput(),
-        SizedBox(height: 15.0,),
-        _buttonAddedInYourList(),
-        SizedBox(height: 5.0,),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom
+      ), 
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height: 5.0,),
+          _labelSeasonInput(),
+          SizedBox(height: 10.0,),
+          _rowSeasonInput(),
+          SizedBox(height: 15.0,),
+          _labelEpisodeInput(),
+          SizedBox(height: 10.0,),
+          _rowEpisodeInput(),
+          SizedBox(height: 15.0,),
+          _buttonAddedInYourList(),
+          SizedBox(height: 5.0,),
+        ],
+      ),
     );
   }
 
@@ -57,28 +79,56 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               FloatingActionButton(
-                onPressed: () => setState(()=> inputSeason++),
+                onPressed: () => setState((){
+                  inputSeason++;
+                  _textSeasonController.text = inputSeason.toString();
+                }),
                 backgroundColor: Colors.greenAccent,
                 elevation: 5.0,
                 mini: true,
                 child: Icon(Icons.add),
-              ),
+              ), 
             SizedBox(width: 40.0,),
-            Text(
-              '$inputSeason',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w800
+            Container(
+              width: 45.0,
+              child: TextField(
+                controller: _textSeasonController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(2.0),
+                  hintText: '$inputSeason',
+                  hintStyle: TextStyle(  
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
+                ),
+                onSubmitted: (value) {
+                  _textSeasonController.text = value;
+                  inputSeason = int.parse( _textSeasonController.text.toString());
+                  setState(() {});
+                },
+                onChanged: (value) {
+                  _textSeasonController.text = value;
+                  inputSeason = int.parse( _textSeasonController.text.toString());
+                  setState(() {});
+                },
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
               ),
             ),
             SizedBox(width: 40.0,),
             FloatingActionButton(
-              onPressed: () => setState(()=> (inputSeason <= 1) ? 0  : inputSeason--),
+              onPressed: () => setState((){
+                (inputSeason <= 1) ? 0  : inputSeason--;
+                _textSeasonController.text = inputSeason.toString();
+              }),
               backgroundColor: Colors.redAccent,
               elevation: 5.0,
               mini: true,
               child: Icon(Icons.remove),
-           )  
+           ),  
           ],
         ),
       ); 
@@ -96,28 +146,56 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               FloatingActionButton(
-                onPressed: () => setState(()=> inputEpisode++),
+                onPressed: () => setState((){
+                  inputEpisode++;
+                  _textEpisodeController.text = inputEpisode.toString();
+                }),
                 backgroundColor: Colors.greenAccent,
                 elevation: 5.0,
                 mini: true,
                 child: Icon(Icons.add),
-              ),
+              ),  
             SizedBox(width: 40.0,),
-            Text(
-              '$inputEpisode',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w800
+            Container(
+              width: 45.0,
+              child: TextField(
+                controller: _textEpisodeController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(2.0),
+                  hintText: '$inputEpisode',
+                  hintStyle: TextStyle(  
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
+                ),
+                onSubmitted: (value) {
+                  _textEpisodeController.text = value;
+                  inputEpisode = int.parse( _textEpisodeController.text.toString());
+                  setState(() {});
+                },
+                onChanged: (value) {
+                  _textEpisodeController.text = value;
+                  inputEpisode = int.parse( _textEpisodeController.text.toString());
+                  setState(() {});
+                },
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
               ),
             ),
             SizedBox(width: 40.0,),
             FloatingActionButton(
-              onPressed: () => setState(()=> (inputEpisode <= 1) ? 0  : inputEpisode--),
+              onPressed: () => setState((){
+                (inputEpisode <= 1) ? 0  : inputEpisode--;
+                _textEpisodeController.text = inputEpisode.toString();
+              }),
               backgroundColor: Colors.redAccent,
               elevation: 5.0,
               mini: true,
               child: Icon(Icons.remove),
-           )  
+           ),
           ],
         ),
       ); 
@@ -134,7 +212,7 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0),
           ),
-          color: Colors.orange[900],  
+          color: Colors.deepOrangeAccent[400],  
           child: Container(
             padding: EdgeInsets.symmetric(
             vertical: 5.0,

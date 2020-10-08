@@ -183,7 +183,6 @@
     "label_dialog_delete_ouevre"  : "Tem certeza de que exclui este problema da sua lista?",
     "label_movie_cinema"          : "Os filmes de estréia",
     "label_serie_month"           : "Série On Air esta semana",
-    "label_anime_season"          : "Verão Anime Temporada 2020",
     "configuration"               : "Configuração",
     "label_edit_profile"          : "Edite seu perfil",
     "label_edit_preferences"      : "Edite suas preferências",
@@ -258,6 +257,7 @@
     "label_intro_2"       : "Gerenciar ou gerenciar filmes, séries e animes em listas ordenadas por status de visualização",
     "label_intro_3"       : "Avalie seus filmes, séries ou animes com 2 maneiras de classificar Simples ou Em Detalhe, você consegue valorizar cada aspecto de uma obra.",
     "label_company_series": "Empresas de Séries de TV",
-    "label_company_animes": "Empresas Animes"
+    "label_company_animes": "Empresas Animes",
+    "label_anime_season"           : "Temporada de anime de outono de 2020"
   
   }

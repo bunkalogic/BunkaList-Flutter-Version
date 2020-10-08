@@ -183,7 +183,6 @@
     "label_dialog_delete_ouevre"  : "この作品をリストから削除してもよろしいですか？",
     "label_movie_cinema"          : "プレミア映画",
     "label_serie_month"           : "今週放送されるシリーズ",
-    "label_anime_season"          : "夏アニメ2020",
     "configuration"               : "構成",
     "label_edit_profile"          : "プロフィールを編集してください",
     "label_edit_preferences"      : "設定を編集してください",
@@ -259,5 +258,6 @@
     "label_intro_2"       : "表示ステータス順に並べられたリストで映画、シリーズ、アニメを管理または管理します",
     "label_intro_3"       : "映画、シリーズ、アニメをシンプルまたは詳細に2つの方法で評価して、作品の各側面を評価することができます。",
     "label_company_series": "TVシリーズ会社",
-    "label_company_animes": "アニメ会社"
+    "label_company_animes": "アニメ会社",
+    "label_anime_season"           : "2020年秋のアニメシーズン"
   }

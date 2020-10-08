@@ -28,9 +28,29 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
   int inputSeason = 0;
   int inputEpisode = 0;
 
+  TextEditingController _textSeasonController;
+  TextEditingController _textEpisodeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textSeasonController = TextEditingController();
+    _textEpisodeController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _textSeasonController.dispose();
+    _textEpisodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom
+      ), 
       child: Form(
         key: _formKey,
         child: Column(
@@ -90,33 +110,60 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
     if(widget.newOuevre.oeuvreType == 'movie') return Container();
 
     return Container(
-          margin: EdgeInsets.all(2.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               FloatingActionButton(
-                onPressed: () => setState(()=> inputSeason++),
+                onPressed: () => setState((){
+                  inputSeason++;
+                  _textSeasonController.text = inputSeason.toString();
+                }),
                 backgroundColor: Colors.greenAccent,
                 elevation: 5.0,
                 mini: true,
                 child: Icon(Icons.add),
-              ),
+              ), 
             SizedBox(width: 40.0,),
-            Text(
-              '$inputSeason',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w800
+            Container(
+              width: 45.0,
+              child: TextField(
+                controller: _textSeasonController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(2.0),
+                  hintText: '$inputSeason',
+                  hintStyle: TextStyle(  
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
+                ),
+                onSubmitted: (value) {
+                  _textSeasonController.text = value;
+                  inputSeason = int.parse( _textSeasonController.text.toString());
+                  setState(() {});
+                },
+                onChanged: (value) {
+                  _textSeasonController.text = value;
+                  inputSeason = int.parse( _textSeasonController.text.toString());
+                  setState(() {});
+                },
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
               ),
             ),
             SizedBox(width: 40.0,),
             FloatingActionButton(
-              onPressed: () => setState(()=> (inputSeason <= 1) ? 0  : inputSeason--),
+              onPressed: () => setState((){
+                (inputSeason <= 1) ? 0  : inputSeason--;
+                _textSeasonController.text = inputSeason.toString();
+              }),
               backgroundColor: Colors.redAccent,
               elevation: 5.0,
               mini: true,
               child: Icon(Icons.remove),
-           )  
+           ),  
           ],
         ),
       ); 
@@ -137,33 +184,60 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
     if(widget.newOuevre.oeuvreType == 'movie') return Container();
 
     return Container(
-          margin: EdgeInsets.all(2.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               FloatingActionButton(
-                onPressed: () => setState(()=> inputEpisode++),
+                onPressed: () => setState((){
+                  inputEpisode++;
+                  _textEpisodeController.text = inputEpisode.toString();
+                }),
                 backgroundColor: Colors.greenAccent,
                 elevation: 5.0,
                 mini: true,
                 child: Icon(Icons.add),
-              ),
+              ),  
             SizedBox(width: 40.0,),
-            Text(
-              '$inputEpisode',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w800
+            Container(
+              width: 45.0,
+              child: TextField(
+                controller: _textEpisodeController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(2.0),
+                  hintText: '$inputEpisode',
+                  hintStyle: TextStyle(  
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
+                ),
+                onSubmitted: (value) {
+                  _textEpisodeController.text = value;
+                  inputEpisode = int.parse( _textEpisodeController.text.toString());
+                  setState(() {});
+                },
+                onChanged: (value) {
+                  _textEpisodeController.text = value;
+                  inputEpisode = int.parse( _textEpisodeController.text.toString());
+                  setState(() {});
+                },
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800
+                ),
               ),
             ),
             SizedBox(width: 40.0,),
             FloatingActionButton(
-              onPressed: () => setState(()=> (inputEpisode <= 1) ? 0  : inputEpisode--),
+              onPressed: () => setState((){
+                (inputEpisode <= 1) ? 0  : inputEpisode--;
+                _textEpisodeController.text = inputEpisode.toString();
+              }),
               backgroundColor: Colors.redAccent,
               elevation: 5.0,
               mini: true,
               child: Icon(Icons.remove),
-           )  
+           ),
           ],
         ),
       ); 

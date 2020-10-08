@@ -144,8 +144,8 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
         
         if(state is AuthenticationUninitialized){
           print('login init');
-          checkForUpdate();
-          startFlexibleUpdate();
+          // checkForUpdate();
+          // startFlexibleUpdate();
           return _splashPage();
         }
 
@@ -165,7 +165,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
         if(state is AuthenticationLoading){
           print('loading login');
-          completeFlexibleUpdate();
+          // completeFlexibleUpdate();
           return _loadingPage();
         }
            

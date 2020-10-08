@@ -45,6 +45,7 @@ class ButtonAddedArrowDown extends StatelessWidget{
   void _showBottomModal(BuildContext context){
     showModalBottomSheet(
       elevation: 10.0,
+      isScrollControlled: true,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
       builder: (context) {
@@ -143,11 +144,12 @@ class ButtonClikedAdded {
 
   
   
-  //TODO: Gestionar cuando un button a sido clickado added la obra o update
+  
 
   void showBottomModal(){
     showModalBottomSheet(
       elevation: 10.0,
+      isScrollControlled: true,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
       builder: (context) {

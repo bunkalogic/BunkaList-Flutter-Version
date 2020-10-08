@@ -148,9 +148,9 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
       case Constants.topsAnimeRatedId              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 35);
 
-      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-07-01', airDate: '2020-08-01' );
+      case Constants.topsAnimeSeasonId             : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-10-01', airDate: '2020-11-01' );
 
-      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-10-01', airDate: '2020-11-01' );
+      case Constants.topsAnimeUpcomingNextSeasonId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-12-30', airDate: '2021-01-01' );
 
       case Constants.topsAnimeActionAndAdventureId : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, genres: ConstGenres.actionAndAveture.toString(), voteCount: 5 );
 
@@ -180,7 +180,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
         
       case Constants.topsAnimeSuperNaturalId       : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '6152');
 
-      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-06-20', airDate: '2020-07-25' );
+      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-10-01', airDate: '2020-11-01' );
       
       case Constants.topsAnimesSeinen              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '195668');
 

@@ -183,7 +183,6 @@
     "label_dialog_delete_ouevre"  : "Sind Sie sicher, dieses Ouevre von Ihrer Liste zu löschen?",
     "label_movie_cinema"          : "Die Premiere Filme",
     "label_serie_month"           : "Series On Air diese Woche",
-    "label_anime_season"          : "Sommer Anime Season 2020",
     "configuration"               : "Aufbau",
     "label_edit_profile"          : "Bearbeite dein Profil",
     "label_edit_preferences"      : "Bearbeiten Sie Ihre Einstellungen",
@@ -258,5 +257,6 @@
     "label_intro_2"       : "Verwalten oder verwalten Sie Filme, Serien und Animes in Listen, die nach Anzeigestatus sortiert sind",
     "label_intro_3"       : "Bewerten Sie Ihre Filme, Serien oder Animes auf zwei Arten, um Einfach oder Im Detail zu bewerten. Sie können jeden Aspekt einer Arbeit bewerten.",
     "label_company_series": "TV-Serien-Unternehmen",
-    "label_company_animes": "Animes Firmen"
+    "label_company_animes": "Animes Firmen",
+    "label_anime_season"           : "Herbst Anime Saison 2020"
   }

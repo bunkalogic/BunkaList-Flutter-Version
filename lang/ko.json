@@ -183,7 +183,6 @@
     "label_dialog_delete_ouevre"  : "이 작품을 목록에서 제거하겠습니까?",
     "label_movie_cinema"          : "프리미어 영화",
     "label_serie_month"           : "이번 주 방송",
-    "label_anime_season"          : "여름 애니메이션 시즌 2020",
     "configuration"               : "구성",
     "label_edit_profile"          : "프로필 수정",
     "label_edit_preferences"      : "환경 설정 편집",
@@ -259,5 +258,6 @@
     "label_intro_2"       : "상태별로 정렬 된 목록에서 영화, 시리즈 및 애니메이션 관리 또는 관리",
     "label_intro_3"       : "Simple 또는 In Detail을 평가하는 2 가지 방법으로 영화, 시리즈 또는 애니메이션을 평가하면 작품의 각 측면을 평가할 수 있습니다.",
     "label_company_series": "TV 시리즈 회사",
-    "label_company_animes": "애니메이션 회사"
+    "label_company_animes": "애니메이션 회사",
+    "label_anime_season"           : "가을 애니메이션 시즌 2020"
   }

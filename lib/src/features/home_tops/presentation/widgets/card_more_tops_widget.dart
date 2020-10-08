@@ -30,15 +30,15 @@ class CardMoreTopsWidget extends StatelessWidget {
         autoPlayCurve: Curves.fastOutSlowIn,
         pauseAutoPlayOnTouch: Duration(seconds: 10),
         items: <Widget>[
-          _itemMoreTops(context, Colors.pinkAccent , Colors.pinkAccent[400], Colors.redAccent[400], Colors.redAccent[700], moreMoviesLabel, 'movies'),
-          _itemMoreTops(context, Colors.tealAccent , Colors.tealAccent[400], Colors.greenAccent[400], Colors.greenAccent[700], moreSeriesLabel,'tv'),
-          _itemMoreTops(context, Colors.cyanAccent , Colors.cyanAccent[400], Colors.blueAccent[400], Colors.blueAccent[400], moreAnimesLabel, 'animes'),
+          _itemMoreTops(context, Color(0xFFE90F9E) , Color(0xFFF50057), Color(0xFFDE4708), moreMoviesLabel, 'movies'),
+          _itemMoreTops(context, Color(0xFFA7FAAC) , Color(0xFF64FFDA), Color(0xFF00FFFF),  moreSeriesLabel,'tv'),
+          _itemMoreTops(context, Color(0xFF49A9FF) , Color(0xFF2979FF), Color(0xFFB456D8),  moreAnimesLabel, 'animes'),
         ],
       ),
     );
   }
 
-  Widget _itemMoreTops(BuildContext context ,Color color1, Color color2, Color color3,Color color4, String title, String argsText){
+  Widget _itemMoreTops(BuildContext context ,Color color1, Color color2, Color color3, String title, String argsText){
     return GestureDetector(
       onTap: (){
         Navigator.pushNamed(context, '/TopList', arguments: argsText);
@@ -55,11 +55,12 @@ class CardMoreTopsWidget extends StatelessWidget {
           decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
             gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
               colors: [
                 color1,
                 color2,
                 color3,
-                color4
               ]
             )    
           ) 
@@ -80,7 +81,13 @@ class CardMoreTopsWidget extends StatelessWidget {
             fontSize: 20.0,
             color: Colors.white,
             fontWeight: FontWeight.w800,
-            fontStyle: FontStyle.italic
+            fontStyle: FontStyle.italic,
+            shadows: [
+              Shadow(
+                color: Colors.black87,
+                blurRadius: 1.5,
+              )
+            ]
           ),
         ),
         Icon(

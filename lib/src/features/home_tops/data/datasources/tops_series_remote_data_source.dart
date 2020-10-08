@@ -40,7 +40,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   bool  _loading = false;
   
 
-  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre}) async {
+  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre, String firstAirDate}) async {
       if(_loading) return await [];
       
       _loading = true;
@@ -58,6 +58,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
           'sort_by'               : sortBy,
           'air_date.gte'          : airDateGte,
           'air_date.lte'          : airDateLte,
+          'first_air_date.gte'    : firstAirDate,
           'vote_count.gte'        : voteCount.toString(),
           'vote_average.gte'      : voteAverage.toString(),
           'with_genres'           : genres,
@@ -144,7 +145,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesRatedId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
-      case Constants.topsSeriesUpcommingId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-09-10', airDateLte: '2020-10-30' );
+      case Constants.topsSeriesUpcommingId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-10-10', airDateLte: '2020-11-30' );
 
       case Constants.topsSeriesActAndAdvId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
@@ -176,7 +177,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesAMCId            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
 
-      case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-09-05', airDateLte: '2020-10-05'  );
+      case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-10-10', airDateLte: '2020-11-15'  );
 
       case Constants.topsSeriesKoreanId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
 
