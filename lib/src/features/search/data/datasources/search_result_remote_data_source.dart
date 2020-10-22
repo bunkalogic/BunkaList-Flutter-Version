@@ -38,6 +38,7 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
       'language': prefs.getLanguage.toString(),
       'query'   : query,
       'page'    :  '1',
+      
     };
 
     final url = Uri.https(_url, '/3/search/multi', _query);
@@ -56,14 +57,21 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
     );
 
       if(response.statusCode == 200){
+         print('----- STATUS CODE 200 -----');
 
         final decodedData = json.decode(response.body);
 
-        final search = new ResultsModel.fromJson(decodedData);
+        print('----- DECODED DATA -----'); 
+
+        final search = new ResultsModel.fromJson(decodedData); 
+
+        print('----- RETURN RESULT MODEL -----');  
 
         return search;
 
       }else{
+
+        print('----- SERVER EXCEPTION -----');
 
       throw ServerException();
 

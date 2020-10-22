@@ -32,9 +32,10 @@ Stream<SearchState> transformEvents(
   Stream<SearchEvent> events,
   Stream<SearchState> Function(SearchEvent event) next,
 ) {
+
   return super.transformEvents( 
       (events as Observable<SearchEvent>).debounceTime(
-        Duration(milliseconds: 300),
+        Duration(milliseconds: 200),
       ), 
       next
     );
@@ -53,44 +54,58 @@ Stream<SearchState> transformEvents(
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
+    // SearchState newLoading = LoadingSearch();
+
+    
     if(event is TextSearchChanged){
-      List<Result> listResults;
+      print('----- is text search changed event -----');
+      // List<Result> listResults;
+      
+      // yield LoadingSearch();
+
       if(event.text.isEmpty){
 
-        yield EmptySearch();
+        print('----- is empty search -----');
+        yield new EmptySearch();
 
-      }else{
-       yield LoadingSearch();
-        
-      final inputEither = GetValidateQuery().getValidateQuery(event.text);
+      }
       
+      print('-----is loading search -----');
+      yield new LoadingSearch();
+        
+      Either<Failures, String> inputEither = GetValidateQuery().getValidateQuery(event.text);  
 
-      yield* inputEither.fold(
+      yield*  inputEither.fold(
         (failures) async* {
 
-          yield ErrorSearch();
+          print('-----is error search 1------');
+          yield new ErrorSearch();
 
         }, (query) async*{
+          print('----- is get search ------');
 
           final failureOrResults = await getSearch(Params(query: query));
 
+
           yield failureOrResults.fold(
-            (failure) => ErrorSearch(),
+            (failure) {
+              print('------is error search 2 ------');
+              return new ErrorSearch();
+            },
             (results) {
-              if(results.totalResults == 0){
-                return ErrorEmptySearch();
-              }
 
-              listResults = results.results;
+              List<Result> listResults = results.results;
 
-              return LoadedSearch(results: listResults);
+              SearchState newLoaded = new LoadedSearch(results: listResults);  
+              print('------is search loaded!!! ------');
+              return newLoaded;
             }  
             );
         });
 
         
 
-      }
+      
       
     }
       

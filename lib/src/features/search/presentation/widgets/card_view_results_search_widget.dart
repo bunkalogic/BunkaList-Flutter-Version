@@ -28,7 +28,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   @override
   Widget build(BuildContext context) {
 
-    if(widget.results != null){
+    if(widget.results.isNotEmpty){
       
       return Container(
               child: ListView.builder(
@@ -39,16 +39,20 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     }else{
       return Center(
             child: Container(
-              child: Text('No Results Found. '),
+              child: Text(
+                'No Results Found. ',
+                style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.w800, 
+              fontStyle: FontStyle.italic,
+            ),
+              ),
             ),
           );
     }
   }
 
   Widget _buildCardItem(Result result) {
-    if(result.mediaType == "person"){
-      return _listTilePerson(result);
-    }
     
      return Padding(
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
@@ -58,13 +62,13 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            // gradient: LinearGradient(
-            //   colors: [
-            //     Colors.grey[400].withOpacity(0.1),
-            //     Colors.grey[500].withOpacity(0.1),
-            //     Colors.grey[600].withOpacity(0.1),
-            //   ]
-            // ) 
+            gradient: LinearGradient(
+              colors: [
+                Colors.grey[400].withOpacity(0.1),
+                Colors.grey[500].withOpacity(0.1),
+                Colors.grey[600].withOpacity(0.1),
+              ]
+            ) 
           ),
        ),
      ); 
@@ -96,8 +100,15 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
           Expanded(child: _rowInfoItem(result)),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(result),
-          Expanded(child: ChipsGenresWidget(genres: result.genreIds.cast<int>(),
-          type: type,), flex: 1,),
+          result.mediaType == 'person'
+          ? _knownForDeparment(result)
+          :Expanded(
+            child: ChipsGenresWidget(
+              genres: result.genreIds.cast<int>(),
+              type: type,
+            ), 
+          flex: 1,
+          ),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons(result),flex: 1,),
         ],
@@ -123,8 +134,10 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
 
   Widget _posterItem(Result result) {
 
-     final placeholder = AssetImage('assets/poster_placeholder.png'); 
+     final placeholder = AssetImage('assets/poster_placeholder.png');
+     final placeholderPerson = AssetImage('assets/photo-placeholder.png');  
      final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ result.posterPath }');
+     final photoPerson = NetworkImage('https://image.tmdb.org/t/p/w185${result.profilePath}');
 
      final title = (result.title != null) ? result.title : result.name;
 
@@ -135,7 +148,13 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: FadeInImage(
-          image: (result.posterPath == null) ? placeholder : poster,//? Image Poster Item,
+          image: (result.posterPath == null && result.profilePath == null) 
+          ? result.mediaType == 'person' 
+            ? placeholderPerson
+            : placeholder 
+          : result.mediaType == 'person' 
+            ? photoPerson  
+            : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
           fit: BoxFit.fill,
         ),
@@ -146,7 +165,14 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
       //margin: EdgeInsets.only(right: 25.0),
       child: GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(result.id, result.mediaType, title));
+
+            if(result.mediaType == "person"){
+              Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(result.id, result.name));
+            }else{
+              Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(result.id, result.mediaType, title));
+            }  
+
+            
           },
           child: _poster 
       ),
@@ -159,7 +185,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     return Padding(
       padding: const EdgeInsets.only(top: 1.0),
       child: Text(
-          title, 
+          result.mediaType == "person" ? result.name : title, 
             style: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w700, 
@@ -170,14 +196,36 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     );
   }
 
-  Widget _yearOfItem(Result result) {
+  Widget _knownForDeparment(Result result){
+    return Container(
+      child: Center(
+        child: Text(
+          result.knownForDepartment,
+          style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.w500, 
+              fontStyle: FontStyle.italic,
+            ),
+        ),
+      ),
+    );
+  }
 
-    final String date = (result.releaseDate == null) ? result.firstAirDate : result.releaseDate;
+  Widget _yearOfItem(Result result) {
+    if(result.mediaType == 'person') return Container();
+
+    String date = (result.releaseDate == null) ? result.firstAirDate : result.releaseDate;
+
+    date = (date == null) ? 'No date' : date;
 
     return Padding(
       padding: const EdgeInsets.only(top: 1.0),
       child: Text(
-          (date.isEmpty)  ?'No date'  : DateTime.parse(date).year.toString(), 
+          (date.isEmpty)  
+          ? 'No date' 
+          : (date == 'No date')
+            ? 'No date'
+            : DateTime.parse(date).year.toString(), 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -188,6 +236,8 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   }
 
   Widget _rateItem(Result result) {
+    if(result.mediaType == 'person') return Container();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
       child: MiniCircularChartRating(result.voteAverage),
@@ -195,47 +245,15 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
   }
 
   Widget _rowButtons(Result result) {
+    if(result.mediaType == 'person') return Container();
+
     return BlocProvider<AddOuevreBloc>(
           builder: (_) => serviceLocator<AddOuevreBloc>(),
           child: MultiButtonsAdded(ouevre: result, type: result.mediaType, objectType: ConstantsTypeObject.searchResult,),
         );
   }
 
-  Widget _listTilePerson(Result result) {
-    return ListTile(
-      leading: _personPhoto(result),
-      title: Text(
-        result.name,
-        style: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-      onTap: () => Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(result.id, result.name)),
-    );
-  }
-
-  Widget _personPhoto(Result result) {
-    final placeholder = AssetImage('assets/photo-placeholder.png');
-    final photo = NetworkImage('https://image.tmdb.org/t/p/w185${result.profilePath}');
-
-    if(result.profilePath == null){
-       return Container(
-        child: CircleAvatar(
-          radius: 45.0,
-          backgroundImage: placeholder,
-        ),
-      );
-
-    }else{
-       return Container(
-        child: CircleAvatar(
-          radius: 30.0,
-          backgroundImage: photo ,
-        ),
-      );
-    }
-  }
+  
 
   
 }

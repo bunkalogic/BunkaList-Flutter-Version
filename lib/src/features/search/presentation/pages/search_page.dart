@@ -1,9 +1,7 @@
-import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/card_view_results_search_widget.dart';
-import 'package:bunkalist/src/features/search/presentation/widgets/empty_icon_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/list_tile_results_search_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/search_icon_widget.dart';
 import 'package:flutter/material.dart';
@@ -72,19 +70,19 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
 
         
         
-        if (state is EmptySearch) {
+        if (state is EmptySearch && query.isEmpty) {
 
           return SearchIconWidget();
 
-        }else if(state is LoadingSearch){
+        } 
+        
+        if(state is LoadingSearch){
 
          return LoadingCustomWidget();
 
-        }else if(state is ErrorEmptySearch){
-
-          return EmptyIconWidget();
-
-        }else if(state is LoadedSearch){
+        }
+        
+        if(state is LoadedSearch && query.isNotEmpty){
 
         return CardViewSearchResultsWidget(results: state.results);
 
@@ -113,19 +111,19 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
       bloc: searchBloc,
       builder: (BuildContext context, SearchState state){
         
-        if (state is EmptySearch) {
+        if (state is EmptySearch && query.isEmpty) {
 
           return SearchIconWidget();
 
-        }else if(state is LoadingSearch){
+        } 
+        
+        if(state is LoadingSearch){
 
          return LoadingCustomWidget();
 
-        }else if(state is ErrorEmptySearch){
-
-          return EmptyIconWidget();
-
-        }else if(state is LoadedSearch){
+        }
+        
+        if(state is LoadedSearch && query.isNotEmpty){
 
         return ListTileResultsSearchWidget(results: state.results,); 
 

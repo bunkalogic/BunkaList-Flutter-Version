@@ -32,25 +32,31 @@ class Result extends Equatable {
     final String originalTitle;
     final String title;
     final String profilePath;
+    final String knownForDepartment;
+    final int gender;
+    final List<dynamic> knownFor;
     
 
     Result({
-        @required this.posterPath,
-        @required this.popularity,
-        @required this.id,
-        @required this.overview,
-        @required this.backdropPath,
-        @required this.voteAverage,
-        @required this.mediaType,
-        @required this.firstAirDate,
-        @required this.genreIds,
-        @required this.voteCount,
-        @required this.name,
-        @required this.originalName,
-        @required this.releaseDate,
-        @required this.originalTitle,
-        @required this.title,
-        @required this.profilePath,
+        this.posterPath,
+        this.popularity,
+        this.id,
+        this.overview,
+        this.backdropPath,
+        this.voteAverage,
+        this.mediaType,
+        this.firstAirDate,
+        this.genreIds,
+        this.voteCount,
+        this.name,
+        this.originalName,
+        this.releaseDate,
+        this.originalTitle,
+        this.title,
+        this.profilePath,
+        this.knownForDepartment,
+        this.gender,
+        this.knownFor
     }) : super ([
       posterPath,
       popularity,
@@ -68,5 +74,8 @@ class Result extends Equatable {
       originalTitle,
       title,
       profilePath,
+      knownForDepartment,
+      gender,
+      knownFor
     ]);
 }

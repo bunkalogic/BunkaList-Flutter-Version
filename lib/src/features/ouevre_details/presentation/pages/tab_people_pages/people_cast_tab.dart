@@ -193,7 +193,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          (getDate != null) ? DateTime.parse(getDate).year.toString() : "no date", 
+          (getDate.isNotEmpty) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -221,7 +221,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
       child: Text(
         'Character: ${cast.character}',
         style: TextStyle(
-          fontSize: 18.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic
           ),
@@ -240,7 +240,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
         child: Text(
           'Episodes : ${cast.episodeCount}',
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 14.0,
             fontWeight: FontWeight.w500,
             fontStyle: FontStyle.italic
           ),
@@ -470,7 +470,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          (getDate != null) ? DateTime.parse(getDate).year.toString() : "no date", 
+          (getDate.isNotEmpty) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 
@@ -498,7 +498,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
       child: Text(
         'Department: ${cast.job}',
         style: TextStyle(
-          fontSize: 18.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic
           ),
