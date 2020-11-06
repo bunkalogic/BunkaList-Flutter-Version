@@ -94,7 +94,8 @@ dependencies:
   flutter_neumorphic: ^3.0.1
   # flutter intro slider
   intro_slider: ^2.3.1
-
+  # enum to string
+  enum_to_string: ^1.0.13
   flutter_localizations:
     sdk: flutter
 

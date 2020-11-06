@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
@@ -13,7 +14,7 @@ import 'package:intl/intl.dart';
 class TabItemPauseAndDroppedWidget extends StatefulWidget {
 
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const TabItemPauseAndDroppedWidget({
     @required this.type,
@@ -91,14 +92,14 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
 
     switch(widget.status){
 
-      case "Pause": return ListProfileEmptyIconWidget(
+      case ListProfileQuery.Pause : return ListProfileEmptyIconWidget(
         title: AppLocalizations.of(context).translate("pause_empty_label"),
         color: Colors.orangeAccent[400],
         icon: Icons.pause_circle_outline,
       );  
       break;
 
-      case "Dropped": return ListProfileEmptyIconWidget(
+      case ListProfileQuery.Dropped : return ListProfileEmptyIconWidget(
         title: AppLocalizations.of(context).translate("dropped_empty_label"),
         color: Colors.redAccent[400],
         icon: Icons.remove_circle_outline,

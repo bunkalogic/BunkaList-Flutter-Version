@@ -1,9 +1,13 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/bottom_modal_filter.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/build_bottom_modal_filter_completed.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/list_profile_widget.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -27,18 +31,28 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
 
   TabController _tabController;
 
-  
+  int _activeTabIndex;
+
+  // ListProfileQuery typeListCompl = ListProfileQuery.Completed;
+
+  bool isActiveTab = true;
 
   @override
   void initState() {
     super.initState();
 
     _tabController = TabController(vsync: this, length: 5);
+
+    _tabController.addListener(_setActiveTabIndex);
     
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   _tabController = TabController(vsync: this, length: _getListTabs(context).length);
-    // });
-    
+  }
+
+  void _setActiveTabIndex() {
+  _activeTabIndex = _tabController.index;
+
+  isActiveTab = _activeTabIndex == 0;
+
+  setState(() {});
   }
 
   @override
@@ -76,8 +90,10 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       title: _appBarTitle(),
       bottom: _tabBar(),
       leading: AppBarButtonBack(),
-      );
+    );
   }
+
+ 
 
   TabBarView buildTabBarView(BuildContext context) {
     return TabBarView(
@@ -129,5 +145,18 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
         indicatorSize: MD2IndicatorSize.normal
       ),
     );
+  }
+
+  Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
+      return Colors.grey[100];
+    }
   }
 }

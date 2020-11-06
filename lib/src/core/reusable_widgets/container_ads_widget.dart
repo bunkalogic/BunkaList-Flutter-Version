@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:facebook_audience_network/ad/ad_native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -379,7 +381,9 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
     //bool noPremium = isNotPremium();
     
 
-    return (prefs.isNotAds) ? Container() : buildContainerAds();
+    return (prefs.isNotAds) 
+      ? Container() 
+      : buildContainerAds();
   }
 
   Widget buildContainerAds() {
@@ -437,6 +441,8 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
       return false;
 
     }
+
+    
    
     //  try {
 

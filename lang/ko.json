@@ -213,9 +213,9 @@
     "wishlist_empty_label"        : "당신의 위시리스트가 비어 있습니다, 무언가를 추가하십시오",
     "empty_last_added_label"      : "목록에 추가 된 것이 없습니다",
     "label_remove_ads": "Bunkalist 개발 지원 및 광고 제거",
-    "label_month_ads": "$ 0.99에 광고없이 1 개월. *",
-    "label_year_ads": "매월 0,33 $에 광고가없는 1 년. *",
-    "label_never_ads": "한 번 지불하고 6.99 달러에 광고를 제거하십시오",
+    "label_month_ads": "$0.99 에 광고없이 1 개월. *",
+    "label_year_ads": "2,50$ 에 광고가없는 1 년. *",
+    "label_never_ads": "한 번 지불하고 $4.99 달러에 광고를 제거하십시오",
     "label_never_ads_with_premium": "이 옵션은 프리미엄도 포함합니다. **",
     "label_subscription": "* 언제든지 Google Play 구독을 취소합니다.",
     "label_include_premium": "** Premium이 도착하면 다른 비용을 지불하지 않아도됩니다. 향후 업데이트에서는 Premium이 가져올 모든 새로운 기능에 대한 자세한 정보가있을 것입니다.",
@@ -259,5 +259,14 @@
     "label_intro_3"       : "Simple 또는 In Detail을 평가하는 2 가지 방법으로 영화, 시리즈 또는 애니메이션을 평가하면 작품의 각 측면을 평가할 수 있습니다.",
     "label_company_series": "TV 시리즈 회사",
     "label_company_animes": "애니메이션 회사",
-    "label_anime_season"           : "가을 애니메이션 시즌 2020"
+    "label_anime_season"           : "가을 애니메이션 시즌 2020",
+    "order_by_your_rating_total"     : "총점으로 정렬",
+    "order_by_your_rating_plot"      : "플롯 점수로 정렬",
+    "order_by_your_rating_character" : "캐릭터 점수로 정렬",
+    "order_by_your_rating_ost"       : "사운드 트랙 점수로 정렬",
+    "order_by_your_rating_effects"   : "사진의 등급으로 정렬",
+    "order_by_your_rating_enjoyment" : "엔터테인먼트 점수로 정렬",
+    "order_by_your_added"            : "추가 된 날짜로 정렬",
+    "order_by_your_realese_date"     : "출발일로 정렬",
+    "order_by_your_com_rating"       : "커뮤니티 점수로 정렬"
   }

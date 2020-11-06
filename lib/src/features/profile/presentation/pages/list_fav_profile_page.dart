@@ -1,9 +1,7 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
-import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
 class ListFavoriteProfilePage extends StatefulWidget {
@@ -65,8 +63,11 @@ class _ListFavoriteProfilePageState extends State<ListFavoriteProfilePage> with 
       title: Text("Your Favorites Ouevres"),
       bottom: _tabBar(),
       leading: AppBarButtonBack(),
-      );
+      
+    );
   }
+
+  
 
   TabBarView buildTabBarView(BuildContext context) {
     return TabBarView(

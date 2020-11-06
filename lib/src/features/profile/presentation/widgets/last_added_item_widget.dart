@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LastAddedItem extends StatefulWidget {
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const LastAddedItem({
     @required this.type,

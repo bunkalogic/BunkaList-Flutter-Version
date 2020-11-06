@@ -214,8 +214,8 @@
     "empty_last_added_label"      : "Vous n'avez rien ajouté à vos listes, ajoutez quelque chose.",
     "label_remove_ads"            : "Soutenez le développement Bunkalist et supprimez les publicités.",
     "label_month_ads"             : "1 mois sans publicité pour 0,99 $. *",
-    "label_year_ads"              : "1 an sans publicité pour 0,33 $ par mois. *",
-    "label_never_ads"             : "Payez une fois et supprimez les annonces de 6,99 $.",
+    "label_year_ads"              : "1 an sans publicité pour 2,50 $. *",
+    "label_never_ads"             : "Payez une fois et supprimez les annonces de 4,99 $.",
     "label_never_ads_with_premium": "Cette option inclut également le Premium. **",
     "label_subscription"          : "* Annuler l'abonnement à tout moment dans Google Play.",
     "label_include_premium"       : "** Lorsque la Premium arrivera, vous n'aurez rien à payer d'autre. Dans les futures mises à jour, il y aura plus d'informations sur toutes les nouvelles fonctionnalités que la Premium apportera.",
@@ -258,6 +258,14 @@
     "label_intro_3"       : "Évaluez vos films, séries ou animes avec 2 façons d'évaluer Simple ou En détail, vous parvenez à valoriser chaque aspect d'une œuvre.",
     "label_company_series": "Sociétés de séries télévisées",
     "label_company_animes": "Sociétés d'animes",
-    "label_anime_season"           : "Saison d'anime d'automne 2020"
-  
+    "label_anime_season"           : "Saison d'anime d'automne 2020",
+    "order_by_your_rating_total"     : "Trier par votre score total",
+    "order_by_your_rating_plot"      : "Trier par score de votre intrigue",
+    "order_by_your_rating_character" : "Trier par score de votre personnage",
+    "order_by_your_rating_ost"       : "Trier par votre score de la bande-son",
+    "order_by_your_rating_effects"   : "Trier par note de la photo",
+    "order_by_your_rating_enjoyment" : "Trier par votre score de divertissement",
+    "order_by_your_added"            : "Trier par date d'ajout",
+    "order_by_your_realese_date"     : "Trier par date de départ",
+    "order_by_your_com_rating"       : "Trier par score de la communauté"
   }

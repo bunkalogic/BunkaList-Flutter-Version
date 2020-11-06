@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime_season/animeseason_bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
@@ -19,6 +20,7 @@ import 'package:bunkalist/src/features/home_tops/presentation/widgets/container_
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/container_list_series_widget.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/scroll_movies_cinema.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/widgets/series_month_widget.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +41,6 @@ class TopsPage extends StatefulWidget {
 
 class _TopsPageState extends State<TopsPage> {
 
-  final _controller = NativeAdmobController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class _TopsPageState extends State<TopsPage> {
 
   Widget _listTops(BuildContext context) {
     
-
+      bool random = randomAdsOrBanner();
 
     return ListView(
       children: <Widget>[
@@ -98,7 +99,9 @@ class _TopsPageState extends State<TopsPage> {
           builder: (_) => serviceLocator<TopsSeriesBloc>(),
           child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("series_popular"), typeId: Constants.topsSeriesPopularId,),
         ),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5724861288', ),
+        random
+        ? MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5724861288', )
+        : BannerPremiumWidget(),
         new BlocProvider<SelectionanimesBloc>(
           builder: (_) => serviceLocator<SelectionanimesBloc>(),
           child: ContainerListSelectionAnimeWidget(title: AppLocalizations.of(context).translate("label_selection_animes"), typeId: Constants.selectionAnimesId,),

@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 
 class MediaRatingWidget extends StatefulWidget {
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const MediaRatingWidget({
     @required this.type,

@@ -1,15 +1,18 @@
 
 
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/plan_to_watch_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -51,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: 265.0,
+          height: MediaQuery.of(context).size.height * 0.33,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -105,15 +108,15 @@ class _ProfilePageState extends State<ProfilePage> {
       children: <Widget>[
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: TotalViewsWidget(status: 'Total', type: 'movie',),
+            child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'movie',),
           ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: TotalViewsWidget(status: 'Total', type: 'tv',),
+          child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'tv',),
         ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: TotalViewsWidget(status: 'Total', type: 'anime',),
+          child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'anime',),
         ),
       ],
     );
@@ -127,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
         textAlign: TextAlign.center,
         style: TextStyle(
         fontSize: 16.0, 
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w400,
         fontStyle: FontStyle.italic
       ),
       ),
@@ -140,15 +143,15 @@ class _ProfilePageState extends State<ProfilePage> {
       children: <Widget>[
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: MediaRatingWidget(status: 'Completed', type: 'movie',),
+            child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'movie',),
           ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: MediaRatingWidget(status: 'Completed', type: 'tv',),
+          child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'tv',),
         ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: MediaRatingWidget(status: 'Completed', type: 'anime',),
+          child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'anime',),
         ),
       ],
     );
@@ -179,6 +182,8 @@ class _ProfilePageState extends State<ProfilePage> {
   //! Material Components (Android)
 
   Widget _profileDesignMaterial(BuildContext context) {
+    bool random = randomAdsOrBanner();
+
     return ListView(
       //padding: EdgeInsets.all(5.0),
       children: <Widget>[
@@ -196,48 +201,50 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'movie',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
           ),  
         SizedBox(height: 15.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'tv',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
           ),
         SizedBox(height: 15.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_anime")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'anime',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
           ),
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179577480077093",),  
 
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
+        random 
+        ? MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', )
+        : BannerPremiumWidget(),
 
         _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_movie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: 'WishList', type: 'movie',),
+            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'movie',),
           ),
           SizedBox(height: 10.0,),
           _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_serie")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: 'WishList', type: 'tv',),
+            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'tv',),
           ),
         SizedBox(height: 10.0,),
           _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_anime")),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: 'WishList', type: 'anime',),
+            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'anime',),
           ),
-
-        SizedBox(height: 25.0,),    
+        BannerPremiumWidget(),
+        SizedBox(height: 20.0,),    
       ],
     );
   }
@@ -317,19 +324,19 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'movie',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
           ),
         _titleScrollSection('The last views of Series :'),
         SizedBox(height: 10.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'tv',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
           ),
         _titleScrollSection('The last views of Animes :'),
         SizedBox(height: 10.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: 'Last', type: 'anime',),
+            child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
           ),
       ],
     );

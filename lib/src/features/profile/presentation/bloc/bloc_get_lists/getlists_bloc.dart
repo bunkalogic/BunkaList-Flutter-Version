@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_get_ouevre.dart';
 import 'package:bunkalist/src/features/profile/domain/usescases/get_total_by_status.dart';
@@ -63,6 +64,27 @@ class GetListsBloc extends Bloc<GetListsEvent, GetListsState> {
         (listByStatus) => GetTotalByStatusLoaded(listByStatus) 
       );
     }
+    // else if(event is GetYourListsComplStatus){
+      
+    //   yield GetNewListsLoading();
+
+    //   final eitherFailureOrLists = await 
+    //     getAllOuevre(Params(type: event.type, status: event.status));
+
+    //  //yield* _eitherLoadedOuevresOrErrorState(eitherFailureOrLists);
+
+    //  eitherFailureOrLists.fold(
+    //    (failure) => GetlistsError(), 
+    //    (lists){
+    //      _listsSubscription?.cancel();
+
+    //      _listsSubscription = lists.listen(
+    //         (ouevres) => add(GetYourListsUpdated(ouevres)),
+    //      );
+
+    //    }
+    // );
+    // }
   
   }
 

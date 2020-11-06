@@ -11,6 +11,7 @@ import 'package:bunkalist/src/features/search/domain/entities/search_result_enti
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,15 +39,21 @@ class _ExplorerPageState extends State<ExplorerPage> {
         CardTypesMoreTopsWidget(),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_company_series")),
         ScrollCompanyWidget(companies: getListSeriesCompany(),),
+        SizedBox(height: 10.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_company_animes")),
         ScrollCompanyWidget(companies: getListAnimesCompany(),),
-        SizedBox(height: 30.0,),
+        SizedBox(height: 10.0,),
+        BannerPremiumWidget(),
+        SizedBox(height: 10.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_movie")),
         ScrollRowGenres(genres:  getListGenresMovies(context),),
+        SizedBox(height: 10.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_serie")),
         ScrollRowGenres(genres:  getListGenresSeries(context),),
+        SizedBox(height: 10.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_anime")),
         ScrollRowGenres(genres:  getListGenresAnimes(context),),
+        SizedBox(height: 10.0,),
         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/6111874096',),
         
       ],

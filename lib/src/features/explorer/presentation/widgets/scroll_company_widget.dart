@@ -48,9 +48,8 @@ class _ScrollCompanyWidgetState extends State<ScrollCompanyWidget> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
-          child: FadeInImage(
-            placeholder: AssetImage('assets/poster_placeholder.png'), 
-            image: NetworkImage(company.imagePath),
+          child: Image.network(
+            company.imagePath,
             height: 50.0,
             width: 50.0,
             fit: BoxFit.contain,

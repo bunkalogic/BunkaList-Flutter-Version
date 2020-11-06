@@ -1,4 +1,5 @@
 
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/features/profile/domain/contracts/get_ouevre_contract.dart';
 import 'package:meta/meta.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
@@ -25,7 +26,7 @@ class GetAllOuevre extends UseCase<Stream<List<OuevreEntity>>, Params>{
 class Params extends Equatable{
 
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   Params({@required this.type, @required this.status}) : super([type, status]);
 

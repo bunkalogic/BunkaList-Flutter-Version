@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TotalViewsWidget extends StatefulWidget {
 
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const TotalViewsWidget({
     @required this.type,

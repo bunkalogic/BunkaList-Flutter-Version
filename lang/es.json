@@ -218,8 +218,8 @@
     "empty_last_added_label"      : "No tiene nada agregado a sus listas, agregue algo",
     "label_remove_ads": "Apoyar el desarrollo de Bunkalist y eliminar anuncios",
     "label_month_ads": "1 mes sin anuncios por 0,99 $. *",
-    "label_year_ads": "1 año sin anuncios por 0,33 $ por mes. *",
-    "label_never_ads": "Pague una vez y elimine los anuncios por 6,99 $",
+    "label_year_ads": "1 año sin anuncios por 2,50 $. *",
+    "label_never_ads": "Pague una vez y elimine los anuncios por 4,99 $",
     "label_never_ads_with_premium": "Esta opción también incluye el Premium. **",
     "label_subscription": "* Cancelar suscripción en cualquier momento en Google Play.",
     "label_include_premium": "** Cuando llegue el Premium, no tendrá que pagar nada más. En futuras actualizaciones habrá más información sobre todas las nuevas características que traerá el Premium.",
@@ -256,5 +256,15 @@
     "label_intro_2"       : "Gestione o administre las Peliculas, Series y Animes en listas ordenadas por el estado de visualización ",
     "label_intro_3"       : "Califica o puntúa tus Películas, Series o Animes con 2 formas de valorar Simple o En Detalle.",
     "label_company_series": "Compañias de Series TV",
-    "label_company_animes" : "Compañias de Animes"
+    "label_company_animes" : "Compañias de Animes",
+    "order_by_your_rating_total"     : "Ordenar por tu puntación total",
+    "order_by_your_rating_plot"      : "Ordenar por tu puntación de la trama",
+    "order_by_your_rating_character" : "Ordenar por tu puntación de los personajes",
+    "order_by_your_rating_ost"       : "Ordenar por tu puntación de la banda sonora",
+    "order_by_your_rating_effects"   : "Ordenar por tu puntación de la fotografia",
+    "order_by_your_rating_enjoyment" : "Ordenar por tu puntación sobre entretenimiento",
+    "order_by_your_added"            : "Ordenar por la fecha que fue agregada",
+    "order_by_your_realese_date"     : "Ordenar por la fecha de salida",
+    "order_by_your_com_rating"       : "Ordenar por la puntuacion de la comunidad"
+    
   }

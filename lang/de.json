@@ -214,8 +214,8 @@
     "empty_last_added_label"      : "Sie haben nichts zu Ihren Listen hinzugefügt, fügen Sie etwas hinzu.",
     "label_remove_ads": "Unterstützen Sie die Entwicklung von Bunkalisten und entfernen Sie Anzeigen.",
     "label_month_ads": "1 Monat ohne Werbung für 0,99 $. *",
-    "label_year_ads": "1 Jahr ohne Werbung für 0,33 $ pro Monat. *",
-    "label_never_ads": "Einmal bezahlen und Anzeigen um 6,99 $ entfernen.",
+    "label_year_ads": "1 Jahr ohne Werbung für 2,50 $. *",
+    "label_never_ads": "Einmal bezahlen und Anzeigen um 4,99 $ entfernen.",
     "label_never_ads_with_premium": "Diese Option enthält auch die Premium. **",
     "label_subscription": "* Abonnement jederzeit in Google Play kündigen.",
     "label_include_premium": "** Wenn die Premium ankommt, müssen Sie nichts mehr bezahlen. In zukünftigen Updates werden weitere Informationen zu allen neuen Funktionen der Premium verfügbar sein.",
@@ -258,5 +258,14 @@
     "label_intro_3"       : "Bewerten Sie Ihre Filme, Serien oder Animes auf zwei Arten, um Einfach oder Im Detail zu bewerten. Sie können jeden Aspekt einer Arbeit bewerten.",
     "label_company_series": "TV-Serien-Unternehmen",
     "label_company_animes": "Animes Firmen",
-    "label_anime_season"           : "Herbst Anime Saison 2020"
+    "label_anime_season"           : "Herbst Anime Saison 2020",
+    "order_by_your_rating_total"     : "Sortieren nach Ihrer Gesamtpunktzahl",
+    "order_by_your_rating_plot"      : "Sortieren nach Ihrer Handlungspunktzahl",
+    "order_by_your_rating_character" : "Sortiere nach deiner Charakterwertung",
+    "order_by_your_rating_ost"       : "Sortieren Sie nach Ihrer Partitur des Soundtracks",
+    "order_by_your_rating_effects"   : "Sortieren Sie nach Ihrer Bewertung des Fotos",
+    "order_by_your_rating_enjoyment" : "Sortieren nach Ihrer Unterhaltungspunktzahl",
+    "order_by_your_added"            : "Nach dem Datum sortieren, das hinzugefügt wurde",
+    "order_by_your_realese_date"     : "Nach Abreisedatum sortieren",
+    "order_by_your_com_rating"       : "Nach Community-Punktzahl sortieren"
   }

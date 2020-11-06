@@ -67,7 +67,7 @@ final appThemeData = {
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
       ),
       labelStyle: TextStyle(
-        fontSize: 18.0, 
+        fontSize: 16.0, 
         fontWeight: FontWeight.w800, 
         fontStyle: FontStyle.italic,
         shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))]
@@ -125,7 +125,7 @@ final appThemeData = {
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
         ),
       labelStyle: TextStyle(
-        fontSize: 18.0,
+        fontSize: 16.0,
         fontWeight: FontWeight.w800, 
         fontStyle: FontStyle.italic,
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
@@ -185,7 +185,7 @@ final appThemeData = {
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
         ),
       labelStyle: TextStyle(
-        fontSize: 18.0,
+        fontSize: 16.0,
         fontWeight: FontWeight.w800, 
         fontStyle: FontStyle.italic,
         shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]

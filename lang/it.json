@@ -214,8 +214,8 @@
     "empty_last_added_label"      : "Non hai aggiunto nulla alle tue liste, aggiungi qualcosa.",
     "label_remove_ads"              : "Supporta lo sviluppo di Bunkalist e rimuovi gli annunci.",
     "label_month_ads"               : "1 mese senza pubblicità per 0,99 $. *",
-    "label_year_ads"                : "1 anno senza pubblicità per 0,33 $ al mese. *",
-    "label_never_ads"               : "Paga una volta e rimuovi gli annunci di 6,99 $.",
+    "label_year_ads"                : "1 anno senza pubblicità per 2,50 $. *",
+    "label_never_ads"               : "Paga una volta e rimuovi gli annunci di 4,99 $.",
     "label_never_ads_with_premium"  : "Questa opzione include anche il Premium. **",
     "label_subscription"            : "* Annulla l'abbonamento in qualsiasi momento su Google Play.",
     "label_include_premium"         : "** All'arrivo del Premium non dovrai pagare nient'altro. Nei futuri aggiornamenti ci saranno ulteriori informazioni su tutte le nuove funzionalità che il Premium porterà.",
@@ -258,6 +258,15 @@
     "label_intro_3"       : "Valuta i tuoi film, serie o animazioni con 2 modi per valutare Semplice o In dettaglio, riesci a valutare ogni aspetto di un'opera.",
     "label_company_series": "Società di serie TV",
     "label_company_animes": "Società di Animes",
-    "label_anime_season"           : "Autunno stagione anime 2020"
+    "label_anime_season"           : "Autunno stagione anime 2020",
+    "order_by_your_rating_total"     : "Ordina per punteggio totale",
+    "order_by_your_rating_plot"      : "Ordina in base al punteggio della trama",
+    "order_by_your_rating_character" : "Ordina in base al punteggio del tuo personaggio",
+    "order_by_your_rating_ost"       : "Ordina in base al punteggio della colonna sonora",
+    "order_by_your_rating_effects"   : "Ordina in base alla tua valutazione della foto",
+    "order_by_your_rating_enjoyment" : "Ordina in base al tuo punteggio di intrattenimento",
+    "order_by_your_added"            : "Ordina per data aggiunta",
+    "order_by_your_realese_date"     : "Ordina per data di partenza",
+    "order_by_your_com_rating"       : "Ordina per punteggio della community"
   
   }

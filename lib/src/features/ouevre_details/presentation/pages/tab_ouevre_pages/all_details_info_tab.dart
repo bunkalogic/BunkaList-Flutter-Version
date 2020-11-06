@@ -6,10 +6,12 @@ import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
+import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -90,6 +92,8 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     bool random = randomAdsOrBanner();
+
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
@@ -98,7 +102,10 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        random
+          ? BannerPremiumWidget()
+          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
+         
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );
@@ -378,6 +385,9 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool random = randomAdsOrBanner();
+
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
@@ -389,7 +399,10 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        random
+          ? BannerPremiumWidget()
+          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
+        
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );
@@ -797,6 +810,9 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool random = randomAdsOrBanner();
+
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
@@ -805,7 +821,9 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+        random
+          ? BannerPremiumWidget()
+          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );

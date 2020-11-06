@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
@@ -13,7 +14,7 @@ import 'package:intl/intl.dart';
 
 class PlanToWatchItem extends StatefulWidget {
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const PlanToWatchItem({
     @required this.type,

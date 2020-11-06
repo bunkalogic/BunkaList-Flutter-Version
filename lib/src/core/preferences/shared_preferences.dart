@@ -1,3 +1,5 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences{
@@ -137,5 +139,17 @@ class Preferences{
 
   set currentUserHasToken (bool value) {
     _prefs.setBool('hasToken', value);
+  }
+
+  //? se encarga de guardar el Enum filterListCompleted
+
+  get getfilterListCompleted {
+    
+    return EnumToString.fromString(ListProfileQuery.values, _prefs.getString('filterListCompleted') ?? EnumToString.convertToString(ListProfileQuery.Completed) );
+    // return _prefs.getString('filterListCompleted') ?? '';
+  }
+
+  set getfilterListCompleted  (ListProfileQuery value) {
+    _prefs.setString('filterListCompleted', EnumToString.convertToString(value));
   }
 }

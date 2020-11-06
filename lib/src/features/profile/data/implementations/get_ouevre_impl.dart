@@ -1,4 +1,5 @@
 
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/error/exception.dart';
 import 'package:meta/meta.dart';
 import 'package:bunkalist/src/core/error/failures.dart';
@@ -14,7 +15,7 @@ class GetOuevreImpl implements GetOuevreContract{
   GetOuevreImpl({@required this.remoteDataSource});
 
   @override
-  Either<Failures, Stream<List<OuevreEntity>>> getOuevreInFirebase(String type, String status) {
+  Either<Failures, Stream<List<OuevreEntity>>> getOuevreInFirebase(String type, ListProfileQuery status) {
     try{
 
       final remote = remoteDataSource.getOfFirebase(type, status);

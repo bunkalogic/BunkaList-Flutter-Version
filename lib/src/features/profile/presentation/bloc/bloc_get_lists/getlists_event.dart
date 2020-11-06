@@ -9,9 +9,22 @@ abstract class GetListsEvent extends Equatable {
 
 class GetYourLists extends GetListsEvent{
   final String type; 
-  final String status;
+  final ListProfileQuery status;
 
   const GetYourLists({
+    @required this.type,
+    @required this.status
+  });
+
+  @override
+  List<Object> get props => [type, status];
+}
+
+class GetYourListsComplStatus extends GetListsEvent{
+  final String type; 
+  final ListProfileQuery status;
+
+  const GetYourListsComplStatus({
     @required this.type,
     @required this.status
   });

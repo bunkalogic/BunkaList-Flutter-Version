@@ -412,8 +412,8 @@
 
   "label_remove_ads"              : "Support Bunkalist development and remove Ads.",
   "label_month_ads"               : "1 Month without ads for 0,99$.*",
-  "label_year_ads"                : "1 Year without ads for 0,33$ per month.*",
-  "label_never_ads"               : "Pay once and remove ads by 6,99$.",
+  "label_year_ads"                : "1 Year without ads for 2,50$.*",
+  "label_never_ads"               : "Pay once and remove ads by 4,99$.",
   "label_never_ads_with_premium"  : "This option also includes the Premium. **",
   "label_subscription"            : "* Cancel subscription any time in Google Play.",
   "label_include_premium"         : "** When the Premium arrives you will not have to pay anything else. In future updates there will be more information about all the new features that the Premium will bring.",
@@ -455,6 +455,15 @@
     "label_intro_2"       : "Manage or manage Movies, Series and Animes in lists ordered by viewing status",
     "label_intro_3"       : "Rate your Movies, Series or Animes with 2 ways to rate Simple or In Detail, you manage to value each aspect of a work.",
     "label_company_series": "TV Series Companies",
-    "label_company_animes": "Animes Companies"
+    "label_company_animes": "Animes Companies",
+    "order_by_your_rating_total"     : "Sort by your total score",
+    "order_by_your_rating_plot"      : "Sort by your plot score",
+    "order_by_your_rating_character" : "Sort by your character score",
+    "order_by_your_rating_ost"       : "Sort by your score of the soundtrack",
+    "order_by_your_rating_effects"   : "Sort by your rating of the photo",
+    "order_by_your_rating_enjoyment" : "Sort by your entertainment score",
+    "order_by_your_added"            : "Sort by the date that was added",
+    "order_by_your_realese_date"     : "Sort by departure date",
+    "order_by_your_com_rating"       : "Sort by community score"
 
 }

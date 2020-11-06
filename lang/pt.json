@@ -214,8 +214,8 @@
     "empty_last_added_label"      : "Você não adicionou nada às suas listas, adicione algo.",
     "label_remove_ads"            : "Apoie o desenvolvimento do Bunkalist e remova os anúncios.",
     "label_month_ads"               : "1 mês sem anúncios por 0,99 $. *",
-    "label_year_ads"                : "1 ano sem anúncios por 0,33 $ por mês. *",
-    "label_never_ads"               : "Pague uma vez e remova os anúncios em US $ 6,99.",
+    "label_year_ads"                : "1 ano sem anúncios por 2,50 $. *",
+    "label_never_ads"               : "Pague uma vez e remova os anúncios em US $ 4,99.",
     "label_never_ads_with_premium"  : "Esta opção também inclui o Premium. **",
     "label_subscription"            : "* Cancele a assinatura a qualquer momento no Google Play.",
     "label_include_premium"         : "** Quando o Premium chegar, você não precisará pagar mais nada. Em futuras atualizações, haverá mais informações sobre todos os novos recursos que o Premium trará.",
@@ -258,6 +258,15 @@
     "label_intro_3"       : "Avalie seus filmes, séries ou animes com 2 maneiras de classificar Simples ou Em Detalhe, você consegue valorizar cada aspecto de uma obra.",
     "label_company_series": "Empresas de Séries de TV",
     "label_company_animes": "Empresas Animes",
-    "label_anime_season"           : "Temporada de anime de outono de 2020"
+    "label_anime_season"           : "Temporada de anime de outono de 2020",
+    "order_by_your_rating_total"     : "Classifique por sua pontuação total",
+    "order_by_your_rating_plot"      : "Classifique pela pontuação do enredo",
+    "order_by_your_rating_character" : "Classifique pela pontuação do seu personagem",
+    "order_by_your_rating_ost"       : "Classifique pela pontuação da trilha sonora",
+    "order_by_your_rating_effects"   : "Classifique pela avaliação da foto",
+    "order_by_your_rating_enjoyment" : "Classifique por sua pontuação de entretenimento",
+    "order_by_your_added"            : "Classifique pela data que foi adicionada",
+    "order_by_your_realese_date"     : "Classificar por data de partida",
+    "order_by_your_com_rating"       : "Classificar por pontuação da comunidade"
   
   }

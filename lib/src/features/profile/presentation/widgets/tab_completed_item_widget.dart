@@ -1,9 +1,12 @@
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/build_bottom_modal_filter_completed.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +19,11 @@ class TabItemCompletedWidget extends StatefulWidget {
   
 
   final String type; 
-  final String status;
+  // final ListProfileQuery status;
 
   const TabItemCompletedWidget({
     @required this.type,
-    @required this.status
+    // @required this.status
   });
 
   @override
@@ -29,16 +32,43 @@ class TabItemCompletedWidget extends StatefulWidget {
 
 class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
+  final prefs = new Preferences();
+  ListProfileQuery status;
+
+
   @override
   void initState() {
     super.initState();
 
+    // setState(() {
+    //   status = prefs.getfilterListCompleted;
+    // });
+
     BlocProvider.of<GetListsBloc>(context)..add(
-      GetYourLists( type: widget.type, status: widget.status)
+      GetYourLists( type: widget.type, status: ListProfileQuery.Completed)
     );
   }
 
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+
+  //   // setState(() {
+  //   //   status = prefs.getfilterListCompleted;
+  //   // });
+
+  //   print('----- DidChangeDependencies -----');
+  //   // BlocProvider.of<GetListsBloc>(context)..add(
+  //   //   GetYourListsComplStatus( type: widget.type, status: status)
+  //   // );
+   
+  //   BlocProvider.of<GetListsBloc>(context)..add(
+  //     GetYourLists( type: widget.type, status: status)
+  //   );
+  // }
   
+
  
 
   double cardSize = 100.0;
@@ -55,11 +85,42 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   @override
   Widget build(BuildContext context) {
 
+      // setState(() {
+      //   status = prefs.getfilterListCompleted;
+      // });
+
+      // print('------ filter type list: ${prefs.getfilterListCompleted.toString()} ------');
+
+
+
     return BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
         if(state is GetListsLoading){
-          
+
+          //setState(() {
+          //  status = prefs.getfilterListCompleted;
+          //});
+          // print('----- Is loading -----');
+
+          // BlocProvider.of<GetListsBloc>(context)..add(
+          //   GetYourLists( type: widget.type, status: status)
+          //   // GetYourListsComplStatus( type: widget.type, status: status)
+          // );
+          // BlocProvider.of<GetListsBloc>(context)..add(
+          //   GetYourLists( type: widget.type, status: status)
+          // );
+
           return LoadingCustomWidget();
+
+        // }else if (state is GetNewListsLoading){
+        //   BlocProvider.of<GetListsBloc>(context)..add(
+        //     GetYourListsComplStatus( type: widget.type, status: status)
+        //   );
+
+        //   print('----- Is new loading -----');
+
+        //   return LoadingCustomWidget();
+
 
         }else if(state is GetListsLoaded){
 
@@ -73,12 +134,14 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           
          } 
 
-          return Container(
-      child: ListView.builder(
-        itemCount: state.ouevreList.length,
-        itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
-        ),
-    );
+          return _buildListView(state.ouevreList);
+
+          // return Container(
+          //   child: ListView.builder(
+          //     itemCount: state.ouevreList.length,
+          //     itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
+          //   ),
+          // );
 
         }else if(state is GetlistsError){
           
@@ -90,6 +153,8 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
         }
 
+
+
         return ListProfileEmptyIconWidget(
             title: AppLocalizations.of(context).translate("completed_empty_label"),
             color: Colors.greenAccent[400],
@@ -99,8 +164,73 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       },
     );
 
-
     
+    
+  }
+
+  Widget _buildListView(List<OuevreEntity> ouevreList){
+
+    return Scaffold(
+      body: Container(
+        child: ListView.builder(
+          itemCount: ouevreList.length,
+          itemBuilder: (context, i) => _itemTab(ouevreList[i])
+        ),
+      ),
+      floatingActionButton: _buildFab(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
+    );
+
+  }
+
+  Widget _buildFab(){
+    return FloatingActionButton(
+      onPressed: () async {
+        
+        ListProfileQuery result = await showModalBottomSheet<ListProfileQuery>(
+          isScrollControlled: true,
+          elevation: 10.0,
+          isDismissible: false,
+          backgroundColor: _getBackgroundColorTheme(), 
+          context: context,
+          builder: (context) => BuildBottomFilterCompleted(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(30),
+              topRight: const Radius.circular(30)
+            )
+          )
+        );
+
+        status = result;
+        setState(() {});
+
+        BlocProvider.of<GetListsBloc>(context)..add(
+          GetYourLists( type: widget.type, status: result ?? ListProfileQuery.Completed )
+        );
+        
+      },
+      elevation: 10.0,
+      backgroundColor: Colors.deepPurpleAccent[400],
+      mini: true,
+      child: Icon(
+        Icons.filter_list,
+        color: Colors.deepOrangeAccent[700],
+      ),
+    );
+  }
+
+  Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
+      return Colors.grey[100];
+    }
   }
 
   Widget _itemTab(OuevreEntity ouevre) {
@@ -206,7 +336,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
   Widget _itemRate(OuevreEntity ouevre) {
-    return MiniCircularChartRating(ouevre.finalRate);
+    return MiniCircularChartRating(_getRatingActualFilter(ouevre));
   }
 
   Widget _itemDate(OuevreEntity ouevre) {
@@ -316,6 +446,34 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       return Container();
     }
     
+  }
+
+  double _getRatingActualFilter(OuevreEntity ouevre){
+    switch (status) {
+      
+      case ListProfileQuery.Completed: return ouevre.finalRate;
+        break;
+
+      case ListProfileQuery.CompleteHistoryRate: return ouevre.historyRate;
+        break;
+
+      case ListProfileQuery.CompleteCharacterRate: return ouevre.characterRate;
+        break;
+
+      case ListProfileQuery.CompleteEffectsRate: return ouevre.effectsRate;
+        break;
+
+      case ListProfileQuery.CompleteOSTRate: return ouevre.ostRate;
+        break;
+
+      case ListProfileQuery.CompleteEnjoymentRate: return ouevre.enjoymentRate;
+        break;
+
+      case ListProfileQuery.CompleteOeuvreRating: return ouevre.oeuvreRating;
+        break;          
+
+      default: return ouevre.finalRate;
+    }
   }
 
   void _changedSizedCard() {

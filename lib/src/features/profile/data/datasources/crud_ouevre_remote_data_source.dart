@@ -1,5 +1,6 @@
 
 
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/profile/data/datasources/post_rate_in_tmdb.dart';
 import 'package:bunkalist/src/features/profile/data/models/oeuvre_model.dart';
@@ -13,7 +14,7 @@ abstract class CrudOuevreRemoteDataSource{
 
   Future<void> deleteInFirebase(OuevreModel ouevre, String type);
 
-  Stream<List<OuevreModel>> getOfFirebase( String type, String status);
+  Stream<List<OuevreModel>> getOfFirebase( String type, ListProfileQuery status);
 
   Future<void> updateInFirebase(OuevreModel ouevre, String type);
 
@@ -68,14 +69,23 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
     .updateData(ouevre.toDocument());
 
   }
+  /// TODO: 
+  /// getCompleteAddDate, 
+  /// getCompleteHistoryRate, 
+  /// getCompleteEffectsRate, 
+  /// getCompleteOSTRate, 
+  /// getCompleteCharacterRate, 
+  /// getCompleteEnjoymentRate,
+  /// getCompleteOeuvreReleaseDate,
+  /// getCompleteOeuvreRating, 
 
   @override
-  Stream<List<OuevreModel>> getOfFirebase(String type, String status) {
+  Stream<List<OuevreModel>> getOfFirebase(String type, ListProfileQuery status) {
     final ouevreCollection = firebase
     .collection('user/${prefs.getCurrentUserUid}/list$type');
 
     switch (status) {
-      case 'Completed':{
+      case ListProfileQuery.Completed :{
 
         return ouevreCollection
         .where('status',isEqualTo: 1)
@@ -90,7 +100,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
 
       }
 
-      case 'Watching':{
+      case ListProfileQuery.Watching :{
         
         return ouevreCollection
         .where('status',isEqualTo: 2)
@@ -105,7 +115,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
 
       }
       
-      case 'Pause':{
+      case ListProfileQuery.Pause :{
 
         return ouevreCollection
         .where('status',isEqualTo: 3)
@@ -120,7 +130,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
 
       }
       
-      case 'Dropped':{
+      case ListProfileQuery.Dropped :{
         return ouevreCollection
         .where('status',isEqualTo: 4)
         .orderBy('addDate', descending: true)
@@ -133,7 +143,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
       
-      case 'WishList':{
+      case ListProfileQuery.Wishlist :{
         return ouevreCollection
         .where('status',isEqualTo: 5)
         .orderBy('addDate', descending: true)
@@ -146,7 +156,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
 
-      case 'Last':{
+      case ListProfileQuery.Last :{
         return ouevreCollection
         .orderBy('addDate', descending: true)
         .limit(15)
@@ -159,7 +169,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
 
-      case 'Total': {
+      case ListProfileQuery.Total : {
         return ouevreCollection
         .snapshots().map((snap){
           
@@ -170,7 +180,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         });
       }
 
-      case 'Favorite':{
+      case ListProfileQuery.Favorite :{
         return ouevreCollection
         .where('isFavorite',isEqualTo: true)
         .orderBy('positionListFav', descending: true)
@@ -181,6 +191,126 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
           .toList();
 
         });
+      }
+
+      case ListProfileQuery.CompleteAddDate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('addDate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteHistoryRate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('historyRate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteCharacterRate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('characterRate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteOSTRate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('ostRate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteEffectsRate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('effectsRate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteEnjoymentRate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('enjoymentRate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteOeuvreRating :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('oeuvreRating', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
+      }
+
+      case ListProfileQuery.CompleteOeuvreReleaseDate :{
+
+        return ouevreCollection
+        .where('status',isEqualTo: 1)
+        .orderBy('oeuvreReleaseDate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+          
+        });
+
       }
 
       

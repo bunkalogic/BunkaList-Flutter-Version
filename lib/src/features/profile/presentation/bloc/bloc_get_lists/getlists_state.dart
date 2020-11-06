@@ -10,6 +10,8 @@ abstract class GetListsState extends Equatable {
 
 class GetListsLoading extends GetListsState {}
 
+class GetNewListsLoading extends GetListsState {}
+
 class GetListsLoaded extends GetListsState {
   
   final List<OuevreEntity> ouevreList;
