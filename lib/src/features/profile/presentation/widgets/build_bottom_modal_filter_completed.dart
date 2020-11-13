@@ -56,7 +56,7 @@ class _BuildBottomFilterCompletedState extends State<BuildBottomFilterCompleted>
           fontWeight: FontWeight.w500
         ),
       ),
-      leading: Icon(icon, color: Colors.deepPurpleAccent, size: 28.0,),
+      leading: Icon(icon, color: Colors.deepPurpleAccent[400], size: 28.0,),
     );
   }
 }

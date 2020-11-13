@@ -34,7 +34,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
   final prefs = new Preferences();
   ListProfileQuery status;
-
+  bool isExtended = false;
 
   @override
   void initState() {
@@ -48,25 +48,6 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       GetYourLists( type: widget.type, status: ListProfileQuery.Completed)
     );
   }
-
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-
-  //   // setState(() {
-  //   //   status = prefs.getfilterListCompleted;
-  //   // });
-
-  //   print('----- DidChangeDependencies -----');
-  //   // BlocProvider.of<GetListsBloc>(context)..add(
-  //   //   GetYourListsComplStatus( type: widget.type, status: status)
-  //   // );
-   
-  //   BlocProvider.of<GetListsBloc>(context)..add(
-  //     GetYourLists( type: widget.type, status: status)
-  //   );
-  // }
   
 
  
@@ -85,41 +66,12 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   @override
   Widget build(BuildContext context) {
 
-      // setState(() {
-      //   status = prefs.getfilterListCompleted;
-      // });
-
-      // print('------ filter type list: ${prefs.getfilterListCompleted.toString()} ------');
-
-
-
     return BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
         if(state is GetListsLoading){
 
-          //setState(() {
-          //  status = prefs.getfilterListCompleted;
-          //});
-          // print('----- Is loading -----');
-
-          // BlocProvider.of<GetListsBloc>(context)..add(
-          //   GetYourLists( type: widget.type, status: status)
-          //   // GetYourListsComplStatus( type: widget.type, status: status)
-          // );
-          // BlocProvider.of<GetListsBloc>(context)..add(
-          //   GetYourLists( type: widget.type, status: status)
-          // );
 
           return LoadingCustomWidget();
-
-        // }else if (state is GetNewListsLoading){
-        //   BlocProvider.of<GetListsBloc>(context)..add(
-        //     GetYourListsComplStatus( type: widget.type, status: status)
-        //   );
-
-        //   print('----- Is new loading -----');
-
-        //   return LoadingCustomWidget();
 
 
         }else if(state is GetListsLoaded){
@@ -136,12 +88,6 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
           return _buildListView(state.ouevreList);
 
-          // return Container(
-          //   child: ListView.builder(
-          //     itemCount: state.ouevreList.length,
-          //     itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
-          //   ),
-          // );
 
         }else if(state is GetlistsError){
           
@@ -172,12 +118,33 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
     return Scaffold(
       body: Container(
-        child: ListView.builder(
-          itemCount: ouevreList.length,
-          itemBuilder: (context, i) => _itemTab(ouevreList[i])
-        ),
+        child: NotificationListener<ScrollNotification>(
+          onNotification: (ScrollNotification notification) {
+            if (notification is ScrollStartNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = true;
+              });
+            }
+
+            if (notification is ScrollEndNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = false;
+              });
+            }
+
+            // Returning null (or false) to
+            // "allow the notification to continue to be dispatched to further ancestors".
+            return null;
+          },
+          child:  ListView.builder(
+            itemCount: ouevreList.length,
+            itemBuilder: (context, i) => _itemTab(ouevreList[i])
+          ),
+        )
       ),
-      floatingActionButton: _buildFab(),
+      floatingActionButton:  _buildExtendFab(), //_buildFab(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
 
@@ -218,6 +185,74 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
         color: Colors.deepOrangeAccent[700],
       ),
     );
+  }
+
+  Widget _buildExtendFab(){
+    return FloatingActionButton.extended(
+        elevation: 10.0,
+        backgroundColor: _getBackgroundColorTheme(),
+        onPressed:() async {
+
+          ListProfileQuery result = await showModalBottomSheet<ListProfileQuery>(
+          isScrollControlled: true,
+          elevation: 10.0,
+          isDismissible: false,
+          backgroundColor: _getBackgroundColorTheme(), 
+          context: context,
+          builder: (context) => BuildBottomFilterCompleted(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(30),
+              topRight: const Radius.circular(30)
+            )
+          )
+        );
+
+        status = result;
+        setState(() {});
+
+        BlocProvider.of<GetListsBloc>(context)..add(
+          GetYourLists( type: widget.type, status: result ?? ListProfileQuery.Completed )
+        );
+
+        },
+        label: AnimatedSwitcher(
+          duration: Duration(milliseconds: 400),
+          transitionBuilder: (Widget child, Animation<double> animation) =>
+          FadeTransition(
+            opacity: animation,
+            child: SizeTransition(child:
+            child,
+              sizeFactor: animation,
+              axis: Axis.horizontal,
+            ),
+          ) ,
+          child: isExtended 
+          ? Icon(
+            Icons.filter_list,
+            color: Colors.deepOrangeAccent[400],
+          )
+          : Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 1.0),
+                child: Icon(
+                  Icons.filter_list,
+                  color: Colors.deepOrangeAccent[400],
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context).translate("order_by"),
+                style: TextStyle(
+                  color: Colors.deepOrangeAccent[400],
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700
+                ),
+              )
+            ],
+          ),
+        )
+      );
   }
 
   Color _getBackgroundColorTheme() {

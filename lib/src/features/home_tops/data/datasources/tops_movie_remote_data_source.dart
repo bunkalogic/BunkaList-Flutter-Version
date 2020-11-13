@@ -1,4 +1,4 @@
-import 'dart:convert';
+ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bunkalist/src/core/constans/constans_genres_id.dart';
@@ -86,13 +86,14 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
 
   
   Future<List<MovieModel>>  getListMovieSelection(int page) async {
-    final listId = 145390;
+    // final listId = 145390;
+    final listId = 7064703;
 
     final Map<String, String> query = {
         'api_key'                   : _theMovieDB,
         'language'                  : prefs.getLanguage,
         'page'                      : page.toString(),
-        'sort_by'                   : "vote_average.desc"
+        'sort_by'                   : ConstSortBy.primaryReleaseDateDesc
     };
     final url = Uri.https(
       _url, '4/list/$listId', query);

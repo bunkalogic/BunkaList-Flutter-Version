@@ -265,6 +265,7 @@
     "order_by_your_rating_enjoyment" : "Ordenar por tu puntación sobre entretenimiento",
     "order_by_your_added"            : "Ordenar por la fecha que fue agregada",
     "order_by_your_realese_date"     : "Ordenar por la fecha de salida",
-    "order_by_your_com_rating"       : "Ordenar por la puntuacion de la comunidad"
-    
+    "order_by_your_com_rating"       : "Ordenar por la puntuacion de la comunidad",
+    "thanks_for_support"             : "Gracias por apoyar el desarrollo de Bunkalist",
+    "enebled_subcription"            : "Tienes habilitada una suscripción hasta el dia "
   }

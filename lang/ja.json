@@ -268,5 +268,7 @@
     "order_by_your_rating_enjoyment" : "エンターテインメントスコアで並べ替え",
     "order_by_your_added"            : "追加された日付で並べ替え",
     "order_by_your_realese_date"     : "出発日で並べ替え",
-    "order_by_your_com_rating"       : "コミュニティスコアで並べ替え"
+    "order_by_your_com_rating"       : "コミュニティスコアで並べ替え",
+    "thanks_for_support"             : "Bunkalistの開発をサポートしていただきありがとうございます",
+    "enebled_subcription"            : "その日までサブスクリプションを有効にしています"
   }

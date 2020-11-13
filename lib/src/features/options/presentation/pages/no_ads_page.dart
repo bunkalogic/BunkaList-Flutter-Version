@@ -1,6 +1,7 @@
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -80,19 +81,38 @@ class _NoAdsPageState extends State<NoAdsPage> {
   }
 
   Widget _buildScreenIsNotAds() {
+
+    final isActive = _purchaserInfo.entitlements.active.values.first;
+
+    final String date = formatterDate(isActive.expirationDate);
+    final String label = AppLocalizations.of(context).translate("enebled_subcription");
+    final textDate = '$label $date';
     
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("You have enable subcription",
+            Icon(Icons.card_giftcard, color: Colors.redAccent[400], size: 60,),
+            Text(AppLocalizations.of(context).translate("thanks_for_support"),
+            textAlign: TextAlign.center, 
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.w800
+              ),
+            ),
+            SizedBox(height: 10.0,),
+            isActive.expirationDate == null 
+            ? Container()
+            : Text(textDate,
             textAlign: TextAlign.center, 
               style: TextStyle(
                 fontSize: 20.0,
-                fontWeight: FontWeight.w700
+                fontWeight: FontWeight.w500
               ),
             ),
-            Icon(Icons.card_giftcard, color: Colors.redAccent[400], size: 30,),
+            
           ],
         ),
       ),

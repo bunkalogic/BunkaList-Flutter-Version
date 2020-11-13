@@ -90,7 +90,8 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
 
   Future<List<AnimeModel>>  getListAnimesSelection(int page) async {
-    final listId = 145397;
+    // final listId = 145397;
+    final listId = 7064704;
 
     final Map<String, String> query = {
         'api_key'                   : _theAnimeDB,

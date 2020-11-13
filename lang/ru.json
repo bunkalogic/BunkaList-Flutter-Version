@@ -268,6 +268,8 @@
     "order_by_your_rating_enjoyment" : "Сортировать по количеству развлечений",
     "order_by_your_added"            : "Сортировать по дате добавления",
     "order_by_your_realese_date"     : "Сортировать по дате отъезда",
-    "order_by_your_com_rating"       : "Сортировать по оценке сообщества"
+    "order_by_your_com_rating"       : "Сортировать по оценке сообщества",
+    "thanks_for_support"             : "Спасибо за поддержку развития Bunkalist",
+    "enebled_subcription"            : "У вас активна подписка до дня"
 
   }

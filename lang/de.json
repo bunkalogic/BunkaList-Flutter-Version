@@ -267,5 +267,7 @@
     "order_by_your_rating_enjoyment" : "Sortieren nach Ihrer Unterhaltungspunktzahl",
     "order_by_your_added"            : "Nach dem Datum sortieren, das hinzugefügt wurde",
     "order_by_your_realese_date"     : "Nach Abreisedatum sortieren",
-    "order_by_your_com_rating"       : "Nach Community-Punktzahl sortieren"
+    "order_by_your_com_rating"       : "Nach Community-Punktzahl sortieren",
+    "thanks_for_support"             : "Danke, dass Sie die Entwicklung von Bunkalist unterstützen",
+    "enebled_subcription"            : "Sie haben ein Abonnement bis zum heutigen Tag aktiviert "
   }

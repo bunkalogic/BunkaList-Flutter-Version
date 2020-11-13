@@ -464,6 +464,8 @@
     "order_by_your_rating_enjoyment" : "Sort by your entertainment score",
     "order_by_your_added"            : "Sort by the date that was added",
     "order_by_your_realese_date"     : "Sort by departure date",
-    "order_by_your_com_rating"       : "Sort by community score"
+    "order_by_your_com_rating"       : "Sort by community score",
+    "thanks_for_support"             : "Thank you for supporting the development of Bunkalist",
+    "enebled_subcription"            : "You have a subscription enabled until the day "
 
 }

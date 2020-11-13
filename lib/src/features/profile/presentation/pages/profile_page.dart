@@ -60,10 +60,10 @@ class _ProfilePageState extends State<ProfilePage> {
             borderRadius: BorderRadius.circular(30.0),
             gradient: LinearGradient(
               colors: [
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1)
+                Colors.blueGrey[400].withOpacity(0.1),
+                Colors.blueGrey[400].withOpacity(0.1),
+                Colors.blueGrey[400].withOpacity(0.1),
+                Colors.blueGrey[400].withOpacity(0.1)
               ]
             ) 
           ),
@@ -253,11 +253,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _buttonTypeMaterial(context, AppLocalizations.of(context).translate("list_movies"), Colors.redAccent, 0),
+        _buttonTypeMaterial(context, AppLocalizations.of(context).translate("list_movies"), Colors.redAccent[400], 0),
         SizedBox(width: 10.0,),
         _buttonTypeMaterial(context,  AppLocalizations.of(context).translate("list_series"), Colors.greenAccent[400], 1),
         SizedBox(width: 10.0,),
-        _buttonTypeMaterial(context,  AppLocalizations.of(context).translate("list_animes"), Colors.lightBlueAccent, 2),
+        _buttonTypeMaterial(context,  AppLocalizations.of(context).translate("list_animes"), Colors.lightBlueAccent[400], 2),
       ],
     );
   }
@@ -272,7 +272,7 @@ class _ProfilePageState extends State<ProfilePage> {
           color: color,
           child: Text(title,
           overflow: TextOverflow.ellipsis, 
-          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600)),
+          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w700)),
           onPressed: (){
             Navigator.pushNamed(context, '/ListProfile', arguments: type);
           },

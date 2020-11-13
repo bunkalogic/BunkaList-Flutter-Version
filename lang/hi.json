@@ -267,6 +267,8 @@
     "order_by_your_rating_enjoyment" : "अपने मनोरंजन स्कोर द्वारा क्रमबद्ध करें",
     "order_by_your_added"            : "उस तिथि के अनुसार क्रमबद्ध करें",
     "order_by_your_realese_date"     : "प्रस्थान तिथि के अनुसार क्रमबद्ध करें",
-    "order_by_your_com_rating"       : "सामुदायिक स्कोर द्वारा क्रमबद्ध करें"
+    "order_by_your_com_rating"       : "सामुदायिक स्कोर द्वारा क्रमबद्ध करें",
+    "thanks_for_support"             : "बंकलास्ट के विकास का समर्थन करने के लिए धन्यवाद",
+    "enebled_subcription"            : "आपके पास दिन तक सक्षम सदस्यता है "
   
   }

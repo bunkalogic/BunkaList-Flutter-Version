@@ -268,5 +268,7 @@
     "order_by_your_rating_enjoyment" : "엔터테인먼트 점수로 정렬",
     "order_by_your_added"            : "추가 된 날짜로 정렬",
     "order_by_your_realese_date"     : "출발일로 정렬",
-    "order_by_your_com_rating"       : "커뮤니티 점수로 정렬"
+    "order_by_your_com_rating"       : "커뮤니티 점수로 정렬",
+    "thanks_for_support"             : "문칼리스트 개발을 지원 해주셔서 감사합니다",
+    "enebled_subcription"            : "오늘까지 구독이 활성화되었습니다 "
   }

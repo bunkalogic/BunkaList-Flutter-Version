@@ -86,13 +86,14 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   }
 
   Future<List<SeriesModel>>  getListSeriesSelection(int page) async {
-    final listId = 145395;
+    //final listId = 145395;
+    final listId = 7064702;
 
     final Map<String, String> query = {
         'api_key'                   : _theSerieDB,
         'language'                  : prefs.getLanguage,
         'page'                      : page.toString(),
-        'sort_by'                   : "vote_average.desc"
+        'sort_by'                   : ConstSortBy.popularityDesc
     };
     
     final url = Uri.https(

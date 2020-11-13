@@ -267,5 +267,7 @@
     "order_by_your_rating_enjoyment" : "Trier par votre score de divertissement",
     "order_by_your_added"            : "Trier par date d'ajout",
     "order_by_your_realese_date"     : "Trier par date de départ",
-    "order_by_your_com_rating"       : "Trier par score de la communauté"
+    "order_by_your_com_rating"       : "Trier par score de la communauté",
+    "thanks_for_support"             : "Merci de soutenir le développement de Bunkalist",
+    "enebled_subcription"            : "Vous avez un abonnement activé jusqu'au jour "
   }
