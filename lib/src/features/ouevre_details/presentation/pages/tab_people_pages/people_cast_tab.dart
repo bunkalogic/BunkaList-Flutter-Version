@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
-import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/people_credits_entity.dart';
@@ -59,13 +60,9 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
 
           }else if (state is Error){
              
-             return Center(
-              child: Text(state.message),
-            );
+             return EmptyIconWidget();
           }
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
         }
       )      
     ); 
@@ -88,7 +85,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
          child: Container(
            child: _itemInfo(cast),
-           height: 160.0,
+           height: 180.0,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -205,13 +202,8 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
 
   Widget _rateItem(CastAndCrew cast) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
-      child: Row(
-        children: <Widget>[
-          Text(cast.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
-          Icon(Icons.star, size: 18, color: Colors.orange[800], ) 
-        ],
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
+      child: MiniCircularChartRating(cast.voteAverage)
     );
   }
 
@@ -255,7 +247,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400], cast), 
+         _buttonActions(Icons.keyboard_arrow_down, Colors.pinkAccent[400], cast), 
          
         ],
       ),
@@ -335,13 +327,9 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
 
           }else if (state is Error){
              
-             return Center(
-              child: Text(state.message),
-            );
+             return EmptyIconWidget();
           }
-          return Center(
-              child: Text('something Error'),
-            );
+          return EmptyIconWidget();
         }
       )      
     ); 
@@ -365,7 +353,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
          child: Container(
            child: _itemInfo(cast),
-           height: 160.0,
+           height: 185.0,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -482,13 +470,8 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
 
   Widget _rateItem(CastAndCrew cast) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3.0),
-      child: Row(
-        children: <Widget>[
-          Text(cast.voteAverage.toString(), style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800, color: Colors.orange[800]),),
-          Icon(Icons.star, size: 18, color: Colors.orange[800], ) 
-        ],
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
+      child: MiniCircularChartRating(cast.voteAverage)
     );
   }
 
@@ -532,7 +515,7 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-         _buttonActions(Icons.keyboard_arrow_down, Colors.purpleAccent[400], cast), 
+         _buttonActions(Icons.keyboard_arrow_down, Colors.pinkAccent[400], cast), 
          
         ],
       ),

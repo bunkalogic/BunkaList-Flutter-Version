@@ -97,7 +97,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
   Widget renderNextBtn() {
     return Icon(
       Icons.navigate_next,
-      color: Colors.deepOrangeAccent[400],
+      color: Colors.pinkAccent[400],
       size: 35.0,
     );
   }
@@ -105,14 +105,14 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
   Widget renderDoneBtn() {
     return Icon(
       Icons.done,
-      color: Colors.deepOrangeAccent[400],
+      color: Colors.pinkAccent[400],
     );
   }
 
   Widget renderSkipBtn() {
     return Icon(
         Icons.skip_next,
-        color: Colors.deepOrangeAccent[400],
+        color: Colors.pinkAccent[400],
       );
   }
 
@@ -209,7 +209,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
       // Skip button
       renderSkipBtn: this.renderSkipBtn(),
       colorSkipBtn: Colors.blueAccent[400].withOpacity(0.5),
-      highlightColorSkipBtn: Colors.deepOrangeAccent,
+      highlightColorSkipBtn: Colors.pinkAccent,
       
 
       // Next button
@@ -220,11 +220,11 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
       renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
       colorDoneBtn: Colors.blueAccent[400].withOpacity(0.5),
-      highlightColorDoneBtn: Colors.deepOrangeAccent,
+      highlightColorDoneBtn: Colors.pinkAccent,
 
       // Dot indicator
-      colorDot: Colors.deepOrangeAccent[100],
-      colorActiveDot: Colors.deepOrangeAccent,
+      colorDot: Colors.pinkAccent[100],
+      colorActiveDot: Colors.pinkAccent,
       sizeDot: 8.0,
       typeDotAnimation: dotSliderAnimation.DOT_MOVEMENT,
 

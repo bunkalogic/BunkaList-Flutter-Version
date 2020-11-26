@@ -208,7 +208,7 @@ class _NoAdsPageState extends State<NoAdsPage> {
           color: Colors.blueGrey[600],
         ),
         child: ListTile(
-          leading: Icon(Icons.local_offer, color: Colors.deepOrangeAccent[400], size: 30.0,),
+          leading: Icon(Icons.local_offer, color: Colors.pinkAccent[400], size: 30.0,),
           title: Text(
             AppLocalizations.of(context).translate("label_year_ads"),
             style: TextStyle(

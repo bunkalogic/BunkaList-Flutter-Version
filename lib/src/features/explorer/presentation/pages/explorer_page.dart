@@ -56,7 +56,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_anime")),
         SizedBox(height: 5.0,),
         ScrollRowGenres(genres:  getListGenresAnimes(context),),
-        SizedBox(height: 30.0,),
+        SizedBox(height: 35.0,),
         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/6111874096',),
         
       ],

@@ -341,7 +341,7 @@ class GetBottomModalStatus {
               },
               title: Text(AppLocalizations.of(context).translate("title_simple_rating"),style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),) ,
               subtitle: Text(AppLocalizations.of(context).translate("label_simple_rating"),style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
-              leading: Icon(Icons.edit_attributes, color: Colors.deepOrangeAccent[400],),
+              leading: Icon(Icons.edit_attributes, color: Colors.pinkAccent[400],),
             )
           ),
           Flexible(

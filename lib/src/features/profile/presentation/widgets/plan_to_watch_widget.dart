@@ -62,7 +62,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
               enlargeCenterPage: true, 
               height: MediaQuery.of(context).size.height / 2.6,
               autoPlay: false,
-              viewportFraction: 0.36,
+              viewportFraction: 0.45,
               itemCount: state.ouevreList.length,
               itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
             ),
@@ -90,7 +90,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImage(context, ouevre), flex: 4,),
+          Expanded(child: _itemImage(context, ouevre), flex: 5,),
           _itemTitle(ouevre),
           Expanded(child: _chipStatus(context, ouevre), flex: 1,),
           Expanded(child: ButtonAddedArrowDown(ouevre: ouevre, type: ouevre.oeuvreType, isUpdated: false, objectType: ConstantsTypeObject.ouevreEntity,), flex: 1,)
@@ -110,7 +110,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
         image: poster,  //? Image Poster Item,
         placeholder: placeholder, //? PlaceHolder Item,
         fit: BoxFit.cover,
-        width: MediaQuery.of(context).size.width / 3.8,
+        width: MediaQuery.of(context).size.width * 0.36,
         height: MediaQuery.of(context).size.height / 2.8,
       ),
     );
@@ -157,7 +157,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Icon(Icons.today, color: Colors.deepPurpleAccent[400], size: 25.0,),
+        Icon(Icons.today, color: Colors.pinkAccent[400], size: 25.0,),
         Text( date,
             style: TextStyle(
               fontWeight: FontWeight.w600,

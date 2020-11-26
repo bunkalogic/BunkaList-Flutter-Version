@@ -165,7 +165,7 @@ class SeasonInfoWidget extends StatelessWidget{
       child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Image(
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             image: NetworkImage('https://image.tmdb.org/t/p/w780/${episode.stillPath}'),
           ),
       ),
@@ -228,11 +228,11 @@ class SeasonInfoWidget extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.stars, color: Colors.deepOrange, size: 25.0,),
+          Icon(Icons.stars, color: Colors.pink, size: 25.0,),
           SizedBox(width: 4.0,),
           Text(episode.voteAverage.toString(), 
           style: TextStyle(
-            color: Colors.deepOrange,
+            color: Colors.pink,
             fontSize: 16.0, 
             fontWeight: FontWeight.w700,
             shadows: [
@@ -241,7 +241,7 @@ class SeasonInfoWidget extends StatelessWidget{
             ),
           ),
           Spacer(),
-          Icon(Icons.today, color: Colors.grey[500], size: 25.0,),
+          Icon(Icons.today, color: Colors.pinkAccent[400], size: 25.0,),
           SizedBox(width: 4.0,),
           Text(formatterDate(episode.airDate),
            style: TextStyle( 

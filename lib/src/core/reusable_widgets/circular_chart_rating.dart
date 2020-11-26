@@ -38,7 +38,7 @@ class _MiniCircularChartRatingState extends State<MiniCircularChartRating> {
         <CircularSegmentEntry>[
           new CircularSegmentEntry(
             widget.rating,
-            Colors.deepOrangeAccent[400],
+            Colors.pinkAccent[400],
             rankKey: 'completed',
           ),
           new CircularSegmentEntry(
@@ -97,7 +97,7 @@ class _BigCircularChartRatingState extends State<BigCircularChartRating> {
         <CircularSegmentEntry>[
           new CircularSegmentEntry(
             widget.rating,
-            Colors.deepOrangeAccent[400],
+            Colors.pinkAccent[400],
             rankKey: 'completed',
           ),
           new CircularSegmentEntry(

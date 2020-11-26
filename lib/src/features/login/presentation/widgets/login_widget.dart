@@ -72,15 +72,20 @@ class _LoginWidgetState extends State<LoginWidget> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.pinkAccent,
-              Colors.deepPurpleAccent, 
               Colors.blueAccent,
+              Colors.deepPurpleAccent,
+              Colors.deepPurpleAccent,
+              Colors.deepPurpleAccent,
+              Colors.pinkAccent,
+              Colors.pinkAccent, 
+              
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),
       ),
       child: ListView(
         children: <Widget>[
+            SizedBox(height: 40.0,),          
             _iconApp(),
             _labelEmail(),
             _emailTextField(context, state),
@@ -115,11 +120,13 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: new Row(
               children: <Widget>[
                 new Expanded(
-                  child: new FlatButton(
+                  child: new RaisedButton(
+                    disabledColor: Colors.pinkAccent[700],
+                    elevation: 10.0,
                     shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0),
+                      borderRadius: new BorderRadius.circular(8.0),
                     ),
-                    color: Colors.orange[900],
+                    color: Colors.pinkAccent[400],
 
                     onPressed: isLoginButtonEnabled(state)
                               ? _onFormSubmitted
@@ -163,8 +170,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                     AppLocalizations.of(context).translate("forgot_password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent[400],
+                      color: Colors.pinkAccent[400],
                       fontSize: 14.0,
+                      shadows: [
+                        Shadow(
+                          color: Colors.blueGrey[900],
+                          blurRadius: 0.5, 
+                        )
+                      ]
                     ),
                     textAlign: TextAlign.end,
                   ),
@@ -189,7 +202,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                    color: Colors.redAccent,
+                    color: Colors.pinkAccent,
                     width: 0.5,
                     style: BorderStyle.solid),
               ),
@@ -230,7 +243,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     AppLocalizations.of(context).translate("password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.pinkAccent,
                       fontSize: 15.0,
                     ),
                   ),
@@ -248,7 +261,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                    color: Colors.deepOrangeAccent,
+                    color: Colors.pinkAccent,
                     width: 0.5,
                     style: BorderStyle.solid),
               ),
@@ -289,7 +302,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.pinkAccent,
                       fontSize: 15.0,
                     ),
                   ),
@@ -306,7 +319,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: Center(
               child: Image(
             image: AssetImage('assets/bunkalist-banner.png'),
-            height: 100.0,
+            height: 55.0,
             fit: BoxFit.cover,
             
             ),

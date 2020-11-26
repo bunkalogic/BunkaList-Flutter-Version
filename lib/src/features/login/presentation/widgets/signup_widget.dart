@@ -68,13 +68,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             colors: [
               Colors.amberAccent[400],
               Colors.orangeAccent[700],
-              Colors.pinkAccent
+              Colors.pinkAccent,
+              Colors.pinkAccent,
+              Colors.pinkAccent[400]
             ], // whitish to gray
             tileMode: TileMode.repeated, // repeats the gradient over the canvas
           ),
         ),
       child: ListView(
         children: <Widget>[
+          SizedBox(height: 60.0,),
           _iconApp(),
           _labelEmail(),
           _emailTextField(context, state),
@@ -113,9 +116,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             child: new Row(
               children: <Widget>[
                 new Expanded(
-                  child: new FlatButton(
+                  child: new RaisedButton(
+                    elevation: 10,
+                    disabledColor: Colors.deepPurpleAccent,
                     shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0),
+                      borderRadius: new BorderRadius.circular(8.0),
                     ),
                     color: Colors.purpleAccent[700],
                     onPressed: isRegisterButtonEnabled(state)
@@ -355,7 +360,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             child: Center(
               child: Image(
               image: AssetImage('assets/bunkalist-banner-purple.png'),
-              height: 100.0,
+              height: 55.0,
               fit: BoxFit.cover,
               
               ),

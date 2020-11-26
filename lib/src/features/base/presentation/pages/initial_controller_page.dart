@@ -59,8 +59,8 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
     _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
     _colorAnimation = _animationController.drive(
       ColorTween(
-        begin: Colors.deepOrangeAccent[400],
-        end: Colors.deepOrangeAccent[700]
+        begin: Colors.pinkAccent[400],
+        end: Colors.pinkAccent[700]
       )
     );
     _animationController.repeat();
@@ -186,7 +186,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
           colors: [
             Colors.purple[700],
             Colors.purple[900],  
-            Colors.deepOrangeAccent[400],
+            Colors.pinkAccent[400],
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),
@@ -194,7 +194,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
       child: Center(
             child: Image(
               image: AssetImage('assets/bunkalist-banner.png'),
-              height: 100.0,
+              height: 60.0,
               fit: BoxFit.cover,
             ),
           ),
@@ -209,16 +209,17 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
       height: MediaQuery.of(context).size.height,
       // color: Colors.deepPurpleAccent[700],
     decoration: new BoxDecoration(
-      gradient: new LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.blueAccent,
-          Colors.deepPurpleAccent, 
-          Colors.pinkAccent,
-        ], // whitish to gray
-        tileMode: TileMode.repeated, // repeats the gradient over the canvas
-      ),
+      // gradient: new LinearGradient(
+      //   begin: Alignment.topCenter,
+      //   end: Alignment.bottomCenter,
+      //   colors: [
+      //     Colors.blueAccent,
+      //     Colors.deepPurpleAccent, 
+      //     Colors.pinkAccent,
+      //   ], // whitish to gray
+      //   tileMode: TileMode.repeated, // repeats the gradient over the canvas
+      // ),
+      color: Colors.blueGrey[900]
     ),
     child: Column(
       
@@ -228,7 +229,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
           alignment: Alignment.center,
           child: Image(
             image: AssetImage('assets/bunkalist-banner.png'),
-            height: 120.0,
+            height: 40.0,
             fit: BoxFit.cover,
           ),
         ),

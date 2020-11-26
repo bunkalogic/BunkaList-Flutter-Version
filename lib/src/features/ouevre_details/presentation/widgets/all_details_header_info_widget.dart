@@ -252,8 +252,8 @@ class HeaderInfoMovie  extends StatelessWidget {
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
             ),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          borderSide: BorderSide(width: 2.5, color: Colors.pink),
           onPressed: (){
             
             return ButtonClikedAdded(
@@ -281,7 +281,7 @@ class HeaderInfoMovie  extends StatelessWidget {
           height: 140.0,
           alignment: Alignment.center,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(8.0),
             child: FadeInImage(
               image: (movie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
@@ -512,8 +512,8 @@ class HeaderInfoSerie  extends StatelessWidget {
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
             ),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          borderSide: BorderSide(width: 2.5, color: Colors.pink),
           onPressed: (){
              return ButtonClikedAdded(
               context: context,
@@ -539,7 +539,7 @@ class HeaderInfoSerie  extends StatelessWidget {
           height: 140.0,
           alignment: Alignment.bottomCenter,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(8.0),
             child: FadeInImage(
           image: (serie.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,
@@ -773,8 +773,8 @@ class HeaderInfoAnime extends StatelessWidget {
               shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
             ),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          borderSide: BorderSide(width: 2.0, color: Colors.deepOrange),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          borderSide: BorderSide(width: 2.5, color: Colors.pink),
           onPressed: (){
              return ButtonClikedAdded(
               context: context,
@@ -800,7 +800,7 @@ class HeaderInfoAnime extends StatelessWidget {
           height: 140.0,
           alignment: Alignment.bottomCenter,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(8.0),
             child: FadeInImage(
           image: (anime.posterPath == null) ? placeholder : poster,//? Image Poster Item,
           placeholder: placeholder, //? PlaceHolder Item,

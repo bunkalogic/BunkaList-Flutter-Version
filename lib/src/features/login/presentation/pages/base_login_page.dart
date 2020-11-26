@@ -59,17 +59,21 @@ class _LoginHomePageState extends State<LoginHomePage> {
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
           colors: [
             Colors.blueAccent,
-            Colors.deepPurpleAccent, 
+            Colors.deepPurpleAccent,
+            Colors.deepPurpleAccent,
+            Colors.deepPurpleAccent,
+            Colors.pinkAccent, 
             Colors.pinkAccent, 
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),
       ),
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           //_logoApp(),
           _nameApp(),
@@ -128,7 +132,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               new Expanded(
                 child: new FlatButton(
                   shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0)),
+                      borderRadius: new BorderRadius.circular(8.0)),
                   color: Colors.white,
                   onPressed: () => goToLogin(),
                   child: new Container(
@@ -168,7 +172,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               new Expanded(
                 child: new OutlineButton(
                   shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0)),
+                      borderRadius: new BorderRadius.circular(8.0)),
                   color: Colors.redAccent,
                   highlightedBorderColor: Colors.white,
                   onPressed: () => goToSignup(),
@@ -205,7 +209,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           child: Center(
             child: Image(
               image: AssetImage('assets/bunkalist-banner.png'),
-              height: 120.0,
+              height: 65.0,
               fit: BoxFit.cover,
             ),
           ),
@@ -282,7 +286,7 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
       width: MediaQuery.of(context).size.width,
       child: new RaisedButton(
         shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(10.0)),
+          borderRadius: new BorderRadius.circular(8.0)),
         padding: EdgeInsets.only(top: 3.0,bottom: 3.0,left: 1.0),
         color: const Color(0xFF4285F4),
         onPressed: () => _pressedButtonSignInWithGoogle(),

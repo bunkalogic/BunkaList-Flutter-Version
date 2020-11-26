@@ -18,7 +18,7 @@ final appThemeData = {
     primaryColor: Colors.deepPurpleAccent[400],
     primaryColorLight: Colors.deepPurpleAccent,
     primaryColorDark: Colors.deepPurpleAccent[700],
-    accentColor: Colors.deepOrangeAccent[400],
+    accentColor: Colors.pinkAccent[400],
     brightness: Brightness.light,
     backgroundColor: Colors.grey[100],
     scaffoldBackgroundColor: Colors.grey[50],
@@ -37,8 +37,8 @@ final appThemeData = {
     
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
-      actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
-      iconTheme: IconThemeData(color: Colors.purpleAccent[700], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
+      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
       elevation: 5.0,
       textTheme: TextTheme(
       headline6: TextStyle(
@@ -59,7 +59,7 @@ final appThemeData = {
 
     tabBarTheme: TabBarTheme(
       
-      labelColor: Colors.deepOrangeAccent[400],
+      labelColor: Colors.pinkAccent[400],
       unselectedLabelColor: Colors.blueGrey[200],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
@@ -80,7 +80,7 @@ final appThemeData = {
     primaryColor: Colors.deepPurpleAccent[400],
     primaryColorLight: Colors.deepPurpleAccent,
     primaryColorDark: Colors.deepPurpleAccent[700],
-    accentColor: Colors.deepOrangeAccent[400],
+    accentColor: Colors.pinkAccent[400],
     brightness: Brightness.dark,
     backgroundColor: Colors.blueGrey[800],
     scaffoldBackgroundColor: Colors.blueGrey[900],
@@ -98,8 +98,8 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.blueGrey[800],
       elevation: 5.0,
-      actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
-      iconTheme: IconThemeData(color: Colors.purpleAccent[700], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[400]),
+      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
       textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.white,
@@ -117,7 +117,7 @@ final appThemeData = {
     ),
 
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.deepOrangeAccent[400],
+      labelColor: Colors.pinkAccent[400],
       unselectedLabelColor: Colors.blueGrey[200],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
@@ -140,7 +140,7 @@ final appThemeData = {
     primaryColor: Colors.deepPurpleAccent[400],
     primaryColorLight: Colors.deepPurpleAccent,
     primaryColorDark: Colors.deepPurpleAccent[700],
-    accentColor: Colors.deepOrangeAccent[400],
+    accentColor: Colors.pinkAccent[400],
     brightness: Brightness.dark,
     backgroundColor: Colors.grey[900],
     scaffoldBackgroundColor: Colors.black,
@@ -158,8 +158,8 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
       elevation: 5.0,
-      actionsIconTheme: IconThemeData(color: Colors.purpleAccent[700]),
-      iconTheme: IconThemeData(color: Colors.purpleAccent[700], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
+      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[700], size: 30.0),
       textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.white,
@@ -177,7 +177,7 @@ final appThemeData = {
     ),
 
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.deepOrangeAccent[400],
+      labelColor: Colors.pinkAccent[400],
       unselectedLabelColor: Colors.blueGrey[200],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 

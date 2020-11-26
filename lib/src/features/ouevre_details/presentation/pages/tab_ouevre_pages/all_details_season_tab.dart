@@ -229,7 +229,7 @@ class SeasonSerieItems extends StatelessWidget{
 
   Widget _buttomDetailsSeason(BuildContext context, SeasonSerie seasonItem) {
     return IconButton(
-      icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.deepOrange,),
+      icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.pink,),
       onPressed: () => null,
     );
   }
@@ -388,7 +388,7 @@ class SeasonAnimeItems extends StatelessWidget{
 
   Widget _buttomDetailsSeason(BuildContext context, SeasonAnime seasonItem){
     return IconButton(
-      icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.deepOrange,),
+      icon: Icon(Icons.chevron_right, size: 40.0, color: Colors.pink,),
       onPressed: () => null
     );
   }

@@ -17,7 +17,7 @@ class _BottomLoaderState extends State<BottomLoader> with SingleTickerProviderSt
     _colorAnimation = _animationController.drive(
       ColorTween(
         begin: Colors.deepPurpleAccent[400],
-        end: Colors.deepOrangeAccent[400]
+        end: Colors.pinkAccent[400]
       )
     );
     _animationController.repeat();

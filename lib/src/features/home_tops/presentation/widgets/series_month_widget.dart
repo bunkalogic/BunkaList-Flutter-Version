@@ -189,12 +189,12 @@ class _CarouselSeriesInMonthWidgetState extends State<CarouselSeriesInMonthWidge
         heroTag: null,
         elevation: 10.0,
         mini: true,
-        child: Icon(Icons.add, color: Colors.deepOrangeAccent[400], size: 20.0,),
+        child: Icon(Icons.add, color: Colors.pinkAccent[400], size: 20.0,),
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
           side: BorderSide(
-            color: Colors.deepOrangeAccent[400],
+            color: Colors.pinkAccent[400],
             width: 2.0
           ),
         ),

@@ -198,21 +198,21 @@ class _ProfilePageState extends State<ProfilePage> {
 
         SizedBox(height: 20.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_movie")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
           ),  
-        SizedBox(height: 15.0,),
+        SizedBox(height: 25.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
           ),
-        SizedBox(height: 15.0,),
+        SizedBox(height: 25.0,),
         _titleScrollSection(AppLocalizations.of(context).translate("last_views_anime")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
@@ -224,21 +224,21 @@ class _ProfilePageState extends State<ProfilePage> {
         : BannerPremiumWidget(),
 
         _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_movie")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'movie',),
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 20.0,),
           _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_serie")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'tv',),
           ),
-        SizedBox(height: 10.0,),
+        SizedBox(height: 20.0,),
           _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_anime")),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 15.0,),
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
             child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'anime',),
@@ -299,7 +299,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         borderSide: BorderSide(
-          color: Colors.deepOrangeAccent[400],
+          color: Colors.pinkAccent[400],
           width: 2.0,
         ),
         shape: RoundedRectangleBorder(

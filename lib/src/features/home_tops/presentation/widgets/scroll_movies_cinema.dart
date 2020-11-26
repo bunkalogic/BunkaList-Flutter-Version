@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/solid_button_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
@@ -176,17 +177,18 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
   }
 
   Widget _iconButton(BuildContext context,){
-    return FlatButton(
-        color: Colors.deepOrangeAccent[400],
-        child: Text(
-          AppLocalizations.of(context).translate("add_in_list"),
-          style: TextStyle(
+    return SolidButtonWidget(
+      widthSize: MediaQuery.of(context).size.width / 1.60, 
+      padding: const EdgeInsets.all(4.0), 
+      margin: const EdgeInsets.all(2.0), 
+      buttonColor:  Colors.pinkAccent[400], 
+      title: AppLocalizations.of(context).translate("add_in_list"), 
+      marginTitle: EdgeInsets.all(2.0), 
+      titleStyle: TextStyle(
             color: Colors.white,
             shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
-          ),
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        onPressed: (){
+          ), 
+      onTap: (){
           setState(() {});
 
           return ButtonClikedAdded(
@@ -198,6 +200,30 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
           ).showBottomModal();
         },
     );
+
+    // return FlatButton(
+    //     color: Colors.pinkAccent[400],
+    //     child: Text(
+    //       AppLocalizations.of(context).translate("add_in_list"),
+    //       style: TextStyle(
+    //         color: Colors.white,
+    //         shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
+    //       ),
+    //     ),
+    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    //     onPressed: (){
+    //       setState(() {});
+
+    //       return ButtonClikedAdded(
+    //         context: context,
+    //         isUpdated: false,
+    //         ouevre: _movieEntity,
+    //         type: _movieEntity.type,
+    //         objectType: ConstantsTypeObject.movieEntity
+    //       ).showBottomModal();
+    //     },
+    // );
+
   }
 }
 
@@ -251,7 +277,7 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
                   enlargeCenterPage: true, 
                   height: MediaQuery.of(context).size.height / 2.6,
                   autoPlay: false,
-                  viewportFraction: 0.39,
+                  viewportFraction: 0.50,
                   onPageChanged: (index){
                     _movieEntity = state.movies[index];
                   },
@@ -334,7 +360,7 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
               image: (movieEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 3.0,
+              width: MediaQuery.of(context).size.width * 0.45,
               height: MediaQuery.of(context).size.height / 2.8,
             ),
           );
@@ -365,8 +391,9 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
   }
 
   Widget _iconButton(BuildContext context,){
-    return FlatButton(
-        color: Colors.deepOrangeAccent[400],
+    return RaisedButton(
+        color: Colors.pinkAccent[400],
+        elevation: 5.0,
         child: Text(
           AppLocalizations.of(context).translate("add_in_list"),
           style: TextStyle(
@@ -374,7 +401,7 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
             shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
           ),
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
         onPressed: (){
           setState(() {});
 

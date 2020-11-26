@@ -117,7 +117,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0)
+        borderRadius: BorderRadius.circular(8.0)
       ),
       child: child,
     );
@@ -151,7 +151,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
 
   Widget _rowRatingAndNetwork() {
     final _ratingStyle = new TextStyle(
-      color: Colors.deepOrange,
+      color: Colors.pink,
       fontSize: 20.0,
       fontWeight: FontWeight.w700
     );
@@ -189,6 +189,8 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
   }
 
   Widget _overviewInfo() {
+    if(movie.overview.isEmpty) return Container();
+
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
       fontSize: 16.0,
@@ -414,7 +416,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0)
+        borderRadius: BorderRadius.circular(8.0)
       ),
       child: child,
     );
@@ -463,7 +465,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(8.0),
             gradient: LinearGradient(
               colors: <Color>[
                 Colors.redAccent[700],
@@ -498,7 +500,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(8.0),
             gradient: LinearGradient(
               colors: <Color>[
                 Colors.grey[850],
@@ -533,7 +535,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(8.0),
             gradient: LinearGradient(
               colors: <Color>[
                 Colors.lightBlueAccent[700],
@@ -553,7 +555,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
   Widget _rowRatingAndNetwork(BuildContext context) {
     
     final _ratingStyle = new TextStyle(
-      color: Colors.deepOrange,
+      color: Colors.pink,
       fontSize: 20.0,
       fontWeight: FontWeight.w700
     );
@@ -635,6 +637,8 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
   }
 
   Widget _overviewInfo() {
+    if(serie.overview.isEmpty) return Container();
+
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
       fontSize: 16.0,
@@ -835,7 +839,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
       elevation: 5.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0)
+        borderRadius: BorderRadius.circular(8.0)
       ),
       child: child,
     );
@@ -867,7 +871,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
   }
   Widget _rowRatingAndNetwork(BuildContext context) {
     final _ratingStyle = new TextStyle(
-      color: Colors.deepOrange,
+      color: Colors.pink,
       fontSize: 20.0,
       fontWeight: FontWeight.w700
     );
@@ -945,6 +949,8 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
   }
 
   Widget _overviewInfo() {
+    if(anime.overview.isEmpty) return Container();
+
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
       fontSize: 16.0,

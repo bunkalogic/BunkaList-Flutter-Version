@@ -61,7 +61,7 @@ class _AllDetailsPeoplePageState extends State<AllDetailsPeoplePage> with Single
 
   Widget _tabBar(){
     return TabBar(
-      labelColor: Colors.deepOrange,
+      labelColor: Colors.pink,
       isScrollable: true,
       tabs: personTabs,
       controller: _tabController,

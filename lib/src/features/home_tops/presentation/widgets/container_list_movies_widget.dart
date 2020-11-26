@@ -100,7 +100,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
         Navigator.pushNamed(context, '/TopList', arguments: 'movies');
       },
       title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
 
@@ -193,7 +193,7 @@ class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMov
         Navigator.pushNamed(context, '/TopList', arguments: 'movies');
       },
       title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
 

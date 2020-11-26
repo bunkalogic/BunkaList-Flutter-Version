@@ -122,7 +122,7 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.deepOrangeAccent[400],
+        color: Colors.pinkAccent[400],
         child: Text(
           AppLocalizations.of(context).translate("button_change_profile_image"),
           style: TextStyle(color: Colors.white, fontSize: 14.0),
@@ -140,7 +140,7 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-              color: Colors.deepOrangeAccent[400],
+              color: Colors.pinkAccent[400],
               width: 0.5,
               style: BorderStyle.solid),
         ),
@@ -184,7 +184,7 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.deepOrangeAccent[400],
+        color: Colors.pinkAccent[400],
         child: Text(
           AppLocalizations.of(context).translate("button_change_username"),
           style: TextStyle(color: Colors.white, fontSize: 14.0),

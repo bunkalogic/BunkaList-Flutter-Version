@@ -101,7 +101,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
       title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
 
@@ -195,7 +195,7 @@ class _ContainerListSelectionSeriesWidgetState extends State<ContainerListSelect
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
       title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrangeAccent[400], fontSize: 16.0 ),),
+      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
 

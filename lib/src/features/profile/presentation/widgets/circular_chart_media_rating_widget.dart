@@ -115,11 +115,11 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
     return new AnimatedCircularChart(
       duration: Duration(milliseconds: 600),
       key: _chartKey,
-      size: Size(60.0, 60.0), 
+      size: Size(70.0, 70.0), 
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 13.0,
+      holeRadius: 14.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(
@@ -159,13 +159,13 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
   
     
     return new AnimatedCircularChart(
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 600),
       key: _chartKey,
-      size: Size(60.0, 60.0), 
+      size: Size(70.0, 70.0), 
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 13.0,
+      holeRadius: 14.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(
@@ -204,13 +204,13 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
     }
     
     return new AnimatedCircularChart(
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 600),
       key: _chartKey,
-      size: Size(60.0, 60.0), 
+      size: Size(70.0, 70.0), 
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 13.0,
+      holeRadius: 14.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(

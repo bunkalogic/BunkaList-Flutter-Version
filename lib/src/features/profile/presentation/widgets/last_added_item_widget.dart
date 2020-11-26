@@ -59,7 +59,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
               enlargeCenterPage: true, 
               height: MediaQuery.of(context).size.height / 2.6,
               autoPlay: false,
-              viewportFraction: 0.36,
+              viewportFraction: 0.45,
               itemCount: state.ouevreList.length,
               itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
             ),
@@ -106,7 +106,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
         image: poster,  //? Image Poster Item,
         placeholder: placeholder, //? PlaceHolder Item,
         fit: BoxFit.cover,
-        width: MediaQuery.of(context).size.width / 3.8,
+        width: MediaQuery.of(context).size.width * 0.36,
         height: MediaQuery.of(context).size.height / 2.8,
       ),
     );

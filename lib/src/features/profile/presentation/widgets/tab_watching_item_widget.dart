@@ -202,12 +202,12 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(Icons.stars, color: Colors.deepOrange,),
+        Icon(Icons.stars, color: Colors.pink,),
         Text('-.-', 
         style: TextStyle(
           fontSize: 14.0, 
           fontWeight: FontWeight.w900, 
-          color: Colors.deepOrange,
+          color: Colors.pink,
           shadows: [
           Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
           ]
@@ -230,7 +230,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(Icons.today, color: Colors.deepOrange,),
+        Icon(Icons.today, color: Colors.pink,),
         Text(date, 
         style: TextStyle(
           color: Colors.white,
@@ -249,7 +249,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
-        icon: Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,),
+        icon: Icon(Icons.keyboard_arrow_down, color: Colors.pinkAccent[400], size: 35.0,),
         onPressed: (){
           ButtomUpdateAndDelete(
               type: ouevre.oeuvreType,

@@ -14,7 +14,7 @@ class LoadingPage extends StatelessWidget {
           colors: [
             Colors.purple[700],
             Colors.purple[900],  
-            Colors.deepOrangeAccent[400],
+            Colors.pinkAccent[400],
           ], // whitish to gray
           tileMode: TileMode.repeated, // repeats the gradient over the canvas
         ),

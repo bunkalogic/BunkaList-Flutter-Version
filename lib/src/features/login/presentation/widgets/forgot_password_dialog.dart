@@ -36,7 +36,7 @@ class DialogForGotPassword{
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                    color: Colors.deepOrangeAccent,
+                    color: Colors.pinkAccent,
                     width: 0.5,
                     style: BorderStyle.solid),
               ),
@@ -73,7 +73,7 @@ class DialogForGotPassword{
                     AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.pinkAccent,
                       fontSize: 15.0,
                     ),
                   ),
@@ -93,9 +93,9 @@ class DialogForGotPassword{
                 new Expanded(
                   child: new FlatButton(
                     shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0),
+                      borderRadius: new BorderRadius.circular(8.0),
                     ),
-                    color: Colors.orange[900],
+                    color: Colors.pinkAccent[400],
                     onPressed: () => _buttonPressedResetPassword(context, emailController.text),
                     child: new Container(
                       padding: const EdgeInsets.symmetric(

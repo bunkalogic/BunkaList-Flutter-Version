@@ -49,9 +49,7 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
           }else if(state is Loaded){
 
             if(state.reviews.isEmpty || state.reviews.length <= 0){
-              return Center(
-                child: Text('no reviews available'),
-              );
+              return EmptyIconWidget();
             }else{
               return ListView.builder(
                 itemCount: state.reviews.length,

@@ -120,7 +120,7 @@ class _BuildBottomModalCompleteSimpleState extends State<BuildBottomModalComplet
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0),
           ),
-          color: Colors.orange[900],  
+          color: Colors.pinkAccent[400],  
           child: Container(
             padding: EdgeInsets.symmetric(
             vertical: 5.0,

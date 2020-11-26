@@ -26,7 +26,7 @@ class EmptyLastAddedIconWidget extends StatelessWidget {
   Widget _iconEmptyLastAdded() {
     return Icon(
       Icons.add_to_photos,
-      color: Colors.deepOrangeAccent[400],
+      color: Colors.pinkAccent[400],
       size: 40.0,
     );
   }
@@ -54,7 +54,7 @@ class EmptyLastAddedIconWidget extends StatelessWidget {
       elevation: 10.0,
       heroTag: null,
       backgroundColor: Colors.deepPurpleAccent[400],
-      child: Icon(Icons.arrow_forward, color: Colors.deepOrangeAccent[400],),
+      child: Icon(Icons.arrow_forward, color: Colors.pinkAccent[400],),
     );
   }
 

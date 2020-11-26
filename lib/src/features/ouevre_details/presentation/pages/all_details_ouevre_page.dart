@@ -163,7 +163,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         pinned: true,
         floating: false,
         forceElevated: innerBoxScrolled,
-        expandedHeight: 320.0,
+        expandedHeight: MediaQuery.of(context).size.height / 2.5,
+        // expandedHeight: 320.0,
         flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
           builder: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsHeaderInfo(id: id, type: type),
@@ -179,7 +180,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
 
     return TabBar(
-      labelColor: Colors.deepOrangeAccent[400],
+      labelColor: Colors.pinkAccent[400],
       unselectedLabelColor: prefs.whatModeIs ? Colors.grey[400] : Colors.grey[800],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
@@ -193,7 +194,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
       ),
       indicator: MD2Indicator(
         indicatorHeight: 3, 
-        indicatorColor: Colors.deepOrangeAccent[400], 
+        indicatorColor: Colors.pinkAccent[400], 
         indicatorSize: MD2IndicatorSize.normal
       ),
       isScrollable: true,

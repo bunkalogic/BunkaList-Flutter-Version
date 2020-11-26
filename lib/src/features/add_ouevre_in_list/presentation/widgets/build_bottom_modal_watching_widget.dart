@@ -212,7 +212,7 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0),
           ),
-          color: Colors.deepOrangeAccent[400],  
+          color: Colors.pinkAccent[400],  
           child: Container(
             padding: EdgeInsets.symmetric(
             vertical: 5.0,

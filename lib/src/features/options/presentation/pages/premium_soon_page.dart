@@ -89,7 +89,7 @@ class PremiumSoonPage extends StatelessWidget {
       'with',
       style: TextStyle(
         fontSize: 20.0,
-        color: Colors.deepOrangeAccent[400],
+        color: Colors.pinkAccent[400],
         fontWeight: FontWeight.w400
       ),
     );
@@ -100,7 +100,7 @@ class PremiumSoonPage extends StatelessWidget {
       'Premium',
       style: TextStyle(
         fontSize: 20.0,
-        color: Colors.deepOrangeAccent[400],
+        color: Colors.pinkAccent[400],
         fontWeight: FontWeight.w800
       ),
     );

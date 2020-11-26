@@ -141,7 +141,7 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       controller: _tabController,
       indicator: MD2Indicator(
         indicatorHeight: 3, 
-        indicatorColor: Colors.deepOrangeAccent[400], 
+        indicatorColor: Colors.pinkAccent[400], 
         indicatorSize: MD2IndicatorSize.normal
       ),
     );

@@ -79,6 +79,19 @@ class Constants {
   static const topsAnimesSeinen               = 84;
   static const selectionAnimesId              = 87;
 
+  static const dystopia = 88;
+  static const worldWarII = 89;
+  static const spaceTravel = 90;
+  static const trueStory = 91;
+  static const cyberpunk = 92;
+  static const conspiracy = 93;
+  static const postApocalytic = 94;
+  static const timeTravel = 95;
+  static const lawyer = 96;
+  static const serialKiller = 97;
+  static const revenge = 98;
+
+
 
 
 }

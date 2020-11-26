@@ -106,12 +106,12 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         children:[ 
           _labelFilterYear(),
           _toogleButtonsYear(),
-          //carrouselOfYear(context),
+          SizedBox(height: 12.0,),
           _labelFilterOptions(),
          _toogleButtonsOrder(),
           _listRadioButtons(),
-          // Spacer(),
           _rowTopActions(),
+          SizedBox(height: 12.0,),
         ]  
       ),
     );
@@ -125,6 +125,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(width: 15.0,),
             Expanded(
               flex: 1,
               child: RaisedButton(
@@ -138,7 +139,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                     fontSize: 16.0
                   ),
                 ),
-                color: Colors.deepPurpleAccent[400],
+                color: Colors.pinkAccent[400],
                 onPressed: (){
                   finalFilterOptions = new FilterOptions(
                     sortBy: radioButtonGruop,
@@ -149,14 +150,14 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 }
               ),
             ),
-            SizedBox(width: 10.0,),
+            SizedBox(width: 20.0,),
             Expanded(
               flex: 1,
               child: OutlineButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   side: BorderSide(
-                    color: Colors.deepPurpleAccent[400]
+                    color: Colors.pinkAccent[400]
                   )
                 ),
                 child: Text(
@@ -165,12 +166,13 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                     fontSize: 16.0
                   ),
                 ),
-                color: Colors.deepPurpleAccent[400],
+                color: Colors.pinkAccent[400],
                 onPressed: (){
                   Navigator.pop(context,);
                 }
               ),
             ),
+            SizedBox(width: 15.0,),
           ],
         ),
       ),
@@ -179,7 +181,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   Widget _labelFilterOptions() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
@@ -197,11 +199,11 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
   Widget _toogleButtonsOrder(){
      return Center(
       child: ToggleButtons(
-        constraints: BoxConstraints(minHeight: 40.0),
-        borderColor: Colors.deepPurpleAccent[400],
-        fillColor: Colors.deepPurpleAccent[400],
+        constraints: BoxConstraints(minHeight: 35.0),
+        borderColor: Colors.pinkAccent[400],
+        fillColor: Colors.pinkAccent[400],
         borderWidth: 2.0,
-        selectedBorderColor: Colors.deepPurpleAccent[400],
+        selectedBorderColor: Colors.pinkAccent[400],
         selectedColor: Colors.white,
         borderRadius: BorderRadius.circular(10.0),  
         children: [
@@ -252,6 +254,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         children: [
           Divider(),
           RadioListTile<String>(    
+          dense: true,  
           value: _getListValuesSortBy(0), 
           groupValue: radioButtonGruop, 
           onChanged: (String value){
@@ -261,7 +264,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.deepPurpleAccent[400],
+          activeColor: Colors.pinkAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_popular'),
             textAlign: TextAlign.right,
@@ -274,6 +277,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         ),
         Divider(),
         RadioListTile<String>(
+          dense: true,
           value: _getListValuesSortBy(1), 
           groupValue: radioButtonGruop, 
           onChanged: (String value){
@@ -283,7 +287,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.deepPurpleAccent[400],
+          activeColor: Colors.pinkAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_vote_average'),
             textAlign: TextAlign.right,
@@ -296,6 +300,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         ),
         Divider(),
         RadioListTile<String>(
+          dense: true,
           value: _getListValuesSortBy(2), 
           groupValue: radioButtonGruop, 
           onChanged: (String value){
@@ -305,7 +310,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.deepPurpleAccent[400],
+          activeColor: Colors.pinkAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_vote_count'),
             textAlign: TextAlign.right,
@@ -318,6 +323,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
         ),
         Divider(),
         RadioListTile<String>(
+          dense: true,
           value: _getListValuesSortBy(3), 
           groupValue: radioButtonGruop, 
           onChanged: (String value){
@@ -327,7 +333,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.deepPurpleAccent[400],
+          activeColor: Colors.pinkAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_date'),
             textAlign: TextAlign.right,
@@ -345,7 +351,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
   Widget _labelFilterYear() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
@@ -363,11 +369,11 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
   Widget _toogleButtonsYear(){
    final toogleButtonsYear = Center(
           child: ToggleButtons(
-            constraints: BoxConstraints(minHeight: 40.0),
-            borderColor: Colors.deepPurpleAccent[400],
-            fillColor: Colors.deepPurpleAccent[400],
+            constraints: BoxConstraints(minHeight: 35.0),
+            borderColor: Colors.pinkAccent[400],
+            fillColor: Colors.pinkAccent[400],
             borderWidth: 2.0,
-            selectedBorderColor: Colors.deepPurpleAccent[400],
+            selectedBorderColor: Colors.pinkAccent[400],
             selectedColor: Colors.white,
             borderRadius: BorderRadius.circular(10.0),  
             children: [
@@ -398,8 +404,8 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
       final sliderYear = Container(
         padding: EdgeInsets.all(8.0),
         child: Slider(
-          inactiveColor: Colors.deepPurpleAccent[100],
-          activeColor: Colors.deepPurpleAccent[400],
+          inactiveColor: Colors.pinkAccent[100],
+          activeColor: Colors.pinkAccent[400],
           label: '${_sliderYear.toInt()}',
           value: _sliderYear, 
           onChanged: (newValue){

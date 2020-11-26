@@ -137,6 +137,8 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
   
 
   Widget _cardInfoPeople(PeopleEntity people) {
+    if(people.biography.isEmpty) return Container();
+
     return Card(
       elevation: 5.0,
       margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -153,7 +155,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _labelBio(),
+          //_labelBio(),
           _textBio(people)
         ],
       ),

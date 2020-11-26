@@ -98,7 +98,7 @@ Widget _createAppBarPlatform(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image(
-            height: 60.0,
+            height: 22.0,
              image: _getAppBarImage(),
            ),
         ],
@@ -119,16 +119,16 @@ Widget _createAppBarPlatform(BuildContext context) {
     final bool theme = prefs.whatModeIs;
 
     if(theme){
-      return AssetImage('assets/bunkalist-banner-purple.png');
-    }else{
       return AssetImage('assets/bunkalist-banner.png');
+    }else{
+      return AssetImage('assets/bunkalist-banner-purple.png');
     }
   }
 
   Widget _createNavBar(){
     return FancyBottomNavigation(
       barBackgroundColor: _getTabbarBackgroundColor(),
-      activeIconColor: Colors.deepOrangeAccent[400] ,
+      activeIconColor: Colors.pinkAccent[400] ,
       inactiveIconColor: Colors.deepPurpleAccent,
       circleColor: Colors.deepPurpleAccent[400],
       initialSelection: _selectedTabIndex,

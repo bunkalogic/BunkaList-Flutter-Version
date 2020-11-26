@@ -182,7 +182,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       mini: true,
       child: Icon(
         Icons.filter_list,
-        color: Colors.deepOrangeAccent[700],
+        color: Colors.pinkAccent[700],
       ),
     );
   }
@@ -230,7 +230,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           child: isExtended 
           ? Icon(
             Icons.filter_list,
-            color: Colors.deepOrangeAccent[400],
+            color: Colors.pinkAccent[400],
           )
           : Row(
             children: [
@@ -238,13 +238,13 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
                 padding: const EdgeInsets.only(right: 1.0),
                 child: Icon(
                   Icons.filter_list,
-                  color: Colors.deepOrangeAccent[400],
+                  color: Colors.pinkAccent[400],
                 ),
               ),
               Text(
                 AppLocalizations.of(context).translate("order_by"),
                 style: TextStyle(
-                  color: Colors.deepOrangeAccent[400],
+                  color: Colors.pinkAccent[400],
                   fontSize: 16.0,
                   fontWeight: FontWeight.w700
                 ),
@@ -385,7 +385,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(Icons.today, color: Colors.deepOrange,),
+        Icon(Icons.today, color: Colors.pink,),
         Text(date, 
         style: TextStyle(
           color: Colors.white,
@@ -426,11 +426,11 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Icon(Icons.book, color: Colors.deepOrangeAccent[400], size: 24.0,),
-                      Icon(Icons.people, color: Colors.deepOrangeAccent[400], size: 24.0,),
-                      Icon(Icons.music_video, color: Colors.deepOrangeAccent[400], size: 24.0,),
-                      Icon(Icons.movie_filter, color: Colors.deepOrangeAccent[400], size: 24.0,),
-                      Icon(Icons.insert_emoticon, color: Colors.deepOrangeAccent[400],size: 24.0,),
+                      Icon(Icons.book, color: Colors.pinkAccent[400], size: 24.0,),
+                      Icon(Icons.people, color: Colors.pinkAccent[400], size: 24.0,),
+                      Icon(Icons.music_video, color: Colors.pinkAccent[400], size: 24.0,),
+                      Icon(Icons.movie_filter, color: Colors.pinkAccent[400], size: 24.0,),
+                      Icon(Icons.insert_emoticon, color: Colors.pinkAccent[400],size: 24.0,),
                     ],
                   ),
                   ),
@@ -466,7 +466,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           color: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
-            side: BorderSide(width: 1.5, color: Colors.deepOrangeAccent[400]) 
+            side: BorderSide(width: 1.5, color: Colors.pinkAccent[400]) 
           ),
           child: Text('New Rate', style: styleAllRates,),
           onPressed: () {
@@ -522,9 +522,9 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
   Widget _changedIcon(){
     if(cardSize == 100.0){
-      return Icon(Icons.keyboard_arrow_down, color: Colors.purple[400], size: 35.0,);
+      return Icon(Icons.keyboard_arrow_down, color: Colors.pinkAccent[400], size: 35.0,);
     }else{
-      return Icon(Icons.keyboard_arrow_up, color: Colors.purple[400], size: 35.0,);
+      return Icon(Icons.keyboard_arrow_up, color: Colors.pinkAccent[400], size: 35.0,);
     }
   }
 }
