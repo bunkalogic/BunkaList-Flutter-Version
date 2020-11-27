@@ -269,6 +269,29 @@
     "order_by_your_realese_date"     : "Ordina per data di partenza",
     "order_by_your_com_rating"       : "Ordina per punteggio della community",
     "thanks_for_support"             : "Grazie per aver sostenuto lo sviluppo di Bunkalist",
-    "enebled_subcription"            : "Hai un abbonamento abilitato fino al giorno in cui "
+    "enebled_subcription"            : "Hai un abbonamento abilitato fino al giorno in cui ",
+
+    "movies_dystopia"        : "Film di distopia",
+  "movies_ww"                : "Film della seconda guerra mondiale",
+  "movies_spacc_travel"      : "Film di viaggi nello spazio",
+  "movies_true_story"        : "Film di storie vere",
+  "movies_cyberpunk"         : "Film di cyberpunk",
+  "movies_conspiracy"        : "Film di cospirazione",
+  "movies_post_apocalytic"   : "Film di post apocalisse",
+  "movies_time_travel"       : "Film di viaggi nel tempo",
+  "movies_lawyer"            : "Film di avvocato",
+  "movies_serial_killer"     : "Film di serial killer",
+  "movies_revenge"           : "Film di vendetta",
+
+  "series_dystopia"          : "Serie di distopia",
+  "series_spacc_travel"      : "Serie di viaggi nello spazio",
+  "series_true_story"        : "Serie di storie vere",
+  "series_cyberpunk"         : "Serie di cyberpunk",
+  "series_conspiracy"        : "Serie di cospirazione",
+  "series_post_apocalytic"   : "Serie di post apocalittici",
+  "series_time_travel"       : "Serie di viaggi nel tempo",
+  "series_lawyer"            : "Serie di avvocati",
+  "series_serial_killer"     : "Serie di serial killer",
+  "series_revenge"           : "Serie di vendetta"
   
   }

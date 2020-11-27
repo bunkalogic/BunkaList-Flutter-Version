@@ -79,17 +79,29 @@ class Constants {
   static const topsAnimesSeinen               = 84;
   static const selectionAnimesId              = 87;
 
-  static const dystopia = 88;
-  static const worldWarII = 89;
-  static const spaceTravel = 90;
-  static const trueStory = 91;
-  static const cyberpunk = 92;
-  static const conspiracy = 93;
-  static const postApocalytic = 94;
-  static const timeTravel = 95;
-  static const lawyer = 96;
-  static const serialKiller = 97;
-  static const revenge = 98;
+  static const moviesdystopia = 88;
+  static const moviesworldWarII = 89;
+  static const moviesspaceTravel = 90;
+  static const moviestrueStory = 91;
+  static const moviescyberpunk = 92;
+  static const moviesconspiracy = 93;
+  static const moviespostApocalytic = 94;
+  static const moviestimeTravel = 95;
+  static const movieslawyer = 96;
+  static const moviesserialKiller = 97;
+  static const moviesrevenge = 98;
+
+  static const seriesdystopia = 99;
+  // static const seriesworldWarII = 100;
+  static const seriesspaceTravel = 101;
+  static const seriestrueStory = 102;
+  static const seriescyberpunk = 103;
+  static const seriesconspiracy = 104;
+  static const seriespostApocalytic = 105;
+  static const seriestimeTravel = 106;
+  static const serieslawyer = 107;
+  static const seriesserialKiller = 108;
+  static const seriesrevenge = 109;
 
 
 

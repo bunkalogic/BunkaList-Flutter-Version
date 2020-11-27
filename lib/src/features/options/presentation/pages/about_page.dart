@@ -16,9 +16,9 @@ class AboutPage extends StatelessWidget {
           title: Text(AppLocalizations.of(context).translate("label_about_bunkalist")),
           leading: AppBarButtonBack(),
         ),
-      body: ListView(
+      body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,  
       children: <Widget>[
-        _logoApp(),
         _bannerApp(),
         _labelApi(context),
         SizedBox(height: 20.0),
@@ -30,20 +30,11 @@ class AboutPage extends StatelessWidget {
     );
   }
 
-  Widget _logoApp(){
-    return Center(
-      child: Container(
-        padding: EdgeInsets.only(top: 50.0, left: 40.0, right: 40.0),
-        child: Image(image: AssetImage('assets/ic_launcher_round.png'), height: 120.0,),
-      ),
-    );
-  }
-
   Widget _bannerApp(){
     return Center(
       child: Container(
         padding: EdgeInsets.only(left: 60.0, right: 60.0),
-        child: Image(image: AssetImage('assets/bunkalist-banner.png'), height: 80.0,),
+        child: Image(image: AssetImage('assets/banner-icon.png'), height: 80.0,),
       ),
     );
   }

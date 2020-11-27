@@ -270,6 +270,29 @@
     "order_by_your_realese_date"     : "Сортировать по дате отъезда",
     "order_by_your_com_rating"       : "Сортировать по оценке сообщества",
     "thanks_for_support"             : "Спасибо за поддержку развития Bunkalist",
-    "enebled_subcription"            : "У вас активна подписка до дня"
+    "enebled_subcription"            : "У вас активна подписка до дня",
+
+  "movies_dystopia": "Фильмы антиутопии",
+  "movies_ww": "Фильмы времен Второй мировой войны",
+  "movies_spacc_travel": "Фильмы о космических путешествиях",
+  "movies_true_story": "Фильмы, основанные на реальных событиях",
+  "movies_cyberpunk": "Фильмы о киберпанке",
+  "movies_conspiracy": "Фильмы о заговоре",
+  "movies_post_apocalytic": "Постапокалитические фильмы",
+  "movies_time_travel": "Фильмы о путешествиях во времени",
+  "movies_lawyer": "Фильмы адвоката",
+  "movies_serial_killer": "Фильмы о серийном убийце",
+  "movies_revenge": "Фильмы о мести",
+
+  "series_dystopia": "Серия антиутопий",
+  "series_spacc_travel": "Серия космических путешествий",
+  "series_true_story": "Серия реальных историй",
+  "series_cyberpunk": "Серия киберпанк",
+  "series_conspiracy": "Серия заговоров",
+  "series_post_apocalytic": "Серия постапокалитических",
+  "series_time_travel": "Серия путешествий во времени",
+  "series_lawyer": "Серия адвокатов",
+  "series_serial_killer": "Серия серийных убийц",
+  "series_revenge": "Серия мести"
 
   }

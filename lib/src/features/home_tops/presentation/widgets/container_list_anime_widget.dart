@@ -95,7 +95,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'animes');
       },
-      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }

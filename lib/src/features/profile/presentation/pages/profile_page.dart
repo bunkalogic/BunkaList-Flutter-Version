@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _profileName() {
-    return Text(prefs.getCurrentUsername, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold), );
+    return Text(prefs.getCurrentUsername, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold), );
   }
 
   Widget _profileTotalViews() {
@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
         AppLocalizations.of(context).translate("label_media_lists"),
         textAlign: TextAlign.center,
         style: TextStyle(
-        fontSize: 16.0, 
+        fontSize: 14.0, 
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.italic
       ),

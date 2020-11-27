@@ -270,5 +270,27 @@
     "order_by_your_realese_date"     : "출발일로 정렬",
     "order_by_your_com_rating"       : "커뮤니티 점수로 정렬",
     "thanks_for_support"             : "문칼리스트 개발을 지원 해주셔서 감사합니다",
-    "enebled_subcription"            : "오늘까지 구독이 활성화되었습니다 "
+    "enebled_subcription"            : "오늘까지 구독이 활성화되었습니다 ",
+    "movies_dystopia"        : "디스토피아 영화",
+  "movies_ww"                : "제 2 차 세계 대전 영화",
+  "movies_spacc_travel"      : "우주 여행 영화",
+  "movies_true_story"        : "실화 영화",
+  "movies_cyberpunk"         : "사이버 펑크 영화",
+  "movies_conspiracy"        : "음모의 영화",
+  "movies_post_apocalytic"   : "종말 이후의 영화",
+  "movies_time_travel"       : "시간 여행 영화",
+  "movies_lawyer"            : "변호사 영화",
+  "movies_serial_killer"     : "연쇄 살인범의 영화",
+  "movies_revenge"           : "복수의 영화",
+
+  "series_dystopia"          : "디스토피아 시리즈",
+  "series_spacc_travel"      : "일련의 우주 여행",
+  "series_true_story"        : "실화 시리즈",
+  "series_cyberpunk"         : "사이버 펑크 시리즈",
+  "series_conspiracy"        : "연속 음모",
+  "series_post_apocalytic"   : "사후 사후 시리즈",
+  "series_time_travel"       : "연속 시간 여행",
+  "series_lawyer"            : "연속 변호사",
+  "series_serial_killer"     : "연쇄 살인범 시리즈",
+  "series_revenge"           : "일련의 복수"
   }

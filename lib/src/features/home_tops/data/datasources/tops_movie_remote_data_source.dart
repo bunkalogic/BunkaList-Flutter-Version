@@ -42,7 +42,7 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
   bool  _loading = false;
   int totalPage = 1;
 
-  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, int releaseYear, String releaseDateGte, String languageOuevre}) async {
+  Future<List<MovieModel>>  getListMovieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, int releaseYear, String releaseDateGte, String languageOuevre, String keywords}) async {
       if(_loading) return [];
       
       _loading = true;
@@ -63,7 +63,8 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
           'vote_count.gte'            : voteCount.toString(),
           'vote_average.gte'          : voteAverage.toString(),
           'with_genres'               : genres,
-          'with_original_language'    : languageOuevre
+          'with_original_language'    : languageOuevre,
+          'with_keywords'             : keywords
       };
 
       
@@ -182,6 +183,29 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       case Constants.topsMoviesTerrorId         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.horror.toString());
  
       case Constants.topsMoviesWesternId        : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.western.toString());
+
+      case Constants.moviesdystopia             : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4565');
+
+      case Constants.moviesconspiracy           : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10410');
+
+      case Constants.moviescyberpunk            : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '12190');
+
+      case Constants.movieslawyer               : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10909');
+
+      case Constants.moviespostApocalytic       : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4458');
+
+      case Constants.moviesrevenge              : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '9748');
+
+      case Constants.moviesserialKiller         : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10714');
+
+      case Constants.moviestrueStory            : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '9672');
+
+      case Constants.moviesspaceTravel          : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '3801');
+
+      case Constants.moviestimeTravel           : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4379');
+
+      case Constants.moviesworldWarII           : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '1956');
+
 
       case Constants.topsMoviesKoreanId : return await getListMovieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 40);
 

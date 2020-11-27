@@ -91,7 +91,7 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
       _getLabelTotalViewsWidget(context),
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: 16.0, 
+        fontSize: 18.0, 
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.italic
       ),

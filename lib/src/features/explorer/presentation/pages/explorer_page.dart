@@ -70,7 +70,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
         AppLocalizations.of(context).translate("title_label_explore"),
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 30.0,
+          fontSize: 32.0,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.0,
@@ -103,7 +103,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
         label,
         textAlign: TextAlign.start,
         style: TextStyle(
-          fontSize: 22.0,
+          fontSize: 24.0,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w800
         ),

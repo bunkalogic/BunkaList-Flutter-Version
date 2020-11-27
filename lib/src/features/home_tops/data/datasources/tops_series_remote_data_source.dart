@@ -28,7 +28,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
   TopsSeriesRemoteDataSourceImpl({@required this.client});
 
-  /// Calls the http://theSeriedb.org/3/discover/Serie endpoint.
+  /// Calls the http://themoviedb.org/3/discover/tv endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   Preferences prefs = new Preferences();
@@ -40,8 +40,8 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   bool  _loading = false;
   
 
-  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre, String firstAirDate}) async {
-      if(_loading) return await [];
+  Future<List<SeriesModel>>  getListSerieFromApi(int page, {String sortBy, int voteCount, int voteAverage, String genres, String network, String airDateLte, String airDateGte, String languageOuevre, String firstAirDate, String keywords}) async {
+      if(_loading) return [];
       
       _loading = true;
       
@@ -64,7 +64,8 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
           'with_genres'           : genres,
           'with_networks'         : network,
           'without_genres'        : '16',
-          'with_original_language': languageOuevre
+          'with_original_language': languageOuevre,
+          'with_keywords'         : keywords
       };
 
       query.removeWhere((key , value) => value == null);
@@ -181,6 +182,26 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
       case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-10-10', airDateLte: '2020-11-15'  );
 
       case Constants.topsSeriesKoreanId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
+
+      case Constants.seriesdystopia             : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4565');
+
+      case Constants.seriesconspiracy           : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10410');
+
+      case Constants.seriescyberpunk            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '12190');
+
+      case Constants.serieslawyer               : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10909');
+
+      case Constants.seriespostApocalytic       : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4458');
+
+      case Constants.seriesrevenge              : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '9748');
+
+      case Constants.seriesserialKiller         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '10714');
+
+      case Constants.seriestrueStory            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '9672');
+
+      case Constants.seriesspaceTravel          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '3801');
+
+      case Constants.seriestimeTravel           : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, keywords: '4379');
 
       case Constants.selectionSeriesId : return await getListSeriesSelection(page);
 

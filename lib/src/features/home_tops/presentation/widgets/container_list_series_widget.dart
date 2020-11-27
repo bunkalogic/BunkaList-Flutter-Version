@@ -100,7 +100,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
-      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }

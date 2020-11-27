@@ -44,6 +44,8 @@
   "movies_thiller"             : "Movies Of The Thiller Genre",
   "movies_terror"              : "Movies Of The Terror Genre",
   "movies_western"             : "Movies Of The Western Genre",
+
+  
   
   "top_series"                 :  "Tops Series",
   
@@ -466,6 +468,29 @@
     "order_by_your_realese_date"     : "Sort by departure date",
     "order_by_your_com_rating"       : "Sort by community score",
     "thanks_for_support"             : "Thank you for supporting the development of Bunkalist",
-    "enebled_subcription"            : "You have a subscription enabled until the day "
+    "enebled_subcription"            : "You have a subscription enabled until the day ",
+
+  "movies_dystopia"          : "Movies of dystopia",
+  "movies_ww"                : "Movies of World War II",
+  "movies_spacc_travel"      : "Movies of space travel",
+  "movies_true_story"        : "Movies of true story",
+  "movies_cyberpunk"         : "Movies of cyberpunk",
+  "movies_conspiracy"        : "Movies of conspiracy",
+  "movies_post_apocalytic"   : "Movies of post apocalytic",
+  "movies_time_travel"       : "Movies of time travel",
+  "movies_lawyer"            : "Movies of lawyer",
+  "movies_serial_killer"     : "Movies of serial killer",
+  "movies_revenge"           : "Movies of revenge",
+
+  "series_dystopia"          : "Series of dystopia",
+  "series_spacc_travel"      : "Series of space travel",
+  "series_true_story"        : "Series of true story",
+  "series_cyberpunk"         : "Series of cyberpunk",
+  "series_conspiracy"        : "Series of conspiracy",
+  "series_post_apocalytic"   : "Series of post apocalytic",
+  "series_time_travel"       : "Series of time travel",
+  "series_lawyer"            : "Series of lawyer",
+  "series_serial_killer"     : "Series of serial killer",
+  "series_revenge"           : "Series of revenge"
 
 }

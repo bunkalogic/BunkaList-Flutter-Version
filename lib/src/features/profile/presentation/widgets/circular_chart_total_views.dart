@@ -77,7 +77,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
         AppLocalizations.of(context).translate(title),
         textAlign: TextAlign.center,
         style: TextStyle(
-        fontSize: 16.0, 
+        fontSize: 18.0, 
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.italic
       ),

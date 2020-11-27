@@ -270,5 +270,27 @@
     "order_by_your_realese_date"     : "出発日で並べ替え",
     "order_by_your_com_rating"       : "コミュニティスコアで並べ替え",
     "thanks_for_support"             : "Bunkalistの開発をサポートしていただきありがとうございます",
-    "enebled_subcription"            : "その日までサブスクリプションを有効にしています"
+    "enebled_subcription"            : "その日までサブスクリプションを有効にしています",
+
+  "movies_dystopia"          : "ディストピアの映画",
+  "movies_ww"                : "第二次世界大戦の映画",
+  "movies_spacc_travel"      : "宇宙旅行の映画",
+  "movies_true_story"        : "実話の映画",
+  "movies_cyberpunk"         : "サイバーパンクの映画",
+  "movies_conspiracy"        : "陰謀の映画",
+  "movies_post_apocalytic"   : "ポストアポカリティックの映画",
+  "movies_time_travel"       : "タイムトラベルの映画",
+  "movies_lawyer"            : "弁護士の映画",
+  "movies_serial_killer"     : "連続殺人犯の映画",
+  "movies_revenge"           : "復讐の映画",
+  "series_dystopia"          : "一連のディストピア",
+  "series_spacc_travel"      : "一連の宇宙旅行",
+  "series_true_story"        : "実話シリーズ",
+  "series_cyberpunk"         : "サイバーパンクシリーズ",
+  "series_conspiracy"        : "一連の陰謀",
+  "series_post_apocalytic"   : "ポスト黙示録のシリーズ",
+  "series_time_travel"       : "一連のタイムトラベル",
+  "series_lawyer"            : "一連の弁護士",
+  "series_serial_killer"     : "シリアルキラーのシリーズ",
+  "series_revenge"           : "一連の復讐"
   }

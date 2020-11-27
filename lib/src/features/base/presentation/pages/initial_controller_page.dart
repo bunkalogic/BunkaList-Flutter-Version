@@ -228,7 +228,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
         Align(
           alignment: Alignment.center,
           child: Image(
-            image: AssetImage('assets/bunkalist-banner.png'),
+            image: AssetImage('assets/banner-icon.png'),
             height: 40.0,
             fit: BoxFit.cover,
           ),

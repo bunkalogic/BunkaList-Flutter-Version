@@ -57,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.only(left: 8.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold ),
+        style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold ),
       ),
     );
   }

@@ -182,13 +182,16 @@ Widget _createAppBarPlatform(BuildContext context) {
 
 
 class SearchButton extends StatelessWidget{
+
+  final prefs = new Preferences();
+
   @override
   Widget build(BuildContext context) {
     
     return IconButton(
       iconSize: 35.0,
-      color: Colors.deepPurpleAccent,
-      icon: Icon(Icons.search),
+      color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+      icon: Icon(Icons.search_rounded),
       onPressed: (){
         
          showSearch<ResultsEntity>(

@@ -269,6 +269,29 @@
     "order_by_your_realese_date"     : "प्रस्थान तिथि के अनुसार क्रमबद्ध करें",
     "order_by_your_com_rating"       : "सामुदायिक स्कोर द्वारा क्रमबद्ध करें",
     "thanks_for_support"             : "बंकलास्ट के विकास का समर्थन करने के लिए धन्यवाद",
-    "enebled_subcription"            : "आपके पास दिन तक सक्षम सदस्यता है "
+    "enebled_subcription"            : "आपके पास दिन तक सक्षम सदस्यता है ",
+  
+  "movies_dystopia"          : "डिस्टोपिया की फिल्में",
+  "movies_ww"                : "द्वितीय विश्व युद्ध की फिल्में",
+  "movies_spacc_travel"      : "अंतरिक्ष यात्रा की फिल्में",
+  "movies_true_story"        : "सच्ची कहानी की फिल्में",
+  "movies_cyberpunk"         : "साइबरपंक की फिल्में",
+  "movies_conspiracy"        : "साजिश की फिल्में",
+  "movies_post_apocalytic"   : "पोस्ट एपोकैलिक की फिल्में",
+  "movies_time_travel"       : "समय यात्रा की फिल्में",
+  "movies_lawyer"            : "वकील की फिल्में",
+  "movies_serial_killer"     : "सीरियल किलर की फिल्में",
+  "movies_revenge"           : "बदला लेने की फिल्में",
+
+  "series_dystopia"          : "डिस्टोपिया की श्रृंखला",
+  "series_spacc_travel"      : "अंतरिक्ष यात्रा की श्रृंखला",
+  "series_true_story"        : "सच्ची कहानी की श्रृंखला",
+  "series_cyberpunk"         : "साइबरपंक की श्रृंखला",
+  "series_conspiracy"        : "साजिश की श्रृंखला",
+  "series_post_apocalytic"   : "पोस्ट एपोकैलिक की श्रृंखला",
+  "series_time_travel"       : "समय यात्रा की श्रृंखला",
+  "series_lawyer"            : "वकील की श्रृंखला",
+  "series_serial_killer"     : "सीरियल किलर की श्रृंखला",
+  "series_revenge"           : "बदला लेने की श्रृंखला"
   
   }
