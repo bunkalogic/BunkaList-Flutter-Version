@@ -6,6 +6,8 @@
 
   "btn_nav_profile"            : "Profile",
 
+  "btn_nav_tops"               : "Tops",
+
   "btn_nav_settings"           : "Settings",
     
   "movies"                     : "Movies",
@@ -491,6 +493,32 @@
   "series_time_travel"       : "Series of time travel",
   "series_lawyer"            : "Series of lawyer",
   "series_serial_killer"     : "Series of serial killer",
-  "series_revenge"           : "Series of revenge"
+  "series_revenge"           : "Series of revenge",
+
+  "title_top_movie"                  : "Your Favorite Movies",
+  "title_top_serie"                  : "Your Favorite Series",
+  "title_top_anime"                  : "Your Favorite Anime",
+  "title_working_feature"            : "We are working on a new function",
+  "subtitle_working_feature"         : "That will allow you to create tops on a specific theme, will be available in future updates.",
+  "update_dialog_title_add_top"      : "Add to your top Favorites",
+  "update_dialog_label_add_top"      : "Add your favorites list",
+  "update_dialog_title_remove_top"   : "Remove from your top Favorites",
+  "update_dialog_label_remove_top"   : "Remove from your favorites list",
+  "empty_title_top_movie"            : "Create your Top Favorite Movies",
+  "empty_title_top_serie"            : "You have not yet created your top of favorite movies, click to create it now.",
+  "empty_title_top_anime"            : "Create your Top of Favorite Series",
+  "empty_label_top_movie"            : "You have not yet created your top of favorite series, click to create it now.",
+  "empty_label_top_serie"            : "Create your Top of Favorite Anime",
+  "empty_label_top_anime"            : "You haven't created your favorite anime top yet, click to create it now.",
+  "btn_label_view_top"               : "See in detail",
+  "btn_label_edit_top"               : "Edit the top",
+  "btn_label_create_top"             : "Add to your favorites",
+  "title_create_top_movie_favorites" : "Select your Favorite Movies",
+  "title_create_top_serie_favorites" : "Select your Favorite Series",
+  "title_create_top_anime_favorites" : "Select your Favorite Anime",
+  "title_edit_top_movie_favorites"   : "Edit your Favorite Movies",
+  "title_edit_top_serie_favorites"   : "Edit your Favorite Series",
+  "title_edit_top_anime_favorites"   : "Edit your Favorite Anime",
+  "btn_label_edit_save_top"          : "Save Changes"
 
 }

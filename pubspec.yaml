@@ -96,6 +96,17 @@ dependencies:
   intro_slider: ^2.3.1
   # enum to string
   enum_to_string: ^1.0.13
+  # dotted border
+  dotted_border: ^1.0.7
+  # circular bottom navigation
+  convex_bottom_bar: ^2.6.0
+  # stacked cards
+  flutter_stack_card: ^0.2.0+1
+  # vertical card pager
+  vertical_card_pager: ^1.4.0
+  # reorderables
+  reorderables:
+
   flutter_localizations:
     sdk: flutter
 

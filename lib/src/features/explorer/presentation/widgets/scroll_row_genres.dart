@@ -31,8 +31,8 @@ class _ScrollRowGenresState extends State<ScrollRowGenres> {
           onPressed: () {
              Navigator.pushNamed(context, '/ExplorerGenre', arguments: genres);
           },
-          elevation: 3.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+          elevation: 4.0,
+          labelPadding: EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
           label: Text(genres.label,
             style: TextStyle(

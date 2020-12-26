@@ -1,8 +1,9 @@
 {
         		
     "btn_nav_top"                 : "Главная",
-    "btn_nav_explore"            : "Explorer",
+    "btn_nav_explore"             : "Исследовать",
     "btn_nav_profile"             : "Профиль",
+    "btn_nav_tops"                : "Топы",
     "btn_nav_settings"            : "Настройка",
     "movies"                      : "Фильмы",
     "series"                      : "Серии",
@@ -293,6 +294,32 @@
   "series_time_travel": "Серия путешествий во времени",
   "series_lawyer": "Серия адвокатов",
   "series_serial_killer": "Серия серийных убийц",
-  "series_revenge": "Серия мести"
+  "series_revenge": "Серия мести",
 
-  }
+  "title_top_movie"                  : "Ваши любимые фильмы",
+  "title_top_serie"                  : "Твоя любимая серия",
+  "title_top_anime"                  : "Ваше любимое аниме",
+  "title_working_feature"            : "Мы работаем над новой функцией",
+  "subtitle_working_feature"         : "Это позволит вам создавать топы на определенную тему, будет доступно в будущих обновлениях",
+  "update_dialog_title_add_top"      : "Добавить в избранное",
+  "update_dialog_label_add_top"      : "Добавить список избранного",
+  "update_dialog_title_remove_top"   : "Удалить из списка избранного",
+  "update_dialog_label_remove_top"   : "Удалить из списка избранного",
+  "empty_title_top_movie"            : "Создайте свои самые любимые фильмы",
+  "empty_title_top_serie"            : "Вы еще не создали свой топ любимых фильмов, нажмите, чтобы создать его сейчас",
+  "empty_title_top_anime"            : "Создай свой топ любимых сериалов",
+  "empty_label_top_movie"            : "Вы еще не создали свою любимую серию, нажмите, чтобы создать ее сейчас",
+  "empty_label_top_serie"            : "Создай свой любимый аниме",
+  "empty_label_top_anime"            : "Вы еще не создали свой любимый аниме-топ, нажмите, чтобы создать его сейчас",
+  "btn_label_view_top"               : "Посмотреть подробно",
+  "btn_label_edit_top"               : "Редактировать верх",
+  "btn_label_create_top"             : "Добавить в избранное",
+  "title_create_top_movie_favorites" : "Выберите свои любимые фильмы",
+  "title_create_top_serie_favorites" : "Выберите свою любимую серию",
+  "title_create_top_anime_favorites" : "Выберите свое любимое аниме",
+  "title_edit_top_movie_favorites"   : "Отредактируйте свои любимые фильмы",
+  "title_edit_top_serie_favorites"   : "Отредактируйте любимую серию",
+  "title_edit_top_anime_favorites"   : "Отредактируйте свое любимое аниме",
+  "btn_label_edit_save_top"          : "Сохранить изменения"
+
+}

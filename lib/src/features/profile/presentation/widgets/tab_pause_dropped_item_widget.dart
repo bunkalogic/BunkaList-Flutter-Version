@@ -71,6 +71,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
 
           return Container(
       child: ListView.builder(
+        itemExtent: cardSize,
         itemCount: state.ouevreList.length,
         itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
         ),

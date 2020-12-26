@@ -69,15 +69,6 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
     .updateData(ouevre.toDocument());
 
   }
-  /// TODO: 
-  /// getCompleteAddDate, 
-  /// getCompleteHistoryRate, 
-  /// getCompleteEffectsRate, 
-  /// getCompleteOSTRate, 
-  /// getCompleteCharacterRate, 
-  /// getCompleteEnjoymentRate,
-  /// getCompleteOeuvreReleaseDate,
-  /// getCompleteOeuvreRating, 
 
   @override
   Stream<List<OuevreModel>> getOfFirebase(String type, ListProfileQuery status) {
@@ -183,7 +174,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
       case ListProfileQuery.Favorite :{
         return ouevreCollection
         .where('isFavorite',isEqualTo: true)
-        .orderBy('positionListFav', descending: true)
+        .orderBy('positionListFav', descending: false)
         .snapshots().map((snap){
           
           return snap.documents

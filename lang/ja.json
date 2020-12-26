@@ -1,8 +1,9 @@
 {
         		
     "btn_nav_top"                 : "ホーム",
-    "btn_nav_explore"            : "見る",
+    "btn_nav_explore"             : "冒険者",
     "btn_nav_profile"             : "プロフィール",
+    "btn_nav_tops"                : "トップス",
     "btn_nav_settings"            : "設定",
     "movies"                      : "映画",
     "series"                      : "シリーズ",
@@ -292,5 +293,31 @@
   "series_time_travel"       : "一連のタイムトラベル",
   "series_lawyer"            : "一連の弁護士",
   "series_serial_killer"     : "シリアルキラーのシリーズ",
-  "series_revenge"           : "一連の復讐"
-  }
+  "series_revenge"           : "一連の復讐",
+
+  "title_top_movie"                  : "あなたの好きな映画",
+  "title_top_serie"                  : "あなたの好きなシリーズ",
+  "title_top_anime"                  : "あなたの好きなアニメ",
+  "title_working_feature"            : "私たちは新しい機能に取り組んでいます",
+  "subtitle_working_feature"         : "これにより、特定のテーマでトップを作成できるようになり、将来のアップデートで利用できるようになります。",
+  "update_dialog_title_add_top"      : "お気に入りに追加",
+  "update_dialog_label_add_top"      : "お気に入りリストを追加",
+  "update_dialog_title_remove_top"   : "お気に入りから削除",
+  "update_dialog_label_remove_top"   : "お気に入りリストから削除",
+  "empty_title_top_movie"            : "お気に入りの映画を作成する",
+  "empty_title_top_serie"            : "お気に入りの映画のトップをまだ作成していません。クリックして今すぐ作成してください。",
+  "empty_title_top_anime"            : "お気に入りのシリーズのトップを作成する",
+  "empty_label_top_movie"            : "お気に入りのシリーズのトップをまだ作成していません。クリックして今すぐ作成してください。",
+  "empty_label_top_serie"            : "お気に入りのアニメのトップを作成する",
+  "empty_label_top_anime"            : "お気に入りのアニメトップはまだ作成していません。クリックして今すぐ作成してください。",
+  "btn_label_view_top"               : "詳しく見る",
+  "btn_label_edit_top"               : "トップを編集",
+  "btn_label_create_top"             : "お気に入りに追加",
+  "title_create_top_movie_favorites" : "お気に入りの映画を選択して",
+  "title_create_top_serie_favorites" : "お気に入りのシリーズを選択してください",
+  "title_create_top_anime_favorites" : "好きなアニメを選んで",
+  "title_edit_top_movie_favorites"   : "お気に入りの映画を編集する",
+  "title_edit_top_serie_favorites"   : "お気に入りのシリーズを編集",
+  "title_edit_top_anime_favorites"   : "お気に入りのアニメを編集",
+  "btn_label_edit_save_top"          : "変更内容を保存"
+}

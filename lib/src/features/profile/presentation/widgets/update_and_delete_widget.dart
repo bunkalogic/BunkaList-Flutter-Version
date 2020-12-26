@@ -1,8 +1,10 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete/bloc.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,11 +59,14 @@ class ButtomUpdateAndDelete {
   }
 
   Widget _buildBottomModal(BuildContext context) {
+    
+
     return Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
+          _optionFavorite(),
           Flexible(
             child: ListTile(
               onTap: () {
@@ -92,6 +97,13 @@ class ButtomUpdateAndDelete {
           ),
         ],
       );
+  }
+
+  Widget _optionFavorite(){
+    return new BlocProvider<AddOuevreBloc>(
+      builder: (_) => serviceLocator<AddOuevreBloc>(),
+      child: ButtonFavorite(ouevreEntity: ouevre,)
+    );
   }
 
   void _alertDialogOfDelete(BuildContext context) {
@@ -225,5 +237,108 @@ class _BuildDialogDeleteState extends State<BuildDialogDelete> {
     )..show(context);
     
 
+  }
+}
+
+
+class ButtonFavorite extends StatefulWidget {
+
+  final OuevreEntity ouevreEntity;
+
+  ButtonFavorite({ @required this.ouevreEntity});
+
+  @override
+  _ButtonFavoriteState createState() => _ButtonFavoriteState();
+}
+
+class _ButtonFavoriteState extends State<ButtonFavorite> {
+
+  final Preferences prefs = Preferences();
+
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isFavorite = widget.ouevreEntity.isFavorite?? false;
+
+    final bool isComplete = (widget.ouevreEntity.status == 1) ? true : false;
+
+    return isComplete 
+          ? isFavorite 
+            ? _buildRemoveFavorites()
+            : _buildAddFavorites()
+          : Container();
+  }
+
+  Widget _buildAddFavorites() {
+    return Flexible(
+          child: ListTile(
+            onTap: () {
+
+              widget.ouevreEntity.isFavorite = true;
+              widget.ouevreEntity.positionListFav = _getPosition();
+
+              BlocProvider.of<AddOuevreBloc>(context)..add(
+                ButtonAddPressed( type: widget.ouevreEntity.oeuvreType, ouevreEntity: widget.ouevreEntity )
+              );
+
+            },
+            title: Text(AppLocalizations.of(context).translate("update_dialog_title_add_top"),style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),) ,
+            subtitle: Text(AppLocalizations.of(context).translate("update_dialog_label_add_top"),style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
+            leading: Icon(Icons.star_rate_rounded, color: Colors.yellowAccent[700],),
+            )
+          );
+  }
+
+  Widget _buildRemoveFavorites() {
+    return Flexible(
+      child: ListTile(
+        onTap: () {
+          
+          widget.ouevreEntity.isFavorite = false;
+
+          widget.ouevreEntity.positionListFav = -1;
+
+          BlocProvider.of<AddOuevreBloc>(context)..add(
+            ButtonAddPressed( type: widget.ouevreEntity.oeuvreType, ouevreEntity: widget.ouevreEntity )
+          );
+        },
+        title: Text(AppLocalizations.of(context).translate("update_dialog_title_remove_top"),style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),) ,
+        subtitle: Text(AppLocalizations.of(context).translate("update_dialog_label_remove_top"),style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
+        leading: Icon(Icons.star_border_rounded, color: Colors.yellowAccent[700],),
+      )
+    );
+  }
+
+  int _getPosition() {
+
+    switch (widget.ouevreEntity.oeuvreType) {
+      case 'movie':{
+        int position = prefs.totalMoviesFav;
+
+        prefs.totalMoviesFav = position++;
+
+        return position++;
+      }
+        break;
+
+      case 'tv':{
+        int position = prefs.totalSeriesFav;
+
+        prefs.totalSeriesFav = position++;
+
+        return position++;
+      }
+        break;
+
+      case 'anime':{
+        int position = prefs.totalAnimesFav;
+
+        prefs.totalAnimesFav = position++;
+
+        return position++;
+      }
+        break;    
+      default: return prefs.totalMoviesFav;
+    }
   }
 }

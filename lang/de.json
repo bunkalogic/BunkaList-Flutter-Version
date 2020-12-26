@@ -1,8 +1,9 @@
 {
         		
     "btn_nav_top"                 : "Zuhause",
-    "btn_nav_explore"            : "Erkunden",
+    "btn_nav_explore"             : "Erkunden",
     "btn_nav_profile"             : "Profil",
+    "btn_nav_tops"                : "Tops",
     "btn_nav_settings"            : "Setup",
     "movies"                      : "Filme",
     "series"                      : "Fernsehserie",
@@ -292,5 +293,31 @@
   "series_time_travel"       : "Serie von Zeitreisen",
   "series_lawyer"            : "Reihe von Anwälten",
   "series_serial_killer"     : "Serie von Serienmördern",
-  "series_revenge"           : "Serie der Rache"
-  }
+  "series_revenge"           : "Serie der Rache",
+
+  "title_top_movie"                  : "Ihre Lieblingsfilme",
+  "title_top_serie"                  : "Ihre Lieblingsserie",
+  "title_top_anime"                  : "Dein Lieblings-Anime",
+  "title_working_feature"            : "Wir arbeiten an einer neuen Funktion",
+  "subtitle_working_feature"         : "Damit können Sie Tops zu einem bestimmten Thema erstellen, die in zukünftigen Updates verfügbar sein werden.",
+  "update_dialog_title_add_top"      : "Zu Ihren Top-Favoriten hinzufügen",
+  "update_dialog_label_add_top"      : "Fügen Sie Ihre Favoritenliste hinzu",
+  "update_dialog_title_remove_top"   : "Von Ihren Top-Favoriten entfernen",
+  "update_dialog_label_remove_top"   : "Aus Ihrer Favoritenliste entfernen",
+  "empty_title_top_movie"            : "Erstellen Sie Ihre Lieblingsfilme",
+  "empty_title_top_serie"            : "Sie haben Ihr Lieblingsfilm-Top noch nicht erstellt. Klicken Sie hier, um es jetzt zu erstellen.",
+  "empty_title_top_anime"            : "Erstellen Sie Ihre Top-Lieblingsserie",
+  "empty_label_top_movie"            : "Sie haben Ihr Lieblingsserien-Top noch nicht erstellt. Klicken Sie hier, um es jetzt zu erstellen.",
+  "empty_label_top_serie"            : "Erstelle dein Top aus Lieblings-Anime",
+  "empty_label_top_anime"            : "Du hast dein Lieblings-Anime-Top noch nicht erstellt. Klicken Sie hier, um es jetzt zu erstellen.",
+  "btn_label_view_top"               : "Siehe im Detail",
+  "btn_label_edit_top"               : "Bearbeiten Sie die Spitze",
+  "btn_label_create_top"             : "Zu Ihren Favoriten hinzufügen",
+  "title_create_top_movie_favorites" : "Wählen Sie Ihre Lieblingsfilme",
+  "title_create_top_serie_favorites" : "Wählen Sie Ihre Lieblingsserie",
+  "title_create_top_anime_favorites" : "Wählen Sie Ihren Lieblings-Anime",
+  "title_edit_top_movie_favorites"   : "Bearbeiten Sie Ihre Lieblingsfilme",
+  "title_edit_top_serie_favorites"   : "Bearbeiten Sie Ihre Lieblingsserie",
+  "title_edit_top_anime_favorites"   : "Bearbeiten Sie Ihren Lieblings-Anime",
+  "btn_label_edit_save_top"          : "Änderungen speichern"
+}

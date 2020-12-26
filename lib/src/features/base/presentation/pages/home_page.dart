@@ -1,9 +1,12 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_page.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/pages/tops_favorites_page.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +15,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/pages/tops_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/settings_page.dart';
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   final prefs = new Preferences();
   AppUpdateInfo _updateInfo;
   bool _flexibleUpdateAvailable = false;
+
 
   ///TODO implement In App Update for native app android, example:
   ///https://github.com/feilfeilundfeil/flutter_in_app_update/blob/master/example/lib/main.dart
@@ -74,8 +77,8 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: (_selectedTabIndex == 1) ? _hideAppbar() : _createAppBarPlatform(context),
-      body: _loadingPage(_selectedTabIndex),
-      bottomNavigationBar: _createNavBar(),
+      body: _loadingPage(),
+      bottomNavigationBar: _buildBottomNav(),  //_createNavBar(),  
     );
   }
   
@@ -125,30 +128,83 @@ Widget _createAppBarPlatform(BuildContext context) {
     }
   }
 
-  Widget _createNavBar(){
-    return FancyBottomNavigation(
-      barBackgroundColor: _getTabbarBackgroundColor(),
-      activeIconColor: Colors.pinkAccent[400] ,
-      inactiveIconColor: Colors.deepPurpleAccent,
-      circleColor: Colors.deepPurpleAccent[400],
-      initialSelection: _selectedTabIndex,
-      onTabChangedListener: (position) {
+
+  Widget _buildBottomNav(){
+
+    List<TabItem<dynamic>> items = [
+      TabItem(
+        icon: Icon(Icons.home_outlined, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.home, size: 28.0, color: _getColorActiveIcon(),),
+        title: AppLocalizations.of(context).translate("btn_nav_top"), 
+      ),
+      TabItem(
+        icon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.explore, size: 28.0, color: _getColorActiveIcon(),),
+        title: AppLocalizations.of(context).translate("btn_nav_explore"), 
+      ),
+      TabItem(
+        icon: Icon(Icons.person_outline, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.person, size: 28.0, color: _getColorActiveIcon(),),
+        title: AppLocalizations.of(context).translate("btn_nav_profile"), 
+      ),
+      TabItem(
+        icon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.star_rate_rounded, size: 28.0, color: _getColorActiveIcon(),),
+        title: AppLocalizations.of(context).translate("btn_nav_tops"), 
+      ),
+      TabItem(
+        icon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.settings_applications, size: 28.0, color: _getColorActiveIcon()),
+        title: AppLocalizations.of(context).translate("btn_nav_settings"), 
+      ),
+      
+    ];
+
+    return ConvexAppBar(
+      items: items,
+      style: TabStyle.flip,
+      height: 60,
+      color: _getColorOffIcon(),
+      backgroundColor: _getTabbarBackgroundColor(),
+      activeColor: _getColorActiveIcon(),
+      elevation: 5.0,
+      top: 0,
+      onTap: (index) {
         setState(() {
-          _selectedTabIndex = position;
+          _selectedTabIndex = index;
         });
       },
-      tabs: [
-        TabData(title: AppLocalizations.of(context).translate("btn_nav_top"), iconData: Icons.home, ),
-        TabData(title: AppLocalizations.of(context).translate("btn_nav_explore"), iconData: Icons.explore, ),
-        TabData(title: AppLocalizations.of(context).translate("btn_nav_profile"), iconData: Icons.person, ),
-        TabData(title: AppLocalizations.of(context).translate("btn_nav_settings"), iconData: Icons.settings, ),
-      ],
     );
+
   }
 
-  Widget _loadingPage(int position){
+
+
+  // Widget _createNavBar(){
+  //   return FancyBottomNavigation(
+  //     barBackgroundColor: _getTabbarBackgroundColor(),
+  //     activeIconColor: Colors.pinkAccent[400] ,
+  //     inactiveIconColor: Colors.deepPurpleAccent,
+  //     circleColor: Colors.deepPurpleAccent[400],
+  //     initialSelection: _selectedTabIndex,
+  //     onTabChangedListener: (position) {
+  //       setState(() {
+  //         _selectedTabIndex = position;
+  //       });
+  //     },
+  //     tabs: [
+  //       TabData(title: AppLocalizations.of(context).translate("btn_nav_top"), iconData: Icons.home, ),
+  //       TabData(title: AppLocalizations.of(context).translate("btn_nav_explore"), iconData: Icons.explore, ),
+  //       TabData(title: AppLocalizations.of(context).translate("btn_nav_profile"), iconData: Icons.person, ),
+  //       TabData(title: 'Tops', iconData: Icons.stacked_bar_chart, ),
+  //       TabData(title: AppLocalizations.of(context).translate("btn_nav_settings"), iconData: Icons.settings, ),
+  //     ],
+  //   );
+  // }
+
+  Widget _loadingPage(){
   
-  switch(position){
+  switch(_selectedTabIndex){
     
     case 0: return TopsPage();
 
@@ -156,12 +212,28 @@ Widget _createAppBarPlatform(BuildContext context) {
 
     case 2: return ProfilePage();
 
-    case 3: return SettingsPage();
+    case 3: return TopsFavoritesPage();
+
+    case 4: return SettingsPage();
 
     default: return TopsPage();
     
   }
 }
+
+
+ Color _getColorActiveIcon(){
+   final bool theme = prefs.whatModeIs;
+
+   return theme ?  Colors.pinkAccent[400] : Colors.deepPurpleAccent[400];
+ }
+
+ Color _getColorOffIcon(){
+   final bool theme = prefs.whatModeIs;
+
+   return theme ?  Colors.pinkAccent : Colors.deepPurpleAccent;
+ }
+
 
  Color _getTabbarBackgroundColor(){
 

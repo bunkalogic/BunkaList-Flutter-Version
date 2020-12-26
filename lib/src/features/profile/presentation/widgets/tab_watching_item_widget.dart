@@ -73,6 +73,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
 
           return Container(
       child: ListView.builder(
+        itemExtent: cardSize,
         itemCount: state.ouevreList.length,
         itemBuilder: (context, i) => _itemTab(state.ouevreList[i])
         ),

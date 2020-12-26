@@ -1,9 +1,10 @@
 {
         		
     "btn_nav_top"                 : "Début",
-    "btn_nav_explore"            : "Explorer",
+    "btn_nav_explore"             : "Explorer",
     "btn_nav_profile"             : "Profil",
-    "btn_nav_settings"            : "Configuration",
+    "btn_nav_tops"                : "Hauts",
+    "btn_nav_settings"            : "Réglages",
     "movies"                      : "Films",
     "series"                      : "Séries TV",
     "animes"                      : "Anime",
@@ -291,5 +292,31 @@
   "series_time_travel"       : "Série de voyages dans le temps",
   "series_lawyer"            : "Série d'avocat",
   "series_serial_killer"     : "Série de tueur en série",
-  "series_revenge"           : "Série de vengeance"
-  }
+  "series_revenge"           : "Série de vengeance",
+
+  "title_top_movie"                  : "Vos films préférés",
+  "title_top_serie"                  : "Votre série préférée",
+  "title_top_anime"                  : "Votre anime préféré",
+  "title_working_feature"            : "Nous travaillons sur une nouvelle fonction",
+  "subtitle_working_feature"         : "Cela vous permettra de créer des tops sur un thème spécifique, sera disponible dans les futures mises à jour.",
+  "update_dialog_title_add_top"      : "Ajouter à vos favoris",
+  "update_dialog_label_add_top"      : "Ajoutez votre liste de favoris",
+  "update_dialog_title_remove_top"   : "Supprimer de vos favoris",
+  "update_dialog_label_remove_top"   : "Supprimer de votre liste de favoris",
+  "empty_title_top_movie"            : "Créez vos meilleurs films préférés",
+  "empty_title_top_serie"            : "Vous n'avez pas encore créé votre film préféré, cliquez pour le créer maintenant.",
+  "empty_title_top_anime"            : "Créez votre Top of Favorite Series",
+  "empty_label_top_movie"            : "Vous n'avez pas encore créé le top de votre série préférée, cliquez pour le créer maintenant.",
+  "empty_label_top_serie"            : "Créez votre Top d'anime préféré",
+  "empty_label_top_anime"            : "Vous n'avez pas encore créé votre haut d'anime préféré, cliquez pour le créer maintenant.",
+  "btn_label_view_top"               : "Voir en détail",
+  "btn_label_edit_top"               : "Modifier le haut",
+  "btn_label_create_top"             : "Ajouter à vos favoris",
+  "title_create_top_movie_favorites" : "Sélectionnez vos films préférés",
+  "title_create_top_serie_favorites" : "Sélectionnez votre série préférée",
+  "title_create_top_anime_favorites" : "Sélectionnez votre anime préféré",
+  "title_edit_top_movie_favorites"   : "Modifier vos films préférés",
+  "title_edit_top_serie_favorites"   : "Modifiez votre série préférée",
+  "title_edit_top_anime_favorites"   : "Modifiez votre anime préféré",
+  "btn_label_edit_save_top"          : "Enregistrer les modifications"
+}

@@ -1,8 +1,9 @@
 {
         		
-    "btn_nav_top"                 : "시작",
-    "btn_nav_explore"            : "탐색",
+    "btn_nav_top"                 : "스타트",
+    "btn_nav_explore"             : "탐색",
     "btn_nav_profile"             : "프로필",
+    "btn_nav_tops"                : "상의",
     "btn_nav_settings"            : "구성",
     "movies"                      : "영화",
     "series"                      : "시리즈",
@@ -292,5 +293,31 @@
   "series_time_travel"       : "연속 시간 여행",
   "series_lawyer"            : "연속 변호사",
   "series_serial_killer"     : "연쇄 살인범 시리즈",
-  "series_revenge"           : "일련의 복수"
-  }
+  "series_revenge"           : "일련의 복수",
+
+  "title_top_movie"                  : "가장 좋아하는 영화",
+  "title_top_serie"                  : "가장 좋아하는 시리즈",
+  "title_top_anime"                  : "당신이 가장 좋아하는 애니",
+  "title_working_feature"            : "우리는 새로운 기능을 연구하고 있습니다.",
+  "subtitle_working_feature"         : "이렇게 하면 특정 테마의 상단을 만들 수 있으며 향후 업데이트에서 사용할 수 있습니다.",
+  "update_dialog_title_add_top"      : "즐겨찾기에 추가",
+  "update_dialog_label_add_top"      : "즐겨찾기 목록 추가",
+  "update_dialog_title_remove_top"   : "즐겨찾기에서 제거",
+  "update_dialog_label_remove_top"   : "즐겨찾기 목록에서 제거",
+  "empty_title_top_movie"            : "가장 좋아하는 영화 만들기",
+  "empty_title_top_serie"            : "즐겨찾는 동영상의 맨 위를 아직 만들지 않았습니다. 지금 클릭하여 만듭니다.",
+  "empty_title_top_anime"            : "가장 좋아하는 시리즈 만들기",
+  "empty_label_top_movie"            : "즐겨찾는 시리즈의 상위 시리즈를 아직 만들지 않았습니다. 지금 클릭하여 만듭니다.",
+  "empty_label_top_serie"            : "가장 좋아하는 애니매이션 1위 만들기",
+  "empty_label_top_anime"            : "즐겨찾는 애니메이션 탑을 아직 만들지 않았습니다. 지금 클릭하여 만듭니다.",
+  "btn_label_view_top"               : "자세한 내용 참조",
+  "btn_label_edit_top"               : "맨 위 편집",
+  "btn_label_create_top"             : "즐겨찾기에 추가",
+  "title_create_top_movie_favorites" : "즐겨찾는 영화 선택",
+  "title_create_top_serie_favorites" : "즐겨찾는 시리즈 선택",
+  "title_create_top_anime_favorites" : "가장 좋아하는 애니메이션을 선택하십시오.",
+  "title_edit_top_movie_favorites"   : "좋아하는 영화 편집",
+  "title_edit_top_serie_favorites"   : "즐겨찾는 시리즈 편집",
+  "title_edit_top_anime_favorites"   : "가장 좋아하는 애니메이션 편집",
+  "btn_label_edit_save_top"          : "변경사항 저장"
+}

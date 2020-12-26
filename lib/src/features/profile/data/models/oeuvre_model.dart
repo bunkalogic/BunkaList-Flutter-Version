@@ -25,8 +25,8 @@ class OuevreModel extends OuevreEntity{
     final int      seasonTotal,      
     final int      episodeTotal,     
     final String   oeuvreType,
-    final bool     isFavorite,   
-    final int      positionListFav,
+    bool     isFavorite,   
+    int      positionListFav,
     final String   reviewExt,       
   }): super(           
     addDate            : addDate,          

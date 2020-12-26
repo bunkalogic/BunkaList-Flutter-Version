@@ -188,6 +188,7 @@ Future<void> init() async {
   initLogin();
   //! Profile Features
   initProfile();
+  // initProfileUpdate();
   //! Setting Features
   initEditProfile();
   //! Base Features
@@ -536,6 +537,26 @@ initDataUser(){
 
 }
 
+// initProfileUpdate(){
+//   //? Blocs
+//   serviceLocator.registerFactory(
+//     () => UpdateBloc(
+//       updateOuevre: serviceLocator()
+//       )
+//     );
+//   //? UseCases
+//   serviceLocator.registerLazySingleton(() => GetUpdateOuevre(serviceLocator()));
+//   //? Repository - Contracts
+//   serviceLocator.registerLazySingleton<UpdateOuevreContract>(
+//     () => UpdateOuevreImpl(
+//       remoteDataSource: serviceLocator(),
+//       ),
+//     );
+//   //  //? Data Sources
+//   // serviceLocator.registerLazySingleton<CrudOuevreRemoteDataSource>(
+//   //   () => CrudOuevreRemoteDataSourceImpl()
+//   // );
+// }
 
 initProfile(){
   //? Blocs

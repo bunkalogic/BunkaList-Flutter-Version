@@ -204,6 +204,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  convex_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: convex_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.0"
   crypto:
     dependency: transitive
     description:
@@ -246,6 +253,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.4"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   enum_to_string:
     dependency: "direct main"
     description:
@@ -452,6 +466,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.1+1"
+  flutter_slider_indicator:
+    dependency: transitive
+    description:
+      name: flutter_slider_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
+  flutter_stack_card:
+    dependency: "direct main"
+    description:
+      name: flutter_stack_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -798,6 +826,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  reorderables:
+    dependency: "direct main"
+    description:
+      name: reorderables
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   rxdart:
     dependency: transitive
     description:
@@ -978,6 +1013,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  vertical_card_pager:
+    dependency: "direct main"
+    description:
+      name: vertical_card_pager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   watcher:
     dependency: transitive
     description:

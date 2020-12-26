@@ -1,8 +1,9 @@
 {
         		
     "btn_nav_top"                 : "घर",
-    "btn_nav_explore"            : "अन्वेषण करना",
+    "btn_nav_explore"             : "अन्वेषण करना",
     "btn_nav_profile"             : "प्रोफाइल",
+    "btn_nav_tops"                : "सबसे ऊपर",
     "btn_nav_settings"            : "सेटिंग",
     "movies"                      : "फिल्म",
     "series"                      : "श्रृंखला",
@@ -292,6 +293,32 @@
   "series_time_travel"       : "समय यात्रा की श्रृंखला",
   "series_lawyer"            : "वकील की श्रृंखला",
   "series_serial_killer"     : "सीरियल किलर की श्रृंखला",
-  "series_revenge"           : "बदला लेने की श्रृंखला"
+  "series_revenge"           : "बदला लेने की श्रृंखला",
+
+  "title_top_movie"                  : "आपकी पसंदीदा फिल्में",
+  "title_top_serie"                  : "आपकी पसंदीदा श्रृंखला",
+  "title_top_anime"                  : "आपका पसंदीदा मोबाइल फोनों",
+  "title_working_feature"            : "हम एक नए कार्य पर काम कर रहे हैं",
+  "subtitle_working_feature"         : "यह आपको एक विशिष्ट विषय पर सबसे ऊपर बनाने की अनुमति देगा, भविष्य के अपडेट में उपलब्ध होगा।",
+  "update_dialog_title_add_top"      : "अपने शीर्ष पसंदीदा में जोड़ें",
+  "update_dialog_label_add_top"      : "अपनी पसंदीदा सूची जोड़ें",
+  "update_dialog_title_remove_top"   : "अपने शीर्ष पसंदीदा से निकालें",
+  "update_dialog_label_remove_top"   : "अपनी पसंदीदा सूची से निकालें",
+  "empty_title_top_movie"            : "अपनी पसंदीदा फ़िल्में बनाएँ",
+  "empty_title_top_serie"            : "आपने अभी तक अपनी पसंदीदा फिल्म शीर्ष नहीं बनाई है, इसे अभी बनाने के लिए क्लिक करें।",
+  "empty_title_top_anime"            : "अपनी पसंदीदा श्रृंखला का शीर्ष बनाएं",
+  "empty_label_top_movie"            : "आपने अभी तक अपनी पसंदीदा श्रृंखला शीर्ष नहीं बनाई है, इसे अभी बनाने के लिए क्लिक करें।",
+  "empty_label_top_serie"            : "अपने पसंदीदा पसंदीदा समय बनाएँ",
+  "empty_label_top_anime"            : "आपने अभी तक अपना पसंदीदा एनीमे टॉप नहीं बनाया है, इसे अभी बनाने के लिए क्लिक करें।",
+  "btn_label_view_top"               : "विस्तार से देखें",
+  "btn_label_edit_top"               : "शीर्ष संपादित करें",
+  "btn_label_create_top"             : "अपने पसंदीदा में जोड़ें",
+  "title_create_top_movie_favorites" : "अपनी पसंदीदा फिल्मों का चयन करें",
+  "title_create_top_serie_favorites" : "अपनी पसंदीदा श्रृंखला चुनें",
+  "title_create_top_anime_favorites" : "अपने पसंदीदा मोबाइल फोनों का चयन करें",
+  "title_edit_top_movie_favorites"   : "अपनी पसंदीदा फिल्में संपादित करें",
+  "title_edit_top_serie_favorites"   : "अपनी पसंदीदा श्रृंखला संपादित करें",
+  "title_edit_top_anime_favorites"   : "अपने पसंदीदा मोबाइल फोनों को संपादित करें",
+  "btn_label_edit_save_top"          : "परिवर्तनों को सुरक्षित करें"
   
-  }
+}

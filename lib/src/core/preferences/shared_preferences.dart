@@ -152,4 +152,33 @@ class Preferences{
   set getfilterListCompleted  (ListProfileQuery value) {
     _prefs.setString('filterListCompleted', EnumToString.convertToString(value));
   }
+
+
+  //? se en encarga de guradar el total de peliculas favoritas
+  get totalMoviesFav {
+    return _prefs.getInt('totalMoviesFav') ?? 0;
+  }
+
+  set totalMoviesFav (int value) {
+    _prefs.setInt('totalMoviesFav', value);
+  }
+
+  //? se en encarga de guradar el total de series favoritas
+  get totalSeriesFav {
+    return _prefs.getInt('totalSeriesFav') ?? 0;
+  }
+
+  set totalSeriesFav (int value) {
+    _prefs.setInt('totalSeriesFav', value);
+  }
+
+  //? se en encarga de guradar el total de animes favoritos
+  get totalAnimesFav {
+    return _prefs.getInt('totalAnimesFav') ?? 0;
+  }
+
+  set totalAnimesFav (int value) {
+    _prefs.setInt('totalAnimesFav', value);
+  }
+
 }

@@ -1,9 +1,10 @@
 {
         		
-    "btn_nav_top"                 : "Iniciar",
-    "btn_nav_explore"            : "Explorar",
+    "btn_nav_top"                 : "Começar",
+    "btn_nav_explore"             : "Explorar",
     "btn_nav_profile"             : "Perfil",
-    "btn_nav_settings"            : "Configuração",
+    "btn_nav_tops"                : "Tops",
+    "btn_nav_settings"            : "Definições",
     "movies"                      : "Filmes",
     "series"                      : "Séries de TV",
     "animes"                      : "Animes",
@@ -14,7 +15,7 @@
     "top_movies"                  : "Topos de filmes",
     "movies_popular"              : "Filmes populares",
     "movies_rated"                : "Filmes mais votados",
-    "movies_upcoming"             : "próximos filmes",
+    "movies_upcoming"             : "Próximos filmes",
     "movies_action"               : "Filmes do Ação",
     "movies_adventure"            : "Filmes do Aventura",
     "movies_comedy"               : "Filmes do Comédia",
@@ -292,6 +293,32 @@
   "series_time_travel"       : "Série de viagem no tempo",
   "series_lawyer"            : "Série de advogado",
   "series_serial_killer"     : "Série de serial killer",
-  "series_revenge"           : "Série de vingança"
+  "series_revenge"           : "Série de vingança",
+   
+  "title_top_movie"                  : "Seus filmes favoritos",
+  "title_top_serie"                  : "Sua série favorita",
+  "title_top_anime"                  : "Seu anime favorito",
+  "title_working_feature"            : "Estamos trabalhando em uma nova função",
+  "subtitle_working_feature"         : "Isso vai permitir que você crie tops sobre um tema específico, estará disponível em futuras atualizações.",
+  "update_dialog_title_add_top"      : "Adicionar aos seus principais favoritos",
+  "update_dialog_label_add_top"      : "Adicione sua lista de favoritos",
+  "update_dialog_title_remove_top"   : "Remover dos seus principais favoritos",
+  "update_dialog_label_remove_top"   : "Remover da sua lista de favoritos",
+  "empty_title_top_movie"            : "Crie seus principais filmes favoritos",
+  "empty_title_top_serie"            : "Você ainda não criou seu filme favorito, clique para criá-lo agora.",
+  "empty_title_top_anime"            : "Crie o seu Top of Favorite Series",
+  "empty_label_top_movie"            : "Você ainda não criou seu top das séries favoritas, clique para criá-lo agora.",
+  "empty_label_top_serie"            : "Crie o seu melhor anime favorito",
+  "empty_label_top_anime"            : "Você ainda não criou seu top de anime favorito, clique para criá-lo agora.",
+  "btn_label_view_top"               : "Veja em detalhes",
+  "btn_label_edit_top"               : "Edite o topo",
+  "btn_label_create_top"             : "Adicione aos seus favoritos",
+  "title_create_top_movie_favorites" : "Selecione seus filmes favoritos",
+  "title_create_top_serie_favorites" : "Selecione sua série favorita",
+  "title_create_top_anime_favorites" : "Selecione o seu anime favorito",
+  "title_edit_top_movie_favorites"   : "Edite seus filmes favoritos",
+  "title_edit_top_serie_favorites"   : "Edite sua série favorita",
+  "title_edit_top_anime_favorites"   : "Edite seu anime favorito",
+  "btn_label_edit_save_top"          : "Salvar alterações"
   
-  }
+}

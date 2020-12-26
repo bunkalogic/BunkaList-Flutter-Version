@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dar
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/build_bottom_modal_filter_completed.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/item_details_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -139,6 +140,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
             return null;
           },
           child:  ListView.builder(
+            itemExtent: cardSize,
             itemCount: ouevreList.length,
             itemBuilder: (context, i) => _itemTab(ouevreList[i])
           ),
@@ -269,40 +271,59 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
   Widget _itemTab(OuevreEntity ouevre) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 800),
-      curve: Curves.decelerate,
-      height: cardSize,
-      child: GestureDetector(
-        onTap: (){
-          
-          Navigator.pushNamed(
-              context, '/AllDetails', 
-              arguments: 
-              getIdAndType(
-                ouevre.oeuvreId, 
-                ouevre.oeuvreType,  
-                ouevre.oeuvreTitle)
-            );
+    return Hero(
+      tag: ouevre.oeuvreId,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 800),
+        curve: Curves.decelerate,
+        height: cardSize,
+        child: GestureDetector(
+          onTap: (){
+            
+            // Navigator.pushNamed(
+            //     context, '/AllDetails', 
+            //     arguments: 
+            //     getIdAndType(
+            //       ouevre.oeuvreId, 
+            //       ouevre.oeuvreType,  
+            //       ouevre.oeuvreTitle)
+            //   );
 
-        },
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)
-          ),
-          elevation: 5.0,
-          margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0 ),
-          borderOnForeground: false,
-          child: Stack(
-           fit: StackFit.expand, 
-           children: <Widget>[
-             _imageBackground(ouevre),
-             _gradientBackground(ouevre),
-             _listTileInfoItem(ouevre),
-             _buttomExtend(),
-             _showAllRating(ouevre),
-             
-           ],
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+              insetPadding: const EdgeInsets.symmetric(
+                horizontal: 30.0,
+                vertical: 30.0
+              ),  
+              elevation: 5,
+              backgroundColor: Colors.transparent,
+              child: BuildItemDetailsWidget(ouevreEntity: ouevre),
+              );
+            },
+          ); 
+           
+
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)
+            ),
+            elevation: 5.0,
+            margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0 ),
+            borderOnForeground: false,
+            child: Stack(
+             fit: StackFit.expand, 
+             children: <Widget>[
+               _imageBackground(ouevre),
+               _gradientBackground(ouevre),
+               _listTileInfoItem(ouevre),
+               _buttomExtend(ouevre),
+               //_showAllRating(ouevre),
+               
+             ],
+            ),
           ),
         ),
       ),
@@ -371,6 +392,9 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
 
   Widget _itemRate(OuevreEntity ouevre) {
+    if(ouevre.isFavorite != null && ouevre.isFavorite){
+      return MiniFavoriteCircularChartRating(_getRatingActualFilter(ouevre));
+    }
     return MiniCircularChartRating(_getRatingActualFilter(ouevre));
   }
 
@@ -400,14 +424,18 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     );
   }
 
-  Widget _buttomExtend() {
+  Widget _buttomExtend(OuevreEntity ouevre) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
         icon: _changedIcon(),
         autofocus: true,
         onPressed: (){
-          _changedSizedCard();
+          // _changedSizedCard();
+          ButtomUpdateAndDelete(
+              type: ouevre.oeuvreType,
+              ouevre: ouevre,
+            ).showBottonModalOptions(context);
         },
       ),
     );

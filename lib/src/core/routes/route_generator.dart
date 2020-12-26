@@ -15,7 +15,11 @@ import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.da
 import 'package:bunkalist/src/features/options/presentation/pages/policy_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/premium_soon_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
+import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profile_page.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/pages/top_detail_page.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/create_top_favorites_widget.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/reorder_top_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -115,6 +119,26 @@ class RouteGeneretor{
           return SlideRightRoute(page: VideoPlayerWidget(id: args,));
         }
         return routeError();
+
+      case '/TopFavDetails':
+        if(args is List<OuevreEntity>){
+          return SlideRightRoute(page: TopDetailPage(ouevreList: args ,));
+        }
+        return routeError();
+        
+
+      case '/TopFavEdit':
+      if(args is List<OuevreEntity>){
+          return SlideRightRoute(page: ReorderTopWidget(ouevreList: args,));
+        }
+        return routeError();
+        
+
+      case '/TopFavCreate':
+        if(args is Map){
+          return SlideRightRoute(page: CreateTopFaviritesWidget(data: args,));   
+        }
+       return routeError();  
 
       case '/ListFavProfile':
         return SlideRightRoute(page: ListFavoriteProfilePage());
