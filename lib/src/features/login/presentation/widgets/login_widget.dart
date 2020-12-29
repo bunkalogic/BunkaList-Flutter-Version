@@ -219,7 +219,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     },
                     controller: _passwordController,
                     obscureText: true,
-                    style: TextStyle(color: Colors.white, fontSize: 14.0 ),
+                    style: TextStyle(color: Colors.white, fontSize: 16.0 ),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -279,7 +279,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     controller: _emailController,
                     obscureText: false,
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 14.0 ),
+                    style: TextStyle(color: Colors.white, fontSize: 16.0 ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'something@gmail.com',

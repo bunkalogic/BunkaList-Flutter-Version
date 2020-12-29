@@ -1,8 +1,10 @@
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_yt_item_widget.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/feature_is_premium_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +28,9 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
     BlocProvider.of<VideoYoutubeBloc>(context)
     ..add(GetReviewsVideos(widget.title));
     
-  }  
+  } 
+
+  Preferences prefs = Preferences(); 
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +57,11 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
                 child: Column(
                    mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4818973727',),
+                    // MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4818973727',),
                     //MaxNativeBannerAds(adPlacementID: "177059330328908_179583233409851",),
-                    Expanded(
+                    (!prefs.isNotAds)
+                    ? FeaturePremiumWidget()
+                    : Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.all(5.0),
                         itemCount: state.videos.length,

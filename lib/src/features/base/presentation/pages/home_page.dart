@@ -134,27 +134,27 @@ Widget _createAppBarPlatform(BuildContext context) {
     List<TabItem<dynamic>> items = [
       TabItem(
         icon: Icon(Icons.home_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.home, size: 28.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.home, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_top"), 
       ),
       TabItem(
         icon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.explore, size: 28.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.explore, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_explore"), 
       ),
       TabItem(
         icon: Icon(Icons.person_outline, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.person, size: 28.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.person, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_profile"), 
       ),
       TabItem(
         icon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.star_rate_rounded, size: 28.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.star_rate_rounded, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_tops"), 
       ),
       TabItem(
         icon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.settings_applications, size: 28.0, color: _getColorActiveIcon()),
+        activeIcon: Icon(Icons.settings_applications, size: 26.0, color: _getColorActiveIcon()),
         title: AppLocalizations.of(context).translate("btn_nav_settings"), 
       ),
       
@@ -163,11 +163,11 @@ Widget _createAppBarPlatform(BuildContext context) {
     return ConvexAppBar(
       items: items,
       style: TabStyle.flip,
-      height: 60,
+      height: 65,
       color: _getColorOffIcon(),
       backgroundColor: _getTabbarBackgroundColor(),
       activeColor: _getColorActiveIcon(),
-      elevation: 5.0,
+      elevation: 12.0,
       top: 0,
       onTap: (index) {
         setState(() {

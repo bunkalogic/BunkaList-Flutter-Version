@@ -12,6 +12,7 @@ class BannerPremiumWidget extends StatefulWidget {
 }
 
 class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
+  
   Preferences prefs = Preferences();
 
   @override
@@ -26,17 +27,17 @@ class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                blurRadius: 6.0,
-                color: Colors.blueGrey.withOpacity(0.3),
-                spreadRadius: 2.0
+                blurRadius: 4.0,
+                color: Colors.blueGrey[400].withOpacity(0.3),
+                spreadRadius: 1.5
               )
             ],
             borderRadius: BorderRadius.circular(15.0),
             gradient: LinearGradient(
               colors: [
-                Colors.indigoAccent,
-                Colors.deepPurpleAccent, 
-                Colors.pinkAccent,
+                Colors.indigoAccent[400].withOpacity(0.4),
+                Colors.deepPurpleAccent[400].withOpacity(0.4), 
+                Colors.pinkAccent[400].withOpacity(0.4),
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -53,9 +54,10 @@ class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
     return Center(
       child: ListTile(
         title: _titleGoToPremium(),
+        subtitle: _subtitleGoToPremium(),
         leading: Icon(Icons.local_play, size: 40.0, color: Colors.pinkAccent[400],),
         onTap: () {
-          Navigator.pushNamed(context, '/NoAds');
+          Navigator.pushNamed(context, '/Premium');
         },
       ),
     );
@@ -63,11 +65,11 @@ class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
 
   Widget _titleGoToPremium() {
     return Text(
-      AppLocalizations.of(context).translate("label_remove_ads"), 
+      'BunkaList Premium', 
     style: TextStyle(
       color: Colors.white, 
-      fontSize: 18.0,
-      fontWeight: FontWeight.w500,
+      fontSize: 20.0,
+      fontWeight: FontWeight.w800,
       shadows:  [
         Shadow(
           color: Colors.greenAccent[400],
@@ -85,6 +87,19 @@ class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
           offset: Offset(0.3, -0.3),
         ),
       ]
+    ),
+    //textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _subtitleGoToPremium() {
+    return Text(
+      AppLocalizations.of(context).translate("banner_premium_subtitle"),
+      textAlign: TextAlign.justify, 
+    style: TextStyle(
+      color: Colors.white, 
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500,
     ),
     //textAlign: TextAlign.center,
     );

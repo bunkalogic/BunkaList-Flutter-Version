@@ -354,7 +354,7 @@
 
   "label_serie_month"            : "Series On Air this week",
   
-  "label_anime_season"           : "Autumn Anime Season 2020",
+  "label_anime_season"           : "Winter Anime Season 2021",
 
   "configuration"                : "Configuration",
 
@@ -505,11 +505,11 @@
   "update_dialog_title_remove_top"   : "Remove from your top Favorites",
   "update_dialog_label_remove_top"   : "Remove from your favorites list",
   "empty_title_top_movie"            : "Create your Top Favorite Movies",
-  "empty_title_top_serie"            : "You have not yet created your top of favorite movies, click to create it now.",
-  "empty_title_top_anime"            : "Create your Top of Favorite Series",
-  "empty_label_top_movie"            : "You have not yet created your top of favorite series, click to create it now.",
-  "empty_label_top_serie"            : "Create your Top of Favorite Anime",
-  "empty_label_top_anime"            : "You haven't created your favorite anime top yet, click to create it now.",
+  "empty_title_top_serie"            : "Create your Top of Favorite Series",
+  "empty_title_top_anime"            : "Create your Top of Favorite Anime",
+  "empty_label_top_movie"            : "You have not yet created your favorite movie top, click to create it now.",
+  "empty_label_top_serie"            : "You have not yet created your favorite series top, click to create it now.",
+  "empty_label_top_anime"            : "You have not yet created your favorite anime top, click to create it now.",
   "btn_label_view_top"               : "See in detail",
   "btn_label_edit_top"               : "Edit the top",
   "btn_label_create_top"             : "Add to your favorites",
@@ -519,6 +519,28 @@
   "title_edit_top_movie_favorites"   : "Edit your Favorite Movies",
   "title_edit_top_serie_favorites"   : "Edit your Favorite Series",
   "title_edit_top_anime_favorites"   : "Edit your Favorite Anime",
-  "btn_label_edit_save_top"          : "Save Changes"
+  "btn_label_edit_save_top"          : "Save Changes",
+
+  "title_item_unlock_premium_1"      : "Your Tops",
+  "subtitle_item_unlock_premium_1"   : "Your tops increase +10 the total limit, instead of 10 you can include up to 20 in total per top.",
+  "title_item_unlock_premium_2"      : "Video Review",
+  "subtitle_item_unlock_premium_2"   : "You have access to the Video review on a work, which is available in the section of each work in details.",
+  "title_item_unlock_premium_3"      : "Filter your lists",
+  "subtitle_item_unlock_premium_3"   : "You have the possibility to filter your list of completions by the different types of rating.",
+  "title_item_unlock_premium_4"      :  "Whithout ads",
+  "subtitle_item_unlock_premium_4"   : "Remove all advertising within the app.",
+  "title_item_unlock_premium_5"      :  "New functions",
+  "subtitle_item_unlock_premium_5"   : "New features that will be included in future updates.",
+  "title_label_premium"              : "Take your experience to another level and keep BunkaList developing.",
+  "label_offer"                      : "New Year's offer, get Bunkalist Premium the year subscription at 55% discount and the lifetime subscription at 40%. Offer available until 01/15/2021.",
+  "label_of_unlock"                  :  "Features",
+  "title_one_month"                  :  "Monthly",
+  "title_one_year"                   :  "Annually",
+  "title_lifetime"                   :  "Lifetime",
+  "banner_premium_subtitle"          : "Unlock all features and remove all ads.",
+  "big_banner_premium_title"         : "Exclusive function of the Premium version",
+  "big_banner_premium_subtitle"      : "Unlock this feature and all other features and remove all ads.",
+  "btn_go_to_premium"                : "Get Premium now",
+  "label_change_language"            : "Change the language of the App"
 
 }

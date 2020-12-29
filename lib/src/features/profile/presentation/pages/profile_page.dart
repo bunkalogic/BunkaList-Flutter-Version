@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: MediaQuery.of(context).size.height * 0.33,
+          height: MediaQuery.of(context).size.height * 0.34,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -219,9 +219,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179577480077093",),  
 
-        random 
-        ? MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', )
-        : BannerPremiumWidget(),
+         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
 
         _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_movie")),
         SizedBox(height: 15.0,),

@@ -175,6 +175,7 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
         return ouevreCollection
         .where('isFavorite',isEqualTo: true)
         .orderBy('positionListFav', descending: false)
+        .limit(prefs.isNotAds ? 20 : 10 )
         .snapshots().map((snap){
           
           return snap.documents

@@ -3,11 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:flutter/material.dart';
 
-/*
 
-Terminar o agregar cuando quede para poder sacar el premium maximo un mes 
-
-*/
 class PremiumSoonPage extends StatelessWidget {
   const PremiumSoonPage({Key key}) : super(key: key);
 

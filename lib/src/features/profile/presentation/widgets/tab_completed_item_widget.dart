@@ -146,48 +146,13 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           ),
         )
       ),
-      floatingActionButton:  _buildExtendFab(), //_buildFab(),
+      floatingActionButton: (prefs.isNotAds) ?  _buildExtendFab() : Container(), 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
 
   }
 
-  Widget _buildFab(){
-    return FloatingActionButton(
-      onPressed: () async {
-        
-        ListProfileQuery result = await showModalBottomSheet<ListProfileQuery>(
-          isScrollControlled: true,
-          elevation: 10.0,
-          isDismissible: false,
-          backgroundColor: _getBackgroundColorTheme(), 
-          context: context,
-          builder: (context) => BuildBottomFilterCompleted(),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(30),
-              topRight: const Radius.circular(30)
-            )
-          )
-        );
-
-        status = result;
-        setState(() {});
-
-        BlocProvider.of<GetListsBloc>(context)..add(
-          GetYourLists( type: widget.type, status: result ?? ListProfileQuery.Completed )
-        );
-        
-      },
-      elevation: 10.0,
-      backgroundColor: Colors.deepPurpleAccent[400],
-      mini: true,
-      child: Icon(
-        Icons.filter_list,
-        color: Colors.pinkAccent[700],
-      ),
-    );
-  }
+  
 
   Widget _buildExtendFab(){
     return FloatingActionButton.extended(

@@ -90,8 +90,17 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
 
 
   Future<List<AnimeModel>>  getListAnimesSelection(int page) async {
-    // final listId = 145397;
-    final listId = 7064704;
+    final listIdVol1 = 145397;
+    final listIdVol2 = 7064704;
+
+    List<int> recListVol = List<int>();
+
+    recListVol.add(listIdVol1);  
+    recListVol.add(listIdVol2);
+
+    recListVol.shuffle();
+
+    final int id = recListVol[1];
 
     final Map<String, String> query = {
         'api_key'                   : _theAnimeDB,
@@ -101,7 +110,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
     };
     
     final url = Uri.https(
-      _url, '4/list/$listId', query);
+      _url, '4/list/$id', query);
     
     final resp = await processResponse(url.toString(),);
     
@@ -181,7 +190,7 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
         
       case Constants.topsAnimeSuperNaturalId       : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '6152');
 
-      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-10-01', airDate: '2020-11-01' );
+      case Constants.topsAnimeSeasonAirId          : return await getListAnimeFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2021-01-01', airDate: '2021-01-30' );
       
       case Constants.topsAnimesSeinen              : return await getListAnimeFromApi(page, sortBy: ConstSortBy.voteAverageDesc, keywords: '195668');
 

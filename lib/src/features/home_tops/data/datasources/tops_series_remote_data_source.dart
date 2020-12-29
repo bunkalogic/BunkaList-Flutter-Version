@@ -87,8 +87,17 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   }
 
   Future<List<SeriesModel>>  getListSeriesSelection(int page) async {
-    //final listId = 145395;
-    final listId = 7064702;
+    final listIdVol1 = 145395;
+    final listIdVol2 = 7064702;
+
+    List<int> recListVol = List<int>();
+
+    recListVol.add(listIdVol1);  
+    recListVol.add(listIdVol2);
+
+    recListVol.shuffle();
+
+    final int id = recListVol[1];
 
     final Map<String, String> query = {
         'api_key'                   : _theSerieDB,
@@ -98,7 +107,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
     };
     
     final url = Uri.https(
-      _url, '4/list/$listId', query);
+      _url, '4/list/$id', query);
     
     final resp = await processResponse(url.toString(),);
     

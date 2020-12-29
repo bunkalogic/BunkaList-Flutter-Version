@@ -43,7 +43,11 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
         if(state is GetListsLoading){
 
 
-          return LoadingCustomWidget();
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.33,
+            width: MediaQuery.of(context).size.width / 0.80,
+            child: LoadingCustomWidget()
+          );
 
 
         }else if(state is GetListsLoaded){
@@ -116,7 +120,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
           dottedColor: Colors.redAccent[400],
           icon: Icons.star_rate_rounded,
           onTap: (){
-            Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( 9, 'movie' ));
+            Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'movie' ));
           },
         );
   }
@@ -128,7 +132,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
       icon: Icons.star_rate_rounded, 
       dottedColor: Colors.greenAccent[400],
       onTap: (){
-        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( 9, 'tv' ));
+        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'tv' ));
       },
     );
   }
@@ -140,7 +144,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
       dottedColor: Colors.blueAccent[400],
       icon: Icons.star_rate_rounded,
       onTap: (){
-        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( 9, 'anime' ));
+        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'anime' ));
       },
     );
   }
@@ -345,7 +349,8 @@ class _ItemStackCardsState extends State<ItemStackCards> {
       child: Padding(
         padding: const EdgeInsets.only(
           bottom: 30.0,
-          left: 15.0
+          left: 65.0,
+          right: 10.0
         ),
         child: Text(
           item.oeuvreTitle,

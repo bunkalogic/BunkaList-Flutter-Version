@@ -79,18 +79,18 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections(AppLocalizations.of(context).translate("configuration")),
         Divider(),
-        _createItemSettings(context, Colors.green , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
+        _createItemSettings(context, Colors.greenAccent , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
           Navigator.pushNamed(context, '/EditProfile');
         } ),
         //_createItemSettings(context, Colors.lightBlue, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), null),
-        // _createItemSettings(context, Colors.red, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), (){
-        //   Navigator.pushNamed(context, '/Premium');
-        // }),
-        _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), (){
-          Navigator.pushNamed(context, '/NoAds');
-          //_flushbarInProgress();
-        } ),
-        _createItemSettings(context, Colors.redAccent, Icons.translate, 'Change the language', () async{
+        _createItemSettings(context, Colors.pinkAccent, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), (){
+          Navigator.pushNamed(context, '/Premium');
+        }),
+        // _createItemSettings(context, Colors.blueAccent, Icons.card_giftcard, AppLocalizations.of(context).translate("label_ads"), (){
+        //   Navigator.pushNamed(context, '/NoAds');
+        //   //_flushbarInProgress();
+        // } ),
+        _createItemSettings(context, Colors.lightBlueAccent, Icons.translate, AppLocalizations.of(context).translate("label_change_language"), () async{
           final result = await Navigator.pushNamed(context, '/Language');
 
           if(result){

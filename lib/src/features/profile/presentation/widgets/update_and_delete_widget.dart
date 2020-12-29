@@ -265,7 +265,9 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
     return isComplete 
           ? isFavorite 
             ? _buildRemoveFavorites()
-            : _buildAddFavorites()
+            :  _getLimitedOfFavorites()
+              ? _buildAddFavorites()
+              : Container()
           : Container();
   }
 
@@ -273,6 +275,7 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
     return Flexible(
           child: ListTile(
             onTap: () {
+              Navigator.of(context).pop();
 
               widget.ouevreEntity.isFavorite = true;
               widget.ouevreEntity.positionListFav = _getPosition();
@@ -293,6 +296,7 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
     return Flexible(
       child: ListTile(
         onTap: () {
+          Navigator.of(context).pop();
           
           widget.ouevreEntity.isFavorite = false;
 
@@ -341,4 +345,36 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
       default: return prefs.totalMoviesFav;
     }
   }
+
+  bool _getLimitedOfFavorites(){
+    final int maxSelected = prefs.isNotAds ? 20 : 10;
+
+    switch (widget.ouevreEntity.oeuvreType) {
+      case 'movie':{
+        
+
+        bool isMax = prefs.totalMoviesFav < maxSelected;
+
+        return isMax;
+      }
+        break;
+
+      case 'tv':{
+        
+        bool isMax = prefs.totalSeriesFav < maxSelected;
+
+        return isMax;
+      }
+        break;
+
+      case 'anime':{
+        bool isMax = prefs.totalAnimesFav < maxSelected;
+
+        return isMax;
+      }
+        break;    
+      default: return false;
+    }
+  }
+  
 }

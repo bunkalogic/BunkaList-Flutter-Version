@@ -20,6 +20,7 @@ import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profi
 import 'package:bunkalist/src/features/tops_favorites/presentation/pages/top_detail_page.dart';
 import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/create_top_favorites_widget.dart';
 import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/reorder_top_widget.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/pages/get_premium_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -159,7 +160,11 @@ class RouteGeneretor{
         return SlideRightRoute(page: PolicyPage());  
 
       case '/Premium':
-        return SlideRightRoute(page: PremiumSoonPage());
+        return SlideRightRoute(page: BlocProvider<UserdataBloc>(
+            builder:(BuildContext context) => serviceLocator<UserdataBloc>(),
+            child: GetPremiumPage(),
+          )
+        );
 
       case '/Language':
         return SlideRightRoute(page: ChangeLanguagePage());
