@@ -4,7 +4,7 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/features/options/presentation/bloc/bloc_edit_profile/editprofile_bloc.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
@@ -79,10 +79,10 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
   Widget _buildBuildEditProfilePage(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _labelEditProfile(AppLocalizations.of(context).translate("label_change_profile_image")),
-        Divider(),
-        _profileImage(),
-        _buttonChangeImage(),
+        // _labelEditProfile(AppLocalizations.of(context).translate("label_change_profile_image")),
+        // Divider(),
+        // _profileImage(),
+        // _buttonChangeImage(),
         _labelEditProfile(AppLocalizations.of(context).translate("label_change_username")),
         Divider(),
         _changeUsernameTextField(),
@@ -115,21 +115,21 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
     );
   }
 
-  Widget _buttonChangeImage() {
-    return Center(
-      child: FlatButton(
-        onPressed: _getImagefromGallery,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        color: Colors.pinkAccent[400],
-        child: Text(
-          AppLocalizations.of(context).translate("button_change_profile_image"),
-          style: TextStyle(color: Colors.white, fontSize: 14.0),
-        ),
-      ),
-    );
-  }
+  // Widget _buttonChangeImage() {
+  //   return Center(
+  //     child: FlatButton(
+  //       onPressed: _getImagefromGallery,
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(10.0),
+  //       ),
+  //       color: Colors.pinkAccent[400],
+  //       child: Text(
+  //         AppLocalizations.of(context).translate("button_change_profile_image"),
+  //         style: TextStyle(color: Colors.white, fontSize: 14.0),
+  //       ),
+  //     ),
+  //   );
+  // }
 
 
   Widget _changeUsernameTextField(){
@@ -194,18 +194,18 @@ class _BuildEditProfilePageState extends State<BuildEditProfilePage> {
   }
   
 
-  Future _getImagefromGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  // Future _getImagefromGallery() async {
+  //   var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-    setState(() {
-      _image = image;
-    });
+  //   setState(() {
+  //     _image = image;
+  //   });
 
-    BlocProvider.of<EditprofileBloc>(context)..add(
-      UpdateProfilePhoto(photo: _image),
-    );
+  //   BlocProvider.of<EditprofileBloc>(context)..add(
+  //     UpdateProfilePhoto(photo: _image),
+  //   );
     
-  }
+  // }
 
   void _flushbarEditProfileError(){
     Flushbar(

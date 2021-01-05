@@ -27,6 +27,7 @@ class _ReorderTopWidgetState extends State<ReorderTopWidget> {
   List<Widget> itemsWidget = List<Widget>();
   // int position = 0;
   List<OuevreEntity> ouevreList = List<OuevreEntity>();
+  Preferences prefs = Preferences();
 
   @override
   void initState() {
@@ -42,7 +43,9 @@ class _ReorderTopWidgetState extends State<ReorderTopWidget> {
       itemsWidget.add(widget);
     });
 
-    if(ouevreList.length < 9){
+    int total = prefs.isNotAds ? 19 : 9;
+
+    if(ouevreList.length < total){
       itemsWidget.add(itemEmptyAddNewItem());
     }
   }

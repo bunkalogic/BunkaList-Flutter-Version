@@ -175,7 +175,7 @@ class _BuildCreateTopFavoritesWidgetState extends State<BuildCreateTopFavoritesW
   Widget _buildButtonCreateTops(){
     return new BlocProvider<AddOuevreBloc>(
       builder: (_) => serviceLocator<AddOuevreBloc>(),
-      child: ButtonCreateTopFavorites(totalSelected: totalSelected, listFavorites: listOfSelected, topPosition: totalSelected,)
+      child: ButtonCreateTopFavorites(totalSelected: totalSelected, listFavorites: listOfSelected, topPosition: totalSelect,)
     );
   }
 
@@ -227,18 +227,19 @@ class _BuildCreateTopFavoritesWidgetState extends State<BuildCreateTopFavoritesW
                   }
                 });
 
-                if(listOfSelected.length > widget.maxSelected){
-                  totalSelect--;
-                  listOfSelected.removeLast();
-                  totalSelect++;
+                if(listOfSelected.length < widget.maxSelected){
+                  totalSelect+=1;
                   listOfSelected.add(ouevreList[index]);
+                  
                 }else{
-                  totalSelect++;
+                  totalSelect-=1;
+                  listOfSelected.removeLast();
+                  totalSelect+=1;
                   listOfSelected.add(ouevreList[index]);
                 }
                 
-              } else{
-                totalSelect--;
+              }else{
+                totalSelect-=1;
                 listOfSelected.remove(ouevreList[index]);
               }
             
@@ -279,6 +280,7 @@ class _ItemCreteTopFavoritesState extends State<ItemCreteTopFavorites> with Auto
   bool isSelected = false;
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
@@ -484,7 +486,7 @@ class _ButtonCreateTopFavoritesState extends State<ButtonCreateTopFavorites> {
         ),
         child: RaisedButton(
           padding: const EdgeInsets.all(8.0),
-          onPressed: (widget.totalSelected > 0) 
+          onPressed: (widget.topPosition > 0) 
           ? _createlistFav
           : null,
           color: Colors.pinkAccent[400],
