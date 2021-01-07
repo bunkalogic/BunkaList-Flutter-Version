@@ -6,6 +6,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class SearchResultContract{
 
-  Future<Either<Failures, ResultsEntity>> getSearch(String query);
+  Future<Either<Failures, ResultsEntity>> getSearch(String query, int page);
   
 }

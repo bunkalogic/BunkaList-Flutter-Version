@@ -294,6 +294,10 @@ class HeaderInfoMovie  extends StatelessWidget {
 
 
   Widget _durationInfo(MovieDetailsEntity movie) {
+    
+    String runtime = (movie.runtime == null) ? "00 min." : movie.runtime.toString() + " min.";
+
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 2.0),
       child: Container(
@@ -307,7 +311,7 @@ class HeaderInfoMovie  extends StatelessWidget {
             Icon(Icons.timer,color: Colors.deepPurpleAccent[400], size: 28.0, ),
             SizedBox(width: 3.0,),
             Text(
-              movie.runtime.toString() + " min." , 
+               runtime, 
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -322,8 +326,11 @@ class HeaderInfoMovie  extends StatelessWidget {
   }
 
   Widget _yearInfo(MovieDetailsEntity movie) {
+
+    String realeaseDate = (movie.releaseDate == null) ? "No date" : DateTime.parse(movie.releaseDate).year.toString();
+
     return Text(
-         DateTime.parse(movie.releaseDate).year.toString(),
+         realeaseDate,
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w600,
@@ -583,8 +590,11 @@ class HeaderInfoSerie  extends StatelessWidget {
   }
 
   Widget _yearInfo(SerieDetailsEntity serie) {
+
+    String realeaseDate = (serie.firstAirDate == null) ? "No date" : DateTime.parse(serie.firstAirDate).year.toString();
+
     return Text(
-        DateTime.parse(serie.firstAirDate).year.toString(), 
+       realeaseDate, 
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w600,
@@ -845,8 +855,11 @@ class HeaderInfoAnime extends StatelessWidget {
   }
 
   Widget _yearInfo(AnimeDetailsEntity anime) {
+
+    String realeaseDate = (anime.firstAirDate == null) ? "No date" : DateTime.parse(anime.firstAirDate).year.toString();
+
     return Text(
-        DateTime.parse(anime.firstAirDate).year.toString(), 
+        realeaseDate, 
         style: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w600,

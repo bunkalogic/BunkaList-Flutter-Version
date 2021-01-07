@@ -15,7 +15,7 @@ class GetSearch extends UseCase<ResultsEntity, Params>{
   @override
   Future<Either<Failures, ResultsEntity>> call(Params params) async {
     
-    return await contract.getSearch(params.query);
+    return await contract.getSearch(params.query, params.page);
 
   }
 
@@ -25,6 +25,7 @@ class GetSearch extends UseCase<ResultsEntity, Params>{
 class Params extends Equatable{
 
   final String query;
+  final int page;
 
-  Params({ @required this.query}) : super([query]);
+  Params({ @required this.query, @required this.page}) : super([query, page]);
 }

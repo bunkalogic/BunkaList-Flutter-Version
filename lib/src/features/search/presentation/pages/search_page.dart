@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
@@ -21,11 +22,20 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
   ThemeData appBarTheme(BuildContext context) {
     assert(context != null);
 
+    Preferences prefs = Preferences();
+
     final ThemeData theme = Theme.of(context);
 
     assert(theme != null);
 
-    return theme;
+    return theme.copyWith(
+      primaryColor: prefs.whatModeIs ? prefs.whatDarkIs ? Colors.grey[900] : Colors.blueGrey[900]  : Colors.grey[200],
+      // buttonColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+      primaryIconTheme: IconThemeData(
+        color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        size: 40.0
+      )
+    );
   }
 
  
@@ -39,9 +49,10 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
 
   @override
   List<Widget> buildActions(BuildContext context) {
+    Preferences prefs = Preferences();
     return [
       IconButton(
-        icon: Icon(Icons.clear, color: Colors.white,),
+        icon: Icon(Icons.clear, color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],),
         onPressed: () => query = '',
       )
     ];
@@ -62,34 +73,39 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
   Widget buildResults(BuildContext context) {
     
     //We pass the query to the event bloc
-    searchBloc.add(TextSearchChanged(text: query));
+    if(query.isEmpty){
+      searchBloc.add(SearchCleared());
+    }else{
+      searchBloc.add(SearchStarted(query));
+    }
+    
 
     return BlocBuilder(
       bloc: searchBloc,
       builder: (BuildContext context, SearchState state){
 
-        
-        
-        if (state is EmptySearch && query.isEmpty) {
+        if(state is SearchInitial){
+          return SearchIconWidget();
+        }
+
+        if (state is SearchInProgress) {
+          return Center(
+            child: LoadingCustomWidget()
+          );
+        } else if (state is SearchSuccess) {
+          
+          return CardViewSearchResultsWidget(searchBloc);
+
+
+        } else if (state is SearchFailure) {
 
           return SearchIconWidget();
 
-        } 
-        
-        if(state is LoadingSearch){
-
-         return LoadingCustomWidget();
+        } else {
+          
+          throw StateError('Unknown state: $state');
 
         }
-        
-        if(state is LoadedSearch && query.isNotEmpty){
-
-        return CardViewSearchResultsWidget(results: state.results);
-
-        }
-
-        return SearchIconWidget();
-        
         
 
       },
@@ -104,36 +120,38 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
   @override
   Widget buildSuggestions(BuildContext context) {
 
-   //We pass the query to the event bloc
-    searchBloc.add(TextSearchChanged(text: query));
+    //We pass the query to the event bloc
+    if(query.isEmpty){
+      searchBloc.add(SearchCleared());
+    }else{
+      searchBloc.add(SearchStarted(query));
+    }
 
     return BlocBuilder(
       bloc: searchBloc,
       builder: (BuildContext context, SearchState state){
         
-        if (state is EmptySearch && query.isEmpty) {
+        if(state is SearchInitial){
+          return SearchIconWidget();
+        }
+
+        if (state is SearchInProgress) {
+          return Center(
+            child: LoadingCustomWidget()
+          );
+        } else if (state is SearchSuccess) {
+
+          return ListTileResultsSearchWidget(results: state.results);
+
+        } else if (state is SearchFailure) {
 
           return SearchIconWidget();
+          
+        } else {
+          
+          throw StateError('Unknown state: $state');
 
-        } 
-        
-        if(state is LoadingSearch){
-
-         return LoadingCustomWidget();
-
-        }
-        
-        if(state is LoadedSearch && query.isNotEmpty){
-
-        return ListTileResultsSearchWidget(results: state.results,); 
-
-        }
-
-        return SearchIconWidget();
-        
-         
-        
-        
+        }        
       },
     );
   }

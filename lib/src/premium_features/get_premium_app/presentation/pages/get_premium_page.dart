@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -125,6 +126,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _tileClosePage(),
             Icon(Icons.card_giftcard, color: Colors.redAccent[400], size: 60,),
             Text(AppLocalizations.of(context).translate("thanks_for_support"),
             textAlign: TextAlign.center, 

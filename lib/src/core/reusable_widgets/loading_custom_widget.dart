@@ -16,7 +16,7 @@ class _LoadingCustomWidgetState extends State<LoadingCustomWidget> with SingleTi
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 5));
+    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
     _colorAnimation = _animationController.drive(
       ColorTween(
         begin: Colors.deepPurpleAccent[400],
@@ -38,7 +38,7 @@ dispose() {
   Widget build(BuildContext context) {
     return Center(
       child: CircularProgressIndicator(
-        strokeWidth: 5,
+        strokeWidth: 1.5,
         valueColor: _colorAnimation,
       ),
     );

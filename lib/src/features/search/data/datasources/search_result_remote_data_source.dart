@@ -14,7 +14,7 @@ abstract class SearchResultRemoteDataSource{
   ///
   /// Throws a [ServerException] for all error codes.
 
-  Future<ResultsModel> getSearchResult(String query);
+  Future<ResultsModel> getSearchResult(String query, int page);
   
 }
 
@@ -31,13 +31,15 @@ class SearchResultRemoteDataSourceImpl implements SearchResultRemoteDataSource{
   
   
   @override
-  Future<ResultsModel> getSearchResult(String query) async {
+  Future<ResultsModel> getSearchResult(String query, int page) async {
+
+    int pageload = (page == 0) ? 1 : page;
     
     final Map<String, String> _query = {
       'api_key' : _theMovieDB,
       'language': prefs.getLanguage.toString(),
       'query'   : query,
-      'page'    :  '1',
+      'page'    : pageload.toString(),
       
     };
 

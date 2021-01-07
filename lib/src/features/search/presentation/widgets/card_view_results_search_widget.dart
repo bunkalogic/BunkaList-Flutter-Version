@@ -1,20 +1,28 @@
+
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/chips_genres_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
+import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 
 class CardViewSearchResultsWidget extends StatefulWidget {
   
-  final List<Result> results;
+  //final List<Result> results;
+final Bloc<SearchEvent, SearchState> searchBloc;
 
-  CardViewSearchResultsWidget({@required this.results});
+  CardViewSearchResultsWidget(
+    this.searchBloc
+    //{@required this.results}
+    );
 
   @override
   _CardViewSearchResultsWidgetState createState() => _CardViewSearchResultsWidgetState();
@@ -22,18 +30,61 @@ class CardViewSearchResultsWidget extends StatefulWidget {
 
 class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidget> {
   
+  ScrollController _scrollController;
+  int currentPage = 1;
+  int totalPages = 0;
+  bool _loading = false;
 
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+  }
+
+
+  void _loadPage(int page) {
+
+    SearchState state = widget.searchBloc.state;
+    //Queue<SearchEvent> queue = BlocProvider.of<SearchQueueBloc>(context).state;
+
+    if (state is SearchSuccess && state.canLoadMore) {
+      // If already loading this page, don't put in queue.
+      if (state is SearchPageLoadInProgress && state.page == page) {
+        return;
+        // If it's already in the queue, don't put in queue.
+      }else{  
+        widget.searchBloc.add(SearchPageRequested(page));
+        
+      }
+    }
+  }
   
   
   @override
   Widget build(BuildContext context) {
+    SearchSuccess state = widget.searchBloc.state as SearchSuccess;
+    List<Result> results = state.results;
 
-    if(widget.results.isNotEmpty){
+    totalPages = state.numPages;    
+
+    if(results.isNotEmpty){
       
       return Container(
-              child: ListView.builder(
-                itemCount: widget.results.length,
-                itemBuilder: (context , i) => _buildCardItem(widget.results[i]),
+              child: NotificationListener<ScrollNotification>(
+                onNotification: _handleScrollNotification,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: state.hasReachedMax
+                    ? results.length
+                    : results.length + 1,
+                  itemBuilder: (context , i) {
+                    _loading = false;
+                    
+                    return (i >= results.length) 
+                    ? BottomLoader()
+                    : _buildCardItem(results[i]);
+                  } 
+                ),
               ),
             );
     }else{
@@ -255,5 +306,23 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
 
   
 
-  
+  bool _handleScrollNotification(ScrollNotification notification){
+     if (notification is ScrollEndNotification &&
+        _scrollController.position.extentAfter == 0){
+        if(currentPage < totalPages){
+          print('load new page');
+          currentPage+=1;  
+          _loadPage(currentPage);
+          return _loading = true;
+        } 
+        print('dont load new page');  
+    }
+    return _loading = false;
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 }

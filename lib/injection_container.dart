@@ -409,6 +409,7 @@ initSearch(){
       search: serviceLocator()
       )
     );
+  
   //? UseCases
   serviceLocator.registerLazySingleton(() => GetSearch(serviceLocator()));
   //? Repository - Contracts

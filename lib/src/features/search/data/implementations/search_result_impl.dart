@@ -18,13 +18,13 @@ class SearchResultImpl implements SearchResultContract{
   });
 
   @override
-  Future<Either<Failures, ResultsEntity>> getSearch(String query) async {
+  Future<Either<Failures, ResultsEntity>> getSearch(String query, int page) async {
     
     if(await networkInfo.isConnected){
 
       try{
 
-        final remoteSearchInfo = await remoteDataSource.getSearchResult(query);
+        final remoteSearchInfo = await remoteDataSource.getSearchResult(query, page);
 
         return Right(remoteSearchInfo);
 

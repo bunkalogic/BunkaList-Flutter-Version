@@ -1,21 +1,42 @@
 
 import 'package:equatable/equatable.dart';
 
-abstract class SearchEvent extends Equatable{
+abstract class SearchEvent extends Equatable {
   const SearchEvent();
-}
-
-class TextSearchChanged extends SearchEvent {
-  final String text;
-
-  const TextSearchChanged({this.text});
 
   @override
-  List<Object> get props => [text];
+  List<Object> get props => [];
+}
+
+class SearchStarted extends SearchEvent {
+  final String query;
+
+  const SearchStarted(this.query);
 
   @override
-  String toString() => 'TextSearchChanged { text: $text }';
+  List<Object> get props => [query];
+
+  @override
+  String toString() {
+    return 'SearchStarted { query: $query }';
+  }
 }
+
+class SearchPageRequested extends SearchEvent {
+  final int page;
+
+  const SearchPageRequested(this.page);
+
+  @override
+  List<Object> get props => [page];
+
+  @override
+  String toString() {
+    return 'SearchPageRequested { page: $page }';
+  }
+}
+
+class SearchCleared extends SearchEvent {}
 
 
 
