@@ -120,7 +120,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
           dottedColor: Colors.redAccent[400],
           icon: Icons.star_rate_rounded,
           onTap: (){
-            Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'movie' ));
+            Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 20 : 10, 'movie' ));
           },
         );
   }
@@ -132,7 +132,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
       icon: Icons.star_rate_rounded, 
       dottedColor: Colors.greenAccent[400],
       onTap: (){
-        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'tv' ));
+        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 20 : 10, 'tv' ));
       },
     );
   }
@@ -144,7 +144,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
       dottedColor: Colors.blueAccent[400],
       icon: Icons.star_rate_rounded,
       onTap: (){
-        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 19 : 9, 'anime' ));
+        Navigator.pushNamed(context, '/TopFavCreate', arguments: getTypeAndMaxSelected( prefs.isNotAds ? 20 : 10, 'anime' ));
       },
     );
   }

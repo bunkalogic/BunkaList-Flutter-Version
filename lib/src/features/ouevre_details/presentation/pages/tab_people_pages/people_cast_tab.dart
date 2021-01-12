@@ -85,7 +85,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 6.0),
          child: Container(
            child: _itemInfo(cast),
-           height: 180.0,
+           height: 185.0,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -190,7 +190,7 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          (getDate.isNotEmpty) ? DateTime.parse(getDate).year.toString() : "no date", 
+          (getDate != null && getDate.isNotEmpty) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 

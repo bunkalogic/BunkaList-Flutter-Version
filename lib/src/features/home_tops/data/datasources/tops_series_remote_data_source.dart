@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:bunkalist/src/core/utils/get_current_day_of_week_util.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -150,13 +151,20 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
   
   @override
   Future<List<SeriesModel>> getTopsSeries(int topId, int page) async {
+
+    DateTime today = DateTime.now();
+
+    String currentDay = getCurrentDay(today);
+    String lastDayWeek = getLastDayOfWeek(today);
+    String lastDayMonth = getLastDayOfMonth(today); 
+
     switch (topId) {
 
       case Constants.topsSeriesPopularId        : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc);
 
       case Constants.topsSeriesRatedId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.voteAverageDesc, voteCount: 600);
 
-      case Constants.topsSeriesUpcommingId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: '2020-10-10', airDateLte: '2020-11-30' );
+      case Constants.topsSeriesUpcommingId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: lastDayWeek, airDateLte: lastDayMonth );
 
       case Constants.topsSeriesActAndAdvId      : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, genres: ConstGenres.actionAndAveture.toString());
 
@@ -188,7 +196,7 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       case Constants.topsSeriesAMCId            : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, network: '174' );
 
-      case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, firstAirDate: '2020-10-10', airDateLte: '2020-11-15'  );
+      case Constants.topsSeriesMonthId          : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, airDateGte: currentDay, airDateLte: lastDayWeek  );
 
       case Constants.topsSeriesKoreanId         : return await getListSerieFromApi(page, sortBy: ConstSortBy.popularityDesc, languageOuevre: 'ko', voteCount: 5  );
 

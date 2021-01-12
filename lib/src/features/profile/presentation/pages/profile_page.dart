@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: MediaQuery.of(context).size.height * 0.34,
+          height: MediaQuery.of(context).size.height * 0.36,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -143,15 +143,15 @@ class _ProfilePageState extends State<ProfilePage> {
       children: <Widget>[
         new BlocProvider<GetListsBloc>(
             builder: (_) => serviceLocator<GetListsBloc>(),
-            child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'movie',),
+            child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'movie',), flex: 1,),
           ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'tv',),
+          child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'tv',), flex: 1,),
         ),
         new BlocProvider<GetListsBloc>(
           builder: (_) => serviceLocator<GetListsBloc>(),
-          child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'anime',),
+          child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'anime',), flex: 1,),
         ),
       ],
     );

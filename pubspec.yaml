@@ -13,6 +13,10 @@ description: A new Flutter project.
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+analyzer:
+  enable-experiment:
+    - non-nullable
+
 environment:
   sdk: ">=2.10.0 <3.0.0"
 

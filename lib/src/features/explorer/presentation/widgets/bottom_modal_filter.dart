@@ -416,8 +416,8 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
 
           
           },
-          min: 1920,
-          max: 2020,
+          min: 1921,
+          max: 2021,
           divisions: 100,
         ),
       );  

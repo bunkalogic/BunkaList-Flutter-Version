@@ -441,7 +441,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
           //_rowRatingAndNetwork(),
           _overviewInfo(),
           //_chipGenresItem(),
-          ChipsGenresWidget(genres: genreIds, type: serie.type,)
+          serie.genres == null ? Container() : ChipsGenresWidget(genres: genreIds, type: serie.type,)
         ],
       ),
     );
@@ -452,9 +452,11 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
     final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
 
-    if(listSerieNetwork[0].id != 213) return Container();
+    // if(listSerieNetwork == null && listSerieNetwork.isEmpty && listSerieNetwork[0] == null) return Container();
 
-    return Container(
+    if(listSerieNetwork != null && listSerieNetwork.isNotEmpty && listSerieNetwork[0] != null && listSerieNetwork[0].id == 213){
+
+      return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 110.0),
       child: RaisedButton(
         elevation: 10.0,
@@ -480,6 +482,12 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         ),
       ),
     );
+
+    } 
+    
+    return Container();
+
+    
   }
 
   Widget _buttonWatchInHBO(){
@@ -487,9 +495,10 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
     final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
 
-    if(listSerieNetwork[0].id != 49) return Container();
+    // if(listSerieNetwork == null && listSerieNetwork.isEmpty && listSerieNetwork[0] == null) return Container();
 
-    return Container(
+    if(listSerieNetwork != null && listSerieNetwork.isNotEmpty &&  listSerieNetwork[0] != null && listSerieNetwork[0].id == 49){
+      return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 110.0),
       child: RaisedButton(
         elevation: 10.0,
@@ -515,6 +524,11 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         ),
       ),
     );
+    } 
+    
+    return Container();
+
+    
   }
 
   Widget _buttonWatchInAmazonPrimeVideo(){
@@ -522,9 +536,10 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
     final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
 
-    if(listSerieNetwork[0].id != 1024) return Container();
+    // if(listSerieNetwork == null && listSerieNetwork.isEmpty && listSerieNetwork[0] == null) return Container();
 
-    return Container(
+    if(listSerieNetwork != null && listSerieNetwork.isNotEmpty && listSerieNetwork[0] != null && listSerieNetwork[0].id == 1024){
+      return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 90.0),
       child: RaisedButton(
         elevation: 10.0,
@@ -550,6 +565,11 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
         ),
       ),
     );
+    } 
+    
+    return Container();
+
+    
   }
 
   Widget _rowRatingAndNetwork(BuildContext context) {
@@ -569,15 +589,28 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
 
     final List<NetworkSerie> listSerieNetwork = new List<NetworkSerie>.from(serieNetwork);
 
-    final logo = listSerieNetwork[0].logoPath;  
-    
+    String logo = '';
+    Company company;
 
-    final Company company = new Company(
-      id: listSerieNetwork[0].id.toString(),
-      imagePath: logo,
-      label: listSerieNetwork[0].name,
-      type: 'tv'
-    );
+
+    if(listSerieNetwork == null && listSerieNetwork.isEmpty && listSerieNetwork[0] == null){
+      logo = '';
+      company = new Company(
+        id: '', 
+        imagePath: logo,
+        label: '',
+        type: 'tv'
+      );
+    }else if(listSerieNetwork != null && listSerieNetwork.isNotEmpty && listSerieNetwork[0] != null){
+      
+      logo = listSerieNetwork[0].logoPath;
+      company = new Company(
+        id: listSerieNetwork[0].id.toString(), 
+        imagePath: logo,
+        label: listSerieNetwork[0].name,
+        type: 'tv'
+      );
+    }
     
 
     return Container(
@@ -654,35 +687,15 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
     );
   }
 
-  Widget _chipGenresItem() {
-    return Container(
-      padding: EdgeInsets.all(4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _fakeChip('Drama', Colors.grey[500].withOpacity(0.2)),
-          _fakeChip('Action', Colors.grey[500].withOpacity(0.2)),
-          _fakeChip('War & Politics', Colors.grey[500].withOpacity(0.2)),
-        ],
-      ),
-    );
-  }
-
-  Widget _fakeChip(String text, Color color) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0 ),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10.0)
-      ), 
-      child: Text(
-        text, 
-        textAlign: TextAlign.center, 
-        style: TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600), ),
-    );
-  }
 
   Widget _columnExtrasInfo(BuildContext context) {
+
+    String country = 'No data';
+
+    if(serie.originCountry != null && serie.originCountry.isNotEmpty){
+      country = serie.originCountry.first;
+    } 
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -727,7 +740,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
             AppLocalizations.of(context).translate('details_status'), 
           ),
           _rowDataExtraInfo(
-             serie.originCountry.first, 
+             country, 
              serie.status
             ),
           _rowWebExtraInfo(
