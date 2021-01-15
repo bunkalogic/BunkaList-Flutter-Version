@@ -485,7 +485,7 @@ class _ButtonCreateTopFavoritesState extends State<ButtonCreateTopFavorites> {
           vertical: 6.0
         ),
         child: RaisedButton(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(2.0),
           onPressed: (widget.topPosition > 0) 
           ? _createlistFav
           : null,

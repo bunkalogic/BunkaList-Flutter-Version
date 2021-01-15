@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,7 +12,9 @@ class BuildBottomFilterCompleted extends StatefulWidget {
 }
 
 class _BuildBottomFilterCompletedState extends State<BuildBottomFilterCompleted> {
-  
+
+  Preferences prefs = Preferences();  
+
   @override
   Widget build(BuildContext context) {
 
@@ -56,7 +59,7 @@ class _BuildBottomFilterCompletedState extends State<BuildBottomFilterCompleted>
           fontWeight: FontWeight.w500
         ),
       ),
-      leading: Icon(icon, color: Colors.deepPurpleAccent[400], size: 28.0,),
+      leading: Icon(icon, color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], size: 28.0,),
     );
   }
 }

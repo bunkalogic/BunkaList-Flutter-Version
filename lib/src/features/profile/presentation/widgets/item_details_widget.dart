@@ -25,7 +25,7 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.80,
+      height: MediaQuery.of(context).size.height * 0.85,
       width: MediaQuery.of(context).size.width - 5.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14.0),
@@ -70,7 +70,7 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: 220,
             child: ClipRRect(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(14.0),

@@ -186,7 +186,7 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
         ); 
           },
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.33,
+            height: 300,
             width: MediaQuery.of(context).size.width / 0.80,
             child: StackCard.builder(
               itemBuilder: (context, index) {
@@ -198,10 +198,10 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
                 });
               },
               stackType: StackType.middle,
-              stackOffset: const Offset(50.0, -10.0),
+              stackOffset: const Offset(25.0, -10.0),
               dimension: StackDimension(
-                height: MediaQuery.of(context).size.height * 0.33,
-                width: MediaQuery.of(context).size.width / 0.80,
+                height: MediaQuery.of(context).size.height * 0.38,
+                width: MediaQuery.of(context).size.width / 0.85,
               ), 
               itemCount: widget.ouevreList.length
             ),

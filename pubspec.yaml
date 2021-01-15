@@ -110,6 +110,8 @@ dependencies:
   vertical_card_pager: ^1.4.0
   # reorderables
   reorderables:
+  # countdown timer
+  flutter_countdown_timer: ^2.1.0  
 
   flutter_localizations:
     sdk: flutter

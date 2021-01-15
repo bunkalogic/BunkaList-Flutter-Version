@@ -106,7 +106,7 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_about_app")),
         Divider(),
-        _createItemSettings(context, Colors.purpleAccent, Icons.rate_review, AppLocalizations.of(context).translate("label_rate_app"), (){
+        _createItemSettings(context, Colors.deepPurpleAccent, Icons.rate_review, AppLocalizations.of(context).translate("label_rate_app"), (){
           AppReview.writeReview.then((onValue){
             setState(() {
               print(onValue);

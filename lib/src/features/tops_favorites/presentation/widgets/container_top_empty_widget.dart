@@ -47,7 +47,7 @@ class _ContainerTopEmptyWidgetState extends State<ContainerTopEmptyWidget> {
             onTap: widget.onTap,
             child: Container(
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height * 0.26,
+              height: 250,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

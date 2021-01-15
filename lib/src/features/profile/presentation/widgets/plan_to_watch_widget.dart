@@ -62,6 +62,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
               enlargeCenterPage: true, 
               height: MediaQuery.of(context).size.height / 2.6,
               autoPlay: false,
+              enableInfiniteScroll: state.ouevreList.length > 2,
               viewportFraction: 0.45,
               itemCount: state.ouevreList.length,
               itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),

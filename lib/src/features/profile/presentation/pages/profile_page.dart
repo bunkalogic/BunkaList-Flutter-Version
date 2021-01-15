@@ -9,6 +9,7 @@ import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/last_added__stacked_cards_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/plan_to_watch_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
@@ -54,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.all(2.0),
       child: Container(   
           child:  _infoProfileBox(),
-          height: MediaQuery.of(context).size.height * 0.36,
+          height: 315.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
@@ -83,6 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
            _profileTotalViews(),
            _labelProfileRateAverage(),
            _profileRateAverage(),
+           SizedBox(height: 20.0,),
          ],
        ),
      );

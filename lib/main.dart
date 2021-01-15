@@ -8,6 +8,7 @@ import 'package:bunkalist/src/core/routes/route_generator.dart';
 import 'package:bunkalist/src/core/theme/bloc/bloc.dart';
 import 'package:bunkalist/src/core/utils/http_overrrides.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +19,9 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  ); // To turn off landscape mode
   
   HttpOverrides.global = new MyHttpOverrides();
   // Inicializando el injection container

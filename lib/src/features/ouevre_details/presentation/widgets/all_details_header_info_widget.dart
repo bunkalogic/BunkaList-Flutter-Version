@@ -275,7 +275,7 @@ class HeaderInfoMovie  extends StatelessWidget {
 
   
     return Container(
-      margin: const EdgeInsets.all(2.0),
+      margin: const EdgeInsets.only(bottom: 28.0),
       child: Container(
           width: MediaQuery.of(context).size.width / 4.5,
           height: 140.0,

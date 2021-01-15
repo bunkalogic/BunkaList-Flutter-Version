@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
+import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/countdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -73,9 +74,8 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           SizedBox(height: 25.0,),
           _nameBanner(),
           _labelOfBanner(),
-          SizedBox(height: 15.0,),
+          CountDownFinishOfferWidget(),
           _rowOfItemPremium(),
-          _labelOffer(),
           _labelCancelSubscription(),
           SizedBox(height: 25.0,),
           _labelOfUnlockFeature(),
@@ -258,7 +258,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
 
   Widget _rowOfItemPremium() {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.22,
+      height: MediaQuery.of(context).size.height * 0.28,
       child: Row(
         children: [
           _itemPremium(
@@ -276,12 +276,12 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             }, 
             margin: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 30.0
+            vertical: 45.0
             ),
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_one_year"),
-            "2.70€*",
+            "2.40€*",
              onTap: (){
               if(_offerings != null){
               final offering = _offerings.getOffering("no_ads_yearly");
@@ -293,7 +293,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             }
             }, 
             isYear: true,
-            priceForMonth: '0,22€ for month.',
+            priceForMonth: '0,20€ for month.',
             isOffer: true,
             offerPrice: "5.99€",
             shadow: [
@@ -301,12 +301,12 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             ],
             margin: const EdgeInsets.symmetric(
               horizontal: 20.0,
-              vertical: 24.0
+              vertical: 35.0
             ),
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "5.99 €",
+            "4.50 €",
              onTap: (){
               final offering = _offerings.getOffering("NoAds");
 
@@ -319,7 +319,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             offerPrice: "9.99 €",
             margin: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 30.0
+            vertical: 45.0
             ),
           ),
         ],
@@ -474,7 +474,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
   Widget _itemUnlockFeature(IconData icon, String labelTitle, String label){
     return Container(
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.28,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -16,7 +16,7 @@ class _FeaturePremiumWidgetState extends State<FeaturePremiumWidget> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.30,
+          height: MediaQuery.of(context).size.height * 0.33,
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

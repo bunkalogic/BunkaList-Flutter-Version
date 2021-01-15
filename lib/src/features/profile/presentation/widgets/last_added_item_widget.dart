@@ -59,6 +59,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
               enlargeCenterPage: true, 
               height: MediaQuery.of(context).size.height / 2.6,
               autoPlay: false,
+              enableInfiniteScroll: state.ouevreList.length > 2,
               viewportFraction: 0.45,
               itemCount: state.ouevreList.length,
               itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
@@ -114,7 +115,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
     return Container(
       child: GestureDetector(
           onTap: (){
-            //! PushNamed Al ItemAllDetail
+            
             Navigator.pushNamed(
               context, '/AllDetails', 
               arguments: 
@@ -146,7 +147,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
       margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 4.0),
       child: ActionChip(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0)
+            borderRadius: BorderRadius.circular(8.0)
           ),
           onPressed: () => null,
           elevation: 4.0,

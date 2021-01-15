@@ -30,9 +30,9 @@ class CardMoreTopsWidget extends StatelessWidget {
         autoPlayCurve: Curves.fastOutSlowIn,
         pauseAutoPlayOnTouch: Duration(seconds: 10),
         items: <Widget>[
-          _itemMoreTops(context, Color(0xFFE90F9E) , Color(0xFFF50057), Color(0xFFDE4708), moreMoviesLabel, 'movies'),
-          _itemMoreTops(context, Color(0xFFA7FAAC) , Color(0xFF64FFDA), Color(0xFF00FFFF),  moreSeriesLabel,'tv'),
-          _itemMoreTops(context, Color(0xFF49A9FF) , Color(0xFF2979FF), Color(0xFFB456D8),  moreAnimesLabel, 'animes'),
+          _itemMoreTops(context, Color(0xFFE90F9E).withOpacity(0.5) , Color(0xFFF50057).withOpacity(0.5), Color(0xFFDE4708).withOpacity(0.5), moreMoviesLabel, 'movies'),
+          _itemMoreTops(context, Color(0xFFA7FAAC).withOpacity(0.5) , Color(0xFF64FFDA).withOpacity(0.5), Color(0xFF00FFFF).withOpacity(0.5),  moreSeriesLabel,'tv'),
+          _itemMoreTops(context, Color(0xFF49A9FF).withOpacity(0.5) , Color(0xFF2979FF).withOpacity(0.5), Color(0xFFB456D8).withOpacity(0.5),  moreAnimesLabel, 'animes'),
         ],
       ),
     );
