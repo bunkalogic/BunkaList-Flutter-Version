@@ -341,5 +341,9 @@
   "big_banner_premium_title"         : "Fonction exclusive de la version Premium",
   "big_banner_premium_subtitle"      : "Déverrouillez cette fonctionnalité et toutes les autres fonctionnalités et supprimez toutes les publicités.",
   "btn_go_to_premium"                : "Obtenez Premium maintenant",
-  "label_change_language"            : "Changer la langue de l'application"
+  "label_change_language"            : "Changer la langue de l'application",
+  "label_serie_company_popular"      : "Populaire",
+  "label_korean_serie_company"       : "Série télévisée coréenne",
+  "label_japanese_serie_company"     : "Série télévisée japonaise",
+  "label_review_empty"               : "Il n'y a aucun avis disponible. Bientôt, vous aurez la possibilité d'inclure vos avis."
 }

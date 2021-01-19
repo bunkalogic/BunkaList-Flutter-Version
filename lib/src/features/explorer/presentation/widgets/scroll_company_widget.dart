@@ -15,7 +15,7 @@ class _ScrollCompanyWidgetState extends State<ScrollCompanyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.0,
+      height: 140.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.companies.length,
@@ -50,8 +50,8 @@ class _ScrollCompanyWidgetState extends State<ScrollCompanyWidget> {
           padding: const EdgeInsets.all(4.0),
           child: Image.network(
             company.imagePath,
-            height: 50.0,
-            width: 50.0,
+            height: 65.0,
+            width: 65.0,
             fit: BoxFit.contain,
           ),
         )

@@ -340,7 +340,10 @@
   "big_banner_premium_title"         :  "Funcion exclusiva de la version Premium",
   "big_banner_premium_subtitle"      :  "Desbloquea esta funcion y todas las demas caracteristicas y elimina todos los anuncios.",
   "btn_go_to_premium"                :  "Obten Premium ahora",
-  "label_change_language"            :  "Cambiar el idioma de la App"
-
+  "label_change_language"            :  "Cambiar el idioma de la App",
   
+  "label_serie_company_popular"      : "Popular",
+  "label_korean_serie_company"       : "TV Series Coreanas",
+  "label_japanese_serie_company"     : "TV Series Japonesas",
+  "label_review_empty"               : "No hay reviews disponibles. Proximamente tendras la opcion de incluir tus reviews"
 }

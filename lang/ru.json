@@ -343,6 +343,10 @@
   "big_banner_premium_title"         : "Эксклюзивная функция Премиум-версии",
   "big_banner_premium_subtitle"      : "Разблокируйте эту функцию и все другие функции и удалите всю рекламу",
   "btn_go_to_premium"                : "Получить Премиум сейчас",
-  "label_change_language"            : "Изменить язык приложения"
+  "label_change_language"            : "Изменить язык приложения",
+  "label_serie_company_popular"      : "Популярный",
+  "label_korean_serie_company"       : "Корейский сериал",
+  "label_japanese_serie_company"     : "Японский сериал",
+  "label_review_empty"               : "Нет доступных обзоров. Скоро вы сможете добавить свои отзывы."
 
 }

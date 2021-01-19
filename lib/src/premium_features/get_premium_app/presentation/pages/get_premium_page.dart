@@ -301,7 +301,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             ],
             margin: const EdgeInsets.symmetric(
               horizontal: 20.0,
-              vertical: 35.0
+              vertical: 24.0
             ),
           ),
           _itemPremium(

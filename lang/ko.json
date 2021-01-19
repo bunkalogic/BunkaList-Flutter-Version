@@ -342,5 +342,9 @@
   "big_banner_premium_title"         : "프리미엄 버전의 독점적 기능",
   "big_banner_premium_subtitle"      : "이 기능과 다른 모든 기능을 잠금 해제하고 모든 광고를 제거합니다.",
   "btn_go_to_premium"                : "지금 프리미엄 받기",
-  "label_change_language"            : "앱 언어 변경"
+  "label_change_language"            : "앱 언어 변경",
+  "label_serie_company_popular"      : "인기 있는",
+  "label_korean_serie_company"       : "한국 TV 시리즈",
+  "label_japanese_serie_company"     : "일본 TV 시리즈",
+  "label_review_empty"               : "사용 가능한 리뷰가 없습니다. 곧 리뷰를 포함 할 수있는 옵션이 제공됩니다."
 }

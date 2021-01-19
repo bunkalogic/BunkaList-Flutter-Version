@@ -342,6 +342,10 @@
   "big_banner_premium_title"         : "Função exclusiva da versão Premium",
   "big_banner_premium_subtitle"      : "Desbloqueie este recurso e todos os outros recursos e remova todos os anúncios.",
   "btn_go_to_premium"                : "Obtenha o Premium agora",
-  "label_change_language"            : "Alterar o idioma do aplicativo"
+  "label_change_language"            : "Alterar o idioma do aplicativo",
+  "label_serie_company_popular"      : "popular",
+  "label_korean_serie_company"       : "Série de TV coreana",
+  "label_japanese_serie_company"     : "Série de TV Japonesa",
+  "label_review_empty"               : "Não há comentários disponíveis. Em breve você terá a opção de incluir seus comentários."
   
 }

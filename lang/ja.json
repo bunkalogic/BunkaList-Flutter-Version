@@ -342,5 +342,9 @@
   "big_banner_premium_title"         : "プレミアムバージョンの専用機能",
   "big_banner_premium_subtitle"      : "この機能と他のすべての機能のロックを解除し,すべての広告を削除してください。",
   "btn_go_to_premium"                : "今すぐプレミアムをゲット",
-  "label_change_language"            : "アプリの言語を変更する"
+  "label_change_language"            : "アプリの言語を変更する",
+  "label_serie_company_popular"      : "人気",
+  "label_korean_serie_company"       : "韓国TVシリーズ",
+  "label_japanese_serie_company"     : "日本のテレビシリーズ",
+  "label_review_empty"               : "利用可能なレビューはありません。まもなく、レビューを含めるオプションがあります。"
 }

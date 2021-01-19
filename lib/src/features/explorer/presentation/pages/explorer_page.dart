@@ -7,6 +7,7 @@ import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/card_tops_types.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_company_widget.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_row_genres.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/tab_bar_series_company_widget.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
@@ -37,8 +38,9 @@ class _ExplorerPageState extends State<ExplorerPage> {
           child: BoxSearch(),
         ),
         CardTypesMoreTopsWidget(),
+        SizedBox(height: 25.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_company_series")),
-        ScrollCompanyWidget(companies: getListSeriesCompany(),),
+        TabBarSeriesCompanyWidget(),
         SizedBox(height: 15.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_company_animes")),
         ScrollCompanyWidget(companies: getListAnimesCompany(),),

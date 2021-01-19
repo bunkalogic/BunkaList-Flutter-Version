@@ -1,3 +1,5 @@
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/empty_label_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/review_details_entity.dart';
@@ -48,8 +50,13 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
 
           }else if(state is Loaded){
 
-            if(state.reviews.isEmpty || state.reviews.length <= 0){
-              return EmptyIconWidget();
+            if(state.reviews.isEmpty || state.reviews.length < 0){
+              
+              return EmptyLabelIconWidget(
+                icon: Icons.announcement_rounded,
+                label: AppLocalizations.of(context).translate("label_review_empty"),
+              );
+
             }else{
               return ListView.builder(
                 itemCount: state.reviews.length,
@@ -128,19 +135,6 @@ class _AllDetailsReviewTabState extends State<AllDetailsReviewTab> {
         ),
       ),
     );
-  }
-
-  Widget _dateInfo() {
-    return Container(
-      padding: EdgeInsets.all(6.0),
-      child: Text(
-        '4 days ago',
-        style: TextStyle(
-          fontSize: 14.0,
-          fontWeight: FontWeight.w500
-        ),
-      ),
-    ); 
   }
 
   Widget _commentReview(ReviewEntity reviewItem) {

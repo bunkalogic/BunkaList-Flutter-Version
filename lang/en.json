@@ -542,6 +542,11 @@
   "big_banner_premium_title"         : "Exclusive function of the Premium version",
   "big_banner_premium_subtitle"      : "Unlock this feature and all other features and remove all ads.",
   "btn_go_to_premium"                : "Get Premium now",
-  "label_change_language"            : "Change the language of the App"
+  "label_change_language"            : "Change the language of the App",
+
+  "label_serie_company_popular"      : "Popular",
+  "label_korean_serie_company"       : "Korean TV Series",
+  "label_japanese_serie_company"     : "Japanese TV Series",
+  "label_review_empty"               : "There are no reviews available. Soon you will have the option to include your reviews."
 
 }

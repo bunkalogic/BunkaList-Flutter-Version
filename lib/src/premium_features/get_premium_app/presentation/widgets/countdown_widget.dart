@@ -76,18 +76,22 @@ class _CountDownFinishOfferWidgetState extends State<CountDownFinishOfferWidget>
              onEnd: onEnd,
              endTime: endTime,
              controller: controller,
-             widgetBuilder: (context, time) {
-               return Center(
-                 child: Text(
-                   '${time.days ?? 00} : ${time.hours ?? 00} : ${time.min} : ${time.sec ?? 00}',
-                   style: TextStyle(
-                     fontSize: 20.0,
-                     fontWeight: FontWeight.bold,
-                   ),
-                  ),
+             textStyle: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+            //  widgetBuilder: (context, time) {
+            //    return Center(
+            //      child: Text(
+            //        '${time.days ?? 00} : ${time.hours ?? 00} : ${time.min} : ${time.sec ?? 00}',
+            //        style: TextStyle(
+            //          fontSize: 20.0,
+            //          fontWeight: FontWeight.bold,
+            //        ),
+            //       ),
                  
-               );
-             },
+            //    );
+            //  },
            ),
            SizedBox(height: 15.0,)
          ],

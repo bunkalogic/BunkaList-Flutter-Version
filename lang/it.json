@@ -342,5 +342,9 @@
   "big_banner_premium_title"         : "Funzione esclusiva della versione Premium",
   "big_banner_premium_subtitle"      : "Sblocca questa funzione e tutte le altre funzioni e rimuovi tutti gli annunci.",
   "btn_go_to_premium"                : "Acquista subito Premium",
-  "label_change_language"            : "Cambia la lingua dell'app"
+  "label_change_language"            : "Cambia la lingua dell'app",
+  "label_serie_company_popular"      : "Popolare",
+  "label_korean_serie_company"       : "Serie TV coreana",
+  "label_japanese_serie_company"     : "Serie TV giapponese",
+  "label_review_empty"               : "Non ci sono recensioni disponibili. Presto avrai la possibilità di includere le tue recensioni."
 }

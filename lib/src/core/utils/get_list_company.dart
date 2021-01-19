@@ -23,6 +23,8 @@
   const int showtime        = 67;
   const int bbc_america     = 493;
   const int abc             = 2;
+  const int sbs             = 156;
+  const int kbs2            = 342;
 
   const String title_netflix         = 'Netflix';
   const String title_prime_video     = 'Prime Video';
@@ -47,6 +49,8 @@
   const String title_showtime        = 'Showtime';
   const String title_bbc_america     = 'BBC america';
   const String title_abc             = 'ABC';
+  const String title_sbs             = 'SBS';
+  const String title_kbs2            = 'KBS2';
 
   const String image_netflix         = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/wwemzKWzjKYJFfCeiB57q3r4Bcm.png';
   const String image_prime_video     = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/ifhbNuuVnlwYy5oXA5VIb2YR8AZ.png';
@@ -71,6 +75,8 @@
   const String image_showtime        = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/Allse9kbjiP6ExaQrnSpIhkurEi.png';
   const String image_bbc_america     = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/8Js4sUaxjE3RSxJcOCDjfXvhZqz.png';
   const String image_abc             = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/ndAvF4JLsliGreX87jAc9GdjmJY.png';
+  const String image_sbs             = 'https://www.themoviedb.org/t/p/h50_filter(negate,000,666)/uHQFPvRTlpgaIFQVN8eKWEnFOll.png';
+  const String image_kbs2            = 'https://www.themoviedb.org/t/p/h50_filter(negate,000,666)/nFmWwUAf2D3iAtizUcmkxufaM0q.png';
 
 //! anime company
 
@@ -142,11 +148,7 @@ List<Company> getListSeriesCompany(){
     hulu.toString(),           
     amc.toString(),            
     fox.toString(),            
-    apple_TV.toString(),       
-    tvN.toString(),            
-    ocn.toString(),            
-    jtbc.toString(),           
-    mbc.toString(),            
+    apple_TV.toString(),                 
     fx.toString(),             
     nbs.toString(),            
     cbs.toString(),            
@@ -166,13 +168,9 @@ List<Company> getListSeriesCompany(){
     image_bbc_one,        
     image_disney_plus,    
     image_hulu,           
-    image_amc,            
-    image_apple_TV,       
+    image_amc,
     image_fox,            
-    image_tvN,            
-    image_ocn,            
-    image_jtbc,           
-    image_mbc,            
+    image_apple_TV,                   
     image_fx,             
     image_nbs,            
     image_cbs,            
@@ -192,13 +190,9 @@ List<Company> getListSeriesCompany(){
     title_bbc_one,        
     title_disney_plus,    
     title_hulu,           
-    title_amc,            
-    title_apple_TV,       
+    title_amc,
     title_fox,            
-    title_tvN,            
-    title_ocn,            
-    title_jtbc,           
-    title_mbc,            
+    title_apple_TV,                    
     title_fx,             
     title_nbs,            
     title_cbs,            
@@ -230,6 +224,112 @@ List<Company> getListSeriesCompany(){
   }
   
   return listCompany;
+}
+
+
+List<Company> getListKoreanSeriesCompany(){
+  
+  List<String> listCompanyID = [
+    tvN.toString(),            
+    ocn.toString(),            
+    jtbc.toString(),           
+    mbc.toString(),
+    sbs.toString(),
+    kbs2.toString()       
+  ];
+
+  List<String> listCompanyImage = [
+    image_tvN.toString(),            
+    image_ocn.toString(),            
+    image_jtbc.toString(),           
+    image_mbc.toString(),
+    image_sbs.toString(),
+    image_kbs2.toString() 
+  ];
+
+  List<String> listCompanyTitle = [
+    title_tvN.toString(),            
+    title_ocn.toString(),            
+    title_jtbc.toString(),           
+    title_mbc.toString(),
+    title_sbs.toString(),
+    title_kbs2.toString() 
+  ];
+
+  List<Company> listCompany = new List<Company>();
+
+  for (var i = 0; i < listCompanyID.length; i++) {
+    final Company company = new Company(
+      id: listCompanyID[i],
+      label: listCompanyTitle[i],
+      imagePath: listCompanyImage[i],
+      type: 'tv'
+    );
+
+    List<Company> newListCompany = new List<Company>();
+
+    newListCompany.add(company);
+
+    listCompany.addAll(newListCompany);
+    
+  }
+  
+  return listCompany;
+}
+
+List<Company> getListJapaneseSeriesCompany(){
+  
+  List<String> listCompanyID = [
+    tvTokyo.toString(),
+    mbs.toString(),        
+    nipponTV.toString(),   
+    tv_asahi.toString(), 
+    bs1.toString(),               
+    fuji_TV.toString(),    
+    tbs.toString(),        
+  ];
+
+  List<String> listCompanyImage = [
+    image_tvTokyo.toString(),  
+    image_mbs.toString(),        
+    image_nipponTV.toString(),   
+    image_tv_asahi.toString(),        
+    image_bs1.toString(),                
+    image_fuji_TV.toString(),       
+    image_tbs.toString(),        
+  ];
+
+  List<String> listCompanyTitle = [
+    title_tvTokyo.toString(),
+    title_mbs.toString(),        
+    title_nipponTV.toString(),   
+    title_tv_asahi.toString(),       
+    title_bs1.toString(),        
+    title_fuji_TV.toString(),    
+    title_tbs.toString(),        
+  ];
+
+  List<Company> listCompany = new List<Company>();
+
+  for (var i = 0; i < listCompanyID.length; i++) {
+    final Company company = new Company(
+      id: listCompanyID[i],
+      label: listCompanyTitle[i],
+      imagePath: listCompanyImage[i],
+      type: 'tv'
+    );
+
+    List<Company> newListCompany = new List<Company>();
+
+    newListCompany.add(company);
+
+    listCompany.addAll(newListCompany);
+    
+  }
+  
+  return listCompany;
+
+
 }
 
 List<Company> getListAnimesCompany(){

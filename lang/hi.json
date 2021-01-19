@@ -342,6 +342,10 @@
   "big_banner_premium_title"         : "प्रीमियम संस्करण का विशिष्ट कार्य",
   "big_banner_premium_subtitle"      : "इस सुविधा और अन्य सभी सुविधाओं को अनलॉक करें और सभी विज्ञापनों को हटा दें।",
   "btn_go_to_premium"                : "अभी प्रीमियम लें",
-  "label_change_language"            : "ऐप की भाषा बदलें"
+  "label_change_language"            : "ऐप की भाषा बदलें",
+  "label_serie_company_popular"      : "लोकप्रिय",
+  "label_korean_serie_company"       : "कोरियाई टीवी श्रृंखला",
+  "label_japanese_serie_company"     : "जापानी टीवी सीरीज",
+  "label_review_empty"               : "कोई समीक्षा उपलब्ध नहीं है। जल्द ही आपके पास अपनी समीक्षाओं को शामिल करने का विकल्प होगा।"
   
 }

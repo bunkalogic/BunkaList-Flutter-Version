@@ -342,5 +342,9 @@
   "big_banner_premium_title"         : "Exklusive Funktion der Premium-Version",
   "big_banner_premium_subtitle"      : "Entsperren Sie diese Funktion und alle anderen Funktionen und entfernen Sie alle Anzeigen.",
   "btn_go_to_premium"                : "Holen Sie sich jetzt Premium",
-  "label_change_language"            : "Ändern Sie die Sprache der App"
+  "label_change_language"            : "Ändern Sie die Sprache der App",
+  "label_serie_company_popular"      : "Beliebt",
+  "label_korean_serie_company"       : "Koreanische Fernsehserie",
+  "label_japanese_serie_company"     : "Japanische Fernsehserie",
+  "label_review_empty"               : "Es sind keine Bewertungen verfügbar. In Kürze haben Sie die Möglichkeit, Ihre Bewertungen einzuschließen."
 }
