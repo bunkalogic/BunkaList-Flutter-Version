@@ -119,7 +119,7 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 14.0,
+      holeRadius: 12.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(
@@ -165,7 +165,7 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 14.0,
+      holeRadius: 12.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(
@@ -210,7 +210,7 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
       initialChartData: nextData,
       chartType: CircularChartType.Radial,
       edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 14.0,
+      holeRadius: 12.0,
       percentageValues: false,
       holeLabel: ratingAverage.toStringAsFixed(2),
       labelStyle: new TextStyle(

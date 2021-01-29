@@ -20,11 +20,11 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2.8,
+      height: MediaQuery.of(context).size.height / 2.6,
       child: CarouselSlider(
         enlargeCenterPage: true,
         viewportFraction: 0.9,
-        aspectRatio: 2.0,
+        aspectRatio: 1.8,
         initialPage: 1,
         items: <Widget>[
           _containerExample("label_total_chart_movie", 'movie'),
@@ -43,13 +43,13 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
           height: 160.0,
           width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(15.0),
             gradient: LinearGradient(
               colors: [
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1),
-                Colors.blueGrey[500].withOpacity(0.1)
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15)
               ]
             ) 
           ),
@@ -72,7 +72,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
 
   Widget _labelProfileChartTotal(String title){
     return Padding(
-      padding: EdgeInsets.all(2.0),
+      padding: EdgeInsets.only(top: 10.0),
       child: Text(
         AppLocalizations.of(context).translate(title),
         textAlign: TextAlign.center,
@@ -130,7 +130,7 @@ class _ChartsTotalByStatusState extends State<ChartsTotalByStatus> {
         }
       },
       child: Container(
-        height: 140.0,
+        height: 155.0,
          child: charts.BarChart(
           _createSampleData(context),
           animate: true,

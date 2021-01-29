@@ -9,16 +9,16 @@ import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
-import 'package:bunkalist/src/features/profile/presentation/widgets/last_added__stacked_cards_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/last_added_item_widget.dart';
-import 'package:bunkalist/src/features/profile/presentation/widgets/plan_to_watch_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_plan_to_see_list_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_to_recent_add_list_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_watching_list_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
@@ -52,19 +52,22 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _createBox() {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10.0,
+        vertical: 12.0
+      ),
       child: Container(   
-          child:  _infoProfileBox(),
-          height: 315.0,
+          child: _infoProfileBox(),
+          height: 265.0,
           width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(15.0),
             gradient: LinearGradient(
               colors: [
-                Colors.blueGrey[400].withOpacity(0.1),
-                Colors.blueGrey[400].withOpacity(0.1),
-                Colors.blueGrey[400].withOpacity(0.1),
-                Colors.blueGrey[400].withOpacity(0.1)
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15),
+                Colors.blueGrey[400].withOpacity(0.15)
               ]
             ) 
           ),
@@ -74,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _infoProfileBox() {
      return Container(
-       padding: EdgeInsets.all(6.0),
+      //  padding: EdgeInsets.all(1.0),
        child: Column(
          crossAxisAlignment: CrossAxisAlignment.center,
          children: <Widget>[
@@ -84,19 +87,22 @@ class _ProfilePageState extends State<ProfilePage> {
            _profileTotalViews(),
            _labelProfileRateAverage(),
            _profileRateAverage(),
-           SizedBox(height: 20.0,),
+           SizedBox(height: 5.0,),
          ],
        ),
      );
    }
 
   Widget _profileImage() {
-    return Container(
-      width: 80.0,
-      height: 80.0,
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(prefs.getCurrentUserPhoto),
-      )
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Container(
+        width: 65.0,
+        height: 65.0,
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(prefs.getCurrentUserPhoto),
+        )
+      ),
     );
   }
 
@@ -163,10 +169,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _titleScrollSection(String title) {
     return Container(
-      padding: EdgeInsets.only(left: 10.0),
+      padding: EdgeInsets.only(left: 12.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+        style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold,),
       ),
     );
   }
@@ -190,59 +196,15 @@ class _ProfilePageState extends State<ProfilePage> {
       //padding: EdgeInsets.all(5.0),
       children: <Widget>[
         _createBox(),
-        //SizedBox(height: 5.0,),
         _buttomPlatformList(context),
-        // _buttonOutlineFavoritesOuevres(),
+        SizedBox(height: 5.0,),
         ListContainerChartViews(),
-        
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
-        //MiniNativeBannerAds(adPlacementID: "177059330328908_179577013410473",),     
-
+        TabBarWatchingAddedToListsWidget(),     
         SizedBox(height: 20.0,),
-        _titleScrollSection(AppLocalizations.of(context).translate("last_views_movie")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
-          ),  
-        SizedBox(height: 25.0,),
-        _titleScrollSection(AppLocalizations.of(context).translate("last_views_serie")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
-          ),
-        SizedBox(height: 25.0,),
-        _titleScrollSection(AppLocalizations.of(context).translate("last_views_anime")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
-          ),
-        //MaxNativeBannerAds(adPlacementID: "177059330328908_179577480077093",),  
-
+        TabBarRecentAddedToListsWidget(),
          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
-
-        _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_movie")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'movie',),
-          ),
-          SizedBox(height: 20.0,),
-          _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_serie")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'tv',),
-          ),
-        SizedBox(height: 20.0,),
-          _titleScrollSection(AppLocalizations.of(context).translate("wishlist_views_anime")),
-        SizedBox(height: 15.0,),
-        new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
-            child:  PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'anime',),
-          ),
+        TabBarPlanToWatchAddedToListsWidget(),
         BannerPremiumWidget(),
         SizedBox(height: 20.0,),    
       ],
@@ -265,14 +227,17 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buttonTypeMaterial(BuildContext context,String title, Color color, int type) {
       return Flexible(
         child: RaisedButton(
-          elevation: 5.0,
+          elevation: 10.0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.0),
+            borderRadius: BorderRadius.circular(6.0),
           ),
           color: color,
-          child: Text(title,
-          overflow: TextOverflow.ellipsis, 
-          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w700)),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(title,
+            overflow: TextOverflow.ellipsis, 
+            style: TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w700)),
+          ),
           onPressed: (){
             Navigator.pushNamed(context, '/ListProfile', arguments: type);
           },
@@ -280,34 +245,6 @@ class _ProfilePageState extends State<ProfilePage> {
       );
   }
 
-  Widget _buttonOutlineFavoritesOuevres(){
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 55.0,
-          vertical: 2.0
-        ),
-      child: OutlineButton(
-        onPressed: (){
-           Navigator.pushNamed(context, '/ListFavProfile',);
-        },
-        child: Text(
-          "Your Ouevres Favorites",
-          style: TextStyle(
-            fontSize: 14.0,
-            fontWeight: FontWeight.w600,
-            fontStyle: FontStyle.italic
-          ),
-        ),
-        borderSide: BorderSide(
-          color: Colors.pinkAccent[400],
-          width: 2.0,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.0)
-        ),
-      ),
-    );
-  }
   
 
   //! Cupertino Components (iOS)

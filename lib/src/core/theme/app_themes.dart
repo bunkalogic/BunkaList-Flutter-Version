@@ -59,18 +59,18 @@ final appThemeData = {
 
     tabBarTheme: TabBarTheme(
       
-      labelColor: Colors.pinkAccent[400],
+      labelColor: Colors.deepPurpleAccent[400],
       unselectedLabelColor: Colors.blueGrey[200],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
         fontWeight: FontWeight.w500,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.grey[600], offset: Offset(0.5, 0.5))]
       ),
       labelStyle: TextStyle(
         fontSize: 16.0, 
-        fontWeight: FontWeight.w800, 
+        fontWeight: FontWeight.w700, 
         fontStyle: FontStyle.italic,
-        shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.grey[600], offset: Offset(0.5, 0.5))]
       ),
     ),
   ),
@@ -122,13 +122,13 @@ final appThemeData = {
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
         fontWeight: FontWeight.w500,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.grey[600], offset: Offset(0.5, 0.5))]
         ),
       labelStyle: TextStyle(
         fontSize: 16.0,
-        fontWeight: FontWeight.w800, 
+        fontWeight: FontWeight.w700, 
         fontStyle: FontStyle.italic,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.black, offset: Offset(0.5, 0.5))]
         )
     ),
     
@@ -182,13 +182,13 @@ final appThemeData = {
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
         fontWeight: FontWeight.w500,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.grey[600], offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.grey[600], offset: Offset(0.5, 0.5))]
         ),
       labelStyle: TextStyle(
         fontSize: 16.0,
-        fontWeight: FontWeight.w800, 
+        fontWeight: FontWeight.w700, 
         fontStyle: FontStyle.italic,
-        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(1.0, 1.0))]
+        shadows: [Shadow(blurRadius: 0.5, color:  Colors.grey[600], offset: Offset(0.5, 0.5))]
         )
     ),
     

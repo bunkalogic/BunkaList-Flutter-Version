@@ -146,7 +146,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           ),
         )
       ),
-      floatingActionButton: (prefs.isNotAds) ?  _buildExtendFab() : Container(), 
+      floatingActionButton:  _buildExtendFab(), 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
 
@@ -160,27 +160,34 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
         backgroundColor: _getBackgroundColorTheme(),
         onPressed:() async {
 
-          ListProfileQuery result = await showModalBottomSheet<ListProfileQuery>(
-          isScrollControlled: true,
-          elevation: 10.0,
-          isDismissible: false,
-          backgroundColor: _getBackgroundColorTheme(), 
-          context: context,
-          builder: (context) => BuildBottomFilterCompleted(),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(30),
-              topRight: const Radius.circular(30)
-            )
-          )
-        );
 
-        status = result;
-        setState(() {});
+          if(prefs.isNotAds){
+            ListProfileQuery result = await showModalBottomSheet<ListProfileQuery>(
+              isScrollControlled: true,
+              elevation: 10.0,
+              isDismissible: false,
+              backgroundColor: _getBackgroundColorTheme(), 
+              context: context,
+              builder: (context) => BuildBottomFilterCompleted(),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30),
+                  topRight: const Radius.circular(30)
+                )
+              )
+            );
 
-        BlocProvider.of<GetListsBloc>(context)..add(
-          GetYourLists( type: widget.type, status: result ?? ListProfileQuery.Completed )
-        );
+          status = result;
+          setState(() {});
+
+          BlocProvider.of<GetListsBloc>(context)..add(
+            GetYourLists( type: widget.type, status: result ?? ListProfileQuery.Completed )
+          );
+          }else{
+            Navigator.pushNamed(context, '/Premium');
+          }
+
+          
 
         },
         label: AnimatedSwitcher(

@@ -525,8 +525,8 @@
   "subtitle_item_unlock_premium_1"   : "Your tops increase +10 the total limit, instead of 10 you can include up to 20 in total per top.",
   "title_item_unlock_premium_2"      : "Video Review",
   "subtitle_item_unlock_premium_2"   : "You have access to the Video review on a work, which is available in the section of each work in details.",
-  "title_item_unlock_premium_3"      : "Filter your lists",
-  "subtitle_item_unlock_premium_3"   : "You have the possibility to filter your list of completions by the different types of rating.",
+  "title_item_unlock_premium_3"      : "Customize and filter your lists",
+  "subtitle_item_unlock_premium_3"   : "Customize your profile and the possibility of filtering your list of completions by the different types of rating.",
   "title_item_unlock_premium_4"      :  "Whithout ads",
   "subtitle_item_unlock_premium_4"   : "Remove all advertising within the app.",
   "title_item_unlock_premium_5"      :  "New functions",
@@ -547,6 +547,10 @@
   "label_serie_company_popular"      : "Popular",
   "label_korean_serie_company"       : "Korean TV Series",
   "label_japanese_serie_company"     : "Japanese TV Series",
-  "label_review_empty"               : "There are no reviews available. Soon you will have the option to include your reviews."
+  "label_review_empty"               : "There are no reviews available. Soon you will have the option to include your reviews.",
 
+  "label_watching_list" : "Watchlist",
+  "label_history_list"  : "History",
+  "label_wishlist_list" : "Wishlist",
+  "label_epiosde_left" : "Episodes remaining"
 }

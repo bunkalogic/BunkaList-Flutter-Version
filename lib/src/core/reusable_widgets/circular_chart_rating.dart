@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class MiniCircularChartRating extends StatefulWidget {
   final double rating;
@@ -19,7 +20,7 @@ class _MiniCircularChartRatingState extends State<MiniCircularChartRating> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(2.0),
       child: _roundedCircularRating(),
     );
   }
@@ -67,6 +68,49 @@ class _MiniCircularChartRatingState extends State<MiniCircularChartRating> {
       ),
     );
   }
+
+  // Widget circularPercentIndicator(){
+
+  //   double percent = widget.rating / 10;
+
+  //   return CircularPercentIndicator(
+  //     percent: percent,
+  //     radius: 40.0,
+  //     animation: true,
+  //     animationDuration: 600,
+  //     lineWidth: 5.5,
+  //     backgroundColor: Colors.blueGrey[600],
+  //     linearGradient: LinearGradient(
+        
+  //       tileMode: TileMode.clamp,
+  //       stops: [0, 0.2, 0.3, 0.4, 0.6,  0.7, 0.8, 1.0],
+  //       colors: [
+  //         Colors.pinkAccent[700],
+  //         Colors.pinkAccent[400],
+  //         Colors.pink,
+  //         Colors.pink[700],
+  //         Colors.deepPurple[700],
+  //         Colors.deepPurple,
+  //         Colors.deepPurpleAccent[400],
+  //         Colors.deepPurpleAccent[700],
+  //       ]
+  //     ),
+  //     center: Text(
+  //       '${widget.rating}',
+  //       style: new TextStyle(
+  //       fontWeight: FontWeight.w800,
+  //       fontSize: 16.0,
+  //       color: Colors.white,
+  //       shadows: [
+  //         Shadow(
+  //           blurRadius: 2.5,
+  //           color: Colors.black,
+  //         )
+  //       ]
+  //     ),
+  //     ),
+  //   );
+  // }
 }
 
 
@@ -139,6 +183,52 @@ class _BigCircularChartRatingState extends State<BigCircularChartRating> {
       ),
     );
   }
+
+  // Widget circularPercentIndicator(){
+
+  //   double percent = widget.rating / 10;
+
+  //   return CircularPercentIndicator(
+  //     percent: percent,
+  //     radius: 55.0,
+  //     animation: true,
+  //     animationDuration: 600,
+  //     lineWidth: 7.5,
+  //     backgroundColor: Colors.blueGrey[600],
+  //     linearGradient: LinearGradient(
+        
+  //       tileMode: TileMode.clamp,
+  //       stops: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  //       colors: [
+  //         Colors.pinkAccent[700],
+  //         Colors.pinkAccent[400],
+  //         Colors.pink[400],
+  //         Colors.pink[500],
+  //         Colors.pink[600],
+  //         Colors.pink[700],
+  //         Colors.deepPurple[700],
+  //         Colors.deepPurple[600],
+  //         Colors.deepPurple[500],
+  //         Colors.deepPurpleAccent[400],
+  //         Colors.deepPurpleAccent[700],
+  //       ]
+  //     ),
+  //     center: Text(
+  //       '${widget.rating}',
+  //       style: new TextStyle(
+  //       fontWeight: FontWeight.w800,
+  //       fontSize: 18.0,
+  //       color: Colors.white,
+  //       shadows: [
+  //         Shadow(
+  //           blurRadius: 2.5,
+  //           color: Colors.black,
+  //         )
+  //       ]
+  //     ),
+  //     ),
+  //   );
+  // }
 }
 
 class BigFavoriteCircularChartRating extends StatefulWidget {

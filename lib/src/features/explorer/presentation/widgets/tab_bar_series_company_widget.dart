@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_company_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _TabBarSeriesCompanyWidgetState extends State<TabBarSeriesCompanyWidget> w
   
   TabController _tabController;
   int _activeTabIndex;
+  Preferences prefs = Preferences();
 
   bool isActiveTab = true;
 
@@ -60,7 +62,7 @@ class _TabBarSeriesCompanyWidgetState extends State<TabBarSeriesCompanyWidget> w
         controller: _tabController,
         indicator: MD2Indicator(
           indicatorHeight: 3, 
-          indicatorColor: Colors.pinkAccent[400], 
+          indicatorColor: prefs.whatModeIs ?  Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           indicatorSize: MD2IndicatorSize.normal
         ),
       ),

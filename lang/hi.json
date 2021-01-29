@@ -325,8 +325,8 @@
   "subtitle_item_unlock_premium_1"   : "आपके शीर्ष में कुल सीमा 10 तक बढ़ जाती है, 10 के बजाय आप कुल प्रति शीर्ष 20 तक शामिल कर सकते हैं।",
   "title_item_unlock_premium_2"      : "वीडियो समीक्षा",
   "subtitle_item_unlock_premium_2"   : "आपके पास एक कार्य पर वीडियो समीक्षा तक पहुंच है, जो विवरण में प्रत्येक कार्य के अनुभाग में उपलब्ध है।",
-  "title_item_unlock_premium_3"      : "अपनी सूचियों को फ़िल्टर करें",
-  "subtitle_item_unlock_premium_3"   : "आपके पास विभिन्न प्रकार की रेटिंग द्वारा पूर्णता की अपनी सूची को फ़िल्टर करने की संभावना है।",
+  "title_item_unlock_premium_3"      : "अपनी सूचियों को अनुकूलित और फ़िल्टर करें",
+  "subtitle_item_unlock_premium_3"   : "अपनी प्रोफ़ाइल को अनुकूलित करें और विभिन्न प्रकार की रेटिंग द्वारा अपनी सूची को पूरा करने की संभावना को फ़िल्टर करें",
   "title_item_unlock_premium_4"      :   "व्हीथआउट विज्ञापन",
   "subtitle_item_unlock_premium_4"   : "एप्लिकेशन के भीतर सभी विज्ञापन निकालें।",
   "title_item_unlock_premium_5"      :   "नए कार्य",
@@ -346,6 +346,10 @@
   "label_serie_company_popular"      : "लोकप्रिय",
   "label_korean_serie_company"       : "कोरियाई टीवी श्रृंखला",
   "label_japanese_serie_company"     : "जापानी टीवी सीरीज",
-  "label_review_empty"               : "कोई समीक्षा उपलब्ध नहीं है। जल्द ही आपके पास अपनी समीक्षाओं को शामिल करने का विकल्प होगा।"
+  "label_review_empty"               : "कोई समीक्षा उपलब्ध नहीं है। जल्द ही आपके पास अपनी समीक्षाओं को शामिल करने का विकल्प होगा।",
+  "label_watching_list" : "वॉचलिस्ट",
+  "label_history_list"  : "इतिहास",
+  "label_wishlist_list" : "विशलिस्ट",
+  "label_epiosde_left" : "शेष एपिसोड"
   
 }

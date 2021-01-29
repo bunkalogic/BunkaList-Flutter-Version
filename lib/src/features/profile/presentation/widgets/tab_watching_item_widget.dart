@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/item_watching_details_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/update_and_delete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -106,7 +107,9 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
       height: cardSize,
       child: GestureDetector(
         onTap: (){
-          Navigator.pushNamed(
+
+          if(ouevre.oeuvreType == "movie"){
+            Navigator.pushNamed(
               context, '/AllDetails', 
               arguments: 
               getIdAndType(
@@ -114,6 +117,24 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
                 ouevre.oeuvreType,  
                 ouevre.oeuvreTitle)
             );
+          }else{
+            showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+              insetPadding: const EdgeInsets.symmetric(
+                horizontal: 30.0,
+                vertical: 30.0
+              ),  
+              elevation: 5,
+              backgroundColor: Colors.transparent,
+              child: BuildItemWatchingDetailsWidget(ouevreEntity: ouevre),
+              );
+            },
+          ); 
+          }
+
+          
         },
         child: Card(
           shape: RoundedRectangleBorder(
@@ -252,6 +273,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
       child: IconButton(
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.pinkAccent[400], size: 35.0,),
         onPressed: (){
+          
           ButtomUpdateAndDelete(
               type: ouevre.oeuvreType,
               ouevre: ouevre,

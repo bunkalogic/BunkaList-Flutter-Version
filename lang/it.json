@@ -325,8 +325,8 @@
   "subtitle_item_unlock_premium_1"   : "I tuoi massimi aumentano di +10 il limite totale, invece di 10 puoi includere fino a 20 in totale per ogni top.",
   "title_item_unlock_premium_2"      : "Revisione video",
   "subtitle_item_unlock_premium_2"   : "Hai accesso alla recensione video su un'opera, disponibile nella sezione di ogni opera in dettaglio.",
-  "title_item_unlock_premium_3"      : "Filtra i tuoi elenchi",
-  "subtitle_item_unlock_premium_3"   : "Hai la possibilità di filtrare l'elenco dei completamenti in base ai diversi tipi di valutazione.",
+  "title_item_unlock_premium_3"      : "Personalizza e filtra i tuoi elenchi",
+  "subtitle_item_unlock_premium_3"   : "Personalizza il tuo profilo e la possibilità di filtrare l'elenco dei completamenti in base ai diversi tipi di classificazione.",
   "title_item_unlock_premium_4"      :   "Senza pubblicità",
   "subtitle_item_unlock_premium_4"   : "Rimuovi tutta la pubblicità dall'app.",
   "title_item_unlock_premium_5"      :   "Nuove funzioni",
@@ -346,5 +346,9 @@
   "label_serie_company_popular"      : "Popolare",
   "label_korean_serie_company"       : "Serie TV coreana",
   "label_japanese_serie_company"     : "Serie TV giapponese",
-  "label_review_empty"               : "Non ci sono recensioni disponibili. Presto avrai la possibilità di includere le tue recensioni."
+  "label_review_empty"               : "Non ci sono recensioni disponibili. Presto avrai la possibilità di includere le tue recensioni.",
+  "label_watching_list" : "Watchlist",
+  "label_history_list"  : "Storia",
+  "label_wishlist_list" : "Lista dei desideri",
+  "label_epiosde_left" : "Episodi rimanenti"
 }

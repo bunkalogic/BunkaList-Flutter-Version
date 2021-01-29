@@ -1,6 +1,6 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
-import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
@@ -10,9 +10,11 @@ import 'package:bunkalist/src/features/profile/presentation/widgets/empty_last_a
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stack_card/flutter_stack_card.dart';
 import 'package:intl/intl.dart';
 
 class PlanToWatchItem extends StatefulWidget {
+  
   final String type; 
   final ListProfileQuery status;
 
@@ -28,7 +30,7 @@ class PlanToWatchItem extends StatefulWidget {
 
 class _PlanToWatchItemState extends State<PlanToWatchItem> {
 
-  
+  Preferences prefs = Preferences();
 
   @override
   void initState() {
@@ -44,7 +46,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
   @override
   Widget build(BuildContext context) {
    return Container(
-     height: MediaQuery.of(context).size.height / 2.6,
+     height: 350,
      child: BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
         if(state is GetListsLoading){
@@ -57,17 +59,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
             return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
           }else{
 
-            return Container(
-            child: CarouselSlider.builder(
-              enlargeCenterPage: true, 
-              height: MediaQuery.of(context).size.height / 2.6,
-              autoPlay: false,
-              enableInfiniteScroll: state.ouevreList.length > 2,
-              viewportFraction: 0.45,
-              itemCount: state.ouevreList.length,
-              itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
-            ),
-          );
+            return prefs.currentDesignWishlist ? CardStackPlanToWatch(ouevreList: state.ouevreList,) : CarouselPlanToWatch(ouevreList: state.ouevreList);
 
           }
 
@@ -86,16 +78,84 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
    );
   }
 
+  
+
+ 
+}
+
+
+
+class CarouselPlanToWatch extends StatefulWidget {
+
+  final List<OuevreEntity> ouevreList;
+  
+  CarouselPlanToWatch({this.ouevreList});
+
+  @override
+  _CarouselPlanToWatchState createState() => _CarouselPlanToWatchState();
+}
+
+class _CarouselPlanToWatchState extends State<CarouselPlanToWatch> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: CarouselSlider.builder(
+        enlargeCenterPage: true, 
+        height: 400,
+        autoPlay: false,
+        enableInfiniteScroll: widget.ouevreList.length > 2,
+        viewportFraction: 0.45,
+        itemCount: widget.ouevreList.length,
+        itemBuilder: (context, i) => _itemPoster( widget.ouevreList[i]),
+      ),
+    );
+  }
+
   _itemPoster(OuevreEntity ouevre) {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(child: _itemImage(context, ouevre), flex: 5,),
+          Expanded(child: _itemImageAndRating(ouevre), flex: 5,),
           _itemTitle(ouevre),
           Expanded(child: _chipStatus(context, ouevre), flex: 1,),
           Expanded(child: ButtonAddedArrowDown(ouevre: ouevre, type: ouevre.oeuvreType, isUpdated: false, objectType: ConstantsTypeObject.ouevreEntity,), flex: 1,)
         ],
+    );
+  }
+
+
+  Widget _itemImageAndRating(OuevreEntity ouevre){
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          _itemImage(context, ouevre),
+          _itemRating(ouevre)
+        ],
+      ),
+    );
+  }
+
+  Widget _itemRating(OuevreEntity ouevre){
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(3.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: Colors.grey[400].withOpacity(0.4)
+      ),
+      child: Text(
+        ouevre.oeuvreRating.toString(),
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+          fontWeight: FontWeight.w800,
+          shadows: [
+           Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+          ),
+      ),
     );
   }
 
@@ -106,7 +166,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
     final poster = NetworkImage(ouevre.oeuvrePoster);
 
     final _poster = ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(8.0),
       child: FadeInImage(
         image: poster,  //? Image Poster Item,
         placeholder: placeholder, //? PlaceHolder Item,
@@ -136,7 +196,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
 
   Widget _itemTitle(OuevreEntity ouevre) {
     return Padding(
-      padding: const EdgeInsets.all(1.0),
+      padding: const EdgeInsets.all(2.0),
       child: Text(
         ouevre.oeuvreTitle,//? Title of Item
         style: TextStyle(fontSize: 16.0,  fontWeight: FontWeight.w700,),
@@ -174,7 +234,7 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
       margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 4.0),
       child: ActionChip(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)
+            borderRadius: BorderRadius.circular(8.0)
           ),
           onPressed: () => null,
           elevation: 5.0,
@@ -184,6 +244,253 @@ class _PlanToWatchItemState extends State<PlanToWatchItem> {
         ),
       );
   }
+}
+
+
+
+
+
+
+class CardStackPlanToWatch extends StatefulWidget {
+
+
+  final List<OuevreEntity> ouevreList;
+
+  CardStackPlanToWatch({this.ouevreList});
+
+  @override
+  _CardStackPlanToWatchState createState() => _CardStackPlanToWatchState();
+}
+
+class _CardStackPlanToWatchState extends State<CardStackPlanToWatch> {
+  
+  int position = 0;
+  
+  @override
+  Widget build(BuildContext context) {
+
+    List<OuevreEntity> ouevreList = widget.ouevreList.length > 14 ? getFirstItems() : widget.ouevreList;
+
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(
+          context, '/AllDetails', 
+          arguments: 
+            getIdAndType(
+            ouevreList[position].oeuvreId, 
+            ouevreList[position].oeuvreType,  
+            ouevreList[position].oeuvreTitle)
+        );
+      },
+      child: Container(
+        height: 300,
+        width: MediaQuery.of(context).size.width / 0.80,
+        padding: const EdgeInsets.only(
+            top: 15.0,  
+          ),
+        child: StackCard.builder(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 5.0,  
+              ),
+              child: BuildItemStack(ouevre: ouevreList[index],),
+            );
+          },
+          onSwap: (value) {
+            setState(() {
+              position = value;
+            });
+          },
+          stackType: StackType.middle,
+          stackOffset: const Offset(25.0, -10.0),
+          dimension: StackDimension(
+            height: MediaQuery.of(context).size.height * 0.40,
+            width: MediaQuery.of(context).size.width / 0.85,
+          ), 
+          itemCount: ouevreList.length
+        ),
+      ),
+    );
+   
+  }
+
+  List<OuevreEntity> getFirstItems(){
+    
+    List<OuevreEntity> ouevreList = List<OuevreEntity>();
+    
+    for (var i = 0; i < 14; i++) {
+      
+      ouevreList.add(widget.ouevreList[i]);
+    }
+
+    return ouevreList;
+  }
+
+  
+}
+
+
+
+class BuildItemStack extends StatefulWidget {
+
+  final OuevreEntity ouevre;
+
+  BuildItemStack({this.ouevre});
+
+  @override
+  _BuildItemStackState createState() => _BuildItemStackState();
+}
+
+class _BuildItemStackState extends State<BuildItemStack> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Stack(
+          fit: StackFit.expand,
+          overflow: Overflow.visible,
+          clipBehavior: Clip.antiAlias,
+          children: [
+            _cardItem(),
+            _titleOfItem(),
+            _itemRating(),
+            // _buttonItem()
+          ],
+        ),
+      ),
+    );
+  }
 
  
+
+
+  
+  Widget _titleOfItem() {
+
+    final DateTime datetime = widget.ouevre.addDate;
+
+    final formatter = DateFormat('dd-MM-yy');
+
+    final date = formatter.format(datetime);
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            widget.ouevre.oeuvreTitle,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 2.5,
+                )
+              ]
+            ),
+          ),
+          Text( date,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 18.0,
+            fontStyle: FontStyle.italic,
+            shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 4.5,
+                )
+              ]
+          ),
+      ),    
+        ],
+      ),
+    );
+  }
+
+ 
+
+  Widget _cardItem() {
+
+    final placeholder = AssetImage('assets/poster_placeholder.png'); 
+    final poster = NetworkImage(widget.ouevre.oeuvrePoster);
+
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0)
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15.0),
+        child: FadeInImage(
+          placeholder: placeholder, 
+          image: poster,
+          fit: BoxFit.fill,
+        ),
+      ), 
+    );
+  }
+
+  Widget _itemRating(){
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        margin: EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(6.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.grey[400].withOpacity(0.3)
+        ),
+        child: Text(
+          widget.ouevre.oeuvreRating.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w800,
+            shadows: [
+             Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+            ]
+            ),
+        ),
+      ),
+    );
+  }
+
+
+  // Widget _buttonItem(){
+  //   return Align(
+  //     alignment: Alignment.topRight,
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(12.0),
+  //       child: FloatingActionButton(
+  //         onPressed: (){
+  //           return ButtonClikedAdded(
+  //               context: context,
+  //               isUpdated: true,
+  //               ouevre: widget.ouevre,
+  //               type: widget.ouevre.oeuvreType,
+  //               objectType: ConstantsTypeObject.ouevreEntity
+  //             ).showBottomModal();
+  //         },
+  //         heroTag: null,
+  //         elevation: 10.0,
+  //         mini: true,
+  //         child: Icon(Icons.add, color: Colors.pinkAccent[400], size: 20.0,),
+  //         backgroundColor: Colors.transparent,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(5.0),
+  //           side: BorderSide(
+  //             color: Colors.pinkAccent[400],
+  //             width: 2.0
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

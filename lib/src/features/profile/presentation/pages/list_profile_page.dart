@@ -66,9 +66,9 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
     final List<Tab> myTabs = <Tab>[
     Tab(key: ValueKey(0), text: AppLocalizations.of(context).translate("status_completed"), icon: Icon(Icons.check_circle, color: Colors.greenAccent[400],) ,),
     Tab(key: ValueKey(1), text: AppLocalizations.of(context).translate("status_watching"),  icon: Icon(Icons.play_circle_filled, color: Colors.blueAccent[400], ),),
-    Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("status_pause"),     icon: Icon(Icons.pause_circle_filled, color: Colors.orangeAccent[400]),),
+    Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("status_pause"),     icon: Icon(Icons.pause_circle_filled, color: Colors.deepOrangeAccent[400]),),
     Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("status_dropped"),   icon: Icon(Icons.remove_circle, color: Colors.redAccent[400],),),
-    Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("status_wishlist"),  icon: Icon(Icons.add_circle, color: Colors.purpleAccent[400],),),
+    Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("status_wishlist"),  icon: Icon(Icons.add_circle, color: Colors.deepPurpleAccent[400],),),
 
     ];
 
@@ -141,22 +141,11 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       controller: _tabController,
       indicator: MD2Indicator(
         indicatorHeight: 3, 
-        indicatorColor: Colors.pinkAccent[400], 
+        indicatorColor: prefs.whatModeIs ?  Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
         indicatorSize: MD2IndicatorSize.normal
       ),
     );
   }
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 }

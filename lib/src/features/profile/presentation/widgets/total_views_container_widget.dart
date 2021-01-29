@@ -63,8 +63,8 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
         return Text(
         '${state.ouevreList.length}',
         style: TextStyle(
-          fontSize: 20.0, 
-          fontWeight: FontWeight.w900,
+          fontSize: 22.0, 
+          fontWeight: FontWeight.bold,
           fontStyle: FontStyle.italic
         ),
     );
@@ -91,7 +91,7 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
       _getLabelTotalViewsWidget(context),
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: 18.0, 
+        fontSize: 16.0, 
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.italic
       ),

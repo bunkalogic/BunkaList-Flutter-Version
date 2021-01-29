@@ -325,8 +325,8 @@
   "subtitle_item_unlock_premium_1"   : "トップスは合計制限を+10増やしますが,トップスごとに合計で最大20を含めることができます。",
   "title_item_unlock_premium_2"      : "ビデオレビュー",
   "subtitle_item_unlock_premium_2"   : "作品のビデオレビューにアクセスできます。これは,各作品の詳細セクションにあります。",
-  "title_item_unlock_premium_3"      : "リストをフィルタリングする",
-  "subtitle_item_unlock_premium_3"   : "完了のリストをさまざまなタイプの評価でフィルタリングする可能性があります。",
+  "title_item_unlock_premium_3"      : "リストをカスタマイズしてフィルタリングする",
+  "subtitle_item_unlock_premium_3"   : "プロファイルをカスタマイズし、さまざまなタイプの評価で完了リストをフィルタリングする可能性をカスタマイズしてください。",
   "title_item_unlock_premium_4"      :   "広告なし",
   "subtitle_item_unlock_premium_4"   : "アプリ内のすべての広告を削除してください。",
   "title_item_unlock_premium_5"      :   "新機能",
@@ -346,5 +346,9 @@
   "label_serie_company_popular"      : "人気",
   "label_korean_serie_company"       : "韓国TVシリーズ",
   "label_japanese_serie_company"     : "日本のテレビシリーズ",
-  "label_review_empty"               : "利用可能なレビューはありません。まもなく、レビューを含めるオプションがあります。"
+  "label_review_empty"               : "利用可能なレビューはありません。まもなく、レビューを含めるオプションがあります。",
+  "label_watching_list" : "ウォッチリスト",
+  "label_history_list"  : "歴史",
+  "label_wishlist_list" : "ウィッシュリスト",
+  "label_epiosde_left" : "残りのエピソード"
 }

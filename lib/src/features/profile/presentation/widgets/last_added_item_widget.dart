@@ -41,6 +41,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
   @override
   Widget build(BuildContext context) {
    return Container(
+     padding: const EdgeInsets.only(top: 15.0),
      height: MediaQuery.of(context).size.height / 2.6,
      child: BlocBuilder<GetListsBloc, GetListsState>(
       builder: (context, state) {
@@ -57,7 +58,7 @@ class _LastAddedItemState extends State<LastAddedItem> {
             return Container(
             child: CarouselSlider.builder(
               enlargeCenterPage: true, 
-              height: MediaQuery.of(context).size.height / 2.6,
+              height: 280,
               autoPlay: false,
               enableInfiniteScroll: state.ouevreList.length > 2,
               viewportFraction: 0.45,

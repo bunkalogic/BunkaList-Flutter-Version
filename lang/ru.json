@@ -326,8 +326,8 @@
   "subtitle_item_unlock_premium_1"   : "Ваши вершины увеличивают общий лимит на +10, вместо 10 вы можете включать до 20 в сумме на каждую вершину",
   "title_item_unlock_premium_2"      : "Видеообзор",
   "subtitle_item_unlock_premium_2"   : "У вас есть доступ к Видеообзору работы, который подробно доступен в разделе каждой работы.",
-  "title_item_unlock_premium_3"      : "Отфильтруйте свои списки",
-  "subtitle_item_unlock_premium_3"   : "У вас есть возможность отфильтровать свой список выполненных работ по различным типам рейтинга.",
+  "title_item_unlock_premium_3"      : "Настройте и отфильтруйте свои списки",
+  "subtitle_item_unlock_premium_3"   : "Настройте свой профиль и возможность фильтрации списка выполненных работ по различным типам рейтинга.",
   "title_item_unlock_premium_4"      :   "Без рекламы",
   "subtitle_item_unlock_premium_4"   : "Убрать всю рекламу в приложении.",
   "title_item_unlock_premium_5"      :   "Новые функции",
@@ -347,6 +347,10 @@
   "label_serie_company_popular"      : "Популярный",
   "label_korean_serie_company"       : "Корейский сериал",
   "label_japanese_serie_company"     : "Японский сериал",
-  "label_review_empty"               : "Нет доступных обзоров. Скоро вы сможете добавить свои отзывы."
+  "label_review_empty"               : "Нет доступных обзоров. Скоро вы сможете добавить свои отзывы.",
+  "label_watching_list" : "Список наблюдения",
+  "label_history_list"  : "История",
+  "label_wishlist_list" : "Список желаний",
+  "label_epiosde_left" : "Остающиеся серии"
 
 }

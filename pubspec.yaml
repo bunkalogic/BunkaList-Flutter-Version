@@ -111,7 +111,9 @@ dependencies:
   # reorderables
   reorderables:
   # countdown timer
-  flutter_countdown_timer: ^2.1.0  
+  flutter_countdown_timer: ^2.1.0 
+  # percent indicator
+  percent_indicator: ^2.1.9
 
   flutter_localizations:
     sdk: flutter

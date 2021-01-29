@@ -23,8 +23,8 @@ class OuevreEntity extends Equatable{
   final String   oeuvrePoster;      
   final String   oeuvreReleaseDate; 
   final double   oeuvreRating;      
-  final int      seasonTotal;       
-  final int      episodeTotal;      
+  int      seasonTotal;       
+  int      episodeTotal;      
   final String   oeuvreType;
   bool     isFavorite;   
   int      positionListFav;

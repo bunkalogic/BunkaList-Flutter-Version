@@ -181,4 +181,31 @@ class Preferences{
     _prefs.setInt('totalAnimesFav', value);
   }
 
+  //? decide el diseño del watching
+  get currentDesignWatching {
+    return _prefs.getBool('DesignWatching') ?? false;
+  }
+
+  set currentDesignWatching (bool value) {
+    _prefs.setBool('DesignWatching', value);
+  }
+
+  //? decide el diseño del historial
+  get currentDesignHistory {
+    return _prefs.getBool('DesignHistory') ?? false;
+  }
+
+  set currentDesignHistory (bool value) {
+    _prefs.setBool('DesignHistory', value);
+  }
+
+  //? decide el diseño del wishlist
+  get currentDesignWishlist {
+    return _prefs.getBool('DesignWishlist') ?? false;
+  }
+
+  set currentDesignWishlist (bool value) {
+    _prefs.setBool('DesignWishlist', value);
+  }
+
 }

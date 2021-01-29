@@ -94,45 +94,51 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-              onTap: (){
-                 Navigator.pushNamed(
-              context, '/AllDetails', 
-              arguments: 
-                getIdAndType(
-                widget.ouevreList[position].oeuvreId, 
-                widget.ouevreList[position].oeuvreType,  
-                widget.ouevreList[position].oeuvreTitle)
-              );
-              },
-              child: Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width / 0.80,
-                child: StackCard.builder(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        top: 5.0,  
-                      ),
-                      child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
-                    );
-                  },
-                  onSwap: (value) {
-                    setState(() {
-                      position = value;
-                    });
-                  },
-                  stackType: StackType.middle,
-                  stackOffset: const Offset(25.0, -10.0),
-                  dimension: StackDimension(
-                    height: MediaQuery.of(context).size.height * 0.40,
-                    width: MediaQuery.of(context).size.width / 0.85,
-                  ), 
-                  itemCount: widget.ouevreList.length
-                ),
+      onTap: (){
+         Navigator.pushNamed(
+      context, '/AllDetails', 
+      arguments: 
+        getIdAndType(
+        widget.ouevreList[position].oeuvreId, 
+        widget.ouevreList[position].oeuvreType,  
+        widget.ouevreList[position].oeuvreTitle)
+      );
+      },
+      child: Container(
+        height: 300,
+        width: MediaQuery.of(context).size.width / 0.80,
+        padding: const EdgeInsets.only(
+            top: 15.0,  
+          ),
+        child: StackCard.builder(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 5.0,  
               ),
+              child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
             );
+          },
+          onSwap: (value) {
+            setState(() {
+              position = value;
+            });
+          },
+          stackType: StackType.middle,
+          stackOffset: const Offset(25.0, -10.0),
+          dimension: StackDimension(
+            height: MediaQuery.of(context).size.height * 0.40,
+            width: MediaQuery.of(context).size.width / 0.85,
+          ), 
+          itemCount: widget.ouevreList.length
+        ),
+      ),
+    );
    
   }
+
+
+  
 }
 
 class ItemStackCards extends StatefulWidget {

@@ -188,9 +188,17 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
           child: Container(
             height: 300,
             width: MediaQuery.of(context).size.width / 0.80,
+            padding: const EdgeInsets.only(
+            top: 15.0,  
+          ),
             child: StackCard.builder(
               itemBuilder: (context, index) {
-                return ItemStackCards(ouevreEntity: widget.ouevreList[index],);
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    top: 5.0,  
+                  ),
+                  child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
+                );
               },
               onSwap: (value) {
                 setState(() {
@@ -200,7 +208,7 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
               stackType: StackType.middle,
               stackOffset: const Offset(25.0, -10.0),
               dimension: StackDimension(
-                height: MediaQuery.of(context).size.height * 0.38,
+                height: MediaQuery.of(context).size.height * 0.40,
                 width: MediaQuery.of(context).size.width / 0.85,
               ), 
               itemCount: widget.ouevreList.length

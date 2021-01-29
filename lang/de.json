@@ -325,8 +325,8 @@
   "subtitle_item_unlock_premium_1"   : "Ihre Tops erhöhen das Gesamtlimit um +10, statt 10 können Sie insgesamt bis zu 20 pro Top einschließen.",
   "title_item_unlock_premium_2"      : "Video Review",
   "subtitle_item_unlock_premium_2"   : "Sie haben Zugriff auf die Videoüberprüfung einer Arbeit, die im Abschnitt jeder Arbeit ausführlich beschrieben wird.",
-  "title_item_unlock_premium_3"      : "Filtern Sie Ihre Listen",
-  "subtitle_item_unlock_premium_3"   : "Sie haben die Möglichkeit, Ihre Liste der Abschlüsse nach den verschiedenen Bewertungsarten zu filtern.",
+  "title_item_unlock_premium_3"      : "Passen Sie Ihre Listen an und filtern Sie sie",
+  "subtitle_item_unlock_premium_3"   : "Passen Sie Ihr Profil und die Möglichkeit an, Ihre Liste der Abschlüsse nach den verschiedenen Bewertungsarten zu filtern.",
   "title_item_unlock_premium_4"      :   "Ohne Werbung",
   "subtitle_item_unlock_premium_4"   : "Entfernen Sie alle Werbung in der App.",
   "title_item_unlock_premium_5"      :   "Neue Funktionen",
@@ -346,5 +346,10 @@
   "label_serie_company_popular"      : "Beliebt",
   "label_korean_serie_company"       : "Koreanische Fernsehserie",
   "label_japanese_serie_company"     : "Japanische Fernsehserie",
-  "label_review_empty"               : "Es sind keine Bewertungen verfügbar. In Kürze haben Sie die Möglichkeit, Ihre Bewertungen einzuschließen."
+  "label_review_empty"               : "Es sind keine Bewertungen verfügbar. In Kürze haben Sie die Möglichkeit, Ihre Bewertungen einzuschließen.",
+
+  "label_watching_list" : "Beobachtungsliste",
+  "label_history_list"  : "Geschichte",
+  "label_wishlist_list" : "Wunschzettel",
+  "label_epiosde_left" : "Folgen verbleiben"
 }
