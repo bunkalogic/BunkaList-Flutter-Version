@@ -350,6 +350,16 @@
   "label_watching_list" : "Progreso",
   "label_history_list" : "Historial",
   "label_wishlist_list" : "Por ver",
-  "label_epiosde_left" : "Episodios restantes"
+  "label_epiosde_left" : "Episodios restantes",
+  
+  "label_edit_explorer_and_tops"  : "Editar opciones del explorador y inicio",
+  "label_hide_all_in_your_list"   : "Ocultar todas las obras que esten en tus listas",
+  "label_hide_movies_in_your_list": "Ocultar todas las peliculas que esten en tus listas",
+  "label_hide_series_in_your_list": "Ocultar todas las series que esten en tus listas",
+  "label_hide_animes_in_your_list": "Ocultar todas los animes que esten en tus listas",
+  "label_edit_pofile"             : "Editar tu perfil",
+  "label_design_watchlist"        : "Selecionar el diseño de la seccion del perfil de progreso",
+  "label_design_history"          : "Selecionar el diseño de la seccion del perfil de historial",
+  "label_design_wishlist"         : "Selecionar el diseño de la seccion del perfil de por ver"
 
 }

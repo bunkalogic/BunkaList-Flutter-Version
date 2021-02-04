@@ -350,5 +350,15 @@
   "label_watching_list" : "관심 목록",
   "label_history_list"  : "역사",
   "label_wishlist_list" : "위시리스트",
-  "label_epiosde_left" : "남은 에피소드"
+  "label_epiosde_left" : "남은 에피소드",
+
+  "label_edit_explorer_and_tops"  : "브라우저 및 홈 옵션 편집",
+  "label_hide_all_in_your_list"   : "목록에있는 모든 작품 숨기기",
+  "label_hide_movies_in_your_list": "목록에있는 모든 영화 숨기기",
+  "label_hide_series_in_your_list": "목록에있는 모든 시리즈 숨기기",
+  "label_hide_animes_in_your_list": "목록에있는 모든 애니메이션 숨기기",
+  "label_edit_pofile"             : "프로필 수정",
+  "label_design_watchlist"        : "관심 목록 프로필 섹션의 디자인 선택",
+  "label_design_history"          : "기록 프로필 섹션의 레이아웃 선택",
+  "label_design_wishlist"         : "위시리스트 프로필 섹션에서 디자인 선택"
 }

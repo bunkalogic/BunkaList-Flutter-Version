@@ -2,9 +2,9 @@ import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
-import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_anime/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_series/bloc.dart';
@@ -311,20 +311,28 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
                  onNotification: _handleScrollNotification,
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) {
-                    return i >= state.movies.length
-                      ? BottomLoader()
-                      : GridViewListMoviesWidget(movie: state.movies[i],);
-                  }, 
-                  itemCount: state.hasReachedMax
-                    ? state.movies.length
-                    : state.movies.length + 1,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+                child: Column(
+                  children: [
+                    SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                    Expanded(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        controller: _scrollController,
+                        itemBuilder: (context, i) {
+                          return i >= state.movies.length
+                            ? BottomLoader()
+                            : GridViewListMoviesWidget(movie: state.movies[i],);
+                        }, 
+                        itemCount: state.hasReachedMax
+                          ? state.movies.length
+                          : state.movies.length + 1,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: _aspectRatio
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
               
@@ -333,18 +341,26 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
               onNotification: _handleScrollNotification,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: state.hasReachedMax
-                  ? state.movies.length
-                  : state.movies.length + 1,
-                itemBuilder: (context , i){
-                  
-                  return i >= state.movies.length
-                    ? BottomLoader()
-                    : CardViewListMoviesWidget(movie: state.movies[i],);
-                  
-                } 
+              child: Column(
+                children: [
+                  SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _scrollController,
+                      itemCount: state.hasReachedMax
+                        ? state.movies.length
+                        : state.movies.length + 1,
+                      itemBuilder: (context , i){
+                        
+                        return i >= state.movies.length
+                          ? BottomLoader()
+                          : CardViewListMoviesWidget(movie: state.movies[i],);
+                        
+                      } 
+                    ),
+                  ),
+                ],
               ),
             );
 
@@ -395,20 +411,28 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
                  onNotification: _handleScrollNotification,
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) {
-                    return i >= state.series.length
-                      ? BottomLoader()
-                      : GridViewListSeriesWidget(series: state.series[i],);
-                  }, 
-                  itemCount: state.hasReachedMax
-                    ? state.series.length
-                    : state.series.length + 1,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+                child: Column(
+                  children: [
+                    SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                    Expanded(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        controller: _scrollController,
+                        itemBuilder: (context, i) {
+                          return i >= state.series.length
+                            ? BottomLoader()
+                            : GridViewListSeriesWidget(series: state.series[i],);
+                        }, 
+                        itemCount: state.hasReachedMax
+                          ? state.series.length
+                          : state.series.length + 1,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: _aspectRatio
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
               
@@ -417,18 +441,26 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
               onNotification: _handleScrollNotification,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: state.hasReachedMax
-                  ? state.series.length
-                  : state.series.length + 1,
-                itemBuilder: (context , i){
-                  
-                  return i >= state.series.length
-                    ? BottomLoader()
-                    : CardViewListSeriesWidget(series: state.series[i],);
-                  
-                } 
+              child: Column(
+                children: [
+                  SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _scrollController,
+                      itemCount: state.hasReachedMax
+                        ? state.series.length
+                        : state.series.length + 1,
+                      itemBuilder: (context , i){
+                        
+                        return i >= state.series.length
+                          ? BottomLoader()
+                          : CardViewListSeriesWidget(series: state.series[i],);
+                        
+                      } 
+                    ),
+                  ),
+                ],
               ),
             );
 
@@ -480,20 +512,28 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
                  onNotification: _handleScrollNotification,
-                child: GridView.builder(
-                  controller: _scrollController,
-                  itemBuilder: (context, i) {
-                    return i >= state.animes.length
-                      ? BottomLoader()
-                      : GridViewListAnimesWidget(anime: state.animes[i],);
-                  }, 
-                  itemCount: state.hasReachedMax
-                    ? state.animes.length
-                    : state.animes.length + 1,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: _aspectRatio
-                  ),
+                child: Column(
+                  children: [
+                    SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                    Expanded(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        controller: _scrollController,
+                        itemBuilder: (context, i) {
+                          return i >= state.animes.length
+                            ? BottomLoader()
+                            : GridViewListAnimesWidget(anime: state.animes[i],);
+                        }, 
+                        itemCount: state.hasReachedMax
+                          ? state.animes.length
+                          : state.animes.length + 1,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: _aspectRatio
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
               
@@ -502,18 +542,25 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
               
               return NotificationListener<ScrollNotification>(
               onNotification: _handleScrollNotification,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: state.hasReachedMax
-                  ? state.animes.length
-                  : state.animes.length + 1,
-                itemBuilder: (context , i){
-                  
-                  return i >= state.animes.length
-                    ? BottomLoader()
-                    : CardViewListAnimesWidget(anime: state.animes[i],);
-                  
-                } 
+              child: Column(
+                children: [
+                  SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
+                  Expanded(
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: state.hasReachedMax
+                        ? state.animes.length
+                        : state.animes.length + 1,
+                      itemBuilder: (context , i){
+                        
+                        return i >= state.animes.length
+                          ? BottomLoader()
+                          : CardViewListAnimesWidget(anime: state.animes[i],);
+                        
+                      } 
+                    ),
+                  ),
+                ],
               ),
             );
 

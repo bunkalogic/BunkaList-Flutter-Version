@@ -13,7 +13,7 @@ class CountDownFinishOfferWidget extends StatefulWidget {
 class _CountDownFinishOfferWidgetState extends State<CountDownFinishOfferWidget> {
   
   CountdownTimerController controller;
-  int endTime = DateTime.parse("2021-02-05 00:00:00").millisecondsSinceEpoch;
+  int endTime = DateTime.parse("2021-02-13 00:00:00").millisecondsSinceEpoch;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _CountDownFinishOfferWidgetState extends State<CountDownFinishOfferWidget>
           vertical: 5.0
         ),
         child: Text(
-         AppLocalizations.of(context).translate("label_offer"),
+         "offer 50%",
           textAlign: TextAlign.justify,
           style: TextStyle(
             color: Colors.pinkAccent[400],

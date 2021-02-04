@@ -552,5 +552,15 @@
   "label_watching_list" : "Watchlist",
   "label_history_list"  : "History",
   "label_wishlist_list" : "Wishlist",
-  "label_epiosde_left" : "Episodes remaining"
+  "label_epiosde_left" : "Episodes remaining",
+
+  "label_edit_explorer_and_tops"  : "Edit explorer and home options",
+  "label_hide_all_in_your_list"   : "Hide all the works that are in your lists",
+  "label_hide_movies_in_your_list": "Hide all the movies that are in your lists",
+  "label_hide_series_in_your_list": "Hide all the series that are in your lists",
+  "label_hide_animes_in_your_list": "Hide all the animes that are in your lists",
+  "label_edit_pofile"             : "Edit your profile",
+  "label_design_watchlist"        : "Select the design of the section of the watchlist profile",
+  "label_design_history"          : "Select the layout of the history profile section",
+  "label_design_wishlist"         : "Select the design from the wishlist profile section"
 }

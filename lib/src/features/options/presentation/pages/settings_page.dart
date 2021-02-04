@@ -82,7 +82,10 @@ class _SettingsPageState extends State<SettingsPage> {
         _createItemSettings(context, Colors.greenAccent , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
           Navigator.pushNamed(context, '/EditProfile');
         } ),
-        //_createItemSettings(context, Colors.lightBlue, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), null),
+        _createItemSettings(context, Colors.deepOrangeAccent, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), (){
+          Navigator.pushNamed(context, '/EditPreferences');
+        } 
+        ),
         _createItemSettings(context, Colors.pinkAccent, Icons.local_play, AppLocalizations.of(context).translate("label_premium"), (){
           Navigator.pushNamed(context, '/Premium');
         }),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:bunkalist/src/core/utils/filter_item_current_in_lists_util.dart';
 import 'package:bunkalist/src/core/constans/constans_genres_id.dart';
 import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
@@ -133,7 +134,11 @@ class TopsAnimeRemoteDataSourceImpl implements TopsAnimeRemoteDataSource  {
       final listAnime = new Animes.fromJsonList(decodedData['results']);
 
       if(listAnime.items.isNotEmpty){
-        return listAnime.items;
+
+        List<AnimeModel> itemsFilter = filterAnimeCurrentInList(listAnime.items);
+
+
+        return prefs.hideAnimeInList ? itemsFilter : listAnime.items;
       }else{
         return [];
       }

@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:bunkalist/src/core/utils/filter_item_current_in_lists_util.dart';
 import 'package:bunkalist/src/core/utils/get_current_day_of_week_util.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -130,8 +131,14 @@ class TopsSeriesRemoteDataSourceImpl implements TopsSeriesRemoteDataSource  {
 
       final listSeries = new Series.fromJsonList(decodedData['results']);
 
+
       if(listSeries.items.isNotEmpty){
-        return  listSeries.items;
+        
+        List<SeriesModel> itemsFilter = filterSerieCurrentInList(listSeries.items);
+
+
+        return prefs.hideSeriesInList ? itemsFilter : listSeries.items;
+
       }else{
         return [];
       }

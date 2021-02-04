@@ -500,6 +500,166 @@ class _MiniContainerAdsWidgetState extends State<MiniContainerAdsWidget> {
 }
 
 
+class SmallContainerAdsWidget extends StatefulWidget {
+  final String adUnitID;
+  //final NativeAdmobController controller;
+
+  SmallContainerAdsWidget({this.adUnitID, });
+
+  @override
+  _SmallContainerAdsWidgetState createState() => _SmallContainerAdsWidgetState();
+}
+
+class _SmallContainerAdsWidgetState extends State<SmallContainerAdsWidget> {
+
+  final _nativeAdController = NativeAdmobController();
+  Preferences prefs = Preferences();
+
+  PurchaserInfo _purchaserInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  Future<void> initPlatformState() async {
+    PurchaserInfo purchaserInfo = await Purchases.getPurchaserInfo();
+
+     if (!mounted) return;
+
+    setState(() {
+      _purchaserInfo = purchaserInfo;
+      prefs.isNotAds = isNotAds();
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    //bool noAds = isNotAds();
+    //bool noPremium = isNotPremium();
+    
+
+    return (prefs.isNotAds) 
+      ? Container() 
+      : buildContainerAds();
+  }
+
+  Widget buildContainerAds() {
+    return Container(
+    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+    height: 70.0,
+    color: Colors.transparent,
+    child: NativeAdmob(
+      adUnitID: widget.adUnitID,
+      controller: _nativeAdController,
+      loading: LoadingCustomWidget(),
+      error: EmptyIconWidget(),
+      type: NativeAdmobType.banner,
+      options: NativeAdmobOptions(
+        showMediaContent: false,
+        adLabelTextStyle: NativeTextStyle(
+          fontSize: 12.0,
+          color: (prefs.whatModeIs) ? Colors.grey[200] : Colors.grey[700]
+        ),
+        headlineTextStyle: NativeTextStyle(
+          fontSize: 14.0,
+          color: (prefs.whatModeIs) ? Colors.grey[100] : Colors.grey[800]
+        ),
+        bodyTextStyle: NativeTextStyle(
+          fontSize: 12.0,
+          color: (prefs.whatModeIs) ? Colors.grey[200] : Colors.grey[700]
+        ),
+        storeTextStyle: NativeTextStyle(
+          fontSize: 12.0,
+          color: (prefs.whatModeIs) ? Colors.grey[200] : Colors.grey[700]
+        ),
+        callToActionStyle: NativeTextStyle(
+          fontSize: 14.0,
+          color: Colors.white,
+          backgroundColor: (prefs.whatModeIs) ? Colors.blueGrey[800] : Colors.grey[200],
+        ),
+      ) ,
+    ),
+  );
+  }
+
+  
+
+   bool isNotAds() {
+
+     bool isNull = (_purchaserInfo.entitlements == null) ? true : false;
+     final bool isNotEmpty = (isNull) ? false : _purchaserInfo.entitlements.active.isNotEmpty;
+
+     if (isNotEmpty) {
+      //user has access to some entitlement
+      return true;
+
+    }else{
+
+      return false;
+
+    }
+
+    
+   
+    //  try {
+
+    //    if(_purchaserInfo.entitlements == null && _purchaserInfo.entitlements.  all["NoAds"] == null){
+    //     return false;
+    //   }
+      
+    //   if (_purchaserInfo.entitlements.all["NoAds"].isActive) {
+    //   // Grant user "pro" access
+    //     return true;
+    //   }else{
+    //     return false;
+    //   }
+
+    // } on PlatformException catch (e) {
+    //   // Error fetching purchaser info
+    //   var errorCode = PurchasesErrorHelper.getErrorCode(e);
+    //   if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
+    //     print("User cancelled");
+    //   } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
+    //     print("User not allowed to purchase");
+    //   }
+
+    //   return false;
+    // }
+  }
+
+  // bool isNotPremium() {
+    
+  //    try {
+
+  //      if(_purchaserInfo.entitlements == null && _purchaserInfo.entitlements.all["NoAds"] == null){
+  //     return false;
+  //     }
+      
+  //     if (_purchaserInfo.entitlements.all["NoAdsAndPremium"].isActive) {
+  //     // Grant user "pro" access
+  //       return true;
+  //     }else{
+  //       return false;
+  //     }
+
+  //   } on PlatformException catch (e) {
+  //     // Error fetching purchaser info
+  //     var errorCode = PurchasesErrorHelper.getErrorCode(e);
+  //     if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
+  //       print("User cancelled");
+  //     } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
+  //       print("User not allowed to purchase");
+  //     }
+
+  //     return false;
+  //   }
+  // }
+}
+
+
 class BigContainerAdsWidget extends StatefulWidget {
   final String adUnitID;
   

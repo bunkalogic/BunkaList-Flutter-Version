@@ -6,7 +6,7 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
-
+import 'package:bunkalist/src/core/utils/filter_item_current_in_lists_util.dart';
 import 'package:bunkalist/src/features/home_tops/data/models/anime_model.dart';
 
 abstract class AnimesExplorerRemoteDataSource{
@@ -117,7 +117,11 @@ class AnimesExplorerRemoteDataSourceImpl implements AnimesExplorerRemoteDataSour
       final listAnime = new Animes.fromJsonList(decodedData['results']);
 
       if(listAnime.items.isNotEmpty){
-        return listAnime.items;
+
+        List<AnimeModel> itemsFilter = filterAnimeCurrentInList(listAnime.items);
+
+        return prefs.hideAnimeInList ? itemsFilter : listAnime.items;
+
       }else{
         return [];
       }

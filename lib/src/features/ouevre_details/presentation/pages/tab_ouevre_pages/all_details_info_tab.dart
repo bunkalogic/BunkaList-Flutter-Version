@@ -92,7 +92,6 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     bool random = randomAdsOrBanner();
 
     return ListView(
       padding: EdgeInsets.only(top: 0),
@@ -102,9 +101,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        random
-          ? BannerPremiumWidget()
-          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
+        BannerPremiumWidget()
          
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
@@ -388,8 +385,6 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    bool random = randomAdsOrBanner();
-
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
@@ -401,9 +396,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        random
-          ? BannerPremiumWidget()
-          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
+        BannerPremiumWidget(),
         
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
@@ -828,8 +821,6 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    bool random = randomAdsOrBanner();
-
     return ListView(
       padding: EdgeInsets.only(top: 0),
       children: <Widget>[
@@ -838,9 +829,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         _boxInfo(child: _columnInfo()),
         _boxInfo(child: _columnExtrasInfo(context)),
-        random
-          ? BannerPremiumWidget()
-          : MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',)
+        BannerPremiumWidget(),
         //MaxNativeBannerAds(adPlacementID: "177059330328908_179579400076901",),
       ],
     );

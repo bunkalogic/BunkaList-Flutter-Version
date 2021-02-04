@@ -349,5 +349,15 @@
   "label_watching_list" : "Liste de surveillance",
   "label_history_list"  : "L'histoire",
   "label_wishlist_list" : "Liste de souhaits",
-  "label_epiosde_left" : "Épisodes restants"
+  "label_epiosde_left" : "Épisodes restants",
+
+  "label_edit_explorer_and_tops"  : "Modifier le navigateur et les options de démarrage",
+  "label_hide_all_in_your_list"   : "Cachez toutes les oeuvres qui sont dans vos listes",
+  "label_hide_movies_in_your_list": "Cachez tous les films qui sont dans vos listes",
+  "label_hide_series_in_your_list": "Cachez toutes les séries qui sont dans vos listes",
+  "label_hide_animes_in_your_list": "Cachez tous les animes qui sont dans vos listes",
+  "label_edit_pofile"             : "Modifier votre profil",
+  "label_design_watchlist"        : "Sélectionnez le design de la section du profil de la liste de suivi",
+  "label_design_history"          : "Sélectionnez la mise en page de la section du profil d'historique",
+  "label_design_wishlist"         : "Sélectionnez le design dans la section du profil de la liste de souhaits"
 }

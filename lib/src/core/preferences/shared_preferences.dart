@@ -208,4 +208,60 @@ class Preferences{
     _prefs.setBool('DesignWishlist', value);
   }
 
+
+  //? se en encarga de guardar los ids de las movies
+  get listMoviesIds  {
+    return _prefs.getStringList('listMoviesIds') ?? [];
+  }
+
+  set listMoviesIds (List<String> value) {
+    _prefs.setStringList('listMoviesIds', value.toSet().toList());
+  }
+
+  //? se en encarga de guardar los ids de las series
+  get listSerieIds  {
+    return _prefs.getStringList('listSerieIds') ?? [];
+  }
+
+  set listSerieIds (List<String> value) {
+    _prefs.setStringList('listSerieIds', value.toSet().toList());
+  }
+
+  //? se en encarga de guardar los ids de las animes
+  get listAnimeIds  {
+    return _prefs.getStringList('listAnimeIds') ?? [];
+  }
+
+  set listAnimeIds (List<String> value) {
+    _prefs.setStringList('listAnimeIds', value.toSet().toList());
+  }
+
+  //? oculta las peliculas que tengas incluidas en tus listas
+  get hideMoviesInList {
+    return _prefs.getBool('hideMoviesInList') ?? true;
+  }
+
+  set hideMoviesInList (bool value) {
+    _prefs.setBool('hideMoviesInList', value);
+  }
+
+  //? oculta las series que tengas incluidas en tus listas
+  get hideSeriesInList {
+    return _prefs.getBool('hideSeriesInList') ?? true;
+  }
+
+  set hideSeriesInList (bool value) {
+    _prefs.setBool('hideSeriesInList', value);
+  }
+
+  //? oculta las animes que tengas incluidas en tus listas
+  get hideAnimeInList {
+    return _prefs.getBool('hideAnimeInList') ?? true;
+  }
+
+  set hideAnimeInList (bool value) {
+    _prefs.setBool('hideAnimeInList', value);
+  }
+  
+
 }

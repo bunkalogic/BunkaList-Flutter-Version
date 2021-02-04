@@ -1,5 +1,7 @@
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,7 @@ class TotalViewsWidget extends StatefulWidget {
 
 class _TotalViewsWidgetState extends State<TotalViewsWidget> {
 
+  Preferences prefs = Preferences();
 
   @override
   void initState() {
@@ -59,6 +62,8 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
               child: Text('--'),
           );
         } else if(state is GetListsLoaded){
+
+        _getIds(state.ouevreList);
 
         return Text(
         '${state.ouevreList.length}',
@@ -108,6 +113,34 @@ class _TotalViewsWidgetState extends State<TotalViewsWidget> {
       case 'anime': return AppLocalizations.of(context).translate("total_animes");
       
       default: return  'no data';
+    }
+  }
+
+
+  void _getIds(List<OuevreEntity> ouevreList){
+
+    if(widget.type == 'movie'){
+
+      List<String> listMovie = ouevreList.map((e) => e.oeuvreId.toString()).toList();
+
+      prefs.listMoviesIds = listMovie;
+    }
+
+    if(widget.type == 'tv'){
+
+       List<String> listSerie = ouevreList.map((e) => e.oeuvreId.toString()).toList();
+
+
+      prefs.listSerieIds = listSerie;
+    }
+
+    if(widget.type == 'anime'){
+
+      List<String> listAnime = ouevreList.map((e) => e.oeuvreId.toString()).toList();
+
+
+      prefs.listAnimeIds = listAnime;
+
     }
   }
 }

@@ -6,6 +6,8 @@ import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/error/exception.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/utils/filter_item_current_in_lists_util.dart';
+
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -129,7 +131,10 @@ class TopsMoviesRemoteDataSourceImpl implements TopsMovieRemoteDataSource  {
       final listMovies = new Movies.fromJsonList(decodedData['results']);
 
       if(listMovies.items.isNotEmpty){
-        return listMovies.items;
+
+        List<MovieModel> itemsFilter = filterMovieCurrentInList(listMovies.items);
+
+        return prefs.hideMoviesInList ? itemsFilter : listMovies.items;
       }else{
         return[];
       }

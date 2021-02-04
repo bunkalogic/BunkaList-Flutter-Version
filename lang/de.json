@@ -351,5 +351,15 @@
   "label_watching_list" : "Beobachtungsliste",
   "label_history_list"  : "Geschichte",
   "label_wishlist_list" : "Wunschzettel",
-  "label_epiosde_left" : "Folgen verbleiben"
+  "label_epiosde_left" : "Folgen verbleiben",
+
+  "label_edit_explorer_and_tops"  : "Browser- und Startoptionen bearbeiten",
+  "label_hide_all_in_your_list"   : "Verstecke alle Werke, die in deinen Listen sind",
+  "label_hide_movies_in_your_list": "Verstecke alle Filme, die in deinen Listen sind",
+  "label_hide_series_in_your_list": "Verstecke alle Serien, die in deinen Listen sind",
+  "label_hide_animes_in_your_list": "Verstecke alle Animes, die in deinen Listen sind",
+  "label_edit_pofile"             : "Bearbeite dein Profil",
+  "label_design_watchlist"        : "Wählen Sie das Design des Abschnitts des Überwachungslistenprofils aus",
+  "label_design_history"          : "Wählen Sie das Layout des Verlaufsprofilabschnitts aus",
+  "label_design_wishlist"         : "Wählen Sie das Design aus dem Abschnitt Wunschliste Profilaus."
 }

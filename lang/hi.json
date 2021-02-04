@@ -350,6 +350,16 @@
   "label_watching_list" : "वॉचलिस्ट",
   "label_history_list"  : "इतिहास",
   "label_wishlist_list" : "विशलिस्ट",
-  "label_epiosde_left" : "शेष एपिसोड"
+  "label_epiosde_left" : "शेष एपिसोड",
+
+  "label_edit_explorer_and_tops"  : "ब्राउज़र और स्टार्टअप विकल्प संपादित करें",
+  "label_hide_all_in_your_list"   : "अपनी सूची में मौजूद सभी कार्यों को छिपाएं",
+  "label_hide_movies_in_your_list": "अपनी सूची में शामिल सभी फिल्मों को छिपाएं",
+  "label_hide_series_in_your_list": "अपनी सूचियों में मौजूद सभी श्रृंखलाओं को छिपाएं",
+  "label_hide_animes_in_your_list": "अपनी सूची में आने वाले सभी अपराधों को छिपाएं",
+  "label_edit_pofile"             : "अपनी प्रोफाइल सम्पादित करें",
+  "label_design_watchlist"        : "वॉचलिस्ट प्रोफ़ाइल के अनुभाग का डिज़ाइन चुनें",
+  "label_design_history"          : "इतिहास प्रोफ़ाइल अनुभाग के लेआउट का चयन करें",
+  "label_design_wishlist"         : "इच्छा सूची अनुभाग से डिजाइन का चयन करें"
   
 }

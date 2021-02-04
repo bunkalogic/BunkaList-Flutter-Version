@@ -8,6 +8,8 @@ import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:bunkalist/src/features/home_tops/data/models/series_model.dart';
+import 'package:bunkalist/src/core/utils/filter_item_current_in_lists_util.dart';
+
 
 abstract class SeriesExplorerRemoteDataSource{
 
@@ -117,7 +119,12 @@ class SeriesExplorerRemoteDataSourceImpl implements SeriesExplorerRemoteDataSour
       final listSeries = new Series.fromJsonList(decodedData['results']);
 
       if(listSeries.items.isNotEmpty){
-        return  listSeries.items;
+
+        List<SeriesModel> itemsFilter = filterSerieCurrentInList(listSeries.items);
+
+
+        return prefs.hideSeriesInList ? itemsFilter : listSeries.items;
+
       }else{
         return [];
       }

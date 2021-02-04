@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
-import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/countdown_widget.dart';
 import 'package:flutter/material.dart';
@@ -281,7 +280,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_one_year"),
-            "2.40€*",
+            "2.99€*",
              onTap: (){
               if(_offerings != null){
               final offering = _offerings.getOffering("no_ads_yearly");
@@ -293,7 +292,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             }
             }, 
             isYear: true,
-            priceForMonth: '0,20€ for month.',
+            priceForMonth: '0,24€ for month.',
             isOffer: true,
             offerPrice: "5.99€",
             shadow: [
@@ -306,7 +305,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "4.50 €",
+            "4.99 €",
              onTap: (){
               final offering = _offerings.getOffering("NoAds");
 

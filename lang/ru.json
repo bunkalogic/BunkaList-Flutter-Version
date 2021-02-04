@@ -351,6 +351,16 @@
   "label_watching_list" : "Список наблюдения",
   "label_history_list"  : "История",
   "label_wishlist_list" : "Список желаний",
-  "label_epiosde_left" : "Остающиеся серии"
+  "label_epiosde_left" : "Остающиеся серии",
+
+  "label_edit_explorer_and_tops"  : "Изменить параметры браузера и запуска",
+  "label_hide_all_in_your_list"   : "Скрыть все работы, которые есть в ваших списках",
+  "label_hide_movies_in_your_list": "Скрыть все фильмы, которые есть в ваших списках",
+  "label_hide_series_in_your_list": "Скрыть все серии, которые есть в ваших списках",
+  "label_hide_animes_in_your_list": "Скрыть все аниме, которые есть в ваших списках",
+  "label_edit_pofile"             : "Редактировать профиль",
+  "label_design_watchlist"        : "Выберите оформление раздела профиля списка наблюдения",
+  "label_design_history"          : "Выбрать макет раздела профиля истории",
+  "label_design_wishlist"         : "Выберите дизайн из раздела профиля желаемого"
 
 }

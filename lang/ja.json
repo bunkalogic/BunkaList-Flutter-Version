@@ -350,5 +350,15 @@
   "label_watching_list" : "ウォッチリスト",
   "label_history_list"  : "歴史",
   "label_wishlist_list" : "ウィッシュリスト",
-  "label_epiosde_left" : "残りのエピソード"
+  "label_epiosde_left" : "残りのエピソード",
+
+  "label_edit_explorer_and_tops"  : "ブラウザとinicioオプションの編集",
+  "label_hide_all_in_your_list"   : "リストにあるすべての作品を非表示にする",
+  "label_hide_movies_in_your_list": "リストにあるすべての映画を非表示にする",
+  "label_hide_series_in_your_list": "リストにあるすべてのシリーズを非表示にする",
+  "label_hide_animes_in_your_list": "リストにあるすべてのアニメを非表示にする",
+  "label_edit_pofile"             : "プロフィールを編集",
+  "label_design_watchlist"        : "ウォッチリストプロファイルのセクションのデザインを選択してください",
+  "label_design_history"          : "履歴プロファイルセクションのレイアウトを選択してください",
+  "label_design_wishlist"         : "ウィッシュリストのプロファイルセクションからデザインを選択してください"
 }

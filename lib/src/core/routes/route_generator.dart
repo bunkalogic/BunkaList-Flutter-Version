@@ -10,10 +10,10 @@ import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_comp
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_genre_list_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/about_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/change_language_page.dart';
+import 'package:bunkalist/src/features/options/presentation/pages/edit_preferences_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/policy_page.dart';
-import 'package:bunkalist/src/features/options/presentation/pages/premium_soon_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profile_page.dart';
@@ -169,6 +169,9 @@ class RouteGeneretor{
       case '/Language':
         return SlideRightRoute(page: ChangeLanguagePage());
 
+
+       case '/EditPreferences':
+        return SlideRightRoute(page: EditPreferencesPage());
 
 
       case '/NoAds':
