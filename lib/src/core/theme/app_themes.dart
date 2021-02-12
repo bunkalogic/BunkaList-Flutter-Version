@@ -37,15 +37,14 @@ final appThemeData = {
     
     appBarTheme: AppBarTheme(
       color: Colors.grey[100],
-      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
+      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[400]),
       iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
       elevation: 5.0,
       textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.black,
         fontSize: 18.0, 
-        fontWeight: FontWeight.w600, 
-        fontStyle: FontStyle.italic
+        fontWeight: FontWeight.bold, 
         ),
 
     ),
@@ -98,15 +97,14 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.blueGrey[800],
       elevation: 5.0,
-      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[400]),
-      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[400], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.pinkAccent[400]),
+      iconTheme: IconThemeData(color: Colors.pinkAccent[400], size: 30.0),
       textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.white,
         fontSize: 18.0, 
-        fontWeight: FontWeight.w600, 
-        fontStyle: FontStyle.italic
-        ),
+        fontWeight: FontWeight.bold, 
+      ),
 
     ),
     ),
@@ -158,15 +156,14 @@ final appThemeData = {
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
       elevation: 5.0,
-      actionsIconTheme: IconThemeData(color: Colors.deepPurpleAccent[700]),
-      iconTheme: IconThemeData(color: Colors.deepPurpleAccent[700], size: 30.0),
+      actionsIconTheme: IconThemeData(color: Colors.pinkAccent[400]),
+      iconTheme: IconThemeData(color: Colors.pinkAccent[400], size: 30.0),
       textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.white,
         fontSize: 18.0, 
-        fontWeight: FontWeight.w600, 
-        fontStyle: FontStyle.italic
-        ),
+        fontWeight: FontWeight.bold, 
+      ),
 
     ),
     ),

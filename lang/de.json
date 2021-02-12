@@ -361,5 +361,8 @@
   "label_edit_pofile"             : "Bearbeite dein Profil",
   "label_design_watchlist"        : "Wählen Sie das Design des Abschnitts des Überwachungslistenprofils aus",
   "label_design_history"          : "Wählen Sie das Layout des Verlaufsprofilabschnitts aus",
-  "label_design_wishlist"         : "Wählen Sie das Design aus dem Abschnitt Wunschliste Profilaus."
+  "label_design_wishlist"         : "Wählen Sie das Design aus dem Abschnitt Wunschliste Profilaus.",
+
+  "label_dialog_logout"   : "Austragen",
+  "Label_subtitle_logout" : "Bist du sicher, dass du dich abmelden willst?"
 }

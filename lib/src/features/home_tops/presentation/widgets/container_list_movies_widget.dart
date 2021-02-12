@@ -43,10 +43,11 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),
+          SizedBox(height: 10.0,),
           Expanded(child: BlocBuilder<TopsMoviesBloc, TopsMoviesState>(
         //bloc: serviceLocator<TopsMoviesBloc>(),
         builder: (context, state) {
@@ -99,7 +100,7 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'movies');
       },
-      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
@@ -136,7 +137,7 @@ class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMov
 
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),
@@ -192,7 +193,7 @@ class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMov
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'movies');
       },
-      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }

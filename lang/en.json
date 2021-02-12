@@ -562,5 +562,8 @@
   "label_edit_pofile"             : "Edit your profile",
   "label_design_watchlist"        : "Select the design of the section of the watchlist profile",
   "label_design_history"          : "Select the layout of the history profile section",
-  "label_design_wishlist"         : "Select the design from the wishlist profile section"
+  "label_design_wishlist"         : "Select the design from the wishlist profile section",
+
+  "label_dialog_logout"   : "Sign Out",
+  "Label_subtitle_logout" : "Are you sure you want to log out?"
 }

@@ -359,6 +359,9 @@
   "label_edit_pofile"             : "Edite seu perfil",
   "label_design_watchlist"        : "Selecione o design da seção do perfil da lista de observação",
   "label_design_history"          : "Selecione o layout da seção de perfil de histórico",
-  "label_design_wishlist"         : "Selecione o design da seção de perfil da lista de desejos"
+  "label_design_wishlist"         : "Selecione o design da seção de perfil da lista de desejos",
+
+  "label_dialog_logout"   : "Sair",
+  "Label_subtitle_logout" : "Tem certeza que deseja sair?"
   
 }

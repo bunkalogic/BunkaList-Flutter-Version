@@ -42,10 +42,11 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
   Widget build(BuildContext context) {
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),
+          SizedBox(height: 10.0,),
           Expanded(child: BlocBuilder<TopsSeriesBloc, TopsSeriesState>(
         //bloc: serviceLocator<TopsSeriesBloc>(),
         builder: (context, state) {
@@ -100,7 +101,7 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
-      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
@@ -137,7 +138,7 @@ class _ContainerListSelectionSeriesWidgetState extends State<ContainerListSelect
   Widget build(BuildContext context) {
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: <Widget>[
           titleListTop(widget.title, context),
@@ -194,7 +195,7 @@ class _ContainerListSelectionSeriesWidgetState extends State<ContainerListSelect
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'tv');
       },
-      title: Text(title, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }

@@ -360,6 +360,9 @@
   "label_edit_pofile"             : "Editar tu perfil",
   "label_design_watchlist"        : "Selecionar el diseño de la seccion del perfil de progreso",
   "label_design_history"          : "Selecionar el diseño de la seccion del perfil de historial",
-  "label_design_wishlist"         : "Selecionar el diseño de la seccion del perfil de por ver"
+  "label_design_wishlist"         : "Selecionar el diseño de la seccion del perfil de por ver",
+
+  "label_dialog_logout" : "Cerrar Sesion",
+  "Label_subtitle_logout": "¿Seguro que desea cerrar la sesion?"
 
 }

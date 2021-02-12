@@ -14,7 +14,8 @@ class _ScrollRowGenresState extends State<ScrollRowGenres> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.0,
+      height: 50.0,
+      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.genres.length,
@@ -26,14 +27,14 @@ class _ScrollRowGenresState extends State<ScrollRowGenres> {
   Widget _chipsGenres(Genres genres){
 
       return Container(
-      margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+      margin: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
       child: ActionChip(
           onPressed: () {
              Navigator.pushNamed(context, '/ExplorerGenre', arguments: genres);
           },
           elevation: 4.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
+          labelPadding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+          backgroundColor: Colors.blueGrey[600].withOpacity(0.3),
           label: Text(genres.label,
             style: TextStyle(
               fontWeight: FontWeight.w600,

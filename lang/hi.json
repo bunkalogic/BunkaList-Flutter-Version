@@ -360,6 +360,9 @@
   "label_edit_pofile"             : "अपनी प्रोफाइल सम्पादित करें",
   "label_design_watchlist"        : "वॉचलिस्ट प्रोफ़ाइल के अनुभाग का डिज़ाइन चुनें",
   "label_design_history"          : "इतिहास प्रोफ़ाइल अनुभाग के लेआउट का चयन करें",
-  "label_design_wishlist"         : "इच्छा सूची अनुभाग से डिजाइन का चयन करें"
+  "label_design_wishlist"         : "इच्छा सूची अनुभाग से डिजाइन का चयन करें",
+
+  "label_dialog_logout"   : "प्रस्थान करें",
+  "Label_subtitle_logout" : "क्या आप लॉग आउट करना चाहते हैं?"
   
 }

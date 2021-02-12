@@ -360,5 +360,8 @@
   "label_edit_pofile"             : "프로필 수정",
   "label_design_watchlist"        : "관심 목록 프로필 섹션의 디자인 선택",
   "label_design_history"          : "기록 프로필 섹션의 레이아웃 선택",
-  "label_design_wishlist"         : "위시리스트 프로필 섹션에서 디자인 선택"
+  "label_design_wishlist"         : "위시리스트 프로필 섹션에서 디자인 선택",
+
+  "label_dialog_logout"   : "로그 아웃",
+  "Label_subtitle_logout" : "정말 로그 아웃 하시겠습니까?"
 }

@@ -361,6 +361,9 @@
   "label_edit_pofile"             : "Редактировать профиль",
   "label_design_watchlist"        : "Выберите оформление раздела профиля списка наблюдения",
   "label_design_history"          : "Выбрать макет раздела профиля истории",
-  "label_design_wishlist"         : "Выберите дизайн из раздела профиля желаемого"
+  "label_design_wishlist"         : "Выберите дизайн из раздела профиля желаемого",
+
+  "label_dialog_logout"   : "Выход",
+  "Label_subtitle_logout" : "Вы действительно хотите выйти?"
 
 }

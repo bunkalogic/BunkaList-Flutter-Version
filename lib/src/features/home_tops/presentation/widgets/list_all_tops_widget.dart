@@ -30,7 +30,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (prefs.whatModeIs) ? Colors.black.withOpacity(0.87) : Colors.white.withOpacity(0.87),
+      backgroundColor: (prefs.whatModeIs) ? Colors.black.withOpacity(0.90) : Colors.white.withOpacity(0.90),
       body: _listBuilderTypeOfTops(context),
       floatingActionButton: _fabCenter(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -51,7 +51,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
     return FloatingActionButton(
       elevation: 20.0,
       child: Icon(Icons.close),
-      backgroundColor: Colors.purpleAccent[700],
+      backgroundColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       onPressed: (){
         final Map<String, dynamic> mapTopIdAndTitle = new Map();
 
@@ -85,7 +85,7 @@ class _ListSelectOfTypeTopsState extends State<ListSelectOfTypeTops> {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic,
             ),

@@ -40,7 +40,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
   Widget build(BuildContext context) {
 
      return new Container(
-       height: MediaQuery.of(context).size.height / 2.6,
+       height: MediaQuery.of(context).size.height / 2.5,
        child: Column(
          children: <Widget>[
            titleListTop(widget.title, context),
@@ -95,7 +95,7 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
       onTap: () {
         Navigator.pushNamed(context, '/TopList', arguments: 'animes');
       },
-      title: Text(title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
+      title: Text(title, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),),
       trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
     );
   }
@@ -133,7 +133,7 @@ class _ContainerListSelectionAnimeWidgetState extends State<ContainerListSelecti
   Widget build(BuildContext context) {
 
      return new Container(
-       height: MediaQuery.of(context).size.height / 2.6,
+       height: MediaQuery.of(context).size.height / 2.5,
        child: Column(
          children: <Widget>[
            titleListTop(widget.title, context),

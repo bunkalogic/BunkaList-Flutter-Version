@@ -360,5 +360,9 @@
   "label_edit_pofile"             : "プロフィールを編集",
   "label_design_watchlist"        : "ウォッチリストプロファイルのセクションのデザインを選択してください",
   "label_design_history"          : "履歴プロファイルセクションのレイアウトを選択してください",
-  "label_design_wishlist"         : "ウィッシュリストのプロファイルセクションからデザインを選択してください"
+  "label_design_wishlist"         : "ウィッシュリストのプロファイルセクションからデザインを選択してください",
+
+  "label_dialog_logout"   : "サインアウト",
+  "Label_subtitle_logout" : "ログアウトしてもよろしいですか？"
+
 }

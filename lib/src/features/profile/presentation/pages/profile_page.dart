@@ -6,6 +6,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/utils/get_random_number.dart';
+import 'package:bunkalist/src/core/utils/in_app_review_util.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_media_rating_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/circular_chart_total_views.dart';
@@ -32,6 +33,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Preferences prefs = new Preferences();
   //final _controller = NativeAdmobController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getInAppReview();
+
+    prefs.totalVisitProfile += 1;
+    print('visit profile for ${prefs.totalVisitProfile}');
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
   
 
+
   //! Material Components (Android)
 
   Widget _profileDesignMaterial(BuildContext context) {
@@ -244,6 +257,9 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
   }
+
+
+
 
   
 

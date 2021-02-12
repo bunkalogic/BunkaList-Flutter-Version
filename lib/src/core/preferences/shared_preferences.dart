@@ -264,4 +264,13 @@ class Preferences{
   }
   
 
+  //? se en encarga de guardar las veces que visita el perfil
+  get totalVisitProfile {
+    return _prefs.getInt('totalVisitProfile') ?? 0;
+  }
+
+  set totalVisitProfile (int value) {
+    _prefs.setInt('totalVisitProfile', value);
+  }
+
 }

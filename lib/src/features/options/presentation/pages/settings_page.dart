@@ -57,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.only(left: 8.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold ),
+        style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold ),
       ),
     );
   }
@@ -129,9 +129,10 @@ class _SettingsPageState extends State<SettingsPage> {
         Divider(),
         SizedBox(height: 10.0,),
         BlocProvider<AuthenticationBloc>(
-      builder: (_) => serviceLocator<AuthenticationBloc>(),
-      child: ButtomLogOut(),
-      ),
+          builder: (_) => serviceLocator<AuthenticationBloc>(),
+          child: ButtomLogOut(),
+        ),
+        SizedBox(height: 10.0,),
       //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4711162518',),
       ],
     );
@@ -343,13 +344,111 @@ class ButtomLogOut extends StatelessWidget {
     return Center(
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
-        color: Colors.deepPurpleAccent[400],
+        color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         textColor: Colors.white,
-        child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 18.0),),
+        child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),),
         onPressed: (){
-          
+           _alertDialogOfDelete(context);
+        },
+
+      ),
+    );
+  }
+
+  void _alertDialogOfDelete(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context){
+        return BlocProvider<AuthenticationBloc>(
+        builder: (_) => serviceLocator<AuthenticationBloc>(),
+        child: BuildLogoutDialog(),
+      );
+      }
+    );
+  }
+
+  
+}
+
+
+class BuildLogoutDialog extends StatefulWidget {
+ 
+
+  BuildLogoutDialog();
+
+
+  @override
+  _BuildLogoutDialogState createState() => _BuildLogoutDialogState();
+}
+
+class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
+  
+   final prefs = new Preferences();
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container( 
+       child: AlertDialog(
+        shape:RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0)
+        ),   
+        backgroundColor: _getBackgroundColorTheme(),
+        elevation: 10.0,
+        title: Text(
+          AppLocalizations.of(context).translate("label_dialog_logout"),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+        ),
+        content: Text(
+          AppLocalizations.of(context).translate("Label_subtitle_logout"),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18.0),
+        ),
+        actions: <Widget>[
+          _buttonCancel(context),
+          SizedBox(width: 2,),
+          _buttonAccept(context),
+          SizedBox(width: 5,),
+        ],
+       ),
+    );
+  }
+
+  Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[900];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[900];
+    }
+    else{
+      return Colors.grey[100];
+    }
+  }
+
+  Widget _buttonCancel(BuildContext context) {
+    return FlatButton(
+      onPressed: () => Navigator.of(context).pop(),
+      color: Colors.blueGrey[500].withOpacity(0.1),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)), 
+      child: Text(
+        AppLocalizations.of(context).translate("cancel"),
+        style: TextStyle(
+          color: prefs.whatModeIs ? Colors.pinkAccent[400] :  Colors.deepPurpleAccent[400],
+          fontSize: 16.0,
+          fontWeight: FontWeight.w700
+          ),
+        )
+    );
+  }
+
+  _buttonAccept(BuildContext context) {
+    return FlatButton(
+      color: Colors.blueGrey[500].withOpacity(0.3),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      onPressed: () {
+
 
           prefs.getCurrentUsername = '';
           prefs.getCurrentUserPhoto = '';
@@ -357,18 +456,55 @@ class ButtomLogOut extends StatelessWidget {
           prefs.whatModeIs = false;
           prefs.whatDarkIs = false;
           prefs.currentUserHasToken = false;
+          prefs.isNotAds = false;
+          prefs.listMoviesIds = [];
+          prefs.listSerieIds = [];
+          prefs.listAnimeIds = [];
 
           Purchases.reset();
 
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
-          _goToLogin(context);
-        },
+          _goToLogin(context);  
 
-      ),
+        getFlushbarSuccessDelete(context);
+
+       
+      }, 
+      child: Text(
+        AppLocalizations.of(context).translate("button_logout"),
+        style: TextStyle(
+          color: prefs.whatModeIs ? Colors.pinkAccent[400] :  Colors.deepPurpleAccent[400],
+          fontSize: 16.0,
+          fontWeight: FontWeight.w700
+          ),
+        )
     );
   }
 
+
   _goToLogin(BuildContext context){
     Navigator.pushNamedAndRemoveUntil(context, '/Login', (_) => false);
+  }
+
+
+  void getFlushbarSuccessDelete(BuildContext context){
+    Flushbar(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+      borderRadius: 10,
+      backgroundGradient: LinearGradient(colors: [Colors.redAccent[700], Colors.redAccent[400]],),
+      backgroundColor: Colors.red[500],
+      boxShadows: [BoxShadow(color: Colors.red[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      duration: Duration(seconds: 2),
+      messageText: Text(
+        AppLocalizations.of(context).translate("success_delete_ouevre"),
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0
+        ),
+        ),
+    )..show(context);
+    
+
   }
 }

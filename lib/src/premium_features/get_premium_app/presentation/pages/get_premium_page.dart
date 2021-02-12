@@ -280,7 +280,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_one_year"),
-            "2.99€*",
+            "1.99€*",
              onTap: (){
               if(_offerings != null){
               final offering = _offerings.getOffering("no_ads_yearly");
@@ -292,7 +292,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             }
             }, 
             isYear: true,
-            priceForMonth: '0,24€ for month.',
+            priceForMonth: '0,16€ for month.',
             isOffer: true,
             offerPrice: "5.99€",
             shadow: [
@@ -305,7 +305,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "4.99 €",
+            "3.99 €",
              onTap: (){
               final offering = _offerings.getOffering("NoAds");
 

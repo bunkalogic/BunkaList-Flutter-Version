@@ -360,5 +360,8 @@
   "label_edit_pofile"             : "Modifica il tuo profilo",
   "label_design_watchlist"        : "Seleziona il design della sezione del profilo della lista di controllo",
   "label_design_history"          : "Seleziona il layout della sezione del profilo cronologico",
-  "label_design_wishlist"         : "Seleziona il design dalla sezione del profilo della lista dei desideri"
+  "label_design_wishlist"         : "Seleziona il design dalla sezione del profilo della lista dei desideri",
+
+  "label_dialog_logout"   : "Disconnessione",
+  "Label_subtitle_logout" : "Sei sicuro di voler uscire?"
 }

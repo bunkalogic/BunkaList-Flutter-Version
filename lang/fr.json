@@ -359,5 +359,8 @@
   "label_edit_pofile"             : "Modifier votre profil",
   "label_design_watchlist"        : "Sélectionnez le design de la section du profil de la liste de suivi",
   "label_design_history"          : "Sélectionnez la mise en page de la section du profil d'historique",
-  "label_design_wishlist"         : "Sélectionnez le design dans la section du profil de la liste de souhaits"
+  "label_design_wishlist"         : "Sélectionnez le design dans la section du profil de la liste de souhaits",
+
+  "label_dialog_logout"   : "Se déconnecter",
+  "Label_subtitle_logout" : "Êtes-vous sûr de vouloir vous déconnecter?"
 }

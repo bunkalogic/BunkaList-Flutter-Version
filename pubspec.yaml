@@ -114,6 +114,10 @@ dependencies:
   flutter_countdown_timer: ^2.1.0 
   # percent indicator
   percent_indicator: ^2.1.9
+  # in app review
+  in_app_review: ^1.0.4
+  # device info
+  device_info: ^1.0.0
 
   flutter_localizations:
     sdk: flutter
