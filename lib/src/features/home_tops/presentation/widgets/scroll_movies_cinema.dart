@@ -59,16 +59,15 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
                CarouselSlider.builder(
-                  itemCount: state.movies.length,
+                  options: CarouselOptions(   
                   enlargeCenterPage: true, 
                   height: MediaQuery.of(context).size.height / 2.6,
                   autoPlay: false,
-                  viewportFraction: 0.39,
-                  onPageChanged: (index){
-                    _movieEntity = state.movies[index];
-                  },
-                  itemBuilder: (context, i)  {
-                    _movieEntity = state.movies[i];
+                  viewportFraction: 0.50,
+                  ),
+                  itemCount: state.movies.length,
+                  itemBuilder: (context, i, h)  {
+                    _movieEntity = state.movies[h];
 
                     return _itemCarousel(context, _movieEntity);
                   } ,
@@ -245,7 +244,7 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
   @override
   void initState() {
      BlocProvider.of<SelectionmoviesBloc>(context)
-    ..add(GetSelectionMovies( Constants.selectionMoviesId, 1 ));
+    ..add(GetSelectionMovies( Constants.topsMoviesPopularId, 1 ));
     super.initState();
   }
 
@@ -273,15 +272,14 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
                CarouselSlider.builder(
-                  itemCount: state.movies.length,
+                  options: CarouselOptions(   
                   enlargeCenterPage: true, 
                   height: MediaQuery.of(context).size.height / 2.6,
                   autoPlay: false,
                   viewportFraction: 0.50,
-                  onPageChanged: (index){
-                    _movieEntity = state.movies[index];
-                  },
-                  itemBuilder: (context, i)  {
+                  ),
+                  itemCount: state.movies.length,
+                  itemBuilder: (context, i, h)  {
                     _movieEntity = state.movies[i];
 
                     return _itemCarousel(context, _movieEntity);

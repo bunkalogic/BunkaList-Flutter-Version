@@ -21,14 +21,15 @@ class CardMoreTopsWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height / 3.8,
       child: CarouselSlider(
-        enlargeCenterPage: true,
+        options: CarouselOptions(
+          enlargeCenterPage: true,
         viewportFraction: 0.9,
         aspectRatio: 2.0,
         autoPlay: true,
         autoPlayInterval: Duration(seconds: 3),
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
-        pauseAutoPlayOnTouch: Duration(seconds: 10),
+        ),
         items: <Widget>[
           _itemMoreTops(context, Color(0xFFE90F9E).withOpacity(0.5) , Color(0xFFF50057).withOpacity(0.5), Color(0xFFDE4708).withOpacity(0.5), moreMoviesLabel, 'movies'),
           _itemMoreTops(context, Color(0xFFA7FAAC).withOpacity(0.5) , Color(0xFF64FFDA).withOpacity(0.5), Color(0xFF00FFFF).withOpacity(0.5),  moreSeriesLabel,'tv'),

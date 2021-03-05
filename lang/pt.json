@@ -362,6 +362,18 @@
   "label_design_wishlist"         : "Selecione o design da seção de perfil da lista de desejos",
 
   "label_dialog_logout"   : "Sair",
-  "Label_subtitle_logout" : "Tem certeza que deseja sair?"
+  "Label_subtitle_logout" : "Tem certeza que deseja sair?",
+
+  "title_label_edit_home_tops"    : "Editar seu top top",
+  "subtitle_label_edit_home_tops" : "Você pode editar o início completamente, sendo capaz de personalizá-lo ao seu gosto. Selecionando o tipo, os gêneros ou obter o mais popular de um ano específico",
+  "label_title_select_home_tops" : "Selecione o título",
+
+  "label_select_genres" : "Gêneros (é opcional)",
+  "label_select_network": "Rede (é opcional)",
+  "label_select_idioma" : "Idioma original (é opcional)",
+  "label_select_year"   : "Ano (é opcional)",
+
+  "label_filter_personalize" : "Filtragem personalizada",
+  "btn_filter_personalize"   : "Filtro"
   
 }

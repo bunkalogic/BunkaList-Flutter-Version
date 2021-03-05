@@ -159,6 +159,19 @@ import 'package:bunkalist/src/features/search/data/datasources/search_result_rem
 import 'package:bunkalist/src/features/search/data/implementations/search_result_impl.dart';
 import 'package:bunkalist/src/features/search/domain/contracts/search_result_contract.dart';
 import 'package:bunkalist/src/features/search/domain/usescases/get_search.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/datasources/anime_personal_top_remote_data_source.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/datasources/movie_personal_top_remote_data_source.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/datasources/serie_personal_top_remote_data_source.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/implementations/anime_personal_top_impl.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/implementations/movie_personal_top_impl.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/data/implementations/serie_personal_top_impl.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/contracts/anime_personal_top_contract.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/contracts/movie_personal_top_contract.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/contracts/serie_personal_top_contract.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/usescases/get_personal_top_anime.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/usescases/get_personal_top_movies.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/usescases/get_personal_top_series.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/presentation/bloc/bloc/personaltop1_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'src/features/login/presentation/bloc/bloc_auth/bloc.dart';
 import 'src/features/login/presentation/bloc/bloc_login/bloc.dart';
@@ -177,6 +190,8 @@ Future<void> init() async {
   initCinemaMovie();
   initTopsSeries();
   initTopsAnime();
+  //! Home Tops Premium Features
+  initPremiumHomeTops();
   //! Explorer Features
   initExplorerMovies();
   initExplorerSeries();
@@ -334,6 +349,54 @@ initTopsAnime(){
 
   
 }
+
+
+initPremiumHomeTops(){
+  //? BLoc
+  serviceLocator.registerFactory(
+    () => Personaltop1Bloc(
+      personalTopsMovies: serviceLocator(),
+      personalTopsSeries: serviceLocator(),
+      personalTopsAnime: serviceLocator()
+      ),
+    ); 
+  //?UsesCases
+  serviceLocator.registerLazySingleton(() => GetPersonalTopsMovies(serviceLocator())); 
+  serviceLocator.registerLazySingleton(() => GetPersonalTopsSeries(serviceLocator())); 
+  serviceLocator.registerLazySingleton(() => GetPersonalTopsAnime(serviceLocator())); 
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<MoviePersonalTopsContract>(
+    () => MoviesPersonalTopsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  serviceLocator.registerLazySingleton<SeriePersonalTopsContract>(
+    () => SeriesPersonalTopsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    ); 
+  serviceLocator.registerLazySingleton<AnimePersonalTopsContract>(
+    () => AnimesPersonalTopsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+      ),
+    );     
+  //? Data Sources
+  serviceLocator.registerLazySingleton<MoviesPersonalTopsRemoteDataSource>(
+    () => MoviesPersonalTopsRemoteDataSourceImpl(client: serviceLocator())
+  );
+
+  serviceLocator.registerLazySingleton<SeriesPersonalTopsRemoteDataSource>(
+    () => SeriesPersonalTopsRemoteDataSourceImpl(client: serviceLocator())
+  );
+
+  serviceLocator.registerLazySingleton<AnimesPersonalTopsRemoteDataSource>(
+    () => AnimesPersonalTopsRemoteDataSourceImpl(client: serviceLocator())
+  );
+}
+
 
 initExplorerMovies(){
   //? BLoc

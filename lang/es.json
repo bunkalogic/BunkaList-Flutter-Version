@@ -363,6 +363,18 @@
   "label_design_wishlist"         : "Selecionar el diseño de la seccion del perfil de por ver",
 
   "label_dialog_logout" : "Cerrar Sesion",
-  "Label_subtitle_logout": "¿Seguro que desea cerrar la sesion?"
+  "Label_subtitle_logout": "¿Seguro que desea cerrar la sesion?",
 
+  "title_label_edit_home_tops"   : "Edita tus tops del inicio",
+  "subtitle_label_edit_home_tops": "Podras editar el inicio completamente pudiendo personalizar a tu gusto. Selecionando el tipo, los generos o obtener los mas populares de un año en concreto.",
+  "label_title_select_home_tops" : "Seleciona el titulo",
+
+  "label_select_genres" : "Generos (es opcional)",
+  "label_select_network": "Productora (es opcional)",
+  "label_select_idioma" : "Idioma Original (es opcional)",
+  "label_select_year"   : "Año (es opcional)",
+
+  "label_filter_personalize" : "Filtrado Personalizado",
+  "btn_filter_personalize"   : "Filtrar"
+  
 }

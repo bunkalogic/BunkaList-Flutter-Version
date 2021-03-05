@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/presentation/widgets/list_personalized_tops_widget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -101,6 +102,30 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
         _titleOfSectionsPremium(),
         Divider(),
         _createItemSettings(
+          icon: Icons.auto_fix_high,
+          text: AppLocalizations.of(context).translate("title_label_edit_home_tops"),
+          trailing: Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 24,
+            color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+          ),
+          onTap: (){
+
+
+            if(prefs.isNotAds){
+              Navigator.of(context).push(PageRouteBuilder(
+                opaque: true,
+                pageBuilder: (BuildContext context, _, __) => ListPersonalizedTopsWidget(),
+              ));
+            }else{
+              Navigator.pushNamed(context, '/Premium');
+            }
+            
+
+          }
+        ),
+
+        _createItemSettings(
           icon: prefs.isNotAds
             ? Icons.local_movies_outlined
             : Icons.lock_rounded, 
@@ -144,6 +169,7 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
               prefs.hideAnimeInList = value;
             }),
         ),
+        SizedBox(height: 20.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_edit_pofile")),
         Divider(),
         SizedBox(height: 10.0,),

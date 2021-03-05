@@ -6,6 +6,8 @@ import 'package:bunkalist/src/features/search/domain/entities/search_result_enti
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
 import 'package:bunkalist/src/features/search/presentation/pages/search_page.dart';
 import 'package:bunkalist/src/features/tops_favorites/presentation/pages/tops_favorites_page.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/presentation/pages/personal_home_tops.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/presentation/widgets/list_personalized_tops_widget.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flushbar/flushbar_helper.dart';
@@ -112,7 +114,7 @@ Widget _createAppBarPlatform(BuildContext context) {
           builder: (_) => serviceLocator<SearchBloc>(),
           child:SearchButton(),
         ),
-        
+        if(_selectedTabIndex == 0) EditHomeButton(),
       ],
     
     );
@@ -134,27 +136,27 @@ Widget _createAppBarPlatform(BuildContext context) {
     List<TabItem<dynamic>> items = [
       TabItem(
         icon: Icon(Icons.home_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.home, size: 26.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.home_outlined, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_top"), 
       ),
       TabItem(
         icon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.explore, size: 26.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_explore"), 
       ),
       TabItem(
         icon: Icon(Icons.person_outline, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.person, size: 26.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.person_outline, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_profile"), 
       ),
       TabItem(
         icon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.star_rate_rounded, size: 26.0, color: _getColorActiveIcon(),),
+        activeIcon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_tops"), 
       ),
       TabItem(
         icon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.settings_applications, size: 26.0, color: _getColorActiveIcon()),
+        activeIcon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorActiveIcon()),
         title: AppLocalizations.of(context).translate("btn_nav_settings"), 
       ),
       
@@ -206,7 +208,7 @@ Widget _createAppBarPlatform(BuildContext context) {
   
   switch(_selectedTabIndex){
     
-    case 0: return TopsPage();
+    case 0: return prefs.isNotAds ? PersonalHomeTops() : TopsPage();
 
     case 1: return ExplorerPage();
 
@@ -230,8 +232,13 @@ Widget _createAppBarPlatform(BuildContext context) {
 
  Color _getColorOffIcon(){
    final bool theme = prefs.whatModeIs;
+   final bool themeDark = prefs.whatDarkIs;
 
-   return theme ?  Colors.pinkAccent : Colors.deepPurpleAccent;
+   return theme 
+   ? themeDark 
+      ? Colors.grey[700] 
+      : Colors.blueGrey[500]
+   : Colors.blueGrey[300];
  }
 
 
@@ -261,7 +268,7 @@ class SearchButton extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return IconButton(
-      iconSize: 35.0,
+      iconSize: 30.0,
       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       icon: Icon(Icons.search_rounded),
       onPressed: (){
@@ -273,6 +280,41 @@ class SearchButton extends StatelessWidget{
        
       },
     );
+
+  }
+
+}
+
+
+class EditHomeButton extends StatelessWidget{
+
+  final prefs = new Preferences();
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return IconButton(
+      iconSize: 28.0,
+      color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+      icon: Icon(Icons.auto_fix_high),
+      onPressed: (){
+
+        prefs.isNotAds 
+          ? getListPersonalizeTops(context) 
+          : Navigator.pushNamed(context, '/Premium');
+        
+      },
+    );
+
+  }
+
+  void getListPersonalizeTops(BuildContext context){
+
+
+    Navigator.of(context).push(PageRouteBuilder(
+      opaque: true,
+      pageBuilder: (BuildContext context, _, __) => ListPersonalizedTopsWidget(),
+    ));
 
   }
 

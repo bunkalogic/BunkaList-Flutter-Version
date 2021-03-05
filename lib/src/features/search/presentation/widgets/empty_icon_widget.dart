@@ -1,4 +1,5 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,10 +21,12 @@ class EmptyIconWidget extends StatelessWidget {
   }
 
   Widget _iconEmpty() {
+    final Preferences prefs = Preferences();
+
     return Icon(
       Icons.error_outline,
-      color: Colors.deepPurpleAccent[400],
-      size: 80.0,
+      color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+      size: 40.0,
     );
   }
 
@@ -33,7 +36,7 @@ class EmptyIconWidget extends StatelessWidget {
       child: Text(
         AppLocalizations.of(context).translate("empty_search_label"),
         style: TextStyle(
-          fontSize: 22.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.italic
         ),

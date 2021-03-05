@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,6 +54,15 @@ class Preferences{
 
   set isNotAds (bool value) {
     _prefs.setBool('isNotAds', value);
+  }
+
+  //? se en encarga de guardar el modo de tema 
+  get isNewUserPremium {
+    return _prefs.getBool('isNewUserPremium') ?? true;
+  }
+
+  set isNewUserPremium (bool value) {
+    _prefs.setBool('isNewUserPremium', value);
   }
 
   //? se en encarga de guardar el language code 
@@ -272,5 +283,99 @@ class Preferences{
   set totalVisitProfile (int value) {
     _prefs.setInt('totalVisitProfile', value);
   }
+
+  //? se encarga de guardar object filter para home tops 1
+
+  get getHomeTops1 {
+    return json.decode(_prefs.getString('getHomeTops1')) ?? '';
+  }
+
+  set getHomeTops1  (dynamic value) {
+    _prefs.setString('getHomeTops1', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 2
+
+  get getHomeTops2 {
+    return json.decode(_prefs.getString('getHomeTops2')) ?? '';
+  }
+
+  set getHomeTops2  (dynamic value) {
+    _prefs.setString('getHomeTops2', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 3
+
+  get getHomeTops3 {
+    return json.decode(_prefs.getString('getHomeTops3')) ?? '';
+  }
+
+  set getHomeTops3  (dynamic value) {
+    _prefs.setString('getHomeTops3', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 4
+
+  get getHomeTops4 {
+    return json.decode(_prefs.getString('getHomeTops4')) ?? '';
+  }
+
+  set getHomeTops4  (dynamic value) {
+    _prefs.setString('getHomeTops4', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 5
+
+  get getHomeTops5 {
+    return json.decode(_prefs.getString('getHomeTops5')) ?? '';
+  }
+
+  set getHomeTops5  (dynamic value) {
+    _prefs.setString('getHomeTops5', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 1
+
+  get getHomeTops6 {
+    return json.decode(_prefs.getString('getHomeTops6')) ?? '';
+  }
+
+  set getHomeTops6  (dynamic value) {
+    _prefs.setString('getHomeTops6', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 7
+
+  get getHomeTops7 {
+    return json.decode(_prefs.getString('getHomeTops7')) ?? '';
+  }
+
+  set getHomeTops7  (dynamic value) {
+    _prefs.setString('getHomeTops7', json.encode(value));
+  }
+
+
+  //? se encarga de guardar object filter para home tops 8
+
+  get getHomeTops8 {
+    return json.decode(_prefs.getString('getHomeTops8')) ?? '';
+  }
+
+  set getHomeTops8  (dynamic value) {
+    _prefs.setString('getHomeTops8', json.encode(value));
+  }
+
+  //? se encarga de guardar object filter para home tops 9
+
+  get getHomeTops9 {
+    return json.decode(_prefs.getString('getHomeTops9')) ?? '';
+  }
+
+  set getHomeTops9  (dynamic value) {
+    _prefs.setString('getHomeTops9', json.encode(value));
+  }
+
+  
+
 
 }

@@ -419,6 +419,7 @@ class ButtonUpdateTopFavorites extends StatefulWidget {
 class _ButtonUpdateTopFavoritesState extends State<ButtonUpdateTopFavorites> {
   
   int position = 0;
+  Preferences prefs = Preferences();
 
   @override
   Widget build(BuildContext context) {
@@ -454,13 +455,13 @@ class _ButtonUpdateTopFavoritesState extends State<ButtonUpdateTopFavorites> {
                 padding: const EdgeInsets.only(right: 1.0),
                 child: Icon(
                   Icons.save_rounded,
-                  color: Colors.pinkAccent[400],
+                  color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400]
                 ),
               ),
               Text(
                 AppLocalizations.of(context).translate("btn_label_edit_save_top"),
                 style: TextStyle(
-                  color: Colors.pinkAccent[400],
+                  color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
                   fontSize: 16.0,
                   fontWeight: FontWeight.w700
                 ),

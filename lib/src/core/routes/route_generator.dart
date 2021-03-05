@@ -7,6 +7,7 @@ import 'package:bunkalist/src/features/base/presentation/pages/intro_slider_page
 import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/splash_page.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_company_list_page.dart';
+import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_filter_list_page.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_genre_list_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/about_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/change_language_page.dart';
@@ -21,6 +22,8 @@ import 'package:bunkalist/src/features/tops_favorites/presentation/pages/top_det
 import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/create_top_favorites_widget.dart';
 import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/reorder_top_widget.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/pages/get_premium_page.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/domain/entities/filter_entity.dart';
+import 'package:bunkalist/src/premium_features/home_tops_premium/presentation/pages/personal_home_tops_details_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bunkalist/src/core/routes/route_error.dart';
@@ -139,7 +142,21 @@ class RouteGeneretor{
         if(args is Map){
           return SlideRightRoute(page: CreateTopFaviritesWidget(data: args,));   
         }
+       return routeError(); 
+
+      case '/ExplorerFilter':
+        if(args is FilterParams){
+          return SlideRightRoute(page: ExplorerFilterPage(data: args,));   
+        }
+       return routeError();
+
+      case '/HomeTopsPersonalDetails':
+        if(args is FilterParams){
+          return SlideRightRoute(page: PersonalHomeTopsDetailsPage(data: args,));   
+        }
        return routeError();  
+
+
 
       case '/ListFavProfile':
         return SlideRightRoute(page: ListFavoriteProfilePage());

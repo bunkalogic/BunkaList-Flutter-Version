@@ -60,12 +60,14 @@ class _ContainerListAnimeWidgetState extends State<ContainerListAnimeWidget> {
 
                 return Container(   
                child: CarouselSlider.builder(
-                 enlargeCenterPage: true, 
-                 aspectRatio: 16 / 9,
-                 autoPlay: false,
-                 viewportFraction: 0.35,
+                 options: CarouselOptions(
+                  enlargeCenterPage: true, 
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  viewportFraction: 0.35,
+                 ),
                  itemCount: state.animes.length,
-                 itemBuilder: (context, i) => ItemPosterAnimes(state.animes[i])
+                 itemBuilder: (context, i, h) => ItemPosterAnimes(state.animes[i])
                ),
              );
 
@@ -153,12 +155,14 @@ class _ContainerListSelectionAnimeWidgetState extends State<ContainerListSelecti
 
                 return Container(   
                child: CarouselSlider.builder(
-                 enlargeCenterPage: true, 
-                 aspectRatio: 16 / 9,
-                 autoPlay: false,
-                 viewportFraction: 0.35,
+                 options: CarouselOptions(
+                  enlargeCenterPage: true, 
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  viewportFraction: 0.35,
+                 ),
                  itemCount: state.animes.length,
-                 itemBuilder: (context, i) => ItemPosterAnimes(state.animes[i])
+                 itemBuilder: (context, i, h) => ItemPosterAnimes(state.animes[i])
                ),
              );
 

@@ -101,13 +101,15 @@ class _CarouselPlanToWatchState extends State<CarouselPlanToWatch> {
     return Container(
       padding: const EdgeInsets.only(top: 15.0),
       child: CarouselSlider.builder(
-        enlargeCenterPage: true, 
-        height: 400,
-        autoPlay: false,
-        enableInfiniteScroll: widget.ouevreList.length > 2,
-        viewportFraction: 0.45,
+        options: CarouselOptions(
+          enlargeCenterPage: true, 
+          height: 400,
+          autoPlay: false,
+          enableInfiniteScroll: widget.ouevreList.length > 2,
+          viewportFraction: 0.45,
+        ),
         itemCount: widget.ouevreList.length,
-        itemBuilder: (context, i) => _itemPoster( widget.ouevreList[i]),
+        itemBuilder: (context, i, h) => _itemPoster( widget.ouevreList[i]),
       ),
     );
   }

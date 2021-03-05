@@ -364,5 +364,17 @@
   "label_design_wishlist"         : "Wählen Sie das Design aus dem Abschnitt Wunschliste Profilaus.",
 
   "label_dialog_logout"   : "Austragen",
-  "Label_subtitle_logout" : "Bist du sicher, dass du dich abmelden willst?"
+  "Label_subtitle_logout" : "Bist du sicher, dass du dich abmelden willst?",
+
+  "title_label_edit_home_tops"    : "Bearbeiten Sie Ihre Top-Tops",
+  "subtitle_label_edit_home_tops" : "Sie können den Start vollständig bearbeiten, um ihn an Ihren Wünschen anpassen zu können. Auswählen des Typs, der Genres oder der Auswählen des Genres oder der Beliebtesten des beliebtesten eines bestimmten Jahres.",
+  "label_title_select_home_tops" : "Wählen Sie den Titel",
+
+  "label_select_genres" : "Genres (ist optional)",
+  "label_select_network": "Netzwerk (ist optional)",
+  "label_select_idioma" : "Originalsprache (ist optional)",
+  "label_select_year"   : "Jahr (ist optional)",
+
+  "label_filter_personalize" : "Benutzerdefinierte Filterung",
+  "btn_filter_personalize"   : "Filter"
 }

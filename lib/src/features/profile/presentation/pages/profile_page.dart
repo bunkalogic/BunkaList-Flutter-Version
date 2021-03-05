@@ -38,10 +38,12 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
 
-    getInAppReview();
-
     prefs.totalVisitProfile += 1;
     print('visit profile for ${prefs.totalVisitProfile}');
+
+    getInAppReview();
+
+    
 
   }
 

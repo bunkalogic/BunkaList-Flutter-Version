@@ -565,5 +565,17 @@
   "label_design_wishlist"         : "Select the design from the wishlist profile section",
 
   "label_dialog_logout"   : "Sign Out",
-  "Label_subtitle_logout" : "Are you sure you want to log out?"
+  "Label_subtitle_logout" : "Are you sure you want to log out?",
+
+  "title_label_edit_home_tops"    : "Edit your top tops",
+  "subtitle_label_edit_home_tops" : "You can edit the start completely, being able to customize it to your liking. Selecting the type, the genres or obtaining the most popular of a specific year.",
+  "label_title_select_home_tops" : "Select the title",
+
+  "label_select_genres" : "Genres (is optional)",
+  "label_select_network": "Network (is optional)",
+  "label_select_idioma" : "Original language (is optional)",
+  "label_select_year"   : "Year (is optional)",
+
+  "label_filter_personalize" : "Custom filtering",
+  "btn_filter_personalize"   : "Filter"
 }

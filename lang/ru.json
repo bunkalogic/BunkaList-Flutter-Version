@@ -364,6 +364,17 @@
   "label_design_wishlist"         : "Выберите дизайн из раздела профиля желаемого",
 
   "label_dialog_logout"   : "Выход",
-  "Label_subtitle_logout" : "Вы действительно хотите выйти?"
+  "Label_subtitle_logout" : "Вы действительно хотите выйти?",
+  "title_label_edit_home_tops"    : "Отредактируйте топы",
+  "subtitle_label_edit_home_tops" : "Вы можете редактировать начать полностью, возможность настроить его по своему вкусу. Выбор типа, жанров или получение самых популярных в определенном году",
+  "label_title_select_home_tops" : "Выберите заголовок",
+
+  "label_select_genres" : "Жанры (необязательно) ",
+  "label_select_network": "Сеть (не является обязательной)",
+  "label_select_idioma" : "Оригинальный язык (не является обязательным)",
+  "label_select_year"   : "Год (не является обязательным)",
+
+  "label_filter_personalize" : "Пользовательская фильтрация",
+  "btn_filter_personalize"   : "Фильтр"
 
 }

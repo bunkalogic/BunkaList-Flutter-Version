@@ -362,5 +362,16 @@
   "label_design_wishlist"         : "Sélectionnez le design dans la section du profil de la liste de souhaits",
 
   "label_dialog_logout"   : "Se déconnecter",
-  "Label_subtitle_logout" : "Êtes-vous sûr de vouloir vous déconnecter?"
+  "Label_subtitle_logout" : "Êtes-vous sûr de vouloir vous déconnecter?",
+
+  "title_label_edit_home_tops"    : "Modifiez vos meilleurs tops",
+  "subtitle_label_edit_home_tops" : "Vous pouvez modifier le début complètement, en étant capable de le personnaliser à votre guise. Sélectionner le type, les genres ou obtenir le plus populaire d'une année spécifique.",
+  "label_title_select_home_tops" : "Sélectionnez le titre",
+
+  "label_select_genres" : "Genres (est facultatif)",
+  "label_select_network": "Réseau (est facultatif)",
+  "label_select_idioma" : "La langue originale (est facultative)",
+  "label_select_year"   : "Année (est facultatif)",
+  "label_filter_personalize" : "Filtrage personnalisé",
+  "btn_filter_personalize"   : "Filtre"
 }

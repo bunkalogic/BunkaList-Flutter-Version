@@ -363,5 +363,17 @@
   "label_design_wishlist"         : "Seleziona il design dalla sezione del profilo della lista dei desideri",
 
   "label_dialog_logout"   : "Disconnessione",
-  "Label_subtitle_logout" : "Sei sicuro di voler uscire?"
+  "Label_subtitle_logout" : "Sei sicuro di voler uscire?",
+
+  "title_label_edit_home_tops"    : "Modifica i tuoi top top",
+  "subtitle_label_edit_home_tops" : "Puoi modificare l'inizio completamente, potendolo personalizzare a tuo piacimento. Selezionando il tipo, i generi o ottenendo il più popolare di un determinato anno.",
+  "label_title_select_home_tops" : "Seleziona il titolo",
+
+  "label_select_genres" : "Generi (è facoltativo)",
+  "label_select_network": "La rete (è facoltativa)",
+  "label_select_idioma" : "Lingua originale (è facoltativa)",
+  "label_select_year"   : "Anno (è facoltativo)",
+
+  "label_filter_personalize" : "Filtro personalizzato",
+  "btn_filter_personalize"   : "Filtro"
 }

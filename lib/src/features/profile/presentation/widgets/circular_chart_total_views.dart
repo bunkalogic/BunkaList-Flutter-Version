@@ -22,10 +22,12 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
     return Container(
       height: MediaQuery.of(context).size.height / 2.6,
       child: CarouselSlider(
-        enlargeCenterPage: true,
-        viewportFraction: 0.9,
-        aspectRatio: 1.8,
-        initialPage: 1,
+        options: CarouselOptions(
+          enlargeCenterPage: true,
+          viewportFraction: 0.9,
+          aspectRatio: 1.8,
+          initialPage: 1,
+        ),
         items: <Widget>[
           _containerExample("label_total_chart_movie", 'movie'),
           _containerExample("label_total_chart_serie", 'tv'),

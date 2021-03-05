@@ -50,12 +50,15 @@ class _CaruoselAnimeSeasonWidgetState extends State<CaruoselAnimeSeasonWidget> {
 
                return Container(      
                   child: CarouselSlider.builder(
-                    enlargeCenterPage: true,
-                    viewportFraction: 0.9,
-                    aspectRatio: 2.0,
-                    autoPlay: false,
+                    options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.9,
+                      aspectRatio: 2.0,
+                      autoPlay: false,
+                    ),
+                    itemBuilder: (context, i, h) => _cardItemBuilder(context, state.animes[i]),
                     itemCount: state.animes.length,
-                    itemBuilder: (context, i) => _cardItemBuilder(context, state.animes[i]),
+                    
                   ),
               );
 

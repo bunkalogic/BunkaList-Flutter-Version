@@ -51,14 +51,15 @@ class CardTypesMoreTopsWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height / 3.8,
       child: CarouselSlider(
-        enlargeCenterPage: true,
-        viewportFraction: 0.9,
-        aspectRatio: 2.0,
-        autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        pauseAutoPlayOnTouch: Duration(seconds: 10),
+        options: CarouselOptions(
+          enlargeCenterPage: true,
+          viewportFraction: 0.9,
+          aspectRatio: 2.0,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 3),
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayCurve: Curves.fastOutSlowIn,
+        ),
         items: <Widget>[
           _itemMoreTops(context, moreMoviesLabel, 'movies', imagesMovies.first ),
           _itemMoreTops(context, moreSeriesLabel,'tv', imagesSeries.first ),

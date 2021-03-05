@@ -57,13 +57,15 @@ class _LastAddedItemState extends State<LastAddedItem> {
 
             return Container(
             child: CarouselSlider.builder(
-              enlargeCenterPage: true, 
-              height: 280,
-              autoPlay: false,
-              enableInfiniteScroll: state.ouevreList.length > 2,
-              viewportFraction: 0.45,
+              options: CarouselOptions(
+                enlargeCenterPage: true, 
+                height: 280,
+                autoPlay: false,
+                enableInfiniteScroll: state.ouevreList.length > 2,
+                viewportFraction: 0.45,
+              ),
               itemCount: state.ouevreList.length,
-              itemBuilder: (context, i) => _itemPoster( state.ouevreList[i]),
+              itemBuilder: (context, i, h) => _itemPoster( state.ouevreList[i]),
             ),
           );
 

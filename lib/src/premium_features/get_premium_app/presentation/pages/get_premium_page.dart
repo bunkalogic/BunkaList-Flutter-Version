@@ -78,6 +78,13 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           _labelCancelSubscription(),
           SizedBox(height: 25.0,),
           _labelOfUnlockFeature(),
+          SizedBox(height: 10.0,),
+          _itemUnlockFeature(
+            Icons.auto_fix_high,
+            AppLocalizations.of(context).translate("title_label_edit_home_tops"),
+            AppLocalizations.of(context).translate("subtitle_label_edit_home_tops")
+          ),
+
           _itemUnlockFeature(
             Icons.filter_9_plus_rounded,
             AppLocalizations.of(context).translate("title_item_unlock_premium_1"),
@@ -85,7 +92,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
 
           _itemUnlockFeature(
-            Icons.video_library_sharp,
+            Icons.video_collection,
             AppLocalizations.of(context).translate("title_item_unlock_premium_2"),
             AppLocalizations.of(context).translate("subtitle_item_unlock_premium_2")
           ),
@@ -280,7 +287,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_one_year"),
-            "1.99€*",
+            "2.99€*",
              onTap: (){
               if(_offerings != null){
               final offering = _offerings.getOffering("no_ads_yearly");
@@ -292,7 +299,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             }
             }, 
             isYear: true,
-            priceForMonth: '0,16€ for month.',
+            priceForMonth: '0,24€ for month.',
             isOffer: true,
             offerPrice: "5.99€",
             shadow: [
@@ -305,7 +312,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "3.99 €",
+            "4.99 €",
              onTap: (){
               final offering = _offerings.getOffering("NoAds");
 
@@ -473,7 +480,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
   Widget _itemUnlockFeature(IconData icon, String labelTitle, String label){
     return Container(
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height * 0.28,
+              height: MediaQuery.of(context).size.height * 0.32,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/card_tops_types.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/filter_personalized_dailog_widget.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_company_widget.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/scroll_row_genres.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/tab_bar_series_company_widget.dart';
@@ -133,14 +134,19 @@ class BoxSearch extends StatelessWidget {
         );
 
       },
-      child: Container(
-        height: 45.0,
-        margin: EdgeInsets.symmetric(horizontal: 25.0, vertical: 30.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: prefs.whatModeIs ? Colors.grey[100] : Colors.grey[800],
-        ),
-        child: _rowBoxSearch(context),
+      child: Row(
+        children: [
+          Container(
+            height: 45.0,
+            margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.blueGrey.withOpacity(0.2),
+            ),
+            child: _rowBoxSearch(context),
+          ),
+          _buttonFilterAdvance(context)
+        ],
       ),
     );
   }
@@ -157,23 +163,49 @@ class BoxSearch extends StatelessWidget {
 
     return Row(
       children: [
-        SizedBox(width: 10.0,),
+        SizedBox(width: 8.0,),
         Icon(
           Icons.search,
-          size: 35.0,
-          color: Colors.deepPurpleAccent,
+          size: 30.0,
+          color: prefs.whatModeIs ? Colors.pinkAccent[400]  : Colors.deepPurpleAccent[400],
         ),
-        SizedBox(width: 20.0,),
+        SizedBox(width: 10.0,),
         Text(
           labelSearch,
           style: TextStyle(
-            color: prefs.whatModeIs ? Colors.grey[900] : Colors.grey[100],
-            fontSize: 20.0,
+            color: prefs.whatModeIs ? Colors.grey[400] : Colors.grey[700],
+            fontSize: 18.0,
             fontWeight: FontWeight.w500,
             fontStyle: FontStyle.italic
           ),
-        )
+        ),
+        SizedBox(width: 25.0,),
       ],
+    );
+  }
+
+  Widget _buttonFilterAdvance(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(40),
+        color: Colors.blueGrey.withOpacity(0.2),
+      ),
+      child: IconButton(
+        icon: Icon(
+          Icons.filter_list_rounded,
+          size: 32.0,
+          color: prefs.whatModeIs ? Colors.pinkAccent[400]  : Colors.deepPurpleAccent[400],
+        ), 
+        onPressed: (){
+          
+          Navigator.of(context).push(PageRouteBuilder(
+            opaque: true,
+            pageBuilder: (BuildContext context, _, __) => BuildFilterParamsExplorerWidget(),
+          ));
+
+
+        }
+      ),
     );
   }
 }

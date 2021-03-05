@@ -363,6 +363,18 @@
   "label_design_wishlist"         : "ウィッシュリストのプロファイルセクションからデザインを選択してください",
 
   "label_dialog_logout"   : "サインアウト",
-  "Label_subtitle_logout" : "ログアウトしてもよろしいですか？"
+  "Label_subtitle_logout" : "ログアウトしてもよろしいですか？",
+
+  "title_label_edit_home_tops"    : "トップトップを編集する",
+  "subtitle_label_edit_home_tops" : "開始を完全に編集することができ、あなたの好みに合わせてカスタマイズすることができます。タイプ、ジャンル、または特定の年の最も人気のある人を取得することができます。",
+  "label_title_select_home_tops" : "タイトルを選択",
+
+  "label_select_genres" : "ジャンル（オプション）",
+  "label_select_network": "ネットワーク（オプション）",
+  "label_select_idioma" : "元の言語は（オプションです）",
+  "label_select_year"   : "年（オプション）",
+
+  "label_filter_personalize" : "カスタムフィルタリング",
+  "btn_filter_personalize"   : "フィルタ"
 
 }

@@ -66,12 +66,14 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
                return Container(
       
               child: CarouselSlider.builder(
-                enlargeCenterPage: true, 
-                aspectRatio: 16 / 9,
-                autoPlay: false,
-                viewportFraction: 0.35,
+                options: CarouselOptions(
+                  enlargeCenterPage: true, 
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  viewportFraction: 0.35,
+                ),
                 itemCount: state.movies.length,
-                itemBuilder: (context, i) =>  ItemPosterMovies(state.movies[i])
+                itemBuilder: (context, i, h) =>  ItemPosterMovies(state.movies[i])
               ),
             );
 
@@ -159,12 +161,14 @@ class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMov
                return Container(
       
               child: CarouselSlider.builder(
-                enlargeCenterPage: true, 
-                aspectRatio: 16 / 9,
-                autoPlay: false,
-                viewportFraction: 0.35,
+                options: CarouselOptions(
+                  enlargeCenterPage: true, 
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  viewportFraction: 0.35,
+                ),
                 itemCount: state.movies.length,
-                itemBuilder: (context, i) =>  ItemPosterMovies(state.movies[i])
+                itemBuilder: (context, i, h) =>  ItemPosterMovies(state.movies[i])
               ),
             );
 

@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,6 +17,8 @@ class BuildBottomModalFilter extends StatefulWidget {
 }
 
 class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
+  
+  Preferences prefs = Preferences();
   
   FilterOptions finalFilterOptions = new FilterOptions();
 
@@ -139,7 +142,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                     fontSize: 16.0
                   ),
                 ),
-                color: Colors.pinkAccent[400],
+                color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
                 onPressed: (){
                   finalFilterOptions = new FilterOptions(
                     sortBy: radioButtonGruop,
@@ -157,7 +160,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   side: BorderSide(
-                    color: Colors.pinkAccent[400]
+                    color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400]
                   )
                 ),
                 child: Text(
@@ -166,7 +169,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                     fontSize: 16.0
                   ),
                 ),
-                color: Colors.pinkAccent[400],
+                color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
                 onPressed: (){
                   Navigator.pop(context,);
                 }
@@ -200,10 +203,10 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
      return Center(
       child: ToggleButtons(
         constraints: BoxConstraints(minHeight: 35.0),
-        borderColor: Colors.pinkAccent[400],
-        fillColor: Colors.pinkAccent[400],
+        borderColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        fillColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         borderWidth: 2.0,
-        selectedBorderColor: Colors.pinkAccent[400],
+        selectedBorderColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         selectedColor: Colors.white,
         borderRadius: BorderRadius.circular(10.0),  
         children: [
@@ -264,7 +267,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.pinkAccent[400],
+          activeColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_popular'),
             textAlign: TextAlign.right,
@@ -287,7 +290,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.pinkAccent[400],
+          activeColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_vote_average'),
             textAlign: TextAlign.right,
@@ -310,7 +313,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.pinkAccent[400],
+          activeColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_vote_count'),
             textAlign: TextAlign.right,
@@ -333,7 +336,7 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
                 print(radioButtonGruop);
               });
             },
-          activeColor: Colors.pinkAccent[400],
+          activeColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           title: Text(
             AppLocalizations.of(context).translate('sort_date'),
             textAlign: TextAlign.right,
@@ -370,10 +373,10 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
    final toogleButtonsYear = Center(
           child: ToggleButtons(
             constraints: BoxConstraints(minHeight: 35.0),
-            borderColor: Colors.pinkAccent[400],
-            fillColor: Colors.pinkAccent[400],
+            borderColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+            fillColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
             borderWidth: 2.0,
-            selectedBorderColor: Colors.pinkAccent[400],
+            selectedBorderColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
             selectedColor: Colors.white,
             borderRadius: BorderRadius.circular(10.0),  
             children: [
@@ -404,8 +407,8 @@ class _BuildBottomModalFilterState extends State<BuildBottomModalFilter> {
       final sliderYear = Container(
         padding: EdgeInsets.all(8.0),
         child: Slider(
-          inactiveColor: Colors.pinkAccent[100],
-          activeColor: Colors.pinkAccent[400],
+          inactiveColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+          activeColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           label: '${_sliderYear.toInt()}',
           value: _sliderYear, 
           onChanged: (newValue){

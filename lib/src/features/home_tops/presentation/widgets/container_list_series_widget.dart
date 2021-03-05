@@ -64,12 +64,15 @@ class _ContainerListSeriesWidgetState extends State<ContainerListSeriesWidget> {
 
                 return Container(      
               child: CarouselSlider.builder(
-                 enlargeCenterPage: true, 
-                 aspectRatio: 16 / 9,
-                 autoPlay: false,
-                 viewportFraction: 0.35,
+                options: CarouselOptions(
+                  enlargeCenterPage: true, 
+                  aspectRatio: 16 / 9,
+                  autoPlay: false,
+                  viewportFraction: 0.35,
+                ),
+                
                 itemCount: state.series.length,
-                itemBuilder: (context, i) => ItemPosterSeries(state.series[i]),
+                itemBuilder: (context, i, h) => ItemPosterSeries(state.series[i]),
               ),
             );
 
@@ -158,12 +161,14 @@ class _ContainerListSelectionSeriesWidgetState extends State<ContainerListSelect
 
                 return Container(      
               child: CarouselSlider.builder(
-                 enlargeCenterPage: true, 
+                options: CarouselOptions(
+                  enlargeCenterPage: true, 
                  aspectRatio: 16 / 9,
                  autoPlay: false,
                  viewportFraction: 0.35,
+                ),
                 itemCount: state.series.length,
-                itemBuilder: (context, i) => ItemPosterSeries(state.series[i]),
+                itemBuilder: (context, i, h) => ItemPosterSeries(state.series[i]),
               ),
             );
 

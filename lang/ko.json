@@ -363,5 +363,16 @@
   "label_design_wishlist"         : "위시리스트 프로필 섹션에서 디자인 선택",
 
   "label_dialog_logout"   : "로그 아웃",
-  "Label_subtitle_logout" : "정말 로그 아웃 하시겠습니까?"
+  "Label_subtitle_logout" : "정말 로그 아웃 하시겠습니까?",
+
+  "title_label_edit_home_tops"    : "상판 수정",
+  "subtitle_label_edit_home_tops" : "시작을 완전히 편집하여 원하는대로 사용자 정의 할 수 있습니다. 유형, 장르를 선택하거나 특정 연도의 가장 인기있는 항목을 얻을 수 있습니다.",
+  "label_title_select_home_tops" : "제목 선택",
+  "label_select_genres" : "장르 (선택 사항)",
+  "label_select_network": "네트워크 (선택 사항)",
+  "label_select_idioma" : "원래 언어 (선택 사항)",
+  "label_select_year"   : "년 (선택 사항)",
+
+  "label_filter_personalize" : "맞춤 필터링",
+  "btn_filter_personalize"   : "필터"
 }

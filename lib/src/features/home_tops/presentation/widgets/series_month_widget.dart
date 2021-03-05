@@ -48,12 +48,15 @@ class _CarouselSeriesInMonthWidgetState extends State<CarouselSeriesInMonthWidge
 
                   return Container(      
                   child: CarouselSlider.builder(
-                    enlargeCenterPage: true,
-                    viewportFraction: 0.9,
-                    aspectRatio: 2.0,
-                    autoPlay: false,
+                    options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.9,
+                      aspectRatio: 2.0,
+                      autoPlay: false,
+                    ),
+                    
                     itemCount: state.series.length,
-                    itemBuilder: (context, i) => _cardItemBuilder(context, state.series[i]),
+                    itemBuilder: (context, i, h) => _cardItemBuilder(context, state.series[i]),
                   ),
               );
 

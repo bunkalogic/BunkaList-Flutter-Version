@@ -363,6 +363,17 @@
   "label_design_wishlist"         : "इच्छा सूची अनुभाग से डिजाइन का चयन करें",
 
   "label_dialog_logout"   : "प्रस्थान करें",
-  "Label_subtitle_logout" : "क्या आप लॉग आउट करना चाहते हैं?"
+  "Label_subtitle_logout" : "क्या आप लॉग आउट करना चाहते हैं?",
+
+  "title_label_edit_home_tops"    : "अपने शीर्ष शीर्ष संपादित करें",
+  "subtitle_label_edit_home_tops" : "आप अपनी पसंद के अनुसार इसे अनुकूलित करने में सक्षम होने के कारण पूरी तरह से प्रारंभ संपादित कर सकते हैं। प्रकार, शैलियों का चयन या एक विशिष्ट वर्ष के सबसे लोकप्रिय प्राप्त करना।",
+  "label_title_select_home_tops" : "शीर्षक का चयन करें",
+
+  "label_select_genres" : "शैलियों (वैकल्पिक है)",
+  "label_select_network": "नेटवर्क (वैकल्पिक है)",
+  "label_select_idioma" : "मूल भाषा (वैकल्पिक है)",
+  "label_select_year"   : "वर्ष (वैकल्पिक है)",
+  "label_filter_personalize" : "कस्टम फ़िल्टरिंग",
+  "btn_filter_personalize"   : "फ़िल्टर"
   
 }
