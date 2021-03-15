@@ -13,7 +13,7 @@ class CountDownFinishOfferWidget extends StatefulWidget {
 class _CountDownFinishOfferWidgetState extends State<CountDownFinishOfferWidget> {
   
   CountdownTimerController controller;
-  int endTime = DateTime.parse("2021-03-11 00:00:00").millisecondsSinceEpoch;
+  int endTime = DateTime.parse("2021-03-20 00:00:00").millisecondsSinceEpoch;
 
   @override
   void initState() {

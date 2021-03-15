@@ -26,8 +26,6 @@ class _BuildFilterParamsWidgetState extends State<BuildFilterParamsWidget> {
    Preferences prefs = Preferences(); 
    final _titleController  = TextEditingController();
 
-   FilterParams _newHomeTops;
-
   String _selectedType = '';
   String _selectedOrderBy = '';
   String _selectedGenre = '';
@@ -164,7 +162,7 @@ class _BuildFilterParamsWidgetState extends State<BuildFilterParamsWidget> {
               },
               selectedGenresKeyword: (String genresKey){
                 setState(() {
-                  _selectedGenre = genresKey;
+                  _selectedKeyword = genresKey;
                 });
               },
           )
@@ -412,21 +410,23 @@ class BuildSelectChoiceType extends StatefulWidget {
   _BuildSelectChoiceTypeState createState() => _BuildSelectChoiceTypeState();
 }
 
-class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> {
+class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> with AutomaticKeepAliveClientMixin {
   
   Preferences prefs = Preferences();
-  String selectedChoice = "";
+  
+  int selectedIndex = -1;
+
 
   List<Widget> _buildChoiceList(){
     
     List<Widget> choices = List();
 
-    widget.listType.forEach((label) {
+    for (var i = 0; i < widget.listType.length; i++) {
       
       choices.add(
         ChoiceChip(
           label: Text(
-            label, 
+            widget.listType[i], 
           ),
           labelStyle: TextStyle(
             fontSize: 16.0,
@@ -434,18 +434,17 @@ class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> {
           ),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
-          selected: selectedChoice == label,
+          selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0)
           ),
           elevation: 5.0,
           onSelected: (value) {
             setState(() {
-              selectedChoice = label;
 
-              int index = widget.listType.indexOf(label);
+              selectedIndex = value ? i : -1;
 
-              String type = getValueType(index);
+              String type = getValueType(i);
 
               widget.typeSelected(type);
 
@@ -453,13 +452,16 @@ class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> {
           },
         )
       );
-    });
+
+    }
 
     return choices;
   }
   
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Wrap(
       alignment: WrapAlignment.spaceEvenly,
       spacing: 8.0,
@@ -486,6 +488,9 @@ class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> {
       default: return 'tv';
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 
@@ -505,22 +510,25 @@ class BuildSelectChoiceOrder extends StatefulWidget {
   _BuildSelectChoiceOrderState createState() => _BuildSelectChoiceOrderState();
 }
 
-class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> {
+class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> with AutomaticKeepAliveClientMixin {
   
 
   Preferences prefs = Preferences();
-  String selectedChoice = "";
+  
+
+   int selectedIndex = -1;
+
 
   List<Widget> _buildChoiceList(){
     
     List<Widget> choices = List();
 
-    widget.listOrderLabel.forEach((filter) {
+    for (var i = 0; i < widget.listOrderLabel.length; i++) {
       
       choices.add(
         ChoiceChip(
           label: Text(
-            filter.label, 
+            widget.listOrderLabel[i].label, 
           ),
           labelStyle: TextStyle(
             fontSize: 14.0,
@@ -528,28 +536,32 @@ class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> {
           ),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
-          selected: selectedChoice == filter.label,
+          selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0)
           ),
           elevation: 5.0,
           onSelected: (value) {
             setState(() {
-              selectedChoice = filter.label;
 
-              widget.orderSelected(filter.value);
+              selectedIndex = value ? i : -1;
+
+              widget.orderSelected(widget.listOrderLabel[i].value);
 
             });
           },
         )
       );
-    });
+
+    }
 
     return choices;
   }
   
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Column(
       children: [
         _labelTitle(),
@@ -579,6 +591,10 @@ class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> {
       children: _buildChoiceList(),
     );
   }
+
+  
+  @override
+  bool get wantKeepAlive => true;
 }
 
 
@@ -604,7 +620,7 @@ class BuildSelectionChoiceGenres extends StatefulWidget {
   _BuildSelectionChoiceGenresState createState() => _BuildSelectionChoiceGenresState();
 }
 
-class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres> {
+class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres> with AutomaticKeepAliveClientMixin {
   
   
   Preferences prefs = Preferences();
@@ -650,11 +666,22 @@ class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres>
           onSelected: (value) {
             setState(() {
 
-              listSelect[i] = value;
+              bool isSelect = listSelect[i] = value;
+              print(isSelect);
+              if(!isSelect){
+                
+                widget.genres[i].isKeyword 
+                  ? selectKeyword.removeWhere((item) => item == widget.genres[i].id)
+                  : selectGenre.removeWhere((item) => item == widget.genres[i].id);
+              }else{
+                
+                widget.genres[i].isKeyword 
+                  ? selectKeyword.add(widget.genres[i].id)
+                  : selectGenre.add(widget.genres[i].id);
 
-              widget.genres[i].isKeyword 
-                ? selectKeyword.add(widget.genres[i].id)
-                : selectGenre.add(widget.genres[i].id);
+              }
+
+             
 
                 print(selectGenre.toString());
 
@@ -678,6 +705,8 @@ class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Column(
       children: [
         _labelTitle(),
@@ -783,6 +812,9 @@ class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres>
 
   }
 
+  @override
+  bool get wantKeepAlive => true;
+
 }
 
 
@@ -805,22 +837,23 @@ class BuildSelectionChoiceNetwork extends StatefulWidget {
   _BuildSelectionChoiceNetworkState createState() => _BuildSelectionChoiceNetworkState();
 }
 
-class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwork> {
+class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwork> with AutomaticKeepAliveClientMixin {
   
   
   Preferences prefs = Preferences();
-  String selectedChoice = "";
+
+  int selectedIndex = -1;
 
   List<Widget> _buildChoiceList(){
     
     List<Widget> choices = List();
 
-    widget.companies.forEach((company) {
+    for (var i = 0; i < widget.companies.length; i++) {
       
       choices.add(
         ChoiceChip(
           label: Text(
-            company.label, 
+            widget.companies[i].label, 
           ),
           labelStyle: TextStyle(
             fontSize: 14.0,
@@ -828,28 +861,32 @@ class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwor
           ),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
-          selected: selectedChoice == company.label,
+          selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0)
           ),
           elevation: 5.0,
           onSelected: (value) {
             setState(() {
-              selectedChoice = company.label;
 
-              widget.selectedNetwork(company.id);
+              selectedIndex = value ? i : -1;
+
+              widget.selectedNetwork(widget.companies[i].id);
 
             });
           },
         )
       );
-    });
+
+    }
 
     return choices;
   }
   
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Column(
       children: [
         _labelTitle(),
@@ -879,6 +916,9 @@ class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwor
       children: _buildChoiceList(),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 
@@ -895,9 +935,12 @@ class BuildSelectionChoiceLanguage extends StatefulWidget {
   _BuildSelectionChoiceLanguageState createState() => _BuildSelectionChoiceLanguageState();
 }
 
-class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLanguage> {
+class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLanguage> with AutomaticKeepAliveClientMixin {
+  
   Preferences prefs = Preferences();
-  String selectedChoice = "";
+
+  int selectedIndex = -1;
+
 
   List<Filters> _listOfLanguage(){
     
@@ -996,12 +1039,11 @@ class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLangu
 
     languages = _listOfLanguage();
 
-    languages.forEach((language) {
-      
+    for (var i = 0; i < languages.length; i++) {
       choices.add(
         ChoiceChip(
           label: Text(
-            language.label, 
+            languages[i].label, 
           ),
           labelStyle: TextStyle(
             fontSize: 14.0,
@@ -1009,28 +1051,33 @@ class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLangu
           ),
           backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
-          selected: selectedChoice == language.label,
+          selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0)
           ),
           elevation: 5.0,
           onSelected: (value) {
             setState(() {
-              selectedChoice = language.label;
 
-              widget.selectedLanguage(language.value);
+              selectedIndex = value ? i : -1;
+
+              widget.selectedLanguage(languages[i].value);
 
             });
           },
         )
       );
-    });
+    }
+
+    
 
     return choices;
   }
   
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Column(
       children: [
         _labelTitle(),
@@ -1060,6 +1107,9 @@ class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLangu
       children: _buildChoiceList(),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 

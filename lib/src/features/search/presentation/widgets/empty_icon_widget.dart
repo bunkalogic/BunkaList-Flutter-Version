@@ -3,8 +3,8 @@ import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 
-class EmptyIconWidget extends StatelessWidget {
-  const EmptyIconWidget({Key key}) : super(key: key);
+class EmptyResultsIconWidget extends StatelessWidget {
+  const EmptyResultsIconWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

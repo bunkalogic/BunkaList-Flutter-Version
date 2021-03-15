@@ -1,4 +1,5 @@
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/features/search/presentation/widgets/empty_icon_widget.dart';
 import 'package:bunkalist/src/premium_features/home_tops_premium/domain/entities/filter_entity.dart';
@@ -64,33 +65,39 @@ class BuildListMoviePersonalHomeTops extends StatefulWidget {
   _BuildListMoviePersonalHomeTopsState createState() => _BuildListMoviePersonalHomeTopsState();
 }
 
-class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalHomeTops> {
+class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalHomeTops> with AutomaticKeepAliveClientMixin {
 
   
-  ScrollController _scrollController;
+  // ScrollController _scrollController;
 
   
-  bool isLoading = false;
-  bool changeDesign = false;
+  bool isLoading = true;
+  // bool changeDesign = false;
   int page = 1;
 
 
   
-
   @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
-
+  void didChangeDependencies() {
+    
+    BlocProvider.of<Personaltop1Bloc>(context)
+            ..add(GetPersonalTop1(
+              page: page,
+              filterParams: widget.filterParams
+            ));
+    
+    super.didChangeDependencies();
   }
-
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Center(
       child: new Container(
         height: widget.filterParams.design ? 265.0 : 288.0,  //MediaQuery.of(context).size.height / 2.5,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _titleList(widget.filterParams.title),
             SizedBox(height: 10,),
@@ -135,23 +142,27 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
       builder: (context, state) {
         if(state is Personaltop1Initial){
 
-          if(page == 1){
-            BlocProvider.of<Personaltop1Bloc>(context)
-            ..add(GetPersonalTop1(
-              page: page,
-              filterParams: widget.filterParams
-            ));
-          }
+          // if(page == 1){
+          //   BlocProvider.of<Personaltop1Bloc>(context)
+          //   ..add(GetPersonalTop1(
+          //     page: page,
+          //     filterParams: widget.filterParams
+          //   ));
+          // }
+
+          return Center(child: LoadingCustomWidget());
           
         }
 
         if(state is Personaltop1LoadedMovies){
           
           if(state.movies.isEmpty){
-            return Center(child: EmptyIconWidget());
-          }
+            isLoaded(false);
+            return Center(child: EmptyResultsIconWidget());
+          }else{
+            isLoaded(true);
 
-          return CarouselSlider.builder(
+            return CarouselSlider.builder(
                 options: widget.filterParams.design 
                 ? containerPosterCarousel 
                 : itemPosterCarousel,
@@ -160,7 +171,10 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
                 itemBuilder: (context, i, h) => widget.filterParams.design 
                   ? ContainerPosterMovieWidget(movie: state.movies[i],) 
                   :  ItemPosterMovieWidget(movie: state.movies[i],)
-              );          
+              );     
+          }
+
+               
 
           // return NotificationListener<ScrollNotification>(
           //     onNotification: _handleScrollNotification,
@@ -181,7 +195,7 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
 
         
         if(state is ErrorPersonaltop1){
-          return Center(child: EmptyIconWidget());
+          return Center(child: EmptyResultsIconWidget());
         }
 
         return Center(child: LoadingCustomWidget());
@@ -190,36 +204,54 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
     );
   }
 
+  void isLoaded(bool isLoaded){
+    isLoading = isLoaded;
+  }
 
-  bool _handleScrollNotification(ScrollNotification notification){
-     final offsetVisibleThreshold = 50; // or something else..
+  @override
+  bool get wantKeepAlive => !isLoading;
 
-    if (notification is ScrollEndNotification &&
-    _scrollController.offset + offsetVisibleThreshold >=
-    _scrollController.position.maxScrollExtent){
-
-      isLoading = true;
-
-      (!isLoading) ? page : page++;
-
+  @override
+  void updateKeepAlive() {
+    if(!isLoading){
       BlocProvider.of<Personaltop1Bloc>(context)
       ..add(GetPersonalTop1(
         page: page,
         filterParams: widget.filterParams
       ));
-
     }
-
-    isLoading = false;
-    return isLoading;
-
+    super.updateKeepAlive();
   }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+  // bool _handleScrollNotification(ScrollNotification notification){
+  //    final offsetVisibleThreshold = 50; // or something else..
+
+  //   if (notification is ScrollEndNotification &&
+  //   _scrollController.offset + offsetVisibleThreshold >=
+  //   _scrollController.position.maxScrollExtent){
+
+  //     isLoading = true;
+
+  //     (!isLoading) ? page : page++;
+
+  //     BlocProvider.of<Personaltop1Bloc>(context)
+  //     ..add(GetPersonalTop1(
+  //       page: page,
+  //       filterParams: widget.filterParams
+  //     ));
+
+  //   }
+
+  //   isLoading = false;
+  //   return isLoading;
+
+  // }
+
+  // @override
+  // void dispose() {
+  //   _scrollController.dispose();
+  //   super.dispose();
+  // }
 
 }
 
@@ -234,32 +266,38 @@ class BuildListSeriePersonalHomeTops extends StatefulWidget {
   _BuildListSeriePersonalHomeTopsState createState() => _BuildListSeriePersonalHomeTopsState();
 }
 
-class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalHomeTops> {
+class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalHomeTops> with AutomaticKeepAliveClientMixin {
   
-  ScrollController _scrollController;
+  //ScrollController _scrollController;
 
   
-  bool isLoading = false;
-  bool changeDesign = false;
+  bool isLoading = true;
+  // bool changeDesign = false;
   int page = 1;
 
 
-  
-
   @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
+  void didChangeDependencies() {
 
+    BlocProvider.of<Personaltop1Bloc>(context)
+      ..add(GetPersonalTop1(
+        page: page,
+        filterParams: widget.filterParams
+      ));    
+
+    super.didChangeDependencies();
   }
 
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Center(
       child: new Container(
         height: widget.filterParams.design ? 265.0 : 288.0, //MediaQuery.of(context).size.height / 2.5,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _titleList(widget.filterParams.title),
             SizedBox(height: 10,),
@@ -306,23 +344,28 @@ class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalH
       builder: (context, state) {
         if(state is Personaltop1Initial){
 
-          if(page == 1){
-            BlocProvider.of<Personaltop1Bloc>(context)
-            ..add(GetPersonalTop1(
-              page: page,
-              filterParams: widget.filterParams
-            ));
-          }
+          return Center(child: LoadingCustomWidget());
+
+          // if(page == 1){
+          //   BlocProvider.of<Personaltop1Bloc>(context)
+          //   ..add(GetPersonalTop1(
+          //     page: page,
+          //     filterParams: widget.filterParams
+          //   ));
+          // }
           
         }
 
         if(state is Personaltop1LoadedSeries){
           
           if(state.series.isEmpty){
-            return Center(child: EmptyIconWidget());
-          }
-
-          return CarouselSlider.builder(
+            isLoaded(false);
+            return Center(child: EmptyResultsIconWidget());
+          }else{
+            
+            isLoaded(true);
+              
+             return CarouselSlider.builder(
                 options: widget.filterParams.design 
                 ? containerPosterCarousel 
                 : itemPosterCarousel,
@@ -332,6 +375,10 @@ class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalH
                   ? ContainerPosterSerieWidget(serie: state.series[i],) 
                   :  ItemPosterSerieWidget(series: state.series[i],)
               );
+
+          }
+
+         
 
           // return NotificationListener<ScrollNotification>(
           //     onNotification: _handleScrollNotification,
@@ -361,35 +408,54 @@ class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalH
     );
   }
 
-
-  bool _handleScrollNotification(ScrollNotification notification){
-     final offsetVisibleThreshold = 50; // or something else..
-
-    if (notification is ScrollEndNotification &&
-       _scrollController.offset + offsetVisibleThreshold >=
-        _scrollController.position.maxScrollExtent){
-
-          isLoading = true;
-
-          !isLoading ? page : page++;
-
-          BlocProvider.of<Personaltop1Bloc>(context)
-          ..add(GetPersonalTop1(
-            page: page,
-            filterParams: widget.filterParams
-          ));
-
-        }
-
-    isLoading = false;
-    return isLoading;
+  void isLoaded(bool isLoaded){
+    isLoading = isLoaded;
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
+  bool get wantKeepAlive => !isLoading;
+
+  @override
+  void updateKeepAlive() {
+    if(!isLoading){
+      BlocProvider.of<Personaltop1Bloc>(context)
+      ..add(GetPersonalTop1(
+        page: page,
+        filterParams: widget.filterParams
+      ));
+    }
+    super.updateKeepAlive();
   }
+
+
+  // bool _handleScrollNotification(ScrollNotification notification){
+  //    final offsetVisibleThreshold = 50; // or something else..
+
+  //   if (notification is ScrollEndNotification &&
+  //      _scrollController.offset + offsetVisibleThreshold >=
+  //       _scrollController.position.maxScrollExtent){
+
+  //         isLoading = true;
+
+  //         !isLoading ? page : page++;
+
+  //         BlocProvider.of<Personaltop1Bloc>(context)
+  //         ..add(GetPersonalTop1(
+  //           page: page,
+  //           filterParams: widget.filterParams
+  //         ));
+
+  //       }
+
+  //   isLoading = false;
+  //   return isLoading;
+  // }
+
+  // @override
+  // void dispose() {
+  //   _scrollController.dispose();
+  //   super.dispose();
+  // }
 }
 
 
@@ -403,33 +469,43 @@ class BuildListAnimePersonalHomeTops extends StatefulWidget {
   _BuildListAnimePersonalHomeTopsState createState() => _BuildListAnimePersonalHomeTopsState();
 }
 
-class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalHomeTops> {
+class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalHomeTops> with AutomaticKeepAliveClientMixin {
   
   
-  ScrollController _scrollController;
+  // ScrollController _scrollController;
 
   
-  bool isLoading = false;
-  bool changeDesign = false;
+  bool isLoading = true;
+  // bool changeDesign = false;
   int page = 1;
 
 
   
 
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
+  
 
+  @override
+  void didChangeDependencies() {
+    
+    BlocProvider.of<Personaltop1Bloc>(context)
+            ..add(GetPersonalTop1(
+              page: page,
+              filterParams: widget.filterParams
+            ));
+
+    super.didChangeDependencies();
   }
 
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Center(
       child: new Container(
         height: widget.filterParams.design ? 265.0 : 288.0, // MediaQuery.of(context).size.height / 2.5,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _titleList(widget.filterParams.title),
             SizedBox(height: 10,),
@@ -474,23 +550,18 @@ class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalH
       builder: (context, state) {
         if(state is Personaltop1Initial){
 
-          if(page == 1){
-            BlocProvider.of<Personaltop1Bloc>(context)
-            ..add(GetPersonalTop1(
-              page: page,
-              filterParams: widget.filterParams
-            ));
-          }
+         Center(child: LoadingCustomWidget());
           
         }
 
         if(state is Personaltop1LoadedAnimes){
           
           if(state.animes.isEmpty){
-            return Center(child: EmptyIconWidget());
-          }
-          
-          return CarouselSlider.builder(
+            isLoaded(false);
+            return Center(child: EmptyResultsIconWidget());
+          }else{
+            isLoaded(true);
+            return CarouselSlider.builder(
                 options: widget.filterParams.design 
                 ? containerPosterCarousel 
                 : itemPosterCarousel,
@@ -500,6 +571,10 @@ class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalH
                   ? ContainerPosterAnimeWidget(anime: state.animes[i],) 
                   : ItemPosterAnimeWidget(anime: state.animes[i],)
               );
+
+          }
+          
+          
 
           //  return NotificationListener<ScrollNotification>(
           //     onNotification: _handleScrollNotification,
@@ -528,35 +603,54 @@ class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalH
     );
   }
 
-
-  bool _handleScrollNotification(ScrollNotification notification){
-     final offsetVisibleThreshold = 50; // or something else..
-
-    if (notification is ScrollEndNotification &&
-       _scrollController.offset + offsetVisibleThreshold >=
-        _scrollController.position.maxScrollExtent){
-
-          isLoading = true;
-
-          !isLoading ? page : page++;
-
-          BlocProvider.of<Personaltop1Bloc>(context)
-          ..add(GetPersonalTop1(
-            page: page,
-            filterParams: widget.filterParams
-          ));
-
-          
-        }
-
-        isLoading = false;
-        return isLoading;
+  void isLoaded(bool isLoaded){
+    isLoading = isLoaded;
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
+  bool get wantKeepAlive => !isLoading;
+
+  @override
+  void updateKeepAlive() {
+    if(!isLoading){
+      BlocProvider.of<Personaltop1Bloc>(context)
+      ..add(GetPersonalTop1(
+        page: page,
+        filterParams: widget.filterParams
+      ));
+    }
+    super.updateKeepAlive();
   }
+
+
+  // bool _handleScrollNotification(ScrollNotification notification){
+  //    final offsetVisibleThreshold = 50; // or something else..
+
+  //   if (notification is ScrollEndNotification &&
+  //      _scrollController.offset + offsetVisibleThreshold >=
+  //       _scrollController.position.maxScrollExtent){
+
+  //         isLoading = true;
+
+  //         !isLoading ? page : page++;
+
+  //         BlocProvider.of<Personaltop1Bloc>(context)
+  //         ..add(GetPersonalTop1(
+  //           page: page,
+  //           filterParams: widget.filterParams
+  //         ));
+
+          
+  //       }
+
+  //       isLoading = false;
+  //       return isLoading;
+  // }
+
+  // @override
+  // void dispose() {
+  //   _scrollController.dispose();
+  //   super.dispose();
+  // }
 }
 

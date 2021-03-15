@@ -16,7 +16,7 @@ class PersonalHomeTops extends StatefulWidget {
 
 class _PersonalHomeTopsState extends State<PersonalHomeTops> {
   
-  Preferences prefs = Preferences();
+  final Preferences prefs = Preferences();
 
   
   @override

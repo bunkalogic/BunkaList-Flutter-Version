@@ -90,7 +90,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
           ));
           
-          yield* _eitherLoadedMovieOrErrorState(failureOrMovies);
+          yield* _eitherLoadedMovieOrErrorState(failureOrMovies, event.filterParams);
           return; 
         });
       }
@@ -126,8 +126,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
                 return currentState.copyWith(
                   hasReachedMax: true, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy, 
-                  latestYear: event.filterParams.year
+                  filterParams: event.filterParams
                 );
               } else {
 
@@ -135,13 +134,12 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
         
                 return Personaltop1LoadedMovies(
-                  movies: (currentState.latestYear == event.filterParams.year && currentState.latestSortBy == event.filterParams.sortBy) 
+                  movies: (currentState.filterParams == event.filterParams) 
                   ? allMovies
                   : movies, 
                   hasReachedMax: false, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy,
-                  latestYear: event.filterParams.year
+                  filterParams: event.filterParams
                 );
 
               }
@@ -179,7 +177,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
           ));
           
-          yield* _eitherLoadedSerieOrErrorState(failureOrSeries);
+          yield* _eitherLoadedSerieOrErrorState(failureOrSeries, event.filterParams);
           return; 
         });
       }
@@ -216,8 +214,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
                 return currentState.copyWith(
                   hasReachedMax: true, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy, 
-                  latestYear: event.filterParams.year
+                  filterParams: event.filterParams
                 );
               } else {
 
@@ -225,13 +222,12 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
         
                 return Personaltop1LoadedSeries(
-                  series: (currentState.latestYear == event.filterParams.year && currentState.latestSortBy == event.filterParams.sortBy) 
+                  series: (currentState.filterParams == event.filterParams) 
                   ? allSeries
                   : series, 
                   hasReachedMax: false, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy,
-                  latestYear: event.filterParams.year,
+                  filterParams: event.filterParams
                   
                 );
 
@@ -268,7 +264,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
           ));
           
-          yield* _eitherLoadedAnimeOrErrorState(failureOrAnimes);
+          yield* _eitherLoadedAnimeOrErrorState(failureOrAnimes, event.filterParams);
           return; 
         });
       }
@@ -304,8 +300,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
                 return currentState.copyWith(
                   hasReachedMax: true, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy, 
-                  latestYear: event.filterParams.year
+                  filterParams: event.filterParams
                 );
               } else {
 
@@ -313,13 +308,12 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
         
                 return Personaltop1LoadedAnimes(
-                  animes: (currentState.latestYear == event.filterParams.year && currentState.latestSortBy == event.filterParams.sortBy) 
+                  animes: (currentState.filterParams == event.filterParams) 
                   ? allAnimes
                   : animes, 
                   hasReachedMax: false, 
                   latestPage: event.page,
-                  latestSortBy: event.filterParams.sortBy,
-                  latestYear: event.filterParams.year
+                  filterParams: event.filterParams
                 );
 
               }
@@ -344,28 +338,28 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
 
   Stream<Personaltop1State> _eitherLoadedMovieOrErrorState
-  (Either<Failures, List<MovieEntity>> either) async* {
+  (Either<Failures, List<MovieEntity>> either, FilterParams filterParams) async* {
     yield either.fold(
       (failure) => ErrorPersonaltop1(message: _mapFailureToMessage(failure)), 
-      (movies)  => Personaltop1LoadedMovies(movies: movies, hasReachedMax: false, latestPage: 1,latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
+      (movies)  => Personaltop1LoadedMovies(movies: movies, hasReachedMax: false, latestPage: 1, filterParams: filterParams )
     );
   }
 
   Stream<Personaltop1State> _eitherLoadedSerieOrErrorState
-  (Either<Failures, List<SeriesEntity>> either) async* {
+  (Either<Failures, List<SeriesEntity>> either, FilterParams filterParams) async* {
     yield either.fold(
       (failure) => ErrorPersonaltop1(message: _mapFailureToMessage(failure)), 
-      (series)  => Personaltop1LoadedSeries(series: series, hasReachedMax: false, latestPage: 1,latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
+      (series)  => Personaltop1LoadedSeries(series: series, hasReachedMax: false, latestPage: 1, filterParams: filterParams)
     );
   }
 
 
 
   Stream<Personaltop1State> _eitherLoadedAnimeOrErrorState
-  (Either<Failures, List<AnimeEntity>> either) async* {
+  (Either<Failures, List<AnimeEntity>> either, FilterParams filterParams) async* {
     yield either.fold(
       (failure) => ErrorPersonaltop1(message: _mapFailureToMessage(failure)), 
-      (animes)  => Personaltop1LoadedAnimes(animes: animes, hasReachedMax: false, latestPage: 1,latestSortBy: ConstSortBy.popularityDesc, latestYear: 0)
+      (animes)  => Personaltop1LoadedAnimes(animes: animes, hasReachedMax: false, latestPage: 1, filterParams: filterParams )
     );
   }
 
