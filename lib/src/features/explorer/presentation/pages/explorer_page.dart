@@ -35,7 +35,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
       children: [
         _titleExplorer(),
         new BlocProvider(
-          builder: (_) => serviceLocator<SearchBloc>(),
+          create: (_) => serviceLocator<SearchBloc>(),
           child: BoxSearch(),
         ),
         CardTypesMoreTopsWidget(),

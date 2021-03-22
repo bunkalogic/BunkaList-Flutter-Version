@@ -47,16 +47,27 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
   Personaltop1State get initialState => Personaltop1Initial();
 
 
+  
+
+
   @override
-  Stream<Personaltop1State> transformEvents(Stream<Personaltop1Event> events, Stream<Personaltop1State> Function(Personaltop1Event event) next) {
-    return super.transformEvents( 
-      (events as Observable<Personaltop1Event>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<Personaltop1Event, Personaltop1State>>  transformEvents(
+    Stream<Personaltop1Event> events, 
+    Stream<Transition<Personaltop1Event, Personaltop1State>>  Function(Personaltop1Event event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<Personaltop1Event>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
   }
 
+ 
 
   @override
   Stream<Personaltop1State> mapEventToState(

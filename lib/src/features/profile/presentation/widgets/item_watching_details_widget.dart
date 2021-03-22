@@ -63,7 +63,7 @@ class _BuildItemWatchingDetailsWidgetState extends State<BuildItemWatchingDetail
         progressBarEpisode(),
         Positioned(
           child: new BlocProvider<AddOuevreBloc>(
-            builder: (_) => serviceLocator<AddOuevreBloc>(),
+            create: (_) => serviceLocator<AddOuevreBloc>(),
             child:  BuildEditStatusWatching(newOuevre: widget.ouevreEntity,),
           ), 
           bottom: 20,

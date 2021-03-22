@@ -166,7 +166,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         expandedHeight: MediaQuery.of(context).size.height / 2.5,
         // expandedHeight: 320.0,
         flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsHeaderInfo(id: id, type: type),
         ),
         bottom: _tabBar(),

@@ -10,7 +10,7 @@ List<MovieModel> filterMovieCurrentInList(List<MovieModel> movies){
 
   List<String> listMoviesIds = prefs.listMoviesIds;
   
-  List<MovieModel> listMoviesFilter = List<MovieModel>();
+  List<MovieModel> listMoviesFilter = [];
   
   if(listMoviesIds.isEmpty) return movies;
 
@@ -44,7 +44,7 @@ List<SeriesModel> filterSerieCurrentInList(List<SeriesModel> series){
 
   List<String> listSeriesIds = prefs.listSerieIds;
   
-  List<SeriesModel> listSerieFilter = List<SeriesModel>();
+  List<SeriesModel> listSerieFilter = [];
   
   if(listSeriesIds.isEmpty) return series;
 
@@ -74,7 +74,7 @@ List<AnimeModel> filterAnimeCurrentInList(List<AnimeModel> animes){
 
   List<String> listAnimeIds = prefs.listAnimeIds;
   
-  List<AnimeModel> listAnimeFilter = List<AnimeModel>();
+  List<AnimeModel> listAnimeFilter = [];
   
   if(listAnimeIds.isEmpty) return animes;
 

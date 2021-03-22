@@ -33,7 +33,7 @@ class _PersonalHomeTopsDetailsPageState extends State<PersonalHomeTopsDetailsPag
   @override
   Widget build(BuildContext context) {
     return new BlocProvider<Personaltop1Bloc>(
-      builder: (_) => serviceLocator<Personaltop1Bloc>(),
+      create: (_) => serviceLocator<Personaltop1Bloc>(),
       child: BuildPersonalHomeTopsDetailsListPage(filterParams: widget.data,)
     );
   }

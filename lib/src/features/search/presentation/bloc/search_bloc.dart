@@ -29,17 +29,21 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   
 
   @override
-Stream<SearchState> transformEvents(
+Stream<Transition<SearchEvent, SearchState>> transformEvents(
   Stream<SearchEvent> events,
-  Stream<SearchState> Function(SearchEvent event) next,
+  Stream<Transition<SearchEvent, SearchState>> Function(SearchEvent event) transitionFn,
 ) {
 
-  return super.transformEvents( 
-      (events as Observable<SearchEvent>).debounceTime(
-        Duration(milliseconds: 200),
-      ), 
-      next
-    );
+  return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+
+  // return super.transformEvents( 
+  //     (events as Observable<SearchEvent>).debounceTime(
+  //       Duration(milliseconds: 200),
+  //     ), 
+  //     next
+  //   );
 }
 
   @override

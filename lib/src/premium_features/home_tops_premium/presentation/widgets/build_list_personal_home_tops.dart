@@ -25,7 +25,7 @@ class _BuildListPersonalHomeTopsState extends State<BuildListPersonalHomeTops> {
   @override
   Widget build(BuildContext context) {
     return new BlocProvider<Personaltop1Bloc>(
-      builder: (_) => serviceLocator<Personaltop1Bloc>(),
+      create: (_) => serviceLocator<Personaltop1Bloc>(),
       child: getTypeBuildList()
     );
   }
@@ -93,17 +93,14 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Center(
-      child: new Container(
-        height: widget.filterParams.design ? 265.0 : 288.0,  //MediaQuery.of(context).size.height / 2.5,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _titleList(widget.filterParams.title),
-            SizedBox(height: 10,),
-            _buildListViewBuilder()
-          ],
-        ),
+    return new Container(
+      height: widget.filterParams.design ? 265.0 : 288.0,  //MediaQuery.of(context).size.height / 2.5,
+      child: Column(
+        children: [
+          _titleList(widget.filterParams.title),
+          SizedBox(height: 10,),
+          Expanded(child: _buildListViewBuilder())
+        ],
       ),
     );
   }
@@ -293,17 +290,14 @@ class _BuildListSeriePersonalHomeTopsState extends State<BuildListSeriePersonalH
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Center(
-      child: new Container(
-        height: widget.filterParams.design ? 265.0 : 288.0, //MediaQuery.of(context).size.height / 2.5,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _titleList(widget.filterParams.title),
-            SizedBox(height: 10,),
-            _buildListViewBuilder()
-          ],
-        ),
+    return new Container(
+      height: widget.filterParams.design ? 265.0 : 288.0, //MediaQuery.of(context).size.height / 2.5,
+      child: Column(
+        children: [
+          _titleList(widget.filterParams.title),
+          SizedBox(height: 10,),
+          Expanded(child: _buildListViewBuilder())
+        ],
       ),
     );
   }
@@ -501,17 +495,14 @@ class _BuildListAnimePersonalHomeTopsState extends State<BuildListAnimePersonalH
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Center(
-      child: new Container(
-        height: widget.filterParams.design ? 265.0 : 288.0, // MediaQuery.of(context).size.height / 2.5,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _titleList(widget.filterParams.title),
-            SizedBox(height: 10,),
-            _buildListViewBuilder()
-          ],
-        ),
+    return new Container(
+      height: widget.filterParams.design ? 265.0 : 288.0, // MediaQuery.of(context).size.height / 2.5,
+      child: Column(
+        children: [
+          _titleList(widget.filterParams.title),
+          SizedBox(height: 10,),
+          Expanded(child: _buildListViewBuilder())
+        ],
       ),
     );
   }

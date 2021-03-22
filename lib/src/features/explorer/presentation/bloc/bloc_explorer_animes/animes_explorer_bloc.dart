@@ -30,13 +30,26 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
   AnimesExplorerState get initialState => AnimesExplorerInitial();
 
    @override
-  Stream<AnimesExplorerState> transformEvents(Stream<AnimesExplorerEvent> events, Stream<AnimesExplorerState> Function(AnimesExplorerEvent event) next) {
-    return super.transformEvents( 
-      (events as Observable<AnimesExplorerEvent>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<AnimesExplorerEvent, AnimesExplorerState>> transformEvents(
+    Stream<AnimesExplorerEvent> events, 
+    Stream<Transition<AnimesExplorerEvent, AnimesExplorerState>> Function(AnimesExplorerEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<AnimesExplorerEvent>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
+  }
+
+  @override
+  void onTransition(Transition<AnimesExplorerEvent, AnimesExplorerState> transition) {
+    // TODO: implement onTransition
+    super.onTransition(transition);
   }
 
   @override

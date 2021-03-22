@@ -310,8 +310,8 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.orangeAccent[700], Colors.orangeAccent[400]],),
-      backgroundColor: Colors.orange[500],
-      boxShadows: [BoxShadow(color: Colors.orange[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundColor: Colors.orangeAccent[400],
+      boxShadows: [BoxShadow(color: Colors.orangeAccent[400], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_pause"),
@@ -330,8 +330,8 @@ class _BuildBottomModalPauseOrDroppedState extends State<BuildBottomModalPauseOr
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.redAccent[700], Colors.redAccent[400]],),
-      backgroundColor: Colors.red[500],
-      boxShadows: [BoxShadow(color: Colors.red[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundColor: Colors.redAccent[400],
+      boxShadows: [BoxShadow(color: Colors.redAccent[400], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_dropped"),

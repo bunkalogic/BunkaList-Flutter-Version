@@ -139,7 +139,7 @@ class AllDetailsInfoTabMovie extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           _overviewInfo(),
-          ChipsGenresWidget(genres: genreIds, type: 'movies',)
+          ChipsGenresWidget(genres: genreIds, type: 'movies', isWrap: true,)
           //_chipGenresItem()
         ],
       ),
@@ -434,7 +434,7 @@ class AllDetailsInfoTabSerie extends StatelessWidget {
           //_rowRatingAndNetwork(),
           _overviewInfo(),
           //_chipGenresItem(),
-          serie.genres == null ? Container() : ChipsGenresWidget(genres: genreIds, type: serie.type,)
+          serie.genres == null ? Container() : ChipsGenresWidget(genres: genreIds, type: serie.type, isWrap: true,)
         ],
       ),
     );
@@ -865,7 +865,7 @@ class AllDetailsInfoTabAnime extends StatelessWidget {
         children: <Widget>[
           
           _overviewInfo(),
-          ChipsGenresWidget(genres: genreIds, type: 'animes',)
+          ChipsGenresWidget(genres: genreIds, type: 'animes', isWrap: true, )
           //_chipGenresItem()
         ],
       ),

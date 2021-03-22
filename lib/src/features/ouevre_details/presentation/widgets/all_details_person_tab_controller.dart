@@ -46,21 +46,21 @@ class _AllDetailsTabPersonControllerWidgetState extends State<AllDetailsTabPerso
 
       case '[<0>]': {
         return new BlocProvider<PeopleInfoBloc>(
-          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          create: (_) => serviceLocator<PeopleInfoBloc>(),
           child: PeopleInfoTab(id: widget.idCast,),
         );
       }
 
       case '[<1>]':  {
         return new BlocProvider<PeopleInfoBloc>(
-          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          create: (_) => serviceLocator<PeopleInfoBloc>(),
           child: PeopleCastTab(id: widget.idCast,),
         );
       }
 
       case '[<2>]':  {
         return new BlocProvider<PeopleInfoBloc>(
-          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          create: (_) => serviceLocator<PeopleInfoBloc>(),
           child: PeopleCrewTab(id: widget.idCast,),
         );
       }

@@ -14,7 +14,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ButtonAddedArrowDown extends StatelessWidget{
   
@@ -34,10 +33,9 @@ class ButtonAddedArrowDown extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     
-    return PlatformIconButton(
+    return IconButton(
       padding: EdgeInsets.only(bottom: 4.0),
-      iosIcon: Icon(CupertinoIcons.down_arrow, size: 25.0,),
-      androidIcon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
+      icon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
       onPressed: () => _showBottomModal(context),
     );
   }
@@ -48,9 +46,9 @@ class ButtonAddedArrowDown extends StatelessWidget{
       isScrollControlled: true,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalStutusOptions(
             ouevre: ouevre,
             type: type,
@@ -90,11 +88,11 @@ class MultiButtonsAdded extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-         Expanded(child: _buttonActions(context, Icons.check_circle, Colors.green, ConstantsStatus.completed)), 
-         Expanded(child: _buttonActions(context, Icons.play_circle_filled, Colors.blue, ConstantsStatus.watching)),
-         Expanded(child: _buttonActions(context, Icons.pause_circle_filled, Colors.orange, ConstantsStatus.pause)),
-         Expanded(child: _buttonActions(context, Icons.remove_circle, Colors.red, ConstantsStatus.dropped)),
-         Expanded(child: _buttonActions(context, Icons.add_circle, Colors.purple, ConstantsStatus.wishlist)),
+         Expanded(child: _buttonActions(context, Icons.check_circle, Colors.greenAccent[400], ConstantsStatus.completed)), 
+         Expanded(child: _buttonActions(context, Icons.play_circle_filled, Colors.lightBlueAccent[400], ConstantsStatus.watching)),
+         Expanded(child: _buttonActions(context, Icons.pause_circle_filled, Colors.orangeAccent[400], ConstantsStatus.pause)),
+         Expanded(child: _buttonActions(context, Icons.remove_circle, Colors.redAccent[400], ConstantsStatus.dropped)),
+         Expanded(child: _buttonActions(context, Icons.add_circle, Colors.deepPurpleAccent[400], ConstantsStatus.wishlist)),
         ],
       ),
     );
@@ -152,9 +150,9 @@ class ButtonClikedAdded {
       isScrollControlled: true,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalStutusOptions(
             ouevre: ouevre,
             type: type,
@@ -211,11 +209,11 @@ class _BuildBottomModalStutusOptionsState extends State<BuildBottomModalStutusOp
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-        Flexible(child: _buttonStatus(context, completed, Colors.green[600], Icons.check_circle, ConstantsStatus.completed,), flex: 1,),
-        Flexible(child:_buttonStatus(context, watching, Colors.lightBlue[600], Icons.play_circle_filled, ConstantsStatus.watching,), flex: 1,),
-        Flexible(child:_buttonStatus(context, pause, Colors.orangeAccent[700], Icons.pause_circle_filled, ConstantsStatus.pause, ), flex: 1,),
-        Flexible(child:_buttonStatus(context, dropped, Colors.red[800], Icons.remove_circle, ConstantsStatus.dropped, ), flex: 1,),
-        Flexible(child:_buttonStatus(context, wishlist, Colors.purple[500], Icons.add_circle, ConstantsStatus.wishlist,), flex: 1,),
+        Flexible(child: _buttonStatus(context, completed, Colors.greenAccent[400], Icons.check_circle, ConstantsStatus.completed,), flex: 1,),
+        Flexible(child:_buttonStatus(context, watching, Colors.lightBlueAccent[400], Icons.play_circle_filled, ConstantsStatus.watching,), flex: 1,),
+        Flexible(child:_buttonStatus(context, pause, Colors.orangeAccent[400], Icons.pause_circle_filled, ConstantsStatus.pause, ), flex: 1,),
+        Flexible(child:_buttonStatus(context, dropped, Colors.redAccent[400], Icons.remove_circle, ConstantsStatus.dropped, ), flex: 1,),
+        Flexible(child:_buttonStatus(context, wishlist, Colors.deepPurpleAccent[400], Icons.add_circle, ConstantsStatus.wishlist,), flex: 1,),
         ],
     );
   }
@@ -317,7 +315,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) => _buildBottomModalOptionsComplete(context, newOuevre),
+      builder: (_) => _buildBottomModalOptionsComplete(context, newOuevre),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(20),
@@ -364,9 +362,9 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalCompleteSimple(newOuevre: newOuevre,),
         );   
       }, 
@@ -384,9 +382,9 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalCompleteInDetails(newOuevre: newOuevre),
         );   
       }, 
@@ -406,9 +404,9 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalWatching(newOuevre: newOuevre),
         );
       }, 
@@ -425,9 +423,9 @@ class GetBottomModalStatus {
     Flushbar(
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
-      backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
-      backgroundColor: Colors.blue[500],
-      boxShadows: [BoxShadow(color: Colors.blue[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundGradient: LinearGradient(colors: [Colors.lightBlueAccent, Colors.lightBlueAccent[400]],),
+      backgroundColor: Colors.lightBlueAccent[700],
+      boxShadows: [BoxShadow(color: Colors.lightBlueAccent[700], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_watching"),
@@ -450,9 +448,9 @@ class GetBottomModalStatus {
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
       isScrollControlled: true,
-      builder: (context) {
+      builder: (_) {
         return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalPauseOrDropped(newOuevre: newOuevre),
         );
       }, 
@@ -480,9 +478,9 @@ class GetBottomModalStatus {
     Flushbar(
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
-      backgroundGradient: LinearGradient(colors: [Colors.purpleAccent[700], Colors.purpleAccent[400]],),
-      backgroundColor: Colors.purple[500],
-      boxShadows: [BoxShadow(color: Colors.purple[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundGradient: LinearGradient(colors: [Colors.deepPurpleAccent, Colors.purpleAccent[400]],),
+      backgroundColor: Colors.purpleAccent[400],
+      boxShadows: [BoxShadow(color: Colors.purpleAccent[700], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_wish"),

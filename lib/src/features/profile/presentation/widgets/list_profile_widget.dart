@@ -55,7 +55,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
 
 
         return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TabItemCompletedWidget(type: widget.type,) //status: prefs.getfilterListCompleted ,),
           );
 
@@ -64,7 +64,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
       case '[<1>]':{
 
         return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TabItemWatchingWidget(type: widget.type, status: ListProfileQuery.Watching,),
           );
 
@@ -73,7 +73,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
       case '[<2>]':{
 
         return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TabItemPauseAndDroppedWidget(type: widget.type, status: ListProfileQuery.Pause,),
           );
 
@@ -83,7 +83,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
       case '[<3>]':{
 
         return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TabItemPauseAndDroppedWidget(type: widget.type, status: ListProfileQuery.Dropped,),
           );
 
@@ -92,7 +92,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
       case '[<4>]':{
 
         return new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TabItemWhishListWidget(type: widget.type, status: ListProfileQuery.Wishlist,),
           );
 

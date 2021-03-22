@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformScaffold(
+    return Scaffold(
       body: _createListPlatformOptions(context),
     );
   }
@@ -45,10 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
   //!  Common Components (Android & iOS)
 
   Widget _createListPlatformOptions(BuildContext context) {
-    return PlatformWidget(
-      android: (context) => _listOptionMaterial(context),
-      ios: (context) => _listOptionCupertino(context),
-    );
+    return _listOptionMaterial(context);
   }
 
   Widget _titleOfSections(String title){
@@ -129,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
         Divider(),
         SizedBox(height: 10.0,),
         BlocProvider<AuthenticationBloc>(
-          builder: (_) => serviceLocator<AuthenticationBloc>(),
+          create: (_) => serviceLocator<AuthenticationBloc>(),
           child: ButtomLogOut(),
         ),
         SizedBox(height: 10.0,),
@@ -181,7 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) => BuildBottomModalChangedTheme(), 
+      builder: (_) => BuildBottomModalChangedTheme(), 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(30),
@@ -360,9 +356,9 @@ class ButtomLogOut extends StatelessWidget {
   void _alertDialogOfDelete(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context){
+      builder: (_){
         return BlocProvider<AuthenticationBloc>(
-        builder: (_) => serviceLocator<AuthenticationBloc>(),
+        create: (_) => serviceLocator<AuthenticationBloc>(),
         child: BuildLogoutDialog(),
       );
       }

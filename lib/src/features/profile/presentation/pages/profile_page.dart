@@ -20,7 +20,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -49,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformScaffold(
+    return Scaffold(
       body: _createProfileDesign(context),
     );
   }
@@ -58,10 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
   //!  Common Components (Android & iOS)
 
   Widget _createProfileDesign(BuildContext context) {
-    return PlatformWidget(
-      android: (context) => _profileDesignMaterial(context),
-      ios: (context) => _profileDesignCupertino(context),
-    );
+    return _profileDesignMaterial(context);
   }
 
   Widget _createBox() {
@@ -129,15 +125,15 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'movie',),
           ),
         new BlocProvider<GetListsBloc>(
-          builder: (_) => serviceLocator<GetListsBloc>(),
+          create: (_) => serviceLocator<GetListsBloc>(),
           child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'tv',),
         ),
         new BlocProvider<GetListsBloc>(
-          builder: (_) => serviceLocator<GetListsBloc>(),
+          create: (_) => serviceLocator<GetListsBloc>(),
           child: TotalViewsWidget(status: ListProfileQuery.Total, type: 'anime',),
         ),
       ],
@@ -164,15 +160,15 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'movie',), flex: 1,),
           ),
         new BlocProvider<GetListsBloc>(
-          builder: (_) => serviceLocator<GetListsBloc>(),
+          create: (_) => serviceLocator<GetListsBloc>(),
           child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'tv',), flex: 1,),
         ),
         new BlocProvider<GetListsBloc>(
-          builder: (_) => serviceLocator<GetListsBloc>(),
+          create: (_) => serviceLocator<GetListsBloc>(),
           child: Expanded(child: MediaRatingWidget(status: ListProfileQuery.Completed, type: 'anime',), flex: 1,),
         ),
       ],
@@ -194,10 +190,7 @@ class _ProfilePageState extends State<ProfilePage> {
   
 
   Widget _buttomPlatformList(BuildContext context){
-    return PlatformWidget(
-        android: (context) => _buttonsTypeListMaterial(context),
-        ios: (context) => _buttonsTypeListCupertino(context),
-    );
+    return _buttonsTypeListMaterial(context);
   }
   
 
@@ -278,19 +271,19 @@ class _ProfilePageState extends State<ProfilePage> {
         _titleScrollSection('The last views of Movies :'),
         SizedBox(height: 5.0,),
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
           ),
         _titleScrollSection('The last views of Series :'),
         SizedBox(height: 10.0,),
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
           ),
         _titleScrollSection('The last views of Animes :'),
         SizedBox(height: 10.0,),
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
           ),
       ],

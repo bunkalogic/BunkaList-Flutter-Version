@@ -80,7 +80,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
           _peopleName(people),
           _peopleDate(people),
           new BlocProvider<PeopleInfoBloc>(
-          builder: (_) => serviceLocator<PeopleInfoBloc>(),
+          create: (_) => serviceLocator<PeopleInfoBloc>(),
           child: ContainerSocialMedia(id: widget.id,),
         ),
           _cardInfoPeople(people),

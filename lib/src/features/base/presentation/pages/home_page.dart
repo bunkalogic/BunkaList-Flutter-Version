@@ -1,6 +1,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_page.dart';
+import 'package:bunkalist/src/features/explorer/presentation/widgets/filter_personalized_dailog_widget.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
@@ -110,10 +111,11 @@ Widget _createAppBarPlatform(BuildContext context) {
       ),
 
       actions: <Widget>[
-        new BlocProvider(
-          builder: (_) => serviceLocator<SearchBloc>(),
+        if(_selectedTabIndex != 4) new BlocProvider(
+          create: (_) => serviceLocator<SearchBloc>(),
           child:SearchButton(),
         ),
+        if(_selectedTabIndex != 4) FilterButton(),
         if(_selectedTabIndex == 0) EditHomeButton(),
       ],
     
@@ -268,7 +270,7 @@ class SearchButton extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return IconButton(
-      iconSize: 30.0,
+      iconSize: 28.0,
       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       icon: Icon(Icons.search_rounded),
       onPressed: (){
@@ -285,6 +287,33 @@ class SearchButton extends StatelessWidget{
 
 }
 
+class FilterButton extends StatelessWidget{
+
+  final prefs = new Preferences();
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return IconButton(
+      iconSize: 26.0,
+      color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+      icon: Icon(Icons.filter_list_rounded),
+      onPressed: (){
+        
+         Navigator.of(context).push(PageRouteBuilder(
+            opaque: true,
+            pageBuilder: (BuildContext context, _, __) => BuildFilterParamsExplorerWidget(),
+          ));
+       
+      },
+    );
+
+  }
+
+}
+
+
+
 
 class EditHomeButton extends StatelessWidget{
 
@@ -294,7 +323,7 @@ class EditHomeButton extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return IconButton(
-      iconSize: 28.0,
+      iconSize: 26.0,
       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       icon: Icon(Icons.auto_fix_high),
       onPressed: (){

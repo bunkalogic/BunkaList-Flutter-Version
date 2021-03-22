@@ -188,7 +188,7 @@ class _TopsScrollViewHorizontalState extends State<TopsScrollViewHorizontal> {
 
 //     return Container(
 //       child: BlocProvider(
-//         builder: (context) => serviceLocator<TopsMoviesBloc>(),
+//         create: (_) => serviceLocator<TopsMoviesBloc>(),
 //         child: buildBlocBuilder(loadingPage),
 //       ),
 //     );

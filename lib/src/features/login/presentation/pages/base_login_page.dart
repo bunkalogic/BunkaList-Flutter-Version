@@ -42,12 +42,12 @@ class _LoginHomePageState extends State<LoginHomePage> {
       scrollDirection: Axis.horizontal,
       children: <Widget>[
        BlocProvider<LoginBloc>(
-      builder: (_) => serviceLocator<LoginBloc>(),
+      create: (_) => serviceLocator<LoginBloc>(),
       child: LoginWidget(),
       ),
       _baseLogin(context),
        BlocProvider<RegisterBloc>(
-      builder: (_) => serviceLocator<RegisterBloc>(),
+      create: (_) => serviceLocator<RegisterBloc>(),
       child: SignUpWidget(),
       ),
       ],
@@ -81,7 +81,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           _buttonLogin(),
           _borderWithConnect(context),
           BlocProvider<LoginBloc>(
-            builder: (_) => serviceLocator<LoginBloc>(),
+            create: (_) => serviceLocator<LoginBloc>(),
             child: ButtonSignInWithGoogle(),
           ),
         ],

@@ -31,14 +31,24 @@ class TopsMoviesBloc extends Bloc<TopsMoviesEvent, TopsMoviesState> {
 
 
   @override
-  Stream<TopsMoviesState> transformEvents(Stream<TopsMoviesEvent> events, Stream<TopsMoviesState> Function(TopsMoviesEvent event) next) {
-    return super.transformEvents( 
-      (events as Observable<TopsMoviesEvent>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<TopsMoviesEvent, TopsMoviesState>> 
+   transformEvents(
+     Stream<TopsMoviesEvent> events, 
+     Stream<Transition<TopsMoviesEvent, TopsMoviesState>> Function(TopsMoviesEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<TopsMoviesEvent>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
   }
+
+  
 
   @override
   Stream<TopsMoviesState> mapEventToState(

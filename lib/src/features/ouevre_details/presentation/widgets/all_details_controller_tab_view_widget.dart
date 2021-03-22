@@ -63,7 +63,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<0>]': {
          return new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
         );
          
@@ -71,7 +71,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<1>]': {
          return new BlocProvider<CreditsBloc>(
-          builder: (_) => serviceLocator<CreditsBloc>(),
+          create: (_) => serviceLocator<CreditsBloc>(),
           child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
         );
          
@@ -79,7 +79,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsTrailerTab(title: widget.title),
         );
          
@@ -87,7 +87,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<3>]': {
          return new BlocProvider<ReviewsBloc>(
-          builder: (_) => serviceLocator<ReviewsBloc>(),
+          create: (_) => serviceLocator<ReviewsBloc>(),
           child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
         );
          
@@ -95,7 +95,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsVideoReviewTab(title: widget.title,),
         );
          
@@ -103,7 +103,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<5>]': {
          return new BlocProvider<SimilarBloc>(
-          builder: (_) => serviceLocator<SimilarBloc>(),
+          create: (_) => serviceLocator<SimilarBloc>(),
           child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
         );
          
@@ -111,7 +111,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<6>]': {
          return new BlocProvider<RecommendationsBloc>(
-          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
         );
          
@@ -128,14 +128,14 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<0>]': {
          return new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
         );
          
         }
       case '[<1>]':  {
          return new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsSeasonTab(id: widget.id, type: widget.type,),
         );
          
@@ -143,7 +143,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsVideoReviewTab(title: widget.title,),
         );
          
@@ -151,7 +151,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<3>]': {
          return new BlocProvider<CreditsBloc>(
-          builder: (_) => serviceLocator<CreditsBloc>(),
+          create: (_) => serviceLocator<CreditsBloc>(),
           child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
         );
          
@@ -159,7 +159,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsTrailerTab(title: widget.title,),
         );
          
@@ -167,7 +167,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<5>]': {
          return new BlocProvider<ReviewsBloc>(
-          builder: (_) => serviceLocator<ReviewsBloc>(),
+          create: (_) => serviceLocator<ReviewsBloc>(),
           child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
         );
          
@@ -175,7 +175,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<6>]': {
          return new BlocProvider<SimilarBloc>(
-          builder: (_) => serviceLocator<SimilarBloc>(),
+          create: (_) => serviceLocator<SimilarBloc>(),
           child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
         );
          
@@ -183,7 +183,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<7>]': {
          return new BlocProvider<RecommendationsBloc>(
-          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
         );
          
@@ -200,14 +200,14 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<0>]': {
          return new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsInfoTab(id: widget.id, type: widget.type,),
         );
          
         }
       case '[<1>]':  {
          return new BlocProvider<OuevreDetailsBloc>(
-          builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsSeasonTab(id: widget.id, type: widget.type,),
         );
          
@@ -215,7 +215,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<2>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsVideoReviewTab(title: widget.title,),
         );
          
@@ -223,7 +223,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<3>]': {
          return new BlocProvider<CreditsBloc>(
-          builder: (_) => serviceLocator<CreditsBloc>(),
+          create: (_) => serviceLocator<CreditsBloc>(),
           child: AllDetailsCastingTab(id: widget.id, type: widget.type,),
         );
          
@@ -231,7 +231,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<4>]': {
          return new BlocProvider<VideoYoutubeBloc>(
-          builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
           child: AllDetailsTrailerTab(title: widget.title,),
         );
          
@@ -239,7 +239,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<5>]': {
          return new BlocProvider<ReviewsBloc>(
-          builder: (_) => serviceLocator<ReviewsBloc>(),
+          create: (_) => serviceLocator<ReviewsBloc>(),
           child: AllDetailsReviewTab(id: widget.id, type: widget.type,),
         );
          
@@ -247,7 +247,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<6>]': {
          return new BlocProvider<SimilarBloc>(
-          builder: (_) => serviceLocator<SimilarBloc>(),
+          create: (_) => serviceLocator<SimilarBloc>(),
           child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
         );
          
@@ -255,7 +255,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
 
       case '[<7>]':  {
          return new BlocProvider<RecommendationsBloc>(
-          builder: (_) => serviceLocator<RecommendationsBloc>(),
+          create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
         );
          
@@ -263,7 +263,7 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
       
       // case '[<8>]': {
       //    return new BlocProvider<VideoYoutubeBloc>(
-      //     builder: (_) => serviceLocator<VideoYoutubeBloc>(),
+      //     create: (_) => serviceLocator<VideoYoutubeBloc>(),
       //     child: AllDetailsOpenningTab(title: widget.title,),
       //   );
          

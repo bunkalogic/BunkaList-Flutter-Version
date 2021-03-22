@@ -35,7 +35,7 @@ class ButtomUpdateAndDelete {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (context) => _buildBottomModal(context,),
+      builder: (_) => _buildBottomModal(context,),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(30),
@@ -101,7 +101,7 @@ class ButtomUpdateAndDelete {
 
   Widget _optionFavorite(){
     return new BlocProvider<AddOuevreBloc>(
-      builder: (_) => serviceLocator<AddOuevreBloc>(),
+      create: (_) => serviceLocator<AddOuevreBloc>(),
       child: ButtonFavorite(ouevreEntity: ouevre,)
     );
   }
@@ -109,9 +109,9 @@ class ButtomUpdateAndDelete {
   void _alertDialogOfDelete(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context){
+      builder: (_){
         return BlocProvider<DeleteBloc>(
-          builder: (context) => serviceLocator<DeleteBloc>(),
+          create: (_) => serviceLocator<DeleteBloc>(),
           child: BuildDialogDelete(ouevre: ouevre, type: type,),
         );
       }

@@ -176,7 +176,7 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
           print('on tap!!! position: $position');
           showDialog(
           context: context,
-          builder: (context) {
+          builder: (_) {
             return Dialog(
             elevation: 5,
             backgroundColor: Colors.transparent,
@@ -189,7 +189,7 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
             height: 300,
             width: MediaQuery.of(context).size.width / 0.80,
             padding: const EdgeInsets.only(
-            top: 15.0,  
+            top: 25.0,  
           ),
             child: StackCard.builder(
               itemBuilder: (context, index) {
@@ -208,7 +208,7 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
               stackType: StackType.middle,
               stackOffset: const Offset(25.0, -10.0),
               dimension: StackDimension(
-                height: MediaQuery.of(context).size.height * 0.40,
+                height: 300.0, //MediaQuery.of(context).size.height * 0.40,
                 width: MediaQuery.of(context).size.width / 0.85,
               ), 
               itemCount: widget.ouevreList.length
@@ -307,7 +307,6 @@ class _ItemStackCardsState extends State<ItemStackCards> {
         padding: const EdgeInsets.all(8.0),
         child: Stack(
           fit: StackFit.expand,
-          overflow: Overflow.visible,
           clipBehavior: Clip.antiAlias,
           children: [
             _cardItem(widget.ouevreEntity),
@@ -387,10 +386,10 @@ class _ItemStackCardsState extends State<ItemStackCards> {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0)
+        borderRadius: BorderRadius.circular(15.0)
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(15.0),
         child: FadeInImage(
           placeholder: placeholder, 
           image: poster,
@@ -403,8 +402,11 @@ class _ItemStackCardsState extends State<ItemStackCards> {
   Widget _ratingOfItem(OuevreEntity item) {
     return Align(
       alignment: Alignment.topRight,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: Container(
+        margin: const EdgeInsets.only(
+          top: 16.0,
+          right: 16.0
+        ),
         child: BigFavoriteCircularChartRating(item.finalRate),
       )
     );

@@ -29,7 +29,7 @@ class _AllDetailsSeasonPageState extends State<AllDetailsSeasonPage> {
     return Scaffold(
       appBar: _appBarSeason(),
       body: BlocProvider<SeasonInfoBloc>(
-        builder: (_) => serviceLocator<SeasonInfoBloc>(),
+        create: (_) => serviceLocator<SeasonInfoBloc>(),
         child: SeasonInfoBodyWidget(
           id: widget.data['id'], 
           seasonId: widget.data['seasonId'],

@@ -30,21 +30,21 @@ class _TopsFavoritesPageState extends State<TopsFavoritesPage> {
         _labelFavorites(AppLocalizations.of(context).translate("title_top_movie"),),
         // dashed container
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: BuildSatckedCardTopFavorites(type: 'movie',),
           ),
         
         _labelFavorites(AppLocalizations.of(context).translate("title_top_serie"),),
         // dashed container
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: BuildSatckedCardTopFavorites(type: 'tv',),
           ),
           BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/3234817637',),
         _labelFavorites(AppLocalizations.of(context).translate("title_top_anime"),),
         // dashed container
          new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: BuildSatckedCardTopFavorites(type: 'anime',),
           ),
         // dashed container working in new features for create tops

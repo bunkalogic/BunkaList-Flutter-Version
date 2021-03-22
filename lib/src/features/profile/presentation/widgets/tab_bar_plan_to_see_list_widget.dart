@@ -128,15 +128,15 @@ class _TabBarPlanToWatchAddedToListsWidgetState extends State<TabBarPlanToWatchA
         controller: _tabController,
         children: [
           new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'movie',),
           ),
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'tv',),
           ),
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: PlanToWatchItem(status: ListProfileQuery.Wishlist, type: 'anime',),
           ),
         ]

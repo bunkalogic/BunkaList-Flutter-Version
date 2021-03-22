@@ -17,16 +17,16 @@ class InitialController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return BlocProvider<AuthenticationBloc>(
-    //   builder: (_) => serviceLocator<AuthenticationBloc>(),
+    //   create: (_) => serviceLocator<AuthenticationBloc>(),
     //   child: InitialControllerPage(),
     // );
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(
-          builder: (_) => serviceLocator<AuthenticationBloc>(),
+          create: (_) => serviceLocator<AuthenticationBloc>(),
         ),
         BlocProvider<UserdataBloc>(
-          builder: (_) => serviceLocator<UserdataBloc>(),
+          create: (_) => serviceLocator<UserdataBloc>(),
         ),
       ], 
       child: InitialControllerPage(),

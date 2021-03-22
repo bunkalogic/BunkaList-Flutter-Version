@@ -99,7 +99,7 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
     return TabBarView(
       children: _getListTabs(context).map((Tab tab) {
         return new BlocProvider<GetListsBloc>(
-          builder: (_) => serviceLocator<GetListsBloc>(),
+          create: (_) => serviceLocator<GetListsBloc>(),
           child: ListTabProfileWidget(idStatus: tab.key, type: _getTypeName(),),
         );
         

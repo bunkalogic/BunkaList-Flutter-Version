@@ -10,6 +10,8 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
+import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_event.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_movies/selectionmovies_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -245,6 +247,10 @@ class _CarouselMoviesSelectionWidgetState extends State<CarouselMoviesSelectionW
   void initState() {
      BlocProvider.of<SelectionmoviesBloc>(context)
     ..add(GetSelectionMovies( Constants.topsMoviesPopularId, 1 ));
+
+    // BlocProvider.of<TopsMoviesBloc>(context)
+    // ..add(GetMoviesTops(Constants.topsMoviesPopularId, 1));
+
     super.initState();
   }
 

@@ -30,14 +30,23 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
   MoviesExplorerState get initialState => MoviesExplorerInitial();
 
   @override
-  Stream<MoviesExplorerState> transformEvents(Stream<MoviesExplorerEvent> events, Stream<MoviesExplorerState> Function(MoviesExplorerEvent event) next) {
-    return super.transformEvents( 
-      (events as Observable<MoviesExplorerEvent>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<MoviesExplorerEvent, MoviesExplorerState>> transformEvents(
+    Stream<MoviesExplorerEvent> events, 
+    Stream<Transition<MoviesExplorerEvent, MoviesExplorerState>> Function(MoviesExplorerEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<MoviesExplorerEvent>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
   }
+
+  
 
   @override
   Stream<MoviesExplorerState> mapEventToState(

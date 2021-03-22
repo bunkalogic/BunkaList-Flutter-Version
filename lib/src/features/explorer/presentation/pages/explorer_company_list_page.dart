@@ -33,10 +33,10 @@ class _ExplorerCompanyListPageState extends State<ExplorerCompanyListPage> {
      return MultiBlocProvider(
       providers: [
          BlocProvider<SeriesExplorerBloc>(
-          builder: (_) => serviceLocator<SeriesExplorerBloc>(),
+          create: (_) => serviceLocator<SeriesExplorerBloc>(),
         ),
          BlocProvider<AnimesExplorerBloc>(
-          builder: (_) => serviceLocator<AnimesExplorerBloc>(),
+          create: (_) => serviceLocator<AnimesExplorerBloc>(),
         ),
       ], 
       child: BuildCompanyExplorerListPage(data: widget.data),
@@ -120,7 +120,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
               isDismissible: false,
               backgroundColor: _getBackgroundColorTheme(), 
               context: context,
-              builder: (context) => BuildBottomModalFilter(type: widget.data.type,),
+              builder: (_) => BuildBottomModalFilter(type: widget.data.type,),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30),

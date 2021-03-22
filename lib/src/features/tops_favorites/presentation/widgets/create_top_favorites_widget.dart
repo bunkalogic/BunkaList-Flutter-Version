@@ -50,7 +50,7 @@ class _CreateTopFaviritesWidgetState extends State<CreateTopFaviritesWidget> {
     final int maxSelected = widget.data['maxSelected'];
 
     return new BlocProvider<GetListsBloc>(
-      builder: (_) => serviceLocator<GetListsBloc>(),
+      create: (_) => serviceLocator<GetListsBloc>(),
       child: BuildCreateTopFavoritesWidget(type: type, maxSelected: maxSelected,)
     );
   }
@@ -174,7 +174,7 @@ class _BuildCreateTopFavoritesWidgetState extends State<BuildCreateTopFavoritesW
 
   Widget _buildButtonCreateTops(){
     return new BlocProvider<AddOuevreBloc>(
-      builder: (_) => serviceLocator<AddOuevreBloc>(),
+      create: (_) => serviceLocator<AddOuevreBloc>(),
       child: ButtonCreateTopFavorites(totalSelected: totalSelected, listFavorites: listOfSelected, topPosition: totalSelect,)
     );
   }

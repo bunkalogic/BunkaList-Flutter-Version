@@ -127,11 +127,11 @@ class _TabBarWatchingAddedToListsWidgetState extends State<TabBarWatchingAddedTo
         controller: _tabController,
         children: [
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: CardStackWatchingWidget(status: ListProfileQuery.Watching, type: 'tv',),
           ),
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: CardStackWatchingWidget(status: ListProfileQuery.Watching, type: 'anime',),
           ),
         ]

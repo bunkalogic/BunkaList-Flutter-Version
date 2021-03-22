@@ -71,7 +71,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
           Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
           //_chipGenresItem(widget.series),
-          Expanded(child: ChipsGenresWidget(genres: widget.series.genreIds.cast<int>(), type: widget.series.type,), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: widget.series.genreIds.cast<int>(), type: widget.series.type, isWrap: false,), flex: 1,),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons()),
         ],
@@ -195,7 +195,7 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
 
   Widget _rowButtons() {
     return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: MultiButtonsAdded(ouevre: widget.series, type: widget.series.type, objectType: ConstantsTypeObject.serieEntity,),
         );
   }

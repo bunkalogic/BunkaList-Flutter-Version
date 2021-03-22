@@ -256,8 +256,8 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.blueAccent[700], Colors.blueAccent[400]],),
-      backgroundColor: Colors.blue[500],
-      boxShadows: [BoxShadow(color: Colors.blue[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundColor: Colors.blueAccent[400],
+      boxShadows: [BoxShadow(color: Colors.blueAccent[400], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_watching"),

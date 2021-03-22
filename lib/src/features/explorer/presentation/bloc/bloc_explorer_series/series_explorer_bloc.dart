@@ -32,14 +32,23 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
   SeriesExplorerState get initialState => SeriesExplorerInitial();
 
   @override
-  Stream<SeriesExplorerState> transformEvents(Stream<SeriesExplorerEvent> events, Stream<SeriesExplorerState> Function(SeriesExplorerEvent event) next) {
-    return super.transformEvents( 
-      (events as Observable<SeriesExplorerEvent>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<SeriesExplorerEvent, SeriesExplorerState>> transformEvents(
+    Stream<SeriesExplorerEvent> events, 
+    Stream<Transition<SeriesExplorerEvent, SeriesExplorerState>> Function(SeriesExplorerEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<SeriesExplorerEvent>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
   }
+
+  
 
   @override
   Stream<SeriesExplorerState> mapEventToState(

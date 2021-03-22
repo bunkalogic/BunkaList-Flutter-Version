@@ -115,7 +115,7 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
 
           showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return Dialog(
               insetPadding: const EdgeInsets.symmetric(
                 horizontal: 30.0,
@@ -129,7 +129,7 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
           ); 
         },
         child: Container(
-          height: 280,
+          height: 200,
           width: MediaQuery.of(context).size.width / 0.80,
           padding: const EdgeInsets.only(
             top: 18.0,  
@@ -141,7 +141,7 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
                   top: 10.0,  
                 ),
                 child: new BlocProvider<OuevreDetailsBloc>(
-                  builder: (_) => serviceLocator<OuevreDetailsBloc>(),
+                  create: (_) => serviceLocator<OuevreDetailsBloc>(),
                   child:  prefs.currentDesignWatching 
                       ? ItemImageStackedCards(ouevreEntity: widget.ouevreList[index],) 
                       : ItemRowStackedCards(ouevreEntity: widget.ouevreList[index],), 
@@ -156,7 +156,7 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
             stackType: StackType.middle,
             stackOffset: const Offset(25.0, -10.0),
             dimension: StackDimension(
-              height: MediaQuery.of(context).size.height * 0.40,
+              height: 300,  //MediaQuery.of(context).size.height * 0.36,
               width: MediaQuery.of(context).size.width / 0.85,
             ), 
             itemCount: widget.ouevreList.length
@@ -200,9 +200,8 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Stack(
+          clipBehavior: Clip.none, 
           fit: StackFit.expand,
-          overflow: Overflow.visible,
-          clipBehavior: Clip.antiAlias,
           children: [
             _cardItem(),
             _titleOfItem(),
@@ -278,7 +277,7 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
           children: [
             _labelSeasonAndEpisode(),
             new BlocProvider<AddOuevreBloc>(
-              builder: (_) => serviceLocator<AddOuevreBloc>(),
+              create: (_) => serviceLocator<AddOuevreBloc>(),
               child: ProgressBarEpisode(ouevreEntity: widget.ouevreEntity, serieDetailsEntity: serieDetailsEntity, animeDetailsEntity: animeDetailsEntity)
             ),
           ],
@@ -328,7 +327,7 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
           children: [
             _labelSeasonAndEpisode(),
             new BlocProvider<AddOuevreBloc>(
-              builder: (_) => serviceLocator<AddOuevreBloc>(),
+              create: (_) => serviceLocator<AddOuevreBloc>(),
               child: ProgressBarEpisode(ouevreEntity: widget.ouevreEntity, serieDetailsEntity: serieDetailsEntity, animeDetailsEntity: animeDetailsEntity)
             ),
           ],
@@ -413,7 +412,7 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
          child: _itemInfo(),
-         height: 150.0,
+         height: 120.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
@@ -531,7 +530,7 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
           children: [
             _labelSeasonAndEpisode(),
             new BlocProvider<AddOuevreBloc>(
-              builder: (_) => serviceLocator<AddOuevreBloc>(),
+              create: (_) => serviceLocator<AddOuevreBloc>(),
               child: ProgressBarEpisode(ouevreEntity: widget.ouevreEntity, serieDetailsEntity: serieDetailsEntity, animeDetailsEntity: animeDetailsEntity)
             ),
           ],
@@ -581,7 +580,7 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
           children: [
             _labelSeasonAndEpisode(),
             new BlocProvider<AddOuevreBloc>(
-              builder: (_) => serviceLocator<AddOuevreBloc>(),
+              create: (_) => serviceLocator<AddOuevreBloc>(),
               child: ProgressBarEpisode(ouevreEntity: widget.ouevreEntity, serieDetailsEntity: serieDetailsEntity, animeDetailsEntity: animeDetailsEntity)
             ),
           ],

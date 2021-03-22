@@ -33,7 +33,7 @@ class _ExplorerFilterPageState extends State<ExplorerFilterPage> {
   @override
   Widget build(BuildContext context) {
     return new BlocProvider<Personaltop1Bloc>(
-      builder: (_) => serviceLocator<Personaltop1Bloc>(),
+      create: (_) => serviceLocator<Personaltop1Bloc>(),
       child: BuildExplorerFilterListPage(filterParams: widget.data,)
     );
   }

@@ -129,15 +129,15 @@ class _TabBarRecentAddedToListsWidgetState extends State<TabBarRecentAddedToList
         controller: _tabController,
         children: [
           new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: !prefs.currentDesignHistory ? LastAddedItem(status: ListProfileQuery.Last, type: 'movie',) : LastAddedItemStackedCardsWidget(status: ListProfileQuery.Last, type: 'movie',),
           ),
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: !prefs.currentDesignHistory ? LastAddedItem(status: ListProfileQuery.Last, type: 'tv',) : LastAddedItemStackedCardsWidget(status: ListProfileQuery.Last, type: 'tv',),
           ),
            new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: !prefs.currentDesignHistory ? LastAddedItem(status: ListProfileQuery.Last, type: 'anime',) : LastAddedItemStackedCardsWidget(status: ListProfileQuery.Last, type: 'anime',),
           ),
         ]

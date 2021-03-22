@@ -178,7 +178,7 @@ class RouteGeneretor{
 
       case '/Premium':
         return SlideRightRoute(page: BlocProvider<UserdataBloc>(
-            builder:(BuildContext context) => serviceLocator<UserdataBloc>(),
+            create:(BuildContext context) => serviceLocator<UserdataBloc>(),
             child: GetPremiumPage(),
           )
         );
@@ -194,7 +194,7 @@ class RouteGeneretor{
       case '/NoAds':
         return SlideRightRoute(
           page: BlocProvider<UserdataBloc>(
-            builder:(BuildContext context) => serviceLocator<UserdataBloc>(),
+            create:(BuildContext context) => serviceLocator<UserdataBloc>(),
             child: NoAdsPage(),
           )
         );

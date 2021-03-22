@@ -37,13 +37,13 @@ class _ExplorerGenreListPageState extends State<ExplorerGenreListPage> {
      return MultiBlocProvider(
       providers: [
          BlocProvider<MoviesExplorerBloc>(
-          builder: (_) => serviceLocator<MoviesExplorerBloc>(),
+          create: (_) => serviceLocator<MoviesExplorerBloc>(),
         ),
          BlocProvider<SeriesExplorerBloc>(
-          builder: (_) => serviceLocator<SeriesExplorerBloc>(),
+          create: (_) => serviceLocator<SeriesExplorerBloc>(),
         ),
          BlocProvider<AnimesExplorerBloc>(
-          builder: (_) => serviceLocator<AnimesExplorerBloc>(),
+          create: (_) => serviceLocator<AnimesExplorerBloc>(),
         ),
       ], 
       child: BuildExplorerListPage(data: widget.data),
@@ -133,7 +133,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
               isDismissible: false,
               backgroundColor: _getBackgroundColorTheme(), 
               context: context,
-              builder: (context) => BuildBottomModalFilter(type: widget.data.type,),
+              builder: (_) => BuildBottomModalFilter(type: widget.data.type,),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30),

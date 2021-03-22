@@ -108,7 +108,7 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
         height: 300,
         width: MediaQuery.of(context).size.width / 0.80,
         padding: const EdgeInsets.only(
-            top: 15.0,  
+            top: 25.0,  
           ),
         child: StackCard.builder(
           itemBuilder: (context, index) {
@@ -127,7 +127,7 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
           stackType: StackType.middle,
           stackOffset: const Offset(25.0, -10.0),
           dimension: StackDimension(
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: 300, // MediaQuery.of(context).size.height * 0.40,
             width: MediaQuery.of(context).size.width / 0.85,
           ), 
           itemCount: widget.ouevreList.length

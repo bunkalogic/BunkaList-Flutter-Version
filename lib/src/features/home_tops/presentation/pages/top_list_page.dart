@@ -34,13 +34,13 @@ class TopsListPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
          BlocProvider<TopsMoviesBloc>(
-          builder: (_) => serviceLocator<TopsMoviesBloc>(),
+          create: (_) => serviceLocator<TopsMoviesBloc>(),
         ),
          BlocProvider<TopsSeriesBloc>(
-          builder: (_) => serviceLocator<TopsSeriesBloc>(),
+          create: (_) => serviceLocator<TopsSeriesBloc>(),
         ),
          BlocProvider<TopsAnimesBloc>(
-          builder: (_) => serviceLocator<TopsAnimesBloc>(),
+          create: (_) => serviceLocator<TopsAnimesBloc>(),
         ),
       ], 
       child: BuildTopsListPage(data: data),

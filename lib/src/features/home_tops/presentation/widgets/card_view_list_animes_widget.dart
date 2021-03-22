@@ -67,7 +67,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
           Expanded(child: _rowInfoItem()),
           //SizedBox(height: 10.0,),
           // _chipGenresItem(),
-          Expanded(child: ChipsGenresWidget(genres: widget.anime.genreIds.cast<int>(), type: 'animes',), flex: 1,),
+          Expanded(child: ChipsGenresWidget(genres: widget.anime.genreIds.cast<int>(), type: 'animes', isWrap: false,), flex: 1,),
           //SizedBox(height: 35.0,),
           Expanded(child: _rowButtons()),
         ],
@@ -192,7 +192,7 @@ class _CardViewListAnimesWidgetState extends State<CardViewListAnimesWidget> {
 
   Widget _rowButtons() {
     return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: MultiButtonsAdded(ouevre: widget.anime, type: widget.anime.type, objectType: ConstantsTypeObject.animeEntity,),
         );
   

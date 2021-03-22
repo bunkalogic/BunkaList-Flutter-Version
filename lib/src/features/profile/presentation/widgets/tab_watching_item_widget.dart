@@ -120,7 +120,7 @@ class _TabItemWatchingWidgetState extends State<TabItemWatchingWidget> {
           }else{
             showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return Dialog(
               insetPadding: const EdgeInsets.symmetric(
                 horizontal: 30.0,

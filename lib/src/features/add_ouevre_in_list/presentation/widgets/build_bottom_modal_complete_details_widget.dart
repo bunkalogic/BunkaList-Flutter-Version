@@ -357,8 +357,8 @@ class _BuildBottomModalCompleteInDetailsState extends State<BuildBottomModalComp
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       borderRadius: 10,
       backgroundGradient: LinearGradient(colors: [Colors.greenAccent[700], Colors.greenAccent[400]],),
-      backgroundColor: Colors.green[500],
-      boxShadows: [BoxShadow(color: Colors.green[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
+      backgroundColor: Colors.greenAccent[400],
+      boxShadows: [BoxShadow(color: Colors.greenAccent[400], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 3),
       messageText: Text(
         AppLocalizations.of(context).translate("added_success_completed"),

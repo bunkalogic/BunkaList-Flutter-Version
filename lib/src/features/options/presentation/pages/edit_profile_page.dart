@@ -16,7 +16,7 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<EditprofileBloc>(
-      builder: (BuildContext context) => serviceLocator<EditprofileBloc>(),
+      create: (BuildContext context) => serviceLocator<EditprofileBloc>(),
       child: BuildEditProfilePage(),
     );
   }

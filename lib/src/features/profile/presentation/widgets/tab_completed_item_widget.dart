@@ -168,7 +168,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
               isDismissible: false,
               backgroundColor: _getBackgroundColorTheme(), 
               context: context,
-              builder: (context) => BuildBottomFilterCompleted(),
+              builder: (_) => BuildBottomFilterCompleted(),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30),
@@ -263,7 +263,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
           showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return Dialog(
               insetPadding: const EdgeInsets.symmetric(
                 horizontal: 30.0,

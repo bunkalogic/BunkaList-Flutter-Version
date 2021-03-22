@@ -62,7 +62,7 @@ class _TopDetailPageState extends State<TopDetailPage> {
                 onSelectedItem: (index) {
                   showDialog(
                     context: context,
-                    builder: (context) {
+                    builder: (_) {
                       return Dialog(
                       elevation: 5,
                       backgroundColor: Colors.transparent,

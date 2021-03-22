@@ -64,7 +64,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
       children: <Widget>[
         _labelProfileChartTotal(title),
         new BlocProvider<GetListsBloc>(
-            builder: (_) => serviceLocator<GetListsBloc>(),
+            create: (_) => serviceLocator<GetListsBloc>(),
             child: ChartsTotalByStatus(type: type,),
           ),
         

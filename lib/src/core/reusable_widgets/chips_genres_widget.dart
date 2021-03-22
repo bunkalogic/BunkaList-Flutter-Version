@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 class ChipsGenresWidget extends StatefulWidget {
   final String type;
   final List<int> genres;
+  final bool isWrap;
   
-  ChipsGenresWidget({@required this.genres, @required this.type});
+  ChipsGenresWidget({@required this.genres, @required this.type, @required this.isWrap});
 
   @override
   _ChipsGenresWidgetState createState() => _ChipsGenresWidgetState();
@@ -17,15 +18,16 @@ class ChipsGenresWidget extends StatefulWidget {
 
 class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
   //final double _aspectRatio =  0.9;
-  List<String> _listGenres = new List<String>();
+  List<String> _listGenres = [];
   
   @override
   Widget build(BuildContext context) {
 
-
     List<String> _listGenres = _getNameGenres(context, widget.genres);
 
-     return Wrap(
+    if(widget.isWrap){
+
+       return Wrap(
        alignment: WrapAlignment.spaceEvenly,
        spacing: 1.0,
        runSpacing: 1.0,
@@ -35,11 +37,57 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
        children: _chipsGenres(_listGenres),
 
      );
+
+    }
+
+
+    
+
+    return Container(
+      height: 30.0,
+      margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.genres.length,
+        itemBuilder: (context, i) =>  _buildChipsGenres(_listGenres[i], i)
+      ),
+    );
+
+    
+  }
+
+  Widget _buildChipsGenres(String genre, int i){
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+      child: ActionChip(
+          onPressed: () {
+            Genres genresData = new Genres(
+              id: widget.genres[i].toString(),
+              label: genre,
+              isKeyword: false,
+              type: widget.type
+            );
+
+            Navigator.pushNamed(context, '/ExplorerGenre', arguments: genresData);
+          },
+          elevation: 4.0,
+          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          label: Text(genre,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14.0,
+              fontStyle: FontStyle.italic
+            ),
+          ),
+        ),
+      );
   }
 
   List<String> _getNameGenres(BuildContext context ,List<int> genres){
 
-    final List<String> nameGenres = new List<String>();
+    final List<String> nameGenres = [];
 
     for(int item in genres){
 
@@ -146,7 +194,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
 
   List<Widget> _chipsGenres(List<String> genres){
 
-    List<Widget> genresChipList = new List();
+    List<Widget> genresChipList = [];
 
     for (var i = 0; i < genres.length; i++) {
       

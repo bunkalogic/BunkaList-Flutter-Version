@@ -157,6 +157,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
             child: ChipsGenresWidget(
               genres: result.genreIds.cast<int>(),
               type: type,
+              isWrap: false,
             ), 
           flex: 1,
           ),
@@ -299,7 +300,7 @@ class _CardViewSearchResultsWidgetState extends State<CardViewSearchResultsWidge
     if(result.mediaType == 'person') return Container();
 
     return BlocProvider<AddOuevreBloc>(
-          builder: (_) => serviceLocator<AddOuevreBloc>(),
+          create: (_) => serviceLocator<AddOuevreBloc>(),
           child: MultiButtonsAdded(ouevre: result, type: result.mediaType, objectType: ConstantsTypeObject.searchResult,),
         );
   }

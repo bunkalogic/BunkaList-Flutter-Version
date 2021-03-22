@@ -106,7 +106,7 @@ class _ReorderTopWidgetState extends State<ReorderTopWidget> {
 
   Widget _buildFab(){
     return new BlocProvider<AddOuevreBloc>(
-      builder: (_) => serviceLocator<AddOuevreBloc>(),
+      create: (_) => serviceLocator<AddOuevreBloc>(),
       child: ButtonUpdateTopFavorites(listOuevre: ouevreList,)
     );
   }
@@ -220,7 +220,7 @@ class _ReorderTopWidgetState extends State<ReorderTopWidget> {
 
   Widget _iconRemove(OuevreEntity item, int position){
     return new BlocProvider<AddOuevreBloc>(
-      builder: (_) => serviceLocator<AddOuevreBloc>(),
+      create: (_) => serviceLocator<AddOuevreBloc>(),
       child: IconRemoveItemList(
         ouevreEntity: item,
         isDelete: (value) {
@@ -281,7 +281,7 @@ class _IconRemoveItemListState extends State<IconRemoveItemList> {
 
         showDialog(
           context: context,
-          builder: (context){
+          builder: (_){
             return _buildDialog();
           }
         );

@@ -30,14 +30,23 @@ class TopsSeriesBloc extends Bloc<TopsSeriesEvent, TopsSeriesState> {
 
 
   @override
-  Stream<TopsSeriesState> transformEvents(Stream<TopsSeriesEvent> events, Stream<TopsSeriesState> Function(TopsSeriesEvent event) next) {
-    return super.transformEvents( 
-      (events as Observable<TopsSeriesEvent>).debounceTime(
-        Duration(milliseconds: 500),
-      ), 
-      next
-    );
+  Stream<Transition<TopsSeriesEvent, TopsSeriesState>> transformEvents(
+    Stream<TopsSeriesEvent> events, 
+    Stream<Transition<TopsSeriesEvent, TopsSeriesState>> Function(TopsSeriesEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+    // return super.transformEvents( 
+    //   (events as Observable<TopsSeriesEvent>).debounceTime(
+    //     Duration(milliseconds: 500),
+    //   ), 
+    //   next
+    // );
   }
+
+  
 
   @override
   Stream<TopsSeriesState> mapEventToState(

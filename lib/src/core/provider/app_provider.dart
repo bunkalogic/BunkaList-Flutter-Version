@@ -24,7 +24,7 @@ class AppProvider extends InheritedWidget{
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
   static ThemeBloc of (BuildContext context){
-      return(context.inheritFromWidgetOfExactType(AppProvider) as AppProvider).themeBloc;
-    }
+      return(context.dependOnInheritedWidgetOfExactType<AppProvider>()).themeBloc;
+  }
 
 }

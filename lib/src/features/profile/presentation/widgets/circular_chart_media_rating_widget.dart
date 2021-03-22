@@ -4,7 +4,8 @@ import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dar
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+// import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 
 
 class MediaRatingWidget extends StatefulWidget {
@@ -21,7 +22,7 @@ class MediaRatingWidget extends StatefulWidget {
 }
 
 class _MediaRatingWidgetState extends State<MediaRatingWidget> {
-  final GlobalKey<AnimatedCircularChartState> _chartKey = new GlobalKey<AnimatedCircularChartState>();
+  // final GlobalKey<AnimatedCircularChartState> _chartKey = new GlobalKey<AnimatedCircularChartState>();
 
   final Preferences prefs = Preferences();
 
@@ -60,11 +61,11 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
   Widget roundedCircularRating(){
     switch(widget.type){
       
-      case 'movie': return _roundedCircularRatingMovie();
+      case 'movie': return CircularMediaRatingList(color: Colors.redAccent[400], rating: ratingAverage,); //_roundedCircularRatingMovie();
 
-      case 'tv': return _roundedCircularRatingSerie();
+      case 'tv': return CircularMediaRatingList(color: Colors.greenAccent[400], rating: ratingAverage,); //_roundedCircularRatingSerie();
 
-      case 'anime': return _roundedCircularRatingAnime();
+      case 'anime': return CircularMediaRatingList(color: Colors.lightBlueAccent[400], rating: ratingAverage,); //_roundedCircularRatingAnime();
 
       default: return _roundedCircularRatingMovie();
     }
@@ -86,138 +87,274 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
 
 
   Widget _roundedCircularRatingMovie() {
-    final double rest = 10 - ratingAverage.toDouble();
 
-    List<CircularStackEntry> nextData = <CircularStackEntry>[
-      new CircularStackEntry(
-        <CircularSegmentEntry>[
-          new CircularSegmentEntry(
-            ratingAverage,
-            Colors.redAccent[400],
-            rankKey: 'completed',
-          ),
-          new CircularSegmentEntry(
-            rest,
-            Colors.blueGrey[400],
-            rankKey: 'remaining',
-          ),
-        ],
-        rankKey: 'progress',
-      ),
-    ];
+    final double ratingRound = double.parse((ratingAverage).toStringAsFixed(2));
+
+    final double rest = ratingAverage.toDouble() / 10;
+
+  //   List<CircularStackEntry> nextData = <CircularStackEntry>[
+  //     new CircularStackEntry(
+  //       <CircularSegmentEntry>[
+  //         new CircularSegmentEntry(
+  //           ratingAverage,
+  //           Colors.redAccent[400],
+  //           rankKey: 'completed',
+  //         ),
+  //         new CircularSegmentEntry(
+  //           rest,
+  //           Colors.blueGrey[400],
+  //           rankKey: 'remaining',
+  //         ),
+  //       ],
+  //       rankKey: 'progress',
+  //     ),
+  //   ];
     
-   if(changeValue){
-      setState(() {
-        _chartKey.currentState.updateData(nextData);
-      });
-    }
+  //  if(changeValue){
+  //     setState(() {
+  //       _chartKey.currentState.updateData(nextData);
+  //     });
+  //   }
 
-    return new AnimatedCircularChart(
-      duration: Duration(milliseconds: 600),
-      key: _chartKey,
-      size: Size(70.0, 70.0), 
-      initialChartData: nextData,
-      chartType: CircularChartType.Radial,
-      edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 12.0,
-      percentageValues: false,
-      holeLabel: ratingAverage.toStringAsFixed(2),
-      labelStyle: new TextStyle(
+  //   return new AnimatedCircularChart(
+  //     duration: Duration(milliseconds: 600),
+  //     key: _chartKey,
+  //     size: Size(70.0, 70.0), 
+  //     initialChartData: nextData,
+  //     chartType: CircularChartType.Radial,
+  //     edgeStyle: SegmentEdgeStyle.round,
+  //     holeRadius: 12.0,
+  //     percentageValues: false,
+  //     holeLabel: ratingAverage.toStringAsFixed(2),
+  //     labelStyle: new TextStyle(
+  //       fontWeight: FontWeight.w800,
+  //       fontSize: 14.0,
+  //       color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+  //     ),
+  //   );
+
+    return CircularPercentIndicator(
+      percent: rest,
+      radius: 65.0,
+      animation: true,
+      animationDuration: 600,
+      lineWidth: 7.5,
+      backgroundColor: Colors.blueGrey[600],
+      progressColor: Colors.redAccent[400],
+      center: Text(
+        '$ratingRound',
+        style: new TextStyle(
         fontWeight: FontWeight.w800,
-        fontSize: 14.0,
-        color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+        fontSize: 18.0,
+        color: Colors.white,
+        shadows: [
+          Shadow(
+            blurRadius: 2.5,
+            color: Colors.black,
+          )
+        ]
+      ),
       ),
     );
   }
 
    Widget _roundedCircularRatingSerie() {
-    final double rest = 10 - ratingAverage.toDouble();
 
-    List<CircularStackEntry> nextData = <CircularStackEntry>[
-      new CircularStackEntry(
-        <CircularSegmentEntry>[
-          new CircularSegmentEntry(
-            ratingAverage,
-            Colors.greenAccent[400],
-            rankKey: 'completed',
-          ),
-          new CircularSegmentEntry(
-            rest,
-            Colors.blueGrey[400],
-            rankKey: 'remaining',
-          ),
-        ],
-        rankKey: 'progress',
-      ),
-    ];
+    final double ratingRound = double.parse((ratingAverage).toStringAsFixed(2));
+
+    final double rest = ratingAverage.toDouble() / 10;
+
     
-    if(changeValue){
-      setState(() {
-        _chartKey.currentState.updateData(nextData);
-      });
-    }
+
+    // List<CircularStackEntry> nextData = <CircularStackEntry>[
+    //   new CircularStackEntry(
+    //     <CircularSegmentEntry>[
+    //       new CircularSegmentEntry(
+    //         ratingAverage,
+    //         Colors.greenAccent[400],
+    //         rankKey: 'completed',
+    //       ),
+    //       new CircularSegmentEntry(
+    //         rest,
+    //         Colors.blueGrey[400],
+    //         rankKey: 'remaining',
+    //       ),
+    //     ],
+    //     rankKey: 'progress',
+    //   ),
+    // ];
+    
+    // if(changeValue){
+    //   setState(() {
+    //     _chartKey.currentState.updateData(nextData);
+    //   });
+    // }
   
     
-    return new AnimatedCircularChart(
-      duration: Duration(milliseconds: 600),
-      key: _chartKey,
-      size: Size(70.0, 70.0), 
-      initialChartData: nextData,
-      chartType: CircularChartType.Radial,
-      edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 12.0,
-      percentageValues: false,
-      holeLabel: ratingAverage.toStringAsFixed(2),
-      labelStyle: new TextStyle(
+    // return new AnimatedCircularChart(
+    //   duration: Duration(milliseconds: 600),
+    //   key: _chartKey,
+    //   size: Size(70.0, 70.0), 
+    //   initialChartData: nextData,
+    //   chartType: CircularChartType.Radial,
+    //   edgeStyle: SegmentEdgeStyle.round,
+    //   holeRadius: 12.0,
+    //   percentageValues: false,
+    //   holeLabel: ratingAverage.toStringAsFixed(2),
+    //   labelStyle: new TextStyle(
+    //     fontWeight: FontWeight.w800,
+    //     fontSize: 14.0,
+    //     color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+    //   ),
+    // );
+
+    return CircularPercentIndicator(
+      percent: rest,
+      radius: 65.0,
+      animation: true,
+      animationDuration: 600,
+      lineWidth: 7.5,
+      backgroundColor: Colors.blueGrey[600],
+      progressColor: Colors.greenAccent[400],
+      center: Text(
+        '$ratingRound',
+        style: new TextStyle(
         fontWeight: FontWeight.w800,
-        fontSize: 14.0,
-        color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+        fontSize: 18.0,
+        color: Colors.white,
+        shadows: [
+          Shadow(
+            blurRadius: 2.5,
+            color: Colors.black,
+          )
+        ]
+      ),
       ),
     );
   }
 
   Widget _roundedCircularRatingAnime() {
-    final double rest = 10 - ratingAverage.toDouble();
 
-    List<CircularStackEntry> nextData = <CircularStackEntry>[
-      new CircularStackEntry(
-        <CircularSegmentEntry>[
-          new CircularSegmentEntry(
-            ratingAverage,
-            Colors.lightBlueAccent[400],
-            rankKey: 'completed',
-          ),
-          new CircularSegmentEntry(
-            rest,
-            Colors.blueGrey[400],
-            rankKey: 'remaining',
-          ),
-        ],
-        rankKey: 'progress',
-      ),
-    ];
+    final double ratingRound = double.parse((ratingAverage).toStringAsFixed(2));
+
+    final double rest = ratingAverage.toDouble() / 10;
     
-     if(changeValue){
-      setState(() {
-        _chartKey.currentState.updateData(nextData);
-      });
-    }
+
+    // List<CircularStackEntry> nextData = <CircularStackEntry>[
+    //   new CircularStackEntry(
+    //     <CircularSegmentEntry>[
+    //       new CircularSegmentEntry(
+    //         ratingAverage,
+    //         Colors.lightBlueAccent[400],
+    //         rankKey: 'completed',
+    //       ),
+    //       new CircularSegmentEntry(
+    //         rest,
+    //         Colors.blueGrey[400],
+    //         rankKey: 'remaining',
+    //       ),
+    //     ],
+    //     rankKey: 'progress',
+    //   ),
+    // ];
     
-    return new AnimatedCircularChart(
-      duration: Duration(milliseconds: 600),
-      key: _chartKey,
-      size: Size(70.0, 70.0), 
-      initialChartData: nextData,
-      chartType: CircularChartType.Radial,
-      edgeStyle: SegmentEdgeStyle.round,
-      holeRadius: 12.0,
-      percentageValues: false,
-      holeLabel: ratingAverage.toStringAsFixed(2),
-      labelStyle: new TextStyle(
+    //  if(changeValue){
+    //   setState(() {
+    //     _chartKey.currentState.updateData(nextData);
+    //   });
+    // }
+    
+    // return new AnimatedCircularChart(
+    //   duration: Duration(milliseconds: 600),
+    //   key: _chartKey,
+    //   size: Size(70.0, 70.0), 
+    //   initialChartData: nextData,
+    //   chartType: CircularChartType.Radial,
+    //   edgeStyle: SegmentEdgeStyle.round,
+    //   holeRadius: 12.0,
+    //   percentageValues: false,
+    //   holeLabel: ratingAverage.toStringAsFixed(2),
+    //   labelStyle: new TextStyle(
+    //     fontWeight: FontWeight.w800,
+    //     fontSize: 14.0,
+    //     color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+    //   ),
+    // );
+
+    return CircularPercentIndicator(
+      percent: rest,
+      radius: 65.0,
+      animation: true,
+      animationDuration: 600,
+      lineWidth: 7.5,
+      backgroundColor: Colors.blueGrey[600],
+      progressColor: Colors.blueAccent[400],
+      center: Text(
+        '$ratingRound',
+        style: new TextStyle(
         fontWeight: FontWeight.w800,
-        fontSize: 14.0,
-        color: (prefs.whatModeIs) ? Colors.white : Colors.black,
+        fontSize: 18.0,
+        color: Colors.white,
+        shadows: [
+          Shadow(
+            blurRadius: 2.5,
+            color: Colors.black,
+          )
+        ]
+      ),
       ),
     );
+  }
+}
+
+
+class CircularMediaRatingList extends StatefulWidget {
+
+  final double rating;
+  final Color color;
+
+
+  CircularMediaRatingList({
+    @required this.rating,
+    @required this.color
+  });
+
+  @override
+  _CircularMediaRatingListState createState() => _CircularMediaRatingListState();
+}
+
+class _CircularMediaRatingListState extends State<CircularMediaRatingList> {
+  @override
+  Widget build(BuildContext context) {
+
+    double ratingRound = double.parse((widget.rating).toStringAsFixed(2));
+
+    final double rest = widget.rating.toDouble() / 10;
+
+    return CircularPercentIndicator(
+      percent: rest,
+      radius: 50.0,
+      circularStrokeCap: CircularStrokeCap.round,
+      animation: true,
+      animationDuration: 600,
+      lineWidth: 6.5,
+      backgroundColor: Colors.blueGrey[600],
+      progressColor: widget.color,
+      center: Text(
+        '$ratingRound',
+        style: new TextStyle(
+        fontWeight: FontWeight.w800,
+        fontSize: 16.0,
+        color: Colors.white,
+        shadows: [
+          Shadow(
+            blurRadius: 2.5,
+            color: Colors.black,
+          )
+        ]
+      ),
+      ),
+    );
+  
   }
 }
