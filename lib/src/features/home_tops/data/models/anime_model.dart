@@ -74,7 +74,7 @@ class AnimeModel  extends AnimeEntity{
 }
 
 class Animes{
-  List<AnimeModel> items = new List();
+  List<AnimeModel> items = [];
 
   Animes();
 

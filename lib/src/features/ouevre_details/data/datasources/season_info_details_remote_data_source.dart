@@ -14,7 +14,7 @@ abstract class SeasonInfoDetailsRemoteDataSource {
   /// Calls the http://themoviedb.org/3/tv/{tv_id}/season/{season_number} endpoint.
   /// 
   
-  Future<List<EpisodeModel>> getSeasonInfo(int id, int seasonId);
+  Future<SeasonModel> getSeasonInfo(int id, int seasonId);
 }
 
 class SeasonInfoDetailsRemoteDataSourceImpl implements SeasonInfoDetailsRemoteDataSource{
@@ -28,7 +28,7 @@ class SeasonInfoDetailsRemoteDataSourceImpl implements SeasonInfoDetailsRemoteDa
   Preferences prefs = new Preferences();
   
   @override
-  Future<List<EpisodeModel>> getSeasonInfo(int id, int seasonId) async {
+  Future<SeasonModel> getSeasonInfo(int id, int seasonId) async {
 
       final Map<String, String> _query = {
         'api_key' : _theMovieDB,
@@ -43,7 +43,7 @@ class SeasonInfoDetailsRemoteDataSourceImpl implements SeasonInfoDetailsRemoteDa
   }
 
 
-  Future<List<EpisodeModel>> processResponse(String url) async {
+  Future<SeasonModel> processResponse(String url) async {
 
     print("Url Season Info : $url");
 
@@ -55,17 +55,9 @@ class SeasonInfoDetailsRemoteDataSourceImpl implements SeasonInfoDetailsRemoteDa
 
       final decodedData = json.decode(response.body);
 
-      final listReviews = new Episodes.fromJsonList(decodedData['episodes']);
+      final season = new SeasonModel.fromJson(decodedData);
 
-      if(listReviews.items.isNotEmpty){
-        
-        return listReviews.items;
-
-      }else{
-
-        return [];  
-
-      }
+      return season;
 
     }else{
        

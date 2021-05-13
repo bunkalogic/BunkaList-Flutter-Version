@@ -103,6 +103,16 @@ class _CardViewListSeriesWidgetState extends State<CardViewListSeriesWidget> {
     final _poster = Container(
       width: 110.0,
       height: double.infinity,
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: FadeInImage(

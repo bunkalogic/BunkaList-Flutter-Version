@@ -71,8 +71,9 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withOriginalLanguage: event.withOriginalLanguage,
-            year: event.year
-
+            year: event.year,
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
           ));
           
           yield* _eitherLoadedOrErrorState(failureOrMovies);
@@ -96,8 +97,9 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withOriginalLanguage: event.withOriginalLanguage,
-            year: event.year
-
+            year: event.year,
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
           ));
           
            yield failureOrMovies.fold(
@@ -117,7 +119,7 @@ class MoviesExplorerBloc extends Bloc<MoviesExplorerEvent, MoviesExplorerState> 
                   hasReachedMax: false, 
                   latestPage: page,
                   latestSortBy: event.sortBy, 
-                  latestYear: event.year
+                  latestYear: event.year,
                 );
             });
 

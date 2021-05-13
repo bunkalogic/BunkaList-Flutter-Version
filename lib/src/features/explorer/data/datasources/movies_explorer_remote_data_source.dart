@@ -25,6 +25,8 @@ abstract class MoviesExplorerRemoteDataSource{
     String genre,
     String withKeywords,
     String withOriginalLanguage,
+    String withCompanies,
+    String withWatchProvider
   }
   );
 
@@ -56,7 +58,9 @@ class MoviesExplorerRemoteDataSourceImpl implements MoviesExplorerRemoteDataSour
   int voteCountGte, 
   String genre, 
   String withKeywords, 
-  String withOriginalLanguage
+  String withOriginalLanguage,
+  String withCompanies,
+  String withWatchProvider
   }) async {
     
     if(_loading) return [];
@@ -77,7 +81,10 @@ class MoviesExplorerRemoteDataSourceImpl implements MoviesExplorerRemoteDataSour
       'sort_by'                   : sortBy,
       'vote_count.gte'            : voteCountGte.toString(),
       'with_genres'               : genre,
-      'with_original_language'    : withOriginalLanguage
+      'with_original_language'    : withOriginalLanguage,
+      'with_companies'            : withCompanies,
+      'with_keywords'             : withKeywords,
+      'with_watch_providers'      : withWatchProvider
     };
 
 

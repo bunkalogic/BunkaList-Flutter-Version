@@ -28,7 +28,9 @@ class SeriesExplorerImpl extends SerieExplorerContract{
   int voteCountGte, 
   String genre, 
   String withKeywords, 
-  String withNetwork
+  String withNetwork,
+  String withCompanies,
+  String withWatchProvider
   }
   ) async {
     
@@ -43,8 +45,9 @@ class SeriesExplorerImpl extends SerieExplorerContract{
           voteCountGte: voteCountGte,
           withKeywords: withKeywords,
           withNetwork: withNetwork,
-          year: year
-        
+          year: year,
+          withCompanies: withCompanies,
+          withWatchProvider: withWatchProvider
         );
 
         return Right(remoteExplorerSeries);

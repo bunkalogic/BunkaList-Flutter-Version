@@ -10,8 +10,6 @@ import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_cinema_movie/cinemamovie_bloc.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_bloc.dart';
-import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_movies/tops_movies_event.dart';
 import 'package:bunkalist/src/features/home_tops/presentation/bloc/bloc_selection_movies/selectionmovies_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +67,7 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
                   ),
                   itemCount: state.movies.length,
                   itemBuilder: (context, i, h)  {
-                    _movieEntity = state.movies[h];
+                    _movieEntity = state.movies[i];
 
                     return _itemCarousel(context, _movieEntity);
                   } ,
@@ -147,7 +145,7 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
               image: (movieEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 3.0,
+              width: MediaQuery.of(context).size.width * 0.45,
               height: MediaQuery.of(context).size.height / 2.8,
             ),
           );
@@ -178,18 +176,18 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
   }
 
   Widget _iconButton(BuildContext context,){
-    return SolidButtonWidget(
-      widthSize: MediaQuery.of(context).size.width / 1.60, 
-      padding: const EdgeInsets.all(4.0), 
-      margin: const EdgeInsets.all(2.0), 
-      buttonColor:  Colors.pinkAccent[400], 
-      title: AppLocalizations.of(context).translate("add_in_list"), 
-      marginTitle: EdgeInsets.all(2.0), 
-      titleStyle: TextStyle(
+    return RaisedButton(
+        color: Colors.pinkAccent[400],
+        elevation: 5.0,
+        child: Text(
+          AppLocalizations.of(context).translate("add_in_list"),
+          style: TextStyle(
             color: Colors.white,
             shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
-          ), 
-      onTap: (){
+          ),
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+        onPressed: (){
           setState(() {});
 
           return ButtonClikedAdded(
@@ -201,30 +199,6 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
           ).showBottomModal();
         },
     );
-
-    // return FlatButton(
-    //     color: Colors.pinkAccent[400],
-    //     child: Text(
-    //       AppLocalizations.of(context).translate("add_in_list"),
-    //       style: TextStyle(
-    //         color: Colors.white,
-    //         shadows: [Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))],
-    //       ),
-    //     ),
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-    //     onPressed: (){
-    //       setState(() {});
-
-    //       return ButtonClikedAdded(
-    //         context: context,
-    //         isUpdated: false,
-    //         ouevre: _movieEntity,
-    //         type: _movieEntity.type,
-    //         objectType: ConstantsTypeObject.movieEntity
-    //       ).showBottomModal();
-    //     },
-    // );
-
   }
 }
 

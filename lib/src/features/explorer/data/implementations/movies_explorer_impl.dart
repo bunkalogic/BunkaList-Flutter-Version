@@ -28,7 +28,9 @@ class MoviesExplorerImpl extends MovieExplorerContract{
   int voteCountGte, 
   String genre, 
   String withKeywords, 
-  String withOriginalLanguage
+  String withOriginalLanguage,
+  String withCompanies,
+  String withWatchProvider
   }
   ) async {
     
@@ -43,8 +45,9 @@ class MoviesExplorerImpl extends MovieExplorerContract{
           voteCountGte: voteCountGte,
           withKeywords: withKeywords,
           withOriginalLanguage: withOriginalLanguage,
-          year: year
-        
+          year: year,
+          withCompanies: withCompanies,
+          withWatchProvider: withWatchProvider
         );
 
         return Right(remoteExplorerMovies);

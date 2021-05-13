@@ -161,7 +161,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                 ..add(GetMoviesExplorer(
                   page: page,
                   sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
-                  genre: widget.data.id,
+                  genre: (widget.data.isKeyword) ? null : widget.data.id,
+                  withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
                   year: finalFilterOptions.year ?? 0,
 
                 ));
@@ -173,7 +174,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                 ..add(GetSeriesExplorer(
                   page: page,
                   sortBy: finalFilterOptions.sortBy ?? ConstSortBy.popularityDesc,
-                  genre: widget.data.id,
+                  genre: (widget.data.isKeyword) ? null : widget.data.id,
+                  withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
                   year: finalFilterOptions.year ?? 0
                 ));
               }
@@ -312,7 +314,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
             ..add(GetMoviesExplorer(
               page: page,
               sortBy: ConstSortBy.popularityDesc,
-              genre: widget.data.id,
+              genre: (widget.data.isKeyword) ? null : widget.data.id,
+              withKeywords: (widget.data.isKeyword) ? widget.data.id : null
             ));
             }
              
@@ -415,7 +418,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
             ..add(GetSeriesExplorer(
               page: page,
               sortBy: ConstSortBy.popularityDesc,
-              genre: widget.data.id,
+              genre: (widget.data.isKeyword) ? null : widget.data.id,
+              withKeywords: (widget.data.isKeyword) ? widget.data.id : null
             ));
             }
             
@@ -639,7 +643,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                 ..add(GetMoviesExplorer(
                   page: page,
                   sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
-                  genre: widget.data.id,
+                  genre: (widget.data.isKeyword) ? null : widget.data.id,
+                  withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
                   year: finalFilterOptions.year ?? 0,
 
                 ));
@@ -662,7 +667,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                 ..add(GetSeriesExplorer(
                   page: page,
                   sortBy: finalFilterOptions.sortBy?? ConstSortBy.popularityDesc,
-                  genre: widget.data.id,
+                  genre: (widget.data.isKeyword) ? null : widget.data.id,
+                  withKeywords: (widget.data.isKeyword) ? widget.data.id : null,
                   year: finalFilterOptions.year ?? 0
                 ));
            

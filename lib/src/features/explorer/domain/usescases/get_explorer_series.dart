@@ -23,7 +23,9 @@ class GetExplorerSeries extends UseCase<List<SeriesEntity>, Params>{
      voteCountGte: params.voteCountGte,
      withKeywords: params.withKeywords,
      withNetwork: params.withNetwork,
-     year: params.year
+     year: params.year,
+     withCompanies: params.withCompanies,
+     withWatchProvider: params.withWatchProvider
    );
 
   }
@@ -38,6 +40,8 @@ class Params extends Equatable{
   final String genre;
   final String withKeywords;
   final String withNetwork;
+  final String withCompanies;
+  final String withWatchProvider;
 
   Params({
     @required this.page,
@@ -46,7 +50,9 @@ class Params extends Equatable{
     this.voteCountGte,
     this.genre,
     this.withKeywords,
-    this.withNetwork
+    this.withNetwork,
+    this.withCompanies,
+    this.withWatchProvider
   }) : super([
     page,
     sortBy,
@@ -55,6 +61,8 @@ class Params extends Equatable{
     genre,
     withKeywords,
     withNetwork,
+    withCompanies,
+    withWatchProvider
   ]);
 
 }

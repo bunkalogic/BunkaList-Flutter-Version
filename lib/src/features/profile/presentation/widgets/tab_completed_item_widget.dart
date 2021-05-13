@@ -121,17 +121,26 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       body: Container(
         child: NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
+            
             if (notification is ScrollStartNotification) {
               // Handle your desired action on scroll start here.
               setState(() {
-                isExtended = true;
+                isExtended = !isExtended;
+              });
+            }
+
+            
+            if (notification is UserScrollNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = false;
               });
             }
 
             if (notification is ScrollEndNotification) {
               // Handle your desired action on scroll start here.
               setState(() {
-                isExtended = false;
+                isExtended = true;
               });
             }
 
@@ -156,6 +165,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
 
   Widget _buildExtendFab(){
     return FloatingActionButton.extended(
+        isExtended: !isExtended,
         elevation: 10.0,
         backgroundColor: _getBackgroundColorTheme(),
         onPressed:() async {
@@ -204,7 +214,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           child: isExtended 
           ? Icon(
             Icons.filter_list,
-            color: Colors.pinkAccent[400],
+            color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
           )
           : Row(
             children: [
@@ -212,13 +222,13 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
                 padding: const EdgeInsets.only(right: 1.0),
                 child: Icon(
                   Icons.filter_list,
-                  color: Colors.pinkAccent[400],
+                  color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400]
                 ),
               ),
               Text(
                 AppLocalizations.of(context).translate("order_by"),
                 style: TextStyle(
-                  color: Colors.pinkAccent[400],
+                  color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
                   fontSize: 16.0,
                   fontWeight: FontWeight.w700
                 ),

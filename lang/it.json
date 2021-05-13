@@ -375,5 +375,24 @@
   "label_select_year"   : "Anno (è facoltativo)",
 
   "label_filter_personalize" : "Filtro personalizzato",
-  "btn_filter_personalize"   : "Filtro"
+  "btn_filter_personalize"   : "Filtro",
+
+  "fab_label_add_movie" : "Aggiungi film",
+  "fab_label_add_serie" : "Aggiungi serietà",
+  "fab_label_add_anime" : "Aggiungi anime",
+
+  "label_btn_streaming": "Streaming",
+  "label_summary"      : "Sommario",
+  "label_genres"       : "Generi",
+
+  "label_created_by"   : "Creato da",
+  "label_network"      : "Reti",
+  "label_production"   : "Produttrici",
+  "label_keyword"      : "Parole chiave",
+
+  "label_images"      : "Immagini",
+  "label_last_episode": "Ultimo Episodio",
+  "label_next_episode": "Prossimo Episodio",
+  "label_poster"     : "Poster",
+  "label_background" : "Sfondi"
 }

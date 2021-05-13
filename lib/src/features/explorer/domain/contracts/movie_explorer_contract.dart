@@ -14,6 +14,8 @@ abstract class MovieExplorerContract{
     String genre,
     String withKeywords,
     String withOriginalLanguage,
+    String withCompanies,
+    String withWatchProvider
   });
 
 }

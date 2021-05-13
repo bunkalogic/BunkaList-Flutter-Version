@@ -26,6 +26,9 @@ class MovieDetailsModel extends MovieDetailsEntity {
     @required bool video,
     @required double voteAverage,
     @required int voteCount,
+    @required List<dynamic> productionCompanies,
+    @required List<dynamic> spokenLanguage,
+    @required List<dynamic> productionCountry,
     String type,
   }) : super (
     adult            :  adult,  
@@ -50,12 +53,24 @@ class MovieDetailsModel extends MovieDetailsEntity {
     voteAverage      :  voteAverage ,
     voteCount        :  voteCount ,
     type             :  'movie'  ,
+    productionCompanies: productionCompanies,
+    productionCountry: productionCountry,
+    spokenLanguage: spokenLanguage,
   );
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json){
 
     var listGenre = json['genres'] as List;
     List<GenreMovieModel> genreItems = listGenre.map((i) => GenreMovieModel.fromJson(i)).toList();
+
+    var listProducer = json['production_companies'] as List;
+    List<MovieProductionCompanyModel> producerItems = listProducer.map((i) => MovieProductionCompanyModel.fromJson(i)).toList();
+
+    var spokenLanguage = json['spoken_languages'] as List;
+    List<MovieSpokenLanguagesModel> itemSpokenLanguages = spokenLanguage.map((i) => MovieSpokenLanguagesModel.fromJson(i)).toList();
+
+    var countryProduction = json['production_countries'] as List;
+    List<MovieProductionsCountryModel> itemProductionCountry  = countryProduction.map((i) => MovieProductionsCountryModel.fromJson(i)).toList();
 
 
     return MovieDetailsModel(
@@ -80,6 +95,10 @@ class MovieDetailsModel extends MovieDetailsEntity {
       video            :  json['video'],
       voteAverage      :  json['vote_average'] / 1,
       voteCount        :  json['vote_count'],
+      productionCompanies: producerItems,
+      spokenLanguage: itemSpokenLanguages,
+      productionCountry: itemProductionCountry,
+      
     );
   }
 
@@ -106,6 +125,9 @@ class MovieDetailsModel extends MovieDetailsEntity {
       'video'             :  video ,
       'vote_average'      :  voteAverage ,
       'vote_count'        :  voteCount ,
+      'production_companies': productionCompanies,
+      'spoken_languages' : spokenLanguage,
+      'production_countries' : productionCountry,
     };
   }
 
@@ -135,4 +157,84 @@ class GenreMovieModel extends GenreMovie{
       'name'          : name,
      };
    }
+}
+
+
+class MovieProductionCompanyModel  extends MovieProductionCompany{
+    MovieProductionCompanyModel({
+        @required this.id,
+        @required this.logoPath,
+        @required this.name,
+        @required this.originCountry,
+    });
+
+    final int id;
+    final String logoPath;
+    final String name;
+    final String originCountry;
+
+    
+
+    factory MovieProductionCompanyModel.fromJson(Map<String, dynamic> json) => MovieProductionCompanyModel(
+        id: json["id"],
+        logoPath: json["logo_path"],
+        name: json["name"],
+        originCountry: json["origin_country"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "logo_path": logoPath,
+        "name": name,
+        "origin_country": originCountry,
+    };
+}
+
+
+class MovieProductionsCountryModel extends MovieProductionCountry{
+    MovieProductionsCountryModel({
+        @required this.iso31661,
+        @required this.name,
+    });
+
+    final String iso31661;
+    final String name;
+
+
+    factory MovieProductionsCountryModel.fromJson(Map<String, dynamic> json) => MovieProductionsCountryModel(
+        iso31661: json["iso_3166_1"],
+        name: json["name"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "iso_3166_1": iso31661,
+        "name": name,
+    };
+}
+
+
+class MovieSpokenLanguagesModel  extends MovieSpokenLanguage{
+    MovieSpokenLanguagesModel({
+        @required this.englishName,
+        @required this.iso6391,
+        @required this.name,
+    });
+
+    final String englishName;
+    final String iso6391;
+    final String name;
+
+    
+
+    factory MovieSpokenLanguagesModel.fromJson(Map<String, dynamic> json) => MovieSpokenLanguagesModel(
+        englishName: json["english_name"],
+        iso6391: json["iso_639_1"],
+        name: json["name"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "english_name": englishName,
+        "iso_639_1": iso6391,
+        "name": name,
+    };
 }

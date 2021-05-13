@@ -374,5 +374,24 @@
   "label_select_year"   : "년 (선택 사항)",
 
   "label_filter_personalize" : "맞춤 필터링",
-  "btn_filter_personalize"   : "필터"
+  "btn_filter_personalize"   : "필터",
+  "fab_label_add_movie" : "영화 추가",
+  "fab_label_add_serie" : "시리즈 추가",
+  "fab_label_add_anime" : "애니메이션 추가",
+
+  "label_btn_streaming": "스트리밍",
+  "label_summary"      : "요약",
+  "label_genres"       : "장르",
+
+  "label_created_by"   : "만든",
+  "label_network"      : "네트워크",
+  "label_production"   : "생산자",
+  "label_keyword"      : "키워드",
+
+  "label_images"      : "이미지",
+  "label_last_episode": "마지막 에피소드",
+  "label_next_episode": "다음 에피소드",
+  "label_poster"     : "포스터",
+  "label_background" : "배경 이미지"
+
 }

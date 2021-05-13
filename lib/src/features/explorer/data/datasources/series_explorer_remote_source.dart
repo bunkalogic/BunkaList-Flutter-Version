@@ -26,6 +26,8 @@ abstract class SeriesExplorerRemoteDataSource{
     String genre,
     String withKeywords,
     String withNetwork,
+    String withCompanies,
+    String withWatchProvider
   }
   );
 
@@ -59,7 +61,9 @@ class SeriesExplorerRemoteDataSourceImpl implements SeriesExplorerRemoteDataSour
       int voteCountGte, 
       String genre, 
       String withKeywords, 
-      String withNetwork
+      String withNetwork,
+      String withCompanies,
+      String withWatchProvider
     }) async {
     if(_loading) return [];
       
@@ -83,6 +87,9 @@ class SeriesExplorerRemoteDataSourceImpl implements SeriesExplorerRemoteDataSour
           'with_networks'         : withNetwork,
           'with_keywords'         : withKeywords,
           'without_genres'        : '16',
+          'with_companies'        : withCompanies,
+          'with_watch_providers'  : withWatchProvider,
+          'include_null_first_air_dates' : 'false'
       };
 
     query.removeWhere((key , value) => value == null);

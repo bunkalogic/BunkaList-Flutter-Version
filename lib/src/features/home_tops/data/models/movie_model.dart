@@ -77,7 +77,7 @@ class MovieModel  extends MovieEntity{
 }
 
 class Movies{
-  List<MovieModel> items = new List();
+  List<MovieModel> items = [];
 
   Movies();
 

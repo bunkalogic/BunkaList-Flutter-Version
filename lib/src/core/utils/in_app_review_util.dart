@@ -19,7 +19,7 @@ void getInAppReview() async {
     AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
     int sdkInt = androidInfo.version.sdkInt;
 
-    int hideReview = prefs.totalVisitProfile == 5 ?  0 : prefs.totalVisitProfile;
+    int hideReview = prefs.totalVisitProfile == 10 ?  0 : prefs.totalVisitProfile;
 
     if(hideReview == 0){
       prefs.totalVisitProfile = 0;

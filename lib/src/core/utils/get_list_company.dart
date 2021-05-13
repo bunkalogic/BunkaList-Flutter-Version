@@ -205,7 +205,7 @@ List<Company> getListSeriesCompany(){
     title_abc,            
   ];
 
-  List<Company> listCompany = new List<Company>();
+  List<Company> listCompany = [];
 
   for (var i = 0; i < listCompanyID.length; i++) {
     final Company company = new Company(
@@ -215,7 +215,7 @@ List<Company> getListSeriesCompany(){
       type: 'tv'
     );
 
-    List<Company> newListCompany = new List<Company>();
+    List<Company> newListCompany = [];
 
     newListCompany.add(company);
 
@@ -256,7 +256,7 @@ List<Company> getListKoreanSeriesCompany(){
     title_kbs2.toString() 
   ];
 
-  List<Company> listCompany = new List<Company>();
+  List<Company> listCompany = [];
 
   for (var i = 0; i < listCompanyID.length; i++) {
     final Company company = new Company(
@@ -266,7 +266,7 @@ List<Company> getListKoreanSeriesCompany(){
       type: 'tv'
     );
 
-    List<Company> newListCompany = new List<Company>();
+    List<Company> newListCompany = [];
 
     newListCompany.add(company);
 
@@ -309,7 +309,7 @@ List<Company> getListJapaneseSeriesCompany(){
     title_tbs.toString(),        
   ];
 
-  List<Company> listCompany = new List<Company>();
+  List<Company> listCompany = [];
 
   for (var i = 0; i < listCompanyID.length; i++) {
     final Company company = new Company(
@@ -319,7 +319,7 @@ List<Company> getListJapaneseSeriesCompany(){
       type: 'tv'
     );
 
-    List<Company> newListCompany = new List<Company>();
+    List<Company> newListCompany = [];
 
     newListCompany.add(company);
 
@@ -394,7 +394,7 @@ List<Company> getListAnimesCompany(){
     title_cbc        ,
   ];
 
-  List<Company> listCompany = new List<Company>();
+  List<Company> listCompany = [];
 
   for (var i = 0; i < listCompanyID.length; i++) {
     final Company company = new Company(
@@ -404,7 +404,7 @@ List<Company> getListAnimesCompany(){
       type: 'animes'
     );
 
-    List<Company> newListCompany = new List<Company>();
+    List<Company> newListCompany = [];
 
     newListCompany.add(company);
 
@@ -423,7 +423,8 @@ class Company {
   final String id;
   final String imagePath;
   final String type;
+  final bool isCompany;
 
-  const Company({this.label, this.id, this.imagePath, this.type});
+  const Company({this.label, this.id, this.imagePath, this.type, this.isCompany});
 
 }

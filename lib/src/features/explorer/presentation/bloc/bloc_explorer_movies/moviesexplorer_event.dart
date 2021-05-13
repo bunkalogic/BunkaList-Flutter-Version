@@ -14,6 +14,8 @@ class GetMoviesExplorer extends MoviesExplorerEvent{
   final String genre;
   final String withKeywords;
   final String withOriginalLanguage;
+  final String withCompanies;
+  final String withWatchProvider;
 
   GetMoviesExplorer({
     @required this.page,
@@ -22,7 +24,9 @@ class GetMoviesExplorer extends MoviesExplorerEvent{
     this.voteCountGte,
     this.genre,
     this.withKeywords,
-    this.withOriginalLanguage
+    this.withOriginalLanguage,
+    this.withCompanies,
+    this.withWatchProvider
   }) : super([
     page,
     sortBy,
@@ -31,5 +35,7 @@ class GetMoviesExplorer extends MoviesExplorerEvent{
     genre,
     withKeywords,
     withOriginalLanguage,
+    withCompanies,
+    withWatchProvider
   ]);
 }

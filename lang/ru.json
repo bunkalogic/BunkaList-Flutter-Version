@@ -375,6 +375,23 @@
   "label_select_year"   : "Год (не является обязательным)",
 
   "label_filter_personalize" : "Пользовательская фильтрация",
-  "btn_filter_personalize"   : "Фильтр"
+  "btn_filter_personalize"   : "Фильтр",
+
+  "fab_label_add_movie" : "Добавить фильм",
+  "fab_label_add_serie" : "Добавить сери",
+  "fab_label_add_anime" : "Добавить аниме",
+  
+  "label_btn_streaming": "Потоковое",
+  "label_summary"      : "Резюме",
+  "label_genres"       : "Жанры",
+  "label_created_by"   : "Создано",
+  "label_network"      : "Сети",
+  "label_production"   : "Производители",
+  "label_keyword"      : "Ключевые слова",
+  "label_images"      : "Изображений",
+  "label_last_episode": "Последний эпизод",
+  "label_next_episode": "Следующий эпизод",
+  "label_poster"     : "Плакаты",
+  "label_background" : "Фоны"
 
 }

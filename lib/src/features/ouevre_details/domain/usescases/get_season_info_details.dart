@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class GetSeasonInfo extends UseCase<List<EpisodeEntity>, Params>{
+class GetSeasonInfo extends UseCase<SeasonEntity, Params>{
   
   final SeasonInfoDetailsContract contract;
 
@@ -16,7 +16,7 @@ class GetSeasonInfo extends UseCase<List<EpisodeEntity>, Params>{
 
 
   @override
-  Future<Either<Failures, List<EpisodeEntity>>> call(Params params) async {
+  Future<Either<Failures, SeasonEntity>> call(Params params) async {
     
     return await contract.getSeasonInfo(params.id, params.seasonId);
 

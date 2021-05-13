@@ -6,6 +6,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class SeasonInfoDetailsContract {
 
-  Future<Either<Failures, List<EpisodeEntity>>> getSeasonInfo(int id, int seasonId);
+  Future<Either<Failures, SeasonEntity>> getSeasonInfo(int id, int seasonId);
   
 }

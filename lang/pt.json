@@ -374,6 +374,25 @@
   "label_select_year"   : "Ano (é opcional)",
 
   "label_filter_personalize" : "Filtragem personalizada",
-  "btn_filter_personalize"   : "Filtro"
+  "btn_filter_personalize"   : "Filtro",
+
+  "fab_label_add_movie" : "Adicionar Filme",
+  "fab_label_add_serie" : "Adicionar Serie",
+  "fab_label_add_anime" : "Adicionar Anime",
+
+  "label_btn_streaming": "Transmissão",
+  "label_summary"      : "Resumo",
+  "label_genres"       : "Gêneros",
+
+  "label_created_by"   : "Criado por",
+  "label_network"      : "Redes",
+  "label_production"   : "Produtores",
+  "label_keyword"      : "Palavras-chave",
+
+  "label_images"      : "Imagens",
+  "label_last_episode": "Último episódio",
+  "label_next_episode": "Próximo episódio",
+  "label_poster"     : "Posters",
+  "label_background" : "Fundos"
   
 }

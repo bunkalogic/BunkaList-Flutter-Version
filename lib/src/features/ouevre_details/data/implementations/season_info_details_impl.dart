@@ -20,7 +20,7 @@ class SeasonInfoDetailsImpl implements SeasonInfoDetailsContract{
   });
   
   @override
-  Future<Either<Failures, List<EpisodeEntity>>> getSeasonInfo(int id, int seasonId) async {
+  Future<Either<Failures, SeasonEntity>> getSeasonInfo(int id, int seasonId) async {
     
     if(await networkInfo.isConnected){
       try{

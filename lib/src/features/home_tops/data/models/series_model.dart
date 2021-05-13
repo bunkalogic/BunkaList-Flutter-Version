@@ -76,7 +76,7 @@ class SeriesModel  extends SeriesEntity{
 }
 
 class Series{
-  List<SeriesModel> items = new List();
+  List<SeriesModel> items = [];
 
   Series();
 

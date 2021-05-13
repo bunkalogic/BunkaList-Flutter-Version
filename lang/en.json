@@ -577,5 +577,25 @@
   "label_select_year"   : "Year (is optional)",
 
   "label_filter_personalize" : "Custom filtering",
-  "btn_filter_personalize"   : "Filter"
+  "btn_filter_personalize"   : "Filter",
+
+  "fab_label_add_movie" : "Add Movie",
+  "fab_label_add_serie" : "Add Serie",
+  "fab_label_add_anime" : "Add Anime",
+
+  "label_btn_streaming": "Streaming",
+  "label_summary"      : "Summary",
+  "label_genres"       : "Genres",
+
+  "label_created_by"   : "Created by",
+  "label_network"      : "Networks",
+  "label_production"   : "Producers",
+  "label_keyword"      : "Keywords",
+
+  "label_images"      : "Images",
+  "label_last_episode": "Last episode",
+  "label_next_episode": "Next episode",
+  "label_poster"     : "Posters",
+  "label_background" : "Backgrounds"
+
 }

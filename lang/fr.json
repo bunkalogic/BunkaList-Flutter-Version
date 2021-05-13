@@ -373,5 +373,24 @@
   "label_select_idioma" : "La langue originale (est facultative)",
   "label_select_year"   : "Année (est facultatif)",
   "label_filter_personalize" : "Filtrage personnalisé",
-  "btn_filter_personalize"   : "Filtre"
+  "btn_filter_personalize"   : "Filtre",
+  "fab_label_add_movie" : "Ajouter film",
+  "fab_label_add_serie" : "Ajouter série",
+  "fab_label_add_anime" : "Ajouter anime",
+  
+  "label_btn_streaming": "Diffusion",
+  "label_summary"      : "Résumé",
+  "label_genres"       : "Genres",
+
+  "label_created_by"   : "Créé par",
+  "label_network"      : "Réseaux",
+  "label_production"   : "Productrices",
+  "label_keyword"      : "Mots clés",
+
+  "label_images"      : "Images",
+  "label_last_episode": "Dernier épisode",
+  "label_next_episode": "L'épisode suivant",
+  "label_poster"     : "Affiches",
+  "label_background" : "Fonds"
+
 }

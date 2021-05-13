@@ -15,6 +15,10 @@ import 'package:bunkalist/src/features/options/presentation/pages/edit_preferenc
 import 'package:bunkalist/src/features/options/presentation/pages/edit_profile_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/no_ads_page.dart';
 import 'package:bunkalist/src/features/options/presentation/pages/policy_page.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/images_poster_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_episode_page.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/all_details_images_page.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/video_player_widget.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/pages/list_fav_profile_page.dart';
@@ -110,10 +114,25 @@ class RouteGeneretor{
         }
         return routeError();
 
+      case '/AllDetailsEpisode':
+        if(args is Episode){
+          
+          return SlideRightRoute(page: AllDetailsEpisodePage(episode: args,));
+        }
+        return routeError();
+
+
       case '/AllDetailsPeople':
         if(args is Map){
           
           return SlideRightRoute(page: AllDetailsPeoplePage(data: args,));
+        }
+        return routeError();
+
+      case '/AllDetailsImages':
+        if(args is List<Backdrop>){
+          
+          return SlideRightRoute(page: AllDetailsImagesPage(images: args));
         }
         return routeError();
 

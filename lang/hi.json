@@ -374,6 +374,25 @@
   "label_select_idioma" : "मूल भाषा (वैकल्पिक है)",
   "label_select_year"   : "वर्ष (वैकल्पिक है)",
   "label_filter_personalize" : "कस्टम फ़िल्टरिंग",
-  "btn_filter_personalize"   : "फ़िल्टर"
+  "btn_filter_personalize"   : "फ़िल्टर",
+
+  "fab_label_add_movie" : "फिल्म जोड़ें",
+  "fab_label_add_serie" : "सेरी जोड़ें",
+  "fab_label_add_anime" : "एनीम जोड़ें",
+
+  "label_btn_streaming": "स्ट्रीमिंग",
+  "label_summary"      : "सारांश",
+  "label_genres"       : "शैलियों",
+
+  "label_created_by"   : "के द्वारा बनाई गई",
+  "label_network"      : "नेटवर्क",
+  "label_production"   : "निर्माता",
+  "label_keyword"      : "कीवर्ड",
+
+  "label_images"      : "इमेजिस",
+  "label_last_episode": "अंतिम भाग",
+  "label_next_episode": "अगले प्रकरण",
+  "label_poster"     : "पोस्टर",
+  "label_background" : "पृष्ठभूमि"
   
 }

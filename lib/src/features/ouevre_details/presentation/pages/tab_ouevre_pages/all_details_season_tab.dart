@@ -117,7 +117,7 @@ class SeasonSerieItems extends StatelessWidget{
     
 
     return GestureDetector(
-      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(serie.id , seasonItem.seasonNumber)),
+      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(serie.id , seasonItem.seasonNumber, serie.name)),
       child: Container(
     height: 180.0,
     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -275,7 +275,7 @@ class SeasonAnimeItems extends StatelessWidget{
 
   Widget _itemSeason(BuildContext context, SeasonAnime seasonItem) {
     return GestureDetector(
-      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(anime.id , seasonItem.seasonNumber)),
+      onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(anime.id , seasonItem.seasonNumber, anime.name)),
       child: Container(
     height: 180.0,
     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),

@@ -76,6 +76,8 @@ import 'package:bunkalist/src/features/options/presentation/bloc/bloc_edit_profi
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/anime_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/credits_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/images_poster_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/keywords_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/movie_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/people_credits_remote_data_source.dart';
@@ -85,9 +87,12 @@ import 'package:bunkalist/src/features/ouevre_details/data/datasources/review_de
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/season_info_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/serie_details_rec_sim_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/datasources/video_youtube_details_remote_data_source.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/datasources/watch_provider_details_remote_data_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/anime_details_rec_sim_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/credits_details_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/images_poster_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/keyword_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/movie_details_rec_sim_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/people_credits_impl.dart';
@@ -97,11 +102,14 @@ import 'package:bunkalist/src/features/ouevre_details/data/implementations/revie
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/season_info_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/serie_details_rec_sim_impl.dart';
+import 'package:bunkalist/src/features/ouevre_details/data/implementations/watch_provider_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/data/implementations/youtube_video_details_impl.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details.rec_sim_contracts.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/anime_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/credits_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/get_season_info_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/images_details_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/keywords_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/movie_details_rec_sim_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/people_credits_contract.dart';
@@ -111,10 +119,13 @@ import 'package:bunkalist/src/features/ouevre_details/domain/contracts/review_de
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/serie_details_rec_sim_contracts.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/contracts/video_youtube_details_contract.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/contracts/watch_provider_details_contract.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_recommendation.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_anime_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_credits_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_images_poster_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_keywords_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details_recommedation.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_movie_details_similar.dart';
@@ -127,6 +138,7 @@ import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_serie_details_similar.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_series_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_videos_youtube_details.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/usescases/get_watch_provider_details.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_people/bloc.dart';
@@ -728,12 +740,18 @@ initEditProfile(){
 }
 
 initOuevreDetails(){
+  
+  
+  
   //? BLoc
   serviceLocator.registerFactory(
     () => OuevreDetailsBloc(
       movie: serviceLocator(),
       serie: serviceLocator(),
-      anime: serviceLocator()
+      anime: serviceLocator(),
+      keywords: serviceLocator(),
+      poster: serviceLocator(),
+      watchProvider: serviceLocator()
       ),
     );
     
@@ -773,7 +791,7 @@ initOuevreDetails(){
 
   serviceLocator.registerFactory(
     () => SeasonInfoBloc(
-      episodes: serviceLocator()
+      season: serviceLocator()
       ),
   );
 
@@ -789,6 +807,9 @@ initOuevreDetails(){
   initMovieDetails();
   initSerieDetails();
   initAnimeDetails();
+  initKeywords();
+  initWatchProvider();
+  initImagesPoster();
   initReviewsDetails();
   initCreditsDetails();
   initMovieRecomAndSimilarDetails();
@@ -850,6 +871,62 @@ initAnimeDetails(){
   serviceLocator.registerLazySingleton<AnimeDetailsRemoteDataSource>(
     () => AnimeDetailsRemoteDataSourceImpl(client: serviceLocator())
   );  
+}
+
+
+initKeywords(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetKeywordsDetails(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<KeywordsDetailsContract>(
+    () => KeywordsDetailsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    ),
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<KeywordsRemoteDataSource>(
+    () => KeywordsRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
+  );
+}
+
+
+initWatchProvider(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetWatchProviderDetails(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<WatchProviderDetailsContract>(
+    () => WatchProviderDetailsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    ),
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<WatchProviderRemoteDataSource>(
+    () => WatchProviderRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
+  );
+}
+
+initImagesPoster(){
+  //? Usescases
+  serviceLocator.registerLazySingleton(() => GetPosterImagesDetails(serviceLocator()));
+  //? Repository - Contracts
+  serviceLocator.registerLazySingleton<ImagesPosterDetailsContract>(
+    () => ImagesPosterDetailsImpl(
+      remoteDataSource: serviceLocator(),
+      networkInfo: serviceLocator()
+    ),
+  );
+  //? Data Sources
+  serviceLocator.registerLazySingleton<ImagesDetailsRemoteDataSource>(
+    () => ImagesDetailsRemoteDataSourceImpl(
+      client: serviceLocator()
+    )
+  );
 }
 
 initReviewsDetails(){
@@ -1029,3 +1106,5 @@ initPeopleCredits(){
     )
   );
 }
+
+

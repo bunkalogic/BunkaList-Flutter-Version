@@ -13,6 +13,30 @@ class GetDetailsOuevre extends OuevreDetailsEvent{
 
 }
 
+class GetMoreDetailsOuevreKeywords extends OuevreDetailsEvent{
+
+  final int id;
+  final String type;
+  GetMoreDetailsOuevreKeywords(this.id, this.type) : super ([id, type]);
+
+}
+
+class GetMoreDetailsOuevreWatchProvider extends OuevreDetailsEvent{
+
+  final int id;
+  final String type;
+  GetMoreDetailsOuevreWatchProvider(this.id, this.type) : super ([id, type]);
+
+}
+
+class GetMoreDetailsOuevreImages extends OuevreDetailsEvent{
+
+  final int id;
+  final String type;
+  GetMoreDetailsOuevreImages(this.id, this.type) : super ([id, type]);
+
+}
+
 // class GetDetailsMovie extends OuevreDetailsEvent{
 
 //   final int id;

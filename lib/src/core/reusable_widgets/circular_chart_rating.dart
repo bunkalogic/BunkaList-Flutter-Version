@@ -82,7 +82,7 @@ class _MiniCircularChartRatingState extends State<MiniCircularChartRating> {
       animationDuration: 600,
       lineWidth: 4.6,
       backgroundColor: Colors.blueGrey[600],
-      progressColor: Colors.pinkAccent[400],
+      progressColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       // linearGradient: LinearGradient(
         
       //   tileMode: TileMode.clamp,
@@ -103,10 +103,10 @@ class _MiniCircularChartRatingState extends State<MiniCircularChartRating> {
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 16.0,
-        color: Colors.white,
+        color: prefs.whatModeIs ? Colors.pinkAccent : Colors.deepPurpleAccent,
         shadows: [
           Shadow(
-            blurRadius: 2.5,
+            blurRadius: 0.5,
             color: Colors.black,
           )
         ]
@@ -193,13 +193,13 @@ class _BigCircularChartRatingState extends State<BigCircularChartRating> {
 
     return CircularPercentIndicator(
       percent: percent,
-      radius: 54.0,
+      radius: 50.0,
       animation: true,
       circularStrokeCap: CircularStrokeCap.round,
       animationDuration: 600,
       lineWidth: 7.0,
       backgroundColor: Colors.blueGrey[600],
-      progressColor: Colors.pinkAccent[400],
+      progressColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       // linearGradient: LinearGradient(
         
       //   tileMode: TileMode.clamp,
@@ -223,10 +223,10 @@ class _BigCircularChartRatingState extends State<BigCircularChartRating> {
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 18.0,
-        color: Colors.white,
+        color:  prefs.whatModeIs ? Colors.pinkAccent : Colors.deepPurpleAccent,
         shadows: [
           Shadow(
-            blurRadius: 2.5,
+            blurRadius: 0.5,
             color: Colors.black,
           )
         ]
@@ -332,10 +332,10 @@ class _BigFavoriteCircularChartRatingState extends State<BigFavoriteCircularChar
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 16.0,
-        color: Colors.white,
+        color: Colors.amberAccent,
         shadows: [
           Shadow(
-            blurRadius: 2.5,
+            blurRadius: 0.5,
             color: Colors.black,
           )
         ]
@@ -444,10 +444,10 @@ class _MiniFavoriteCircularChartRatingState extends State<MiniFavoriteCircularCh
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 16.0,
-        color: Colors.white,
+        color: Colors.amberAccent,
         shadows: [
           Shadow(
-            blurRadius: 2.5,
+            blurRadius: 0.5,
             color: Colors.black,
           )
         ]
@@ -539,6 +539,7 @@ class _MiniCircularChartRatingColorState extends State<MiniCircularChartRatingCo
       radius: 55.0,
       animation: true,
       animationDuration: 600,
+      circularStrokeCap: CircularStrokeCap.round,
       lineWidth: 7.5,
       backgroundColor: Colors.blueGrey[600],
       progressColor: widget.color,
@@ -565,13 +566,7 @@ class _MiniCircularChartRatingColorState extends State<MiniCircularChartRatingCo
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 18.0,
-        color: Colors.white,
-        shadows: [
-          Shadow(
-            blurRadius: 2.5,
-            color: Colors.black,
-          )
-        ]
+        color: widget.color,
       ),
       ),
     );

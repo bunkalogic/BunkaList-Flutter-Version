@@ -1,12 +1,19 @@
+import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 import '../../../../../injection_container.dart';
 
@@ -29,6 +36,10 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   TabController _tabController;
   ScrollController _scrollViewController;
   Preferences prefs = Preferences();
+  bool isExpandedHeight = false;
+
+  bool isExtended = false;
+
 
   @override
   void initState() {
@@ -119,36 +130,122 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
    @override
   Widget build(BuildContext context) {
+    final int id = widget.data['id'];
+    final String type = widget.data['type'];
+
     return Scaffold(
       body: DefaultTabController(
         length: _getListTabs(context).length,
         child: _createHeaderSliverBuilder()
       ),
+      floatingActionButton: BlocProvider<OuevreDetailsBloc>(
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: FABAddToList(type: type, id: id, isScrolling: isExtended,),
+        ),
+      
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ); 
         
     
   }
+
+  
 
   Widget _createHeaderSliverBuilder(){
     final int id = widget.data['id'];
     final String type = widget.data['type'];
     final String title = widget.data['title'];
 
+    // return CustomScrollView(
+    //         controller: _scrollViewController,
+    //         physics: const BouncingScrollPhysics(),
+    //         slivers: [
+    //           _createSliverAppBar(),
+    //           SliverFillRemaining(
+    //             fillOverscroll: false,
+    //             hasScrollBody: true,
+    //             child: TabBarView(       
+    //             physics: NeverScrollableScrollPhysics(),    
+    //             controller: _tabController,
+    //             children: _getListTabs(context).map((Tab tab) {
+    //               return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
+    //             }).toList(),
+    //         ),
+    //           ),
+    //         ],
+            
+    //   );
 
-    return NestedScrollView(
-          controller: _scrollViewController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
-            return <Widget>[
-              _createSliverAppBar(innerBoxScrolled),
-            ];
+    // return  NotificationListener<OverscrollIndicatorNotification>(
+    //       onNotification: (overscroll) {
+    //         overscroll.disallowGlow();
+    //         return false;
+    //       },
+    //       child: NestedScrollView(
+    //         controller: _scrollViewController,
+    //         // physics: const BouncingScrollPhysics(),
+    //         headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
+    //           return <Widget>[
+    //             _createSliverAppBar(innerBoxScrolled),
+    //           ];
+    //         },
+    //         body: TabBarView(       
+    //       // physics: NeverScrollableScrollPhysics(),    
+    //       controller: _tabController,
+    //       children: _getListTabs(context).map((Tab tab) {
+    //         return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
+    //       }).toList(),
+    //     ),
+    //   ),
+    // );
+
+    return   NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification notification) {
+            
+            if (notification is ScrollStartNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = !isExtended;
+              });
+            }
+
+            
+            if (notification is UserScrollNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = false;
+              });
+            }
+
+           
+
+            if (notification is ScrollEndNotification) {
+              // Handle your desired action on scroll start here.
+              setState(() {
+                isExtended = true;
+              });
+            }
+
+            // Returning null (or false) to
+            // "allow the notification to continue to be dispatched to further ancestors".
+            return false;
           },
-          body: TabBarView(   
-        physics: NeverScrollableScrollPhysics(),    
-        controller: _tabController,
-        children: _getListTabs(context).map((Tab tab) {
-          return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
-        }).toList(),
-      ),
+      child: NestedScrollView(
+      controller: _scrollViewController,
+      // physics: const BouncingScrollPhysics(),
+      headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
+        return <Widget>[
+          _createSliverAppBar(innerBoxScrolled),
+        ];
+      },
+      body: TabBarView(       
+    // physics: NeverScrollableScrollPhysics(),    
+    controller: _tabController,
+    children: _getListTabs(context).map((Tab tab) {
+      return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
+    }).toList(),
+        ),
+      )
     );
   }
 
@@ -157,18 +254,32 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     final int id = widget.data['id'];
     final String type = widget.data['type'];
     
+    
 
     return SliverAppBar(
         leading: AppBarButtonBack(),
         pinned: true,
-        floating: false,
         forceElevated: innerBoxScrolled,
-        expandedHeight: MediaQuery.of(context).size.height / 2.5,
-        // expandedHeight: 320.0,
-        flexibleSpace: new BlocProvider<OuevreDetailsBloc>(
+        stretch: true,
+        elevation: 10.0,
+        expandedHeight: 280,
+        flexibleSpace: BlocProvider<OuevreDetailsBloc>(
           create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsHeaderInfo(id: id, type: type),
         ),
+
+        // flexibleSpace: FlexibleSpaceBar(
+        // stretchModes: <StretchMode>[
+        //   StretchMode.zoomBackground,
+        //   // StretchMode.blurBackground,
+        //   // StretchMode.fadeTitle
+        // ],       
+        // // collapseMode: CollapseMode.parallax,
+        // background:Image(image: AssetImage('assets/poster_placeholder.png'),fit: BoxFit.cover,) ,
+        // centerTitle: true,
+        // titlePadding: EdgeInsets.only(bottom: 65.0),
+        // title: Text('Title')
+        // ),
         bottom: _tabBar(),
         
     );
@@ -180,7 +291,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     List<Shadow> shadowWhite = [Shadow(blurRadius: 1.0, color:  Colors.white, offset: Offset(0.3, 0.3))];
 
     return TabBar(
-      labelColor: Colors.pinkAccent[400],
+      labelColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
       unselectedLabelColor: prefs.whatModeIs ? Colors.grey[400] : Colors.grey[800],
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0, 
@@ -192,10 +303,21 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         fontWeight: FontWeight.w700,
         shadows: prefs.whatModeIs ? shadowBlack : shadowWhite,
       ),
-      indicator: MD2Indicator(
-        indicatorHeight: 3, 
-        indicatorColor: Colors.pinkAccent[400], 
-        indicatorSize: MD2IndicatorSize.normal
+      // indicator: MD2Indicator(
+      //   indicatorHeight: 4, 
+      //   indicatorColor: Colors.pinkAccent[400], 
+      //   indicatorSize: MD2IndicatorSize.tiny
+      // ),
+      indicator: MaterialIndicator (
+        color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        bottomLeftRadius: 2,
+        bottomRightRadius: 2,
+        topLeftRadius: 2,
+        topRightRadius: 2,
+        height: 3,
+        horizontalPadding: 20,
+        
+        tabPosition: TabPosition.bottom
       ),
       isScrollable: true,
       tabs: _getListTabs(context),
@@ -208,3 +330,192 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
   
    
 }
+
+
+
+class FABAddToList extends StatefulWidget {
+
+  final int id;
+  final String type;
+  final bool isScrolling;
+
+  FABAddToList({
+    this.id,
+    this.type,
+    this.isScrolling
+  });
+
+  @override
+  _FABAddToListState createState() => _FABAddToListState();
+}
+
+class _FABAddToListState extends State<FABAddToList> {
+  
+  Preferences prefs = Preferences();
+
+
+   @override
+  void initState() {
+    BlocProvider.of<OuevreDetailsBloc>(context)
+    ..add(GetDetailsOuevre(widget.id, widget.type));
+    super.initState();
+  } 
+
+
+  
+  
+  @override
+  Widget build(BuildContext context) {
+    
+    return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
+      builder: (context, state) {
+        
+        if(state is Empty){
+
+          return SizedBox.shrink();
+          
+
+        }else if(state is Loading){
+          
+          return SizedBox.shrink();
+            
+
+        }else if(state is LoadedMovie){
+
+          return buildFAB(
+            context: context,
+            title: AppLocalizations.of(context).translate("fab_label_add_movie"),
+            onPressed: (){
+
+              return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: state.movie,
+              type: state.movie.type,
+              objectType: ConstantsTypeObject.movieDetailsEntity
+            ).showBottomModal();
+
+            }
+          );
+
+        }else if(state is LoadedSerie){
+
+          return buildFAB(
+            context: context,
+            title: AppLocalizations.of(context).translate("fab_label_add_serie"),
+            onPressed: (){
+
+            return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: state.serie,
+              type: state.serie.type,
+              objectType: ConstantsTypeObject.serieDetailsEntity
+            ).showBottomModal();
+
+            }
+          );
+
+        }else if(state is LoadedAnime){
+
+          return buildFAB(
+            context: context,
+            title: AppLocalizations.of(context).translate("fab_label_add_anime"),
+            onPressed: (){
+
+            return ButtonClikedAdded(
+              context: context,
+              isUpdated: false,
+              ouevre: state.anime,
+              type: state.anime.type,
+              objectType: ConstantsTypeObject.animeDetailsEntity
+            ).showBottomModal();
+
+            }
+          );
+
+        }else if(state is Error){
+          
+          return Center(
+            child: Text(state.message),
+          );
+
+        }
+
+        return Center(
+            child: Text('something Error'),
+          );
+
+      },
+    );
+
+    
+  }
+
+
+  Widget buildFAB({BuildContext context, String title, Function() onPressed }){
+
+    return FloatingActionButton.extended(
+      isExtended: !widget.isScrolling,
+      elevation: 1.0,
+      backgroundColor: _getBackgroundColorTheme(),
+      onPressed: onPressed,
+      label: AnimatedSwitcher(
+        duration: Duration(milliseconds: 400),
+        transitionBuilder: (Widget child, Animation<double> animation) =>
+        FadeTransition(
+          opacity: animation,
+          child: SizeTransition(
+            child: child,
+            sizeFactor: animation,
+            axis: Axis.horizontal,
+          ),
+        ) ,
+        child: widget.isScrolling 
+        ? Icon(
+          Icons.add,
+          size: 30,
+          color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        ) 
+        : Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 1.0),
+              child: Icon(
+                Icons.add_circle,
+                size: 26,
+                color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+                ),
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 14,
+                color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+                fontWeight: FontWeight.w800
+              ),
+            )
+          ],
+        ),
+      )
+    );
+
+  }
+
+   Color _getBackgroundColorTheme() {
+    final prefs = new Preferences();
+
+    if(prefs.whatModeIs && prefs.whatDarkIs == false){
+      return Colors.blueGrey[800];
+    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
+      return Colors.grey[850];
+    }
+    else{
+      return Colors.grey[100];
+    }
+  }
+}
+
+

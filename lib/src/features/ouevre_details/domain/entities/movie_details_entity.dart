@@ -25,6 +25,9 @@ class MovieDetailsEntity extends Equatable {
     final double voteAverage;
     final int voteCount;
     final String type;
+    final List<dynamic> productionCompanies;
+    final List<dynamic> productionCountry;
+    final List<dynamic> spokenLanguage;
 
 
     MovieDetailsEntity({
@@ -49,6 +52,9 @@ class MovieDetailsEntity extends Equatable {
         @required this.video,
         @required this.voteAverage,
         @required this.voteCount,
+        @required this.productionCompanies,
+        @required this.productionCountry,
+        @required this.spokenLanguage,
         @required this.type
     }) : super([
       adult,
@@ -72,6 +78,9 @@ class MovieDetailsEntity extends Equatable {
       video,
       voteAverage,
       voteCount,
+      productionCompanies,
+      productionCountry,
+      spokenLanguage,
       type  
     ]);
 }
@@ -89,4 +98,65 @@ class GenreMovie extends Equatable {
       id, 
       name,
     ]);
+}
+
+
+class MovieProductionCompany  extends Equatable{
+    
+  final int id;
+  final String logoPath;
+  final String name;
+  final String originCountry;
+  
+  
+  MovieProductionCompany({
+      @required this.id,
+      @required this.logoPath,
+      @required this.name,
+      @required this.originCountry,
+  }) : super([
+    id,
+    logoPath,
+    name,
+    originCountry,
+  ]);
+
+    
+}
+
+class MovieProductionCountry  extends Equatable{
+    
+    final String iso31661;
+    final String name;
+    
+    
+    MovieProductionCountry({
+        @required this.iso31661,
+        @required this.name,
+    }) : super([
+      iso31661,
+      name,
+    ]);
+
+    
+}
+
+
+class MovieSpokenLanguage extends Equatable {
+    
+    final String englishName;
+    final String iso6391;
+    final String name;
+    
+    MovieSpokenLanguage({
+        @required this.englishName,
+        @required this.iso6391,
+        @required this.name,
+    }) : super([
+      englishName,
+      iso6391,
+      name,
+    ]);
+
+    
 }

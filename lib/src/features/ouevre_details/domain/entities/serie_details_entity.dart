@@ -27,6 +27,13 @@ class SerieDetailsEntity extends Equatable{
     final int voteCount;
     final String type;
     final List<dynamic> seasonSerie;
+    final List<dynamic> productionCompanies;
+    final dynamic lastEpisodeToAir;
+    final dynamic nextEpisodeToAir;
+    final List<dynamic> productionCountry;
+    final List<dynamic> spokenLanguage;
+    final List<dynamic> createdBy;
+
 
     SerieDetailsEntity({
         @required this.backdropPath,
@@ -52,7 +59,13 @@ class SerieDetailsEntity extends Equatable{
         @required this.voteAverage,
         @required this.voteCount,
         @required this.type,
-        @required this.seasonSerie
+        @required this.seasonSerie,
+        @required this.productionCompanies,
+        @required this.lastEpisodeToAir,
+        @required this.nextEpisodeToAir,
+        @required this.productionCountry,
+        @required this.spokenLanguage,
+        @required this.createdBy
     }) : super([
       backdropPath,
       episodeRunTime.cast<int>(),
@@ -77,7 +90,13 @@ class SerieDetailsEntity extends Equatable{
       voteAverage,
       voteCount,
       type,
-      seasonSerie
+      seasonSerie,
+      productionCompanies, 
+      lastEpisodeToAir,
+      nextEpisodeToAir, 
+      productionCountry,
+      spokenLanguage, 
+      createdBy
     ]);
 }
 
@@ -142,4 +161,136 @@ class SeasonSerie extends Equatable {
         posterPath,
         seasonNumber,
     ]);
+}
+
+class SerieProductionCompany  extends Equatable{
+    
+  final int id;
+  final String logoPath;
+  final String name;
+  final String originCountry;
+  
+  
+  SerieProductionCompany({
+      @required this.id,
+      @required this.logoPath,
+      @required this.name,
+      @required this.originCountry,
+  }) : super([
+    id,
+    logoPath,
+    name,
+    originCountry,
+  ]);
+
+    
+}
+
+
+
+class SerieLastEpisodeToAir extends Equatable {
+    
+    final String airDate;
+    final int episodeNumber;
+    final int id;
+    final String name;
+    final String overview;
+    final String productionCode;
+    final int seasonNumber;
+    final String stillPath;
+    final double voteAverage;
+    final int voteCount;
+    
+    
+    
+    
+    SerieLastEpisodeToAir({
+        @required this.airDate,
+        @required this.episodeNumber,
+        @required this.id,
+        @required this.name,
+        @required this.overview,
+        @required this.productionCode,
+        @required this.seasonNumber,
+        @required this.stillPath,
+        @required this.voteAverage,
+        @required this.voteCount,
+    }) : super([
+      airDate,
+      episodeNumber,
+      id,
+      name,
+      overview,
+      productionCode,
+      seasonNumber,
+      stillPath,
+      voteAverage,
+      voteCount,
+    ]);
+
+    
+}
+
+
+class SerieProductionCountry  extends Equatable{
+    
+    final String iso31661;
+    final String name;
+    
+    
+    SerieProductionCountry({
+        @required this.iso31661,
+        @required this.name,
+    }) : super([
+      iso31661,
+      name,
+    ]);
+
+    
+}
+
+
+class SerieSpokenLanguage extends Equatable {
+    
+    final String englishName;
+    final String iso6391;
+    final String name;
+    
+    SerieSpokenLanguage({
+        @required this.englishName,
+        @required this.iso6391,
+        @required this.name,
+    }) : super([
+      englishName,
+      iso6391,
+      name,
+    ]);
+
+    
+}
+
+class SerieCreatedBy  extends Equatable {
+    
+    final int id;
+    final String creditId;
+    final String name;
+    final int gender;
+    final String profilePath;
+    
+    
+    SerieCreatedBy({
+        @required this.id,
+        @required this.creditId,
+        @required this.name,
+        @required this.gender,
+        @required this.profilePath,
+    }): super([
+      id,
+      creditId,
+      name,
+      gender,
+      profilePath,
+    ]);
+
+    
 }

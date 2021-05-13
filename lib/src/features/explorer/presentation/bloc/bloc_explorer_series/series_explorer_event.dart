@@ -12,6 +12,8 @@ class GetSeriesExplorer extends SeriesExplorerEvent{
   final String genre;
   final String withKeywords;
   final String withNetwork;
+  final String withCompanies;
+  final String withWatchProvider;
 
   GetSeriesExplorer({
     @required this.page,
@@ -20,7 +22,9 @@ class GetSeriesExplorer extends SeriesExplorerEvent{
     this.voteCountGte,
     this.genre,
     this.withKeywords,
-    this.withNetwork
+    this.withNetwork,
+    this.withCompanies,
+    this.withWatchProvider
   }) : super([
     page,
     sortBy,
@@ -29,5 +33,7 @@ class GetSeriesExplorer extends SeriesExplorerEvent{
     genre,
     withKeywords,
     withNetwork,
+    withCompanies,
+    withWatchProvider
   ]);
 }

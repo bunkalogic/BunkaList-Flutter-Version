@@ -117,7 +117,7 @@
     "details_revenue"             : "Ingresos",
     "details_status"              : "Estado",
     "details_tagline"             : "Tagline",
-    "episode"                     : "Episodios",
+    "episode"                     : "Episodio",
     "season"                      : "Temporada",
     "casting"                     : "Casting",
     "crew"                        : "Personal",
@@ -375,6 +375,30 @@
   "label_select_year"   : "Año (es opcional)",
 
   "label_filter_personalize" : "Filtrado Personalizado",
-  "btn_filter_personalize"   : "Filtrar"
+  "btn_filter_personalize"   : "Filtrar",
+  
+  "fab_label_add_movie" : "Añadir Pelicula",
+  "fab_label_add_serie" : "Añadir Serie",
+  "fab_label_add_anime" : "Añadir Anime",
+  
+  "label_btn_streaming": "Streaming",
+  "label_summary"      : "Resumen",
+  "label_genres"       : "Géneros",
+
+  "label_created_by"   : "Creada por",
+  "label_network"      : "Redes",
+  "label_production"   : "Productores",
+  "label_keyword"      : "Palabras claves",
+  
+  "label_images"      : "Imagenes",
+  "label_last_episode": "Ultimo Episodio",
+  "label_next_episode": "Proximo Episodio",
+
+  "label_poster" : "Posters",
+  "label_background" : "Fondos"
+
+
+
+  
   
 }

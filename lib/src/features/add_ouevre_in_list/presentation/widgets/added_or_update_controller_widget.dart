@@ -315,7 +315,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (_) => _buildBottomModalOptionsComplete(context, newOuevre),
+      builder: (context) => _buildBottomModalOptionsComplete(context, newOuevre),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(20),
@@ -362,7 +362,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (_) {
+      builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalCompleteSimple(newOuevre: newOuevre,),
@@ -382,7 +382,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (_) {
+      builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalCompleteInDetails(newOuevre: newOuevre),
@@ -404,7 +404,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
-      builder: (_) {
+      builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalWatching(newOuevre: newOuevre),
@@ -448,7 +448,7 @@ class GetBottomModalStatus {
       backgroundColor: _getBackgroundColorTheme(), 
       context: context,
       isScrollControlled: true,
-      builder: (_) {
+      builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
           child: BuildBottomModalPauseOrDropped(newOuevre: newOuevre),

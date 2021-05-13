@@ -221,7 +221,7 @@ class Preferences{
 
 
   //? se en encarga de guardar los ids de las movies
-  get listMoviesIds  {
+  List<String> get listMoviesIds  {
     return _prefs.getStringList('listMoviesIds') ?? [];
   }
 
@@ -230,7 +230,7 @@ class Preferences{
   }
 
   //? se en encarga de guardar los ids de las series
-  get listSerieIds  {
+  List<String> get listSerieIds  {
     return _prefs.getStringList('listSerieIds') ?? [];
   }
 
@@ -239,7 +239,7 @@ class Preferences{
   }
 
   //? se en encarga de guardar los ids de las animes
-  get listAnimeIds  {
+  List<String> get listAnimeIds  {
     return _prefs.getStringList('listAnimeIds') ?? [];
   }
 

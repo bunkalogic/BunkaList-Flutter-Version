@@ -15,6 +15,8 @@ abstract class SerieExplorerContract{
     String genre,
     String withNetwork,
     String withKeywords,
+    String withCompanies,
+    String withWatchProvider
   });
 
 }

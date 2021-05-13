@@ -16,10 +16,10 @@ class SeasonInfoBloc extends Bloc<SeasonInfoEvent, SeasonInfoState> {
   final GetSeasonInfo getSeasonInfo;
 
   SeasonInfoBloc({
-    @required GetSeasonInfo episodes
+    @required GetSeasonInfo season
   }) 
-  : assert(episodes != null),
-  getSeasonInfo = episodes;
+  : assert(season != null),
+  getSeasonInfo = season;
   
   @override
   SeasonInfoState get initialState => Empty();
@@ -51,10 +51,10 @@ class SeasonInfoBloc extends Bloc<SeasonInfoEvent, SeasonInfoState> {
   }
 
   Stream<SeasonInfoState> _eitherLoadedOrErrorState
-  (Either<Failures, List<EpisodeEntity>> either) async* {
+  (Either<Failures, SeasonEntity> either) async* {
     yield either.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)), 
-      (episodes)  => Loaded(episode: episodes)
+      (season)  => Loaded(season: season)
     );
   }
 

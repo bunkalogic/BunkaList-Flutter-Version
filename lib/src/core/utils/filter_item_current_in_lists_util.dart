@@ -9,10 +9,12 @@ List<MovieModel> filterMovieCurrentInList(List<MovieModel> movies){
   Preferences prefs = Preferences();
 
   List<String> listMoviesIds = prefs.listMoviesIds;
+
+  if(listMoviesIds.isEmpty) return movies;
   
   List<MovieModel> listMoviesFilter = [];
   
-  if(listMoviesIds.isEmpty) return movies;
+  
 
 
 
@@ -43,10 +45,12 @@ List<SeriesModel> filterSerieCurrentInList(List<SeriesModel> series){
   Preferences prefs = Preferences();
 
   List<String> listSeriesIds = prefs.listSerieIds;
+
+  if(listSeriesIds.isEmpty) return series;
   
   List<SeriesModel> listSerieFilter = [];
   
-  if(listSeriesIds.isEmpty) return series;
+  
 
 
 
@@ -73,11 +77,11 @@ List<AnimeModel> filterAnimeCurrentInList(List<AnimeModel> animes){
   Preferences prefs = Preferences();
 
   List<String> listAnimeIds = prefs.listAnimeIds;
-  
-  List<AnimeModel> listAnimeFilter = [];
+
   
   if(listAnimeIds.isEmpty) return animes;
 
+  List<AnimeModel> listAnimeFilter = [];
 
 
   animes.forEach((element) { 

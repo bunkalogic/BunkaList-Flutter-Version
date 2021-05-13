@@ -24,6 +24,8 @@ abstract class AnimesExplorerRemoteDataSource{
     String genre,
     String withKeywords,
     String withNetwork,
+    String withCompanies,
+    String withWatchProvider
   }
   );
 
@@ -58,7 +60,9 @@ class AnimesExplorerRemoteDataSourceImpl implements AnimesExplorerRemoteDataSour
       int voteCountGte,  
       String genre, 
       String withKeywords, 
-      String withNetwork
+      String withNetwork,
+      String withCompanies,
+      String withWatchProvider
     }) async {
     
       if(_loading) return [];
@@ -80,7 +84,10 @@ class AnimesExplorerRemoteDataSourceImpl implements AnimesExplorerRemoteDataSour
           'vote_count.gte'        : voteCountGte.toString(),
           'with_genres'           : '16,$genre',
           'with_original_language': 'ja',
-          'with_keywords'         : withKeywords
+          'with_keywords'         : withKeywords,
+          'with_companies'        : withCompanies,
+          'with_watch_providers'  : withWatchProvider,
+          'include_null_first_air_dates' : 'false'
           
       };
 

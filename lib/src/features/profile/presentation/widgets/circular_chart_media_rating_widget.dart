@@ -61,11 +61,11 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
   Widget roundedCircularRating(){
     switch(widget.type){
       
-      case 'movie': return CircularMediaRatingList(color: Colors.redAccent[400], rating: ratingAverage,); //_roundedCircularRatingMovie();
+      case 'movie': return CircularMediaRatingList(color: Colors.redAccent[400], rating: ratingAverage, textColor: Colors.redAccent,); //_roundedCircularRatingMovie();
 
-      case 'tv': return CircularMediaRatingList(color: Colors.greenAccent[400], rating: ratingAverage,); //_roundedCircularRatingSerie();
+      case 'tv': return CircularMediaRatingList(color: Colors.greenAccent[400], rating: ratingAverage, textColor: Colors.greenAccent,); //_roundedCircularRatingSerie();
 
-      case 'anime': return CircularMediaRatingList(color: Colors.lightBlueAccent[400], rating: ratingAverage,); //_roundedCircularRatingAnime();
+      case 'anime': return CircularMediaRatingList(color: Colors.lightBlueAccent[400], rating: ratingAverage, textColor: Colors.lightBlueAccent,); //_roundedCircularRatingAnime();
 
       default: return _roundedCircularRatingMovie();
     }
@@ -74,7 +74,7 @@ class _MediaRatingWidgetState extends State<MediaRatingWidget> {
   double getMediaRating(List<OuevreEntity> ouevres){
     //if(ouevres.isEmpty) return 0.0;  
 
-    final List<double> listRating = new List<double>();
+    final List<double> listRating = [];
 
     for (var ouevre in ouevres) {
       listRating.add(ouevre.finalRate);  
@@ -312,11 +312,12 @@ class CircularMediaRatingList extends StatefulWidget {
 
   final double rating;
   final Color color;
-
+  final Color textColor;
 
   CircularMediaRatingList({
     @required this.rating,
-    @required this.color
+    @required this.color,
+    @required this.textColor
   });
 
   @override
@@ -345,7 +346,7 @@ class _CircularMediaRatingListState extends State<CircularMediaRatingList> {
         style: new TextStyle(
         fontWeight: FontWeight.w800,
         fontSize: 16.0,
-        color: Colors.white,
+        color: widget.textColor,
         shadows: [
           Shadow(
             blurRadius: 2.5,

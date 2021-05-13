@@ -89,6 +89,16 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail

@@ -21,7 +21,10 @@ class SlideRightRoute extends PageRouteBuilder {
                 position: Tween<Offset>(
                   begin: const Offset(0.0, 1.0),
                   end: Offset.zero
-                ).animate(animation),
+                ).animate(CurvedAnimation(
+                  parent: animation,
+                  curve: Interval(0, 0.7, curve: Curves.easeInCubic)
+                )),
                 child: child,
               ),
         );

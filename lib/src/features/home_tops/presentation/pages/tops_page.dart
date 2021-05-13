@@ -68,16 +68,16 @@ class _TopsPageState extends State<TopsPage> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text(AppLocalizations.of(context).translate("movies_popular"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
+          title: Text(AppLocalizations.of(context).translate("label_movie_cinema"), style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
         ),
-        new BlocProvider<SelectionmoviesBloc>(
-          create: (_) => serviceLocator<SelectionmoviesBloc>(),
-          child: CarouselMoviesSelectionWidget(),
-        ),
-        SizedBox(height: 10.0,),
         new BlocProvider<CinemaMovieBloc>(
           create: (_) => serviceLocator<CinemaMovieBloc>(),
-          child:ContainerListCinemaMoviesWidget(title: AppLocalizations.of(context).translate("label_movie_cinema"),),
+          child: CarouselMoviesInCinemaWidget(),
+        ),
+        SizedBox(height: 10.0,),
+        new BlocProvider<TopsMoviesBloc>(
+          create: (_) => serviceLocator<TopsMoviesBloc>(),
+          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("movies_popular"), typeId: Constants.topsMoviesPopularId,),
         ),
         SizedBox(height: 10.0,),
         new BlocProvider<TopsMoviesBloc>(

@@ -122,6 +122,14 @@ dependencies:
   provider: ^4.0.5
   # rx dart
   rxdart: ^0.26.0
+  # admob oficial dev google
+  #google_mobile_ads: ^0.11.0+4
+  # tab indicator
+  tab_indicator_styler: ^1.0.0
+  # country codes
+  #country_codes: ^2.0.0
+  # admod flutter
+  admob_flutter: ^1.0.1
 
   flutter_localizations:
     sdk: flutter

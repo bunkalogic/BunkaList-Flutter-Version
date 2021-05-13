@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:snap/snap.dart';
 
@@ -27,6 +28,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void initState() {
     super.initState();
+
+    
     _controller = YoutubePlayerController(
       initialVideoId: widget.id,
       flags: YoutubePlayerFlags(
@@ -38,7 +41,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
+
      return Scaffold(
       backgroundColor: Colors.transparent, 
       body: Align(
@@ -82,7 +86,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           showVideoProgressIndicator: true,
           actionsPadding: EdgeInsets.all(2.0),
           topActions: <Widget>[
-            FullScreenButton(controller: _controller,)
+            // FullScreenButton(controller: _controller,)
           ],
           bottomActions: <Widget>[
             CurrentPosition(controller: _controller),
@@ -113,7 +117,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       onPressed: () => Navigator.pop(context),
       elevation: 20.0,
       child: Icon(Icons.close),
-      backgroundColor: Colors.purpleAccent[700],
+      backgroundColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
     );
   }
 

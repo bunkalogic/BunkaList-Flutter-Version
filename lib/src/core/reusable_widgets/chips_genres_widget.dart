@@ -23,6 +23,8 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
   @override
   Widget build(BuildContext context) {
 
+    if(widget.genres.isEmpty) return Container();
+
     List<String> _listGenres = _getNameGenres(context, widget.genres);
 
     if(widget.isWrap){
@@ -260,44 +262,70 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
      return genresChipList;
   }
 
-  Widget _fakeChip(String text, Color color) {
-    return Card(
-      elevation: 5.0,
-      margin: EdgeInsets.symmetric(horizontal: text.length.toDouble() + 1, vertical: 40.0 ),
-      color: color,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Text(
-          text,
-          //overflow: TextOverflow.ellipsis, 
-          textAlign: TextAlign.center, 
-          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600), 
-        ),
-      ),
-    );
+  
+
+}
+
+
+class ChipsKeywordsWidget extends StatefulWidget {
+
+  final List<Genres> keywords;
+
+  ChipsKeywordsWidget({@required this.keywords});
+
+  @override
+  _ChipsKeywordsWidgetState createState() => _ChipsKeywordsWidgetState();
+}
+
+class _ChipsKeywordsWidgetState extends State<ChipsKeywordsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+       alignment: WrapAlignment.spaceEvenly,
+       spacing: 1.5,
+       runSpacing: 1.5,
+       crossAxisAlignment: WrapCrossAlignment.center,
+       
+       direction: Axis.horizontal,
+       children: _chipsKeyword(),
+
+     );
+
   }
 
-  Widget _buttonChip(String title, Color color){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-      child: RaisedButton(
-        disabledColor: color,
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)
-        ),
-        onPressed: null,
-        color: color,
-        child: Text(
-          title,
-          textAlign: TextAlign.center, 
-          style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600),       
+
+  List<Widget> _chipsKeyword(){
+
+    List<Widget> keywordChipList = [];
+
+    for (var i = 0; i < widget.keywords.length; i++) {
+      
+      keywordChipList.add(
+        Container(
+      margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+      child: ActionChip(
+          onPressed: () {
+
+            final Genres keyword = widget.keywords[i];
+            
+            Navigator.pushNamed(context, '/ExplorerGenre', arguments: keyword);
+          },
+          elevation: 4.0,
+          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          label: Text(
+            '#${widget.keywords[i].label}',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14.0,
+              fontStyle: FontStyle.italic
+            ),
+          ),
         ),
       ),
-    );
+      );
+    }
+     
+     return keywordChipList;
   }
-
 }

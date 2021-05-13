@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/provider/push_notifications_provider.dart';
@@ -32,7 +33,9 @@ void main() async{
   // Inicializando Purchases
   Purchases.setDebugLogsEnabled(true);
   await Purchases.setup("SNQQEwiQBuwpLzXsWBgSEktUJusayMzd");
-  // Inicializando el Facebook Ads
+  // Inicializando el Admob
+   Admob.initialize();
+  // Inicializando el Facebook Ads 
   // FacebookAudienceNetwork.init(
   //   testingId: "7fb5fc6f-cfb7-4761-ba77-5879cbaba7ae"
   // );

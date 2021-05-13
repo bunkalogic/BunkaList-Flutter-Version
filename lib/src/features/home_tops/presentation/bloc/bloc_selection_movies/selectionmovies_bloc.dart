@@ -8,6 +8,7 @@ import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'selectionmovies_event.dart';
 part 'selectionmovies_state.dart';
@@ -28,6 +29,19 @@ class SelectionmoviesBloc extends Bloc<SelectionmoviesEvent, SelectionmoviesStat
 
   @override
   SelectionmoviesState get initialState => SelectionmoviesInitial();
+
+  @override
+  Stream<Transition<SelectionmoviesEvent, SelectionmoviesState>> 
+   transformEvents(
+     Stream<SelectionmoviesEvent> events, 
+     Stream<Transition<SelectionmoviesEvent, SelectionmoviesState>> Function(SelectionmoviesEvent event) transitionFn) {
+    
+    return events
+    .debounceTime(const Duration(milliseconds: 300))
+    .switchMap(transitionFn);
+    
+  }
+
 
   @override
   Stream<SelectionmoviesState> mapEventToState(

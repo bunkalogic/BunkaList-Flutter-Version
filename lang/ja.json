@@ -375,6 +375,27 @@
   "label_select_year"   : "年（オプション）",
 
   "label_filter_personalize" : "カスタムフィルタリング",
-  "btn_filter_personalize"   : "フィルタ"
+  "btn_filter_personalize"   : "フィルタ",
+
+  "fab_label_add_movie" : "映画を追加",
+  "fab_label_add_serie" : "シリーズを追加",
+  "fab_label_add_anime" : "アニメを追加",
+
+  "label_btn_streaming": "ストリーミング",
+  "label_summary"      : "概要",
+  "label_genres"       : "ジャンル",
+
+  "label_created_by"   : "によって作成された",
+  "label_network"      : "ネットワーク",
+  "label_production"   : "プロデューサー",
+  "label_keyword"      : "キーワード",
+
+  "label_images"      : "画像",
+  "label_last_episode": "最終話",
+  "label_next_episode": "次のエピソード",
+  "label_poster"     : "ポスター",
+  "label_background" : "背景"
+
+
 
 }

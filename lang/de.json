@@ -376,5 +376,23 @@
   "label_select_year"   : "Jahr (ist optional)",
 
   "label_filter_personalize" : "Benutzerdefinierte Filterung",
-  "btn_filter_personalize"   : "Filter"
+  "btn_filter_personalize"   : "Filter",
+  "fab_label_add_movie" : "Film hinzufügen",
+  "fab_label_add_serie" : "Serie hinzufügen",
+  "fab_label_add_anime" : "Anime hinzufügen",
+
+  "label_btn_streaming": "Streaming",
+  "label_summary"      : "Zusammenfassung",
+  "label_genres"       : "Genres",
+
+  "label_created_by"   : "Erstellt von",
+  "label_network"      : "Netzwerke",
+  "label_production"   : "Produzentinnen",
+  "label_keyword"      : "Schlüsselwörter",
+
+  "label_images"      : "Bilder",
+  "label_last_episode": "Letzte Episode",
+  "label_next_episode": "Nächste Folge",
+  "label_poster"     : "Posters",
+  "label_background" : "Backgrounds"
 }

@@ -113,7 +113,7 @@ class ScrollCastItem extends StatelessWidget{
       );
     }else{
       return Container(
-        height: 180.0,
+        height: 280.0,
         width: double.infinity,
         child: ListView.builder(
           padding: EdgeInsets.all(10.0),
@@ -132,12 +132,49 @@ class ScrollCastItem extends StatelessWidget{
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
         child: Column(
           children: <Widget>[
-            _personPhotoItem(cast),
+            // _personPhotoItem(cast),
+            _peopleImage(cast),
+            SizedBox(height: 10.0,),
             _columnName(cast),
           ],
         ),
       ),
     );
+  }
+
+
+  Widget _peopleImage(Cast cast) {
+
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/original${cast.profilePath}');
+
+    return Container(
+      padding: const EdgeInsets.only(top:15.0),
+      child: Container(
+        width:  109.3,
+        height: 160.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[400].withOpacity(0.4),
+              blurRadius: 0.5,
+              spreadRadius: 0.5
+            ),
+          ]
+        ),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: FadeInImage(
+              image: (cast.profilePath == null) ? placeholder : photo,//? Image Poster Item,
+              placeholder: placeholder, //? PlaceHolder Item,
+              fit: BoxFit.contain,
+            ),
+          ),
+      ),
+    );
+
+    
   }
 
   Widget _personPhotoItem(Cast cast) {
@@ -196,7 +233,7 @@ class ScrollCrewItem extends StatelessWidget{
     }else{
 
       return Container(
-        height: 180.0,
+        height: 280.0,
         width: double.infinity,
         child: ListView.builder(
         padding: EdgeInsets.all(10.0),
@@ -219,12 +256,49 @@ class ScrollCrewItem extends StatelessWidget{
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
         child: Column(
           children: <Widget>[
-            _personPhotoItem(crew),
+            // _personPhotoItem(crew),
+            _peopleImage(crew),
+            SizedBox(height: 10.0,),
             _columnName(crew),
           ],
         ),
       ),
     );
+  }
+
+
+  Widget _peopleImage(Crew crew) {
+
+    final placeholder = AssetImage('assets/photo-placeholder.png');
+    final photo = NetworkImage('https://image.tmdb.org/t/p/original${crew.profilePath}');
+
+    return Container(
+      padding: const EdgeInsets.only(top:15.0),
+      child: Container(
+        width: 109.3,
+        height: 160.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[400].withOpacity(0.4),
+              blurRadius: 0.5,
+              spreadRadius: 0.5
+            ),
+          ]
+        ),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: FadeInImage(
+              image: (crew.profilePath == null) ? placeholder : photo,//? Image Poster Item,
+              placeholder: placeholder, //? PlaceHolder Item,
+              fit: BoxFit.contain,
+            ),
+          ),
+      ),
+    );
+
+    
   }
 
   Widget _personPhotoItem(Crew crew) {

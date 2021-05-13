@@ -2,89 +2,171 @@
 import 'package:meta/meta.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
 
-class EpisodeModel extends EpisodeEntity{
 
+class SeasonModel extends SeasonEntity {
+    SeasonModel({
+        @required this.id,
+        @required this.airDate,
+        @required this.episodes,
+        @required this.name,
+        @required this.overview,
+        @required this.seasonModelId,
+        @required this.posterPath,
+        @required this.seasonNumber,
+    });
 
-  EpisodeModel({
+    final String id;
+    final String airDate;
+    final List<EpisodeModel> episodes;
+    final String name;
+    final String overview;
+    final int seasonModelId;
+    final String posterPath;
+    final int seasonNumber;
 
-    @required final String airDate,
-    @required final int episodeNumber,
-    @required final int id,
-    @required final String name,
-    @required final String overview,
-    @required final String productionCode,
-    @required final int seasonNumber,
-    @required final int showId,
-    @required final String stillPath,
-    @required final double voteAverage,
-    @required final int voteCount,
-
-  }): super(
-
-   airDate        : airDate,
-   episodeNumber  : episodeNumber,
-   id             : id,
-   name           : name,
-   overview       : overview,
-   productionCode : productionCode,
-   seasonNumber   : seasonNumber,
-   showId         : showId,
-   stillPath      : stillPath,
-   voteAverage    : voteAverage,
-   voteCount      : voteCount,
-
-  );
-
-  factory EpisodeModel.fromJson(Map<String, dynamic> json){
-    return EpisodeModel(
-      airDate        : json['air_date'],
-      episodeNumber  : json['episode_number'],
-      id             : json['id'],
-      name           : json['name'],
-      overview       : json['overview'],
-      productionCode : json['production_code'],
-      seasonNumber   : json['season_number'],
-      showId         : json['show_id'],
-      stillPath      : json['still_path'],
-      voteAverage    : json['vote_average'] / 1,
-      voteCount      : json['vote_count'],
+    factory SeasonModel.fromJson(Map<String, dynamic> json) => SeasonModel(
+        id: json["_id"],
+        airDate: json["air_date"],
+        episodes: List<EpisodeModel>.from(json["episodes"].map((x) => EpisodeModel.fromJson(x))),
+        name: json["name"],
+        overview: json["overview"],
+        seasonModelId: json["id"],
+        posterPath: json["poster_path"],
+        seasonNumber: json["season_number"],
     );
-  }
 
-  Map<String, dynamic> toJson(){
-
-    return {
-      'airDate'       : airDate,
-      'episodeNumber' : episodeNumber,
-      'id'            : id,
-      'name'          : name,
-      'overview'      : overview,
-      'productionCode': productionCode,
-      'seasonNumber'  : seasonNumber,
-      'showId'        : showId,
-      'stillPath'     : stillPath,
-      'voteAverage'   : voteAverage,
-      'voteCount'     : voteCount,
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "air_date": airDate,
+        "episodes": List<dynamic>.from(episodes.map((x) => x.toJson())),
+        "name": name,
+        "overview": overview,
+        "id": seasonModelId,
+        "poster_path": posterPath,
+        "season_number": seasonNumber,
     };
-  }
 }
 
-class Episodes {
+class EpisodeModel extends Episode{
+    EpisodeModel({
+        @required this.airDate,
+        @required this.episodeNumber,
+        @required this.crew,
+        @required this.guestStars,
+        @required this.id,
+        @required this.name,
+        @required this.overview,
+        @required this.productionCode,
+        @required this.seasonNumber,
+        @required this.stillPath,
+        @required this.voteAverage,
+        @required this.voteCount,
+    });
 
-  List<EpisodeModel> items = new List();
+    final String airDate;
+    final int episodeNumber;
+    final List<CrewModel> crew;
+    final List<CrewModel> guestStars;
+    final int id;
+    final String name;
+    final String overview;
+    final String productionCode;
+    final int seasonNumber;
+    final String stillPath;
+    final double voteAverage;
+    final int voteCount;
 
-  Episodes();
+    factory EpisodeModel.fromJson(Map<String, dynamic> json) => EpisodeModel(
+        airDate: json["air_date"],
+        episodeNumber: json["episode_number"],
+        crew: List<CrewModel>.from(json["crew"].map((x) => CrewModel.fromJson(x))),
+        guestStars: List<CrewModel>.from(json["guest_stars"].map((x) => CrewModel.fromJson(x))),
+        id: json["id"],
+        name: json["name"],
+        overview: json["overview"],
+        productionCode: json["production_code"],
+        seasonNumber: json["season_number"],
+        stillPath: json["still_path"],
+        voteAverage: json["vote_average"].toDouble(),
+        voteCount: json["vote_count"],
+    );
 
-  Episodes.fromJsonList(List<dynamic> jsonList){
+    Map<String, dynamic> toJson() => {
+        "air_date": airDate,
+        "episode_number": episodeNumber,
+        "crew": List<dynamic>.from(crew.map((x) => x.toJson())),
+        "guest_stars": List<dynamic>.from(guestStars.map((x) => x.toJson())),
+        "id": id,
+        "name": name,
+        "overview": overview,
+        "production_code": productionCode,
+        "season_number": seasonNumber,
+        "still_path": stillPath,
+        "vote_average": voteAverage,
+        "vote_count": voteCount,
+    };
+}
 
-    if(jsonList ==  null) return;
+class CrewModel extends Crew {
+    CrewModel({
+        @required this.job,
+        @required this.department,
+        @required this.creditId,
+        @required this.adult,
+        @required this.gender,
+        @required this.id,
+        @required this.knownForDepartment,
+        @required this.name,
+        @required this.originalName,
+        @required this.popularity,
+        @required this.profilePath,
+        @required this.character,
+        @required this.order,
+    });
 
-    for(var item in jsonList){
-      final episode = new EpisodeModel.fromJson(item);
+    final String job;
+    final String department;
+    final String creditId;
+    final bool adult;
+    final int gender;
+    final int id;
+    final String knownForDepartment;
+    final String name;
+    final String originalName;
+    final double popularity;
+    final String profilePath;
+    final String character;
+    final int order;
 
-      items.add(episode);
-    }
+    factory CrewModel.fromJson(Map<String, dynamic> json) => CrewModel(
+        job: json["job"],
+        department: json["department"],
+        creditId: json["credit_id"],
+        adult: json["adult"],
+        gender: json["gender"],
+        id: json["id"],
+        knownForDepartment: json["known_for_department"],
+        name: json["name"],
+        originalName: json["original_name"],
+        popularity: json["popularity"].toDouble(),
+        profilePath: json["profile_path"],
+        character: json["character"],
+        order: json["order"],
+    );
 
-  }
-
+    Map<String, dynamic> toJson() => {
+        "job": job,
+        "department": department,
+        "credit_id": creditId,
+        "adult": adult,
+        "gender": gender,
+        "id": id,
+        "known_for_department": knownForDepartment,
+        "name": name,
+        "original_name": originalName,
+        "popularity": popularity,
+        "profile_path": profilePath,
+        "character": character,
+        "order": order,
+    };
 }

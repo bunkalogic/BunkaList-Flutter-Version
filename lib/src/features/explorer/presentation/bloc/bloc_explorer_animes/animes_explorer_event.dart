@@ -12,6 +12,8 @@ class GetAnimesExplorer extends AnimesExplorerEvent{
   final String genre;
   final String withKeywords;
   final String withNetwork;
+  final String withCompanies;
+  final String withWatchProvider;
 
   GetAnimesExplorer({
    @required this.page,
@@ -20,7 +22,9 @@ class GetAnimesExplorer extends AnimesExplorerEvent{
     this.voteCountGte,
     this.genre,
     this.withKeywords,
-    this.withNetwork
+    this.withNetwork,
+    this.withCompanies,
+    this.withWatchProvider
   }) : super([
     page,
     sortBy,
@@ -29,5 +33,7 @@ class GetAnimesExplorer extends AnimesExplorerEvent{
     genre,
     withKeywords,
     withNetwork,
+    withCompanies,
+    withWatchProvider
   ]);
 }

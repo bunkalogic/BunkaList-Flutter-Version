@@ -13,13 +13,14 @@ Map<String, dynamic> getIdAndType(int id , String type, String title){
 
 }
 
-Map<String, dynamic> getIdAndSeasonId(int id , int seasonId){
+Map<String, dynamic> getIdAndSeasonId(int id , int seasonId, String title){
 
   final Map<String, dynamic> mapIdAndType = new Map();
 
     mapIdAndType.addAll({
       'id'  : id,
-      'seasonId': seasonId
+      'seasonId': seasonId,
+      'title' : title
     });
 
     return mapIdAndType;

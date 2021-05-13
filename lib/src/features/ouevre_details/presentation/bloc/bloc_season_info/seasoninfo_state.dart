@@ -11,8 +11,8 @@ class Empty extends SeasonInfoState{}
 class Loading extends SeasonInfoState{}
 
 class Loaded extends SeasonInfoState{
-  final List<EpisodeEntity> episode;
-  Loaded({ @required this.episode }) : super([episode]);
+  final SeasonEntity season;
+  Loaded({ @required this.season }) : super([season]);
 }
 
 class Error extends SeasonInfoState{

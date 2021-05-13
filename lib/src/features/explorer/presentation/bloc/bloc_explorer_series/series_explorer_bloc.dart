@@ -74,7 +74,9 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withNetwork: event.withNetwork,
-            year: event.year
+            year: event.year,
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
 
           ));
           
@@ -102,8 +104,9 @@ class SeriesExplorerBloc extends Bloc<SeriesExplorerEvent, SeriesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withNetwork: event.withNetwork,
-            year: event.year
-
+            year: event.year,
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
           ));
           
            yield failureOrSeries.fold(

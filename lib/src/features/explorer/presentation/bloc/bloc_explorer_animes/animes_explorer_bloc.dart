@@ -46,11 +46,7 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
     // );
   }
 
-  @override
-  void onTransition(Transition<AnimesExplorerEvent, AnimesExplorerState> transition) {
-    // TODO: implement onTransition
-    super.onTransition(transition);
-  }
+  
 
   @override
   Stream<AnimesExplorerState> mapEventToState(
@@ -76,7 +72,9 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withNetwork: event.withNetwork,
-            year: event.year
+            year: event.year, 
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
 
           ));
           
@@ -104,7 +102,9 @@ class AnimesExplorerBloc extends Bloc<AnimesExplorerEvent, AnimesExplorerState> 
             voteCountGte: event.voteCountGte,
             withKeywords: event.withKeywords,
             withNetwork: event.withNetwork,
-            year: event.year
+            year: event.year,
+            withCompanies: event.withCompanies,
+            withWatchProvider: event.withWatchProvider
 
           ));
           

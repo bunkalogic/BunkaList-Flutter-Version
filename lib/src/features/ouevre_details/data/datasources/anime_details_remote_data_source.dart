@@ -59,7 +59,6 @@ class AnimeDetailsRemoteDataSourceImpl implements AnimeDetailsRemoteDataSource {
 
       final anime = AnimeDetailsModel.fromJson(decodedData);
 
-
       return anime;
       
     }else{

@@ -27,7 +27,9 @@ class AnimesExplorerImpl extends AnimeExplorerContract{
   int voteCountGte, 
   String genre, 
   String withKeywords, 
-  String withNetwork
+  String withNetwork,
+  String withCompanies,
+  String withWatchProvider
   }
   ) async {
     
@@ -42,7 +44,9 @@ class AnimesExplorerImpl extends AnimeExplorerContract{
           voteCountGte: voteCountGte,
           withKeywords: withKeywords,
           withNetwork: withNetwork,
-          year: year
+          year: year,
+          withCompanies: withCompanies,
+          withWatchProvider: withWatchProvider
         
         );
 
