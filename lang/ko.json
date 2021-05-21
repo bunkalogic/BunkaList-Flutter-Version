@@ -219,7 +219,6 @@
     "label_never_ads": "한 번 지불하고 $4.99 달러에 광고를 제거하십시오",
     "label_never_ads_with_premium": "이 옵션은 프리미엄도 포함합니다. **",
     "label_subscription": "* 언제든지 Google Play 구독을 취소합니다.",
-    "label_include_premium": "** Premium이 도착하면 다른 비용을 지불하지 않아도됩니다. 향후 업데이트에서는 Premium이 가져올 모든 새로운 기능에 대한 자세한 정보가있을 것입니다.",
     "in_progress"                   : "이 옵션은 아직 사용할 수 없습니다. 다음 업데이트에서는 사용할 수 있습니다.",
 
     "anime_seinen"                : "최고 애니메이션 seinen",
@@ -392,6 +391,20 @@
   "label_last_episode": "마지막 에피소드",
   "label_next_episode": "다음 에피소드",
   "label_poster"     : "포스터",
-  "label_background" : "배경 이미지"
+  "label_background" : "배경 이미지",
+
+  "label_tops_more_popular"  : "더 유명한",
+"label_tops_best_rated"      : "최고의 평가",
+"label_tops_season_winter"   : "겨울 시즌",
+"label_tops_season_spring"   : "봄 기간",
+"label_tops_season_summer"   : "하계",
+"label_tops_season_autuum"   : "가을 시즌",
+"label_tops_underrated"      : "과소 평가",
+
+"label_feedback":"의견 보내기",
+
+"label_add_to_list_login_first"   : "목록에 추가하려면 먼저 로그인해야합니다.",
+  "label_use_feature_login_first" : "이 기능을 사용하려면 먼저 로그인해야합니다",
+  "label_include_premium": "모든 옵션 제공은 모든 기능을 잠금 해제하고 모든 광고를 삭제하고 향후 업데이트를위한 개발 지원을 유지합니다."
 
 }

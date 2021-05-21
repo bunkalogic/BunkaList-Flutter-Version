@@ -55,7 +55,8 @@ class _BannerPremiumWidgetState extends State<BannerPremiumWidget> {
       child: ListTile(
         title: _titleGoToPremium(),
         subtitle: _subtitleGoToPremium(),
-        leading: Icon(Icons.local_play, size: 40.0, color: Colors.pinkAccent[400],),
+        leading: Icon(Icons.fiber_new_rounded, size: 40.0, color: Colors.pinkAccent[400],),
+        trailing: Icon(Icons.local_play, size: 40.0, color: Colors.pinkAccent[400],),
         onTap: () {
           Navigator.pushNamed(context, '/Premium');
         },

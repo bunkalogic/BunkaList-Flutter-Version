@@ -39,6 +39,8 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
         itemLanguage("Japanase", "ja", "JP"),
         itemLanguage("Korean", "ko", "KR"),
         itemLanguage("Portuguese", "pt", "PT"),
+        // itemLanguage("Indonesian", "id", "ID"),
+        // itemLanguage("Russian", "ru", "RU"),
       ],
     );
   }

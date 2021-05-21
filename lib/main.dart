@@ -110,6 +110,7 @@ Widget _materialApp(BuildContext context, ThemeState state){
           Locale('ja', 'JP'),
           Locale('ko', 'KR'),
           Locale('pt', 'PT'),
+          // Locale('id', 'ID'),
           // Locale('ru', 'RU'),
         ] ,
         localizationsDelegates: [

@@ -349,7 +349,7 @@ class _CircularMediaRatingListState extends State<CircularMediaRatingList> {
         color: widget.textColor,
         shadows: [
           Shadow(
-            blurRadius: 2.5,
+            blurRadius: 0.5,
             color: Colors.black,
           )
         ]

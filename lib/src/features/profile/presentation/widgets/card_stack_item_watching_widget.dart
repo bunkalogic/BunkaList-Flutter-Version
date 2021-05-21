@@ -11,6 +11,7 @@ import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dar
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/empty_last_added_widget.dart';
+import 'package:bunkalist/src/features/profile/presentation/widgets/emptys_list_profile_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/item_watching_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,7 +62,11 @@ class _CardStackWatchingWidgetState extends State<CardStackWatchingWidget> {
       }else if(state is GetListsLoaded){
 
         if(state.ouevreList.isEmpty){
-          return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
+          return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
+            );
         }else{
 
           return  StackedCardsWatchingBuilder(ouevreList: state.ouevreList);
@@ -72,11 +77,19 @@ class _CardStackWatchingWidgetState extends State<CardStackWatchingWidget> {
 
       }else if(state is GetlistsError){
 
-        return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
+       return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
+            );
 
       }
 
-      return EmptyLastAddedIconWidget(typeOuevre: widget.type,);
+      return ListProfileEmptyIconWidget(
+            title: AppLocalizations.of(context).translate("watching_empty_label"),
+            color: Colors.blueAccent[400],
+            icon: Icons.play_circle_outline,
+            );
 
     },
     );

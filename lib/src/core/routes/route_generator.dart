@@ -2,6 +2,7 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
+import 'package:bunkalist/src/features/base/presentation/pages/home_new_user_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/initial_controller_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/intro_slider_page.dart';
 import 'package:bunkalist/src/features/base/presentation/pages/loading_page.dart';
@@ -70,6 +71,10 @@ class RouteGeneretor{
       case '/Home':
         
         return MaterialPageRoute(builder: (_) => HomePage());
+
+      case '/NewUserHome':
+        
+        return MaterialPageRoute(builder: (_) => HomeNewUserPage());  
   
       
       case '/TopList':

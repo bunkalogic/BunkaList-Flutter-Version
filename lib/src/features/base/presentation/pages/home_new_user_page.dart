@@ -25,12 +25,12 @@ import 'package:bunkalist/src/features/profile/presentation/pages/profile_page.d
 import 'package:in_app_update/in_app_update.dart';
 
 
-class HomePage extends StatefulWidget {
+class HomeNewUserPage extends StatefulWidget {
 
-  _HomePageState createState() => _HomePageState();
+  _HomeNewUserPageState createState() => _HomeNewUserPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeNewUserPageState extends State<HomeNewUserPage> {
 
   //? Variables
   int _selectedTabIndex = 0;
@@ -99,8 +99,6 @@ Widget _createAppBarPlatform(BuildContext context) {
 
     return AppBar(
       //title: _titleAppBar(_selectedTabIndex),//Text(AppLocalizations.of(context).translate('btn_nav_timeline')),
-      backgroundColor: Colors.transparent,
-      elevation: 0,
       // title: Row(
       //   mainAxisAlignment: MainAxisAlignment.start,
       //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,6 +109,8 @@ Widget _createAppBarPlatform(BuildContext context) {
       //      ),
       //   ],
       // ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       title: Text(
         _titleSection(),
         style: TextStyle(
@@ -118,18 +118,33 @@ Widget _createAppBarPlatform(BuildContext context) {
           fontWeight: FontWeight.bold
         ),
       ),
-
       actions: <Widget>[
-        if(_selectedTabIndex != 4) new BlocProvider(
+        if(_selectedTabIndex != 2) new BlocProvider(
           create: (_) => serviceLocator<SearchBloc>(),
           child:SearchButton(),
         ),
-        if(_selectedTabIndex != 4) FilterButton(),
+        if(_selectedTabIndex != 2) FilterButton(),
         if(_selectedTabIndex == 0) EditHomeButton(),
       ],
     
     );
   }
+
+  String _titleSection(){
+   
+   switch(_selectedTabIndex){
+    
+    case 0: return AppLocalizations.of(context).translate("btn_nav_top");
+
+    case 1: return AppLocalizations.of(context).translate("btn_nav_explore");
+
+    case 2: return AppLocalizations.of(context).translate("btn_nav_settings");
+
+    default: return AppLocalizations.of(context).translate("btn_nav_top");
+    
+  }
+
+ }
 
   ImageProvider _getAppBarImage(){
     final bool theme = prefs.whatModeIs;
@@ -154,16 +169,6 @@ Widget _createAppBarPlatform(BuildContext context) {
         icon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorOffIcon(),), 
         activeIcon: Icon(Icons.explore_outlined, size: 26.0, color: _getColorActiveIcon(),),
         title: AppLocalizations.of(context).translate("btn_nav_explore"), 
-      ),
-      TabItem(
-        icon: Icon(Icons.person_outline, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.person_outline, size: 26.0, color: _getColorActiveIcon(),),
-        title: AppLocalizations.of(context).translate("btn_nav_profile"), 
-      ),
-      TabItem(
-        icon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorActiveIcon(),),
-        title: AppLocalizations.of(context).translate("btn_nav_tops"), 
       ),
       TabItem(
         icon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorOffIcon(),), 
@@ -219,41 +224,17 @@ Widget _createAppBarPlatform(BuildContext context) {
   
   switch(_selectedTabIndex){
     
-    case 0: return prefs.isNotAds ? PersonalHomeTops() : TopsPage();
+    case 0: return TopsPage();
 
     case 1: return ExplorerPage();
 
-    case 2: return ProfilePage();
-
-    case 3: return TopsFavoritesPage();
-
-    case 4: return SettingsPage();
+    case 2: return SettingsPage();
 
     default: return TopsPage();
     
   }
 }
 
-
- String _titleSection(){
-   
-   switch(_selectedTabIndex){
-    
-    case 0: return AppLocalizations.of(context).translate("btn_nav_top");
-
-    case 1: return AppLocalizations.of(context).translate("btn_nav_explore");
-
-    case 2: return AppLocalizations.of(context).translate("btn_nav_profile");
-
-    case 3: return AppLocalizations.of(context).translate("btn_nav_tops");
-
-    case 4: return AppLocalizations.of(context).translate("btn_nav_settings");
-
-    default: return AppLocalizations.of(context).translate("btn_nav_top");
-    
-  }
-
- }
 
  Color _getColorActiveIcon(){
    final bool theme = prefs.whatModeIs;

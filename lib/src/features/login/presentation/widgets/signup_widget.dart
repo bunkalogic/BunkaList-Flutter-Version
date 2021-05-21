@@ -62,37 +62,38 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.amberAccent[400],
-              Colors.orangeAccent[700],
-              Colors.pinkAccent,
-              Colors.pinkAccent,
-              Colors.pinkAccent[400]
-            ], // whitish to gray
-            tileMode: TileMode.repeated, // repeats the gradient over the canvas
-          ),
+          // gradient: new LinearGradient(
+          //   begin: Alignment.topRight,
+          //   end: Alignment.bottomLeft,
+          //   colors: [
+          //     Colors.amberAccent[400],
+          //     Colors.orangeAccent[700],
+          //     Colors.pinkAccent,
+          //     Colors.pinkAccent,
+          //     Colors.pinkAccent[400]
+          //   ], // whitish to gray
+          //   tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          // ),
         ),
       child: ListView(
         children: <Widget>[
-          SizedBox(height: 60.0,),
+          SizedBox(height: 50.0,),
           _iconApp(),
+          SizedBox(height: 60.0,),
           _labelEmail(),
           _emailTextField(context, state),
           Divider(
-            height: 24.0, color: Colors.transparent,
+            height: 30.0, color: Colors.transparent,
           ),
           _labelPassword(),
           _passwordTextField(context, state),
           Divider(
-            height: 24.0, color: Colors.transparent,
+            height: 30.0, color: Colors.transparent,
           ),
           _labelConfirmPassword(),
           _confirmPasswordTextField(context),
           Divider(
-            height: 24.0, color: Colors.transparent,
+            height: 30.0, color: Colors.transparent,
           ),
           //_buttonHaveAccount(),
           _buttonSignUp(context, state),
@@ -122,7 +123,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
-                    color: Colors.purpleAccent[700],
+                    color: Colors.deepPurpleAccent[400],
                     onPressed: isRegisterButtonEnabled(state)
                         ? _onFormSubmitted
                         : null,
@@ -180,38 +181,25 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   Container _confirmPasswordTextField(BuildContext context) {
     return new Container(
+            height: 50,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.purpleAccent[700],
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  child: TextFormField(
-                    obscureText: true,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: '*********',
-                      hintStyle: TextStyle(color: Colors.grey[300]),
-                    ),
-                    validator: (confirmation){
-                      var password = passKey.currentState.value;
-                      return (confirmation == password) ? null : AppLocalizations.of(context).translate("password_error");
-                    },
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              obscureText: true,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(style: BorderStyle.none, width: 0 ) ),
+                filled: true,
+                fillColor: Colors.blueGrey.withOpacity(0.3),
+                hintText: '*********',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+              validator: (confirmation){
+                var password = passKey.currentState.value;
+                return (confirmation == password) ? null : AppLocalizations.of(context).translate("password_error");
+              },
             ),
           );
   }
@@ -221,13 +209,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 45.0),
                   child: new Text(
                     AppLocalizations.of(context).translate("confirm_password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.purpleAccent[700],
-                      fontSize: 15.0,
+                      color: Colors.deepPurpleAccent,
+                      fontSize: 14.0,
                     ),
                   ),
                 ),
@@ -238,40 +226,27 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   Container _passwordTextField(BuildContext context, RegisterState state) {
     return new Container(
+            height: 50.0,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.purpleAccent[700],
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  child: TextFormField(
-                    controller: _passwordController,
-                    key: passKey,
-                    obscureText: true,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: '*********',
-                      hintStyle: TextStyle(color: Colors.grey[300]),
-                    ),
-                    validator:  (password){
-                      var result =  !state.isPasswordValid ? AppLocalizations.of(context).translate("password_lenght") : null;
-                      return result;
-                    },
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              controller: _passwordController,
+              key: passKey,
+              obscureText: true,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(style: BorderStyle.none, width: 0 ) ),
+                filled: true,
+                fillColor: Colors.blueGrey.withOpacity(0.3),
+                hintText: '*********',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+              validator:  (password){
+                var result =  !state.isPasswordValid ? AppLocalizations.of(context).translate("password_lenght") : null;
+                return result;
+              },
             ),
           );
   }
@@ -281,13 +256,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 45.0),
                   child: new Text(
                     AppLocalizations.of(context).translate("password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.purpleAccent[700],
-                      fontSize: 15.0,
+                      color: Colors.deepPurpleAccent,
+                      fontSize: 14.0,
                     ),
                   ),
                 ),
@@ -298,38 +273,25 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   Container _emailTextField(BuildContext context, RegisterState state) {
     return new Container(
+            height: 50.0,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.purpleAccent[700],
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  child: TextFormField(
-                    controller: _emailController,
-                    obscureText: false,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'something@gmail.com',
-                      hintStyle: TextStyle(color: Colors.grey[300]),
-                    ),
-                    validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
-                    }
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              controller: _emailController,
+              obscureText: false,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(style: BorderStyle.none, width: 0 ) ),
+                filled: true,
+                fillColor: Colors.blueGrey.withOpacity(0.3),
+                hintText: 'something@gmail.com',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+              validator: (_) {
+                return !state.isEmailValid ? 'Invalid Email' : null;
+              }
             ),
           );
   }
@@ -339,13 +301,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 45.0),
                   child: new Text(
                     AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.purpleAccent[700],
-                      fontSize: 15.0,
+                      color: Colors.deepPurpleAccent,
+                      fontSize: 14.0,
                     ),
                   ),
                 ),
@@ -360,7 +322,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             child: Center(
               child: Image(
               image: AssetImage('assets/bunkalist-banner-purple.png'),
-              height: 55.0,
+              height: 50.0,
               fit: BoxFit.cover,
               
               ),

@@ -1,6 +1,9 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/title_tops_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/movie_entity.dart';
@@ -28,11 +31,13 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
   int page = 1;
 
+  ScrollController _scrollController;
+  bool isLoading = true;
+
 
   @override
   void initState() {
-    BlocProvider.of<TopsMoviesBloc>(context)
-    ..add(GetMoviesTops(widget.typeId, page));
+    _scrollController = ScrollController();
     super.initState();
   }  
 
@@ -43,17 +48,29 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
 
     return new Container(
-      height: MediaQuery.of(context).size.height / 2.5,
+      height: 300,
       child: Column(
         children: <Widget>[
-          titleListTop(widget.title, context),
+          // titleListTop(widget.title, context),
+          TitleTopsWidget(
+            titleLabel: widget.title, 
+            typeLabel:AppLocalizations.of(context).translate('movies'),
+            onTap: (){
+              Navigator.pushNamed(context, '/TopList', arguments: 'movies');
+            },
+          ),
           SizedBox(height: 10.0,),
           Expanded(child: BlocBuilder<TopsMoviesBloc, TopsMoviesState>(
         //bloc: serviceLocator<TopsMoviesBloc>(),
         builder: (context, state) {
           if(state is EmptyMovies){
 
-            return LoadingCustomWidget();
+            if(page == 1){
+              BlocProvider.of<TopsMoviesBloc>(context)
+              ..add(GetMoviesTops(widget.typeId, page));
+            }  
+            
+            
 
           }else if(state is LoadingMovies){
 
@@ -61,21 +78,43 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
           }else if (state is LoadedMovies){
             
-              if(state.movies.isNotEmpty){
+            isLoading = false;
 
-               return Container(
-      
-              child: CarouselSlider.builder(
-                options: CarouselOptions(
-                  enlargeCenterPage: true, 
-                  aspectRatio: 16 / 9,
-                  autoPlay: false,
-                  viewportFraction: 0.35,
+            if(state.movies.isNotEmpty){
+
+            //    return Container(
+            //   child: CarouselSlider.builder(
+            //     options: CarouselOptions(
+            //       enlargeCenterPage: true, 
+            //       aspectRatio: 16 / 9,
+            //       autoPlay: false,
+            //       viewportFraction: 0.35,
+            //     ),
+            //     itemCount: state.movies.length,
+            //     itemBuilder: (context, i, h) =>  ItemPosterMovies(state.movies[i])
+            //   ),
+            // );
+
+              
+              return NotificationListener<ScrollNotification>(
+                onNotification: _handleScrollNotification, 
+                child: ListView.builder(
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, i) {
+                    return i >= state.movies.length
+                      ? BottomLoader()
+                      : ItemPosterMovies(state.movies[i]);
+                  } ,
+                  itemCount: state.hasReachedMax
+                        ? state.movies.length
+                        : state.movies.length + 1,
+                  itemExtent: 130,
                 ),
-                itemCount: state.movies.length,
-                itemBuilder: (context, i, h) =>  ItemPosterMovies(state.movies[i])
-              ),
-            );
+              );
+
+
+
 
              }else{
                return EmptyIconWidget();
@@ -97,14 +136,35 @@ class _ContainerListMoviesWidgetState extends State<ContainerListMoviesWidget> {
 
   }
 
-  Widget titleListTop(String title, BuildContext context ){
-    return ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, '/TopList', arguments: 'movies');
-      },
-      title: Text(title, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),),
-      trailing: Text('More', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pinkAccent[400], fontSize: 16.0 ),),
-    );
+  bool _handleScrollNotification(ScrollNotification notification){
+
+    final offsetVisibleThreshold = 50;
+
+    if(notification is ScrollEndNotification && 
+      _scrollController.offset + offsetVisibleThreshold >=
+      _scrollController.position.maxScrollExtent){
+
+      isLoading = true;
+      print('movies page initial: $page');
+
+      (!isLoading) ? page : page++;
+
+      print('movies page++: $page');
+
+      BlocProvider.of<TopsMoviesBloc>(context)
+      ..add(GetMoviesTops(widget.typeId, page));  
+
+    }
+
+    isLoading = false;
+    return isLoading;
+
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
 }
@@ -142,7 +202,14 @@ class _ContainerListCinemaMoviesWidgetState extends State<ContainerListCinemaMov
       height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: <Widget>[
-          titleListTop(widget.title, context),
+          TitleTopsWidget(
+            titleLabel: widget.title, 
+            typeLabel:AppLocalizations.of(context).translate('movies'),
+            onTap: (){
+              Navigator.pushNamed(context, '/TopList', arguments: 'movies');
+            },
+          ),
+          //titleListTop(widget.title, context),
           Expanded(child: BlocBuilder<CinemaMovieBloc, CinemaMovieState>(
         //bloc: serviceLocator<TopsMoviesBloc>(),
         builder: (context, state) {
@@ -218,14 +285,18 @@ class ItemPosterMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(context), flex: 4,),
-          _itemTitle(),
-          Expanded(child: _iconButton(context), flex: 1,),
-        ],
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
+          ],
+      ),
     );
   }
 
@@ -277,8 +348,8 @@ class ItemPosterMovies extends StatelessWidget {
               image: (movieEntity.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 3.8,
-              height: MediaQuery.of(context).size.height / 2.8,
+              width: 95,
+              height: 130,
             ),
           );
 

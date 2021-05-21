@@ -2,6 +2,7 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/constans/constans_status_ouevre.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/reusable_widgets/flushbar_go_login_widget.dart';
 import 'package:bunkalist/src/core/utils/firebase_fill_ouevre_object.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/build_bottom_modal_complete_details_widget.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/build_bottom_modal_complete_simple_widget.dart';
@@ -33,10 +34,14 @@ class ButtonAddedArrowDown extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     
+    final Preferences prefs = Preferences();
+
     return IconButton(
-      padding: EdgeInsets.only(bottom: 4.0),
-      icon: Icon(Icons.keyboard_arrow_down, size: 25.0,),
-      onPressed: () => _showBottomModal(context),
+      padding: const EdgeInsets.only(bottom: 20.0),
+      icon: Icon(Icons.keyboard_arrow_down_rounded, size: 26.0,),
+      onPressed: () => (prefs.currentUserHasToken) 
+        ? _showBottomModal(context) 
+        : getFlushbarGoToLogin(context),
     );
   }
 
@@ -101,6 +106,7 @@ class MultiButtonsAdded extends StatelessWidget{
 
   Widget _buttonActions(BuildContext context, IconData icon, Color color, int status){
     
+    final Preferences prefs = Preferences();
     final OuevreEntity ouevreConvert = FirebaseFillOuevreObject(ouevre: ouevre, type: type, status: status, typeObject: objectType).detectTypeObjectAndFill();  
 
     return IconButton(
@@ -110,14 +116,20 @@ class MultiButtonsAdded extends StatelessWidget{
         color: color,
         ),
         onPressed: () {
+
+          if(!prefs.currentUserHasToken){
+            getFlushbarGoToLogin(context);
+            return;
+          }
+
           return GetBottomModalStatus(
-        context: context, 
-        ouevre: ouevreConvert, 
-        type: type, 
-        isUpdated: false, 
-        status: status,
-        bloc: BlocProvider.of<AddOuevreBloc>(context)
-        ).call();
+            context: context, 
+            ouevre: ouevreConvert, 
+            type: type, 
+            isUpdated: false, 
+            status: status,
+            bloc: BlocProvider.of<AddOuevreBloc>(context)
+          ).call();
         },
     );
   }
@@ -145,6 +157,14 @@ class ButtonClikedAdded {
   
 
   void showBottomModal(){
+
+    final Preferences prefs = Preferences();
+
+    if(!prefs.currentUserHasToken){
+      getFlushbarGoToLogin(context);
+      return;
+    }
+
     showModalBottomSheet(
       elevation: 10.0,
       isScrollControlled: true,
@@ -222,12 +242,19 @@ class _BuildBottomModalStutusOptionsState extends State<BuildBottomModalStutusOp
     
     final OuevreEntity ouevreConvert = FirebaseFillOuevreObject(ouevre: widget.ouevre, type: widget.type, status: status, typeObject: widget.objectType).detectTypeObjectAndFill();  
 
+    final Preferences prefs = Preferences();
     
 
     return ListTile(
       title: Text(title, style: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w500)),
       leading: Icon(icon, color: color, size: 35.0,),
       onTap: () {
+
+        if(!prefs.currentUserHasToken){
+          getFlushbarGoToLogin(context);
+          return;
+        }
+
         Navigator.of(context).pop();
 
         return GetBottomModalStatus(

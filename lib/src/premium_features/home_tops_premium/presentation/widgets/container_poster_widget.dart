@@ -21,20 +21,31 @@ class _ContainerPosterMovieWidgetState extends State<ContainerPosterMovieWidget>
   
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 15.0,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 20.0
-      ),
-      color: Colors.transparent,
-      child: Container(
-        child: _stackTextAndIcon(),
-        decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        ) 
-      ),
+    return Container(
+      height: 380,
+      padding: const EdgeInsets.only(right: 15.0, left: 5.0),
+      child: Card(
+        elevation: 5.0,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 10.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+          child: _stackTextAndIcon(),
+          decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ) 
+        ),
 
+      ),
     );
   }
 
@@ -81,8 +92,9 @@ class _ContainerPosterMovieWidgetState extends State<ContainerPosterMovieWidget>
       },
       child: Container(
         width: double.infinity,
+        height: double.infinity,
         child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(20.0),
                 child: FadeInImage(
                   image: (widget.movie.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
                   placeholder: placeholder, //? PlaceHolder Item,
@@ -165,20 +177,24 @@ class _ContainerPosterSerieWidgetState extends State<ContainerPosterSerieWidget>
   
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 15.0,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 20.0
-      ),
-      color: Colors.transparent,
-      child: Container(
-        child: _stackTextAndIcon(),
-        decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        ) 
-      ),
+    return Container(
+      height: 380,
+      padding: const EdgeInsets.only(right: 15.0, left: 5.0),
+      child: Card(
+        elevation: 5.0,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 10.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+          child: _stackTextAndIcon(),
+          decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          ) 
+        ),
 
+      ),
     );
   }
 
@@ -225,8 +241,9 @@ class _ContainerPosterSerieWidgetState extends State<ContainerPosterSerieWidget>
       },
       child: Container(
         width: double.infinity,
+        height: double.infinity,
         child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(20.0),
                 child: FadeInImage(
                   image: (widget.serie.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
                   placeholder: placeholder, //? PlaceHolder Item,
@@ -309,20 +326,24 @@ class ContainerPosterAnimeWidget extends StatefulWidget {
 class _ContainerPosterAnimeWidgetState extends State<ContainerPosterAnimeWidget> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 15.0,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 20.0
-      ),
-      color: Colors.transparent,
-      child: Container(
-        child: _stackTextAndIcon(),
-        decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        ) 
-      ),
+    return Container(
+       height: 380,
+      padding: const EdgeInsets.only(right: 15.0, left: 5.0),
+      child: Card(
+        elevation: 5.0,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 10.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+          child: _stackTextAndIcon(),
+          decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          ) 
+        ),
 
+      ),
     );
   }
 
@@ -369,8 +390,9 @@ class _ContainerPosterAnimeWidgetState extends State<ContainerPosterAnimeWidget>
       },
       child: Container(
         width: double.infinity,
+        height: double.infinity,
         child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(20.0),
                 child: FadeInImage(
                   image: (widget.anime.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
                   placeholder: placeholder, //? PlaceHolder Item,

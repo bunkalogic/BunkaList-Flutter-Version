@@ -46,7 +46,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
     
 
     return Container(
-      height: 30.0,
+      height: 35.0,
       margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -60,8 +60,8 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
 
   Widget _buildChipsGenres(String genre, int i){
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+    return Padding(
+      padding: const EdgeInsets.only(right: 10.0),
       child: ActionChip(
           onPressed: () {
             Genres genresData = new Genres(
@@ -74,8 +74,8 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
             Navigator.pushNamed(context, '/ExplorerGenre', arguments: genresData);
           },
           elevation: 4.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
           label: Text(genre,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -84,7 +84,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
             ),
           ),
         ),
-      );
+    );
   }
 
   List<String> _getNameGenres(BuildContext context ,List<int> genres){
@@ -215,8 +215,8 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
             Navigator.pushNamed(context, '/ExplorerGenre', arguments: genresData);
           },
           elevation: 4.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
           label: Text(genres[i],
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -311,8 +311,8 @@ class _ChipsKeywordsWidgetState extends State<ChipsKeywordsWidget> {
             Navigator.pushNamed(context, '/ExplorerGenre', arguments: keyword);
           },
           elevation: 4.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
+          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
           label: Text(
             '#${widget.keywords[i].label}',
             style: TextStyle(

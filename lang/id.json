@@ -1,0 +1,614 @@
+{
+        		
+    "btn_nav_top"                : "Rumah",
+  
+    "btn_nav_explore"            : "Jelajahi",
+  
+    "btn_nav_profile"            : "Profil",
+  
+    "btn_nav_tops"               : "tops",
+  
+    "btn_nav_settings"           : "Pengaturan",
+      
+    "movies"                     : "Film",
+    
+    "series"                     : "Seri TV",
+    
+    "animes"                     : "animes",
+    
+    "people"                     : "Orang-orang",
+    
+    "more_tops_movies"           : "Lebih banyak film tops",
+      
+    "more_tops_series"           : "Lebih banyak serial TV tops",
+      
+    "more_tops_animes"           : "Lebih banyak animes tops",
+    
+    "top_movies"                 : "Tops Film",
+  
+    "movies_popular"             : "Film-film populer",
+    "movies_rated"               : "Film berperingkat",
+    "movies_upcoming"            : "Film mendatang",
+    "movies_action"              : "Film genre aksi",
+    "movies_adventure"           : "Film genre petualangan",
+    "movies_comedy"              : "Film genre komedi",
+    "movies_war"                 : "Film genre perang",
+    "movies_scifi"               : "Film genre fiksi ilmiah",
+    "movies_crime"               : "Film genre kejahatan",
+    "movies_documental"          : "Film genre DCumental",
+    "movies_drama"               : "Film genre drama",
+    "movies_family"              : "Film genre keluarga",
+    "movies_fantasy"             : "Film genre fantasi",
+    "movies_history"             : "Film genre sejarah",
+    "movies_mistery"             : "Film genre misteri",
+    "movies_musical"             : "Film genre musik",
+    "movies_romance"             : "Film genre roman",
+    "movies_thiller"             : "Film genre thriller",
+    "movies_terror"              : "Film genre teror",
+    "movies_western"             : "Film genre barat",
+  
+    
+    
+    "top_series"                 : "Seri Tops",
+    
+    "series_popular"             : "TV seri populer teratas",
+  
+    "series_rated"               : "Seri TV berperingkat teratas",
+  
+    "series_upcomming"           : "TV seri mendatang",
+  
+    "series_act_and_adv"         : "Top seri TV aksi dan petualangan",
+  
+    "series_comedy"              : "TV Seri Top Komedi",
+  
+    "series_crimen"              : "Top Seri TV of Crime",
+  
+    "series_documental"          : "Top seri TV dokumental",
+  
+    "series_family"              : "TV seri keluarga teratas",
+  
+    "series_drama"               : "Top seri TV drama",
+  
+    "series_mistery"             : "Top seri TV misteri",
+  
+    "series_fantasy_and_sci_fi"  : "TV Seri Top Sci-Fi dan Fantasi",
+  
+    "series_soap"                : "Seri Top Seri Sabun",
+  
+    "series_war_and_politics"    : "Top seri TV perang dan politik",
+  
+    "series_western"             : "TV Seri Top Western",
+  
+    "series_netflix"             : "Netflix Series TV",
+  
+    "series_hbo"                 : "Top HBO Series TV",
+  
+    "series_amazon_prime"        : "Top Amazon Series TV",
+  
+    "series_bbc_one"             : "Top BBC One Series TV",
+  
+    "series_amc"                 : "Top AMC Series TV",
+  
+    "top_animes"                 : "Tops Animes",
+  
+    "anime_popular"               :"Animes populer teratas",
+  
+    "anime_rated"                 :"Animes berperingkat teratas",
+  
+    "anime_season"                :"Musim animes",
+  
+    "anime_upcoming_next_season"  :"Musim depan Animes",
+  
+    "anime_action_and_adventure"  :"Anime of Action and Adventure",
+  
+    "anime_comedy"                :"Anime Atas Komedi",
+  
+    "anime_crimen"                :"Anime of Crime top",
+  
+    "anime_drama"                 :"Anime of Drama top",
+  
+    "anime_mistery"               :"Anime misteri teratas",
+  
+    "anime_fantasy_and_sci_fi"    :"Anime atas sci-fi dan fantasi",
+  
+    "anime_war_and_politics"      :"Anime of War dan Politik atas",
+  
+    "anime_shonen"                :"Dan p Aineme F Shonen",
+  
+    "anime_spokon"                :"Anime atas Spokon",
+  
+    "anime_mecha"                 :"Anime top mecha",
+  
+    "anime_slice_of_life"         :"Anime of Slice of Life",
+  
+    "anime_based_on_manga"        :"Anime atas berdasarkan manga",
+  
+    "anime_romance"               :"Anime of Romance top",
+  
+    "anime_super_natural"         :"Anime Atas Supernatural",
+  
+  
+    "genre_action"                 : "Tindakan",
+          
+    "genre_adventure"              : "Petualangan",
+          
+    "genre_animation"              : "Animasi",
+          
+    "genre_comedy"                 : "Komedi",
+  
+    "genre_crime"                  : "Kejahatan",
+          
+    "genre_documentary"            : "Dokumenter",
+          
+    "genre_drama"                  : "drama",
+          
+    "genre_family"                 : "Keluarga",
+          
+    "genre_fantasy"                : "Fantasi",
+            
+    "genre_history"                : "Sejarah",
+          
+    "genre_horror"                 : "Kengerian",
+          
+    "genre_mistery"                : "Misteri",
+  
+    "genre_musical"                : "Musikal",
+          
+    "genre_romance"                : "Percintaan",
+          
+    "genre_scifi"                  : "Sci-fi",
+          
+    "genre_thriller"               : "thriller",
+          
+    "genre_war"                    : "Perang",
+          
+    "genre_western"                : "Barat",
+          
+    "genre_action_and_adventure"   : "Aksi petualangan",
+  
+    "genre_kids"                   : "Anak-anak",
+  
+    "genre_scifi_fantasy"          : "SCIFI & FANTASY",
+  
+    "genre_soap"                   : "Sabun mandi",
+  
+    "genre_war_politics"           : "Perang & Politik",
+  
+    
+    "details_more_info"           : "Info lebih lanjut",
+  
+    "details_original_title"      : "Judul asli",
+  
+    "details_number_season"       : "Jumlah Musim",
+  
+    "details_number_episode"      : "Jumlah episode",
+  
+    "details_release_date"        : "Tanggal rilis",
+  
+    "details_last_episode"        : "Episode terakhir ditayangkan",
+  
+    "details_orginal_language"    : "Bahasa asli",
+  
+    "details_origin_country"      : "Negara Asal",
+  
+    "details_web"                 : "web",
+  
+    "details_budget"              : "Anggaran",
+  
+    "details_revenue"             : "Pendapatan",
+  
+    "details_status"              : "status",
+  
+    "details_tagline"             : "tagline",
+  
+    "info"                        : "info",
+  
+    "trailer"                     : "Cuplikan",
+  
+    "review"                      : "Ulasan",
+  
+    "video_review"                : "Ulasan Video",
+  
+    "similar"                     : "Serupa",
+  
+    "recommedation"               : "Rekomendasi",
+  
+    "episode"                     : "Semua episode",
+  
+    "season"                      : "Musim",
+  
+    "casting"                     : "Pengecoran",
+  
+    "crew"                        : "Awak kapal",
+    
+    "search_must_longer"          : "Istilah pencarian harus lebih dari dua huruf.",
+  
+    "premiere_day"                : "Hari Premiere:",
+    
+    
+    "sign_up"                     : "DAFTAR",
+  
+    "login"                       : "GABUNG",
+  
+    "sign_with_google"            : "Masuk dengan Google",
+  
+    "or_connect"                  : "Atau terhubung dengan",
+  
+    "email"                       : "SUREL",
+  
+    "password"                    : "KATA SANDI",
+  
+    "confirm_password"            : "SETUJUI PASSWORD",
+  
+    "have_account"                : "Sudah memiliki akun ?",
+  
+    "btn_create_account"          : "Buat akun baru",
+  
+    "forgot_password"             : "Apakah kamu lupa kata sandinya?",
+  
+    "email_or_password_empty"     : "Email atau kata sandi salah atau kosong, Coba lagi",
+  
+    "empty_email"                 : "Silakan tambahkan email Anda",
+  
+    "empty_password"              : "Silakan tambahkan kata sandi Anda",
+  
+    "reset_password"              : "Mereset password Anda",
+  
+    "email_verification"          : "Email telah dikirimkan kepada Anda. Harap konfirmasi Sebelum Masuk",
+  
+    "password_error"              : "Konfirmasi kata sandi harus mencocokkan kata sandi",
+  
+    "password_lenght"             : "Kata sandi harus memiliki setidaknya 8 karakter",
+  
+    "login_submitted"             : "Masuk ...",
+  
+    "register_submitted"          : "Mendaftar ...",
+  
+    "what_season"                 : "Musim apa kamu pergi?",
+  
+    "what_episode"                : "Episode apa yang kamu tuju?",
+  
+    "helper_comment"              : "Komentar pendapat Anda (itu opsional)",
+  
+    "label_comment_pause"         : "Mengapa kamu meninggalkan oeuvre ini pada jeda atau jatuhd",
+  
+    "label_comment_completed"     : "Apa yang kamu pikirkan tentang oeuvre?",
+  
+    "add_in_list"                 : "Tambahkan daftar Anda",
+  
+    "title_simple_rating"         : "Peringkat Sederhana",
+    
+    "label_simple_rating"         : "Nilai Ouevre secara umum dan mengomentari pendapat Anda.",
+  
+    "title_details_rating"        : "Peringkat Detail",
+  
+    "label_details_rating"        : "Nilai ouevre secara detail, evaluasi Plot, karakter, fotografi, soundtrack dan hiburan.",
+  
+    "added_success_completed"     : "Berhasil ditambahkan ke daftar Anda yang sudah selesai !!!",
+  
+    "added_success_watching"      : "Berhasil ditambahkan ke daftar tontonan Anda !!!",
+  
+    "added_success_pause"         : "Berhasil ditambahkan ke daftar jeda Anda !!!",
+  
+    "added_success_dropped"       : "Berhasil ditambahkan ke daftar Anda yang jatuh !!!",
+  
+    "added_success_wish"          : "Berhasil ditambahkan ke daftar keinginan Anda !!!",
+  
+    "rating_in_general"           : "Peringkat pada umumnya:",
+  
+    "rating_in_plot"              : "Nilai plot:",
+  
+    "rating_in_characters"        : "Rating karakter:",
+  
+    "rating_in_photography"       : "Nilai fotografi:",
+  
+    "rating_in_soundtrack"        : "Nilai soundtrack:",
+  
+    "rating_in_entertainment"     : "Rating hiburan:",
+  
+    "status_completed"            : "Lengkap",
+  
+    "status_watching"             : "Menonton",
+  
+    "status_pause"                : "Berhenti sebentar",
+  
+    "status_dropped"              : "Menjatuhkan",
+  
+    "status_wishlist"             : "Daftar Keinginan",
+  
+    "last_views_movie"             :"Film terbaru ditambahkan ke daftar Anda:",
+  
+    "last_views_serie"             :"Seri terbaru ditambahkan ke daftar Anda:",
+  
+    "last_views_anime"             :"Animes terbaru ditambahkan ke daftar Anda:",
+  
+    "list_movies"                  :"Daftar film",
+                  
+    "list_series"                  :"Seri daftar",
+                  
+    "list_animes"                  :"Daftar animes",
+  
+    "total_movies"                 :"Total film",
+                  
+   "total_series"                  :"Total seri",
+                  
+    "total_animes"                 :"Total animes",
+  
+    "title_update_ouevre"          :"Perbarui oeuvre ini",
+    
+    "label_update_ouevre"          :"Ubah status ouevre ini atau ubahnya peringkat.",
+  
+    "title_delete_ouevre"          :"Hapus oeuvre ini",
+  
+    "label_delete_ouevre"          :"Hapus ouevre ini dari daftar Anda",
+    
+    "cancel"                       :"Membatalkan",
+  
+    "accept"                       :"Menerima",
+  
+    "success_delete_ouevre"        :"Berhasil dihapus dari daftar Anda",
+  
+    "label_dialog_delete_ouevre"   :"Apakah Anda yakin untuk menghapus ouevre ini dari Anda?",
+  
+    "label_movie_cinema"           :"Film premier",
+  
+    "label_serie_month"            :"Serial di udara minggu ini",
+    
+    "label_anime_season"           :"Musim anime musim dingin 2021",
+  
+    "configuration"                :"Konfigurasi",
+  
+    "label_edit_profile"           :"Sunting profil Anda",
+  
+    "label_edit_preferences"       :"Edit preferensi Anda",
+  
+    "label_premium"                :"Dapatkan Premium",
+  
+    "label_ads"                    :"Hapus Iklan",
+  
+    "label_change_theme"           :"Ubah tema",
+  
+    "label_about_app"              :"Tentang aplikasi",
+  
+    "label_license_open_source"    :"Lisensi open source",
+  
+    "label_privacity"              :"Kebijakan Privasi",
+  
+    "label_about_bunkalist"        :"Tentang Bunkalion",
+  
+    "label_rate_app"               :"Nilai aplikasi",
+  
+    "button_logout"                :"Keluar",
+  
+    "label_change_profile_image"   :"Ubah gambar profil Anda",
+  
+    "button_change_profile_image"  :"Ubah gambar",
+  
+    "label_change_username"        :"Ubah nama pengguna Anda",
+  
+    "button_change_username"        : "Ubah nama pengguna",
+  
+    "validate_username"             : "Nama pengguna tidak boleh kosong",
+  
+    "edit_profile_success"          : "Berhasil memperbarui info profil Anda.",
+  
+    "edit_profile_error"            : "Terjadi kesalahan saat memperbarui info profil Anda.",
+  
+    "api_label"                     : "Dipersembahkan oleh",
+  
+    "attribute_label"               : "Bunkalion menggunakan API TMDB dan API YouTube tetapi tidak disahkan atau disertifikasi oleh TMDB dan YouTube.",
+  
+    "search_label"                  : "Cari film, serial TV & anime.",
+  
+    "empty_label"                   : "Tidak ada hasil atau kesalahan yang terjadi.",
+    
+    "completed_empty_label"         : "Daftar lengkap Anda kosong, tambahkan sesuatu.",
+    
+    "watching_empty_label"          : "Daftar menonton Anda kosong, tambahkan sesuatu.",
+  
+    "pause_empty_label"             : "Daftar jeda Anda kosong, tambahkan sesuatu.",
+  
+    "dropped_empty_label"           : "Daftar Anda yang jatuh kosong, tambahkan sesuatu.",
+  
+    "wishlist_empty_label"          : "Daftar wishlist Anda kosong, tambahkan sesuatu.",
+  
+    "empty_last_added_label"        : "Anda tidak menambah daftar Anda, tambahkan sesuatu.",
+  
+    "label_remove_ads"              : "Mendukung pengembangan Bunkalis dan menghapus iklan.",
+    "label_month_ads"               : "1 bulan tanpa iklan seharga 0,99 $. *",
+    "label_year_ads"                : "1 tahun tanpa iklan untuk $ 2,50. *",
+    "label_never_ads"               : "Bayar sekali dan hapus iklan dengan $ 4,99.",
+    "label_never_ads_with_premium"  : "Opsi ini juga termasuk premi. **",
+    "label_subscription"            : "* Batalkan berlangganan setiap saat di Google Play.",
+    "in_progress"                   : "Opsi ini belum tersedia, untuk pembaruan berikutnya akan tersedia.",
+  
+    "anime_seinen"                : "Anime top miliknya",
+    "series_korean"               : "Seri Drama Korea",
+    "movies_korean"               : "Film Korea",
+  
+    "label_media_lists" : "Skor rata-rata daftar Anda.",
+    "label_total_chart_movie" : "Total film berdasarkan status.",
+    "label_total_chart_serie" : "Total seri berdasarkan status.",
+    "label_total_chart_anime" : "Total animes berdasarkan status.",
+    "label_theme_light"       : "Tema yang jelas",
+    "label_theme_light_dark"  : "Tema malam yang jelas",
+    "label_theme_dark"        : "Tema malam gelap",
+    "label_selection_movies"    : "Film yang mungkin menarik bagi Anda",
+      "label_selection_series"  : "Seri yang mungkin menarik bagi Anda",
+      "label_selection_animes"  : "Animes yang mungkin menarik bagi Anda",
+      "wishlist_views_movie"            : "Film ditambahkan untuk merencanakan untuk melihat:",
+      "wishlist_views_serie"            : "Seri ditambahkan untuk merencanakan untuk melihat:",
+      "wishlist_views_anime"            : "Anime ditambahkan untuk merencanakan untuk melihat:",
+      "empty_search_label" : "Tidak ada hasil yang ditemukan",
+      "title_label_explore" : "Jelajahi & Temukan",
+      "label_genres_movie"  : "Film genre",
+      "label_genres_serie"  : "Seri Genre",
+      "label_genres_anime"  : "Genre animos",
+      "order_by"            : "Berdasarkan pesanan",
+      "label_asc"           : "Kekuasaan",
+      "label_desc"          : "Menurun",
+      "sort_popular"        : "Dengan popularitas",
+      "sort_vote_average"   : "Dengan suara rata-rata",
+      "sort_vote_count"     : "Dengan jumlah suara",
+      "sort_date"           : "Dengan tanggal keberangkatan",
+      "label_year"          : "Pada tahun",
+      "label_one_year"      : "Satu tahun",
+      "label_anyone"        : "Siapa saja",
+      "label_intro_1"       : "Temukan dan temukan berkat puncak ribuan film, seri dan animes. (Dalam aplikasi ini Anda tidak dapat melihat film, seri dan animes)",
+      "label_intro_2"       : "Mengelola atau mengelola film, seri dan animes dalam daftar yang dipesan dengan menampilkan status",
+      "label_intro_3"       : "Nilai film, seri atau animes Anda dengan 2 cara untuk menilai sederhana atau detail, Anda berhasil menghargai setiap aspek pekerjaan.",
+      "label_company_series": "Perusahaan serial TV",
+      "label_company_animes": "Animes perusahaan",
+      "order_by_your_rating_total"     : "Urutkan berdasarkan skor total Anda",
+      "order_by_your_rating_plot"      : "Urutkan berdasarkan skor plot Anda",
+      "order_by_your_rating_character" : "Urutkan berdasarkan skor karakter Anda",
+      "order_by_your_rating_ost"       : "Urutkan berdasarkan skor soundtrack Anda",
+      "order_by_your_rating_effects"   : "Urutkan berdasarkan peringkat foto Anda",
+      "order_by_your_rating_enjoyment" : "Urutkan berdasarkan skor hiburan Anda",
+      "order_by_your_added"            : "Urutkan pada tanggal yang ditambahkan",
+      "order_by_your_realese_date"     : "Urutkan berdasarkan tanggal keberangkatan",
+      "order_by_your_com_rating"       : "Urutkan berdasarkan skor komunitas",
+      "thanks_for_support"             : "Terima kasih telah mendukung pengembangan Bunkalion",
+      "enebled_subcription"            : "Anda memiliki langganan diaktifkan sampai hari itu",
+  
+    "movies_dystopia"          : "Film distopia",
+    "movies_ww"                : "Film Perang Dunia II",
+    "movies_spacc_travel"      : "Film perjalanan ruang angkasa",
+    "movies_true_story"        : "Film kisah nyata",
+    "movies_cyberpunk"         : "Film Cyberpunk",
+    "movies_conspiracy"        : "Film konspirasi",
+    "movies_post_apocalytic"   : "Film post apocaliptic",
+    "movies_time_travel"       : "Film perjalanan waktu",
+    "movies_lawyer"            : "Film Pengacara",
+    "movies_serial_killer"     : "Film Serial Killer",
+    "movies_revenge"           : "Film balas dendam",
+  
+    "series_dystopia"          : "Seri Dystopia",
+    "series_spacc_travel"      : "Serangkaian perjalanan ruang angkasa",
+    "series_true_story"        : "Seri kisah nyata",
+    "series_cyberpunk"         : "Seri Cyberpunk",
+    "series_conspiracy"        : "Serangkaian konspirasi",
+    "series_post_apocalytic"   : "Seri Post Apokaliptik",
+    "series_time_travel"       : "Serangkaian perjalanan waktu",
+    "series_lawyer"            : "Serial of Lawyer",
+    "series_serial_killer"     : "Serangkaian Serial Killer",
+    "series_revenge"           : "Seri balas dendam",
+  
+    "title_top_movie"                  : "Film favoritmu",
+    "title_top_serie"                  : "Seri favoritmu",
+    "title_top_anime"                  : "Anime favoritmu",
+    "title_working_feature"            : "Kami sedang mengerjakan fungsi baru",
+    "subtitle_working_feature"         : "Itu akan memungkinkan Anda untuk membuat tops pada tema tertentu, akan tersedia di pembaruan mendatang.",
+    "update_dialog_title_add_top"      : "Tambahkan ke favorit utama Anda",
+    "update_dialog_label_add_top"      : "Tambahkan daftar favorit Anda",
+    "update_dialog_title_remove_top"   : "Hapus dari favorit Anda",
+    "update_dialog_label_remove_top"   : "Hapus dari daftar favorit Anda",
+    "empty_title_top_movie"            : "Buat film favorit Anda",
+    "empty_title_top_serie"            : "Buat top seri favorit Anda",
+    "empty_title_top_anime"            : "Buat Top of Your Favorit Anime",
+    "empty_label_top_movie"            : "Anda belum membuat top movie favorit Anda, klik untuk membuatnya sekarang.",
+    "empty_label_top_serie"            : "Kamu belum membuat top seri favoritmu, klik untuk membuatnya sekarang.",
+    "empty_label_top_anime"            : "Anda belum membuat top anime favorit Anda, klik untuk membuatnya sekarang.",
+    "btn_label_view_top"               : "Lihat secara detail",
+    "btn_label_edit_top"               : "Edit bagian atas",
+    "btn_label_create_top"             : "Tambahkan ke favoritmu",
+    "title_create_top_movie_favorites" : "Pilih film favorit Anda",
+    "title_create_top_serie_favorites" : "Pilih seri favorit Anda",
+    "title_create_top_anime_favorites" : "Pilih anime favoritmu",
+    "title_edit_top_movie_favorites"   : "Edit film favorit Anda",
+    "title_edit_top_serie_favorites"   : "Edit seri favorit Anda",
+    "title_edit_top_anime_favorites"   : "Edit anime favorit Anda",
+    "btn_label_edit_save_top"          : "Simpan perubahan",
+  
+    "title_item_unlock_premium_1"      : "Atasanmu",
+    "subtitle_item_unlock_premium_1"   : "Tops Anda menambah +10 batas total, bukannya 10 Anda dapat memasukkan hingga 20 secara total per atas.",
+    "title_item_unlock_premium_2"      : "Ulasan Video",
+    "subtitle_item_unlock_premium_2"   : "Anda memiliki akses ke ulasan video pada sebuah karya, yang tersedia di bagian setiap pekerjaan secara detail.",
+    "title_item_unlock_premium_3"      : "Kustomisasi dan saring daftar Anda",
+    "subtitle_item_unlock_premium_3"   : "Kustomisasi profil Anda dan kemungkinan memfilter daftar penyelesaian Anda dengan berbagai jenis peringkat.",
+    "title_item_unlock_premium_4"      : "Tanpa iklan",
+    "subtitle_item_unlock_premium_4"   : "Hapus semua iklan di dalam aplikasi.",
+    "title_item_unlock_premium_5"      : "Fungsi baru",
+    "subtitle_item_unlock_premium_5"   : "Fitur baru yang akan dimasukkan dalam pembaruan di masa mendatang.",
+    "title_label_premium"              : "Ambil pengalamanmu ke level lain dan pertahankan bunkalis berkembang.",
+    "label_offer"                      : "Penawaran terbaik kami!",
+    "label_offer_finish"               : "Tawaran berakhir di:",
+    "label_of_unlock"                  : "Fitur",
+    "title_one_month"                  : "Bulanan",
+    "title_one_year"                   : "Setiap tahun",
+    "title_lifetime"                   : "Seumur hidup",
+    "banner_premium_subtitle"          : "Buka semua fitur dan hapus semua iklan.",
+    "big_banner_premium_title"         : "Fungsi eksklusif dari versi premium",
+    "big_banner_premium_subtitle"      : "Buka kunci fitur ini dan semua fitur lainnya dan hapus semua iklan.",
+    "btn_go_to_premium"                : "Dapatkan Premium sekarang",
+    "label_change_language"            : "Ubah bahasa aplikasi",
+  
+    "label_serie_company_popular"      : "Populer",
+    "label_korean_serie_company"       : "Seri TV Korea",
+    "label_japanese_serie_company"     : "Seri TV Jepang",
+    "label_review_empty"               : "Tidak ada ulasan. Segera Anda akan memiliki opsi untuk memasukkan ulasan Anda.",
+  
+    "label_watching_list" :"Daftar pantauan",
+    "label_history_list"  :"Sejarah",
+    "label_wishlist_list" :"Wishlist",
+    "label_epiosde_left" : "Episode tersisa",
+  
+    "label_edit_explorer_and_tops"  : "Edit Opsi Explorer dan Rumah",
+    "label_hide_all_in_your_list"   : "Sembunyikan semua karya yang ada di daftar Anda",
+    "label_hide_movies_in_your_list": "Sembunyikan semua film yang ada di daftar Anda",
+    "label_hide_series_in_your_list": "Sembunyikan semua seri yang ada di daftar Anda",
+    "label_hide_animes_in_your_list": "Sembunyikan semua anime yang ada di daftar Anda",
+    "label_edit_pofile"             : "Sunting profil Anda",
+    "label_design_watchlist"        : "Pilih desain bagian dari profil daftar pantauan",
+    "label_design_history"          : "Pilih tata letak bagian profil riwayat",
+    "label_design_wishlist"         : "Pilih desain dari bagian profil keinginan",
+  
+    "label_dialog_logout"   : "Keluar",
+    "Label_subtitle_logout" : "Apakah kamu yakin ingin keluar?",
+  
+    "title_label_edit_home_tops"    :"Edit top top Anda",
+    "subtitle_label_edit_home_tops" :"Anda dapat mengedit awal sepenuhnya, dapat menyesuaikannya dengan keinginan Anda. Memilih jenis, genre atau memperoleh spesifikasi yang paling populerific year.",
+    "label_title_select_home_tops" : "Pilih judul",
+  
+    "label_select_genres" : "Genre (opsional)",
+    "label_select_network": "Jaringan (opsional)",
+    "label_select_idioma" : "Bahasa asli (adalah opsional)",
+    "label_select_year"   : "Tahun (adalah opsional)",
+  
+    "label_filter_personalize" : "Penyaringan kustom",
+    "btn_filter_personalize"   : "Saring",
+  
+    "fab_label_add_movie" : "Tambahkan Film",
+    "fab_label_add_serie" : "Tambahkan Serie",
+    "fab_label_add_anime" : "Tambahkan Anime",
+  
+    "label_btn_streaming": "Streaming",
+    "label_summary"      : "Ringkasan",
+    "label_genres"       : "Genre",
+  
+    "label_created_by"   : "Dibuat oleh",
+    "label_network"      : "Jaringan",
+    "label_production"   : "Produsen",
+    "label_keyword"      : "Kata kunci",
+  
+    "label_images"      :"Gambar-gambar",
+    "label_last_episode":"Episode terakhir",
+    "label_next_episode":"Episode selanjutnya",
+    "label_poster"     : "Poster",
+    "label_background" : "Latar belakang",
+  
+    "label_tops_more_popular"  : "Lebih populer",
+    "label_tops_best_rated"    : "Terbaik dinilai",
+    "label_tops_season_winter" : "Musim dingin",
+    "label_tops_season_spring" : "Musim semi",
+    "label_tops_season_summer" : "Musim panas",
+    "label_tops_season_autuum" : "Musim gugur",
+    "label_tops_underrated"    : "Diremehkan",
+  
+    "label_add_to_list_login_first" : "Untuk menambah daftar Anda, Anda harus terlebih dahulu masuk",
+    "label_use_feature_login_first" : "Untuk menggunakan fungsi ini, Anda harus terlebih dahulu login",
+    "label_feedback":"Kirim umpan balik",
+  
+    "label_include_premium": "Semua opsi menawarkan untuk membuka kunci semua fitur dan menghapus semua iklan, menjaga dukungan pengembangan untuk pembaruan di masa depan."
+  
+}

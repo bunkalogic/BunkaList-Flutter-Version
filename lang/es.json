@@ -7,7 +7,7 @@
     "btn_nav_settings"            : "Ajustes",
     "movies"                      : "Películas",
     "series"                      : "Series",
-    "animes"                      : "Anime",
+    "animes"                      : "Animes",
     "people"                      : "Personas",
     "more_tops_movies"            : "Más tops de Películas",
     "more_tops_series"            : "Más tops de Series",
@@ -223,7 +223,6 @@
     "label_never_ads": "Pague una vez y elimine los anuncios por 4,99 $",
     "label_never_ads_with_premium": "Esta opción también incluye el Premium. **",
     "label_subscription": "* Cancelar suscripción en cualquier momento en Google Play.",
-    "label_include_premium": "** Cuando llegue el Premium, no tendrá que pagar nada más. En futuras actualizaciones habrá más información sobre todas las nuevas características que traerá el Premium.",
     "in_progress"                   : "Esta opción aún no está disponible, para la próxima actualización estará disponible.",
     "label_media_lists" : "Puntuación media de sus listas.",
     "label_total_chart_movie" : "Total de Peliculas por estados.",
@@ -395,10 +394,22 @@
   "label_next_episode": "Proximo Episodio",
 
   "label_poster" : "Posters",
-  "label_background" : "Fondos"
+  "label_background" : "Fondos",
 
+  "label_tops_more_popular"  : "Mas Populares",
+  "label_tops_best_rated"    : "Mejor Valoradas",
+  "label_tops_season_winter" : "Temporada de Invierno",
+  "label_tops_season_spring" : "Temporada de Primavera",
+  "label_tops_season_summer" : "Temporada de Verano",
+  "label_tops_season_autuum" : "Temporada de Otoño",
+  "label_tops_underrated"    : "Infravaloradas",
 
+  "label_add_to_list_login_first" : "Para poder añadir a tu lista primero debes iniciar sesion",
+  "label_use_feature_login_first" : "Para poder utilizar esta funcion primero debes iniciar sesion",
 
+  "label_feedback":"Enviar Comentarios",
+  
+  "label_include_premium": "Todas las opciones ofrecen desbloquear todas las caracteristicas y eliminar todos los anuncios, mantener el soporte del desarrollo de futuras actualizaciones."
   
   
 }

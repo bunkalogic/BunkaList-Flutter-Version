@@ -219,9 +219,7 @@
     "label_never_ads": "एक बार भुगतान करें और विज्ञापनों को 4,99 $ निकाल दें।",
     "label_never_ads_with_premium": "इस विकल्प में प्रीमियम भी शामिल है। **",
     "label_subscription": "* Google Play में किसी भी समय सदस्यता रद्द करें।",
-    "label_include_premium": "** प्रीमियम आने पर आपको कुछ और भुगतान नहीं करना होगा। भविष्य के अपडेट में उन सभी नई सुविधाओं के बारे में अधिक जानकारी होगी जो प्रीमियम लाएगा।",
     "in_progress"                   : "यह विकल्प अभी उपलब्ध नहीं है, अगले अद्यतन के लिए यह उपलब्ध होगा।",
-  
     "anime_seinen"                : "शीर्ष मोबाइल फोनों Seinen",
     "series_korean"               : "कोरियन ड्रामा सीरीज़",
     "movies_korean"               : "कोरियन मूवीज",
@@ -393,6 +391,20 @@
   "label_last_episode": "अंतिम भाग",
   "label_next_episode": "अगले प्रकरण",
   "label_poster"     : "पोस्टर",
-  "label_background" : "पृष्ठभूमि"
+  "label_background" : "पृष्ठभूमि",
+
+  "label_tops_more_popular"  : "अधिक लोकप्रिय",
+  "label_tops_best_rated"    : "बेस्ट रेटेड",
+  "label_tops_season_winter" : "सर्दियों का मौसम",
+  "label_tops_season_spring" : "वसंत का मौसम",
+  "label_tops_season_summer" : "गर्मी के मौसम",
+  "label_tops_season_autuum" : "मौसम गिरावट",
+  "label_tops_underrated"    : "अंडररेटेड",
+
+  "label_feedback":"प्रतिक्रिया भेजें",
+
+  "label_add_to_list_login_first" : "अपनी सूची में जोड़ने के लिए, आपको पहले लॉगिन करना होगा",
+  "label_use_feature_login_first" : "इस फ़ंक्शन का उपयोग करने के लिए, आपको पहले लॉगिन करना होगा",
+  "label_include_premium": "सभी विकल्प सभी सुविधाओं को अनलॉक करने और सभी विज्ञापनों को हटाने, भविष्य के अपडेट के लिए विकास समर्थन को बनाए रखने की पेशकश करते हैं।"
   
 }

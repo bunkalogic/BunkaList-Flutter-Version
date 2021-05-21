@@ -90,8 +90,9 @@ class _PeopleCastTabState extends State<PeopleCastTab> {
         final String getDateA = (a.firstAirDate == null) ? a.releaseDate : a.firstAirDate;
         final String getDateB = (b.firstAirDate == null) ? b.releaseDate : b.firstAirDate;
 
-        final String getRealDateA = getDateA.isEmpty ? '2023-12-31' : getDateA;
-        final String getRealDateB = getDateB.isEmpty ? '2023-12-31' : getDateB;
+        
+        final String getRealDateA = (getDateA == null || getDateA == '') ? '2022-12-10' : getDateA;
+        final String getRealDateB = (getDateB == null || getDateB == '') ? '2022-12-10' : getDateB;
 
         final String dateA = DateTime.parse(getRealDateA).year.toString();
         final String dateB = DateTime.parse(getRealDateB).year.toString();
@@ -186,8 +187,8 @@ class _PeopleCrewTabState extends State<PeopleCrewTab> {
         final String getDateA = (a.firstAirDate == null) ? a.releaseDate : a.firstAirDate;
         final String getDateB = (b.firstAirDate == null) ? b.releaseDate : b.firstAirDate;
 
-        final String getRealDateA = getDateA.isEmpty ? '2023-12-31' : getDateA;
-        final String getRealDateB = getDateB.isEmpty ? '2023-12-31' : getDateB;
+        final String getRealDateA = (getDateA == null || getDateA == '') ? '2023-12-31' : getDateA;
+        final String getRealDateB = (getDateB == null || getDateB == '') ? '2023-12-31' : getDateB;
 
         final String dateA = DateTime.parse(getRealDateA).year.toString();
         final String dateB = DateTime.parse(getRealDateB).year.toString();
@@ -340,7 +341,7 @@ class _BuildItemCrewAndCastWidgetState extends State<BuildItemCrewAndCastWidget>
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
       child: Text(
-          (getDate.isNotEmpty) ? DateTime.parse(getDate).year.toString() : "no date", 
+          (getDate != '' && getDate != null) ? DateTime.parse(getDate).year.toString() : "no date", 
             style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w700, 

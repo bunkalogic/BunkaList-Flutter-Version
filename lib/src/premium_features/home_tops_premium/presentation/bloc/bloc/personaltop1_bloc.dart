@@ -56,7 +56,7 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
     Stream<Transition<Personaltop1Event, Personaltop1State>>  Function(Personaltop1Event event) transitionFn) {
     
     return events
-    .debounceTime(const Duration(milliseconds: 300))
+    .debounceTime(const Duration(milliseconds: 800))
     .switchMap(transitionFn);
     
     // return super.transformEvents( 

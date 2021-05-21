@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
+import 'package:package_info/package_info.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -53,7 +54,7 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.only(left: 8.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold ),
+        style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold ),
       ),
     );
   }
@@ -73,11 +74,22 @@ class _SettingsPageState extends State<SettingsPage> {
     return ListView(
       children: <Widget>[
         SizedBox(height: 15.0,),
+        !prefs.currentUserHasToken 
+        ? BlocProvider<AuthenticationBloc>(
+          create: (_) => serviceLocator<AuthenticationBloc>(),
+          child: ButtomLogOut(),
+        )
+        : Container(),
+        !prefs.currentUserHasToken 
+        ? SizedBox(height: 15.0,)
+        : SizedBox.shrink(),
         _titleOfSections(AppLocalizations.of(context).translate("configuration")),
         Divider(),
-        _createItemSettings(context, Colors.greenAccent , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
+        prefs.currentUserHasToken 
+        ? _createItemSettings(context, Colors.greenAccent , Icons.supervised_user_circle, AppLocalizations.of(context).translate("label_edit_profile"), (){
           Navigator.pushNamed(context, '/EditProfile');
-        } ),
+        } )
+        : Container(),
         _createItemSettings(context, Colors.deepOrangeAccent, Icons.settings_applications, AppLocalizations.of(context).translate("label_edit_preferences"), (){
           Navigator.pushNamed(context, '/EditPreferences');
         } 
@@ -105,6 +117,25 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(height: 15.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_about_app")),
         Divider(),
+        _createItemSettings(context, Colors.yellowAccent, Icons.email_rounded, AppLocalizations.of(context).translate("label_feedback"), () async {
+
+          PackageInfo packageInfo = await PackageInfo.fromPlatform();            
+
+          String _version = packageInfo.version;
+          String _buildNumber = packageInfo.buildNumber;
+
+            final Uri _emailLaunchUri = Uri(
+              scheme: 'mailto',
+              path: 'bunkalist.client@gmail.com',
+              queryParameters: {
+                'subject': 'FEEDBACK ${prefs.getCurrentUsername} ',
+                'body': 'VersionNumber: $_version BuildNumber: $_buildNumber LanguageDevice: ${prefs.getLanguageOfDevice}'
+              }
+            );
+
+            launch(_emailLaunchUri.toString());
+        }),
+
         _createItemSettings(context, Colors.deepPurpleAccent, Icons.rate_review, AppLocalizations.of(context).translate("label_rate_app"), (){
           AppReview.writeReview.then((onValue){
             setState(() {
@@ -124,10 +155,12 @@ class _SettingsPageState extends State<SettingsPage> {
         }),
         Divider(),
         SizedBox(height: 10.0,),
-        BlocProvider<AuthenticationBloc>(
+        prefs.currentUserHasToken 
+        ? BlocProvider<AuthenticationBloc>(
           create: (_) => serviceLocator<AuthenticationBloc>(),
           child: ButtomLogOut(),
-        ),
+        )
+        : Container(),
         SizedBox(height: 10.0,),
       //MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4711162518',),
       ],
@@ -344,8 +377,14 @@ class ButtomLogOut extends StatelessWidget {
         ),
         color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         textColor: Colors.white,
-        child: Text(AppLocalizations.of(context).translate("button_logout"), style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),),
+        child: Text(
+          prefs.currentUserHasToken ? AppLocalizations.of(context).translate("button_logout") : AppLocalizations.of(context).translate("login"), 
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+          ),
         onPressed: (){
+          if(!prefs.currentUserHasToken){
+            return Navigator.pushNamed(context, '/Login');
+          }
            _alertDialogOfDelete(context);
         },
 
@@ -445,12 +484,11 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       onPressed: () {
 
+        
 
           prefs.getCurrentUsername = '';
           prefs.getCurrentUserPhoto = '';
           prefs.getCurrentUserUid = '';
-          prefs.whatModeIs = false;
-          prefs.whatDarkIs = false;
           prefs.currentUserHasToken = false;
           prefs.isNotAds = false;
           prefs.listMoviesIds = [];
@@ -460,10 +498,11 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
           Purchases.reset();
 
           BlocProvider.of<AuthenticationBloc>(context)..add(LoggedOut());
-          _goToLogin(context);  
+         
 
         getFlushbarSuccessDelete(context);
 
+        return Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
        
       }, 
       child: Text(
@@ -479,11 +518,14 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
 
 
   _goToLogin(BuildContext context){
-    Navigator.pushNamedAndRemoveUntil(context, '/Login', (_) => false);
+    return Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
   }
 
 
   void getFlushbarSuccessDelete(BuildContext context){
+
+    final String label = AppLocalizations.of(context).translate("button_logout");
+
     Flushbar(
       margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       borderRadius: 10,
@@ -492,7 +534,7 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
       boxShadows: [BoxShadow(color: Colors.red[500], offset: Offset(0.5, 0.5), blurRadius: 1.0,)],
       duration: Duration(seconds: 2),
       messageText: Text(
-        AppLocalizations.of(context).translate("success_delete_ouevre"),
+        '$label ...',
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w700,

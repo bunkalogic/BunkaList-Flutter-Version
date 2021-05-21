@@ -140,6 +140,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
             ),
           ),
         
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -172,8 +173,8 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
 
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700
+      fontSize: 16.0,
+      fontWeight: FontWeight.w600
     );
 
     return Padding(
@@ -211,7 +212,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
 
 
     return Padding(
-          padding: const EdgeInsets.only(left: 45, top: 20),
+          padding: const EdgeInsets.only(left: 25, top: 20),
           child: ListCompaniesAndNetworkWidget(companies: companies,),
         );
 
@@ -301,11 +302,14 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
     final poster = prefs.whatModeIs ? NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,000,999)/$logoPath') : NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,999,999)/$logoPath');
 
 
-    return Image(
-      image: poster,
-      fit: BoxFit.contain,
-      height: 60.0,
-      width: 80.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Image(
+        image: poster,
+        fit: BoxFit.contain,
+        height: 50.0,
+        width: 50.0,
+      ),
     );  
 
   }
@@ -331,13 +335,13 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
     return Column(
       children: [
 
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_release_date'),  13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_release_date'),  13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(formatterDate(movie.releaseDate), 16.0, FontWeight.w700,),
         SizedBox(height: 2.0,),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_origin_country'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_origin_country'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(country.isEmpty ? 'no data' : country[0].name, 16.0, FontWeight.w700,),
         SizedBox(height: 2.0,),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_orginal_language'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_orginal_language'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(language.isEmpty ? 'no data' : language[0].englishName.toString(), 16.0, FontWeight.w700,),
         
       ],
@@ -418,7 +422,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
   Widget _rowLabelExtraInfo(BuildContext context, String label, String info){
     return Row(
       children: [
-        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey), flex: 1,),
+        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey), flex: 1,),
         SizedBox(width: 25.0,),
         Expanded(child: _labelExtraInfo(info, 16.0, FontWeight.w700,), flex: 1,),
       ],
@@ -450,7 +454,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey),
+            _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey),
             Expanded(
               child: Text(
                 (data == null ) ? 'info not yet available' : data,
@@ -749,9 +753,9 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
 //         mainAxisAlignment: MainAxisAlignment.spaceAround,
 //         crossAxisAlignment: CrossAxisAlignment.center,
 //         children: <Widget>[
-//           _labelExtraInfo(label1, 16.0, FontWeight.w500,),
+//           _labelExtraInfo(label1, 16.0, FontWeight.w600,),
 //           Spacer(),
-//           _labelExtraInfo(label2, 16.0, FontWeight.w500, ), 
+//           _labelExtraInfo(label2, 16.0, FontWeight.w600, ), 
 //         ],
 //       ),
 //     );
@@ -858,7 +862,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
               child: RowImagesWidget(id: serie.id, type: serie.type),
             ),
           ),
-        
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -891,8 +895,8 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
 
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700
+      fontSize: 16.0,
+      fontWeight: FontWeight.w600
     );
 
     return Padding(
@@ -929,7 +933,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
 
 
     return Padding(
-          padding: const EdgeInsets.only(left: 45, top: 20),
+          padding: const EdgeInsets.only(left: 25, top: 20),
           child: ListCompaniesAndNetworkWidget(companies: companies,),
         );
 
@@ -1073,11 +1077,14 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
     final poster = prefs.whatModeIs ? NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,000,999)/$logoPath') : NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,999,999)/$logoPath');
 
 
-    return Image(
-      image: poster,
-      fit: BoxFit.contain,
-      height: 60.0,
-      width: 80.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Image(
+        image: poster,
+        fit: BoxFit.contain,
+        height:50.0,
+        width: 50.0,
+      ),
     );  
 
   }
@@ -1099,10 +1106,10 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
     return Column(
       children: [
         createdBy(context),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_season'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_season'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(serie.numberOfSeasons.toString(), 16.0, FontWeight.w700,),
         SizedBox(height: 2.0,),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_episode'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_episode'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(serie.numberOfEpisodes.toString(), 16.0, FontWeight.w700,),
         
         
@@ -1116,7 +1123,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
     if(createdBy.isNotEmpty){
       return Column(
         children: [
-          _labelExtraInfo(AppLocalizations.of(context).translate('label_created_by') , 13.0, FontWeight.w500, color: Colors.grey),
+          _labelExtraInfo(AppLocalizations.of(context).translate('label_created_by') , 13.0, FontWeight.w600, color: Colors.grey),
           GestureDetector(
             onTap: (){
               Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(createdBy[0].id, createdBy[0].name));
@@ -1130,7 +1137,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
       return Column(
         children: [
           
-          _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w500, color: Colors.grey),
+          _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w600, color: Colors.grey),
           _labelExtraInfo(formatterDate(serie.lastAirDate), 16.0, FontWeight.w700,),
           SizedBox(height: 4.0,),
         ],
@@ -1298,7 +1305,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
   Widget _rowLabelExtraInfo(BuildContext context, String label, String info){
     return Row(
       children: [
-        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey), flex: 1,),
+        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey), flex: 1,),
         SizedBox(width: 25.0,),
         Expanded(child: _labelExtraInfo(info, 16.0, FontWeight.w700,), flex: 1,),
       ],
@@ -1330,7 +1337,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey),
+            _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey),
             Expanded(
               child: Text(
                 (data == null ) ? 'info not yet available' : data,
@@ -1790,9 +1797,9 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
 //         mainAxisAlignment: MainAxisAlignment.spaceAround,
 //         crossAxisAlignment: CrossAxisAlignment.center,
 //         children: <Widget>[
-//           _labelExtraInfo(label1, 16.0, FontWeight.w500,),
+//           _labelExtraInfo(label1, 16.0, FontWeight.w600,),
 //           Spacer(),
-//           _labelExtraInfo(label2, 16.0, FontWeight.w500, ), 
+//           _labelExtraInfo(label2, 16.0, FontWeight.w600, ), 
 //         ],
 //       ),
 //     );
@@ -1887,7 +1894,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
               child: RowImagesWidget(id: anime.id, type: anime.type),
             ),
           ),
-        
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -1920,8 +1927,8 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
 
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700
+      fontSize: 16.0,
+      fontWeight: FontWeight.w600
     );
 
     return Padding(
@@ -1958,7 +1965,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
 
 
     return Padding(
-          padding: const EdgeInsets.only(left: 45, top: 20),
+          padding: const EdgeInsets.only(left: 25, top: 20),
           child: ListCompaniesAndNetworkWidget(companies: companies,),
         );
 
@@ -2102,11 +2109,14 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
     final poster = prefs.whatModeIs ? NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,000,999)/$logoPath') : NetworkImage('https://image.tmdb.org/t/p/original_filter(negate,999,999)/$logoPath');
 
 
-    return Image(
-      image: poster,
-      fit: BoxFit.contain,
-      height: 60.0,
-      width: 80.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Image(
+        image: poster,
+        fit: BoxFit.contain,
+        height: 50.0,
+        width: 50.0,
+      ),
     );  
 
   }
@@ -2128,10 +2138,10 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
     return Column(
       children: [
         createdBy(context),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_season'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_season'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(anime.numberOfSeasons.toString(), 16.0, FontWeight.w700,),
         SizedBox(height: 2.0,),
-        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_episode'), 13.0, FontWeight.w500, color: Colors.grey),
+        _labelExtraInfo(AppLocalizations.of(context).translate('details_number_episode'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(anime.numberOfEpisodes.toString(), 16.0, FontWeight.w700,),
         
         
@@ -2145,7 +2155,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
     if(createdBy.isNotEmpty){
       return Column(
         children: [
-          _labelExtraInfo(AppLocalizations.of(context).translate('label_created_by') , 13.0, FontWeight.w500, color: Colors.grey),
+          _labelExtraInfo(AppLocalizations.of(context).translate('label_created_by') , 13.0, FontWeight.w600, color: Colors.grey),
           GestureDetector(
             onTap: (){
               Navigator.pushNamed(context, '/AllDetailsPeople', arguments: getIdAndNameCast(createdBy[0].id, createdBy[0].name));
@@ -2159,7 +2169,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
       return Column(
         children: [
           
-          _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w500, color: Colors.grey),
+          _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w600, color: Colors.grey),
           _labelExtraInfo(formatterDate(anime.lastAirDate), 16.0, FontWeight.w700,),
           SizedBox(height: 4.0,),
         ],
@@ -2327,7 +2337,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
   Widget _rowLabelExtraInfo(BuildContext context, String label, String info){
     return Row(
       children: [
-        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey), flex: 1,),
+        Expanded(child: _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey), flex: 1,),
         SizedBox(width: 25.0,),
         Expanded(child: _labelExtraInfo(info, 16.0, FontWeight.w700,), flex: 1,),
       ],
@@ -2359,7 +2369,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _labelExtraInfo(label, 14.0, FontWeight.w500, color: Colors.grey),
+            _labelExtraInfo(label, 14.0, FontWeight.w600, color: Colors.grey),
             Expanded(
               child: Text(
                 (data == null ) ? 'info not yet available' : data,
@@ -2697,9 +2707,9 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
 //         mainAxisAlignment: MainAxisAlignment.spaceAround,
 //         crossAxisAlignment: CrossAxisAlignment.center,
 //         children: <Widget>[
-//           _labelExtraInfo(label1, 16.0, FontWeight.w500,),
+//           _labelExtraInfo(label1, 16.0, FontWeight.w600,),
 //           Spacer(),
-//           _labelExtraInfo(label2, 16.0, FontWeight.w500, ), 
+//           _labelExtraInfo(label2, 16.0, FontWeight.w600, ), 
 //         ],
 //       ),
 //     );

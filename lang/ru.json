@@ -219,7 +219,6 @@
     "label_never_ads": "Заплати один раз и убери рекламу на 4,99 $.",
     "label_never_ads_with_premium": "Эта опция также включает Премиум. ​​**",
     "label_subscription": "* Отменить подписку в любое время в Google Play.",
-    "label_include_premium": "** Когда прибудет Премиум, вам больше не придется платить больше. В будущих обновлениях будет больше информации обо всех новых функциях, которые принесет Премиум.",
     "in_progress"          : "Эта опция еще не доступна, для следующего обновления она будет доступна.",
   
     "anime_seinen"                : "топ аниме сейнен",
@@ -392,6 +391,22 @@
   "label_last_episode": "Последний эпизод",
   "label_next_episode": "Следующий эпизод",
   "label_poster"     : "Плакаты",
-  "label_background" : "Фоны"
+  "label_background" : "Фоны",
+
+  "label_tops_more_popular"  : "Более популярным",
+  "label_tops_best_rated"    : "Лучший рейтинг",
+  "label_tops_season_winter" : "Зимний сезон",
+  "label_tops_season_spring" : "Весенний сезон",
+  "label_tops_season_summer" : "Летний сезон",
+  "label_tops_season_autuum" : "Осень",
+  "label_tops_underrated"    : "Неправильно",
+
+  "label_add_to_list_login_first" : "Чтобы добавить в свой список, вы должны сначала войти",
+  "label_use_feature_login_first" : "Для того, чтобы использовать эту функцию, вы должны сначала войти в систему",
+
+  "label_feedback":"Отправить отзыв",
+
+  "label_include_premium": "Все варианты предлагают разблокировать все функции и удалить все объявления, поддерживать поддержку разработки для будущих обновлений."
+
 
 }

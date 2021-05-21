@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/countdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:bunkalist/src/core/reusable_widgets/flushbar_go_login_widget.dart';
+
 
 
 class GetPremiumPage extends StatefulWidget {
@@ -18,6 +21,8 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
 
   PurchaserInfo _purchaserInfo;
   Offerings _offerings;
+
+  final Preferences prefs = Preferences();
 
   @override
   void initState() {
@@ -73,9 +78,9 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           SizedBox(height: 25.0,),
           _nameBanner(),
           _labelOfBanner(),
-          CountDownFinishOfferWidget(),
+          // CountDownFinishOfferWidget(),
           _rowOfItemPremium(),
-          _labelCancelSubscription(),
+          _labelIncludeSubscription(),
           SizedBox(height: 25.0,),
           _labelOfUnlockFeature(),
           SizedBox(height: 10.0,),
@@ -255,10 +260,24 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
     );
   }
 
-  Widget _labelCancelSubscription() {
-    return Text(
-      AppLocalizations.of(context).translate("label_subscription"),
-      textAlign:TextAlign.center,
+  Widget _labelIncludeSubscription() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 15.0
+        ),
+        child: Text(
+         AppLocalizations.of(context).translate("label_include_premium"),
+          textAlign: TextAlign.justify,
+          style: TextStyle(
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w600,
+            fontSize: 16.0
+          ),
+        
+        ),
+      ),
     );
   }
 
@@ -268,64 +287,82 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
       child: Row(
         children: [
           _itemPremium(
-            AppLocalizations.of(context).translate("title_one_month"),
-            "0.99€*",
+            AppLocalizations.of(context).translate("title_lifetime"),
+            "2.99€",
             onTap: (){
+
+              if(!prefs.currentUserHasToken){
+                getFlushbarGoToLoginFromPremium(context);
+                return;
+              }
+
               if(_offerings != null){
-              final offering = _offerings.getOffering("no_ads_1_month");
+              final offering = _offerings.getOffering("NoAds");
 
                 if(offering != null){
-                  final monthly = offering.monthly;
-                  _purchaseMonthly(monthly);
-                }
+                final lifetime = offering.lifetime;
+                _purchaseLifetime(lifetime);
+              }
               }
             }, 
             margin: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 45.0
-            ),
-          ),
-          _itemPremium(
-            AppLocalizations.of(context).translate("title_one_year"),
-            "2.70€*",
-             onTap: (){
-              if(_offerings != null){
-              final offering = _offerings.getOffering("no_ads_yearly");
-
-              if(offering != null){
-                final annual = offering.annual;
-                _purchaseAnnual(annual);
-              }
-            }
-            }, 
-            isYear: true,
-            priceForMonth: '0,22€ for month.',
-            isOffer: true,
-            offerPrice: "5.99€",
-            shadow: [
-            BoxShadow(color: Colors.grey[400].withOpacity(0.1), blurRadius: 4.5,spreadRadius: 2.5)
-            ],
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 24.0
+            vertical: 50.0
             ),
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "4.50 €",
+            "5.99€",
              onTap: (){
-              final offering = _offerings.getOffering("NoAds");
+
+              if(!prefs.currentUserHasToken){
+                getFlushbarGoToLoginFromPremium(context);
+                return;
+              }
+
+              if(_offerings != null){
+              final offering = _offerings.getOffering("remove_ads_and_premium_1");
+
+              if(offering != null){
+                final lifetime = offering.lifetime;
+                _purchaseLifetime(lifetime);
+              }
+            }
+            }, 
+            // isYear: true,
+            // priceForMonth: '0,22€ for month.',
+            // isOffer: true,
+            // offerPrice: "5.99€",
+            // shadow: [
+            // BoxShadow(color: Colors.grey[400].withOpacity(0.1), blurRadius: 4.5,spreadRadius: 2.5)
+            // ],
+            margin: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 50.0
+            ),
+          ),
+          _itemPremium(
+            AppLocalizations.of(context).translate("title_lifetime"),
+            "10.99 €",
+             onTap: (){
+
+              if(!prefs.currentUserHasToken){
+                getFlushbarGoToLoginFromPremium(context);
+                return;
+              }
+
+              final offering = _offerings.getOffering("remove_ads_and_premium_2");
 
               if(offering != null){
                 final lifetime = offering.lifetime;
                 _purchaseLifetime(lifetime);
               }
             }, 
-            isOffer: true,
-            offerPrice: "9.99 €",
+            // isOffer: true,
+            // offerPrice: "9.99 €",
             margin: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 45.0
+            vertical: 50.0
             ),
           ),
         ],
@@ -333,41 +370,41 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
     );
   }
 
-  _purchaseMonthly(Package monthly) async {
-    try {
-      PurchaserInfo purchaserInfo =
-          await Purchases.purchasePackage(monthly);
-      var isPro = purchaserInfo.entitlements.all["NoAds"].isActive;
-      if (isPro) {
-        return _buildScreenIsNotAds();
-      }
-    } on PlatformException catch (e) {
-      var errorCode = PurchasesErrorHelper.getErrorCode(e);
-      if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
-        print("User cancelled");
-      } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
-        print("User not allowed to purchase");
-      }
-    }
-  }
+  // _purchaseMonthly(Package monthly) async {
+  //   try {
+  //     PurchaserInfo purchaserInfo =
+  //         await Purchases.purchasePackage(monthly);
+  //     var isPro = purchaserInfo.entitlements.all["NoAds"].isActive;
+  //     if (isPro) {
+  //       return _buildScreenIsNotAds();
+  //     }
+  //   } on PlatformException catch (e) {
+  //     var errorCode = PurchasesErrorHelper.getErrorCode(e);
+  //     if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
+  //       print("User cancelled");
+  //     } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
+  //       print("User not allowed to purchase");
+  //     }
+  //   }
+  // }
 
-  _purchaseAnnual(Package annual) async {
-    try {
-      PurchaserInfo purchaserInfo =
-          await Purchases.purchasePackage(annual);
-      var isPro = purchaserInfo.entitlements.all["NoAds"].isActive;
-      if (isPro) {
-        return _buildScreenIsNotAds();
-      }
-    } on PlatformException catch (e) {
-      var errorCode = PurchasesErrorHelper.getErrorCode(e);
-      if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
-        print("User cancelled");
-      } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
-        print("User not allowed to purchase");
-      }
-    }
-  }
+  // _purchaseAnnual(Package annual) async {
+  //   try {
+  //     PurchaserInfo purchaserInfo =
+  //         await Purchases.purchasePackage(annual);
+  //     var isPro = purchaserInfo.entitlements.all["NoAds"].isActive;
+  //     if (isPro) {
+  //       return _buildScreenIsNotAds();
+  //     }
+  //   } on PlatformException catch (e) {
+  //     var errorCode = PurchasesErrorHelper.getErrorCode(e);
+  //     if (errorCode == PurchasesErrorCode.purchaseCancelledError) {
+  //       print("User cancelled");
+  //     } else if (errorCode == PurchasesErrorCode.purchaseNotAllowedError) {
+  //       print("User not allowed to purchase");
+  //     }
+  //   }
+  // }
 
   _purchaseLifetime(Package lifetime) async {
     try {

@@ -34,6 +34,9 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
       primaryIconTheme: IconThemeData(
         color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         size: 40.0
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none
       )
     );
   }
@@ -63,7 +66,7 @@ class MultiSearchWidget extends SearchDelegate<ResultsEntity>{
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.chevron_left),
+      icon: Icon(Icons.keyboard_arrow_down_rounded, size: 28,),
       onPressed: () => close(context, null),
     );
   }

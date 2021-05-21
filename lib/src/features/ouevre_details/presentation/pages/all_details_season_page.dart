@@ -2,6 +2,7 @@ import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
@@ -355,6 +356,8 @@ class SeasonInfoWidget extends StatelessWidget{
         SizedBox(height: 5,),
         (season.overview.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_summary')),
         _overviewInfo(),
+        SizedBox(height: 5,),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7236537513',),
         SizedBox(height: 5,),
         _titleSection(AppLocalizations.of(context).translate('episode')),
         Expanded(child: _listEpisodeSeason()),

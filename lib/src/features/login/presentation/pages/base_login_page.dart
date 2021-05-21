@@ -1,5 +1,6 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_login/bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_register/register_bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/widgets/login_widget.dart';
@@ -28,6 +29,11 @@ class _LoginHomePageState extends State<LoginHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: AppBarButtonBack(),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: _pageViewController(context),
@@ -58,25 +64,27 @@ class _LoginHomePageState extends State<LoginHomePage> {
     return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Colors.blueAccent,
-            Colors.deepPurpleAccent,
-            Colors.deepPurpleAccent,
-            Colors.deepPurpleAccent,
-            Colors.pinkAccent, 
-            Colors.pinkAccent, 
-          ], // whitish to gray
-          tileMode: TileMode.repeated, // repeats the gradient over the canvas
-        ),
+        // gradient: new LinearGradient(
+        //   begin: Alignment.topRight,
+        //   end: Alignment.bottomLeft,
+        //   colors: [
+        //     Colors.blueAccent,
+        //     Colors.deepPurpleAccent,
+        //     Colors.deepPurpleAccent,
+        //     Colors.deepPurpleAccent,
+        //     Colors.pinkAccent, 
+        //     Colors.pinkAccent, 
+        //   ], // whitish to gray
+        //   tileMode: TileMode.repeated, // repeats the gradient over the canvas
+        // ),
+        
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           //_logoApp(),
           _nameApp(),
+          SizedBox(height: 100,),
           _buttonSignUp(),
           _buttonLogin(),
           _borderWithConnect(context),
@@ -100,21 +108,23 @@ class _LoginHomePageState extends State<LoginHomePage> {
               children: <Widget>[
                 new Expanded(
                   child: new Container(
+                    color: Colors.blueAccent[300],
                     margin: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                    decoration: BoxDecoration(border: Border.all(width: 0.35)),
                   ),
                 ),
                 Text(
                   AppLocalizations.of(context).translate("or_connect"),
                   style: TextStyle(
-                    color: Colors.grey[300],
+                    color: Colors.blueGrey,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 new Expanded(
                   child: new Container(
+                    color: Colors.blueAccent[300],
                     margin: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                    decoration: BoxDecoration(border: Border.all(width: 0.35)),
                   ),
                 ),
               ],
@@ -133,7 +143,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                 child: new FlatButton(
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8.0)),
-                  color: Colors.white,
+                  color: Colors.pinkAccent,
                   onPressed: () => goToLogin(),
                   child: new Container(
                     padding: const EdgeInsets.symmetric(
@@ -148,7 +158,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                             AppLocalizations.of(context).translate("login"),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.deepPurpleAccent[400],
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -163,6 +173,9 @@ class _LoginHomePageState extends State<LoginHomePage> {
   }
 
   Widget _buttonSignUp() {
+
+    
+
     return new Container(
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 40.0),
@@ -170,12 +183,20 @@ class _LoginHomePageState extends State<LoginHomePage> {
           child: new Row(
             children: <Widget>[
               new Expanded(
-                child: new OutlineButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(8.0)),
-                  color: Colors.redAccent,
-                  highlightedBorderColor: Colors.white,
+                
+                child: new OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                        color: Colors.deepPurpleAccent,
+                        width: 1.5,
+                        style: BorderStyle.solid
+                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)
+                    ) 
+                  ),
                   onPressed: () => goToSignup(),
+                  
                   child: new Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 20.0,
@@ -189,7 +210,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                             AppLocalizations.of(context).translate("sign_up"),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.deepPurpleAccent,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -209,7 +230,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
           child: Center(
             child: Image(
               image: AssetImage('assets/bunkalist-banner.png'),
-              height: 65.0,
+              height: 60.0,
               fit: BoxFit.cover,
             ),
           ),
@@ -288,7 +309,7 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
         shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(8.0)),
         padding: EdgeInsets.only(top: 3.0,bottom: 3.0,left: 1.0),
-        color: const Color(0xFF4285F4),
+        color: Colors.blueAccent,
         onPressed: () => _pressedButtonSignInWithGoogle(),
           child: new Row(
             mainAxisSize: MainAxisSize.min,
@@ -359,6 +380,6 @@ class _ButtonSignInWithGoogleState extends State<ButtonSignInWithGoogle> {
   }
 
   void _navigateToHome(BuildContext context){
-     Navigator.pushNamedAndRemoveUntil(context, '/Home', (_) => false);
+     Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
    } 
 }

@@ -219,7 +219,6 @@
     "label_never_ads"               : " 4.99$ ドルの広告を削除するには,一度支払う。",
     "label_never_ads_with_premium"  : "このオプションにはプレミアムも含まれます。**",
     "label_subscription"            : "* Google Playでいつでもサブスクリプションをキャンセルできます。",
-    "label_include_premium"         : "**プレミアムが到着したとき,あなたは他に何も支払う必要はありません。将来のアップデートでは,プレミアムがもたらすすべての新機能に関する詳細情報があります。",
     "in_progress"                   : "このオプションはまだ利用できません。次のアップデートで利用できます。",
 
     "anime_seinen"                : "トップアニメ青年",
@@ -394,7 +393,22 @@
   "label_last_episode": "最終話",
   "label_next_episode": "次のエピソード",
   "label_poster"     : "ポスター",
-  "label_background" : "背景"
+  "label_background" : "背景",
+
+  "label_tops_more_popular"  : "もっと人気のある",
+  "label_tops_best_rated"    : "最高の定格",
+  "label_tops_season_winter" : "冬季",
+  "label_tops_season_spring" : "春の季節",
+  "label_tops_season_summer" : "夏季",
+  "label_tops_season_autuum" : "秋シーズン",
+  "label_tops_underrated"    : "過小評価",
+
+  "label_feedback": "フィードバックを送る",
+
+  "label_add_to_list_login_first" : "リストに追加するには、最初にログインする必要があります",
+  "label_use_feature_login_first" : "この機能を使用するには、最初にログインする必要があります",
+
+  "label_include_premium": "すべての機能のロックを解除してすべての広告を削除し、将来のアップデートの開発サポートを維持するためのすべてのオプションを提供します。"
 
 
 

@@ -130,6 +130,8 @@ dependencies:
   #country_codes: ^2.0.0
   # admod flutter
   admob_flutter: ^1.0.1
+  # package info
+  package_info: ^0.4.3+4
 
   flutter_localizations:
     sdk: flutter

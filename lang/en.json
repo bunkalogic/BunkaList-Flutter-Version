@@ -420,7 +420,6 @@
   "label_never_ads"               : "Pay once and remove ads by 4,99$.",
   "label_never_ads_with_premium"  : "This option also includes the Premium. **",
   "label_subscription"            : "* Cancel subscription any time in Google Play.",
-  "label_include_premium"         : "** When the Premium arrives you will not have to pay anything else. In future updates there will be more information about all the new features that the Premium will bring.",
   "in_progress"                   : "This option is not yet available, for the next update it will be available.",
 
   "anime_seinen"                : "Top Anime Seinen",
@@ -596,6 +595,20 @@
   "label_last_episode": "Last episode",
   "label_next_episode": "Next episode",
   "label_poster"     : "Posters",
-  "label_background" : "Backgrounds"
+  "label_background" : "Backgrounds",
+
+  "label_tops_more_popular"  : "More popular",
+  "label_tops_best_rated"    : "Best rated",
+  "label_tops_season_winter" : "Winter season",
+  "label_tops_season_spring" : "Spring season",
+  "label_tops_season_summer" : "Summer season",
+  "label_tops_season_autuum" : "Fall season",
+  "label_tops_underrated"    : "Underrated",
+
+  "label_add_to_list_login_first" : "In order to add to your list, you must first login",
+  "label_use_feature_login_first" : "In order to use this function, you must first login",
+  "label_feedback":"Send feedback",
+
+  "label_include_premium": "All options offer to unlock all features and delete all ads, maintain the development support for future updates."
 
 }

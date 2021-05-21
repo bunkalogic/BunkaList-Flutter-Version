@@ -68,7 +68,7 @@ class _TopsFavoritesPageState extends State<TopsFavoritesPage> {
         title,
         textAlign: TextAlign.justify,
         style: TextStyle(
-          fontSize: 28.0,
+          fontSize: 24.0,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.0,

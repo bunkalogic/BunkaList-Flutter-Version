@@ -20,6 +20,7 @@ class _ListCompaniesAndNetworkWidgetState extends State<ListCompaniesAndNetworkW
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.companies.length,
+        itemExtent: 120,
         itemBuilder: (context, i) => _buildItemCompany(widget.companies[i])
       ),
     );
@@ -87,6 +88,7 @@ class _ListCompaniesAndNetworkWidgetState extends State<ListCompaniesAndNetworkW
     return Center(
       child: Text(
         company.label,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 14.0,

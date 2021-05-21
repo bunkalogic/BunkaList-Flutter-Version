@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
@@ -214,6 +215,8 @@ class _BuildBodyEpisodePageState extends State<BuildBodyEpisodePage> {
       children: [
         SizedBox(height: 20),
         _rowPrincipalInfo(context),
+        SizedBox(height: 5,),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7236537513',),
         SizedBox(height: 5,),
         (widget.episode.overview.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_summary')),
         _overviewInfo(),

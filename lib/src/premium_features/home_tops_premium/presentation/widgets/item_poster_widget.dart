@@ -19,29 +19,32 @@ class ItemPosterMovieWidget extends StatefulWidget {
 }
 
 class _ItemPosterMovieWidgetState extends State<ItemPosterMovieWidget> {
+  
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
       child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(child: _itemImageAndRating(), flex: 6,),
-            Expanded(child: _itemTitle(), flex: 1,),
-            Expanded(child: _iconButton(), flex: 1,),
-          ], 
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
+          ],
       ),
     );
   }
 
   
+ 
 
-  Widget _itemImageAndRating(){
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(),
+          _itemImage(context, ),
           _itemRating()
         ],
       ),
@@ -50,8 +53,8 @@ class _ItemPosterMovieWidgetState extends State<ItemPosterMovieWidget> {
 
   Widget _itemRating(){
     return Container(
-      margin: const EdgeInsets.all(4.0),
-      padding: const EdgeInsets.all(2.0),
+      margin: EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(2.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: Colors.grey[400].withOpacity(0.3)
@@ -70,26 +73,38 @@ class _ItemPosterMovieWidgetState extends State<ItemPosterMovieWidget> {
     );
   }
 
-  Widget _itemImage() {
+  Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.movie.posterPath }');
 
+    //! Agregar el Hero
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
               image: (widget.movie.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
+            //! PushNamed Al ItemAllDetail
             Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.movie.id, widget.movie.type, widget.movie.title));
           },
           child: _poster 
@@ -110,8 +125,8 @@ class _ItemPosterMovieWidgetState extends State<ItemPosterMovieWidget> {
       
   }
 
-  Widget _iconButton(){
-  return ButtonAddedArrowDown(ouevre: widget.movie, type: widget.movie.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntity ,);
+  Widget _iconButton(BuildContext context){
+    return ButtonAddedArrowDown(ouevre: widget.movie, type: widget.movie.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntity,);
   }
 
 }
@@ -133,28 +148,29 @@ class ItemPosterSerieWidget extends StatefulWidget {
 class _ItemPosterSerieWidgetState extends State<ItemPosterSerieWidget> {
   @override
   Widget build(BuildContext context) {
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
       child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(child: _itemImageAndRating(), flex: 6,),
-            Expanded(child: _itemTitle(), flex: 1,),
-            Expanded(child: _iconButton(), flex: 1,),
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
           ],
       ),
     );
   }
 
   
+ 
 
-  Widget _itemImageAndRating(){
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(),
+          _itemImage(context, ),
           _itemRating()
         ],
       ),
@@ -163,8 +179,8 @@ class _ItemPosterSerieWidgetState extends State<ItemPosterSerieWidget> {
 
   Widget _itemRating(){
     return Container(
-      margin: const EdgeInsets.all(4.0),
-      padding: const EdgeInsets.all(2.0),
+      margin: EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(2.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: Colors.grey[400].withOpacity(0.3)
@@ -183,27 +199,38 @@ class _ItemPosterSerieWidgetState extends State<ItemPosterSerieWidget> {
     );
   }
 
-  Widget _itemImage() {
+  Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.series.posterPath }');
 
+    //! Agregar el Hero
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
               image: (widget.series.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
-            
+            //! PushNamed Al ItemAllDetail
             Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.series.id, widget.series.type, widget.series.name));
           },
           child: _poster 
@@ -224,7 +251,7 @@ class _ItemPosterSerieWidgetState extends State<ItemPosterSerieWidget> {
       
   }
 
-  Widget _iconButton(){
+  Widget _iconButton(BuildContext context){
     return ButtonAddedArrowDown(ouevre: widget.series, type: widget.series.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntity,);
   }
 
@@ -246,28 +273,29 @@ class ItemPosterAnimeWidget extends StatefulWidget {
 class _ItemPosterAnimeWidgetState extends State<ItemPosterAnimeWidget> {
   @override
   Widget build(BuildContext context) {
-
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
       child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(child: _itemImageAndRating(), flex: 6,),
-            Expanded(child: _itemTitle(), flex: 1,),
-            Expanded(child: _iconButton(), flex: 1,),
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
           ],
       ),
     );
-    
-    
   }
 
-  Widget _itemImageAndRating(){
+  
+ 
+
+  Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(),
+          _itemImage(context, ),
           _itemRating()
         ],
       ),
@@ -276,8 +304,8 @@ class _ItemPosterAnimeWidgetState extends State<ItemPosterAnimeWidget> {
 
   Widget _itemRating(){
     return Container(
-      margin: const EdgeInsets.all(4.0),
-      padding: const EdgeInsets.all(2.0),
+      margin: EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(2.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: Colors.grey[400].withOpacity(0.3)
@@ -296,26 +324,38 @@ class _ItemPosterAnimeWidgetState extends State<ItemPosterAnimeWidget> {
     );
   }
 
-  Widget _itemImage() {
+  Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ widget.anime.posterPath }');
 
+    //! Agregar el Hero
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
               image: (widget.anime.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
+            //! PushNamed Al ItemAllDetail
             Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(widget.anime.id, widget.anime.type, widget.anime.name));
           },
           child: _poster 
@@ -336,7 +376,7 @@ class _ItemPosterAnimeWidgetState extends State<ItemPosterAnimeWidget> {
       
   }
 
-  Widget _iconButton(){
-   return ButtonAddedArrowDown(ouevre: widget.anime, type: widget.anime.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
+  Widget _iconButton(BuildContext context){
+    return ButtonAddedArrowDown(ouevre: widget.anime, type: widget.anime.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntity,);
   }
 }

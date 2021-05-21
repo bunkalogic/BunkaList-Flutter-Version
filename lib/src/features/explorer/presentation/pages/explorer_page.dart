@@ -33,11 +33,11 @@ class _ExplorerPageState extends State<ExplorerPage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        _titleExplorer(),
-        new BlocProvider(
-          create: (_) => serviceLocator<SearchBloc>(),
-          child: BoxSearch(),
-        ),
+        // _titleExplorer(),
+        // new BlocProvider(
+        //   create: (_) => serviceLocator<SearchBloc>(),
+        //   child: BoxSearch(),
+        // ),
         CardTypesMoreTopsWidget(),
         SizedBox(height: 25.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_company_series")),
@@ -108,7 +108,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
         label,
         textAlign: TextAlign.start,
         style: TextStyle(
-          fontSize: 28.0,
+          fontSize: 24.0,
           fontWeight: FontWeight.bold
         ),
       ),

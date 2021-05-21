@@ -77,12 +77,12 @@ class _TopsPageState extends State<TopsPage> {
         SizedBox(height: 10.0,),
         new BlocProvider<TopsMoviesBloc>(
           create: (_) => serviceLocator<TopsMoviesBloc>(),
-          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("movies_popular"), typeId: Constants.topsMoviesPopularId,),
+          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("label_tops_more_popular"), typeId: Constants.topsMoviesPopularId,),
         ),
         SizedBox(height: 10.0,),
         new BlocProvider<TopsMoviesBloc>(
           create: (_) => serviceLocator<TopsMoviesBloc>(),
-          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("movies_rated"), typeId: Constants.topsMoviesRatedId,),
+          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("label_tops_best_rated"), typeId: Constants.topsMoviesRatedId,),
         ),
         
         SizedBox(height: 20.0,),
@@ -92,9 +92,9 @@ class _TopsPageState extends State<TopsPage> {
         SizedBox(height: 10.0,),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/2168759652', ),
         SizedBox(height: 10.0,),
-        new BlocProvider<SelectionseriesBloc>(
-          create: (_) => serviceLocator<SelectionseriesBloc>(),
-          child: ContainerListSelectionSeriesWidget(title: AppLocalizations.of(context).translate("series_popular"), typeId: Constants.topsSeriesPopularId,),
+        new BlocProvider<TopsSeriesBloc>(
+          create: (_) => serviceLocator<TopsSeriesBloc>(),
+          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("label_tops_more_popular"), typeId: Constants.topsSeriesPopularId,),
         ),
         SizedBox(height: 10.0,),
         ListTile(
@@ -109,7 +109,7 @@ class _TopsPageState extends State<TopsPage> {
         // SizedBox(height: 1.0,),
         new BlocProvider<TopsSeriesBloc>(
           create: (_) => serviceLocator<TopsSeriesBloc>(),
-          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("series_rated"), typeId: Constants.topsSeriesRatedId,),
+          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("label_tops_best_rated"), typeId: Constants.topsSeriesRatedId,),
         ),
         SizedBox(height: 20.0,),
         _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_serie")),
@@ -122,13 +122,13 @@ class _TopsPageState extends State<TopsPage> {
         ? MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5724861288', )
         : BannerPremiumWidget(),
         SizedBox(height: 10.0,),
-        new BlocProvider<SelectionanimesBloc>(
-          create: (_) => serviceLocator<SelectionanimesBloc>(),
-          child: ContainerListSelectionAnimeWidget(title: AppLocalizations.of(context).translate("anime_popular"), typeId: Constants.topsAnimePopularId,),
+        new BlocProvider<TopsAnimesBloc>(
+          create: (_) => serviceLocator<TopsAnimesBloc>(),
+          child: ContainerListAnimeWidget(title: AppLocalizations.of(context).translate("label_tops_more_popular"), typeId: Constants.topsAnimePopularId,),
         ),
         SizedBox(height: 10.0,),
         ListTile(
-          title: Text(AppLocalizations.of(context).translate("label_anime_season"), style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
+          title: Text(AppLocalizations.of(context).translate("label_tops_season_spring"), style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
         ),
         new BlocProvider<AnimeSeasonBloc>(
           create: (_) => serviceLocator<AnimeSeasonBloc>(),
@@ -137,7 +137,7 @@ class _TopsPageState extends State<TopsPage> {
         SizedBox(height: 10.0,),
         new BlocProvider<TopsAnimesBloc>(
           create: (_) => serviceLocator<TopsAnimesBloc>(),
-          child:ContainerListAnimeWidget(title: AppLocalizations.of(context).translate('anime_rated'), typeId: Constants.topsAnimeRatedId,),
+          child:ContainerListAnimeWidget(title: AppLocalizations.of(context).translate('label_tops_best_rated'), typeId: Constants.topsAnimeRatedId,),
         ),
         SizedBox(height: 10.0,),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1785616276', ),
@@ -152,20 +152,20 @@ class _TopsPageState extends State<TopsPage> {
         SizedBox(height: 10.0,),
         new BlocProvider<TopsMoviesBloc>(
           create: (_) => serviceLocator<TopsMoviesBloc>(),
-          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("movies_thiller"), typeId: Constants.topsMoviesThillerId,),
+          child:ContainerListMoviesWidget(title: AppLocalizations.of(context).translate("genre_thriller"), typeId: Constants.topsMoviesThillerId,),
         ),
         SizedBox(height: 20.0,),
         //MiniNativeBannerAds(adPlacementID: "177059330328908_179569186744589",),
         // SizedBox(height: 1.0,),
         new BlocProvider<TopsSeriesBloc>(
           create: (_) => serviceLocator<TopsSeriesBloc>(),
-          child: ContainerListSeriesWidget(title: AppLocalizations.of(context).translate("series_netflix"), typeId: Constants.topsSeriesNetflixId,),
+          child: ContainerListSeriesWidget(title: 'Netflix', typeId: Constants.topsSeriesNetflixId,),
         ),
 
          SizedBox(height: 10.0,),
         new BlocProvider<SelectionseriesBloc>(
           create: (_) => serviceLocator<SelectionseriesBloc>(),
-          child: ContainerListSelectionSeriesWidget(title: AppLocalizations.of(context).translate("label_selection_series"), typeId: Constants.selectionSeriesId,),
+          child: ContainerListSelectionSeriesWidget(title: AppLocalizations.of(context).translate("label_tops_underrated"), typeId: Constants.selectionSeriesId,),
         ),
       
         
@@ -177,14 +177,14 @@ class _TopsPageState extends State<TopsPage> {
         
         new BlocProvider<TopsAnimesBloc>(
           create: (_) => serviceLocator<TopsAnimesBloc>(),
-          child:ContainerListAnimeWidget(title: AppLocalizations.of(context).translate('anime_upcoming_next_season'), typeId: Constants.topsAnimeUpcomingNextSeasonId,),
+          child:ContainerListAnimeWidget(title: AppLocalizations.of(context).translate('label_tops_season_summer'), typeId: Constants.topsAnimeUpcomingNextSeasonId,),
         ),
 
          SizedBox(height: 10.0,),
          
         new BlocProvider<SelectionanimesBloc>(
           create: (_) => serviceLocator<SelectionanimesBloc>(),
-          child: ContainerListSelectionAnimeWidget(title: AppLocalizations.of(context).translate("label_selection_animes"), typeId: Constants.selectionAnimesId,),
+          child: ContainerListSelectionAnimeWidget(title: AppLocalizations.of(context).translate("label_tops_underrated"), typeId: Constants.selectionAnimesId,),
         ),
         
         SizedBox(height: 20.0,),

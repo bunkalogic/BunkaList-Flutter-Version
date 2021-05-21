@@ -68,31 +68,33 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: new Container(        
       height: MediaQuery.of(context).size.height,
       decoration:  new BoxDecoration(
-        gradient: new LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.blueAccent,
-              Colors.deepPurpleAccent,
-              Colors.deepPurpleAccent,
-              Colors.deepPurpleAccent,
-              Colors.pinkAccent,
-              Colors.pinkAccent, 
+        // gradient: new LinearGradient(
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight,
+        //     colors: [
+        //       Colors.blueAccent,
+        //       Colors.deepPurpleAccent,
+        //       Colors.deepPurpleAccent,
+        //       Colors.deepPurpleAccent,
+        //       Colors.pinkAccent,
+        //       Colors.pinkAccent, 
               
-            ], // whitish to gray
-            tileMode: TileMode.repeated, // repeats the gradient over the canvas
-        ),
+        //     ], // whitish to gray
+        //     tileMode: TileMode.repeated, // repeats the gradient over the canvas
+        // ),
+        
       ),
       child: ListView(
         children: <Widget>[
             SizedBox(height: 40.0,),          
             _iconApp(),
+            SizedBox(height: 60.0,),
             _labelEmail(),
             _emailTextField(context, state),
-            Divider(height: 16.0, color: Colors.transparent,),
+            Divider(height: 20.0, color: Colors.transparent,),
             _labelPassword(),
             _passwordTextField(context, state),
-            Divider(height: 16.0, color: Colors.transparent,),
+            Divider(height: 20.0, color: Colors.transparent,),
             _buttonForGotPassword(),
             _buttonLogin(context, state),
             SizedBox(height: 6.0,),
@@ -109,7 +111,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
    void _navigateToHome(BuildContext context){
-     Navigator.pushNamedAndRemoveUntil(context, '/Home', (_) => false);
+     Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
    } 
 
   Container _buttonLogin(BuildContext context, LoginState state) {
@@ -121,7 +123,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               children: <Widget>[
                 new Expanded(
                   child: new RaisedButton(
-                    disabledColor: Colors.pinkAccent[700],
+                    disabledColor: Colors.pinkAccent,
                     elevation: 10.0,
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8.0),
@@ -170,7 +172,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     AppLocalizations.of(context).translate("forgot_password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.pinkAccent[400],
+                      color: Colors.pinkAccent,
                       fontSize: 14.0,
                       shadows: [
                         Shadow(
@@ -196,39 +198,26 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   Container _passwordTextField(BuildContext context, LoginState state) {
     return new Container(
+            height: 50.0,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.pinkAccent,
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  child: TextFormField(
-                    validator: (String value) {
-                       return !state.isPasswordValid ? AppLocalizations.of(context).translate("empty_password") : null;
-                    },
-                    controller: _passwordController,
-                    obscureText: true,
-                    style: TextStyle(color: Colors.white, fontSize: 16.0 ),
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: '*********',
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                    ),
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              validator: (String value) {
+                 return !state.isPasswordValid ? AppLocalizations.of(context).translate("empty_password") : null;
+              },
+              controller: _passwordController,
+              obscureText: true,
+              style: TextStyle(color: Colors.white, fontSize: 16.0 ),
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(style: BorderStyle.none, width: 0 ) ),
+                filled: true,
+                fillColor: Colors.blueGrey.withOpacity(0.3),
+                hintText: '*********',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
             ),
           );
   }
@@ -238,13 +227,13 @@ class _LoginWidgetState extends State<LoginWidget> {
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 45.0),
                   child: new Text(
                     AppLocalizations.of(context).translate("password"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.pinkAccent,
-                      fontSize: 15.0,
+                      fontSize: 14.0,
                     ),
                   ),
                 ),
@@ -255,39 +244,26 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   Container _emailTextField(BuildContext context, LoginState state) {
     return new Container(
+            height: 50.0,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.pinkAccent,
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  child: TextFormField(
-                    validator: (_) {
-                      return !state.isEmailValid ? AppLocalizations.of(context).translate("empty_email") : null;
-                    },
-                    controller: _emailController,
-                    obscureText: false,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 16.0 ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'something@gmail.com',
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                    ),
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              validator: (_) {
+                return !state.isEmailValid ? AppLocalizations.of(context).translate("empty_email") : null;
+              },
+              controller: _emailController,
+              obscureText: false,
+              textAlign: TextAlign.left,
+              style: TextStyle(color: Colors.white, fontSize: 16.0 ),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(style: BorderStyle.none, width: 0 ) ),
+                filled: true,
+                fillColor: Colors.blueGrey.withOpacity(0.3),
+                hintText: 'something@gmail.com',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
             ),
           );
   }
@@ -297,13 +273,13 @@ class _LoginWidgetState extends State<LoginWidget> {
             children: <Widget>[
               new Expanded(
                 child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 45.0),
                   child: new Text(
                     AppLocalizations.of(context).translate("email"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.pinkAccent,
-                      fontSize: 15.0,
+                      fontSize: 14.0,
                     ),
                   ),
                 ),
@@ -319,7 +295,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: Center(
               child: Image(
             image: AssetImage('assets/bunkalist-banner.png'),
-            height: 55.0,
+            height: 50.0,
             fit: BoxFit.cover,
             
             ),

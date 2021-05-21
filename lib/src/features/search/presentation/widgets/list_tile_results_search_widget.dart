@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,7 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
 
     return ListTile(
       leading:  _itemResultPoster(result),
+      trailing: _rateItem(result),
       title: Text(result.mediaType == "person" ? result.name : title, 
         style: TextStyle(
           fontSize: 18.0,
@@ -110,6 +112,15 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
     );
 
     return _poster;
+  }
+
+  Widget _rateItem(Result result) {
+    if(result.mediaType == 'person') return Container();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),
+      child: MiniCircularChartRating(result.voteAverage),
+    );
   }
 
   

@@ -136,6 +136,89 @@ const String title_tbs         = 'TBS';
 const String title_tvk         = 'TVk'; 
 const String title_cbc         = 'CBC'; 
 
+//! anime real company
+
+
+const int sunrise = 3153;
+const String image_sunrise = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/yKZ9UarLSu9Y4Gpw33nKRQOPM7z.png';
+const String title_sunrise = "SUNRISE";
+
+const int production_ig = 529;
+const String image_production_ig = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/rwB6w2aPENQbx756pBWSw44Ouk.png';
+const String title_production_ig = "Production I.G";
+
+const int bones = 2849;
+const String image_bones = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/cN3JNIKawjOMtfk0GBVIbsx69bg.png';
+const String title_bones = "BONES";
+
+const int shaft = 6689;
+const String image_shaft = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/l96PFbGQ8kUs030SrkYdK4LQklE.png';
+const String title_shaft = "SHAFT";
+
+const int kodansha = 59118;
+const String image_kodansha = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/3KwKCviJ67dCm7m740cdaLt1VS8.png';
+const String title_kodansha = "Kodansha";
+
+const int aniplex = 2883;
+const String image_aniplex = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/rDYExnBV61jGQnkhVVrPN4Yl7O1.png';
+const String title_aniplex = "Aniplex";
+
+const int xebec = 5937;
+const String image_xebec = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/yelUQVWP72Nw5DirciMc9dqdk60.png';
+const String title_xebec = "Xebec";
+
+
+const int gainax = 3041;
+const String image_gainax = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/j9VqEdiNqIkMJKku1UTGMAvmuRr.png';
+const String title_gainax = "Gainax";
+
+const int madhouse = 3464;
+const String image_madhouse = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/9k0nr75nwnNeT2MHerf1OXJN0hj.png';
+const String title_madhouse = "Madhouse";
+
+const int dentsu = 1778;
+const String image_dentsu = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/69xm6sF3JxugGVjfZfm1YY6d7EE.png';
+const String title_dentsu = "Dentsu";
+
+const int pierrot = 3234;
+const String image_pierrot = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/o17H0aZzAn0qgVHY2IO3oDXVoBH.png';
+const String title_pierrot = "Pierrot";
+
+const int ufotable = 5887;
+const String image_ufotable = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/m6FEqz8rQECnmfjEwjNhNAlmhCJ.png';
+const String title_ufotable = "Ufotable";
+
+
+const int studio_deen = 6075;
+const String image_studio_deen = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/rpmYkPGtdu4ixLPgPkmFxvfnt4O.png';
+const String title_studio_deen = "Studio Deen";
+
+const int a_1_pictures = 13113;
+const String image_a_1_pictures = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/xV5tPYKZhP2Ko9dOh5A3FahuKsx.png';
+const String title_a_1_pictures = "A-1 Pictures";
+
+const int jc_staff = 11884;
+const String image_jc_staff = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/tHzHPSKdmLT5zCdqFbcmHzZvRIc.png';
+const String title_jc_staff = "J.C.Staff";
+
+const int toei_animation = 5542;
+const String image_toei_animation = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/ayE4LIqoAWotavo7xdvYngwqGML.png';
+const String title_toei_animation = "Toei Animation";
+
+const int brain_base = 22602;
+const String image_brain_base = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/9cmusqjFGegNOiX1dJDNEkBf7CH.png';
+const String title_brain_base = "Brain's Base";
+
+const int wit_studio = 31058;
+const String image_wit_studio = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/9sXboXjqyPXUYIz072ld2DIoTVz.png';
+const String title_wit_studio = "Wit Studio";
+
+const int mappa = 21444;
+const String image_mappa = 'https://image.tmdb.org/t/p/h50_filter(negate,000,666)/cGe44GFuB5BEFFvoXP7Skzpm1Vy.png';
+const String title_mappa = "Mappa";
+
+
+
 
 List<Company> getListSeriesCompany(){
 
@@ -212,7 +295,8 @@ List<Company> getListSeriesCompany(){
       id: listCompanyID[i],
       label: listCompanyTitle[i],
       imagePath: listCompanyImage[i],
-      type: 'tv'
+      type: 'tv',
+      isCompany: false
     );
 
     List<Company> newListCompany = [];
@@ -263,7 +347,8 @@ List<Company> getListKoreanSeriesCompany(){
       id: listCompanyID[i],
       label: listCompanyTitle[i],
       imagePath: listCompanyImage[i],
-      type: 'tv'
+      type: 'tv',
+      isCompany: false
     );
 
     List<Company> newListCompany = [];
@@ -316,7 +401,8 @@ List<Company> getListJapaneseSeriesCompany(){
       id: listCompanyID[i],
       label: listCompanyTitle[i],
       imagePath: listCompanyImage[i],
-      type: 'tv'
+      type: 'tv',
+      isCompany: false
     );
 
     List<Company> newListCompany = [];
@@ -332,66 +418,158 @@ List<Company> getListJapaneseSeriesCompany(){
 
 }
 
+// List<Company> getListAnimesCompany(){
+
+//   List<String> listCompanyID = [
+//     tvTokyo.toString(),    
+//     animax.toString(),     
+//     tokyo_mx.toString(),   
+//     mbs.toString(),        
+//     nipponTV.toString(),   
+//     tv_asahi.toString(),   
+//     crunchyroll.toString(),
+//     gtv.toString(),        
+//     bs11.toString(),       
+//     bs1.toString(),        
+//     tv_Saitama.toString(), 
+//     atx.toString(),        
+//     fuji_TV.toString(),    
+//     chiba_TV.toString(),   
+//     tbs.toString(),        
+//     tvk.toString(),        
+//     cbc.toString(),        
+//   ];
+
+//   List<String> listCompanyImage = [
+//     image_tvTokyo    ,
+//     image_animax     ,
+//     image_tokyo_mx   ,
+//     image_mbs        ,
+//     image_nipponTV   ,
+//     image_tv_asahi   ,
+//     image_crunchyroll,
+//     image_gtv        ,
+//     image_bs11       ,
+//     image_bs1        ,
+//     image_tv_Saitama ,
+//     image_atx        ,
+//     image_fuji_TV    ,
+//     image_chiba_TV   ,
+//     image_tbs        ,
+//     image_tvk        ,
+//     image_cbc        ,
+//   ];
+  
+//   List<String> listCompanyTitle = [
+//     title_tvTokyo    ,
+//     title_animax     ,
+//     title_tokyo_mx   ,
+//     title_mbs        ,
+//     title_nipponTV   ,
+//     title_tv_asahi   ,
+//     title_crunchyroll,
+//     title_gtv        ,
+//     title_bs11       ,
+//     title_bs1        ,
+//     title_tv_Saitama ,
+//     title_atx        ,
+//     title_fuji_TV    ,
+//     title_chiba_TV   ,
+//     title_tbs        ,
+//     title_tvk        ,
+//     title_cbc        ,
+//   ];
+
+//   List<Company> listCompany = [];
+
+//   for (var i = 0; i < listCompanyID.length; i++) {
+//     final Company company = new Company(
+//       id: listCompanyID[i],
+//       label: listCompanyTitle[i],
+//       imagePath: listCompanyImage[i],
+//       type: 'animes',
+//       isCompany: false
+//     );
+
+//     List<Company> newListCompany = [];
+
+//     newListCompany.add(company);
+
+//     listCompany.addAll(newListCompany);
+    
+//   }
+  
+//   return listCompany;
+
+// }
+
+
 List<Company> getListAnimesCompany(){
 
   List<String> listCompanyID = [
-    tvTokyo.toString(),    
-    animax.toString(),     
-    tokyo_mx.toString(),   
-    mbs.toString(),        
-    nipponTV.toString(),   
-    tv_asahi.toString(),   
-    crunchyroll.toString(),
-    gtv.toString(),        
-    bs11.toString(),       
-    bs1.toString(),        
-    tv_Saitama.toString(), 
-    atx.toString(),        
-    fuji_TV.toString(),    
-    chiba_TV.toString(),   
-    tbs.toString(),        
-    tvk.toString(),        
-    cbc.toString(),        
+   a_1_pictures.toString(),
+   jc_staff.toString(),
+   toei_animation.toString(),
+   brain_base.toString(),
+   wit_studio.toString(),
+   mappa.toString(),
+   ufotable.toString(),
+   sunrise.toString(),
+   production_ig.toString(),
+   bones.toString(),
+   shaft.toString(),
+   kodansha.toString(),
+   aniplex.toString(),
+   xebec.toString(),
+   gainax.toString(),
+   madhouse.toString(),
+   dentsu.toString(),
+   pierrot.toString(),
+   studio_deen.toString(),
   ];
 
   List<String> listCompanyImage = [
-    image_tvTokyo    ,
-    image_animax     ,
-    image_tokyo_mx   ,
-    image_mbs        ,
-    image_nipponTV   ,
-    image_tv_asahi   ,
-    image_crunchyroll,
-    image_gtv        ,
-    image_bs11       ,
-    image_bs1        ,
-    image_tv_Saitama ,
-    image_atx        ,
-    image_fuji_TV    ,
-    image_chiba_TV   ,
-    image_tbs        ,
-    image_tvk        ,
-    image_cbc        ,
+    image_a_1_pictures,
+    image_jc_staff,
+    image_toei_animation,
+    image_brain_base,
+    image_wit_studio,
+    image_mappa,
+    image_ufotable,
+    image_sunrise,
+    image_production_ig,
+    image_bones,
+    image_shaft,
+    image_kodansha,
+    image_aniplex,
+    image_xebec,
+    image_gainax,
+    image_madhouse,
+    image_dentsu,
+    image_pierrot,
+    image_studio_deen,
   ];
   
   List<String> listCompanyTitle = [
-    title_tvTokyo    ,
-    title_animax     ,
-    title_tokyo_mx   ,
-    title_mbs        ,
-    title_nipponTV   ,
-    title_tv_asahi   ,
-    title_crunchyroll,
-    title_gtv        ,
-    title_bs11       ,
-    title_bs1        ,
-    title_tv_Saitama ,
-    title_atx        ,
-    title_fuji_TV    ,
-    title_chiba_TV   ,
-    title_tbs        ,
-    title_tvk        ,
-    title_cbc        ,
+    title_a_1_pictures,
+    title_jc_staff,
+    title_toei_animation,
+    title_brain_base,
+    title_wit_studio,
+    title_mappa,
+    title_ufotable,
+    title_sunrise,
+    title_production_ig,
+    title_bones,
+    title_shaft,
+    title_kodansha,
+    title_aniplex,
+    title_xebec,
+    title_gainax,
+    title_madhouse,
+    title_dentsu,
+    title_pierrot,
+    title_studio_deen,
   ];
 
   List<Company> listCompany = [];
@@ -401,7 +579,8 @@ List<Company> getListAnimesCompany(){
       id: listCompanyID[i],
       label: listCompanyTitle[i],
       imagePath: listCompanyImage[i],
-      type: 'animes'
+      type: 'animes',
+      isCompany: true
     );
 
     List<Company> newListCompany = [];
@@ -415,6 +594,9 @@ List<Company> getListAnimesCompany(){
   return listCompany;
 
 }
+
+
+
 
 
 class Company {

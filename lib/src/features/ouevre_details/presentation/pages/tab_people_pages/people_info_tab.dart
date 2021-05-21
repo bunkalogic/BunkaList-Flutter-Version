@@ -118,7 +118,7 @@ class _PeopleInfoTabState extends State<PeopleInfoTab> {
     final _overviewStyle = new TextStyle(
       fontStyle: FontStyle.italic,
       fontSize: 16.0,
-      fontWeight: FontWeight.w700
+      fontWeight: FontWeight.w500
     );
 
     return Padding(

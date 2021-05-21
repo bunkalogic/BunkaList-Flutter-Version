@@ -46,75 +46,82 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
   
   Preferences prefs = Preferences();
-  AppUpdateInfo _updateInfo;
-  bool _flexibleUpdateAvailable = false;
+  // AppUpdateInfo _updateInfo;
+  // bool _flexibleUpdateAvailable = false;
 
-  AnimationController _animationController;
-  Animation<Color> _colorAnimation;
-
+  // AnimationController _animationController;
+  // // Animation<Color> _colorAnimation;
+  // Animation<double> _animation;
   
 
    @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _colorAnimation = _animationController.drive(
-      ColorTween(
-        begin: Colors.pinkAccent[400],
-        end: Colors.pinkAccent[700]
-      )
-    );
-    _animationController.repeat();
-    super.initState();
-  }
-
-  @override
-  dispose() {
-    _animationController.dispose(); // you need this
-    super.dispose();
-  }
-
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
 
     BlocProvider.of<AuthenticationBloc>(context)
     ..add(AppStarted());
 
+
+    // _animationController = AnimationController(vsync: this, duration: Duration(seconds:  3));
+    // // _colorAnimation = _animationController.drive(
+    // //   ColorTween(
+    // //     begin: Colors.pinkAccent[400],
+    // //     end: Colors.pinkAccent[700]
+    // //   )
+    // // );
+    // _animationController.repeat(reverse: true);
+
+    // _animation = CurvedAnimation(
+    // parent: _animationController,
+    // curve: Curves.fastOutSlowIn,
+    // );
+    super.initState();
   }
 
-  Future<void> checkForUpdate() async {
-    InAppUpdate.checkForUpdate().then((info) {
-      setState(() {
-        _updateInfo = info;
-      });
-    }).catchError((e) => _showError(e));
-  }
 
-   void _showError(dynamic exception) {
-     FlushbarHelper.createError(message: exception.toString(), title: 'Error');
-   }
+  
 
-   startFlexibleUpdate(){
-     if(_updateInfo?.updateAvailable == true){
+  // @override
+  // dispose() {
+  
+  //   _animationController.dispose(); // you need this
+  //   super.dispose();
+  // }
 
-      InAppUpdate.startFlexibleUpdate().then((_) {
-        setState(() {
-          _flexibleUpdateAvailable = true;
-        });
-      }).catchError((e) => _showError(e));
 
-     }
-   }
+  
 
-   completeFlexibleUpdate(){
-     if(_flexibleUpdateAvailable){
-        InAppUpdate.completeFlexibleUpdate().then((_) {
-          FlushbarHelper.createSuccess(message: 'Success!!!');
-        }).catchError((e) => _showError(e));
-     }
+  // Future<void> checkForUpdate() async {
+  //   InAppUpdate.checkForUpdate().then((info) {
+  //     setState(() {
+  //       _updateInfo = info;
+  //     });
+  //   }).catchError((e) => _showError(e));
+  // }
+
+  //  void _showError(dynamic exception) {
+  //    FlushbarHelper.createError(message: exception.toString(), title: 'Error');
+  //  }
+
+  //  startFlexibleUpdate(){
+  //    if(_updateInfo?.updateAvailable == true){
+
+  //     InAppUpdate.startFlexibleUpdate().then((_) {
+  //       setState(() {
+  //         _flexibleUpdateAvailable = true;
+  //       });
+  //     }).catchError((e) => _showError(e));
+
+  //    }
+  //  }
+
+  //  completeFlexibleUpdate(){
+  //    if(_flexibleUpdateAvailable){
+  //       InAppUpdate.completeFlexibleUpdate().then((_) {
+  //         FlushbarHelper.createSuccess(message: 'Success!!!');
+  //       }).catchError((e) => _showError(e));
+  //    }
      
-   }
+  //  }
 
   addUserDataInFirebase(){
     final UserEntity userData = new UserEntity(
@@ -153,14 +160,14 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
           print('Authenticated');
           addUserDataInFirebase();
           await Future.delayed(Duration(seconds: 2));
-          return Navigator.pushReplacementNamed(context, '/Home');
+          Navigator.pushReplacementNamed(context, '/Home');
           
         }
 
         if(state is AuthenticationUnauthenticated){
           print('Unauthenticated');
-          await Future.delayed(Duration(seconds: 1));
-          return Navigator.pushReplacementNamed(context, '/Login');
+          await Future.delayed(Duration(seconds: 2));
+          Navigator.pushReplacementNamed(context, '/NewUserHome');
         }
 
         if(state is AuthenticationLoading){
@@ -207,20 +214,20 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
     return Container(
       height: MediaQuery.of(context).size.height,
-      // color: Colors.deepPurpleAccent[700],
-    decoration: new BoxDecoration(
-      // gradient: new LinearGradient(
-      //   begin: Alignment.topCenter,
-      //   end: Alignment.bottomCenter,
-      //   colors: [
-      //     Colors.blueAccent,
-      //     Colors.deepPurpleAccent, 
-      //     Colors.pinkAccent,
-      //   ], // whitish to gray
-      //   tileMode: TileMode.repeated, // repeats the gradient over the canvas
-      // ),
-      color: Colors.blueGrey[900]
-    ),
+      color: _getTabbarBackgroundColor(),
+    // decoration: new BoxDecoration(
+    //   // gradient: new LinearGradient(
+    //   //   begin: Alignment.topCenter,
+    //   //   end: Alignment.bottomCenter,
+    //   //   colors: [
+    //   //     Colors.blueAccent,
+    //   //     Colors.deepPurpleAccent, 
+    //   //     Colors.pinkAccent,
+    //   //   ], // whitish to gray
+    //   //   tileMode: TileMode.repeated, // repeats the gradient over the canvas
+    //   // ),
+    //   color: Colors.blueGrey[900]
+    // ),
     child: Column(
       
       children: <Widget>[
@@ -228,30 +235,57 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
         Align(
           alignment: Alignment.center,
           child: Image(
-            image: AssetImage('assets/banner-icon.png'),
-            height: 40.0,
-            fit: BoxFit.cover,
-          ),
+          image: AssetImage('assets/banner-icon.png'),
+          height: 50.0,
+          fit: BoxFit.cover,
+        ),
         ),
         Spacer(),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 1.0,
-              horizontal: 2.0
-            ),
-            child: LinearProgressIndicator(
-              backgroundColor: Colors.transparent,
-              valueColor: _colorAnimation,
-            ),
-          )
-        )
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(
+        //       vertical: 1.0,
+        //       horizontal: 2.0
+        //     ),
+        //     child: LinearProgressIndicator(
+        //       backgroundColor: Colors.transparent,
+        //       valueColor: _colorAnimation,
+        //     ),
+        //   )
+        // )
 
       ],
     ),
     );
   }
+
+  // Widget _animationImage(){
+  //   return new ScaleTransition(
+  //       scale: _animation,
+  //       child: Image(
+  //         image: AssetImage('assets/banner-icon.png'),
+  //         height: 50.0,
+  //         fit: BoxFit.cover,
+  //       ),
+        
+  //     );
+  // }
+
+  Color _getTabbarBackgroundColor(){
+
+    final bool theme = prefs.whatModeIs;
+    final bool dark = prefs.whatDarkIs;
+    
+    if(theme && dark == false){
+      return Colors.blueGrey[800];
+    }else if(theme && dark){
+      return Colors.grey[900];
+    }else{
+      return Colors.grey[100];
+    }
+ }
+
 
  
 }
