@@ -63,7 +63,7 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
           fontWeight: FontWeight.w600
         ),
       ),
-      subtitle:Text( result.mediaType == "person" ?  '' : date, 
+      subtitle:Text( result.mediaType == "person" ?  result.knownForDepartment : date, 
         style: TextStyle(
           fontSize: 16.0,
           fontStyle: FontStyle.italic,
@@ -115,7 +115,7 @@ class _ListTileResultsSearchWidgetState extends State<ListTileResultsSearchWidge
   }
 
   Widget _rateItem(Result result) {
-    if(result.mediaType == 'person') return Container();
+    if(result.mediaType == 'person') return SizedBox.shrink();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0.5, vertical: 1.5),

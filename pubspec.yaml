@@ -180,6 +180,7 @@ flutter:
     - lang/ko.json
     - lang/pt.json
     - lang/ru.json
+    - lang/id.json
     - assets/
 
   #  - lang/

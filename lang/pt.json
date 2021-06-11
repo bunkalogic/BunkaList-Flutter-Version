@@ -404,6 +404,11 @@
 
   "label_feedback":"Enviar Comentários",
 
+  "label_theme_light_sepia"       : "Sepia do tema claro",
+  "label_theme_light_blue"        : "Tema da Noite Azul",
+
+  "label_prefrences_number_column" :"Selecione o número de colunas nas listas do Explorer.",
+
   "label_add_to_list_login_first" : "Para adicionar à sua lista, você deve primeiro fazer o login",
   "label_use_feature_login_first" : "Para usar esta função, você deve primeiro fazer o login",
 

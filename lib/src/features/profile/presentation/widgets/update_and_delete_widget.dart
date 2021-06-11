@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_add/addouevre_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_delete/bloc.dart';
@@ -33,7 +34,7 @@ class ButtomUpdateAndDelete {
   void showBottonModalOptions(BuildContext context){
     showBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (_) => _buildBottomModal(context,),
       shape: RoundedRectangleBorder(
@@ -45,18 +46,7 @@ class ButtomUpdateAndDelete {
     );
   }
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
   Widget _buildBottomModal(BuildContext context) {
     
@@ -146,7 +136,7 @@ class _BuildDialogDeleteState extends State<BuildDialogDelete> {
         shape:RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0)
         ),   
-        backgroundColor: _getBackgroundColorTheme(),
+        backgroundColor: getBackgroundColorTheme(),
         elevation: 10.0,
         title: Text(
           AppLocalizations.of(context).translate("title_delete_ouevre"),
@@ -162,7 +152,7 @@ class _BuildDialogDeleteState extends State<BuildDialogDelete> {
     );
   }
 
-  Color _getBackgroundColorTheme() {
+  Color getBackgroundColorTheme() {
     final prefs = new Preferences();
 
     if(prefs.whatModeIs && prefs.whatDarkIs == false){

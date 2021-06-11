@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/constans/constans_status_ouevre.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/flushbar_go_login_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/firebase_fill_ouevre_object.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/build_bottom_modal_complete_details_widget.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/build_bottom_modal_complete_simple_widget.dart';
@@ -49,7 +50,7 @@ class ButtonAddedArrowDown extends StatelessWidget{
     showModalBottomSheet(
       elevation: 10.0,
       isScrollControlled: true,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (_) {
         return BlocProvider<AddOuevreBloc>(
@@ -168,7 +169,7 @@ class ButtonClikedAdded {
     showModalBottomSheet(
       elevation: 10.0,
       isScrollControlled: true,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (_) {
         return BlocProvider<AddOuevreBloc>(
@@ -340,7 +341,7 @@ class GetBottomModalStatus {
   void getOptionsCompleteStatus(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (context) => _buildBottomModalOptionsComplete(context, newOuevre),
       shape: RoundedRectangleBorder(
@@ -387,7 +388,7 @@ class GetBottomModalStatus {
   void ratingSimpleModalBottomSheet(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
@@ -407,7 +408,7 @@ class GetBottomModalStatus {
   void ratingDetailsModalBottomSheet(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
@@ -429,7 +430,7 @@ class GetBottomModalStatus {
   void getBottomModalWatchingStatus(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
@@ -472,7 +473,7 @@ class GetBottomModalStatus {
   void getBottomModalPauseOrDroppedStatus(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       isScrollControlled: true,
       builder: (context) {
@@ -524,15 +525,3 @@ class GetBottomModalStatus {
 
 }
 
-Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }

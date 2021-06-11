@@ -403,6 +403,11 @@
 
 "label_feedback":"의견 보내기",
 
+"label_prefrences_number_column" :"탐색기 목록에서 열 수를 선택하십시오.",
+
+"label_theme_light_sepia"       : "클리어 테마 세피아",
+"label_theme_light_blue"        : "푸른 야간 테마",
+
 "label_add_to_list_login_first"   : "목록에 추가하려면 먼저 로그인해야합니다.",
   "label_use_feature_login_first" : "이 기능을 사용하려면 먼저 로그인해야합니다",
   "label_include_premium": "모든 옵션 제공은 모든 기능을 잠금 해제하고 모든 광고를 삭제하고 향후 업데이트를위한 개발 지원을 유지합니다."

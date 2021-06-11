@@ -2,6 +2,7 @@ import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:bunkalist/src/premium_features/home_tops_premium/domain/entities/filter_entity.dart';
@@ -214,7 +215,7 @@ class _BuildFilterParamsWidgetState extends State<BuildFilterParamsWidget> {
 
     return FloatingActionButton.extended(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(),
+      backgroundColor: getBackgroundColorTheme(),
       disabledElevation: 0,
       onPressed: !isTypeSelected && !isOrderSelected
       ? null
@@ -264,18 +265,7 @@ class _BuildFilterParamsWidgetState extends State<BuildFilterParamsWidget> {
   }
 
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
   // get order list filters
 

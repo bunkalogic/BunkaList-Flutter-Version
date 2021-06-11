@@ -4,6 +4,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/theme/app_themes.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/theme/save_default_theme.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
@@ -151,7 +152,7 @@ class _SettingsPageState extends State<SettingsPage> {
           Navigator.pushNamed(context, '/Licenses');
         }),
         _createItemSettings(context, Colors.blueAccent, Icons.screen_lock_portrait, AppLocalizations.of(context).translate("label_privacity"), (){
-          Navigator.pushNamed(context, '/Policy');
+          launch('https://www.freeprivacypolicy.com/live/8eee355a-3a31-4a3c-9eb3-5b71051ddd83');
         }),
         Divider(),
         SizedBox(height: 10.0,),
@@ -208,7 +209,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _showBottomModalChangedTheme(){
       showModalBottomSheet(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(), 
+      backgroundColor: getBackgroundColorTheme(), 
       context: context,
       builder: (_) => BuildBottomModalChangedTheme(), 
       shape: RoundedRectangleBorder(
@@ -220,18 +221,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
     }
 
-    Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+    
 
   
 
@@ -320,28 +310,54 @@ class BuildBottomModalChangedTheme extends StatelessWidget{
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        _createItemSettings(context, Colors.orangeAccent[400], Icons.brightness_7, 
+        _createItemSettings(context, Colors.orangeAccent[400], Icons.brightness_7_rounded, 
         AppLocalizations.of(context).translate("label_theme_light"),
         () {
           prefs.whatModeIs = false;
           prefs.whatDarkIs = false;
+          prefs.whatSepia = false;
+          prefs.whatDarkBlue = false;
           SaveDefaultTheme().changedTheme(context, Apptheme.LightTheme,);
           Navigator.of(context).pop();
         },), 
-        _createItemSettings(context, Colors.yellowAccent[100], Icons.brightness_1,
+        _createItemSettings(context, Colors.yellow[100], Icons.brightness_6_rounded, 
+        AppLocalizations.of(context).translate("label_theme_light_sepia"),
+        () {
+          prefs.whatModeIs = false;
+          prefs.whatDarkIs = false;
+          prefs.whatSepia = true;
+          prefs.whatDarkBlue = false;
+          SaveDefaultTheme().changedTheme(context, Apptheme.SepiaTheme,);
+          Navigator.of(context).pop();
+        },), 
+        _createItemSettings(context, Colors.yellowAccent[400], Icons.brightness_1_rounded,
         AppLocalizations.of(context).translate("label_theme_light_dark"),
          () {
           prefs.whatModeIs = true;
           prefs.whatDarkIs = false;
+          prefs.whatSepia = false;
+          prefs.whatDarkBlue = false;
           SaveDefaultTheme().changedTheme(context, Apptheme.DarkTheme,);
           Navigator.of(context).pop();
         },), 
-        _createItemSettings(context, Colors.yellowAccent[400], Icons.brightness_3, 
+        _createItemSettings(context, Colors.yellowAccent[700], Icons.brightness_3_rounded, 
         AppLocalizations.of(context).translate("label_theme_dark"),
          () {
           prefs.whatModeIs = true;
           prefs.whatDarkIs = true;
+          prefs.whatSepia = false;
+          prefs.whatDarkBlue = false;
           SaveDefaultTheme().changedTheme(context, Apptheme.DarkerTheme,);
+          Navigator.of(context).pop();
+        },), 
+        _createItemSettings(context, Colors.indigoAccent[100], Icons.brightness_4_rounded, 
+        AppLocalizations.of(context).translate("label_theme_light_blue"),
+         () {
+          prefs.whatModeIs = true;
+          prefs.whatDarkIs = true;
+          prefs.whatSepia = false;
+          prefs.whatDarkBlue = true;
+          SaveDefaultTheme().changedTheme(context, Apptheme.BlueDarkTheme,);
           Navigator.of(context).pop();
         },), 
       ],
@@ -429,7 +445,7 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
         shape:RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0)
         ),   
-        backgroundColor: _getBackgroundColorTheme(),
+        backgroundColor: getBackgroundColorTheme(),
         elevation: 10.0,
         title: Text(
           AppLocalizations.of(context).translate("label_dialog_logout"),
@@ -449,18 +465,7 @@ class _BuildLogoutDialogState extends State<BuildLogoutDialog> {
     );
   }
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
   Widget _buttonCancel(BuildContext context) {
     return FlatButton(

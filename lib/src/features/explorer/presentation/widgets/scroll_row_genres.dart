@@ -1,3 +1,4 @@
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class _ScrollRowGenresState extends State<ScrollRowGenres> {
           },
           elevation: 4.0,
           labelPadding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-          backgroundColor: Colors.blueGrey[600].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           label: Text(genres.label,
             style: TextStyle(
               fontWeight: FontWeight.w600,

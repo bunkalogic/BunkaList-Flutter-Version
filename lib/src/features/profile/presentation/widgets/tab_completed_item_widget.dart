@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -167,7 +168,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
     return FloatingActionButton.extended(
         isExtended: !isExtended,
         elevation: 10.0,
-        backgroundColor: _getBackgroundColorTheme(),
+        backgroundColor: getBackgroundColorTheme(),
         onPressed:() async {
 
 
@@ -176,7 +177,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
-              backgroundColor: _getBackgroundColorTheme(), 
+              backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) => BuildBottomFilterCompleted(),
               shape: RoundedRectangleBorder(
@@ -239,18 +240,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       );
   }
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
   Widget _itemTab(OuevreEntity ouevre) {
     return Hero(

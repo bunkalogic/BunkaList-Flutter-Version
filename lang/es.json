@@ -407,7 +407,11 @@
   "label_add_to_list_login_first" : "Para poder añadir a tu lista primero debes iniciar sesion",
   "label_use_feature_login_first" : "Para poder utilizar esta funcion primero debes iniciar sesion",
 
+  "label_theme_light_sepia"       : "Tema Claro Sepia",
+  "label_theme_light_blue"        : "Tema Noche Azul",
+
   "label_feedback":"Enviar Comentarios",
+  "label_prefrences_number_column" :"Seleccione el número de columnas en las listas de exploración.",
   
   "label_include_premium": "Todas las opciones ofrecen desbloquear todas las caracteristicas y eliminar todos los anuncios, mantener el soporte del desarrollo de futuras actualizaciones."
   

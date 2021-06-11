@@ -1,6 +1,7 @@
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:flutter/material.dart';
@@ -27,37 +28,38 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
       width: MediaQuery.of(context).size.width - 5.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14.0),
-        color: _getBackgroundColorTheme()
+        color: getBackgroundColorTheme()
       ),
-      child: _stackOfDetails(),
+      child: _columnOfDetails(),
     );
   }
 
-   Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
+   
 
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
+  Widget _columnOfDetails(){
+    return Column(
+
+      children: [
+        _stackOfImage(),
+        SizedBox(height: 5.0),
+        _itemRatingFinal(),
+        SizedBox(height: 5.0),
+        columnDiferentRating(),
+        Spacer(),
+        _buttonMoreDetails()
+      ],
+    );
   }
 
-  Widget _stackOfDetails() {
+  Widget _stackOfImage() {
     return Stack(
       alignment: Alignment.center,
-      fit: StackFit.expand,
+      fit: StackFit.loose,
       children: [
         _imageBackground(),
         _itemRating(),
         _bottomClose(),
         _titleItem(),
-        _itemRatingFinal(),
-        columnDiferentRating(),
-        _buttonMoreDetails()
       ]
     );
   }
@@ -88,8 +90,9 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
   }
 
   _bottomClose() {
-    return Align(
-      alignment: Alignment.topRight,
+    return Positioned(
+      top: 5,
+      right: 5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -115,8 +118,9 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
   }
 
    Widget _itemRating(){
-    return Align(
-      alignment: Alignment.topLeft,
+    return Positioned(
+      top: 5,
+      left: 5,
       child: Container(
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(4.0),
@@ -163,36 +167,36 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
   }
 
   Widget _itemRatingFinal(){
-    return Positioned(
-      top: 210.0,
-      child: BigCircularChartRating(widget.ouevreEntity.finalRate)
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: BigCircularChartRating(widget.ouevreEntity.finalRate),
     );
   }
   
   Widget columnDiferentRating(){
-    return Positioned(
-      top: 290,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              itemRatingDiferents(widget.ouevreEntity.historyRate, AppLocalizations.of(context).translate("rating_in_plot"), Colors.greenAccent[400]),
-              SizedBox(width: 4.0,),
-              itemRatingDiferents(widget.ouevreEntity.characterRate, AppLocalizations.of(context).translate("rating_in_characters"), Colors.lightBlueAccent[400]),
-            ],
-          ),
-           Row(
-            children: [
-              itemRatingDiferents(widget.ouevreEntity.effectsRate, AppLocalizations.of(context).translate("rating_in_photography"), Colors.purpleAccent[400]),
-              SizedBox(width: 4.0,),
-              itemRatingDiferents(widget.ouevreEntity.ostRate, AppLocalizations.of(context).translate("rating_in_soundtrack"), Colors.deepOrangeAccent[400]),
-            ],
-          ),
-          itemRatingDiferents(widget.ouevreEntity.enjoymentRate, AppLocalizations.of(context).translate("rating_in_entertainment"), Colors.redAccent[400]),
-          _commentOfItem()
-        ]
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            itemRatingDiferents(widget.ouevreEntity.historyRate, AppLocalizations.of(context).translate("rating_in_plot"), Colors.greenAccent[400]),
+            SizedBox(width: 8.0,),
+            itemRatingDiferents(widget.ouevreEntity.characterRate, AppLocalizations.of(context).translate("rating_in_characters"), Colors.lightBlueAccent[400]),
+          ],
+        ),
+        SizedBox(height: 5.0,),
+         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            itemRatingDiferents(widget.ouevreEntity.effectsRate, AppLocalizations.of(context).translate("rating_in_photography"), Colors.purpleAccent[400]),
+            SizedBox(width: 2.0,),
+            itemRatingDiferents(widget.ouevreEntity.ostRate, AppLocalizations.of(context).translate("rating_in_soundtrack"), Colors.deepOrangeAccent[400]),
+          ],
+        ),
+        itemRatingDiferents(widget.ouevreEntity.enjoymentRate, AppLocalizations.of(context).translate("rating_in_entertainment"), Colors.redAccent[400]),
+        _commentOfItem()
+      ]
     );
   }
 
@@ -208,7 +212,7 @@ class _BuildItemDetailsWidgetState extends State<BuildItemDetailsWidget> {
             color: Colors.grey[500]
           ),
         ),
-        SizedBox(height: 1.0,),
+        SizedBox(height: 2.0,),
         MiniCircularChartRatingColor(rating, color)
       ],
     );

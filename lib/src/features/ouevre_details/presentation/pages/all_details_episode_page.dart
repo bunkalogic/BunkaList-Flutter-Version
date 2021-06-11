@@ -2,6 +2,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
@@ -179,7 +180,7 @@ class _BuildHeaderEpisodePageState extends State<BuildHeaderEpisodePage> {
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
-          color: prefs.whatModeIs ? prefs.whatDarkIs ? Colors.black : Colors.blueGrey[900] : Colors.grey[50],
+          color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(25),
             topRight: const Radius.circular(25)

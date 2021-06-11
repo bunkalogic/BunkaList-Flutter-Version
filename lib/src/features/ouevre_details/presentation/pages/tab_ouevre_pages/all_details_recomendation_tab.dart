@@ -49,7 +49,7 @@ class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab>
     final double _aspectRatio = 2.7 / 4.2;
 
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(left: 15, top: 10, right: 15.0),
       child: BlocBuilder<RecommendationsBloc, RecommendationsState>(
         builder: (context, state) {
           
@@ -65,17 +65,15 @@ class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab>
 
             if(state.movie.isNotEmpty){
 
-               return Container(
-      
-              child: GridView.builder(
-                itemBuilder: (context, i) => ItemPosterMovie(movie: state.movie[i]),  //itemPoster(context),
-                itemCount: state.movie.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: _aspectRatio
+              return Container(
+                height: 220,
+                child: ListView.builder(
+                  itemExtent: 130.0,
+                  itemBuilder: (context, i) => ItemPosterMovie(movie: state.movie[i]),
+                  itemCount: state.movie.length,
+                  scrollDirection: Axis.horizontal,
                 ),
-              ),
-            );
+              );
 
              }else{
                return EmptyIconWidget();
@@ -86,16 +84,14 @@ class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab>
             if(state.serie.isNotEmpty){
 
                return Container(
-      
-              child: GridView.builder(
-                itemBuilder: (context, i) => ItemPosterSerie(serie: state.serie[i]),  //itemPoster(context),
-                itemCount: state.serie.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: _aspectRatio
+                height: 220,
+                child: ListView.builder(
+                  itemExtent: 130.0,
+                  itemBuilder: (context, i) => ItemPosterSerie(serie: state.serie[i]),
+                  itemCount: state.serie.length,
+                  scrollDirection: Axis.horizontal,
                 ),
-              ),
-            );
+              );
 
              }else{
               
@@ -108,18 +104,16 @@ class _AllDetailsRecomendationTabState extends State<AllDetailsRecomendationTab>
 
             if(state.anime.isNotEmpty){
 
-               return Container(
-      
-              child: GridView.builder(
-                itemBuilder: (context, i) => ItemPosterAnime(anime: state.anime[i]),  //itemPoster(context),
+              return Container(
+              height: 220,  
+              child: ListView.builder(
+                itemExtent: 130.0,
+                itemBuilder: (context, i) => ItemPosterAnime(anime: state.anime[i]),
                 itemCount: state.anime.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: _aspectRatio
+                scrollDirection: Axis.horizontal,
                 ),
-              ),
-            );
-
+              );
+               
              }else{
                
                return EmptyIconWidget();
@@ -149,22 +143,29 @@ class ItemPosterMovie extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(context), flex: 4,),
-          _itemTitle(),
-          Expanded(child: _iconButton(context), flex: 1,),
-        ],
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
+          ],
+      ),
     );
   }
+
+  
+ 
 
   Widget _itemImageAndRating(BuildContext context){
     return Container(
       child: Stack(
         children: <Widget>[
-          _itemImage(context),
+          _itemImage(context, ),
           _itemRating()
         ],
       ),
@@ -180,7 +181,7 @@ class ItemPosterMovie extends StatelessWidget{
         color: Colors.grey[400].withOpacity(0.3)
       ),
       child: Text(
-        movie.voteAverage.toString(),
+        movie.voteAverage.toStringAsFixed(1),
         style: TextStyle(
           color: Colors.white,
           fontSize: 16.0,
@@ -196,7 +197,7 @@ class ItemPosterMovie extends StatelessWidget{
   Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ movie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ movie.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
@@ -205,15 +206,26 @@ class ItemPosterMovie extends StatelessWidget{
               image: (movie.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
+            //! PushNamed Al ItemAllDetail
             Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(movie.id, movie.type, movie.title));
           },
           child: _poster 
@@ -235,7 +247,7 @@ class ItemPosterMovie extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
-   return ButtonAddedArrowDown(ouevre: movie, type: movie.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntityRS,);
+    return ButtonAddedArrowDown(ouevre: movie, type: movie.type, isUpdated: false, objectType: ConstantsTypeObject.movieEntityRS,);
   }
 
 }
@@ -246,18 +258,23 @@ class ItemPosterSerie extends StatelessWidget{
 
   ItemPosterSerie({@required this.serie});
 
-  @override
+   @override
   Widget build(BuildContext context) {
-     return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(context), flex: 4,),
-          _itemTitle(),
-          Expanded(child: _iconButton(context), flex: 1,),
-        ],
-    );
+   return Container(
+    height: 130,
+    padding: const EdgeInsets.only(right: 15.0,),
+    child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: _itemImageAndRating(context), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context), flex: 1,),
+          ],
+      ),
+   );
   }
+
 
   Widget _itemImageAndRating(BuildContext context){
     return Container(
@@ -279,7 +296,7 @@ class ItemPosterSerie extends StatelessWidget{
         color: Colors.grey[400].withOpacity(0.3)
       ),
       child: Text(
-        serie.voteAverage.toString(),
+        serie.voteAverage.toStringAsFixed(1),
         style: TextStyle(
           color: Colors.white,
           fontSize: 16.0,
@@ -295,7 +312,7 @@ class ItemPosterSerie extends StatelessWidget{
   Widget _itemImage(BuildContext context) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ serie.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ serie.posterPath }');
 
     //! Agregar el Hero
     final _poster = ClipRRect(
@@ -304,13 +321,23 @@ class ItemPosterSerie extends StatelessWidget{
               image: (serie.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
@@ -335,7 +362,7 @@ class ItemPosterSerie extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
-   return ButtonAddedArrowDown(ouevre: serie, type: serie.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntityRS,);
+    return ButtonAddedArrowDown(ouevre: serie, type: serie.type, isUpdated: false, objectType: ConstantsTypeObject.serieEntityRS,);
   }
 
 }
@@ -348,14 +375,18 @@ class ItemPosterAnime extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(context), flex: 4,),
-          _itemTitle(),
-          Expanded(child: _iconButton(context), flex: 1,),
-        ],
+    return Container(
+      height: 130,
+      padding: const EdgeInsets.only(right: 15.0,),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: _itemImageAndRating(context,), flex: 2,),
+            _itemTitle(),
+            Expanded(child: _iconButton(context,), flex: 1,),
+          ],
+      ),
     );
   }
 
@@ -379,7 +410,7 @@ class ItemPosterAnime extends StatelessWidget{
         color: Colors.grey[400].withOpacity(0.3)
       ),
       child: Text(
-        anime.voteAverage.toString(),
+        anime.voteAverage.toStringAsFixed(1),
         style: TextStyle(
           color: Colors.white,
           fontSize: 16.0,
@@ -392,29 +423,39 @@ class ItemPosterAnime extends StatelessWidget{
     );
   }
 
-  Widget _itemImage(BuildContext context) {
+  Widget _itemImage(BuildContext context,) {
 
     final placeholder = AssetImage('assets/poster_placeholder.png');
-    final poster = NetworkImage('https://image.tmdb.org/t/p/w185${ anime.posterPath }');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ anime.posterPath }');
 
-    //! Agregar el Hero
+    
     final _poster = ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: FadeInImage(
               image: (anime.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: 95,
+              height: 130,
             ),
           );
 
     return Container(
       //margin: EdgeInsets.only(right: 25.0),
+      decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ),
       child: GestureDetector(
           onTap: (){
             //! PushNamed Al ItemAllDetail
-            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type, anime.name));
+            Navigator.pushNamed(context, '/AllDetails', arguments: getIdAndType(anime.id, anime.type,  anime.name));
           },
           child: _poster 
       ),
@@ -435,7 +476,9 @@ class ItemPosterAnime extends StatelessWidget{
   }
 
   Widget _iconButton(BuildContext context){
+
     return ButtonAddedArrowDown(ouevre: anime, type: anime.type, isUpdated: false, objectType: ConstantsTypeObject.animeEntityRS,);
+        
   }
 
 }

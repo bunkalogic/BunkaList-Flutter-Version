@@ -1,5 +1,6 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
@@ -54,6 +55,8 @@ class BuildExplorerFilterListPage extends StatefulWidget {
 
 class _BuildExplorerFilterListPageState extends State<BuildExplorerFilterListPage> {
   
+
+  final Preferences prefs = Preferences();
 
   final double _aspectRatio = 2.7 / 4.2;
 
@@ -168,7 +171,7 @@ class _BuildExplorerFilterListPageState extends State<BuildExplorerFilterListPag
                           ? state.movies.length
                           : state.movies.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -243,7 +246,7 @@ class _BuildExplorerFilterListPageState extends State<BuildExplorerFilterListPag
                           ? state.series.length
                           : state.series.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -306,6 +309,7 @@ class _BuildExplorerFilterListPageState extends State<BuildExplorerFilterListPag
                   children: [
                     SmallContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7229321126',),
                     Expanded(
+                      flex: 7,
                       child: GridView.builder(
                         shrinkWrap: true,
                         controller: _scrollController,
@@ -318,7 +322,7 @@ class _BuildExplorerFilterListPageState extends State<BuildExplorerFilterListPag
                           ? state.animes.length
                           : state.animes.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),

@@ -608,6 +608,11 @@
     "label_add_to_list_login_first" : "Untuk menambah daftar Anda, Anda harus terlebih dahulu masuk",
     "label_use_feature_login_first" : "Untuk menggunakan fungsi ini, Anda harus terlebih dahulu login",
     "label_feedback":"Kirim umpan balik",
+
+    "label_theme_light_sepia"       : "Hapus tema sepia",
+    "label_theme_light_blue"        : "Tema Malam Biru",
+
+    "label_prefrences_number_column" :"Pilih jumlah kolom di daftar Explorer.",
   
     "label_include_premium": "Semua opsi menawarkan untuk membuka kunci semua fitur dan menghapus semua iklan, menjaga dukungan pengembangan untuk pembaruan di masa depan."
   

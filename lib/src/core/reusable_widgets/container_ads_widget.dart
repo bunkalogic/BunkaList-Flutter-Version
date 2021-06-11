@@ -542,14 +542,14 @@ class _SmallContainerAdsWidgetState extends State<SmallContainerAdsWidget> {
     
 
     return (prefs.isNotAds) 
-      ? Container() 
+      ? SizedBox.shrink() 
       : buildContainerAds();
   }
 
   Widget buildContainerAds() {
     return Container(
     padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
-    height: 70.0,
+    height: 90.0,
     color: Colors.transparent,
     child: NativeAdmob(
       adUnitID: widget.adUnitID,
@@ -729,7 +729,7 @@ class _BigContainerAdsWidgetState extends State<BigContainerAdsWidget> {
   @override
   Widget build(BuildContext context) {
     
-    return (prefs.isNotAds) ? Container() : buildContainerAds();
+    return (prefs.isNotAds) ? SizedBox.shrink() : buildContainerAds();
 
   }
 

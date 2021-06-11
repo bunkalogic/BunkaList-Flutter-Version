@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
@@ -429,25 +430,25 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: _getTabbarBackgroundColor()
+            color: getBackgroundColorItemTheme()
           ),
        ),
      ); 
   }
 
-   Color _getTabbarBackgroundColor(){
+//    Color _getTabbarBackgroundColor(){
 
-    final bool theme = prefs.whatModeIs;
-    final bool dark = prefs.whatDarkIs;
+//     final bool theme = prefs.whatModeIs;
+//     final bool dark = prefs.whatDarkIs;
     
-    if(theme && dark == false){
-      return Colors.blueGrey[800];
-    }else if(theme && dark){
-      return Colors.grey[900];
-    }else{
-      return Colors.grey[100];
-    }
- }
+//     if(theme && dark == false){
+//       return Colors.blueGrey[800];
+//     }else if(theme && dark){
+//       return Colors.grey[900];
+//     }else{
+//       return Colors.grey[100];
+//     }
+//  }
 
   Widget _itemInfo(){
     return Row(

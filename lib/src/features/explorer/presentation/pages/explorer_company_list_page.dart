@@ -6,6 +6,7 @@ import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_animes/animes_explorer_bloc.dart';
 import 'package:bunkalist/src/features/explorer/presentation/bloc/bloc_explorer_movies/moviesexplorer_bloc.dart';
@@ -62,6 +63,8 @@ class BuildCompanyExplorerListPage extends StatefulWidget {
 class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListPage> {
   
   //? Variables
+  final Preferences prefs = Preferences();
+
   final double _aspectRatio = 2.7 / 4.2;
 
   FilterOptions finalFilterOptions = new FilterOptions();
@@ -124,7 +127,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
-              backgroundColor: _getBackgroundColorTheme(), 
+              backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) => BuildBottomModalFilter(type: widget.data.type,),
               shape: RoundedRectangleBorder(
@@ -200,18 +203,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
 
   
 
-   Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+   
 
   
 
@@ -341,7 +333,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
                           ? state.movies.length
                           : state.movies.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -448,7 +440,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
                           ? state.series.length
                           : state.series.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -554,7 +546,7 @@ class _BuildCompanyExplorerListPageState extends State<BuildCompanyExplorerListP
                           ? state.animes.length
                           : state.animes.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),

@@ -2,6 +2,7 @@ import 'package:bunkalist/src/core/constans/constans_sort_by.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_list_company.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:bunkalist/src/premium_features/home_tops_premium/domain/entities/filter_entity.dart';
@@ -176,7 +177,7 @@ class _BuildFilterParamsExplorerWidgetState extends State<BuildFilterParamsExplo
 
     return FloatingActionButton.extended(
       elevation: 10.0,
-      backgroundColor: _getBackgroundColorTheme(),
+      backgroundColor: getBackgroundColorTheme(),
       disabledElevation: 0,
       onPressed: !isTypeSelected && !isOrderSelected
       ? null
@@ -226,24 +227,13 @@ class _BuildFilterParamsExplorerWidgetState extends State<BuildFilterParamsExplo
   }
 
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
   // get order list filters
 
   List<Filters> _getOrderFilter(String type){
 
-    List<Filters> filtersOrder = new List<Filters>();
+    List<Filters> filtersOrder = [];
 
     if(type == 'movie'){
 
@@ -380,7 +370,7 @@ class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> with Auto
 
   List<Widget> _buildChoiceList(){
     
-    List<Widget> choices = List();
+    List<Widget> choices = [];
 
     for (var i = 0; i < widget.listType.length; i++) {
       
@@ -393,7 +383,7 @@ class _BuildSelectChoiceTypeState extends State<BuildSelectChoiceType> with Auto
             fontSize: 16.0,
             fontWeight: FontWeight.w600
           ),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
           selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
@@ -482,7 +472,7 @@ class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> with Au
 
   List<Widget> _buildChoiceList(){
     
-    List<Widget> choices = List();
+    List<Widget> choices = [];
 
     for (var i = 0; i < widget.listOrderLabel.length; i++) {
       
@@ -495,7 +485,7 @@ class _BuildSelectChoiceOrderState extends State<BuildSelectChoiceOrder> with Au
             fontSize: 14.0,
             fontWeight: FontWeight.w600
           ),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
           selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
@@ -617,7 +607,7 @@ class _BuildSelectionChoiceGenresState extends State<BuildSelectionChoiceGenres>
             fontSize: 14.0,
             fontWeight: FontWeight.w600
           ),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
           selected: listSelect[i],
           shape: RoundedRectangleBorder(
@@ -807,7 +797,7 @@ class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwor
 
   List<Widget> _buildChoiceList(){
     
-    List<Widget> choices = List();
+    List<Widget> choices = [];
 
     for (var i = 0; i < widget.companies.length; i++) {
       
@@ -820,7 +810,7 @@ class _BuildSelectionChoiceNetworkState extends State<BuildSelectionChoiceNetwor
             fontSize: 14.0,
             fontWeight: FontWeight.w600
           ),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
           selected: selectedIndex == i,
           shape: RoundedRectangleBorder(
@@ -1010,7 +1000,7 @@ class _BuildSelectionChoiceLanguageState extends State<BuildSelectionChoiceLangu
             fontSize: 14.0,
             fontWeight: FontWeight.w600
           ),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.3),
+          backgroundColor: getBackgroundColorItemTheme(),
           selectedColor: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], 
           selected: selectedIndex == i,
           shape: RoundedRectangleBorder(

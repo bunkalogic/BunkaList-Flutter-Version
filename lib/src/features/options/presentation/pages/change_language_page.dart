@@ -39,7 +39,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
         itemLanguage("Japanase", "ja", "JP"),
         itemLanguage("Korean", "ko", "KR"),
         itemLanguage("Portuguese", "pt", "PT"),
-        // itemLanguage("Indonesian", "id", "ID"),
+        itemLanguage("Indonesian", "id", "ID"),
         // itemLanguage("Russian", "ru", "RU"),
       ],
     );
@@ -70,8 +70,11 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
 
         AppLocalizations.of(context).changeLang(locale);
 
+        prefs.isLanguageChanged = true;        
         prefs.getLanguage = theLanguage;
+        prefs.getLanguageCode = codeLang;
         prefs.getCountryCode = codeCountry;
+        
 
         setState(() {});
 

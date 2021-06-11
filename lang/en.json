@@ -608,6 +608,10 @@
   "label_add_to_list_login_first" : "In order to add to your list, you must first login",
   "label_use_feature_login_first" : "In order to use this function, you must first login",
   "label_feedback":"Send feedback",
+  "label_prefrences_number_column" :"Select the number of columns in the explorer lists.",
+
+  "label_theme_light_sepia"       : "Clear theme sepia",
+  "label_theme_light_blue"        : "Blue night theme",
 
   "label_include_premium": "All options offer to unlock all features and delete all ads, maintain the development support for future updates."
 

@@ -54,7 +54,7 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
     );
   }
 
-  Widget _createItemSettings({IconData icon, String text, Widget trailing,  Function() onTap}) {
+  Widget _createItemSettings({IconData icon, String text, Widget trailing, void Function() onTap}) {
     return ListTile(
       title: Text(text, style: TextStyle(fontSize: 16.0 , fontWeight: FontWeight.w600),),
       leading: Icon(
@@ -66,7 +66,7 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
       ),
       trailing: trailing,
       onTap: onTap,
-      enabled: prefs.isNotAds,
+      // enabled: prefs.isNotAds,
     );
   }
 
@@ -74,7 +74,7 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
 
   Widget _listViewOptions() {
 
-    
+    final bool isPremium = prefs.isNotAds;
 
     return ListView(
       children: [
@@ -97,6 +97,54 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
 
               setState(() {});
             }),
+        ),
+
+        _createItemSettings(
+          icon: Icons.view_column_rounded,
+          text: AppLocalizations.of(context).translate("label_prefrences_number_column"),
+          trailing: Text(
+            prefs.totalColumnList.toString(),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+            ),
+          ),
+          onTap: (){
+            
+           final int totalColumn = prefs.totalColumnList;
+
+
+            switch (totalColumn) {
+              case 3: {
+                print('${prefs.totalColumnList}');
+                prefs.totalColumnList = 4;
+                setState(() {});
+              }
+                break;
+
+              case 4: {
+                print('${prefs.totalColumnList}');
+                prefs.totalColumnList = 2;
+                setState(() {});
+              }
+                break;
+              
+              case 2: {
+                print('${prefs.totalColumnList}');
+                prefs.totalColumnList = 3;
+                setState(() {});
+              }
+                break;    
+              default: {
+                prefs.totalColumnList = 3;
+                setState(() {});
+              }
+            }
+            
+
+
+          }
         ),
         SizedBox(height: 10.0,),
         _titleOfSectionsPremium(),
@@ -135,10 +183,19 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
               ? Colors.pinkAccent[400] 
               : Colors.deepPurpleAccent[400],
             value: prefs.hideMoviesInList, 
-            onChanged: (bool value){
-              prefs.hideMoviesInList = value;
-              setState(() {});
-            }),
+            onChanged: isPremium 
+            ? (bool value){
+
+              
+                prefs.hideMoviesInList = value;
+                setState(() {});
+              
+
+              
+            }
+            : null
+            
+            ),
         ),
         _createItemSettings(
           icon: prefs.isNotAds
@@ -150,10 +207,18 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
               ? Colors.pinkAccent[400] 
               : Colors.deepPurpleAccent[400],
             value: prefs.hideSeriesInList, 
-            onChanged: (bool value){
-              prefs.hideSeriesInList = value;
-              setState(() {});
-            }),
+            onChanged: isPremium 
+            ? (bool value){
+
+              
+                prefs.hideSeriesInList = value;
+                setState(() {});
+               
+              
+              
+            }
+            : null
+            ),
         ),
         _createItemSettings(
           icon: prefs.isNotAds
@@ -165,9 +230,18 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
               ? Colors.pinkAccent[400] 
               : Colors.deepPurpleAccent[400],
             value: prefs.hideAnimeInList, 
-            onChanged: (bool value){
-              prefs.hideAnimeInList = value;
-            }),
+            onChanged: isPremium 
+            ? (bool value){
+
+              
+                prefs.hideAnimeInList = value;
+                setState(() {});
+               
+              
+            }
+            : null
+            
+            ),
         ),
         SizedBox(height: 20.0,),
         _titleOfSections(AppLocalizations.of(context).translate("label_edit_pofile")),

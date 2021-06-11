@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
+import 'package:bunkalist/src/core/utils/get_size_grid_item_image_util.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/home_tops/domain/entities/serie_entity.dart';
 import 'package:flutter/material.dart';
@@ -82,8 +83,8 @@ class _GridViewListSeriesWidgetState extends State<GridViewListSeriesWidget> {
               image: (widget.series.posterPath == null) ? placeholder : poster,  //? Image Poster Item,
               placeholder: placeholder, //? PlaceHolder Item,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 4.0,
-              height: MediaQuery.of(context).size.height / 3.0,
+              width: getWidthGridItemImage(),
+              height: getHeightGridItemImage(),
             ),
           );
 

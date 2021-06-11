@@ -15,6 +15,10 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_se
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_recomendation_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_similar_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/build_keywords_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/list_companies_and_network_widgets.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/row_images_widget.dart';
@@ -140,7 +144,6 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
             ),
           ),
         
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -150,6 +153,18 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
               type: movie.type,
             ),
           ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
+        _titleSection(AppLocalizations.of(context).translate('similar')),
+        BlocProvider<SimilarBloc>(
+          create: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: movie.id, type: movie.type,),
+        ),
+        _titleSection(AppLocalizations.of(context).translate('recommedation')),
+        BlocProvider<RecommendationsBloc>(
+          create: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: movie.id, type: movie.type,),
+        ),
+        SizedBox(height: 40)
       ],
     );
   }
@@ -862,7 +877,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
               child: RowImagesWidget(id: serie.id, type: serie.type),
             ),
           ),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
+        
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -872,6 +887,19 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
               type: serie.type,
             ),
           ),
+
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
+        _titleSection(AppLocalizations.of(context).translate('similar')),
+        BlocProvider<SimilarBloc>(
+          create: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: serie.id, type: serie.type,),
+        ),
+        _titleSection(AppLocalizations.of(context).translate('recommedation')),
+        BlocProvider<RecommendationsBloc>(
+          create: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: serie.id, type: serie.type,),
+        ),
+        SizedBox(height: 40)
       ],
     );
   }
@@ -1894,7 +1922,6 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
               child: RowImagesWidget(id: anime.id, type: anime.type),
             ),
           ),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         //! Keywords Section
         _titleSection(AppLocalizations.of(context).translate('label_keyword')),
         BlocProvider<OuevreDetailsBloc>(
@@ -1904,6 +1931,19 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
               type: anime.type,
             ),
           ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
+        _titleSection(AppLocalizations.of(context).translate('similar')),
+        BlocProvider<SimilarBloc>(
+          create: (_) => serviceLocator<SimilarBloc>(),
+          child: AllDetailsSimilarTab(id: anime.id, type: anime.type,),
+        ),
+        _titleSection(AppLocalizations.of(context).translate('recommedation')),
+        BlocProvider<RecommendationsBloc>(
+          create: (_) => serviceLocator<RecommendationsBloc>(),
+          child: AllDetailsRecomendationTab(id: anime.id, type: anime.type,),
+        ),
+        SizedBox(height: 40)
+
       ],
     );
   }

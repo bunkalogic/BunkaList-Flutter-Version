@@ -406,6 +406,10 @@
   "label_add_to_list_login_first" : "Um zu Ihrer Liste hinzuzufügen, müssen Sie sich zuerst anmelden",
   "label_use_feature_login_first" : "Um diese Funktion verwenden zu können, müssen Sie sich zuerst anmelden",
   "label_feedback":"Feedback abschicken",
+  "label_prefrences_number_column" :"Wählen Sie die Anzahl der Spalten in den Explorer-Listen aus.",
+
+  "label_theme_light_sepia"       : "Klares Thema Sepia",
+  "label_theme_light_blue"        : "Blue Night Theme",
 
   "label_include_premium": "Alle Optionen bieten an, alle Funktionen freizuschalten und alle Anzeigen zu löschen, die Entwicklungsunterstützung für zukünftige Updates zu pflegen."
 }

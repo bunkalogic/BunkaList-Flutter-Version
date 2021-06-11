@@ -1,7 +1,9 @@
 
 
 import 'package:bunkalist/injection_container.dart';
+import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/base/domain/entities/user_entity.dart';
 import 'package:bunkalist/src/features/base/presentation/bloc/bloc/userdata_bloc.dart';
 import 'package:bunkalist/src/features/login/presentation/bloc/bloc_auth/bloc.dart';
@@ -140,11 +142,28 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
 
   @override
   Widget build(BuildContext context) {
+
+    print('----intial controller Language & Country code: ${prefs.getLanguage} ----');
+    print('----intial controller Language code: ${prefs.getLanguageCode} ----');
+    print('----intial controller Country code: ${prefs.getCountryCode} ----');
+
+    Locale locale = new Locale(
+      '${prefs.getLanguageCode}',
+      '${prefs.getCountryCode}'
+    );
+
+    AppLocalizations.of(context).changeLang(locale);
     
     return BlocListener<AuthenticationBloc, AuthenticationState>(
 
-      listener: (context, state) async {
+      listener: (context, state){
 
+         if(state is AuthenticationLoading){
+          print('loading login');
+          // completeFlexibleUpdate();
+          return _loadingPage();
+        }
+        
         if(state is AuthenticationFirstTimeOpen){
           return Navigator.pushReplacementNamed(context, '/Intro');
         }
@@ -153,28 +172,25 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
           print('login init');
           // checkForUpdate();
           // startFlexibleUpdate();
-          return _splashPage();
+
+          return _loadingPage();
         }
 
         if(state is AuthenticationAuthenticated){
           print('Authenticated');
           addUserDataInFirebase();
-          await Future.delayed(Duration(seconds: 2));
+          // await Future.delayed(Duration(seconds: 2));
           Navigator.pushReplacementNamed(context, '/Home');
           
         }
 
         if(state is AuthenticationUnauthenticated){
           print('Unauthenticated');
-          await Future.delayed(Duration(seconds: 2));
+          // await Future.delayed(Duration(seconds: 2));
           Navigator.pushReplacementNamed(context, '/NewUserHome');
         }
 
-        if(state is AuthenticationLoading){
-          print('loading login');
-          // completeFlexibleUpdate();
-          return _loadingPage();
-        }
+       
            
       },
       child:_loadingPage(),
@@ -182,39 +198,14 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
   }
   
 
-  Widget _splashPage(){
-    return Container(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.purple[700],
-            Colors.purple[900],  
-            Colors.pinkAccent[400],
-          ], // whitish to gray
-          tileMode: TileMode.repeated, // repeats the gradient over the canvas
-        ),
-      ),
-      child: Center(
-            child: Image(
-              image: AssetImage('assets/bunkalist-banner.png'),
-              height: 60.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-      ),
-    );
-  }
+  
   
 
   Widget _loadingPage(){
 
     return Container(
       height: MediaQuery.of(context).size.height,
-      color: _getTabbarBackgroundColor(),
+      color: getBackgroundColorTheme(),
     // decoration: new BoxDecoration(
     //   // gradient: new LinearGradient(
     //   //   begin: Alignment.topCenter,
@@ -235,8 +226,8 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
         Align(
           alignment: Alignment.center,
           child: Image(
-          image: AssetImage('assets/banner-icon.png'),
-          height: 50.0,
+          image: AssetImage('assets/bunkalist-icon.png'),
+          height: 100.0,
           fit: BoxFit.cover,
         ),
         ),
@@ -272,19 +263,7 @@ class _InitialControllerPageState extends State<InitialControllerPage> with Sing
   //     );
   // }
 
-  Color _getTabbarBackgroundColor(){
-
-    final bool theme = prefs.whatModeIs;
-    final bool dark = prefs.whatDarkIs;
-    
-    if(theme && dark == false){
-      return Colors.blueGrey[800];
-    }else if(theme && dark){
-      return Colors.grey[900];
-    }else{
-      return Colors.grey[100];
-    }
- }
+  
 
 
  

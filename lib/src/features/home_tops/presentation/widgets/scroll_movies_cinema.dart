@@ -3,6 +3,7 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/icon_empty_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/solid_button_widget.dart';
@@ -26,6 +27,7 @@ class CarouselMoviesInCinemaWidget extends StatefulWidget {
 class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWidget> {
   
   MovieEntity _movieEntity;
+  Preferences prefs = Preferences();
   
   
   @override
@@ -177,7 +179,7 @@ class _CarouselMoviesInCinemaWidgetState extends State<CarouselMoviesInCinemaWid
 
   Widget _iconButton(BuildContext context,){
     return RaisedButton(
-        color: Colors.pinkAccent[400],
+        color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
         elevation: 5.0,
         child: Text(
           AppLocalizations.of(context).translate("add_in_list"),

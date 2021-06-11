@@ -1,6 +1,7 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -46,14 +47,7 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            gradient: LinearGradient(
-              colors: [
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15)
-              ]
-            ) 
+            color: getBackgroundColorItemTheme()
           ),
         ),
     );

@@ -536,11 +536,11 @@ class _MiniCircularChartRatingColorState extends State<MiniCircularChartRatingCo
 
     return CircularPercentIndicator(
       percent: percent,
-      radius: 55.0,
+      radius: 45.0,
       animation: true,
       animationDuration: 600,
       circularStrokeCap: CircularStrokeCap.round,
-      lineWidth: 7.5,
+      lineWidth: 5.5,
       backgroundColor: Colors.blueGrey[600],
       progressColor: widget.color,
       // linearGradient: LinearGradient(
@@ -565,7 +565,7 @@ class _MiniCircularChartRatingColorState extends State<MiniCircularChartRatingCo
         '${widget.rating}',
         style: new TextStyle(
         fontWeight: FontWeight.w800,
-        fontSize: 18.0,
+        fontSize: 16.0,
         color: widget.color,
       ),
       ),

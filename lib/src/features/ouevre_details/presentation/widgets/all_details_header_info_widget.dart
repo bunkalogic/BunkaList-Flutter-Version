@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/constans/object_type_code.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
@@ -210,7 +211,7 @@ class HeaderInfoMovie  extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
-          color: prefs.whatModeIs ? prefs.whatDarkIs ? Colors.black : Colors.blueGrey[900] : Colors.grey[50],
+          color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(25),
             topRight: const Radius.circular(25)
@@ -539,7 +540,7 @@ class HeaderInfoSerie  extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
-          color: prefs.whatModeIs ? prefs.whatDarkIs ? Colors.black : Colors.blueGrey[900] : Colors.grey[100],
+          color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(25),
             topRight: const Radius.circular(25)
@@ -850,7 +851,7 @@ class HeaderInfoAnime extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
-          color: prefs.whatModeIs ? prefs.whatDarkIs ? Colors.black : Colors.blueGrey[900] : Colors.grey[100],
+          color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(25),
             topRight: const Radius.circular(25)
@@ -1103,7 +1104,7 @@ class _ButtonStreamingVideoState extends State<ButtonStreamingVideo> {
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
-              backgroundColor: _getBackgroundColorTheme(), 
+              backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) =>  BlocProvider<OuevreDetailsBloc>(
             create: (_) => serviceLocator<OuevreDetailsBloc>(),
@@ -1135,17 +1136,6 @@ class _ButtonStreamingVideoState extends State<ButtonStreamingVideo> {
     );
   }
 
-  Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[900];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[900];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+  
 
 }

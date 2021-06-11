@@ -39,6 +39,9 @@ void main() async{
   // FacebookAudienceNetwork.init(
   //   testingId: "7fb5fc6f-cfb7-4761-ba77-5879cbaba7ae"
   // );
+
+  
+
   runApp(MyApp());
 } 
  
@@ -110,7 +113,7 @@ Widget _materialApp(BuildContext context, ThemeState state){
           Locale('ja', 'JP'),
           Locale('ko', 'KR'),
           Locale('pt', 'PT'),
-          // Locale('id', 'ID'),
+          Locale('id', 'ID'),
           // Locale('ru', 'RU'),
         ] ,
         localizationsDelegates: [
@@ -128,14 +131,28 @@ Widget _materialApp(BuildContext context, ThemeState state){
 
           //* check if the current device locale is supported 
           for (var supportedLocale in supportedLocales){
+
+            print('---- Main App Language & Country code: ${prefs.getLanguage} ----');
+            print('---- Main App Language code: ${prefs.getLanguageCode} ----');
+            print('---- Main App Country code: ${prefs.getCountryCode} ----');
+
+            if(prefs.isLanguageChanged) return supportedLocale;
+
             if(supportedLocale.languageCode == locale.languageCode 
             && supportedLocale.countryCode == locale.countryCode){
 
               print(supportedLocale.countryCode);
               print(supportedLocale.languageCode);
 
-              prefs.getLanguage = '${supportedLocale.languageCode}-${supportedLocale.countryCode}';
-              prefs.getCountryCode = '${supportedLocale.countryCode}';
+              
+                if(prefs.isLanguageChanged) return supportedLocale;
+
+                prefs.getLanguage = '${supportedLocale.languageCode}-${supportedLocale.countryCode}';
+                prefs.getCountryCode = '${supportedLocale.countryCode}';
+                prefs.getLanguageCode = '${supportedLocale.languageCode}';
+
+              
+              
 
               print('language code: ${prefs.getLanguage}');
 
@@ -146,6 +163,7 @@ Widget _materialApp(BuildContext context, ThemeState state){
 
           prefs.getLanguage = '${supportedLocales.first.languageCode}-${supportedLocales.first.countryCode}';
           prefs.getCountryCode = '${supportedLocales.first.countryCode}';
+          prefs.getLanguageCode = '${supportedLocales.first.languageCode}';
 
           print('language code: ${prefs.getLanguage}');
 

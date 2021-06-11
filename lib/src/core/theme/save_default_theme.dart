@@ -40,6 +40,14 @@ class SaveDefaultTheme{
       
       return appThemeData[Apptheme.DarkerTheme];
 
+    }else if(prefs.whatModeIs && prefs.whatDarkIs && prefs.whatDarkBlue){
+      
+      return appThemeData[Apptheme.BlueDarkTheme];
+
+    }else if(prefs.whatSepia){
+      
+      return appThemeData[Apptheme.SepiaTheme];
+
     }else{
       return appThemeData[Apptheme.LightTheme];
     }

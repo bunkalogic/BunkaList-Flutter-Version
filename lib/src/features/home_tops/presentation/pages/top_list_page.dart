@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constants_top_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
@@ -67,6 +68,7 @@ class BuildTopsListPage extends StatefulWidget {
 
 class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTickerProviderStateMixin {
   //? Variables
+  final Preferences prefs = Preferences();
   final double _aspectRatio = 2.7 / 4.2;
 
   
@@ -327,7 +329,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
                           ? state.movies.length
                           : state.movies.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -427,7 +429,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
                           ? state.series.length
                           : state.series.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -528,7 +530,7 @@ class _BuildTopsListPageState extends State<BuildTopsListPage> with SingleTicker
                           ? state.animes.length
                           : state.animes.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),

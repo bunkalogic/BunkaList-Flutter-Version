@@ -404,6 +404,11 @@
   "label_use_feature_login_first" : "Afin d'utiliser cette fonction, vous devez d'abord vous connecter",
   "label_feedback":"Envoyer des commentaires",
 
+  "label_prefrences_number_column" :"Sélectionnez le nombre de colonnes dans les listes d'explorateurs.",
+
+  "label_theme_light_sepia"       : "Thème clair sépia",
+  "label_theme_light_blue"        : "Thème de nuit bleue",
+
   "label_include_premium": "Toutes les options offrent pour déverrouiller toutes les fonctionnalités et supprimer toutes les annonces, maintenir le support de développement pour les futures mises à jour."
 
 }

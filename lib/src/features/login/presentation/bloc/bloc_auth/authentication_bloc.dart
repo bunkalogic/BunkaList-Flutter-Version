@@ -59,8 +59,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
        
 
       if (hasToken) {
+        await Future.delayed(Duration(seconds: 2));
         yield AuthenticationAuthenticated();
       } else {
+        await Future.delayed(Duration(seconds: 2));
         yield AuthenticationUnauthenticated();
       }
     }

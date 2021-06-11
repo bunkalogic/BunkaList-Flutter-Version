@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/add_ouevre_in_list/presentation/widgets/added_or_update_controller_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
@@ -61,16 +62,16 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
 
     switch(type){
 
-      case 'movie': return 7;
+      case 'movie': return 5;
         break;
 
-      case 'tv': return 8;
+      case 'tv': return 6;
         break;
 
-      case 'anime': return 8;
+      case 'anime': return 6;
         break;    
 
-      default: return 8;
+      default: return 6;
     }
   }
 
@@ -82,8 +83,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(2), text: AppLocalizations.of(context).translate("trailer")),
     Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("review")),
     Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("video_review")),
-    Tab(key: ValueKey(5), text: AppLocalizations.of(context).translate("similar")),
-    Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("recommedation")),
+    // Tab(key: ValueKey(5), text: AppLocalizations.of(context).translate("similar")),
+    // Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("recommedation")),
   ];
 
   final List<Tab> detailsSerieTabs = <Tab>[
@@ -93,8 +94,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(3), text: AppLocalizations.of(context).translate("casting")),
     Tab(key: ValueKey(4), text: AppLocalizations.of(context).translate("trailer")),
     Tab(key: ValueKey(5), text: AppLocalizations.of(context).translate("review")),
-    Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("similar")),
-    Tab(key: ValueKey(7), text: AppLocalizations.of(context).translate("recommedation")),
+    // Tab(key: ValueKey(6), text: AppLocalizations.of(context).translate("similar")),
+    // Tab(key: ValueKey(7), text: AppLocalizations.of(context).translate("recommedation")),
   ];
 
   final List<Tab> detailsAnimeTabs = <Tab>[
@@ -104,8 +105,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     Tab(key: ValueKey(3), text:AppLocalizations.of(context).translate("casting")),
     Tab(key: ValueKey(4), text:AppLocalizations.of(context).translate("trailer")),
     Tab(key: ValueKey(5), text:AppLocalizations.of(context).translate("review")),
-    Tab(key: ValueKey(6), text:AppLocalizations.of(context).translate("similar")),
-    Tab(key: ValueKey(7), text:AppLocalizations.of(context).translate("recommedation")),
+    // Tab(key: ValueKey(6), text:AppLocalizations.of(context).translate("similar")),
+    // Tab(key: ValueKey(7), text:AppLocalizations.of(context).translate("recommedation")),
     //Tab(key: ValueKey(8), text:'Opennings'), //si es un anime
   ];
 
@@ -458,7 +459,7 @@ class _FABAddToListState extends State<FABAddToList> {
     return FloatingActionButton.extended(
       isExtended: !widget.isScrolling,
       elevation: 1.0,
-      backgroundColor: _getBackgroundColorTheme(),
+      backgroundColor: getBackgroundColorItemTheme(),
       onPressed: onPressed,
       label: AnimatedSwitcher(
         duration: Duration(milliseconds: 400),
@@ -504,18 +505,7 @@ class _FABAddToListState extends State<FABAddToList> {
 
   }
 
-   Color _getBackgroundColorTheme() {
-    final prefs = new Preferences();
-
-    if(prefs.whatModeIs && prefs.whatDarkIs == false){
-      return Colors.blueGrey[800];
-    }else if(prefs.whatModeIs && prefs.whatDarkIs == true){
-      return Colors.grey[850];
-    }
-    else{
-      return Colors.grey[100];
-    }
-  }
+   
 }
 
 

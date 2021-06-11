@@ -63,6 +63,7 @@ class BuildExplorerListPage extends StatefulWidget {
 class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
   
   //? Variables
+  final Preferences prefs = Preferences();
   final double _aspectRatio = 2.7 / 4.2;
 
   FilterOptions finalFilterOptions = new FilterOptions();
@@ -95,6 +96,8 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
 
   @override
   Widget build(BuildContext context) {   
+
+
 
     return Scaffold(
       appBar: _createAppBar(context, _whatTypeIs(context)),
@@ -131,7 +134,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
-              backgroundColor: _getBackgroundColorTheme(), 
+              backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) => BuildBottomModalFilter(type: widget.data.type,),
               shape: RoundedRectangleBorder(
@@ -207,7 +210,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
 
   
 
-   Color _getBackgroundColorTheme() {
+   Color getBackgroundColorTheme() {
     final prefs = new Preferences();
 
     if(prefs.whatModeIs && prefs.whatDarkIs == false){
@@ -353,7 +356,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                           ? state.movies.length
                           : state.movies.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -458,7 +461,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                           ? state.series.length
                           : state.series.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),
@@ -564,7 +567,7 @@ class _BuildExplorerListPageState extends State<BuildExplorerListPage> {
                           ? state.animes.length
                           : state.animes.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: prefs.totalColumnList,
                         childAspectRatio: _aspectRatio
                         ),
                       ),

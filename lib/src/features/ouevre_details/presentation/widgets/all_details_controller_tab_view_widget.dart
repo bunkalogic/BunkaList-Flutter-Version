@@ -101,21 +101,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<5>]': {
-         return new BlocProvider<SimilarBloc>(
-          create: (_) => serviceLocator<SimilarBloc>(),
-          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<5>]': {
+      //    return new BlocProvider<SimilarBloc>(
+      //     create: (_) => serviceLocator<SimilarBloc>(),
+      //     child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
 
-      case '[<6>]': {
-         return new BlocProvider<RecommendationsBloc>(
-          create: (_) => serviceLocator<RecommendationsBloc>(),
-          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<6>]': {
+      //    return new BlocProvider<RecommendationsBloc>(
+      //     create: (_) => serviceLocator<RecommendationsBloc>(),
+      //     child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
 
       default: return Center(child: Text('Error tab'),);
     }
@@ -173,21 +173,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<6>]': {
-         return new BlocProvider<SimilarBloc>(
-          create: (_) => serviceLocator<SimilarBloc>(),
-          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<6>]': {
+      //    return new BlocProvider<SimilarBloc>(
+      //     create: (_) => serviceLocator<SimilarBloc>(),
+      //     child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
 
-      case '[<7>]': {
-         return new BlocProvider<RecommendationsBloc>(
-          create: (_) => serviceLocator<RecommendationsBloc>(),
-          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<7>]': {
+      //    return new BlocProvider<RecommendationsBloc>(
+      //     create: (_) => serviceLocator<RecommendationsBloc>(),
+      //     child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
 
       default: return Center(child: Text('Error tab'),);
     }
@@ -245,21 +245,21 @@ class _AllDetailsTabViewControllerWidgetState extends State<AllDetailsTabViewCon
          
         }
 
-      case '[<6>]': {
-         return new BlocProvider<SimilarBloc>(
-          create: (_) => serviceLocator<SimilarBloc>(),
-          child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<6>]': {
+      //    return new BlocProvider<SimilarBloc>(
+      //     create: (_) => serviceLocator<SimilarBloc>(),
+      //     child: AllDetailsSimilarTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
 
-      case '[<7>]':  {
-         return new BlocProvider<RecommendationsBloc>(
-          create: (_) => serviceLocator<RecommendationsBloc>(),
-          child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
-        );
+      // case '[<7>]':  {
+      //    return new BlocProvider<RecommendationsBloc>(
+      //     create: (_) => serviceLocator<RecommendationsBloc>(),
+      //     child: AllDetailsRecomendationTab(id: widget.id, type: widget.type,),
+      //   );
          
-        }
+      //   }
       
       // case '[<8>]': {
       //    return new BlocProvider<VideoYoutubeBloc>(

@@ -1,5 +1,6 @@
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_page.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/filter_personalized_dailog_widget.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
@@ -183,7 +184,7 @@ Widget _createAppBarPlatform(BuildContext context) {
       style: TabStyle.flip,
       height: 65,
       color: _getColorOffIcon(),
-      backgroundColor: _getTabbarBackgroundColor(),
+      backgroundColor: getBackgroundColorItemTheme(),
       activeColor: _getColorActiveIcon(),
       elevation: 12.0,
       top: 0,
@@ -254,19 +255,7 @@ Widget _createAppBarPlatform(BuildContext context) {
  }
 
 
- Color _getTabbarBackgroundColor(){
-
-    final bool theme = prefs.whatModeIs;
-    final bool dark = prefs.whatDarkIs;
-    
-    if(theme && dark == false){
-      return Colors.blueGrey[800];
-    }else if(theme && dark){
-      return Colors.grey[900];
-    }else{
-      return Colors.grey[100];
-    }
- }
+ 
 
 
 }

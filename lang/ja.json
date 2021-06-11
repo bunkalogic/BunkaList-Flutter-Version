@@ -408,6 +408,11 @@
   "label_add_to_list_login_first" : "リストに追加するには、最初にログインする必要があります",
   "label_use_feature_login_first" : "この機能を使用するには、最初にログインする必要があります",
 
+  "label_prefrences_number_column" :"エクスプローラリストの列数を選択します。",
+
+  "label_theme_light_sepia"       : "テーマセピアをクリア",
+  "label_theme_light_blue"        : "ブルーナイトテーマ",
+
   "label_include_premium": "すべての機能のロックを解除してすべての広告を削除し、将来のアップデートの開発サポートを維持するためのすべてのオプションを提供します。"
 
 

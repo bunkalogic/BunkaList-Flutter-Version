@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/constans_genres_id.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_list_genres.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
           },
           elevation: 4.0,
           labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
+          backgroundColor: getBackgroundColorItemTheme(),
           label: Text(genre,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -216,7 +217,7 @@ class _ChipsGenresWidgetState extends State<ChipsGenresWidget> {
           },
           elevation: 4.0,
           labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
+          backgroundColor: getBackgroundColorItemTheme(),
           label: Text(genres[i],
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -312,7 +313,7 @@ class _ChipsKeywordsWidgetState extends State<ChipsKeywordsWidget> {
           },
           elevation: 4.0,
           labelPadding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
-          backgroundColor: Colors.blueGrey[500].withOpacity(0.2),
+          backgroundColor: getBackgroundColorItemTheme(),
           label: Text(
             '#${widget.keywords[i].label}',
             style: TextStyle(

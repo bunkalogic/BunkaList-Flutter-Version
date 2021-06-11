@@ -5,6 +5,7 @@ import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/container_ads_widget.dart';
+import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/core/utils/get_random_number.dart';
 import 'package:bunkalist/src/core/utils/in_app_review_util.dart';
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
@@ -72,14 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            gradient: LinearGradient(
-              colors: [
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15),
-                Colors.blueGrey[400].withOpacity(0.15)
-              ]
-            ) 
+            color: getBackgroundColorItemTheme()
           ),
         ),
     );

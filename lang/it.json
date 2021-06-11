@@ -404,6 +404,10 @@
   "label_tops_underrated"    : "Sottovalutato",
 
   "label_feedback":"Invia feedback",
+  "label_prefrences_number_column" :"Seleziona il numero di colonne negli elenchi Explorer.",
+
+  "label_theme_light_sepia"       : "Tema chiaro seppia",
+  "label_theme_light_blue"        : "Tema notte blu",
 
   "label_add_to_list_login_first" : "Per aggiungere alla tua lista, devi prima accedere",
   "label_use_feature_login_first" : "Per poter utilizzare questa funzione, devi prima accedere",

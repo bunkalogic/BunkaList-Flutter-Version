@@ -47,6 +47,27 @@ class Preferences{
     _prefs.setBool('whatDarkIs', value);
   }
 
+  //? se en encarga de guardar el modo de tema blue oscuro
+  get whatDarkBlue {
+    return _prefs.getBool('whatDarkBlue') ?? false;
+  }
+
+  set whatDarkBlue (bool value) {
+    _prefs.setBool('whatDarkBlue', value);
+  }
+
+
+  //? se en encarga de guardar el modo de tema oscuro
+  get whatSepia {
+    return _prefs.getBool('whatSepia') ?? false;
+  }
+
+  set whatSepia (bool value) {
+    _prefs.setBool('whatSepia', value);
+  }
+
+  
+
   //? se en encarga de guardar el modo de tema 
   get isNotAds {
     return _prefs.getBool('isNotAds') ?? false;
@@ -65,15 +86,33 @@ class Preferences{
     _prefs.setBool('isNewUserPremium', value);
   }
 
+  //? se en encarga de guardar el modo de tema 
+  get isLanguageChanged {
+    return _prefs.getBool('isLanguageChanged') ?? true;
+  }
+
+  set isLanguageChanged (bool value) {
+    _prefs.setBool('isLanguageChanged', value);
+  }
+
+
   //? se en encarga de guardar el language code 
   get getLanguage {
-    return _prefs.getString('language') ?? 'en';
+    return _prefs.getString('language') ?? 'en-US';
   }
 
   set getLanguage (String value) {
     _prefs.setString('language', value);
   }
 
+  //? se en encarga de guardar el language code 
+  get getLanguageCode {
+    return _prefs.getString('languageCode') ?? 'en';
+  }
+
+  set getLanguageCode (String value) {
+    _prefs.setString('languageCode', value);
+  }
   
   //? se en encarga de guardar el language code 
   get getCountryCode {
@@ -376,6 +415,14 @@ class Preferences{
   }
 
   
+  //? se en encarga de guardar cuantas columnas tienes en cuando se muestra la lista
+  get totalColumnList {
+    return _prefs.getInt('totalColumnList') ?? 3;
+  }
+
+  set totalColumnList (int value) {
+    _prefs.setInt('totalColumnList', value);
+  }
 
 
 }
