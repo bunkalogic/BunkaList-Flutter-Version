@@ -21,12 +21,12 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: 200,
       child: CarouselSlider(
         options: CarouselOptions(
           enlargeCenterPage: true,
           viewportFraction: 0.9,
-          aspectRatio: 1.8,
+          aspectRatio: 1.7,
           initialPage: 1,
         ),
         items: <Widget>[
@@ -41,15 +41,18 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
   Widget _containerExample(String title, String type){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
-      child: Container(
-          child: _columnTitleAndCharts(title, type),   
-          height: 160.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            color: getBackgroundColorItemTheme()
-          ),
+      child: Card(
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),      
         ),
+        child: Container(
+            child: _columnTitleAndCharts(title, type),   
+            height: 160.0,
+            width: double.infinity,
+            
+          ),
+      ),
     );
   }
 
@@ -73,8 +76,8 @@ class _ListContainerChartViewsState extends State<ListContainerChartViews> {
         AppLocalizations.of(context).translate(title),
         textAlign: TextAlign.center,
         style: TextStyle(
-        fontSize: 18.0, 
-        fontWeight: FontWeight.w600,
+        fontSize: 16.0, 
+        fontWeight: FontWeight.w700,
         fontStyle: FontStyle.italic
       ),
       ),
@@ -97,7 +100,7 @@ class ChartsTotalByStatus extends StatefulWidget {
 class _ChartsTotalByStatusState extends State<ChartsTotalByStatus> {
 
   Preferences prefs = Preferences();
-  List<TotalByStatus> data = new List<TotalByStatus>();
+  List<TotalByStatus> data = [];
 
   @override
   void initState() {
@@ -140,7 +143,7 @@ class _ChartsTotalByStatusState extends State<ChartsTotalByStatus> {
             renderSpec: new charts.NoneRenderSpec()
           ),
           barRendererDecorator: new charts.BarLabelDecorator(
-            insideLabelStyleSpec: new charts.TextStyleSpec(color: charts.Color.white, fontSize: 14, ),
+            insideLabelStyleSpec: new charts.TextStyleSpec(color: charts.Color.white, fontSize: 14,  ),
             outsideLabelStyleSpec: new charts.TextStyleSpec(color: (prefs.whatModeIs) ? charts.Color.white : charts.Color.black,fontSize: 14, )
           ),
         ),

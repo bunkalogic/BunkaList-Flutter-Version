@@ -52,6 +52,7 @@ class ButtonAddedArrowDown extends StatelessWidget{
       isScrollControlled: true,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (_) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
@@ -171,6 +172,7 @@ class ButtonClikedAdded {
       isScrollControlled: true,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (_) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
@@ -340,6 +342,7 @@ class GetBottomModalStatus {
 
   void getOptionsCompleteStatus(BuildContext context, OuevreEntity newOuevre){
     showModalBottomSheet(
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
@@ -390,6 +393,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
@@ -410,6 +414,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
@@ -432,6 +437,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(
           create: (_) => serviceLocator<AddOuevreBloc>(),
@@ -475,6 +481,7 @@ class GetBottomModalStatus {
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       isScrollControlled: true,
       builder: (context) {
         return BlocProvider<AddOuevreBloc>(

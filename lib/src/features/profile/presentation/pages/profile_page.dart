@@ -67,15 +67,21 @@ class _ProfilePageState extends State<ProfilePage> {
         horizontal: 10.0,
         vertical: 12.0
       ),
-      child: Container(   
-          child: _infoProfileBox(),
-          height: 265.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            color: getBackgroundColorItemTheme()
-          ),
+      child: Card(
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
         ),
+        child: Container(   
+            child: _infoProfileBox(),
+            height: 250.0,
+            width: double.infinity,
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(15.0),
+            //   color: getBackgroundColorItemTheme()
+            // ),
+          ),
+      ),
     );
   }
 
@@ -199,13 +205,13 @@ class _ProfilePageState extends State<ProfilePage> {
       children: <Widget>[
         _createBox(),
         _buttomPlatformList(context),
-        SizedBox(height: 5.0,),
+        SizedBox(height: 20.0,),
         ListContainerChartViews(),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
         TabBarWatchingAddedToListsWidget(),     
-        SizedBox(height: 20.0,),
+        // SizedBox(height: 10.0,),
         TabBarRecentAddedToListsWidget(),
-         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
+        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
         TabBarPlanToWatchAddedToListsWidget(),
         BannerPremiumWidget(),
         SizedBox(height: 20.0,),    
@@ -229,7 +235,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buttonTypeMaterial(BuildContext context,String title, Color color, int type) {
       return Flexible(
         child: RaisedButton(
-          elevation: 10.0,
+          elevation: 5.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6.0),
           ),

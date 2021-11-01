@@ -151,8 +151,16 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
           },
           child:  ListView.builder(
             itemExtent: cardSize,
-            itemCount: ouevreList.length,
-            itemBuilder: (context, i) => _itemTab(ouevreList[i])
+            itemCount: ouevreList.length + 1,
+            itemBuilder: (context, i) {
+              if(i == ouevreList.length){
+                return SizedBox(
+                  height: cardSize,
+                );
+              } else{
+                return _itemTab(ouevreList[i]);
+              }
+            } ,
           ),
         )
       ),
@@ -177,6 +185,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
+              barrierColor: Colors.blueGrey.withOpacity(0.3),
               backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) => BuildBottomFilterCompleted(),

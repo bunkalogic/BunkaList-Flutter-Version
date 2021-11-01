@@ -64,7 +64,7 @@ class _TabBarPlanToWatchAddedToListsWidgetState extends State<TabBarPlanToWatchA
             padding: EdgeInsets.only(left: 12.0),
             child: Text(
               title,
-              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold,),
+              style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold,),
             ),
           ),
         ),
@@ -123,7 +123,7 @@ class _TabBarPlanToWatchAddedToListsWidgetState extends State<TabBarPlanToWatchA
 
   Widget _buildBodyTab(){
     return Container(
-      height: MediaQuery.of(context).size.height / 2.6,
+      height: 240,
       child: TabBarView(
         controller: _tabController,
         children: [

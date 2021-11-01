@@ -288,7 +288,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
         children: [
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "2.99€",
+            "1.99€",
             onTap: (){
 
               if(!prefs.currentUserHasToken){
@@ -312,7 +312,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "5.99€",
+            "4.99€",
              onTap: (){
 
               if(!prefs.currentUserHasToken){
@@ -343,7 +343,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
           ),
           _itemPremium(
             AppLocalizations.of(context).translate("title_lifetime"),
-            "10.99 €",
+            "9.99 €",
              onTap: (){
 
               if(!prefs.currentUserHasToken){

@@ -43,6 +43,7 @@ class _RowImagesWidgetState extends State<RowImagesWidget> {
 
       }else if(state is LoadedImages){
 
+
         return _buildRowImages(state.posterImages);
 
       }else if(state is Error){
@@ -75,6 +76,10 @@ class _RowImagesWidgetState extends State<RowImagesWidget> {
   }
 
   Widget _posterTotalImages(List<Backdrop> posters){
+
+    if(posters.isEmpty){
+      return SizedBox.shrink();
+    }
 
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage('https://image.tmdb.org/t/p/w342${ posters.first.filePath }');
@@ -136,6 +141,10 @@ class _RowImagesWidgetState extends State<RowImagesWidget> {
   }
 
   Widget _backgroundTotalImages(List<Backdrop> backdrops){
+
+    if(backdrops.isEmpty){
+      return SizedBox.shrink();
+    }
     
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage('https://image.tmdb.org/t/p/w780${ backdrops.first.filePath }');

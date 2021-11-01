@@ -116,113 +116,269 @@ class _CarouselPlanToWatchState extends State<CarouselPlanToWatch> {
       padding: const EdgeInsets.only(top: 15.0),
       child: CarouselSlider.builder(
         options: CarouselOptions(
-          enlargeCenterPage: true, 
-          height: 400,
           autoPlay: false,
+          enlargeCenterPage: true,
+          viewportFraction: 0.9,
+          aspectRatio: 2.0,
+          height: 200,
           enableInfiniteScroll: widget.ouevreList.length > 2,
-          viewportFraction: 0.45,
         ),
         itemCount: widget.ouevreList.length,
-        itemBuilder: (context, i, h) => _itemPoster( widget.ouevreList[i]),
+        itemBuilder: (context, i, h) =>  ItemPosterWishlistWidget(ouevre: widget.ouevreList[i],) //_itemPoster( widget.ouevreList[i]),
       ),
     );
   }
 
-  _itemPoster(OuevreEntity ouevre) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(child: _itemImageAndRating(ouevre), flex: 5,),
-          _itemTitle(ouevre),
-          Expanded(child: _chipStatus(context, ouevre), flex: 1,),
-          Expanded(child: ButtonAddedArrowDown(ouevre: ouevre, type: ouevre.oeuvreType, isUpdated: false, objectType: ConstantsTypeObject.ouevreEntity,), flex: 1,)
-        ],
-    );
-  }
+  // _itemPoster(OuevreEntity ouevre) {
+  //   return Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[
+  //         Expanded(child: _itemImageAndRating(ouevre), flex: 5,),
+  //         _itemTitle(ouevre),
+  //         Expanded(child: _chipStatus(context, ouevre), flex: 1,),
+  //         Expanded(child: ButtonAddedArrowDown(ouevre: ouevre, type: ouevre.oeuvreType, isUpdated: false, objectType: ConstantsTypeObject.ouevreEntity,), flex: 1,)
+  //       ],
+  //   );
+  // }
 
 
-  Widget _itemImageAndRating(OuevreEntity ouevre){
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          _itemImage(context, ouevre),
-          _itemRating(ouevre)
-        ],
-      ),
-    );
-  }
+  // Widget _itemImageAndRating(OuevreEntity ouevre){
+  //   return Container(
+  //     child: Stack(
+  //       children: <Widget>[
+  //         _itemImage(context, ouevre),
+  //         _itemRating(ouevre)
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  Widget _itemRating(OuevreEntity ouevre){
-    return Container(
-      margin: EdgeInsets.all(5.0),
-      padding: EdgeInsets.all(3.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: Colors.grey[400].withOpacity(0.4)
-      ),
-      child: Text(
-        ouevre.oeuvreRating.toString(),
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
-          shadows: [
-           Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
-          ]
-          ),
-      ),
-    );
-  }
+  // Widget _itemRating(OuevreEntity ouevre){
+  //   return Container(
+  //     margin: EdgeInsets.all(5.0),
+  //     padding: EdgeInsets.all(3.0),
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(5.0),
+  //       color: Colors.grey[400].withOpacity(0.4)
+  //     ),
+  //     child: Text(
+  //       ouevre.oeuvreRating.toString(),
+  //       style: TextStyle(
+  //         color: Colors.white,
+  //         fontSize: 18.0,
+  //         fontWeight: FontWeight.w800,
+  //         shadows: [
+  //          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+  //         ]
+  //         ),
+  //     ),
+  //   );
+  // }
 
-  Widget _itemImage(BuildContext context, OuevreEntity ouevre) {
+  // Widget _itemImage(BuildContext context, OuevreEntity ouevre) {
 
-    final placeholder = AssetImage('assets/poster_placeholder.png');
+  //   final placeholder = AssetImage('assets/poster_placeholder.png');
 
-    final poster = NetworkImage(ouevre.oeuvrePoster);
+  //   final poster = NetworkImage(ouevre.oeuvrePoster);
 
-    final _poster = ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: FadeInImage(
-        image: poster,  //? Image Poster Item,
-        placeholder: placeholder, //? PlaceHolder Item,
-        fit: BoxFit.cover,
-        width: MediaQuery.of(context).size.width * 0.36,
-        height: MediaQuery.of(context).size.height / 2.8,
-      ),
-    );
+  //   final _poster = ClipRRect(
+  //     borderRadius: BorderRadius.circular(8.0),
+  //     child: FadeInImage(
+  //       image: poster,  //? Image Poster Item,
+  //       placeholder: placeholder, //? PlaceHolder Item,
+  //       fit: BoxFit.cover,
+  //       width: MediaQuery.of(context).size.width * 0.36,
+  //       height: MediaQuery.of(context).size.height / 2.8,
+  //     ),
+  //   );
 
-    return Container(
-      child: GestureDetector(
-          onTap: (){
-            //! PushNamed Al ItemAllDetail
+  //   return Container(
+  //     child: GestureDetector(
+  //         onTap: (){
+  //           //! PushNamed Al ItemAllDetail
+  //           Navigator.pushNamed(
+  //             context, '/AllDetails', 
+  //             arguments: 
+  //             getIdAndType(
+  //               ouevre.oeuvreId, 
+  //               ouevre.oeuvreType,  
+  //               ouevre.oeuvreTitle)
+  //           );
+  //         },
+  //         child: _poster 
+  //     ),
+  //   );
+  // }
+
+  // Widget _itemTitle(OuevreEntity ouevre) {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(2.0),
+  //     child: Text(
+  //       ouevre.oeuvreTitle,//? Title of Item
+  //       style: TextStyle(fontSize: 16.0,  fontWeight: FontWeight.w700,),
+  //       textAlign: TextAlign.center,
+  //       overflow: TextOverflow.ellipsis,
+  //     ),
+  //   );
+  // }
+
+  // Widget _chipStatus(BuildContext context, OuevreEntity ouevre) {
+
+  //   final DateTime datetime = ouevre.addDate;
+
+  //   final formatter = DateFormat('dd-MM-yy');
+
+  //   final date = formatter.format(datetime);
+
+  //   final Widget labelActionChip = Row(
+  //     mainAxisSize: MainAxisSize.min,
+  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //     children: [
+  //       Icon(Icons.today, color: Colors.pinkAccent[400], size: 25.0,),
+  //       Text( date,
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.w600,
+  //             fontSize: 14.0,
+  //             fontStyle: FontStyle.italic
+  //           ),
+  //       ),    
+  //     ],
+  //   );
+
+
+  //   return Container(
+  //     margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 4.0),
+  //     child: ActionChip(
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(8.0)
+  //         ),
+  //         onPressed: () => null,
+  //         elevation: 5.0,
+  //         labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+  //         backgroundColor: Colors.grey.withOpacity(0.4),
+  //         label: labelActionChip,
+  //       ),
+  //     );
+  // }
+}
+
+
+
+class ItemPosterWishlistWidget extends StatefulWidget {
+
+  final OuevreEntity ouevre;
+
+  ItemPosterWishlistWidget({@required this.ouevre});
+
+  @override
+  _ItemPosterWishlistWidgetState createState() => _ItemPosterWishlistWidgetState();
+}
+
+class _ItemPosterWishlistWidgetState extends State<ItemPosterWishlistWidget> {
+  
+  final Preferences prefs = Preferences();
+  
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: (){
+            
             Navigator.pushNamed(
               context, '/AllDetails', 
               arguments: 
               getIdAndType(
-                ouevre.oeuvreId, 
-                ouevre.oeuvreType,  
-                ouevre.oeuvreTitle)
+                widget.ouevre.oeuvreId, 
+                widget.ouevre.oeuvreType,  
+                widget.ouevre.oeuvreTitle
+              )
             );
           },
-          child: _poster 
+        child: Card(  
+        elevation: 15.0,
+        margin: EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 20.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+          child: _stackTextAndIcon(),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ) 
+        ),
+
       ),
     );
+  }
+
+  Widget _stackTextAndIcon() {
+
+    return Stack(
+      children: <Widget>[
+        _imageBackground(context, widget.ouevre),
+        _itemTitle(widget.ouevre),
+        _chipStatus(widget.ouevre),
+        _buttonItem()
+        
+      ],
+    );
+
+  }
+
+   Widget _imageBackground(BuildContext context, OuevreEntity ouevre) {
+    final placeholder = AssetImage('assets/poster_placeholder.png');
+    final poster = NetworkImage('https://image.tmdb.org/t/p/w780${ ouevre.oeuvrePoster }');
+    
+    //! Agregar el Hero
+    
+    return Container(
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
+        child: FadeInImage(
+          image: (ouevre.oeuvrePoster == null) ? placeholder : poster,  //? Image Poster Item,
+          placeholder: placeholder, //? PlaceHolder Item,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+
+
+
   }
 
   Widget _itemTitle(OuevreEntity ouevre) {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: Text(
-        ouevre.oeuvreTitle,//? Title of Item
-        style: TextStyle(fontSize: 16.0,  fontWeight: FontWeight.w700,),
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
+    return Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Text(
+          ouevre.oeuvreTitle,//? Title of Item
+          style: TextStyle(
+            fontSize: 18.0,  
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          shadows: [
+            Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+          ),
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }
 
-  Widget _chipStatus(BuildContext context, OuevreEntity ouevre) {
+  
+  Widget _chipStatus(OuevreEntity ouevre) {
 
     final DateTime datetime = ouevre.addDate;
 
@@ -234,7 +390,7 @@ class _CarouselPlanToWatchState extends State<CarouselPlanToWatch> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Icon(Icons.today, color: Colors.pinkAccent[400], size: 25.0,),
+        Icon(Icons.event_available_rounded, color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], size: 25.0,),
         Text( date,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -246,20 +402,57 @@ class _CarouselPlanToWatchState extends State<CarouselPlanToWatch> {
     );
 
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 4.0),
-      child: ActionChip(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0)
+    return Align(
+      alignment: Alignment.topRight,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 0.5, horizontal: 4.0),
+        child: ActionChip(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0)
+            ),
+            onPressed: () => null,
+            elevation: 5.0,
+            labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
+            backgroundColor: Colors.grey.withOpacity(0.1),
+            label: labelActionChip,
           ),
-          onPressed: () => null,
-          elevation: 5.0,
-          labelPadding: EdgeInsets.symmetric(vertical: 0.5, horizontal: 2.0),
-          backgroundColor: Colors.grey.withOpacity(0.4),
-          label: labelActionChip,
         ),
-      );
+    );
   }
+
+
+  Widget _buttonItem(){
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          onPressed: (){
+            return ButtonClikedAdded(
+                context: context,
+                isUpdated: true,
+                ouevre: widget.ouevre,
+                type: widget.ouevre.oeuvreType,
+                objectType: ConstantsTypeObject.ouevreEntity
+              ).showBottomModal();
+          },
+          heroTag: null,
+          elevation: 10.0,
+          mini: true,
+          child: Icon(Icons.playlist_add_check_rounded, color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400], size: 20.0,),
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            side: BorderSide(
+              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+              width: 2.5
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  
 }
 
 
@@ -298,11 +491,11 @@ class _CardStackPlanToWatchState extends State<CardStackPlanToWatch> {
             ouevreList[position].oeuvreTitle)
         );
       },
-      child: Container(
-        height: 300,
+      child:Container(
+        height: 200,
         width: MediaQuery.of(context).size.width / 0.80,
         padding: const EdgeInsets.only(
-            top: 15.0,  
+            top: 25.0,  
           ),
         child: StackCard.builder(
           itemBuilder: (context, index) {
@@ -319,10 +512,11 @@ class _CardStackPlanToWatchState extends State<CardStackPlanToWatch> {
             });
           },
           stackType: StackType.middle,
-          stackOffset: const Offset(25.0, -10.0),
+          stackOffset: const Offset(25.0, -12.5),
           dimension: StackDimension(
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: 280, // MediaQuery.of(context).size.height * 0.40,
             width: MediaQuery.of(context).size.width / 0.85,
+            
           ), 
           itemCount: ouevreList.length
         ),
@@ -333,7 +527,7 @@ class _CardStackPlanToWatchState extends State<CardStackPlanToWatch> {
 
   List<OuevreEntity> getFirstItems(){
     
-    List<OuevreEntity> ouevreList = List<OuevreEntity>();
+    List<OuevreEntity> ouevreList = [];
     
     for (var i = 0; i < 14; i++) {
       
@@ -361,13 +555,27 @@ class BuildItemStack extends StatefulWidget {
 class _BuildItemStackState extends State<BuildItemStack> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Card(
+      elevation: 15.0,
+        margin: EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 20.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ), 
         child: Stack(
-          fit: StackFit.expand,
-          overflow: Overflow.visible,
-          clipBehavior: Clip.antiAlias,
+          // clipBehavior: Clip.none, 
+          // fit: StackFit.expand,
           children: [
             _cardItem(),
             _titleOfItem(),
@@ -391,40 +599,43 @@ class _BuildItemStackState extends State<BuildItemStack> {
 
     final date = formatter.format(datetime);
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            widget.ouevre.oeuvreTitle,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-              shadows: [
-                Shadow(
-                  color: Colors.black,
-                  blurRadius: 2.5,
-                )
-              ]
+    return Align(
+      alignment: Alignment.bottomCenter,
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              widget.ouevre.oeuvreTitle,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 2.5,
+                  )
+                ]
+              ),
             ),
-          ),
-          Text( date,
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18.0,
-            fontStyle: FontStyle.italic,
-            shadows: [
-                Shadow(
-                  color: Colors.black,
-                  blurRadius: 4.5,
-                )
-              ]
-          ),
-      ),    
-        ],
+            Text( date,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 16.0,
+              fontStyle: FontStyle.italic,
+              shadows: [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 4.5,
+                  )
+                ]
+            ),
+        ),    
+          ],
+        ),
       ),
     );
   }
@@ -436,25 +647,22 @@ class _BuildItemStackState extends State<BuildItemStack> {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage(widget.ouevre.oeuvrePoster);
 
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0)
-      ),
+   return Container(
+      width: double.infinity,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(10.0),
         child: FadeInImage(
-          placeholder: placeholder, 
-          image: poster,
-          fit: BoxFit.fill,
+          image: (widget.ouevre.oeuvrePoster == null) ? placeholder : poster,  //? Image Poster Item,
+          placeholder: placeholder, //? PlaceHolder Item,
+          fit: BoxFit.cover,
         ),
-      ), 
+      ),
     );
   }
 
   Widget _itemRating(){
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.topRight,
       child: Container(
         margin: EdgeInsets.all(12.0),
         padding: EdgeInsets.all(6.0),
@@ -478,35 +686,35 @@ class _BuildItemStackState extends State<BuildItemStack> {
   }
 
 
-  // Widget _buttonItem(){
-  //   return Align(
-  //     alignment: Alignment.topRight,
-  //     child: Padding(
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: FloatingActionButton(
-  //         onPressed: (){
-  //           return ButtonClikedAdded(
-  //               context: context,
-  //               isUpdated: true,
-  //               ouevre: widget.ouevre,
-  //               type: widget.ouevre.oeuvreType,
-  //               objectType: ConstantsTypeObject.ouevreEntity
-  //             ).showBottomModal();
-  //         },
-  //         heroTag: null,
-  //         elevation: 10.0,
-  //         mini: true,
-  //         child: Icon(Icons.add, color: Colors.pinkAccent[400], size: 20.0,),
-  //         backgroundColor: Colors.transparent,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(5.0),
-  //           side: BorderSide(
-  //             color: Colors.pinkAccent[400],
-  //             width: 2.0
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _buttonItem(){
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: FloatingActionButton(
+          onPressed: (){
+            return ButtonClikedAdded(
+                context: context,
+                isUpdated: true,
+                ouevre: widget.ouevre,
+                type: widget.ouevre.oeuvreType,
+                objectType: ConstantsTypeObject.ouevreEntity
+              ).showBottomModal();
+          },
+          heroTag: null,
+          elevation: 10.0,
+          mini: true,
+          child: Icon(Icons.add, color: Colors.pinkAccent[400], size: 22.0,),
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            side: BorderSide(
+              color: Colors.pinkAccent[400],
+              width: 2.5
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

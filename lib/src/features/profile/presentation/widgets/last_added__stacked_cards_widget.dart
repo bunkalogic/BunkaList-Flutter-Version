@@ -106,6 +106,9 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
   
   @override
   Widget build(BuildContext context) {
+
+    List<OuevreEntity> ouevreList = widget.ouevreList.length > 14 ? getFirstItems() : widget.ouevreList;
+
     return GestureDetector(
       onTap: (){
          Navigator.pushNamed(
@@ -118,7 +121,7 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
       );
       },
       child: Container(
-        height: 300,
+        height: 200,
         width: MediaQuery.of(context).size.width / 0.80,
         padding: const EdgeInsets.only(
             top: 25.0,  
@@ -129,7 +132,7 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
               padding: const EdgeInsets.only(
                 top: 5.0,  
               ),
-              child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
+              child: ItemStackCards(ouevreEntity: ouevreList[index],),
             );
           },
           onSwap: (value) {
@@ -138,18 +141,31 @@ class _StackedCardsBuilderState extends State<StackedCardsBuilder> {
             });
           },
           stackType: StackType.middle,
-          stackOffset: const Offset(25.0, -10.0),
+          stackOffset: const Offset(25.0, -12.5),
           dimension: StackDimension(
-            height: 300, // MediaQuery.of(context).size.height * 0.40,
+            height: 280, // MediaQuery.of(context).size.height * 0.40,
             width: MediaQuery.of(context).size.width / 0.85,
+            
           ), 
-          itemCount: widget.ouevreList.length
+          itemCount: ouevreList.length
         ),
       ),
     );
    
   }
 
+
+  List<OuevreEntity> getFirstItems(){
+    
+    List<OuevreEntity> ouevreList = [];
+    
+    for (var i = 0; i < 14; i++) {
+      
+      ouevreList.add(widget.ouevreList[i]);
+    }
+
+    return ouevreList;
+  }
 
   
 }
@@ -169,13 +185,27 @@ class ItemStackCards extends StatefulWidget {
 class _ItemStackCardsState extends State<ItemStackCards> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Card(
+      elevation: 15.0,
+        margin: EdgeInsets.symmetric(
+          horizontal: 5.0,
+          vertical: 20.0
+        ),
+        color: Colors.transparent,
+        child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.4),
+                blurRadius: 0.5,
+                spreadRadius: 0.5
+              ),
+            ]
+          ), 
         child: Stack(
-          fit: StackFit.expand,
-          overflow: Overflow.visible,
-          clipBehavior: Clip.antiAlias,
+          // clipBehavior: Clip.none, 
+          // fit: StackFit.expand,
           children: [
             _cardItem(widget.ouevreEntity),
             _titleOfItem(widget.ouevreEntity),
@@ -189,30 +219,25 @@ class _ItemStackCardsState extends State<ItemStackCards> {
   
 
   Widget _titleOfItem(OuevreEntity item) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 10.0,
-          left: 15.0,
-          right: 15.0
-        ),
+    
+     return Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
         child: Text(
-          item.oeuvreTitle,
-          overflow: TextOverflow.ellipsis,
+          item.oeuvreTitle,//? Title of Item
           style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.w700,
+            fontSize: 18.0,  
+            fontWeight: FontWeight.w600,
             color: Colors.white,
-            shadows: [
-              Shadow(
-                color: Colors.black,
-                blurRadius: 2.5,
-              )
-            ]
+          shadows: [
+            Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
           ),
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
         ),
-      )
+      ),
     );
   }
 
@@ -249,19 +274,16 @@ class _ItemStackCardsState extends State<ItemStackCards> {
     final placeholder = AssetImage('assets/poster_placeholder.png'); 
     final poster = NetworkImage(item.oeuvrePoster);
 
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0)
-      ),
+    return Container(
+      width: double.infinity,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(10.0),
         child: FadeInImage(
-          placeholder: placeholder, 
-          image: poster,
-          fit: BoxFit.fill,
+          image: (item.oeuvrePoster == null) ? placeholder : poster,  //? Image Poster Item,
+          placeholder: placeholder, //? PlaceHolder Item,
+          fit: BoxFit.cover,
         ),
-      ), 
+      ),
     );
   }
 

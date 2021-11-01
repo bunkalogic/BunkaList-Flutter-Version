@@ -139,7 +139,7 @@ class HeaderInfoMovie  extends StatelessWidget {
    Widget _subtitleInfo(){
     final String duration = (movie.runtime == null) ? "00 min." : movie.runtime.toString() + " min.";
 
-    final String realeaseDate = (movie.releaseDate == null) ? "No date" : DateTime.parse(movie.releaseDate).year.toString();  
+    final String realeaseDate = (movie.releaseDate == null || movie.releaseDate == '' ) ? "No date" : DateTime.parse(movie.releaseDate).year.toString();  
 
     final String status = movie.status;
 
@@ -467,7 +467,7 @@ class HeaderInfoSerie  extends StatelessWidget {
   }
 
    Widget _subtitleInfo(){
-    final String duration = (serie.episodeRunTime.isEmpty) ? 'no info' : '${serie.episodeRunTime[0].toString()} min.';
+    final String duration = (serie.episodeRunTime.isEmpty || serie.firstAirDate == '' ) ? 'no info' : '${serie.episodeRunTime[0].toString()} min.';
 
     final String realeaseDate = (serie.firstAirDate == null) ? "No date" : DateTime.parse(serie.firstAirDate).year.toString();  
 
@@ -797,7 +797,7 @@ class HeaderInfoAnime extends StatelessWidget {
   Widget _subtitleInfo(){
     final String duration = (anime.episodeRunTime.isEmpty) ? 'no info' : '${anime.episodeRunTime[0].toString()} min.';
 
-    final String realeaseDate = (anime.firstAirDate == null) ? "No date" : DateTime.parse(anime.firstAirDate).year.toString();  
+    final String realeaseDate = (anime.firstAirDate == null || anime.firstAirDate == '' ) ? "No date" : DateTime.parse(anime.firstAirDate).year.toString();  
 
     final String status = anime.status;
 
@@ -1104,6 +1104,7 @@ class _ButtonStreamingVideoState extends State<ButtonStreamingVideo> {
               isScrollControlled: true,
               elevation: 10.0,
               isDismissible: false,
+              barrierColor: Colors.blueGrey.withOpacity(0.3),
               backgroundColor: getBackgroundColorTheme(), 
               context: context,
               builder: (_) =>  BlocProvider<OuevreDetailsBloc>(

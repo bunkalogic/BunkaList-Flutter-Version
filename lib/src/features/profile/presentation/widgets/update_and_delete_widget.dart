@@ -32,10 +32,11 @@ class ButtomUpdateAndDelete {
    
 
   void showBottonModalOptions(BuildContext context){
-    showBottomSheet(
+    showModalBottomSheet(
       elevation: 10.0,
       backgroundColor: getBackgroundColorTheme(), 
       context: context,
+      barrierColor: Colors.blueGrey.withOpacity(0.3),
       builder: (_) => _buildBottomModal(context,),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

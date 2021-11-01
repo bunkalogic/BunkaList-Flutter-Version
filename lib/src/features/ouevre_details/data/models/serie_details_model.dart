@@ -84,7 +84,7 @@ class SerieDetailsModel extends SerieDetailsEntity {
     List<SerieProductionCompanyModel> producerItems = listProducer.map((i) => SerieProductionCompanyModel.fromJson(i)).toList();
 
     var listLastEpisodeToAir = json['last_episode_to_air'];
-    SerieLastEpisodeToAirModel lastEpisode =  SerieLastEpisodeToAirModel.fromJson(listLastEpisodeToAir);
+    SerieLastEpisodeToAirModel lastEpisode = listLastEpisodeToAir != null ? SerieLastEpisodeToAirModel.fromJson(listLastEpisodeToAir) : SerieLastEpisodeToAirModel(airDate: 'no data', episodeNumber: -1, id: -1, name: 'no data', overview: 'no data', productionCode: '', seasonNumber: -1, stillPath: '', voteAverage: 0.0,  voteCount: -1);
 
     var listNextEpisodeToAir = json['next_episode_to_air'];
     SerieLastEpisodeToAirModel nextEpisode = listNextEpisodeToAir != null ? SerieLastEpisodeToAirModel.fromJson(listNextEpisodeToAir) : SerieLastEpisodeToAirModel(airDate: 'no data', episodeNumber: -1, id: -1, name: 'no data', overview: 'no data', productionCode: '', seasonNumber: -1, stillPath: '', voteAverage: 0.0,  voteCount: -1);

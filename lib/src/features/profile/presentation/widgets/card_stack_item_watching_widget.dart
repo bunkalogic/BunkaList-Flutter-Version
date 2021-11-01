@@ -156,7 +156,7 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
                 ),
                 child: new BlocProvider<OuevreDetailsBloc>(
                   create: (_) => serviceLocator<OuevreDetailsBloc>(),
-                  child:  prefs.currentDesignWatching 
+                  child:  !prefs.currentDesignWatching 
                       ? ItemImageStackedCards(ouevreEntity: widget.ouevreList[index],) 
                       : ItemRowStackedCards(ouevreEntity: widget.ouevreList[index],), 
                 ),
@@ -168,9 +168,9 @@ class _StackedCardsWatchingBuilderState extends State<StackedCardsWatchingBuilde
               });
             },
             stackType: StackType.middle,
-            stackOffset: const Offset(25.0, -10.0),
+            stackOffset: const Offset(28.0, -10.0),
             dimension: StackDimension(
-              height: 300,  //MediaQuery.of(context).size.height * 0.36,
+              height: 260,  //MediaQuery.of(context).size.height * 0.36,
               width: MediaQuery.of(context).size.width / 0.85,
             ), 
             itemCount: widget.ouevreList.length
@@ -241,14 +241,11 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
           widget.ouevreEntity.oeuvreTitle,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 24.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.w700,
             color: Colors.white,
             shadows: [
-              Shadow(
-                color: Colors.black,
-                blurRadius: 2.5,
-              )
+              Shadow(blurRadius: 1.5, color: Colors.black, offset: Offset(1.5, 1.5))
             ]
           ),
         ),
@@ -356,10 +353,10 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
 
     TextStyle textStyle = TextStyle(
       color: Colors.white,
-      fontSize: 20.0, 
+      fontSize: 16.0, 
       fontWeight: FontWeight.w800,
       shadows: [
-      Shadow(blurRadius: 1.5, color: Colors.black, offset: Offset(1.5, 1.5))
+      Shadow(blurRadius: 0.5, color: Colors.black, offset: Offset(1.0, 1.0))
       ]
     );
 
@@ -426,7 +423,7 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
        child: Container(
          child: _itemInfo(),
-         height: 120.0,
+         height: 100.0,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),

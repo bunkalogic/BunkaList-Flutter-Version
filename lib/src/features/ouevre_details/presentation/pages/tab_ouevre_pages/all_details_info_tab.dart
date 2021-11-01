@@ -351,7 +351,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
       children: [
 
         _labelExtraInfo(AppLocalizations.of(context).translate('details_release_date'),  13.0, FontWeight.w600, color: Colors.grey),
-        _labelExtraInfo(formatterDate(movie.releaseDate), 16.0, FontWeight.w700,),
+        _labelExtraInfo(movie.releaseDate == '' ? 'No date' : formatterDate(movie.releaseDate), 16.0, FontWeight.w700,),
         SizedBox(height: 2.0,),
         _labelExtraInfo(AppLocalizations.of(context).translate('details_origin_country'), 13.0, FontWeight.w600, color: Colors.grey),
         _labelExtraInfo(country.isEmpty ? 'no data' : country[0].name, 16.0, FontWeight.w700,),
@@ -419,7 +419,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_origin_country'), getAllCountry(country)),
           SizedBox(height: 12.0,),
-          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'), formatterDate(movie.releaseDate)),
+          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'), movie.releaseDate == '' ? 'No date' : formatterDate(movie.releaseDate)),
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_budget'), '\$${movie.budget}'),
           SizedBox(height: 12.0,),
@@ -1166,7 +1166,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
         children: [
           
           _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w600, color: Colors.grey),
-          _labelExtraInfo(formatterDate(serie.lastAirDate), 16.0, FontWeight.w700,),
+          _labelExtraInfo(serie.lastAirDate == '' ? 'No date' : formatterDate(serie.lastAirDate), 16.0, FontWeight.w700,),
           SizedBox(height: 4.0,),
         ],
       );
@@ -1315,9 +1315,9 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_origin_country'), getAllCountry(country)),
           SizedBox(height: 12.0,),
-          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'), formatterDate(serie.firstAirDate)),
+          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'),serie.firstAirDate == '' ? 'No date' : formatterDate(serie.firstAirDate)),
           SizedBox(height: 12.0,),
-          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_last_episode'), formatterDate(serie.lastAirDate)),
+          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_last_episode'),serie.lastAirDate == '' ? 'No date' : formatterDate(serie.lastAirDate)),
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_number_season'), serie.numberOfSeasons.toString()),
           SizedBox(height: 12.0,),
@@ -2210,7 +2210,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
         children: [
           
           _labelExtraInfo(AppLocalizations.of(context).translate('details_last_episode') , 13.0, FontWeight.w600, color: Colors.grey),
-          _labelExtraInfo(formatterDate(anime.lastAirDate), 16.0, FontWeight.w700,),
+          _labelExtraInfo(anime.lastAirDate == '' ? 'No date' :formatterDate(anime.lastAirDate), 16.0, FontWeight.w700,),
           SizedBox(height: 4.0,),
         ],
       );
@@ -2359,9 +2359,9 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_origin_country'), country.isEmpty ? 'no data' : country[0].name),
           SizedBox(height: 12.0,),
-          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'), formatterDate(anime.firstAirDate)),
+          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_release_date'),anime.firstAirDate == '' ? 'No date' : formatterDate(anime.firstAirDate)),
           SizedBox(height: 12.0,),
-          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_last_episode'), formatterDate(anime.lastAirDate)),
+          _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_last_episode'),anime.lastAirDate == '' ? 'No date' : formatterDate(anime.lastAirDate)),
           SizedBox(height: 12.0,),
           _rowLabelExtraInfo(context, AppLocalizations.of(context).translate('details_number_season'), anime.numberOfSeasons.toString()),
           SizedBox(height: 12.0,),
