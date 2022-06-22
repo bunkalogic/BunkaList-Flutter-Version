@@ -3,6 +3,7 @@ import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/theme/get_background_color.dart';
 import 'package:bunkalist/src/features/explorer/presentation/pages/explorer_page.dart';
 import 'package:bunkalist/src/features/explorer/presentation/widgets/filter_personalized_dailog_widget.dart';
+import 'package:bunkalist/src/features/history/presentation/pages/history_page.dart';
 import 'package:bunkalist/src/features/login/data/datasources/get_guest_sesion_id_data_remote_source.dart';
 import 'package:bunkalist/src/features/search/domain/entities/search_result_entity.dart';
 import 'package:bunkalist/src/features/search/presentation/bloc/bloc.dart';
@@ -162,9 +163,9 @@ Widget _createAppBarPlatform(BuildContext context) {
         title: AppLocalizations.of(context).translate("btn_nav_profile"), 
       ),
       TabItem(
-        icon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorOffIcon(),), 
-        activeIcon: Icon(Icons.star_border_rounded, size: 26.0, color: _getColorActiveIcon(),),
-        title: AppLocalizations.of(context).translate("btn_nav_tops"), 
+        icon: Icon(Icons.history_rounded, size: 26.0, color: _getColorOffIcon(),), 
+        activeIcon: Icon(Icons.history_rounded, size: 26.0, color: _getColorActiveIcon(),),
+        title: AppLocalizations.of(context).translate("label_history_list"), 
       ),
       TabItem(
         icon: Icon(Icons.settings_applications_outlined, size: 26.0, color: _getColorOffIcon(),), 
@@ -226,7 +227,7 @@ Widget _createAppBarPlatform(BuildContext context) {
 
     case 2: return ProfilePage();
 
-    case 3: return TopsFavoritesPage();
+    case 3: return HistoryPage();
 
     case 4: return SettingsPage();
 
@@ -246,7 +247,7 @@ Widget _createAppBarPlatform(BuildContext context) {
 
     case 2: return AppLocalizations.of(context).translate("btn_nav_profile");
 
-    case 3: return AppLocalizations.of(context).translate("btn_nav_tops");
+    case 3: return AppLocalizations.of(context).translate("label_history_list");
 
     case 4: return AppLocalizations.of(context).translate("btn_nav_settings");
 

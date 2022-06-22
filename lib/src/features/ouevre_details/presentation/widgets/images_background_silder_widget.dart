@@ -32,11 +32,11 @@ class _ImagesBackgroundSliderState extends State<ImagesBackgroundSlider> {
    return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
      builder: (context, state){
 
-      if(state is Empty){
+      if(state is EmptyDetails){
 
           return LoadingCustomWidget();
 
-      }else if(state is Loading){
+      }else if(state is LoadingDetails){
           
           return LoadingCustomWidget();
 
@@ -44,7 +44,7 @@ class _ImagesBackgroundSliderState extends State<ImagesBackgroundSlider> {
 
         return BuildImagesBackgroundSlider(backdrops: state.posterImages.backdrops,);
 
-      }else if(state is Error){
+      }else if(state is ErrorDetails){
           
           return Center(
             child: Text(state.message),

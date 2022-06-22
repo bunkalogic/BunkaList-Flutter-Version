@@ -16,5 +16,6 @@ enum ListProfileQuery {
   CompleteCharacterRate, 
   CompleteEnjoymentRate,
   CompleteOeuvreReleaseDate,
-  CompleteOeuvreRating, 
+  CompleteOeuvreRating,
+  AllOrderDate 
 }

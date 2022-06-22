@@ -19,47 +19,48 @@ class _TopsFavoritesPageState extends State<TopsFavoritesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBodyTopsFavorites(),
+      // body: _buildBodyTopsFavorites(),
+      
     );
   }
 
-  Widget _buildBodyTopsFavorites() { 
+  // Widget _buildBodyTopsFavorites() { DDDS
 
-    return ListView(
-      children: [
-        _labelFavorites(AppLocalizations.of(context).translate("title_top_movie"),),
-        // dashed container
-        new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: BuildSatckedCardTopFavorites(type: 'movie',),
-          ),
+  //   return ListView(
+  //     children: [
+  //       _labelFavorites(AppLocalizations.of(context).translate("title_top_movie"),),
+  //       // dashed container
+  //       new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: BuildSatckedCardTopFavorites(type: 'movie',),
+  //         ),
         
-        _labelFavorites(AppLocalizations.of(context).translate("title_top_serie"),),
-        // dashed container
-        new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: BuildSatckedCardTopFavorites(type: 'tv',),
-          ),
-          BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/3234817637',),
-        _labelFavorites(AppLocalizations.of(context).translate("title_top_anime"),),
-        // dashed container
-         new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: BuildSatckedCardTopFavorites(type: 'anime',),
-          ),
-        // dashed container working in new features for create tops
-        Divider(color: Colors.grey,),
-        BannerPremiumWidget(),
-        ContainerTopEmptyWidget(
-          labelTitle: AppLocalizations.of(context).translate("title_working_feature"),
-          label: AppLocalizations.of(context).translate("subtitle_working_feature"), 
-          dottedColor: Colors.pinkAccent[400],
-          icon: Icons.build_rounded,
-          onTap: null
-        ), 
-      ],
-    );
-  }
+  //       _labelFavorites(AppLocalizations.of(context).translate("title_top_serie"),),
+  //       // dashed container
+  //       new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: BuildSatckedCardTopFavorites(type: 'tv',),
+  //         ),
+  //         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/3234817637',),
+  //       _labelFavorites(AppLocalizations.of(context).translate("title_top_anime"),),
+  //       // dashed container
+  //        new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: BuildSatckedCardTopFavorites(type: 'anime',),
+  //         ),
+  //       // dashed container working in new features for create tops
+  //       Divider(color: Colors.grey,),
+  //       BannerPremiumWidget(),
+  //       ContainerTopEmptyWidget(
+  //         labelTitle: AppLocalizations.of(context).translate("title_working_feature"),
+  //         label: AppLocalizations.of(context).translate("subtitle_working_feature"), 
+  //         dottedColor: Colors.pinkAccent[400],
+  //         icon: Icons.build_rounded,
+  //         onTap: null
+  //       ), 
+  //     ],
+  //   );
+  // }
 
   Widget _labelFavorites(String title) {
     return Padding(

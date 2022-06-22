@@ -33,6 +33,7 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
 
   int _activeTabIndex;
 
+  
   // ListProfileQuery typeListCompl = ListProfileQuery.Completed;
 
   bool isActiveTab = true;
@@ -41,11 +42,15 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
   void initState() {
     super.initState();
 
+   
+
     _tabController = TabController(vsync: this, length: 5);
 
     _tabController.addListener(_setActiveTabIndex);
     
   }
+
+
 
   void _setActiveTabIndex() {
   _activeTabIndex = _tabController.index;
@@ -55,11 +60,15 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
   setState(() {});
   }
 
+  
+
   @override
   void dispose() { 
     _tabController.dispose();
     super.dispose();
   }
+
+  
 
    List<Tab> _getListTabs(BuildContext context){
 
@@ -87,15 +96,94 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
 
   AppBar buildAppBar() {
     return AppBar(
-      title: _appBarTitle(),
+      // title: _appBarTitle(),
+      title: _buttonsTypeListMaterial(context),
       bottom: _tabBar(),
       leading: AppBarButtonBack(),
     );
   }
 
+
+
+
+  Widget _buttonsTypeListMaterial(BuildContext context){ 
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        widget.data == 0 
+        ? bottonActive(context, AppLocalizations.of(context).translate("movies"),  Colors.redAccent[400], 0)
+        : bottonDesactive(context, AppLocalizations.of(context).translate("movies"),  Colors.redAccent[400], 0),
+        SizedBox(width: 10.0,),
+        widget.data == 1 
+        ? bottonActive(context, AppLocalizations.of(context).translate("series"),  Colors.greenAccent[400], 1)
+        : bottonDesactive(context, AppLocalizations.of(context).translate("series"),  Colors.greenAccent[400], 1), 
+        
+        SizedBox(width: 10.0,),
+        widget.data == 2 
+        ? bottonActive(context, AppLocalizations.of(context).translate("animes"),  Colors.lightBlueAccent[400], 2)
+        : bottonDesactive(context, AppLocalizations.of(context).translate("animes"),  Colors.lightBlueAccent[400], 2),
+        
+      ],
+    );
+  }
+
+  Widget bottonActive(BuildContext context,String title, Color color, int typeActive){
+
+    return Flexible(
+        // ignore: deprecated_member_use
+        child: RaisedButton(
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          color: color,
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(title,
+            overflow: TextOverflow.ellipsis, 
+            style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w700)),
+          ),
+          onPressed: (){
+            
+            Navigator.pushReplacementNamed(context, '/ListProfile', arguments: typeActive);
+            
+          },
+      ),
+    );
+
+
+  }
+
+
+  Widget bottonDesactive(BuildContext context,String title, Color color, int typeDesactive){
+
+    return Flexible(
+        // ignore: deprecated_member_use
+        child: OutlineButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          borderSide: BorderSide(color: color, width: 1.0),
+          
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(title,
+            overflow: TextOverflow.ellipsis, 
+            style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.w700)),
+          ),
+          onPressed: (){
+            Navigator.pushReplacementNamed(context, '/ListProfile', arguments: typeDesactive);
+          },
+      ),
+    );
+
+
+  }
+
  
 
   TabBarView buildTabBarView(BuildContext context) {
+
     return TabBarView(
       children: _getListTabs(context).map((Tab tab) {
         return new BlocProvider<GetListsBloc>(
@@ -122,6 +210,8 @@ class _ListProfilePageState extends State<ListProfilePage> with SingleTickerProv
       default: return 'movie';
     }
   }
+
+  
 
   Widget _appBarTitle(){
     switch(widget.data){

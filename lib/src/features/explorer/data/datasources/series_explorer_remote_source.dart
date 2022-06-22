@@ -89,7 +89,8 @@ class SeriesExplorerRemoteDataSourceImpl implements SeriesExplorerRemoteDataSour
           'without_genres'        : '16',
           'with_companies'        : withCompanies,
           'with_watch_providers'  : withWatchProvider,
-          'include_null_first_air_dates' : 'false'
+          'include_null_first_air_dates' : 'false',
+          
       };
 
     query.removeWhere((key , value) => value == null);

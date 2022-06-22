@@ -43,9 +43,9 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
       SizedBox(height: 10.0,),
       BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops1),),
       SizedBox(height: 10.0,),
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops2),),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops4),),
       SizedBox(height: 10.0,),
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops3),),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops7),),
       
       SizedBox(height: 20.0,),
       _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_movie")),
@@ -53,11 +53,11 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
       ScrollRowGenres(genres:  getListGenresMovies(context),),
       SizedBox(height: 20.0,),
 
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops4),),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops2),),
       SizedBox(height: 10.0,),
       BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops5),),
       SizedBox(height: 10.0,),
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops6,)),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops8,)),
         
       SizedBox(height: 10.0,),
       _labelScrollGenres(AppLocalizations.of(context).translate("label_genres_serie")),
@@ -66,9 +66,9 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
       SizedBox(height: 20.0,),
 
       
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops7),),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops3),),
       SizedBox(height: 10.0,),
-      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops8),),
+      BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops6),),
       SizedBox(height: 10.0,),
       BuildListPersonalHomeTops(filterParams: FilterParams.fromJson(prefs.getHomeTops9),),
 
@@ -105,9 +105,9 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
     prefs.getHomeTops2 = new FilterParams(
       title: AppLocalizations.of(context).translate("label_movie_cinema"),
       type: 'movie',
-      year: 2021,
+      year: 2022,
       sortBy: ConstSortBy.popularityDesc,
-      design: true,
+      design: false,
     );
 
     prefs.getHomeTops3 = new FilterParams(
@@ -127,7 +127,7 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
     prefs.getHomeTops5 = new FilterParams(
       title: AppLocalizations.of(context).translate("label_serie_month"),
       type: 'tv',
-      year: 2021,
+      year: 2022,
       sortBy: ConstSortBy.popularityDesc,
       design: true,
     );
@@ -150,7 +150,7 @@ class _PersonalHomeTopsState extends State<PersonalHomeTops> {
     prefs.getHomeTops8 = new FilterParams(
       title: AppLocalizations.of(context).translate("label_anime_season"),
       type: 'anime',
-      year: 2021,
+      year: 2022,
       sortBy: ConstSortBy.popularityDesc,
       design: true,
     );

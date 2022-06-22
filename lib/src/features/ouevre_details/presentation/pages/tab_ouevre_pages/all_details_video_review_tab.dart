@@ -17,7 +17,7 @@ class AllDetailsVideoReviewTab extends StatefulWidget {
   _AllDetailsVideoReviewTabState createState() => _AllDetailsVideoReviewTabState();
 }
 
-class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
+class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> with AutomaticKeepAliveClientMixin{
 
 
 
@@ -34,17 +34,26 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
 
   @override
   Widget build(BuildContext context) {
+
+    super.build(context);
+
     return Container(
       child: BlocBuilder<VideoYoutubeBloc, VideoYoutubeState>(
         builder: (context, state) {
           
           if(state is Empty){
 
-            return LoadingCustomWidget();
+           return Container(
+              height: 200.0,
+              child: LoadingCustomWidget());
+
 
           }else if(state is Loading){
             
-            return LoadingCustomWidget();
+            return Container(
+              height: 200.0,
+              child: LoadingCustomWidget());
+
 
           }else if(state is Loaded){
 
@@ -54,22 +63,19 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
 
             }else{
               return Container(
-                child: Column(
-                   mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    // MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4818973727',),
-                    //MaxNativeBannerAds(adPlacementID: "177059330328908_179583233409851",),
-                    (!prefs.isNotAds)
-                    ? FeaturePremiumWidget()
-                    : Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.all(5.0),
-                        itemCount: state.videos.length,
-                        itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i]),
-                      ),
-                    ),
-                  ],
+                child: (!prefs.isNotAds)
+                ? FeaturePremiumWidget()
+                : ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 300),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemExtent: 300,
+                  padding: EdgeInsets.all(5.0),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.videos.length,
+                  itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i],),
                 ),
+              )
               );
             }
             
@@ -85,4 +91,8 @@ class _AllDetailsVideoReviewTabState extends State<AllDetailsVideoReviewTab> {
       ),
     );
   }
+
+  @override
+  
+  bool get wantKeepAlive => true;
 }

@@ -33,20 +33,25 @@ class _RowImagesWidgetState extends State<RowImagesWidget> {
    return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
      builder: (context, state){
 
-      if(state is Empty){
+      if(state is EmptyDetails){
 
-          return LoadingCustomWidget();
+          return Container(
+              height: 150.0,
+              child: LoadingCustomWidget());
 
-      }else if(state is Loading){
+      }else if(state is LoadingDetails){
           
-          return LoadingCustomWidget();
+          return Container(
+              height: 150.0,
+              child: LoadingCustomWidget());
+
 
       }else if(state is LoadedImages){
 
 
         return _buildRowImages(state.posterImages);
 
-      }else if(state is Error){
+      }else if(state is ErrorDetails){
           
           return Center(
             child: Text(state.message),

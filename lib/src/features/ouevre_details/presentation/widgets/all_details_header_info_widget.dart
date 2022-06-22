@@ -42,11 +42,11 @@ class _AllDetailsHeaderInfoState extends State<AllDetailsHeaderInfo> {
     return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
       builder: (context, state) {
         
-        if(state is Empty){
+        if(state is EmptyDetails){
 
           return LoadingCustomWidget();
 
-        }else if(state is Loading){
+        }else if(state is LoadingDetails){
           
           return LoadingCustomWidget();
 
@@ -62,7 +62,7 @@ class _AllDetailsHeaderInfoState extends State<AllDetailsHeaderInfo> {
 
           return HeaderInfoAnime(anime: state.anime,);
 
-        }else if(state is Error){
+        }else if(state is ErrorDetails){
           
           return Center(
             child: Text(state.message),
@@ -99,7 +99,7 @@ class HeaderInfoMovie  extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, movie),
     centerTitle: true,
-    titlePadding: const EdgeInsets.only(bottom: 12.0),
+    // titlePadding: const EdgeInsets.only(top: 10.0), 
     title: _titleInfo(context ,movie),
   );
   }
@@ -119,18 +119,23 @@ class HeaderInfoMovie  extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: availableWidth,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 60.0),
-        child: Text(
-            (movie.title == null) ? movie.originalTitle : movie.title,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              shadows: shadowBlack //prefs.whatModeIs ? shadowBlack : shadowWhite,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+              (movie.title == null) ? movie.originalTitle : movie.title,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                shadows: shadowBlack //prefs.whatModeIs ? shadowBlack : shadowWhite,
+              ),
             ),
-          ),
+          SizedBox(height: 1.0,),
+          _subtitleInfo()  
+        ],
       ),
     );
   }
@@ -143,19 +148,13 @@ class HeaderInfoMovie  extends StatelessWidget {
 
     final String status = movie.status;
 
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 80.0),
-        child: Text(
-          ' $realeaseDate  -  $status  -  $duration ',
-          style: TextStyle(
-            color: Colors.grey[200],
-            fontSize: 16.0,
-            shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
-            fontWeight: FontWeight.w600 
-          ),
-        ),
+    return Text(
+      ' $realeaseDate  -  $status  -  $duration ',
+      style: TextStyle(
+        color: Colors.grey[300],
+        fontSize: 12.0,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
+        fontWeight: FontWeight.w600 
       ),
     );
 
@@ -182,7 +181,7 @@ class HeaderInfoMovie  extends StatelessWidget {
               child: ButtonStreamingVideo(id: movie.id, type: movie.type),
             ),
           ),
-          _subtitleInfo(),
+          // _subtitleInfo(),
           _containerRounded()
         ],
       ),
@@ -213,12 +212,12 @@ class HeaderInfoMovie  extends StatelessWidget {
         decoration: BoxDecoration(
           color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(25),
-            topRight: const Radius.circular(25)
+            topLeft: const Radius.circular(55),
+            topRight: const Radius.circular(55)
           )
         ),
         
-        height: 50.0,
+        height: 10.0,
       ),
     );
   }
@@ -433,7 +432,7 @@ class HeaderInfoSerie  extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, serie),
     centerTitle: true,
-    titlePadding: const EdgeInsets.only(bottom: 12.0),
+    // titlePadding: const EdgeInsets.only(bottom: 12.0),
     title: _titleInfo(context, serie),
   );
   }
@@ -450,18 +449,23 @@ class HeaderInfoSerie  extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: availableWidth,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 60.0),
-        child: Text(
-            (serie.name == null) ? serie.originalName : serie.name,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              shadows: shadowBlack  //prefs.whatModeIs ? shadowBlack : shadowWhite,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+              (serie.name == null) ? serie.originalName : serie.name,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                shadows: shadowBlack //prefs.whatModeIs ? shadowBlack : shadowWhite,
+              ),
             ),
-          ),
+          SizedBox(height: 1.0,),
+          _subtitleInfo()  
+        ],
       ),
     );
   }
@@ -473,19 +477,13 @@ class HeaderInfoSerie  extends StatelessWidget {
 
     final String status = serie.status;
 
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 80.0),
-        child: Text(
-          ' $realeaseDate  -  $status  -  $duration ',
-          style: TextStyle(
-            color: Colors.grey[200],
-            fontSize: 16.0,
-            shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
-            fontWeight: FontWeight.w600 
-          ),
-        ),
+    return Text(
+      ' $realeaseDate  -  $status  -  $duration ',
+      style: TextStyle(
+        color: Colors.grey[300],
+        fontSize: 12.0,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
+        fontWeight: FontWeight.w600 
       ),
     );
 
@@ -511,7 +509,7 @@ class HeaderInfoSerie  extends StatelessWidget {
               child: ButtonStreamingVideo(id: serie.id, type: serie.type),
             ),
           ),
-          _subtitleInfo(),
+          // _subtitleInfo(),
           _containerRounded() 
         ],
       ),
@@ -542,12 +540,12 @@ class HeaderInfoSerie  extends StatelessWidget {
         decoration: BoxDecoration(
           color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(25),
-            topRight: const Radius.circular(25)
+            topLeft: const Radius.circular(55),
+            topRight: const Radius.circular(55)
           )
         ),
         
-        height: 50.0,
+        height: 10.0,
       ),
     );
   }
@@ -760,7 +758,7 @@ class HeaderInfoAnime extends StatelessWidget {
     collapseMode: CollapseMode.parallax,
     background: _stackInfoBackground(context, anime),
     centerTitle: true,
-    titlePadding: const EdgeInsets.only(bottom: 12.0),
+    // titlePadding: const EdgeInsets.only(bottom: 12.0),
     title: _titleInfo(context ,anime),
   );
   }
@@ -777,18 +775,23 @@ class HeaderInfoAnime extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: availableWidth,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 60.0),
-        child: Text(
-            (anime.name == null) ? anime.originalName : anime.name,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              shadows: shadowBlack //prefs.whatModeIs ? shadowBlack : shadowWhite,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+              (anime.name == null) ? anime.originalName : anime.name,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                shadows: shadowBlack //prefs.whatModeIs ? shadowBlack : shadowWhite,
+              ),
             ),
-          ),
+          SizedBox(height: 1.0,),
+          _subtitleInfo()  
+        ],
       ),
     );
   }
@@ -801,19 +804,13 @@ class HeaderInfoAnime extends StatelessWidget {
 
     final String status = anime.status;
 
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 80.0),
-        child: Text(
-          ' $realeaseDate  -  $status  -  $duration ',
-          style: TextStyle(
-            color: Colors.grey[200],
-            fontSize: 16.0,
-            shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
-            fontWeight: FontWeight.w600 
-          ),
-        ),
+    return Text(
+      ' $realeaseDate  -  $status  -  $duration ',
+      style: TextStyle(
+        color: Colors.grey[300],
+        fontSize: 12.0,
+        shadows: [Shadow(blurRadius: 1.0, color:  Colors.black, offset: Offset(0.7, 0.7))],
+        fontWeight: FontWeight.w600 
       ),
     );
 
@@ -839,7 +836,7 @@ class HeaderInfoAnime extends StatelessWidget {
               child: ButtonStreamingVideo(id: anime.id, type: anime.type),
             ),
           ),
-          _subtitleInfo(),
+          // _subtitleInfo(),
           _containerRounded()
         ],
       ),
@@ -853,12 +850,12 @@ class HeaderInfoAnime extends StatelessWidget {
         decoration: BoxDecoration(
           color: getBackgroundColorTheme(),
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(25),
-            topRight: const Radius.circular(25)
+            topLeft: const Radius.circular(55),
+            topRight: const Radius.circular(55)
           )
         ),
         
-        height: 50.0,
+        height: 10.0,
       ),
     );
   }

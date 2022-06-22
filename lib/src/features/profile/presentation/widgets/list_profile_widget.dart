@@ -23,17 +23,20 @@ class ListTabProfileWidget extends StatefulWidget {
 
 class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
 
+  
 
   // final loadingPage = Center(
   //     child: CircularProgressIndicator(),
   //   ) ;
+
+  
 
   // @override
   // void didChangeDependencies() {
   //   super.didChangeDependencies();
 
   //   BlocProvider.of<GetListsBloc>(context)..add(
-  //     GetYourLists( type: widget.type, status: ListProfileQuery)
+  //     GetYourLists( type: widget.type, status: ListProfileQuery.Completed)
   //   );
 
   // }  
@@ -42,12 +45,18 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+    
     
     return getStatusItemBuilder();
 
   }
 
   Widget getStatusItemBuilder(){
+    
+    
+    
+
     switch(widget.idStatus.toString()){
       case '[<0>]': {
 
@@ -102,7 +111,7 @@ class _ListTabProfileWidgetState extends State<ListTabProfileWidget> {
     }
   }
 
-  // String ListProfileQuery{
+  // String ListProfileQuery(){
   //   switch(widget.idStatus.toString()){
       
   //     case '[<0>]': return 'Completed';

@@ -14,11 +14,17 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_deta
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/episode_season_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_credits/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_recommendations/recommendations_bloc.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_similar/similar_bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_video_youtube/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_casting_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_recomendation_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_season_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_similar_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_trailers_tab.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_video_review_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/build_keywords_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/list_companies_and_network_widgets.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/row_images_widget.dart';
@@ -57,11 +63,11 @@ class _AllDetailsInfoTabState extends State<AllDetailsInfoTab> {
       child: BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
         builder: (context, state) {
           
-          if(state is Empty){
+          if(state is EmptyDetails){
 
             return LoadingCustomWidget();
 
-          }else if(state is Loading){
+          }else if(state is LoadingDetails){
             
             return LoadingCustomWidget();
 
@@ -78,7 +84,7 @@ class _AllDetailsInfoTabState extends State<AllDetailsInfoTab> {
             return AllDetailsInfoTabBarAnime(anime: state.anime,);
             // return AllDetailsInfoTabAnime(anime: state.anime,);
 
-          }else if(state is Error){
+          }else if(state is ErrorDetails){
             
             return EmptyIconWidget();
 
@@ -128,12 +134,31 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
           child: ChipsGenresWidget(genres: genreIds, type: 'movies', isWrap: false,),
         ),
+        SizedBox(height: 10),
+        //! Casting
+        new BlocProvider<CreditsBloc>(
+          create: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: movie.id, type: movie.type,),
+        ),
+        SizedBox(height: 10),
+
         _titleSection(AppLocalizations.of(context).translate('details_more_info')),
         _columnMoreInfo(context),
+        SizedBox(height: 10),
+
+        //! Trailers
+        _titleSection(AppLocalizations.of(context).translate('trailer')),
+        BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: '${movie.title} ${movie.type}'),
+        ),
+        SizedBox(height: 10),
+
         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
         //! Production Companies
          (movie.productionCompanies.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_production')),
         _getListCompanies(context),
+        SizedBox(height: 10),
         //! Poster Section
         _titleSection(AppLocalizations.of(context).translate('label_images')),
         BlocProvider<OuevreDetailsBloc>(
@@ -143,17 +168,17 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
               child: RowImagesWidget(id: movie.id, type: movie.type),
             ),
           ),
+        SizedBox(height: 10),
         
-        //! Keywords Section
-        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
-        BlocProvider<OuevreDetailsBloc>(
-            create: (_) => serviceLocator<OuevreDetailsBloc>(),
-            child: BuildKeywordsWidget(
-              id: movie.id,
-              type: movie.type,
-            ),
-          ),
+        //! Video Review
+        _titleSection(AppLocalizations.of(context).translate('video_review')),
+        new BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: '${movie.title} ${movie.type}',),
+        ),
+
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
+        SizedBox(height: 10),
         _titleSection(AppLocalizations.of(context).translate('similar')),
         BlocProvider<SimilarBloc>(
           create: (_) => serviceLocator<SimilarBloc>(),
@@ -164,6 +189,18 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
           create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: movie.id, type: movie.type,),
         ),
+        SizedBox(height: 10),
+        //! Keywords Section
+        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
+        BlocProvider<OuevreDetailsBloc>(
+            create: (_) => serviceLocator<OuevreDetailsBloc>(),
+            child: BuildKeywordsWidget(
+              id: movie.id,
+              type: movie.type,
+            ),
+          ),
+        
+
         SizedBox(height: 40)
       ],
     );
@@ -207,7 +244,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
     List<MovieProductionCompany> listMovieProducer = [];
     List<Company> companies = [];
 
-    listMovieProducer = new List<MovieProductionCompany>.from(movie.productionCompanies);
+    listMovieProducer = new List<MovieProductionCompany>.from(movie.productionCompanies) ?? [];
 
     if(listMovieProducer.isEmpty) return Container();
 
@@ -249,22 +286,30 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
     
       final listMovieProd = movie.productionCompanies;
       listMovieProducer = new List<MovieProductionCompany>.from(listMovieProd);
+
+      if(listMovieProducer.isNotEmpty){
+
+        logo =  listMovieProducer.first.logoPath ?? '';
       
       company = new Company(
-        id: listMovieProducer[0].id.toString(),
+        id: listMovieProducer.first.id.toString() ?? '',
         imagePath: logo,
-        label: listMovieProducer[0].name,
+        label: listMovieProducer.first.name ?? '',
         type: 'movies'
       );
 
-      logo =  listMovieProducer[0].logoPath;
+      }
+
+      
+
+      
 
     
 
 
     
 
-
+    
 
 
     return Container(
@@ -305,7 +350,7 @@ class AllDetailsInfoTabBarMovie extends StatelessWidget {
 
     Preferences prefs = Preferences(); 
 
-    if (logoPath == null) {
+    if (logoPath == null && logoPath == '' && logoPath.isEmpty) {
       return Icon(
         Icons.broken_image_rounded,
         color: Colors.grey,
@@ -852,16 +897,46 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
           child: ChipsGenresWidget(genres: genreIds, type: 'series', isWrap: false,),
         ),
+        //! Casting
+
+        new BlocProvider<CreditsBloc>(
+          create: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: serie.id, type: serie.type,),
+        ),
+        SizedBox(height: 10),
+
+
         //! Last Episode And Next Episode
         (lastEpisode == null) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_last_episode')),
         _lastEpisodes(context, lastEpisode),
 
         (nextEpisode.airDate == 'no data') ? Container() : _titleSection(AppLocalizations.of(context).translate('label_next_episode')),
         _lastEpisodes(context, nextEpisode),
+        SizedBox(height: 10),
+        //! Season
+
+        _titleSection(AppLocalizations.of(context).translate('season')),
+        new BlocProvider<OuevreDetailsBloc>(
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsSeasonTab(id: serie.id, type: serie.type,),
+        ),
+        SizedBox(height: 10),
+
+
 
         _titleSection(AppLocalizations.of(context).translate('details_more_info')),
         _columnMoreInfo(context),
         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
+        //! Trailers
+        SizedBox(height: 10),
+        _titleSection(AppLocalizations.of(context).translate('trailer')),
+        BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: '${serie.name} ${serie.type}'),
+        ),
+        SizedBox(height: 10),
+
+
         //! Redes
         (serie.networks.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_network')),
         _getListNetworks(context),
@@ -869,6 +944,7 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
          (serie.productionCompanies.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_production')),
         _getListCompanies(context),
         //! Poster Section
+        SizedBox(height: 10),
         _titleSection(AppLocalizations.of(context).translate('label_images')),
         BlocProvider<OuevreDetailsBloc>(
             create: (_) => serviceLocator<OuevreDetailsBloc>(),
@@ -877,16 +953,17 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
               child: RowImagesWidget(id: serie.id, type: serie.type),
             ),
           ),
+        SizedBox(height: 10),
         
-        //! Keywords Section
-        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
-        BlocProvider<OuevreDetailsBloc>(
-            create: (_) => serviceLocator<OuevreDetailsBloc>(),
-            child: BuildKeywordsWidget(
-              id: serie.id,
-              type: serie.type,
-            ),
-          ),
+        //! Video Review
+
+        _titleSection(AppLocalizations.of(context).translate('video_review')),
+        new BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: '${serie.name} ${serie.type}',),
+        ),
+        SizedBox(height: 10),
+
 
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         _titleSection(AppLocalizations.of(context).translate('similar')),
@@ -899,6 +976,17 @@ class AllDetailsInfoTabBarSerie extends StatelessWidget {
           create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: serie.id, type: serie.type,),
         ),
+        SizedBox(height: 10),
+        //! Keywords Section
+        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
+        BlocProvider<OuevreDetailsBloc>(
+            create: (_) => serviceLocator<OuevreDetailsBloc>(),
+            child: BuildKeywordsWidget(
+              id: serie.id,
+              type: serie.type,
+            ),
+          ),
+          
         SizedBox(height: 40)
       ],
     );
@@ -1897,16 +1985,46 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
           child: ChipsGenresWidget(genres: genreIds, type: 'animes', isWrap: false,),
         ),
+
+        //! Casting
+
+        new BlocProvider<CreditsBloc>(
+          create: (_) => serviceLocator<CreditsBloc>(),
+          child: AllDetailsCastingTab(id: anime.id, type: anime.type,),
+        ),
+        SizedBox(height: 10),
+
+
         //! Last Episode And Next Episode
         (lastEpisode == null) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_last_episode')),
         _lastEpisodes(context, lastEpisode),
 
         (nextEpisode.airDate == 'no data') ? Container() : _titleSection(AppLocalizations.of(context).translate('label_next_episode')),
         _lastEpisodes(context, nextEpisode),
+        SizedBox(height: 10),
+        //! Season
+
+         _titleSection(AppLocalizations.of(context).translate('season')),
+        new BlocProvider<OuevreDetailsBloc>(
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsSeasonTab(id: anime.id, type: anime.type,),
+        ),
+        SizedBox(height: 10),
 
         _titleSection(AppLocalizations.of(context).translate('details_more_info')),
         _columnMoreInfo(context),
         BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/9899129766',),
+        SizedBox(height: 10),
+        //! Trailers
+
+        _titleSection(AppLocalizations.of(context).translate('trailer')),
+        BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsTrailerTab(title: '${anime.name} ${anime.type}'),
+        ),
+        SizedBox(height: 10),
+
+
         //! Redes
         (anime.networks.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_network')),
         _getListNetworks(context),
@@ -1914,6 +2032,7 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
          (anime.productionCompanies.isEmpty) ? Container() : _titleSection(AppLocalizations.of(context).translate('label_production')),
         _getListCompanies(context),
         //! Poster Section
+        SizedBox(height: 10),
         _titleSection(AppLocalizations.of(context).translate('label_images')),
         BlocProvider<OuevreDetailsBloc>(
             create: (_) => serviceLocator<OuevreDetailsBloc>(),
@@ -1922,15 +2041,18 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
               child: RowImagesWidget(id: anime.id, type: anime.type),
             ),
           ),
-        //! Keywords Section
-        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
-        BlocProvider<OuevreDetailsBloc>(
-            create: (_) => serviceLocator<OuevreDetailsBloc>(),
-            child: BuildKeywordsWidget(
-              id: anime.id,
-              type: anime.type,
-            ),
-          ),
+        
+        //! Video Review
+
+        _titleSection(AppLocalizations.of(context).translate('video_review')),
+        new BlocProvider<VideoYoutubeBloc>(
+          create: (_) => serviceLocator<VideoYoutubeBloc>(),
+          child: AllDetailsVideoReviewTab(title: '${anime.name} ${anime.type}',),
+        ),
+        SizedBox(height: 10),
+
+
+
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1298100531',),
         _titleSection(AppLocalizations.of(context).translate('similar')),
         BlocProvider<SimilarBloc>(
@@ -1942,6 +2064,18 @@ class AllDetailsInfoTabBarAnime extends StatelessWidget {
           create: (_) => serviceLocator<RecommendationsBloc>(),
           child: AllDetailsRecomendationTab(id: anime.id, type: anime.type,),
         ),
+        SizedBox(height: 10),
+        //! Keywords Section
+        _titleSection(AppLocalizations.of(context).translate('label_keyword')),
+        BlocProvider<OuevreDetailsBloc>(
+            create: (_) => serviceLocator<OuevreDetailsBloc>(),
+            child: BuildKeywordsWidget(
+              id: anime.id,
+              type: anime.type,
+            ),
+          ),
+          
+
         SizedBox(height: 40)
 
       ],

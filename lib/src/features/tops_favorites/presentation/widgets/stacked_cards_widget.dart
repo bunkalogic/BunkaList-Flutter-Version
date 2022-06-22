@@ -8,6 +8,7 @@ import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dar
 import 'package:bunkalist/src/features/profile/presentation/bloc/bloc_get_lists/getlists_bloc.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/item_details_widget.dart';
 import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/container_top_empty_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stack_card/flutter_stack_card.dart';
@@ -44,7 +45,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
 
 
           return Container(
-            height: MediaQuery.of(context).size.height * 0.33,
+            height: MediaQuery.of(context).size.height * 0.25,
             width: MediaQuery.of(context).size.width / 0.80,
             child: LoadingCustomWidget()
           );
@@ -59,7 +60,7 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
          } 
           _getTotalOfList(state.ouevreList.length);
 
-          return StackedCardsWidget(ouevreList: state.ouevreList);
+          return StackedCardsWidget(ouevreList: state.ouevreList, title: _getTitle(),);
 
 
         }else if(state is GetlistsError){
@@ -113,6 +114,27 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
     }
   }
 
+  String _getTitle(){
+
+    switch (widget.type) {
+      case 'movie':{
+        return AppLocalizations.of(context).translate("title_top_movie");
+      }
+      break;
+
+      case 'tv':{
+        return AppLocalizations.of(context).translate("title_top_serie");
+      }
+      break;
+
+      case 'anime': {
+        return AppLocalizations.of(context).translate("title_top_anime");
+      }
+      break;
+
+    }
+  }
+
   Widget _itemMovieEmpty(){
     return ContainerTopEmptyWidget(
           labelTitle: AppLocalizations.of(context).translate("empty_title_top_movie"),
@@ -155,8 +177,9 @@ class _BuildSatckedCardTopFavoritesState extends State<BuildSatckedCardTopFavori
 class StackedCardsWidget extends StatefulWidget {
 
   final List<OuevreEntity> ouevreList;
+  final String title;
 
-  StackedCardsWidget({@required this.ouevreList});
+  StackedCardsWidget({@required this.ouevreList, @required this.title});
 
   @override
   _StackedCardsWidgetState createState() => _StackedCardsWidgetState();
@@ -165,15 +188,19 @@ class StackedCardsWidget extends StatefulWidget {
 class _StackedCardsWidgetState extends State<StackedCardsWidget> {
   
   int position = 0;
+  Preferences prefs = Preferences();
   
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        _labelFavorites(),
         GestureDetector(
           onTap: (){
+            
           print('on tap!!! position: $position');
+          
           showDialog(
           context: context,
           builder: (_) {
@@ -186,39 +213,81 @@ class _StackedCardsWidgetState extends State<StackedCardsWidget> {
         ); 
           },
           child: Container(
-            height: 300,
+            height: 200,
             width: MediaQuery.of(context).size.width / 0.80,
             padding: const EdgeInsets.only(
-            top: 25.0,  
+            top: 5.0,  
           ),
-            child: StackCard.builder(
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 5.0,  
-                  ),
-                  child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
-                );
-              },
-              onSwap: (value) {
-                setState(() {
-                  position = value;
-                });
-              },
-              stackType: StackType.middle,
-              stackOffset: const Offset(25.0, -10.0),
-              dimension: StackDimension(
-                height: 300.0, //MediaQuery.of(context).size.height * 0.40,
-                width: MediaQuery.of(context).size.width / 0.85,
-              ), 
-              itemCount: widget.ouevreList.length
-            ),
+          child:  CarouselSlider.builder(
+        options: CarouselOptions(
+          enlargeCenterPage: true,
+          viewportFraction: 0.8,
+          aspectRatio: 1.9,
+          enableInfiniteScroll: false,
+          onPageChanged: (index, reason) {
+            position = index; 
+            setState(() { });   
+          },
+        ),
+        itemCount: widget.ouevreList.length,
+        itemBuilder: (context, index, realIndex) {
+            
+            
+            return ItemStackCards(ouevreEntity: widget.ouevreList[index],);
+        },
+
+      ),
+            // child: StackCard.builder(
+            //   itemBuilder: (context, index) {
+            //     return Padding(
+            //       padding: const EdgeInsets.only(
+            //         top: 5.0,  
+            //       ),
+            //       child: ItemStackCards(ouevreEntity: widget.ouevreList[index],),
+            //     );
+            //   },
+            //   onSwap: (value) {
+            //     setState(() {
+            //       position = value;
+            //     });
+            //   },
+            //   stackType: StackType.right,
+            //   stackOffset: const Offset(25.0, 10.0),
+            //   dimension: StackDimension(
+            //     height: 260.0, //MediaQuery.of(context).size.height * 0.40,
+            //     width: MediaQuery.of(context).size.width / 0.90,
+            //   ), 
+            //   itemCount: widget.ouevreList.length
+            // ),
           ),
         ),
-        _rowTopActions()
+        // _rowTopActions()
       ],
     );
 
+  }
+
+  Widget _labelFavorites() {
+
+    return ListTile(
+      onTap: (){
+
+        Navigator.pushNamed(context, '/TopFavDetails', arguments: widget.ouevreList);
+
+      },
+      title: Text(
+        widget.title,
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      ),
+      
+      trailing: Icon(
+        Icons.chevron_right_rounded,
+        color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        size: 28,
+      ),
+    );
+
+    
   }
 
 
@@ -322,19 +391,19 @@ class _ItemStackCardsState extends State<ItemStackCards> {
   Widget _positionTopLabel(OuevreEntity item) {
 
     int position = item.positionListFav;
-    String label = '${position.toString()}.';
+    String label = '${position.toString()}';
 
     return Align(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.topLeft,
       child: Padding(
         padding: const EdgeInsets.only(
-          bottom: 20.0,
+          top: 10.0,
           left: 20.0
         ),
         child: Text(
           label,
           style: TextStyle(
-            fontSize: 50.0,
+            fontSize: 40.0,
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontStyle: FontStyle.italic,
@@ -355,15 +424,15 @@ class _ItemStackCardsState extends State<ItemStackCards> {
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: const EdgeInsets.only(
-          bottom: 30.0,
-          left: 65.0,
+          bottom: 20.0,
+          left: 10.0,
           right: 10.0
         ),
         child: Text(
           item.oeuvreTitle,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 26.0,
+            fontSize: 24.0,
             fontWeight: FontWeight.w700,
             color: Colors.white,
             shadows: [
@@ -384,7 +453,7 @@ class _ItemStackCardsState extends State<ItemStackCards> {
     final poster = NetworkImage(item.oeuvrePoster);
 
     return Card(
-      elevation: 0,
+      // elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0)
       ),

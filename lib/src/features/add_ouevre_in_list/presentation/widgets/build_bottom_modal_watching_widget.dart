@@ -207,6 +207,7 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: EdgeInsets.only(top: 10.0),
+        // ignore: deprecated_member_use
         child: FlatButton(
           onPressed:() => _addOuevreInFirebase(),
           shape: new RoundedRectangleBorder(
@@ -230,6 +231,7 @@ class _BuildBottomModalWatchingState extends State<BuildBottomModalWatching> {
     ouevreFinal = new OuevreEntity(
       seasons: inputSeason,
       episodes: inputEpisode,
+      episodeTotal: widget.newOuevre.episodeTotal,
       status: widget.newOuevre.status,
       oeuvreId: widget.newOuevre.oeuvreId,
       oeuvreTitle: widget.newOuevre.oeuvreTitle,

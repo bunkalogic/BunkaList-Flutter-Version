@@ -11,9 +11,9 @@ abstract class OuevreDetailsState extends Equatable {
   OuevreDetailsState([List props = const <dynamic>[]]) : super(props);
 }
 
-class Empty extends OuevreDetailsState{}
+class EmptyDetails extends OuevreDetailsState{}
 
-class Loading extends OuevreDetailsState{}
+class LoadingDetails extends OuevreDetailsState{}
 
 class LoadedMovie extends OuevreDetailsState{
   final MovieDetailsEntity movie;
@@ -77,8 +77,8 @@ class LoadedWatchProvider extends OuevreDetailsState{
   ]);
 }
 
-class Error extends OuevreDetailsState{
+class ErrorDetails extends OuevreDetailsState{
   final String message;
-  Error({@required this.message}) : super ([message]);
+  ErrorDetails({@required this.message}) : super ([message]);
 }
 

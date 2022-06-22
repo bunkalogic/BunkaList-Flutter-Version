@@ -19,7 +19,7 @@ class AllDetailsCastingTab extends StatefulWidget {
   _AllDetailsCastingTabState createState() => _AllDetailsCastingTabState();
 }
 
-class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
+class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> with AutomaticKeepAliveClientMixin {
 
 
   @override
@@ -34,17 +34,23 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
   @override
   Widget build(BuildContext context) {
 
+    super.build(context);
+
     return Container(
       child: BlocBuilder<CreditsBloc, CreditsState>(
         builder: (context, state) {
           
           if(state is Empty){
 
-            return LoadingCustomWidget();
+            return Container(
+              height: 250.0,
+              child: LoadingCustomWidget());
 
           }else if(state is Loading){
             
-            return LoadingCustomWidget();
+            return Container(
+              height: 250.0,
+              child: LoadingCustomWidget());
 
           }else if(state is Loaded){
 
@@ -54,13 +60,14 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
             final List<Crew> listCrew = new List<Crew>.from(credits.crew);  
 
             return Container(
-              child: ListView(
+              child: Column(
                 children: <Widget>[
-                  _labelScrollPersonItem(AppLocalizations.of(context).translate('casting')),
-                  ScrollCastItem(castList: listCast,),
-                  _labelScrollPersonItem(AppLocalizations.of(context).translate('crew')),
-                  ScrollCrewItem(crewList: listCrew,),
                   BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/4251997510',),
+                  _titleSection(AppLocalizations.of(context).translate('casting')),
+                  ScrollCastItem(castList: listCast,),
+                  _titleSection(AppLocalizations.of(context).translate('crew')),
+                  ScrollCrewItem(crewList: listCrew,),
+                  
                   //MaxNativeAds(adPlacementID: "177059330328908_179581390076702",),
                 ],
               )
@@ -79,6 +86,26 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
     );
   }
 
+
+  Widget _titleSection(String title){
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, top: 30),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w700,
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+  
+
+  
   Widget _labelScrollPersonItem(String label){
     return Padding(
       padding: EdgeInsets.all(10.0),
@@ -91,6 +118,9 @@ class _AllDetailsCastingTabState extends State<AllDetailsCastingTab> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   
 }
@@ -113,7 +143,7 @@ class ScrollCastItem extends StatelessWidget{
       );
     }else{
       return Container(
-        height: 280.0,
+        height: 250.0,
         width: double.infinity,
         child: ListView.builder(
           padding: EdgeInsets.all(10.0),
@@ -149,7 +179,7 @@ class ScrollCastItem extends StatelessWidget{
     final photo = NetworkImage('https://image.tmdb.org/t/p/original${cast.profilePath}');
 
     return Container(
-      padding: const EdgeInsets.only(top:15.0),
+      padding: const EdgeInsets.only(top:10.0),
       child: Container(
         width:  109.3,
         height: 160.0,
@@ -233,7 +263,7 @@ class ScrollCrewItem extends StatelessWidget{
     }else{
 
       return Container(
-        height: 280.0,
+        height: 265.0,
         width: double.infinity,
         child: ListView.builder(
         padding: EdgeInsets.all(10.0),
@@ -273,7 +303,7 @@ class ScrollCrewItem extends StatelessWidget{
     final photo = NetworkImage('https://image.tmdb.org/t/p/original${crew.profilePath}');
 
     return Container(
-      padding: const EdgeInsets.only(top:15.0),
+      padding: const EdgeInsets.only(top:10.0),
       child: Container(
         width: 109.3,
         height: 160.0,

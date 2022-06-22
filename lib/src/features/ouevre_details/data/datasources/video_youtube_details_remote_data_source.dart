@@ -35,7 +35,7 @@ class VideoYoutubeDetailsRemoteDataSourceImpl implements VideoYoutubeDetailsRemo
     
     Map<String, String> parameters = {
       'part'              : 'snippet',
-      'maxResults'        : '12',
+      'maxResults'        : '6',
       'relevanceLanguage' : prefs.getLanguage,
       'type'              : 'video',
       'q'                 : query,

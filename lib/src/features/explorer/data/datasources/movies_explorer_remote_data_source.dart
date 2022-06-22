@@ -84,7 +84,8 @@ class MoviesExplorerRemoteDataSourceImpl implements MoviesExplorerRemoteDataSour
       'with_original_language'    : withOriginalLanguage,
       'with_companies'            : withCompanies,
       'with_keywords'             : withKeywords,
-      'with_watch_providers'      : withWatchProvider
+      'with_watch_providers'      : withWatchProvider,
+      'include_adult'             : 'false',
     };
 
 

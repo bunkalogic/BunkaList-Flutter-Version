@@ -244,80 +244,80 @@ class _EditPreferencesPageState extends State<EditPreferencesPage> {
             ),
         ),
         SizedBox(height: 20.0,),
-        _titleOfSections(AppLocalizations.of(context).translate("label_edit_pofile")),
-        Divider(),
-        SizedBox(height: 10.0,),
-        _titleOfSectionsPremium(),
-        Divider(),
-        _createItemSettings(
-          icon: prefs.isNotAds
-            ? Icons.play_arrow_rounded
-            : Icons.lock_rounded,
-          text: AppLocalizations.of(context).translate("label_design_watchlist"),
-          trailing: IconButton(
-            icon: Icon(
-              prefs.currentDesignWatching ? Icons.art_track_rounded : Icons.horizontal_split_rounded,
-              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
-              size: 34,
-            ), 
-            onPressed: (){
+        // _titleOfSections(AppLocalizations.of(context).translate("label_edit_pofile")),
+        // Divider(),
+        // SizedBox(height: 10.0,),
+        // _titleOfSectionsPremium(),
+        // Divider(),
+        // _createItemSettings(
+        //   icon: prefs.isNotAds
+        //     ? Icons.play_arrow_rounded
+        //     : Icons.lock_rounded,
+        //   text: AppLocalizations.of(context).translate("label_design_watchlist"),
+        //   trailing: IconButton(
+        //     icon: Icon(
+        //       prefs.currentDesignWatching ? Icons.art_track_rounded : Icons.horizontal_split_rounded,
+        //       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        //       size: 34,
+        //     ), 
+        //     onPressed: (){
               
-              if(prefs.isNotAds){
-                prefs.currentDesignWatching = !prefs.currentDesignWatching;
-                setState(() {});
-              }else{
-                Navigator.pushNamed(context, '/Premium');
-              }
+        //       if(prefs.isNotAds){
+        //         prefs.currentDesignWatching = !prefs.currentDesignWatching;
+        //         setState(() {});
+        //       }else{
+        //         Navigator.pushNamed(context, '/Premium');
+        //       }
               
-            }
-          ),
-        ),
-        _createItemSettings(
-          icon: prefs.isNotAds
-            ? Icons.history
-            : Icons.lock_rounded,
-          text: AppLocalizations.of(context).translate("label_design_history"),
-          trailing: IconButton(
-            icon: Icon(
-              prefs.currentDesignWatching ? Icons.amp_stories : Icons.horizontal_split_rounded,
-              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
-              size: 34,
-            ), 
-            onPressed: (){
+        //     }
+        //   ),
+        // ),
+        // _createItemSettings(
+        //   icon: prefs.isNotAds
+        //     ? Icons.history
+        //     : Icons.lock_rounded,
+        //   text: AppLocalizations.of(context).translate("label_design_history"),
+        //   trailing: IconButton(
+        //     icon: Icon(
+        //       prefs.currentDesignWatching ? Icons.amp_stories : Icons.horizontal_split_rounded,
+        //       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        //       size: 34,
+        //     ), 
+        //     onPressed: (){
               
-              if(prefs.isNotAds){
-                prefs.currentDesignHistory = !prefs.currentDesignHistory;
-                setState(() {});
-              }else{
-                Navigator.pushNamed(context, '/Premium');
-              }
+        //       if(prefs.isNotAds){
+        //         prefs.currentDesignHistory = !prefs.currentDesignHistory;
+        //         setState(() {});
+        //       }else{
+        //         Navigator.pushNamed(context, '/Premium');
+        //       }
               
-            }
-          ),
-        ),
-        _createItemSettings(
-          icon: prefs.isNotAds
-            ? Icons.playlist_add_rounded
-            : Icons.lock_rounded,
-          text: AppLocalizations.of(context).translate("label_design_wishlist"),
-          trailing: IconButton(
-            icon: Icon(
-              prefs.currentDesignWatching ? Icons.amp_stories : Icons.horizontal_split_rounded,
-              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
-              size: 34,
-            ), 
-            onPressed: (){
+        //     }
+        //   ),
+        // ),
+        // _createItemSettings(
+        //   icon: prefs.isNotAds
+        //     ? Icons.playlist_add_rounded
+        //     : Icons.lock_rounded,
+        //   text: AppLocalizations.of(context).translate("label_design_wishlist"),
+        //   trailing: IconButton(
+        //     icon: Icon(
+        //       prefs.currentDesignWatching ? Icons.amp_stories : Icons.horizontal_split_rounded,
+        //       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+        //       size: 34,
+        //     ), 
+        //     onPressed: (){
               
-              if(prefs.isNotAds){
-                prefs.currentDesignWishlist = !prefs.currentDesignWishlist;
-                setState(() {});
-              }else{
-                Navigator.pushNamed(context, '/Premium');
-              }
+        //       if(prefs.isNotAds){
+        //         prefs.currentDesignWishlist = !prefs.currentDesignWishlist;
+        //         setState(() {});
+        //       }else{
+        //         Navigator.pushNamed(context, '/Premium');
+        //       }
               
-            }
-          ),
-        ),
+        //     }
+        //   ),
+        // ),
       ],
     );
   }

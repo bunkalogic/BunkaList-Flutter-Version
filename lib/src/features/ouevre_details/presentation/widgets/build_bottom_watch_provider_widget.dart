@@ -47,11 +47,11 @@ class _BuildBottomWatchProviderWidgetState extends State<BuildBottomWatchProvide
           child: BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
           builder: (context, state){
           
-            if(state is Empty){
+            if(state is EmptyDetails){
            
               return LoadingCustomWidget();
 
-            }else if(state is Loading){
+            }else if(state is LoadingDetails){
 
               return LoadingCustomWidget();
 
@@ -60,7 +60,7 @@ class _BuildBottomWatchProviderWidgetState extends State<BuildBottomWatchProvide
 
               return BuildWatchProvider(watchProvider: state.watchProvider,);
 
-            }else if(state is Error){
+            }else if(state is ErrorDetails){
 
               return Center(
                 child: Text(state.message),

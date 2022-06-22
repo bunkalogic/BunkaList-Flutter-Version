@@ -54,7 +54,7 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
   
   
   @override
-  OuevreDetailsState get initialState => Empty();
+  OuevreDetailsState get initialState => EmptyDetails();
 
   @override
   Stream<OuevreDetailsState> mapEventToState(
@@ -69,17 +69,17 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
           yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
               
 
               final failureOrMovie = await getMovieDetails(movieParams.Params(movieId: id));
 
               yield failureOrMovie.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (movie)  => LoadedMovie(
                   movie: movie,
                 )
@@ -97,16 +97,16 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
           yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
 
               final failureOrSerie = await getSerieDetails(serieParams.Params(serieId: id));
 
               yield failureOrSerie.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (serie)  => LoadedSerie(
                   serie: serie,
                 )
@@ -124,18 +124,18 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
           yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
 
               
               
               final failureOrAnime = await getAnimeDetails(animeParams.Params(animeId: id));
 
               yield failureOrAnime.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (anime)  => LoadedAnime(
                   anime: anime,
                 )
@@ -158,17 +158,17 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
       yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
 
               
               final failureOrKeywords = await getKeywordsDetails(ParamsKeywords(id: id, type: event.type));
 
                yield failureOrKeywords.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (keyword) => LoadedKeywords(keywords: keyword)
               );
 
@@ -185,18 +185,18 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
       yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
 
               
               final failureOrImages = await getPosterImagesDetails(ParamsPosterImages(id: id, type: event.type));
               
 
                yield failureOrImages.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (images) => LoadedImages(posterImages: images)
               );
 
@@ -213,18 +213,18 @@ class OuevreDetailsBloc extends Bloc<OuevreDetailsEvent, OuevreDetailsState> {
       yield* inputEither.fold(
             (failures) async*{
 
-              yield Error(message: INVALID_INPUT_FAILURE_MESSAGE );
+              yield ErrorDetails(message: INVALID_INPUT_FAILURE_MESSAGE );
 
             }, (id) async*{
 
-              yield Loading();
+              yield LoadingDetails();
 
               
               final failureOrWatchProvider = await getWatchProviderDetails(ParamsWatchProvider(id: id, type: event.type));
               
 
                yield failureOrWatchProvider.fold(
-                (failure) => Error(message: _mapFailureToMessage(failure)), 
+                (failure) => ErrorDetails(message: _mapFailureToMessage(failure)), 
                 (watchProvider) => LoadedWatchProvider(watchProvider: watchProvider)
               );
 

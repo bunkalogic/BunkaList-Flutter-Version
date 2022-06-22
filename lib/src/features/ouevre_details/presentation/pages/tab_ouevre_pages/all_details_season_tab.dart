@@ -45,13 +45,19 @@ class _AllDetailsSeasonTabState extends State<AllDetailsSeasonTab> {
       child: BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
         builder: (context, state) {
           
-          if(state is Empty){
+          if(state is EmptyDetails){
 
-            return LoadingCustomWidget();
+            return Container(
+              height: 200.0,
+              child: LoadingCustomWidget());
 
-          }else if(state is Loading){
+
+          }else if(state is LoadingDetails){
             
-            return LoadingCustomWidget();
+            return Container(
+              height: 200.0,
+              child: LoadingCustomWidget());
+
 
           }else if(state is LoadedSerie){
 
@@ -61,7 +67,7 @@ class _AllDetailsSeasonTabState extends State<AllDetailsSeasonTab> {
 
             return SeasonAnimeItems(anime: state.anime,);
 
-          }else if(state is Error){
+          }else if(state is ErrorDetails){
             
             return EmptyIconWidget();
 
@@ -94,19 +100,18 @@ class SeasonSerieItems extends StatelessWidget{
     final List<SeasonSerie> listSerieSeasons = new List<SeasonSerie>.from(serieSeason);
 
     if(listSerieSeasons.isEmpty){
-      return Center(child: Text('No data Seasons'),);
+      return Container(height: 200, child: Center(child: Text('No data Seasons'),));
     }else{
-      return Column(
-        children: <Widget>[
-          MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7009829277',),
-          //MaxNativeBannerAds(adPlacementID: "177059330328908_179581976743310",),
-          Expanded(
-            child: ListView.builder(
-             itemCount: listSerieSeasons.length,
-             itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
-            ),
-          ),
-        ],
+      return ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: 200),
+        child: ListView.builder(
+          itemExtent: 380,
+          padding: const EdgeInsets.all(5.0),
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: listSerieSeasons.length,
+          itemBuilder:  (context, i) => _itemSeason(context, listSerieSeasons[i]),
+        ),
       );
     }
     
@@ -119,7 +124,7 @@ class SeasonSerieItems extends StatelessWidget{
     return GestureDetector(
       onTap: () =>  Navigator.pushNamed(context, '/AllDetailsSeason', arguments: getIdAndSeasonId(serie.id , seasonItem.seasonNumber, serie.name)),
       child: Container(
-    height: 180.0,
+    height: 120.0,
     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
     child: Card(
       elevation: 5.0,
@@ -253,19 +258,15 @@ class SeasonAnimeItems extends StatelessWidget{
     if(listAnimeSeasons.isEmpty){
       return Center(child: Text('No data Seasons'),);
     }else{
-      return Container(
-        child: Column(
-           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/7009829277',),
-            //MaxNativeBannerAds(adPlacementID: "177059330328908_179581976743310",),
-            Expanded(
-              child: ListView.builder(
-               itemCount: listAnimeSeasons.length,
-               itemBuilder:  (context, i) => _itemSeason(context, listAnimeSeasons[i]),
-              ),
-            ),
-          ],
+      return ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: 200),
+        child: ListView.builder(
+          itemExtent: 380,
+          padding: const EdgeInsets.all(5.0),
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: listAnimeSeasons.length,
+          itemBuilder:  (context, i) => _itemSeason(context, listAnimeSeasons[i]),
         ),
       );
     }

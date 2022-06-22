@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bunkalist/src/core/preferences/shared_preferences.dart';
 import 'package:bunkalist/src/core/reusable_widgets/app_bar_back_button_widget.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/item_details_widget.dart';
@@ -19,7 +20,7 @@ class TopDetailPage extends StatefulWidget {
 
 class _TopDetailPageState extends State<TopDetailPage> {
   
-  
+  Preferences prefs = Preferences();
   
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,20 @@ class _TopDetailPageState extends State<TopDetailPage> {
       appBar: AppBar(
           title: Text('Tu Top Series Favoritas'),
           leading: AppBarButtonBack(),
+          actions: [
+            IconButton(
+              icon: Icon(
+              Icons.format_list_numbered_rounded,
+              color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+              size: 32,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/TopFavEdit', arguments: widget.ouevreList);   
+              },
+            )
+
+            
+          ],
       ),
       body: _buildBody(),
     );

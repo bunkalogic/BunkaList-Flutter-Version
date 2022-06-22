@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bunkalist/injection_container.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
 import 'package:bunkalist/src/core/reusable_widgets/bottom_loader_widget.dart';
@@ -155,23 +157,34 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
       builder: (context, state) {
         if(state is Personaltop1Initial){
 
+
           if(page == 1){
-            BlocProvider.of<Personaltop1Bloc>(context)
+            
+            
+              BlocProvider.of<Personaltop1Bloc>(context)
             ..add(GetPersonalTop1(
               page: page,
               filterParams: widget.filterParams
             ));
+            
+            
+            
           }
 
           
         }
 
+
         if(state is Personaltop1LoadedMovies){
+          
+          
+
 
           isLoading = false;
 
-          if(state.movies.isNotEmpty){
-
+            if(state.movies.isNotEmpty){
+            
+           
 
             if(widget.filterParams.design){
 
@@ -216,7 +229,7 @@ class _BuildListMoviePersonalHomeTopsState extends State<BuildListMoviePersonalH
             
 
 
-          }
+         }
           
 
 

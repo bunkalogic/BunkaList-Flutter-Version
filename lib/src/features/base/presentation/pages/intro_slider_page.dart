@@ -96,22 +96,22 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
 
   Widget renderNextBtn() {
     return Icon(
-      Icons.navigate_next,
+      Icons.navigate_next_rounded,
       color: Colors.pinkAccent[400],
-      size: 35.0,
+      size: 40.0,
     );
   }
 
   Widget renderDoneBtn() {
     return Icon(
-      Icons.done,
+      Icons.done_all_rounded,
       color: Colors.pinkAccent[400],
     );
   }
 
   Widget renderSkipBtn() {
     return Icon(
-        Icons.skip_next,
+        Icons.last_page_rounded,
         color: Colors.pinkAccent[400],
       );
   }

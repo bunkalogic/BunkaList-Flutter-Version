@@ -16,6 +16,8 @@ import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_plan
 import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_to_recent_add_list_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/tab_bar_watching_list_widget.dart';
 import 'package:bunkalist/src/features/profile/presentation/widgets/total_views_container_widget.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/container_top_empty_widget.dart';
+import 'package:bunkalist/src/features/tops_favorites/presentation/widgets/stacked_cards_widget.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/banner_premium_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         child: Container(   
             child: _infoProfileBox(),
-            height: 250.0,
+            height: 150.0,
             width: double.infinity,
             // decoration: BoxDecoration(
             //   borderRadius: BorderRadius.circular(15.0),
@@ -91,13 +93,15 @@ class _ProfilePageState extends State<ProfilePage> {
        child: Column(
          crossAxisAlignment: CrossAxisAlignment.center,
          children: <Widget>[
-           _profileImage(),
-           _profileName(),
+          //  _profileImage(),
+          //  _profileName(),
            SizedBox(height: 8.0,),
-           _profileTotalViews(),
-           _labelProfileRateAverage(),
-           _profileRateAverage(),
-           SizedBox(height: 5.0,),
+            _profileRateAverage(),
+           
+           SizedBox(height: 8.0,),
+          //  _labelProfileRateAverage(),
+          _profileTotalViews(),
+           SizedBox(height: 8.0,),
          ],
        ),
      );
@@ -203,18 +207,21 @@ class _ProfilePageState extends State<ProfilePage> {
     return ListView(
       //padding: EdgeInsets.all(5.0),
       children: <Widget>[
-        _createBox(),
+        SizedBox(height: 10.0,),
         _buttomPlatformList(context),
-        SizedBox(height: 20.0,),
+        _createBox(),
+        SizedBox(height: 10.0,),
         ListContainerChartViews(),
         MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1841263070', ),
-        TabBarWatchingAddedToListsWidget(),     
-        // SizedBox(height: 10.0,),
-        TabBarRecentAddedToListsWidget(),
-        MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
-        TabBarPlanToWatchAddedToListsWidget(),
-        BannerPremiumWidget(),
-        SizedBox(height: 20.0,),    
+        SizedBox(height: 10.0,),
+        _buildBodyTopsFavorites()
+        // TabBarWatchingAddedToListsWidget(),     
+        // // SizedBox(height: 10.0,),
+        // TabBarRecentAddedToListsWidget(),
+        // MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/5588936395', ),
+        // TabBarPlanToWatchAddedToListsWidget(),
+        // BannerPremiumWidget(),
+        // SizedBox(height: 20.0,),    
       ],
     );
   }
@@ -234,6 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buttonTypeMaterial(BuildContext context,String title, Color color, int type) {
       return Flexible(
+        // ignore: deprecated_member_use
         child: RaisedButton(
           elevation: 5.0,
           shape: RoundedRectangleBorder(
@@ -252,68 +260,131 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
   }
+  
 
+  Widget _buildBodyTopsFavorites() { 
+
+    return Column(
+      children: [
+        // _labelFavorites(AppLocalizations.of(context).translate("title_top_movie"),),
+        // dashed container
+        new BlocProvider<GetListsBloc>(
+            create: (_) => serviceLocator<GetListsBloc>(),
+            child: BuildSatckedCardTopFavorites(type: 'movie',),
+          ),
+        
+        // _labelFavorites(AppLocalizations.of(context).translate("title_top_serie"),),
+        // dashed container
+        new BlocProvider<GetListsBloc>(
+            create: (_) => serviceLocator<GetListsBloc>(),
+            child: BuildSatckedCardTopFavorites(type: 'tv',),
+          ),
+          BigContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/3234817637',),
+        // _labelFavorites(AppLocalizations.of(context).translate("title_top_anime"),),
+        // dashed container
+         new BlocProvider<GetListsBloc>(
+            create: (_) => serviceLocator<GetListsBloc>(),
+            child: BuildSatckedCardTopFavorites(type: 'anime',),
+          ),
+        // dashed container working in new features for create tops
+        // Divider(color: Colors.grey,),
+        SizedBox(height: 10.0,),
+        BannerPremiumWidget(),
+        
+        // ContainerTopEmptyWidget(
+        //   labelTitle: AppLocalizations.of(context).translate("title_working_feature"),
+        //   label: AppLocalizations.of(context).translate("subtitle_working_feature"), 
+        //   dottedColor: Colors.pinkAccent[400],
+        //   icon: Icons.build_rounded,
+        //   onTap: null
+        // ), 
+      ],
+    );
+  }
+
+  // Widget _labelFavorites(String title) {
+
+  //   return ListTile(
+  //     onTap: (){
+
+  //       Navigator.pushNamed(context, '/TopFavDetails', arguments: widget.ouevreList);
+
+  //     },
+  //     title: Text(
+  //       title,
+  //       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+  //     ),
+      
+  //     trailing: Icon(
+  //       Icons.chevron_right_rounded,
+  //       color: prefs.whatModeIs ? Colors.pinkAccent[400] : Colors.deepPurpleAccent[400],
+  //       size: 28,
+  //     ),
+  //   );
+
+    
+  // }
 
 
 
   
 
-  //! Cupertino Components (iOS)
+  // //! Cupertino Components (iOS)
 
-  Widget _profileDesignCupertino(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(5.0),
-      children: <Widget>[
-        _createBox(),
-        SizedBox(height: 5.0,),
-        _buttomPlatformList(context),
-        SizedBox(height: 20.0,),
-        _titleScrollSection('The last views of Movies :'),
-        SizedBox(height: 5.0,),
-        new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
-          ),
-        _titleScrollSection('The last views of Series :'),
-        SizedBox(height: 10.0,),
-        new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
-          ),
-        _titleScrollSection('The last views of Animes :'),
-        SizedBox(height: 10.0,),
-        new BlocProvider<GetListsBloc>(
-            create: (_) => serviceLocator<GetListsBloc>(),
-            child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
-          ),
-      ],
-    );
-  }
+  // Widget _profileDesignCupertino(BuildContext context) {
+  //   return ListView(
+  //     padding: EdgeInsets.all(5.0),
+  //     children: <Widget>[
+  //       _createBox(),
+  //       SizedBox(height: 5.0,),
+  //       _buttomPlatformList(context),
+  //       SizedBox(height: 20.0,),
+  //       _titleScrollSection('The last views of Movies :'),
+  //       SizedBox(height: 5.0,),
+  //       new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: LastAddedItem(status: ListProfileQuery.Last, type: 'movie',),
+  //         ),
+  //       _titleScrollSection('The last views of Series :'),
+  //       SizedBox(height: 10.0,),
+  //       new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: LastAddedItem(status: ListProfileQuery.Last, type: 'tv',),
+  //         ),
+  //       _titleScrollSection('The last views of Animes :'),
+  //       SizedBox(height: 10.0,),
+  //       new BlocProvider<GetListsBloc>(
+  //           create: (_) => serviceLocator<GetListsBloc>(),
+  //           child: LastAddedItem(status: ListProfileQuery.Last, type: 'anime',),
+  //         ),
+  //     ],
+  //   );
+  // }
 
-  _buttonsTypeListCupertino(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        _buttonTypeCupertino('List Movies', Colors.redAccent, 0, context),
-        SizedBox(width: 10.0,),
-        _buttonTypeCupertino('List Series TV', Colors.greenAccent[400], 1, context),
-        SizedBox(width: 10.0,),
-        _buttonTypeCupertino('List Anime', Colors.lightBlueAccent, 2, context),
-      ],
-    );
-  }
+  // _buttonsTypeListCupertino(BuildContext context) {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: <Widget>[
+  //       _buttonTypeCupertino('List Movies', Colors.redAccent, 0, context),
+  //       SizedBox(width: 10.0,),
+  //       _buttonTypeCupertino('List Series TV', Colors.greenAccent[400], 1, context),
+  //       SizedBox(width: 10.0,),
+  //       _buttonTypeCupertino('List Anime', Colors.lightBlueAccent, 2, context),
+  //     ],
+  //   );
+  // }
 
-  Widget _buttonTypeCupertino(String title, Color color,  int type, BuildContext context) {
-      return CupertinoButton(
-        borderRadius: BorderRadius.circular(4.0),
-        color: color,
-        child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
-        onPressed: (){
+  // Widget _buttonTypeCupertino(String title, Color color,  int type, BuildContext context) {
+  //     return CupertinoButton(
+  //       borderRadius: BorderRadius.circular(4.0),
+  //       color: color,
+  //       child: Text(title, style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic)),
+  //       onPressed: (){
           
-          Navigator.pushNamed(context, '/ListProfile', arguments: type);
-        },
-      );
-  }
+  //         Navigator.pushNamed(context, '/ListProfile', arguments: type);
+  //       },
+  //     );
+  // }
 
   
   

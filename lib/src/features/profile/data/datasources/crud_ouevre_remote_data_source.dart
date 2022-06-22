@@ -305,6 +305,19 @@ class CrudOuevreRemoteDataSourceImpl implements CrudOuevreRemoteDataSource{
 
       }
 
+
+      case ListProfileQuery.AllOrderDate :{
+        return ouevreCollection
+        .orderBy('addDate', descending: true)
+        .snapshots().map((snap){
+          
+          return snap.documents
+          .map((doc) =>  OuevreModel.fromSnapshot(doc))
+          .toList();
+
+        });
+      }
+
       
       default:{
         return ouevreCollection

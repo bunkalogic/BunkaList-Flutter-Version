@@ -6,8 +6,10 @@ import 'package:bunkalist/src/core/utils/format_date.dart';
 import 'package:bunkalist/src/premium_features/get_premium_app/presentation/widgets/countdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info/package_info.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:bunkalist/src/core/reusable_widgets/flushbar_go_login_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -44,13 +46,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: _isPremiumScreen(),
-    ),
-      ),
-    );
+    return _isPremiumScreen();
   }
 
    Widget _isPremiumScreen(){
@@ -71,16 +67,17 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
     }
   }
 
-  ListView _buildListViewPremium() {
-    return ListView(
+  Widget _buildListViewPremium() {
+    return Scaffold(
+      body: ListView(
         children: [
           _tileClosePage(),
           SizedBox(height: 25.0,),
           _nameBanner(),
           _labelOfBanner(),
           // CountDownFinishOfferWidget(),
-          _rowOfItemPremium(),
-          _labelIncludeSubscription(),
+          //_rowOfItemPremium(),
+          // _labelIncludeSubscription(),
           SizedBox(height: 25.0,),
           _labelOfUnlockFeature(),
           SizedBox(height: 10.0,),
@@ -120,47 +117,101 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
             AppLocalizations.of(context).translate("subtitle_item_unlock_premium_5")
           ), 
         ],
-      );
+      ),
+      floatingActionButton: _fabGetPremium(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+    
   }
 
   Widget _buildScreenIsNotAds() {
 
-    final isActive = _purchaserInfo.entitlements.active.values.first;
 
-    final String date = formatterDate(isActive.expirationDate);
-    final String label = AppLocalizations.of(context).translate("enebled_subcription");
-    final textDate = '$label $date';
     
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    final String label = AppLocalizations.of(context).translate("thanks_for_support");
+    
+    
+    return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 0.0,
+        leading: SizedBox.shrink(),
+        centerTitle: false,
+        title: ActionChip(
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        backgroundColor: Colors.pinkAccent[400],
+        padding: const EdgeInsets.all(1.0),
+        onPressed: (){},
+        label: Text(
+          'Premium',
+          style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w800),
+        ),
+      ),
+      actions: [
+        Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+           decoration: BoxDecoration(
+            color: Colors.blueGrey[400].withOpacity(0.2),
+            borderRadius: BorderRadius.circular(40)
+          ),
+          child: IconButton(
+            padding: const EdgeInsets.all(1.0),
+            visualDensity: VisualDensity.compact,
+            icon: Icon(
+              Icons.close_rounded,
+              color: Colors.pinkAccent[400],
+              size: 25.0,
+            ), 
+            onPressed: (){
+              Navigator.of(context).pop();
+            }
+          ),
+        ),
+      ),
+      ] 
+      ),
+      body: Padding(
+      padding: const EdgeInsets.all(10.0),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _tileClosePage(),
-            Icon(Icons.card_giftcard, color: Colors.redAccent[400], size: 60,),
-            Text(AppLocalizations.of(context).translate("thanks_for_support"),
-            textAlign: TextAlign.center, 
-              style: TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.w800
+            // _tileClosePage(),
+            _nameBanner(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text( "🎉 $label 🎉",
+              textAlign: TextAlign.center, 
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.pinkAccent
+                ),
               ),
             ),
             SizedBox(height: 10.0,),
-            isActive.expirationDate == null 
-            ? Container()
-            : Text(textDate,
-            textAlign: TextAlign.center, 
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w500
-              ),
-            ),
+            // isActive.expirationDate == null 
+            // ? Container()
+            // : Text(textDate,
+            // textAlign: TextAlign.center, 
+            //   style: TextStyle(
+            //     fontSize: 20.0,
+            //     fontWeight: FontWeight.w500
+            //   ),
+            // ),
             
           ],
         ),
       ),
+    ),
+    floatingActionButton: _fabSendFeedback(),
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+
+    
   }
 
 
@@ -222,12 +273,12 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
         ),
         child: Text(
           AppLocalizations.of(context).translate("title_label_premium"),
-          textAlign: TextAlign.justify,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.deepPurpleAccent,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w800,
-            fontSize: 22.0,
+            fontSize: 20.0,
             shadows: [
               Shadow(color: Colors.pinkAccent[400], blurRadius: 1.5)
             ]
@@ -281,91 +332,85 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
     );
   }
 
+  Widget _fabGetPremium(){
+
+    final String lifetime = AppLocalizations.of(context).translate("title_lifetime");
+    final String price = "1.49€"; 
+
+    return FloatingActionButton.extended(
+      onPressed: (){
+
+          if(!prefs.currentUserHasToken){
+            getFlushbarGoToLoginFromPremium(context);
+            return;
+          }
+
+          if(_offerings != null){
+          final offering = _offerings.getOffering("NoAds");
+
+            if(offering != null){
+            final lifetime = offering.lifetime;
+            _purchaseLifetime(lifetime);
+          }
+          }
+        }, 
+      label: _titleLabelItem('$lifetime = $price'),
+      elevation: 10,
+    );
+  }
+
+
+  Widget _fabSendFeedback(){
+    return FloatingActionButton.extended(
+      onPressed: ()async {
+
+          PackageInfo packageInfo = await PackageInfo.fromPlatform();            
+
+          String _version = packageInfo.version;
+          String _buildNumber = packageInfo.buildNumber;
+
+            final Uri _emailLaunchUri = Uri(
+              scheme: 'mailto',
+              path: 'bunkalist.client@gmail.com',
+              queryParameters: {
+                'subject': 'FEEDBACK PREMIUM ${prefs.getCurrentUsername} ',
+                'body': 'VersionNumber: $_version BuildNumber: $_buildNumber LanguageDevice: ${prefs.getLanguageOfDevice} *DONT DELETE THIS, THANK YOU*'
+              }
+            );
+
+            launch(_emailLaunchUri.toString());
+        },
+      label: _titleLabelItem(AppLocalizations.of(context).translate("label_feedback")),
+      elevation: 10,
+    );
+  }
+
   Widget _rowOfItemPremium() {
     return Container(
       height: MediaQuery.of(context).size.height * 0.28,
-      child: Row(
-        children: [
-          _itemPremium(
-            AppLocalizations.of(context).translate("title_lifetime"),
-            "1.99€",
-            onTap: (){
+      child: _itemPremium(
+        AppLocalizations.of(context).translate("title_lifetime"),
+        "1.49€",
+        onTap: (){
 
-              if(!prefs.currentUserHasToken){
-                getFlushbarGoToLoginFromPremium(context);
-                return;
-              }
+          if(!prefs.currentUserHasToken){
+            getFlushbarGoToLoginFromPremium(context);
+            return;
+          }
 
-              if(_offerings != null){
-              final offering = _offerings.getOffering("NoAds");
+          if(_offerings != null){
+          final offering = _offerings.getOffering("NoAds");
 
-                if(offering != null){
-                final lifetime = offering.lifetime;
-                _purchaseLifetime(lifetime);
-              }
-              }
-            }, 
-            margin: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 50.0
-            ),
-          ),
-          _itemPremium(
-            AppLocalizations.of(context).translate("title_lifetime"),
-            "4.99€",
-             onTap: (){
-
-              if(!prefs.currentUserHasToken){
-                getFlushbarGoToLoginFromPremium(context);
-                return;
-              }
-
-              if(_offerings != null){
-              final offering = _offerings.getOffering("remove_ads_and_premium_1");
-
-              if(offering != null){
-                final lifetime = offering.lifetime;
-                _purchaseLifetime(lifetime);
-              }
-            }
-            }, 
-            // isYear: true,
-            // priceForMonth: '0,22€ for month.',
-            // isOffer: true,
-            // offerPrice: "5.99€",
-            // shadow: [
-            // BoxShadow(color: Colors.grey[400].withOpacity(0.1), blurRadius: 4.5,spreadRadius: 2.5)
-            // ],
-            margin: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 50.0
-            ),
-          ),
-          _itemPremium(
-            AppLocalizations.of(context).translate("title_lifetime"),
-            "9.99 €",
-             onTap: (){
-
-              if(!prefs.currentUserHasToken){
-                getFlushbarGoToLoginFromPremium(context);
-                return;
-              }
-
-              final offering = _offerings.getOffering("remove_ads_and_premium_2");
-
-              if(offering != null){
-                final lifetime = offering.lifetime;
-                _purchaseLifetime(lifetime);
-              }
-            }, 
-            // isOffer: true,
-            // offerPrice: "9.99 €",
-            margin: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 50.0
-            ),
-          ),
-        ],
+            if(offering != null){
+            final lifetime = offering.lifetime;
+            _purchaseLifetime(lifetime);
+          }
+          }
+        }, 
+        margin: const EdgeInsets.symmetric(
+        horizontal: 120.0,
+        vertical: 60.0
+        ),
       ),
     );
   }
@@ -425,29 +470,26 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
   }
 
   Widget _itemPremium( String labelTitle, String price, {List<BoxShadow> shadow, EdgeInsetsGeometry margin, String offerPrice, bool isOffer = false, String priceForMonth, bool isYear = false, Function() onTap}){
-    return Expanded(
-      flex: 1,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          margin: margin,
-          width: MediaQuery.of(context).size.width * 0.33,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey[500].withOpacity(0.5),
-            borderRadius: BorderRadius.circular(8.0),
-            boxShadow: shadow
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 5.0),
-              _titleLabelItem(labelTitle),
-              isOffer ? SizedBox(height: 15.0,) : SizedBox(height: 30.0,),
-              isOffer ? _totalPriceOffer(offerPrice) : Container(),
-              _totalPrice(price),
-              isYear ? _divider() : Container(),
-              isYear ? _totalPriceforMonth(priceForMonth) : Container()
-            ],
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: margin,
+        width: MediaQuery.of(context).size.width * 0.33,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey[400].withOpacity(0.3),
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: shadow
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 5.0),
+            _titleLabelItem(labelTitle),
+            isOffer ? SizedBox(height: 15.0,) : SizedBox(height: 30.0,),
+            isOffer ? _totalPriceOffer(offerPrice) : Container(),
+            _totalPrice(price),
+            isYear ? _divider() : Container(),
+            isYear ? _totalPriceforMonth(priceForMonth) : Container()
+          ],
         ),
       ),
     );
@@ -456,14 +498,14 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
   Widget _titleLabelItem(String title) {
     return Text(
       title,
-      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.pinkAccent[400]),
+      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
     );
   }
 
   Widget _totalPrice(String price) {
     return Text(
       price,
-      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
     );
   }
 
@@ -524,14 +566,14 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
                   Icon(
                     icon,
                     color: Colors.pinkAccent[400],
-                    size: 60,
+                    size: 70,
                   ),
                   SizedBox(height: 5.0,),
                   Text(
                     labelTitle,
                     textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 1.0,
@@ -564,7 +606,7 @@ class _GetPremiumPageState extends State<GetPremiumPage> {
                       label,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 14.0,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 1.0,

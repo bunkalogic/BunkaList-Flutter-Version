@@ -16,7 +16,7 @@ class _FeaturePremiumWidgetState extends State<FeaturePremiumWidget> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.33,
+          height: MediaQuery.of(context).size.height * 0.28,
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -48,6 +48,7 @@ class _FeaturePremiumWidgetState extends State<FeaturePremiumWidget> {
     return Column(
       children: [
         _itemUnlockFeature(),
+        SizedBox(height: 5.0,),
         _btnGoToPremium()
       ],
     );
@@ -70,7 +71,7 @@ class _FeaturePremiumWidgetState extends State<FeaturePremiumWidget> {
             AppLocalizations.of(context).translate("big_banner_premium_title"),
             textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 16.0,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w800,
             letterSpacing: 1.0,

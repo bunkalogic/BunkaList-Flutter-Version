@@ -15,7 +15,7 @@ class AllDetailsTrailerTab extends StatefulWidget {
   _AllDetailsTrailerTabState createState() => _AllDetailsTrailerTabState();
 }
 
-class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
+class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> with AutomaticKeepAliveClientMixin{
 
 
   
@@ -31,17 +31,23 @@ class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
   @override
   Widget build(BuildContext context) {
 
+    super.build(context);
+
     return Container(
       child: BlocBuilder<VideoYoutubeBloc, VideoYoutubeState>(
         builder: (context, state) {
           
           if(state is Empty){
 
-            return LoadingCustomWidget();
+            return Container(
+              height: 250.0,
+              child: LoadingCustomWidget());
 
           }else if(state is Loading){
             
-            return LoadingCustomWidget();
+            return Container(
+              height: 250.0,
+              child: LoadingCustomWidget());
 
           }else if(state is Loaded){
 
@@ -50,20 +56,15 @@ class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
               return EmptyIconWidget();
 
             }else{
-              return Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    MiniContainerAdsWidget(adUnitID: 'ca-app-pub-6667428027256827/1043380245',),
-                    //MaxNativeBannerAds(adPlacementID: "177059330328908_179582826743225",),
-                    Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.all(5.0),
-                        itemCount: state.videos.length,
-                        itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i],),
-                      ),
-                    ),
-                  ],
+              return ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 300),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemExtent: 300,
+                  padding: const EdgeInsets.all(5.0),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.videos.length,
+                  itemBuilder: (context, i ) => AllDetailsYoutubeVideosItemWidget(video: state.videos[i],),
                 ),
               );
             }
@@ -80,4 +81,7 @@ class _AllDetailsTrailerTabState extends State<AllDetailsTrailerTab> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -81,7 +81,9 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
       if(event.filterParams.type == 'movie' && !_hasReachedMaxMovies(currentState) ){
 
-        final inputEither = GetTopId().getValidateTopId(event.page);
+        Either<Failures, int> inputEither = GetTopId().getValidateTopId(event.page);
+
+        
 
       if(currentState is Personaltop1Initial){
         yield* inputEither.fold(
@@ -89,6 +91,9 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
             yield ErrorPersonaltop1(message: INVALID_INPUT_FAILURE_MESSAGE );
 
           },(page) async* {
+
+
+           
           
           final failureOrMovies = await getPersonalTopsMovies(MovieParams( 
             page: page,
@@ -101,6 +106,8 @@ class Personaltop1Bloc extends Bloc<Personaltop1Event, Personaltop1State> {
 
           ));
           
+          
+
           yield* _eitherLoadedMovieOrErrorState(failureOrMovies, event.filterParams);
           return; 
         });

@@ -19,6 +19,7 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           _itemVideoImage(context),
           _itemVideoTitle(),
@@ -32,13 +33,19 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
   }
 
   Widget _itemVideoImage(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
+    return Container(
+      height: 180,
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0)
       ),
-      child: _stackImage(context),
+      child: Card(
+        margin: EdgeInsets.symmetric(vertical: 9.0, horizontal: 20.0),
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+        ),
+        child: _stackImage(context),
+      ),
     );
   }
   Widget _stackImage(BuildContext context){
@@ -76,7 +83,7 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
       child: Center(
         child: Image(
         fit: BoxFit.cover,
-        height: 50.0,  
+        height: 30.0,  
         image: AssetImage('assets/icon-youtube.png'),
         
         ),
@@ -85,11 +92,13 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
   }
 
   Widget _itemVideoTitle() {
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.all(1),
       child: Text(
         video.title,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          fontSize: 18.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w700
         ),
       ),
@@ -101,7 +110,7 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
       child: Text(
         video.channelTitle,
         style: TextStyle(
-          fontSize: 16.0,
+          fontSize: 14.0,
           fontWeight: FontWeight.w600
         ),
       ),
@@ -116,7 +125,7 @@ class AllDetailsYoutubeVideosItemWidget extends StatelessWidget {
         child: Text(
           url,
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 12.0,
             fontWeight: FontWeight.w500,
             color: Colors.blue,
             decoration: TextDecoration.underline

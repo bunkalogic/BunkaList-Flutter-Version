@@ -167,6 +167,9 @@ class _BuildItemWatchingDetailsWidgetState extends State<BuildItemWatchingDetail
     int totalEpisode = widget.ouevreEntity.episodeTotal;
     int watchEpisode = widget.ouevreEntity.episodes;
 
+    print('$totalEpisode');
+    print('$watchEpisode');
+
     double percentOfWatch = widget.ouevreEntity.episodes / totalEpisode;
 
     int episodesLeft = totalEpisode - watchEpisode;

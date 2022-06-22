@@ -55,14 +55,14 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.only(left: 8.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold ),
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold ),
       ),
     );
   }
 
   Widget _createItemSettings(BuildContext context, Color color, IconData icon, String text, Function() onTap) {
     return ListTile(
-      title: Text(text, style: TextStyle(fontSize: 18.0),),
+      title: Text(text, style: TextStyle(fontSize: 16.0),),
       leading: Icon(icon, size: 25.0, color: color,),
       trailing: Icon(Icons.arrow_forward_ios, size: 20.0,),
       onTap: onTap,

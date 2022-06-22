@@ -18,7 +18,7 @@ class BuildKeywordsWidget extends StatefulWidget {
   _BuildKeywordsWidgetState createState() => _BuildKeywordsWidgetState();
 }
 
-class _BuildKeywordsWidgetState extends State<BuildKeywordsWidget> {
+class _BuildKeywordsWidgetState extends State<BuildKeywordsWidget> with AutomaticKeepAliveClientMixin {
   
   
   @override
@@ -31,14 +31,17 @@ class _BuildKeywordsWidgetState extends State<BuildKeywordsWidget> {
   
   @override
   Widget build(BuildContext context) {
+
+    super.build(context);
+
     return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
      builder: (context, state){
 
-      if(state is Empty){
+      if(state is EmptyDetails){
 
           return SizedBox.shrink();
 
-      }else if(state is Loading){
+      }else if(state is LoadingDetails){
           
           return LoadingCustomWidget();
 
@@ -49,7 +52,7 @@ class _BuildKeywordsWidgetState extends State<BuildKeywordsWidget> {
           child: ChipsKeywordsWidget(keywords: _getKeywordsConversion(state.keywords.results),),
         );
 
-      }else if(state is Error){
+      }else if(state is ErrorDetails){
           
           return Center(
             child: Text(state.message),
@@ -90,6 +93,9 @@ class _BuildKeywordsWidgetState extends State<BuildKeywordsWidget> {
 
     return keywords;
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
 
 }

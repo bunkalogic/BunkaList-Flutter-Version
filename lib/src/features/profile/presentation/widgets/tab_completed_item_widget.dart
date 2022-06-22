@@ -292,7 +292,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
               borderRadius: BorderRadius.circular(10.0)
             ),
             elevation: 5.0,
-            margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0 ),
+            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0 ),
             borderOnForeground: false,
             child: Stack(
              fit: StackFit.expand, 
@@ -363,7 +363,7 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: Colors.white,
-        fontSize: 18.0,
+        fontSize: 16.0,
         fontWeight: FontWeight.w600,
         shadows: [
           Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
@@ -531,9 +531,9 @@ class _TabItemCompletedWidgetState extends State<TabItemCompletedWidget> {
   }
   Widget _changedIcon(){
     if(cardSize == 100.0){
-      return Icon(Icons.keyboard_arrow_down, color: Colors.pinkAccent[400], size: 35.0,);
+      return Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pinkAccent[400], size: 35.0,);
     }else{
-      return Icon(Icons.keyboard_arrow_up, color: Colors.pinkAccent[400], size: 35.0,);
+      return Icon(Icons.keyboard_arrow_up_rounded, color: Colors.pinkAccent[400], size: 35.0,);
     }
   }
 }

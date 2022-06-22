@@ -313,7 +313,7 @@ class _ItemImageStackedCardsState extends State<ItemImageStackedCards> {
       return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
       builder: (context, state){
 
-        if(state is Loading){
+        if(state is LoadingDetails){
           return LoadingCustomWidget();
         }
 
@@ -566,7 +566,7 @@ class _ItemRowStackedCardsState extends State<ItemRowStackedCards> {
       return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
       builder: (context, state){
 
-        if(state is Loading){
+        if(state is LoadingDetails){
           return LoadingCustomWidget();
         }
 

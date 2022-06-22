@@ -9,6 +9,7 @@ import 'package:bunkalist/src/features/ouevre_details/domain/entities/anime_deta
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/movie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/domain/entities/serie_details_entity.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/bloc/bloc_details/bloc.dart';
+import 'package:bunkalist/src/features/ouevre_details/presentation/pages/tab_ouevre_pages/all_details_info_tab.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_controller_tab_view_widget.dart';
 import 'package:bunkalist/src/features/ouevre_details/presentation/widgets/all_details_header_info_widget.dart';
 import 'package:flutter/material.dart';
@@ -135,10 +136,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
     final String type = widget.data['type'];
 
     return Scaffold(
-      body: DefaultTabController(
-        length: _getListTabs(context).length,
-        child: _createHeaderSliverBuilder()
-      ),
+      body: _createHeaderSliverBuilder(),
       floatingActionButton: BlocProvider<OuevreDetailsBloc>(
           create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: FABAddToList(type: type, id: id, isScrolling: isExtended,),
@@ -239,13 +237,16 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
           _createSliverAppBar(innerBoxScrolled),
         ];
       },
-      body: TabBarView(       
-    // physics: NeverScrollableScrollPhysics(),    
-    controller: _tabController,
-    children: _getListTabs(context).map((Tab tab) {
-      return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
-    }).toList(),
+      body: new BlocProvider<OuevreDetailsBloc>(
+          create: (_) => serviceLocator<OuevreDetailsBloc>(),
+          child: AllDetailsInfoTab(id: id, type: type,),
         ),
+    //   body: TabBarView(          
+    // controller: _tabController,
+    // children: _getListTabs(context).map((Tab tab) {
+    //   return AllDetailsTabViewControllerWidget(idTab: tab.key, id: id, type: type, title: title,);
+    // }).toList(),
+    //     ),
       )
     );
   }
@@ -263,7 +264,8 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         forceElevated: innerBoxScrolled,
         stretch: true,
         elevation: 10.0,
-        expandedHeight: 280,
+        centerTitle: true,
+        expandedHeight: 200,
         flexibleSpace: BlocProvider<OuevreDetailsBloc>(
           create: (_) => serviceLocator<OuevreDetailsBloc>(),
           child: AllDetailsHeaderInfo(id: id, type: type),
@@ -281,7 +283,7 @@ class _AllDetailsOuevrePageState extends State<AllDetailsOuevrePage> with Single
         // titlePadding: EdgeInsets.only(bottom: 65.0),
         // title: Text('Title')
         // ),
-        bottom: _tabBar(),
+        // bottom: _tabBar(),
         
     );
   }
@@ -371,12 +373,12 @@ class _FABAddToListState extends State<FABAddToList> {
     return BlocBuilder<OuevreDetailsBloc, OuevreDetailsState>(
       builder: (context, state) {
         
-        if(state is Empty){
+        if(state is EmptyDetails){
 
           return SizedBox.shrink();
           
 
-        }else if(state is Loading){
+        }else if(state is LoadingDetails){
           
           return SizedBox.shrink();
             
@@ -435,7 +437,7 @@ class _FABAddToListState extends State<FABAddToList> {
             }
           );
 
-        }else if(state is Error){
+        }else if(state is ErrorDetails){
           
           return Center(
             child: Text(state.message),

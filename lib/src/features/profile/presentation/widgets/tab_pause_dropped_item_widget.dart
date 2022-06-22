@@ -1,5 +1,6 @@
 import 'package:bunkalist/src/core/constans/query_list_const.dart';
 import 'package:bunkalist/src/core/localization/app_localizations.dart';
+import 'package:bunkalist/src/core/reusable_widgets/circular_chart_rating.dart';
 import 'package:bunkalist/src/core/reusable_widgets/loading_custom_widget.dart';
 import 'package:bunkalist/src/core/utils/get_id_and_type.dart';
 import 'package:bunkalist/src/features/profile/domain/entities/oeuvre_entity.dart';
@@ -138,7 +139,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
             borderRadius: BorderRadius.circular(10.0)
           ),
           elevation: 5.0,
-          margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0 ),
+          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0 ),
           borderOnForeground: false,
           child: Stack(
            fit: StackFit.expand, 
@@ -192,7 +193,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
 
   Widget _listTileInfoItem(OuevreEntity ouevre){
     return ListTile(
-      leading: _itemRate(),
+      leading: MiniCircularChartRating(ouevre.oeuvreRating),
       title: _titleItem(ouevre),
       trailing: _itemDate(ouevre),
       subtitle: _commentWhyPauseOrDropped(ouevre),
@@ -202,17 +203,20 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
   }
 
   Widget _titleItem(OuevreEntity ouevre) {
-    return Text(
-      ouevre.oeuvreTitle,
-      textAlign: TextAlign.center,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 18.0,
-        fontWeight: FontWeight.w600,
-        shadows: [
-          Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
-        ]
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 5),
+      child: Text(
+        ouevre.oeuvreTitle,
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16.0,
+          fontWeight: FontWeight.w600,
+          shadows: [
+            Shadow(blurRadius: 1.0, color: Colors.black, offset: Offset(1.0, 1.0))
+          ]
+        ),
       ),
     );
   }
@@ -267,7 +271,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
     return Align(
       alignment: Alignment.bottomCenter,
       child: IconButton(
-        icon: Icon(Icons.keyboard_arrow_down, color: Colors.pinkAccent[400], size: 35.0,),
+        icon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pinkAccent[400], size: 35.0,),
         onPressed: (){
            ButtomUpdateAndDelete(
               type: ouevre.oeuvreType,
@@ -288,7 +292,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
     return Text(
       ouevre.comment,
        style: TextStyle(
-          color: Colors.white,
+          color: Colors.grey[300],
           fontSize: 12.0, 
           fontWeight: FontWeight.w800,
           shadows: [
@@ -299,12 +303,17 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
   }
 
    _rowInfoSeasonAndEpisode(OuevreEntity ouevre){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        _subTitleSeasonInfo(ouevre),
-        _threeTitleEpisodeInfo(ouevre)
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _subTitleSeasonInfo(ouevre),
+            _threeTitleEpisodeInfo(ouevre)
+          ],
+        ),
+      ),
     );
   }
 
@@ -319,7 +328,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
     return Text(
       '$season : $watchSeason',
        style: TextStyle(
-          color: Colors.white,
+          color: Colors.grey[300],
           fontSize: 14.0, 
           fontWeight: FontWeight.w800,
           shadows: [
@@ -340,7 +349,7 @@ class _TabItemPauseAndDroppedWidgetState extends State<TabItemPauseAndDroppedWid
     return Text(
       '$episode : $watchEpisode',
        style: TextStyle(
-          color: Colors.white,
+          color: Colors.grey[300],
           fontSize: 14.0, 
           fontWeight: FontWeight.w800,
           shadows: [
